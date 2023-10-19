@@ -20,28 +20,28 @@ struct Pretentard {
 
 extension Font {
     func title1() -> Font {
-        Font.custom(Pretentard.semiBold, size: 24)
+        return Font.custom(Pretentard.semiBold, size: 24)
     }
     func title2() -> Font {
-        Font.custom(Pretentard.semiBold, size: 20)
+        return Font.custom(Pretentard.semiBold, size: 20)
     }
     func headline1() -> Font {
-        Font.custom(Pretentard.semiBold, size: 16)
+        return Font.custom(Pretentard.semiBold, size: 16)
     }
     func headline2() -> Font {
-        Font.custom(Pretentard.semiBold, size: 14)
+        return Font.custom(Pretentard.semiBold, size: 14)
     }
     func body() -> Font {
-        Font.custom(Pretentard.regular, size: 16)
+        return Font.custom(Pretentard.regular, size: 16)
     }
     func body2() -> Font {
-        Font.custom(Pretentard.semiBold, size: 14)
+        return Font.custom(Pretentard.semiBold, size: 14)
     }
     func button1() -> Font {
-        Font.custom(Pretentard.bold, size: 16)
+        return Font.custom(Pretentard.bold, size: 16)
     }
     func button2() -> Font {
-        Font.custom(Pretentard.semiBold, size: 14)
+        return Font.custom(Pretentard.semiBold, size: 14)
     }
 }
 
