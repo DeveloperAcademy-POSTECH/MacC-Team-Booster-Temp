@@ -11,7 +11,7 @@ import SwiftUI
 struct Mac_HealthApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
                 .onAppear {
                     Font.registeFonts()
                 }

@@ -8,17 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327572AE1321600319BAB /* Mac_HealthApp.swift */; };
-		0DA3275A2AE1321600319BAB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327592AE1321600319BAB /* ContentView.swift */; };
+		0DA3275A2AE1321600319BAB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327592AE1321600319BAB /* MainView.swift */; };
 		0DA3275C2AE1321700319BAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3275B2AE1321700319BAB /* Assets.xcassets */; };
 		0DA3275F2AE1321700319BAB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3275E2AE1321700319BAB /* Preview Assets.xcassets */; };
 		0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327672AE1359B00319BAB /* Ext+Color.swift */; };
 		0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327692AE13BE000319BAB /* Ext+Font.swift */; };
+		0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0DA327542AE1321600319BAB /* Mac_Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mac_Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DA327572AE1321600319BAB /* Mac_HealthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_HealthApp.swift; sourceTree = "<group>"; };
-		0DA327592AE1321600319BAB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0DA327592AE1321600319BAB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0DA3275B2AE1321700319BAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DA3275E2AE1321700319BAB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0DA327672AE1359B00319BAB /* Ext+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Color.swift"; sourceTree = "<group>"; };
@@ -32,6 +33,7 @@
 		0DA327722AE13C3200319BAB /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		0DA327732AE13C3200319BAB /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		0DA327742AE13C3200319BAB /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIScreen.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				0DA327672AE1359B00319BAB /* Ext+Color.swift */,
 				0DA327692AE13BE000319BAB /* Ext+Font.swift */,
+				0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */,
 			);
 			path = "Ext+";
 			sourceTree = "<group>";
@@ -118,7 +121,7 @@
 		0DA327752AE13F5200319BAB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0DA327592AE1321600319BAB /* ContentView.swift */,
+				0DA327592AE1321600319BAB /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,7 +198,8 @@
 			files = (
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
-				0DA3275A2AE1321600319BAB /* ContentView.swift in Sources */,
+				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
+				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
 				0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
