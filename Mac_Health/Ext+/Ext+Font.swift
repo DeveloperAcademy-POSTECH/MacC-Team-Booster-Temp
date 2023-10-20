@@ -19,7 +19,6 @@ struct Pretentard {
 }
 
 extension Font {
-<<<<<<< HEAD
     static func title1() -> Font {
         return Font.custom(Pretentard.semiBold, size: 24)
     }
@@ -42,30 +41,6 @@ extension Font {
         return Font.custom(Pretentard.bold, size: 16)
     }
     static func button2() -> Font {
-=======
-    func title1() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 24)
-    }
-    func title2() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 20)
-    }
-    func headline1() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 16)
-    }
-    func headline2() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 14)
-    }
-    func body() -> Font {
-        return Font.custom(Pretentard.regular, size: 16)
-    }
-    func body2() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 14)
-    }
-    func button1() -> Font {
-        return Font.custom(Pretentard.bold, size: 16)
-    }
-    func button2() -> Font {
->>>>>>> main
         return Font.custom(Pretentard.semiBold, size: 14)
     }
 }

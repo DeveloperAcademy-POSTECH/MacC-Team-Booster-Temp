@@ -14,7 +14,7 @@ struct MainView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
-                .font(.button1(self))
+                .font(.button1())
         }
         .padding()
     }
