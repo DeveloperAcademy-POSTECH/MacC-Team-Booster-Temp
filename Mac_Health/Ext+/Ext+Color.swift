@@ -23,6 +23,7 @@ extension Color {
     self.init(red: r, green: g, blue: b)
   }
     
+    
     static let gray_900 = Color(hex: "0C0C0C")
     static let gray_800 = Color(hex: "1C1C1C")
     static let gray_700 = Color(hex: "242424")
