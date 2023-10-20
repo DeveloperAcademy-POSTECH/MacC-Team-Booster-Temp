@@ -38,11 +38,11 @@ extension Color {
     static let fill_3 = Color(hex: "F5F5F5").opacity(0.02)
     static let green_main = Color(hex: "2ACC7E")
     static let green_10 = Color(hex: "2ACC7E").opacity(0.1)
-    static let red = Color(hex: "DE4744")
-    static let blue = Color(hex: "73A3FE")
-    static let purple = Color(hex: "AB6FF5")
-    static let pink = Color(hex: "FE7394")
-    static let yellow = Color(hex: "D9FA48")
+    static let red_main = Color(hex: "DE4744")
+    static let blue_main = Color(hex: "73A3FE")
+    static let purple_main = Color(hex: "AB6FF5")
+    static let pink_main = Color(hex: "FE7394")
+    static let yellow_main = Color(hex: "D9FA48")
     static let dim = Color(hex: "000000").opacity(0.7)
     
 }
