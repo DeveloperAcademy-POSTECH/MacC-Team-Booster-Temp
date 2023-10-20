@@ -14,6 +14,16 @@
 		0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327672AE1359B00319BAB /* Ext+Color.swift */; };
 		0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327692AE13BE000319BAB /* Ext+Font.swift */; };
 		0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */; };
+		F89B3BD42AE251F600CACBD9 /* WorkoutOngoing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoing.swift */; };
+		F89B3BD62AE271C900CACBD9 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327732AE13C3200319BAB /* Pretendard-Bold.otf */; };
+		F89B3BD72AE271CB00CACBD9 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276E2AE13C3200319BAB /* Pretendard-ExtraBold.otf */; };
+		F89B3BD82AE271CC00CACBD9 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276C2AE13C3200319BAB /* Pretendard-ExtraLight.otf */; };
+		F89B3BD92AE271CE00CACBD9 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327742AE13C3200319BAB /* Pretendard-Light.otf */; };
+		F89B3BDA2AE271D200CACBD9 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327702AE13C3200319BAB /* Pretendard-Medium.otf */; };
+		F89B3BDB2AE271D400CACBD9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327722AE13C3200319BAB /* Pretendard-SemiBold.otf */; };
+		F89B3BDC2AE271D700CACBD9 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276D2AE13C3200319BAB /* Pretendard-Regular.otf */; };
+		F89B3BDD2AE271D900CACBD9 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276F2AE13C3200319BAB /* Pretendard-Thin.otf */; };
+		F89B3BDF2AE272A100CACBD9 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327712AE13C3200319BAB /* Pretendard-Black.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +44,7 @@
 		0DA327732AE13C3200319BAB /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		0DA327742AE13C3200319BAB /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIScreen.swift"; sourceTree = "<group>"; };
+		F89B3BD32AE251F600CACBD9 /* WorkoutOngoing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				0DA327592AE1321600319BAB /* MainView.swift */,
+				F89B3BD32AE251F600CACBD9 /* WorkoutOngoing.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,7 +196,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F89B3BD82AE271CC00CACBD9 /* Pretendard-ExtraLight.otf in Resources */,
 				0DA3275F2AE1321700319BAB /* Preview Assets.xcassets in Resources */,
+				F89B3BD62AE271C900CACBD9 /* Pretendard-Bold.otf in Resources */,
+				F89B3BDA2AE271D200CACBD9 /* Pretendard-Medium.otf in Resources */,
+				F89B3BD72AE271CB00CACBD9 /* Pretendard-ExtraBold.otf in Resources */,
+				F89B3BD92AE271CE00CACBD9 /* Pretendard-Light.otf in Resources */,
+				F89B3BDF2AE272A100CACBD9 /* Pretendard-Black.otf in Resources */,
+				F89B3BDB2AE271D400CACBD9 /* Pretendard-SemiBold.otf in Resources */,
+				F89B3BDC2AE271D700CACBD9 /* Pretendard-Regular.otf in Resources */,
+				F89B3BDD2AE271D900CACBD9 /* Pretendard-Thin.otf in Resources */,
 				0DA3275C2AE1321700319BAB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +222,7 @@
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
 				0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */,
+				F89B3BD42AE251F600CACBD9 /* WorkoutOngoing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
