@@ -43,6 +43,9 @@ extension Font {
     static func button2() -> Font {
         return Font.custom(Pretentard.semiBold, size: 14)
     }
+    static func caption() -> Font {
+        return Font.custom(Pretentard.regular, size: 12)
+    }
 }
 
 extension Font {
