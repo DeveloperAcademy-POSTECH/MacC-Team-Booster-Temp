@@ -14,7 +14,7 @@
 		0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327672AE1359B00319BAB /* Ext+Color.swift */; };
 		0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327692AE13BE000319BAB /* Ext+Font.swift */; };
 		0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */; };
-		D5B780342AE26B1900A8B76A /* SearchViewMV.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780332AE26B1900A8B76A /* SearchViewMV.swift */; };
+		D5B780342AE26B1900A8B76A /* SearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780332AE26B1900A8B76A /* SearchVM.swift */; };
 		D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780352AE26B2100A8B76A /* SearchView.swift */; };
 		D5B780382AE2720700A8B76A /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327712AE13C3200319BAB /* Pretendard-Black.otf */; };
 		D5B780392AE2720B00A8B76A /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327732AE13C3200319BAB /* Pretendard-Bold.otf */; };
@@ -25,6 +25,10 @@
 		D5B7803E2AE2721600A8B76A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276D2AE13C3200319BAB /* Pretendard-Regular.otf */; };
 		D5B7803F2AE2721700A8B76A /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327722AE13C3200319BAB /* Pretendard-SemiBold.otf */; };
 		D5B780402AE2721900A8B76A /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276F2AE13C3200319BAB /* Pretendard-Thin.otf */; };
+		D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780422AE3962200A8B76A /* InfluencerCard.swift */; };
+		D5B780452AE3AEDF00A8B76A /* RecommendPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780442AE3AEDF00A8B76A /* RecommendPage.swift */; };
+		D5B780472AE3BC9300A8B76A /* TopImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780462AE3BC9300A8B76A /* TopImageView.swift */; };
+		D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +49,12 @@
 		0DA327732AE13C3200319BAB /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		0DA327742AE13C3200319BAB /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIScreen.swift"; sourceTree = "<group>"; };
-		D5B780332AE26B1900A8B76A /* SearchViewMV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewMV.swift; sourceTree = "<group>"; };
+		D5B780332AE26B1900A8B76A /* SearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVM.swift; sourceTree = "<group>"; };
 		D5B780352AE26B2100A8B76A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D5B780422AE3962200A8B76A /* InfluencerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerCard.swift; sourceTree = "<group>"; };
+		D5B780442AE3AEDF00A8B76A /* RecommendPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPage.swift; sourceTree = "<group>"; };
+		D5B780462AE3BC9300A8B76A /* TopImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImageView.swift; sourceTree = "<group>"; };
+		D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendInfluencer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +92,8 @@
 				0DA327652AE1356D00319BAB /* Ext+ */,
 				0DA327752AE13F5200319BAB /* View */,
 				0DA3275B2AE1321700319BAB /* Assets.xcassets */,
+				D5B780482AE3C10800A8B76A /* Model */,
+				D5B780412AE3960000A8B76A /* Component */,
 				0DA3275D2AE1321700319BAB /* Preview Content */,
 			);
 			path = Mac_Health;
@@ -144,9 +154,27 @@
 			isa = PBXGroup;
 			children = (
 				D5B780352AE26B2100A8B76A /* SearchView.swift */,
-				D5B780332AE26B1900A8B76A /* SearchViewMV.swift */,
+				D5B780332AE26B1900A8B76A /* SearchVM.swift */,
+				D5B780462AE3BC9300A8B76A /* TopImageView.swift */,
 			);
 			path = SearchView;
+			sourceTree = "<group>";
+		};
+		D5B780412AE3960000A8B76A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D5B780422AE3962200A8B76A /* InfluencerCard.swift */,
+				D5B780442AE3AEDF00A8B76A /* RecommendPage.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		D5B780482AE3C10800A8B76A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,10 +257,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
+				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
+				D5B780452AE3AEDF00A8B76A /* RecommendPage.swift in Sources */,
+				D5B780472AE3BC9300A8B76A /* TopImageView.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
-				D5B780342AE26B1900A8B76A /* SearchViewMV.swift in Sources */,
+				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
+				D5B780342AE26B1900A8B76A /* SearchVM.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
 				0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */,
 			);
