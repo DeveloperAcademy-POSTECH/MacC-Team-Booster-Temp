@@ -29,6 +29,9 @@
 		D5B780452AE3AEDF00A8B76A /* RecommendPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780442AE3AEDF00A8B76A /* RecommendPage.swift */; };
 		D5B780472AE3BC9300A8B76A /* TopImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780462AE3BC9300A8B76A /* TopImageView.swift */; };
 		D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */; };
+		D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */; };
+		D5B7804F2AE3CBB100A8B76A /* SubscribeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7804E2AE3CBB100A8B76A /* SubscribeVM.swift */; };
+		D5B780522AE3D65000A8B76A /* RoutinePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780512AE3D65000A8B76A /* RoutinePreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		D5B780442AE3AEDF00A8B76A /* RecommendPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPage.swift; sourceTree = "<group>"; };
 		D5B780462AE3BC9300A8B76A /* TopImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImageView.swift; sourceTree = "<group>"; };
 		D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendInfluencer.swift; sourceTree = "<group>"; };
+		D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
+		D5B7804E2AE3CBB100A8B76A /* SubscribeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeVM.swift; sourceTree = "<group>"; };
+		D5B780512AE3D65000A8B76A /* RoutinePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +150,8 @@
 		0DA327752AE13F5200319BAB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D5B780502AE3D63B00A8B76A /* RoutinePreview */,
+				D5B7804B2AE3CB6700A8B76A /* SubscribeView */,
 				D5B7802E2AE2679F00A8B76A /* SearchView */,
 				0DA327592AE1321600319BAB /* MainView.swift */,
 			);
@@ -155,7 +163,6 @@
 			children = (
 				D5B780352AE26B2100A8B76A /* SearchView.swift */,
 				D5B780332AE26B1900A8B76A /* SearchVM.swift */,
-				D5B780462AE3BC9300A8B76A /* TopImageView.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 		D5B780412AE3960000A8B76A /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				D5B780462AE3BC9300A8B76A /* TopImageView.swift */,
 				D5B780422AE3962200A8B76A /* InfluencerCard.swift */,
 				D5B780442AE3AEDF00A8B76A /* RecommendPage.swift */,
 			);
@@ -175,6 +183,23 @@
 				D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D5B7804B2AE3CB6700A8B76A /* SubscribeView */ = {
+			isa = PBXGroup;
+			children = (
+				D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */,
+				D5B7804E2AE3CBB100A8B76A /* SubscribeVM.swift */,
+			);
+			path = SubscribeView;
+			sourceTree = "<group>";
+		};
+		D5B780502AE3D63B00A8B76A /* RoutinePreview */ = {
+			isa = PBXGroup;
+			children = (
+				D5B780512AE3D65000A8B76A /* RoutinePreview.swift */,
+			);
+			path = RoutinePreview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
+				D5B780522AE3D65000A8B76A /* RoutinePreview.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				D5B780452AE3AEDF00A8B76A /* RecommendPage.swift in Sources */,
 				D5B780472AE3BC9300A8B76A /* TopImageView.swift in Sources */,
@@ -266,7 +292,9 @@
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				D5B780342AE26B1900A8B76A /* SearchVM.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
+				D5B7804F2AE3CBB100A8B76A /* SubscribeVM.swift in Sources */,
 				0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */,
+				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

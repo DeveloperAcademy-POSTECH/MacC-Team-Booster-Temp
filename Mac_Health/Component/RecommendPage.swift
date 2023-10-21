@@ -34,10 +34,10 @@ struct RecommendPage: View {
             HStack{
                 VStack(alignment: .leading, spacing: 16){
                     Text("정회승의 Smart Routine")
-                        .foregroundColor(.lable_900)
+                        .foregroundColor(.label_900)
                         .font(.title1())
                     Text("2022 Mr. 서울대🏆")
-                        .foregroundColor(.lable_600)
+                        .foregroundColor(.label_600)
                         .font(.body2())
                         .padding(.bottom, 40)
                 }

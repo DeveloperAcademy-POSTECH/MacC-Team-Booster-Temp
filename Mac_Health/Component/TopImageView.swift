@@ -40,7 +40,7 @@ struct TopImageView: View {
                 
                 HStack{
                     Text("둘러보기")
-                        .foregroundColor(.lable_900)
+                        .foregroundColor(.label_900)
                         .font(.title2())
                         .padding(20)
                         .padding(.top, 50)

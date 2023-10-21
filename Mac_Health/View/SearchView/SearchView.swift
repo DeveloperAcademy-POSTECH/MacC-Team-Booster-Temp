@@ -18,7 +18,7 @@ struct SearchView: View {
                     RecomendCardScroll
                     
                 }
-            }
+            }.ignoresSafeArea(.all)
         }
     }
 
@@ -28,7 +28,7 @@ struct SearchView: View {
             VStack(spacing: 20){
                 HStack {
                     Text("전문가들의 일상 루틴")
-                        .foregroundColor(.lable_900)
+                        .foregroundColor(.label_900)
                         .font(.title2())
                         .padding(.leading, 20)
                     Spacer()

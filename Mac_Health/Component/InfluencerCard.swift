@@ -23,14 +23,14 @@ struct InfluencerCard: View {
                 VStack(alignment: .leading){
                     Text(routineTitle)
                         .font(.headline1())
-                        .foregroundColor(.lable_900)
+                        .foregroundColor(.label_900)
                         .padding(.leading, 20)
                         .padding(.top, 24)
                     
                     Spacer()
                     Text(history)
                         .font(.headline2())
-                        .foregroundColor(.lable_700)
+                        .foregroundColor(.label_700)
                         .padding(.leading, 20)
                         .padding(.bottom, 24)
                 }
