@@ -9,15 +9,17 @@ import SwiftUI
 
 struct SearchView: View {
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-            
-            ScrollView {
-                TopImageView()
-                RecomendCardScroll
+        NavigationStack {
+            ZStack {
+                Color.gray_900.ignoresSafeArea()
                 
+                ScrollView {
+                    TopImageView()
+                    RecomendCardScroll
+                    
+                }
             }
-            }
+        }
     }
 
     

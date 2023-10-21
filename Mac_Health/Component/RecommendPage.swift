@@ -29,6 +29,8 @@ struct RecommendPage: View {
                 
             Image("gradient")
                 .resizable()
+                .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth*0.9)
+            
             HStack{
                 VStack(alignment: .leading, spacing: 16){
                     Text("정회승의 Smart Routine")
