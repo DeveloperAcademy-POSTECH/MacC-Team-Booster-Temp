@@ -72,3 +72,31 @@ extension Font {
         }
     }
 }
+
+struct Font_Previews: PreviewProvider {
+    static var previews: some View {
+        ScrollView {
+            Text("title1")
+                .font(.title1())
+            Text("title2")
+                .font(.title2())
+            Text("headline1")
+                .font(.headline1())
+            Text("headline2")
+                .font(.headline2())
+            Text("body")
+                .font(.body())
+            Text("body2")
+                .font(.body2())
+            Text("button1")
+                .font(.button1())
+            Text("button2")
+                .font(.button2())
+            Text("caption")
+                .font(.caption())
+        }
+        .onAppear {
+            Font.registeFonts()
+        }
+    }
+}
