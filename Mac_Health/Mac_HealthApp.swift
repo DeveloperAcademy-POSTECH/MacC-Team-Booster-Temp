@@ -13,6 +13,8 @@ struct Mac_HealthApp: App {
         WindowGroup {
 //            MainView()
             SubscribeView()
+//            PaymentView()
+//            SearchView()
                 .onAppear {
                     Font.registeFonts()
                 }
