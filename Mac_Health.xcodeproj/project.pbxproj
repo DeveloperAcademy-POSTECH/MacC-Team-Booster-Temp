@@ -32,6 +32,8 @@
 		D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */; };
 		D5B7804F2AE3CBB100A8B76A /* SubscribeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7804E2AE3CBB100A8B76A /* SubscribeVM.swift */; };
 		D5B780522AE3D65000A8B76A /* RoutinePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780512AE3D65000A8B76A /* RoutinePreview.swift */; };
+		D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */; };
+		D5B780592AE50AEF00A8B76A /* RoutinePreviewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780582AE50AEF00A8B76A /* RoutinePreviewVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
 		D5B7804E2AE3CBB100A8B76A /* SubscribeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeVM.swift; sourceTree = "<group>"; };
 		D5B780512AE3D65000A8B76A /* RoutinePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePreview.swift; sourceTree = "<group>"; };
+		D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRoutine.swift; sourceTree = "<group>"; };
+		D5B780582AE50AEF00A8B76A /* RoutinePreviewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePreviewVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */,
+				D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				D5B780512AE3D65000A8B76A /* RoutinePreview.swift */,
+				D5B780582AE50AEF00A8B76A /* RoutinePreviewVM.swift */,
 			);
 			path = RoutinePreview;
 			sourceTree = "<group>";
@@ -288,10 +294,12 @@
 				D5B780472AE3BC9300A8B76A /* TopImageView.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
+				D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				D5B780342AE26B1900A8B76A /* SearchVM.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
+				D5B780592AE50AEF00A8B76A /* RoutinePreviewVM.swift in Sources */,
 				D5B7804F2AE3CBB100A8B76A /* SubscribeVM.swift in Sources */,
 				0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */,
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
