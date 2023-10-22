@@ -14,7 +14,7 @@ struct SearchView: View {
                 Color.gray_900.ignoresSafeArea()
                 
                 ScrollView {
-                    TopImageView()
+                    TopImage()
                     RecomendCardScroll
                     
                 }
