@@ -23,7 +23,16 @@
 		F89B3BDB2AE271D400CACBD9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327722AE13C3200319BAB /* Pretendard-SemiBold.otf */; };
 		F89B3BDC2AE271D700CACBD9 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276D2AE13C3200319BAB /* Pretendard-Regular.otf */; };
 		F89B3BDD2AE271D900CACBD9 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276F2AE13C3200319BAB /* Pretendard-Thin.otf */; };
-		F89B3BDF2AE272A100CACBD9 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327712AE13C3200319BAB /* Pretendard-Black.otf */; };
+		F89B3BE02AE2732A00CACBD9 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327712AE13C3200319BAB /* Pretendard-Black.otf */; };
+		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */; };
+		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
+		F89B3BE72AE502F000CACBD9 /* WorkoutSequenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE62AE502F000CACBD9 /* WorkoutSequenceCard.swift */; };
+		F89B3BE92AE503B500CACBD9 /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE82AE503B500CACBD9 /* CheckButton.swift */; };
+		F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEA2AE5045000CACBD9 /* EmptyCheckButton.swift */; };
+		F89B3BED2AE5064200CACBD9 /* AlternativeRoutineCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEC2AE5064200CACBD9 /* AlternativeRoutineCard.swift */; };
+		F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */; };
+		F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */; };
+		F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +54,15 @@
 		0DA327742AE13C3200319BAB /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIScreen.swift"; sourceTree = "<group>"; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoing.swift; sourceTree = "<group>"; };
+		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingVM.swift; sourceTree = "<group>"; };
+		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
+		F89B3BE62AE502F000CACBD9 /* WorkoutSequenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSequenceCard.swift; sourceTree = "<group>"; };
+		F89B3BE82AE503B500CACBD9 /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
+		F89B3BEA2AE5045000CACBD9 /* EmptyCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCheckButton.swift; sourceTree = "<group>"; };
+		F89B3BEC2AE5064200CACBD9 /* AlternativeRoutineCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeRoutineCard.swift; sourceTree = "<group>"; };
+		F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedContentCard.swift; sourceTree = "<group>"; };
+		F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetCard.swift; sourceTree = "<group>"; };
+		F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +99,8 @@
 				0DA327662AE1357300319BAB /* Common */,
 				0DA327652AE1356D00319BAB /* Ext+ */,
 				0DA327752AE13F5200319BAB /* View */,
+				F89B3BE52AE502B300CACBD9 /* Component */,
+				F89B3BF22AE5142800CACBD9 /* Model */,
 				0DA3275B2AE1321700319BAB /* Assets.xcassets */,
 				0DA3275D2AE1321700319BAB /* Preview Content */,
 			);
@@ -134,8 +154,31 @@
 			children = (
 				0DA327592AE1321600319BAB /* MainView.swift */,
 				F89B3BD32AE251F600CACBD9 /* WorkoutOngoing.swift */,
+				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F89B3BE52AE502B300CACBD9 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				F89B3BE62AE502F000CACBD9 /* WorkoutSequenceCard.swift */,
+				F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */,
+				F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */,
+				F89B3BEA2AE5045000CACBD9 /* EmptyCheckButton.swift */,
+				F89B3BE82AE503B500CACBD9 /* CheckButton.swift */,
+				F89B3BEC2AE5064200CACBD9 /* AlternativeRoutineCard.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		F89B3BF22AE5142800CACBD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */,
+				F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +245,7 @@
 				F89B3BDA2AE271D200CACBD9 /* Pretendard-Medium.otf in Resources */,
 				F89B3BD72AE271CB00CACBD9 /* Pretendard-ExtraBold.otf in Resources */,
 				F89B3BD92AE271CE00CACBD9 /* Pretendard-Light.otf in Resources */,
-				F89B3BDF2AE272A100CACBD9 /* Pretendard-Black.otf in Resources */,
+				F89B3BE02AE2732A00CACBD9 /* Pretendard-Black.otf in Resources */,
 				F89B3BDB2AE271D400CACBD9 /* Pretendard-SemiBold.otf in Resources */,
 				F89B3BDC2AE271D700CACBD9 /* Pretendard-Regular.otf in Resources */,
 				F89B3BDD2AE271D900CACBD9 /* Pretendard-Thin.otf in Resources */,
@@ -217,11 +260,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */,
+				F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */,
+				F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */,
+				F89B3BED2AE5064200CACBD9 /* AlternativeRoutineCard.swift in Sources */,
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
+				F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */,
+				F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */,
+				F89B3BE72AE502F000CACBD9 /* WorkoutSequenceCard.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
+				F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */,
 				0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */,
+				F89B3BE92AE503B500CACBD9 /* CheckButton.swift in Sources */,
 				F89B3BD42AE251F600CACBD9 /* WorkoutOngoing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

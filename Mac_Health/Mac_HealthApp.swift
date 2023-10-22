@@ -11,7 +11,8 @@ import SwiftUI
 struct Mac_HealthApp: App {
     var body: some Scene {
         WindowGroup {
-            WorkoutOngoingView()
+//            MainView()
+            WorkoutOngoingView(currentWorkoutNumber: 1)
                 .onAppear {
                     Font.registeFonts()
                 }
