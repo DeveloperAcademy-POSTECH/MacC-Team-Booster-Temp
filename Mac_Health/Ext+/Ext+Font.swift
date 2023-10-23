@@ -75,6 +75,9 @@ extension Font {
         }
         return size
     }
+    static func caption() -> Font {
+        return Font.custom(Pretentard.regular, size: 12)
+    }
 }
 
 extension Font {
@@ -94,6 +97,34 @@ extension Font {
         guard let url = Bundle.main.url(forResource: name, withExtension: withExtension),CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
         else {
             return print("failed to regist \(name) font")
+        }
+    }
+}
+
+struct Font_Previews: PreviewProvider {
+    static var previews: some View {
+        ScrollView {
+            Text("title1")
+                .font(.title1())
+            Text("title2")
+                .font(.title2())
+            Text("headline1")
+                .font(.headline1())
+            Text("headline2")
+                .font(.headline2())
+            Text("body")
+                .font(.body())
+            Text("body2")
+                .font(.body2())
+            Text("button1")
+                .font(.button1())
+            Text("button2")
+                .font(.button2())
+            Text("caption")
+                .font(.caption())
+        }
+        .onAppear {
+            Font.registeFonts()
         }
     }
 }
