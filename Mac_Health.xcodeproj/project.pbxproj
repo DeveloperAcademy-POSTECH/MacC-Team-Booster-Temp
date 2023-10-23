@@ -91,6 +91,7 @@
 		D5B7805B2AE51AD900A8B76A /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		D5B7805D2AE51AE500A8B76A /* PaymentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVM.swift; sourceTree = "<group>"; };
 		D5B7805F2AE51E5300A8B76A /* TopImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImage.swift; sourceTree = "<group>"; };
+		F80BF2A72AE6A07D00EA4E07 /* Mac-Health-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Health-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
 		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingVM.swift; sourceTree = "<group>"; };
 		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 		0DA327562AE1321600319BAB /* Mac_Health */ = {
 			isa = PBXGroup;
 			children = (
+				F80BF2A72AE6A07D00EA4E07 /* Mac-Health-Info.plist */,
 				0DA327572AE1321600319BAB /* Mac_HealthApp.swift */,
 				0DA3275D2AE1321700319BAB /* Preview Content */,
 				0DA327652AE1356D00319BAB /* Ext+ */,
@@ -550,6 +552,7 @@
 				DEVELOPMENT_TEAM = 33F2H2TBU4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mac-Health-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -579,6 +582,7 @@
 				DEVELOPMENT_TEAM = 33F2H2TBU4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mac-Health-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
