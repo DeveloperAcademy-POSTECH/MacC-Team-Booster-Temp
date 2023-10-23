@@ -23,6 +23,7 @@ extension Color {
     self.init(red: r, green: g, blue: b)
   }
     
+    
     static let gray_900 = Color(hex: "0C0C0C")
     static let gray_800 = Color(hex: "1C1C1C")
     static let gray_700 = Color(hex: "242424")
@@ -38,11 +39,11 @@ extension Color {
     static let fill_3 = Color(hex: "F5F5F5").opacity(0.02)
     static let green_main = Color(hex: "2ACC7E")
     static let green_10 = Color(hex: "2ACC7E").opacity(0.1)
-    static let red = Color(hex: "DE4744")
-    static let blue = Color(hex: "73A3FE")
-    static let purple = Color(hex: "AB6FF5")
-    static let pink = Color(hex: "FE7394")
-    static let yellow = Color(hex: "D9FA48")
+    static let redOrigin = Color(hex: "DE4744")
+    static let blueOrigin = Color(hex: "73A3FE")
+    static let purpleOrigin = Color(hex: "AB6FF5")
+    static let pinkOrigin = Color(hex: "FE7394")
+    static let yellowOrigin = Color(hex: "D9FA48")
     static let dim = Color(hex: "000000").opacity(0.7)
     
 }
