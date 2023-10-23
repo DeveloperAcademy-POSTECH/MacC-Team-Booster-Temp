@@ -74,13 +74,14 @@ struct RoutineView: View {
         } label: {
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
-                .foregroundColor(.green)
+                .foregroundColor(.green_main)
                 .overlay {
                     ///로그인 안되어있으면
                     Text(true ? "루틴 둘러보기" : "운동 시작하기")
                         .foregroundColor(.gray_900)
                         .font(.button1())
                 }
+                .padding()
         }
     }
     

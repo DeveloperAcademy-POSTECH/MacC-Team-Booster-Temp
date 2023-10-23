@@ -30,7 +30,23 @@ struct SubscribeView: View {
             ScrollView {
                 VStack{
                 //구독 페이지 설명
-                RecommendPage()
+                    ZStack{
+                        topBackground
+                        TabView {
+                            ForEach(1...3, id: \.self) { idx in
+                                //둘러보기에서 구독 뷰
+                                ZStack{
+                                    Image("Influencer\(idx)")
+                                        .resizable()
+                                        .scaledToFit()
+                                    LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
+                                }
+                            }
+                        }
+                        .tabViewStyle(.page)
+                        topInfluencerDescription
+                            
+                    }
                 //구독 버튼
                 subscribeButton
                 //인플루언서 설명
@@ -52,23 +68,6 @@ struct SubscribeView: View {
                 if seeMore == false {
                     ZStack(alignment: .bottom){
                         VStack(alignment: .leading){
-//                            Text("소개")
-//                                .foregroundColor(.label_900)
-//                                .font(.headline1())
-//                            Text(introduce)
-//                                .foregroundColor(.label_800)
-//                                .font(.body)
-//                                .padding(.bottom, 20)
-//                            Text("수상경력")
-//                                .foregroundColor(.label_900)
-//                                .font(.headline1())
-//                            Text(award)
-//                                .foregroundColor(.label_800)
-//                                .font(.body)
-//                                .padding(.bottom, 20)
-//                                .padding(.leading, 5)
-                            
-                            
                             ForEach(0..<award.count, id: \.self) { index in
                                 HStack {VStack {
                                     Text("•")
@@ -173,14 +172,12 @@ struct SubscribeView: View {
                 createTab() : nil, alignment: Alignment.bottom
             )
         }.ignoresSafeArea(.all)
-
 //            .overlay {
 //                VStack{
 //                    Spacer()
 //                    subscribeButton
 //                }
 //            }
-
     }
     
     
@@ -207,6 +204,44 @@ struct SubscribeView: View {
             .padding(.bottom, 30)
             .transition(.scale)
     }
+    
+    var topInfluencerDescription: some View {
+        ZStack(alignment: .bottomTrailing){
+            VStack{
+                Spacer()
+                HStack{
+                    VStack(alignment: .leading, spacing: 16){
+                        Text("정회승의 Smart Routine")
+                            .foregroundColor(.label_900)
+                            .font(.title1())
+                        Text("2022 Mr. 서울대🏆")
+                            .foregroundColor(.label_600)
+                            .font(.body2())
+                            .padding(.bottom, 40)
+                    }
+                    Spacer()
+                }
+                .padding(.leading, 20)
+            }
+        }
+        .frame(height: UIScreen.getHeight(358))
+        
+    }
+    
+    var topBackground: some View {
+        ZStack(alignment: .bottomTrailing){
+            Color.gray_900.ignoresSafeArea()
+            HStack{
+                Spacer()
+                Image("Background1")
+                    .resizable()
+                    .scaledToFit()
+            }
+        }
+        .frame(height: UIScreen.getHeight(358))
+
+    }
+    
 }
 
 struct ViewOffsetKey: PreferenceKey {

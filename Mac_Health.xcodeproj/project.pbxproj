@@ -28,18 +28,15 @@
 		0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327672AE1359B00319BAB /* Ext+Color.swift */; };
 		0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327692AE13BE000319BAB /* Ext+Font.swift */; };
 		0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */; };
-		D5B780342AE26B1900A8B76A /* SearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780332AE26B1900A8B76A /* SearchVM.swift */; };
+		0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */; };
 		D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780352AE26B2100A8B76A /* SearchView.swift */; };
 		D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780422AE3962200A8B76A /* InfluencerCard.swift */; };
 		D5B780452AE3AEDF00A8B76A /* RecommendPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780442AE3AEDF00A8B76A /* RecommendPage.swift */; };
 		D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */; };
 		D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */; };
-		D5B7804F2AE3CBB100A8B76A /* SubscribeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7804E2AE3CBB100A8B76A /* SubscribeVM.swift */; };
 		D5B780522AE3D65000A8B76A /* RoutinePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780512AE3D65000A8B76A /* RoutinePreview.swift */; };
 		D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */; };
-		D5B780592AE50AEF00A8B76A /* RoutinePreviewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780582AE50AEF00A8B76A /* RoutinePreviewVM.swift */; };
 		D5B7805C2AE51AD900A8B76A /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805B2AE51AD900A8B76A /* PaymentView.swift */; };
-		D5B7805E2AE51AE500A8B76A /* PaymentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805D2AE51AE500A8B76A /* PaymentVM.swift */; };
 		D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805F2AE51E5300A8B76A /* TopImage.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */; };
@@ -51,8 +48,6 @@
 		F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */; };
 		F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */; };
 		F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */; };
-		F8BE83592AE68F090094A509 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BE83572AE68F090094A509 /* Preview.swift */; };
-		F8BE835A2AE68F090094A509 /* PreviewMV.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BE83582AE68F090094A509 /* PreviewMV.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,18 +73,15 @@
 		0DA327732AE13C3200319BAB /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		0DA327742AE13C3200319BAB /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIScreen.swift"; sourceTree = "<group>"; };
-		D5B780332AE26B1900A8B76A /* SearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVM.swift; sourceTree = "<group>"; };
+		0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UITabBarController.swift"; sourceTree = "<group>"; };
 		D5B780352AE26B2100A8B76A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D5B780422AE3962200A8B76A /* InfluencerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerCard.swift; sourceTree = "<group>"; };
 		D5B780442AE3AEDF00A8B76A /* RecommendPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPage.swift; sourceTree = "<group>"; };
 		D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendInfluencer.swift; sourceTree = "<group>"; };
 		D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
-		D5B7804E2AE3CBB100A8B76A /* SubscribeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeVM.swift; sourceTree = "<group>"; };
 		D5B780512AE3D65000A8B76A /* RoutinePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePreview.swift; sourceTree = "<group>"; };
 		D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRoutine.swift; sourceTree = "<group>"; };
-		D5B780582AE50AEF00A8B76A /* RoutinePreviewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePreviewVM.swift; sourceTree = "<group>"; };
 		D5B7805B2AE51AD900A8B76A /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
-		D5B7805D2AE51AE500A8B76A /* PaymentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVM.swift; sourceTree = "<group>"; };
 		D5B7805F2AE51E5300A8B76A /* TopImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImage.swift; sourceTree = "<group>"; };
 		F80BF2A72AE6A07D00EA4E07 /* Mac-Health-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Health-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
@@ -102,8 +94,6 @@
 		F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedContentCard.swift; sourceTree = "<group>"; };
 		F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetCard.swift; sourceTree = "<group>"; };
 		F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
-		F8BE83572AE68F090094A509 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
-		F8BE83582AE68F090094A509 /* PreviewMV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +152,7 @@
 				0DA327672AE1359B00319BAB /* Ext+Color.swift */,
 				0DA327692AE13BE000319BAB /* Ext+Font.swift */,
 				0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */,
+				0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */,
 			);
 			path = "Ext+";
 			sourceTree = "<group>";
@@ -245,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				D5B780512AE3D65000A8B76A /* RoutinePreview.swift */,
-				D5B780582AE50AEF00A8B76A /* RoutinePreviewVM.swift */,
 			);
 			path = RoutinePreview;
 			sourceTree = "<group>";
@@ -254,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				D5B7805B2AE51AD900A8B76A /* PaymentView.swift */,
-				D5B7805D2AE51AE500A8B76A /* PaymentVM.swift */,
 			);
 			path = PaymentView;
 			sourceTree = "<group>";
@@ -291,7 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */,
-				D5B7804E2AE3CBB100A8B76A /* SubscribeVM.swift */,
 			);
 			path = SubcribeView;
 			sourceTree = "<group>";
@@ -300,9 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				D5B780352AE26B2100A8B76A /* SearchView.swift */,
-				D5B780332AE26B1900A8B76A /* SearchVM.swift */,
-				F8BE83572AE68F090094A509 /* Preview.swift */,
-				F8BE83582AE68F090094A509 /* PreviewMV.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -386,8 +371,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8BE83592AE68F090094A509 /* Preview.swift in Sources */,
-				F8BE835A2AE68F090094A509 /* PreviewMV.swift in Sources */,
 				F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */,
 				F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */,
 				F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */,
@@ -397,12 +380,12 @@
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				D5B780452AE3AEDF00A8B76A /* RecommendPage.swift in Sources */,
 				D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */,
-				D5B7805E2AE51AE500A8B76A /* PaymentVM.swift in Sources */,
 				0D5851582AE4F34400C8875A /* WorkoutCell.swift in Sources */,
 				0D58515F2AE5B0E300C8875A /* DetailWorkoutSheet.swift in Sources */,
 				0D58515D2AE4FCA500C8875A /* WorkoutSheet.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
 				0D58515A2AE4FB6300C8875A /* RoutineVM.swift in Sources */,
+				0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
 				F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */,
 				F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */,
@@ -416,10 +399,7 @@
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				D5B7805C2AE51AD900A8B76A /* PaymentView.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
-				D5B780342AE26B1900A8B76A /* SearchVM.swift in Sources */,
 				0D58514B2AE2E9E700C8875A /* RoutineView.swift in Sources */,
-				D5B780592AE50AEF00A8B76A /* RoutinePreviewVM.swift in Sources */,
-				D5B7804F2AE3CBB100A8B76A /* SubscribeVM.swift in Sources */,
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
