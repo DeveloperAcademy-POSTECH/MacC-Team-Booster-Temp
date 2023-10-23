@@ -12,9 +12,6 @@ struct Mac_HealthApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .onAppear {
-                    Font.registeFonts()
-                }
         }
     }
 }
