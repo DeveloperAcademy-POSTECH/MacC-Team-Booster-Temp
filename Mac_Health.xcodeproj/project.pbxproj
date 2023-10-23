@@ -76,6 +76,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D5851602AE6516E00C8875A /* WorkoutOngoning */ = {
+			isa = PBXGroup;
+			children = (
+				F89B3BD32AE251F600CACBD9 /* WorkoutOngoing.swift */,
+				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */,
+			);
+			path = WorkoutOngoning;
+			sourceTree = "<group>";
+		};
+		0D5851612AE6518A00C8875A /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */,
+				F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
 		0DA3274B2AE1321600319BAB = {
 			isa = PBXGroup;
 			children = (
@@ -99,7 +117,6 @@
 				0DA327662AE1357300319BAB /* Common */,
 				0DA327652AE1356D00319BAB /* Ext+ */,
 				0DA327752AE13F5200319BAB /* View */,
-				F89B3BE52AE502B300CACBD9 /* Component */,
 				F89B3BF22AE5142800CACBD9 /* Model */,
 				0DA3275B2AE1321700319BAB /* Assets.xcassets */,
 				0DA3275D2AE1321700319BAB /* Preview Content */,
@@ -128,6 +145,7 @@
 		0DA327662AE1357300319BAB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F89B3BE52AE502B300CACBD9 /* Component */,
 				0DA3276B2AE13C2800319BAB /* Font */,
 			);
 			path = Common;
@@ -152,9 +170,8 @@
 		0DA327752AE13F5200319BAB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0D5851602AE6516E00C8875A /* WorkoutOngoning */,
 				0DA327592AE1321600319BAB /* MainView.swift */,
-				F89B3BD32AE251F600CACBD9 /* WorkoutOngoing.swift */,
-				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,8 +192,7 @@
 		F89B3BF22AE5142800CACBD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */,
-				F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */,
+				0D5851612AE6518A00C8875A /* Workout */,
 			);
 			path = Model;
 			sourceTree = "<group>";
