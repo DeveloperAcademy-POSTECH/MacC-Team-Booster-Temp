@@ -50,13 +50,13 @@ struct RoutinePreview: View {
                 //운동 루틴
                 WorkoutExplain
                 //첫 운동 팁 설명
-//                ZStack{
-                    HStack(alignment: .top){
-                        Image("descriptionFace1")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: UIScreen.getWidth(48))
-                            .padding(10)
+                //ZStack{
+                HStack(alignment: .top){
+                    Image("descriptionFace1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: UIScreen.getWidth(48))
+                        .padding(10)
                     VStack(alignment: .leading){
                         Text("운동 팁 예시")
                             .font(.body2())
@@ -73,10 +73,8 @@ struct RoutinePreview: View {
                     .background{
                         RoundedRectangle(cornerRadius: 8)
                             .foregroundColor(.gray_700)
-                        
                     }
                     .padding(20)
-
 //                }
                 WorkoutExplain
                 //부위별 다른지 체크

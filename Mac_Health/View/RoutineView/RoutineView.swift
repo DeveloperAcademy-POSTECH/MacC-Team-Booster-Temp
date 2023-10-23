@@ -111,13 +111,15 @@ struct RoutineView: View {
                     }
                     WorkoutCell()
                     WorkoutCell()
+                    WorkoutCell()
+                    
                 }
                 ///로그인의 유무에 따라서 있고 없고
 //                LinearGradient(colors: [.gray_900, .clear], startPoint: .bottom, endPoint: .top)
             }
             ///로그인의 유무에 따라서 있고 없고
         }
-        .disabled(true)
+//        .disabled(true)
     }
     
     var TopBanner: some View {

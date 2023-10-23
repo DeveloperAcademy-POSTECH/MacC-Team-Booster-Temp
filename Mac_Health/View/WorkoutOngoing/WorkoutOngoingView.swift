@@ -52,6 +52,7 @@ struct WorkoutOngoingView: View {
             }
             Button("완료하기") {
                 // MARK: 완료하기
+                routineVM.showWorkOutOnGoing.toggle()
             }
         }
     }
@@ -300,6 +301,7 @@ struct WorkoutOngoingView: View {
                     }
                     Button("완료하기") {
                         // MARK: 완료하기
+                        routineVM.showWorkOutOnGoing.toggle()
                     }
                 }
             }
@@ -456,8 +458,5 @@ struct WorkoutOngoingView: View {
 struct WorkoutOngoingView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: RoutineVM())
-            .onAppear {
-                Font.registeFonts()
-            }
     }
 }

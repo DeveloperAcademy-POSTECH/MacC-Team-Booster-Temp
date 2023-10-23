@@ -41,17 +41,6 @@ struct RecommendPage: View {
                 Spacer()
             }
             .padding(.leading, 20)
-            VStack {
-                HStack{
-                    Text("둘러보기")
-                        .foregroundColor(.label_900)
-                        .font(.title2())
-                        .padding(20)
-                        .padding(.top, 50)
-                    Spacer()
-                }
-                Spacer()
-            }
         }
         .frame(height: UIScreen.getHeight(358))
     }

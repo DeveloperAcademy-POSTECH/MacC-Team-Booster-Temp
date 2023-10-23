@@ -37,7 +37,7 @@ struct SearchView: View {
                     Spacer()
                 }
                 VStack(spacing: 20){
-                    ForEach(0..<3, id: \.self) {idx in
+                    ForEach(0..<2, id: \.self) {idx in
                         //전문가들의 일상 루틴에서 구독 뷰
                         NavigationLink {
                             SubscribeView()
