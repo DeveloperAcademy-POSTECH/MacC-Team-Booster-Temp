@@ -15,7 +15,6 @@ struct PreviewRoutine: Identifiable {
     var setCount: Int
     var repsCount: String
     var exerciseTip: String?
-    
 }
 
 let previewRoutine = [

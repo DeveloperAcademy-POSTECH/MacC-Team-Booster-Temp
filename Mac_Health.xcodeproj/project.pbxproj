@@ -102,12 +102,11 @@
 			isa = PBXGroup;
 			children = (
 				0DA327572AE1321600319BAB /* Mac_HealthApp.swift */,
+				D5B780482AE3C10800A8B76A /* Model */,
 				0DA327662AE1357300319BAB /* Common */,
 				0DA327652AE1356D00319BAB /* Ext+ */,
 				0DA327752AE13F5200319BAB /* View */,
 				0DA3275B2AE1321700319BAB /* Assets.xcassets */,
-				D5B780482AE3C10800A8B76A /* Model */,
-				D5B780412AE3960000A8B76A /* Component */,
 				0DA3275D2AE1321700319BAB /* Preview Content */,
 			);
 			path = Mac_Health;
@@ -134,6 +133,7 @@
 		0DA327662AE1357300319BAB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D5B780412AE3960000A8B76A /* Component */,
 				0DA3276B2AE13C2800319BAB /* Font */,
 			);
 			path = Common;

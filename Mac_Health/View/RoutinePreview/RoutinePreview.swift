@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RoutinePreview: View {
     //날짜 변환
-    var date:String = "2023년 10월 15일"
-    var part:String = "등/가슴"
+    var date: String = "2023년 10월 15일"
+    var part: String = "등/가슴"
     var firstPart = "등"
     var secondPart = "가슴"
     let previewRoutine: PreviewRoutine
