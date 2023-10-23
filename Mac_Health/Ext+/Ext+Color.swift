@@ -44,11 +44,5 @@ extension Color {
     static let purple_main = Color(hex: "AB6FF5")
     static let pink_main = Color(hex: "FE7394")
     static let yellow_main = Color(hex: "D9FA48")
-    static let redOrigin = Color(hex: "DE4744")
-    static let blueOrigin = Color(hex: "73A3FE")
-    static let purpleOrigin = Color(hex: "AB6FF5")
-    static let pinkOrigin = Color(hex: "FE7394")
-    static let yellowOrigin = Color(hex: "D9FA48")
     static let dim = Color(hex: "000000").opacity(0.7)
-    
 }

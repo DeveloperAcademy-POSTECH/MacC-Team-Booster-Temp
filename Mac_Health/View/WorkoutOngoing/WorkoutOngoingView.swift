@@ -62,7 +62,7 @@ struct WorkoutOngoingView: View {
                 // MARK: dismiss
             } label: {
                 Image(systemName: "chevron.down")
-                    .foregroundColor(.lable_700)
+                    .foregroundColor(.label_700)
             }
             Spacer()
             
@@ -70,7 +70,7 @@ struct WorkoutOngoingView: View {
                 Image(systemName: "flame.fill")
                     .foregroundColor(.green_main)
                 Text("00:00:00")
-                    .foregroundColor(.lable_900)
+                    .foregroundColor(.label_900)
             }
             .font(.headline1())
             Spacer()
@@ -83,15 +83,15 @@ struct WorkoutOngoingView: View {
         VStack {
             HStack {
                 Text(workoutOngoingVM.workoutModel.workoutDate)
-                    .foregroundColor(.lable_700)
+                    .foregroundColor(.label_700)
                 Text("|")
-                    .foregroundColor(.lable_400)
+                    .foregroundColor(.label_400)
                 Text(workoutOngoingVM.workoutModel.influencerName)
-                    .foregroundColor(.lable_700)
+                    .foregroundColor(.label_700)
                 Text("|")
-                    .foregroundColor(.lable_400)
+                    .foregroundColor(.label_400)
                 Text("\(currentWorkoutNumber)/10")
-                    .foregroundColor(.lable_700)
+                    .foregroundColor(.label_700)
                 Spacer()
             }
             .font(.body2())
@@ -99,7 +99,7 @@ struct WorkoutOngoingView: View {
             HStack {
                 Text(workoutOngoingVM.workoutModel.workoutName)
                     .font(.title1())
-                    .foregroundColor(.lable_900)
+                    .foregroundColor(.label_900)
                 
                 Button {
                     workoutOngoingVM.showAlternativeWorkout()
@@ -113,7 +113,7 @@ struct WorkoutOngoingView: View {
                                 Text("대체")
                             }
                             .font(.caption())
-                            .foregroundColor(.lable_700)
+                            .foregroundColor(.label_700)
                         }
                 }
                 
@@ -144,18 +144,18 @@ struct WorkoutOngoingView: View {
                             workoutOngoingVM.decreaseWorkoutSet()
                         } label: {
                             Image(systemName: "minus")
-                                .foregroundColor(.lable_900)
+                                .foregroundColor(.label_900)
                         }
                         .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                         
                         Text("\(workoutOngoingVM.workoutSet.count)세트")
-                            .foregroundColor(.lable_700)
+                            .foregroundColor(.label_700)
                         
                         Button {
                             workoutOngoingVM.increaseWorkoutSet()
                         } label: {
                             Image(systemName: "plus")
-                                .foregroundColor(.lable_900)
+                                .foregroundColor(.label_900)
                         }
                         .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                     }
@@ -193,7 +193,7 @@ struct WorkoutOngoingView: View {
                         workoutOngoingVM.showRoutineSequenceShow()
                     } label: {
                         Image(systemName: "list.bullet")
-                            .foregroundColor(.lable_900)
+                            .foregroundColor(.label_900)
                     }
                     Spacer()
                     
@@ -207,7 +207,7 @@ struct WorkoutOngoingView: View {
                                 .overlay {
                                     Text("운동 완료")
                                         .font(.button1())
-                                        .foregroundColor(.lable_900)
+                                        .foregroundColor(.label_900)
                                 }
                         }
                         else {
@@ -236,7 +236,7 @@ struct WorkoutOngoingView: View {
                 HStack {
                     Text("루틴 순서")
                         .font(.title1())
-                        .foregroundColor(.lable_900)
+                        .foregroundColor(.label_900)
                     Spacer()
                     
                     Button {
@@ -248,7 +248,7 @@ struct WorkoutOngoingView: View {
                             .overlay {
                                 Image(systemName: "xmark")
                                     .font(.body())
-                                    .foregroundColor(.lable_700)
+                                    .foregroundColor(.label_700)
                             }
                     }
                 }
@@ -261,7 +261,7 @@ struct WorkoutOngoingView: View {
                         // MARK: change
                         Text("등")
                             .font(.headline1())
-                            .foregroundColor(.lable_900)
+                            .foregroundColor(.label_900)
                         Spacer()
                     }
                     .padding(.horizontal)
@@ -317,7 +317,7 @@ struct WorkoutOngoingView: View {
                     HStack {
                         Text("운동 대체하기")
                             .font(.title1())
-                            .foregroundColor(.lable_900)
+                            .foregroundColor(.label_900)
                         Spacer()
                         
                         Button {
@@ -329,7 +329,7 @@ struct WorkoutOngoingView: View {
                                 .overlay {
                                     Image(systemName: "xmark")
                                         .font(.body())
-                                        .foregroundColor(.lable_700)
+                                        .foregroundColor(.label_700)
                                 }
                         }
                     }
@@ -338,7 +338,7 @@ struct WorkoutOngoingView: View {
                     HStack {
                         Text("대체할 운동을 선택해주세요")
                             .font(.body())
-                            .foregroundColor(.lable_700)
+                            .foregroundColor(.label_700)
                         Spacer()
                     }
                     Spacer()
@@ -374,7 +374,7 @@ struct WorkoutOngoingView: View {
             HStack {
                 Text("관련 영상")
                     .font(.title2())
-                    .foregroundColor(.lable_900)
+                    .foregroundColor(.label_900)
                 Spacer()
             }
             
@@ -393,7 +393,7 @@ struct WorkoutOngoingView: View {
             HStack {
                 Image(systemName: "chevron.backward")
                     .font(.button2())
-                    .foregroundColor(.lable_500)
+                    .foregroundColor(.label_500)
                 RoundedRectangle(cornerRadius: 7.2)
                     .frame(width: UIScreen.getWidth(315), height: UIScreen.getHeight(68))
                     .foregroundColor(.fill_1)
@@ -421,21 +421,21 @@ struct WorkoutOngoingView: View {
                         HStack {
                             Text("\(workoutOngoingVM.workoutModel.influencerName)'s Tip")
                                 .font(.headline2())
-                                .foregroundColor(.lable_700)
+                                .foregroundColor(.label_700)
                             Spacer()
                             Button {
                                 workoutOngoingVM.dismissWorkoutTip()
                             } label: {
                                 Image(systemName: "xmark")
                                     .font(.headline2())
-                                    .foregroundColor(.lable_700)
+                                    .foregroundColor(.label_700)
                             }
                         }
                         Spacer()
                         
                         Text(workoutOngoingVM.workoutModel.workoutTip)
                             .font(.body())
-                            .foregroundColor(.lable_900)
+                            .foregroundColor(.label_900)
                         Spacer()
                         Spacer()
                     }

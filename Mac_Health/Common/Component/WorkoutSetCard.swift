@@ -13,7 +13,7 @@ struct WorkoutSetCard: View {
     var body: some View {
         HStack {
             Text("\(workoutSet.index)")
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
             Spacer()
             
             RoundedRectangle(cornerRadius: 4)
@@ -22,12 +22,12 @@ struct WorkoutSetCard: View {
                 .overlay {
                     TextField("자율", value: $workoutSet.kg, format: .number)
                         .keyboardType(.numberPad)
-                        .foregroundColor(.lable_500)
+                        .foregroundColor(.label_500)
                         .multilineTextAlignment(.trailing)
                         .padding(.trailing)
                 }
             Text("kg")
-                .foregroundColor(.lable_700)
+                .foregroundColor(.label_700)
             Spacer()
             
             RoundedRectangle(cornerRadius: 4)
@@ -36,12 +36,12 @@ struct WorkoutSetCard: View {
                 .overlay {
                     TextField("", value: $workoutSet.repetition, format: .number)
                         .keyboardType(.numberPad)
-                        .foregroundColor(.lable_900)
+                        .foregroundColor(.label_900)
                         .multilineTextAlignment(.trailing)
                         .padding(.trailing)
                 }
             Text("회")
-                .foregroundColor(.lable_700)
+                .foregroundColor(.label_700)
             Spacer()
             
             if workoutSet.isFinish {

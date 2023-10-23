@@ -31,7 +31,7 @@ struct WorkoutSequenceCard: View {
                     }
                     Text("클로즈 그립 랫 풀 다운")
                         .font(.headline1())
-                        .foregroundColor(isCurrentWorkout ? .green_main : .lable_900)
+                        .foregroundColor(isCurrentWorkout ? .green_main : .label_900)
                     Spacer()
                 }
                 HStack {
@@ -40,7 +40,7 @@ struct WorkoutSequenceCard: View {
                     Text("10-15 reps")
                 }
                 .font(.body2())
-                .foregroundColor(.lable_700)
+                .foregroundColor(.label_700)
             }
             
             Spacer()

@@ -18,7 +18,7 @@ struct RelatedContentCard: View {
                 .overlay {
                     Text(contentURL)
                         .font(.title1())
-                        .foregroundColor(.lable_900)
+                        .foregroundColor(.label_900)
                 }
         }
     }
