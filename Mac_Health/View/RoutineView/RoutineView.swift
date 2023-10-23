@@ -134,7 +134,7 @@ struct RoutineView: View {
                         .padding()
                         Spacer()
                         Capsule()
-                            .foregroundColor(.yellowOrigin)
+                            .foregroundColor(.yellow_main)
                             .frame(height: UIScreen.getHeight(130))
                             .offset(x: UIScreen.getWidth(130))
                     }

@@ -13,7 +13,6 @@ struct AlternativeWorkoutCard: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
-            .foregroundColor(.fill_3)
             .overlay {
                 HStack {
                     RoundedRectangle(cornerRadius: 4)
@@ -25,7 +24,7 @@ struct AlternativeWorkoutCard: View {
                     
                     Text("클로즈 그립 랫 풀 다운")
                         .font(.headline1())
-                        .foregroundColor(isSelectedWorkout ? .green_main : .lable_900)
+                        .foregroundColor(isSelectedWorkout ? .green_main : .label_900)
                     Spacer()
                 }
                 .padding(.horizontal)
