@@ -8,15 +8,36 @@
 import SwiftUI
 
 struct MainView: View {
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-                .font(.button1())
+        TabView {
+            SearchView()
+                .tabItem {
+                    Image(systemName: "dumbbell.fill")
+                    Text("루틴")
+                }
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("둘러보기")
+                }
+            SearchView()
+                .tabItem {
+                    Image(systemName: "list.clipboard.fill")
+                    Text("기록")
+                }
+            SearchView()
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("프로필")
+                }
         }
-        .padding()
+        
+        .ignoresSafeArea()
+        .tint(.label_700)
+        .onAppear() {
+                                UITabBar.appearance().barTintColor = .black
+                                   }
     }
 }
 

@@ -17,7 +17,13 @@ struct TopImage: View {
                 ScrollView(.horizontal){
                     HStack{
                         ForEach(1...3, id: \.self) { idx in
-                            RecommendPage()
+                            //둘러보기에서 구독 뷰
+                            NavigationLink {
+                                SubscribeView()
+                            } label: {
+                                RecommendPage()
+                            }
+
 //                                .gesture(
 //                                    DragGesture()
 //                                        .onEnded({value in

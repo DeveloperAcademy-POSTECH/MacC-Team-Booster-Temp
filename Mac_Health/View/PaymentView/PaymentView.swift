@@ -183,7 +183,7 @@ struct PaymentView: View {
     @ViewBuilder
     var paymentButton: some View {
         Button {
-            
+            print("결제가 됩니다.")
         } label: {
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))

@@ -10,7 +10,7 @@ import SwiftUI
 struct SubscribeView: View {
     
     @State var seeMore:Bool = false
-    @State var showTab = true
+    @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
     
     var introduce = "한국인 최초로 북미에서 열리는 프로쇼 우승 (텍사스 프로, 2023.8.18)"
@@ -173,6 +173,7 @@ struct SubscribeView: View {
                 createTab() : nil, alignment: Alignment.bottom
             )
         }.ignoresSafeArea(.all)
+
 //            .overlay {
 //                VStack{
 //                    Spacer()
@@ -182,9 +183,11 @@ struct SubscribeView: View {
 
     }
     
+    
     var subscribeButton: some View {
-        Button {
-            
+        NavigationLink {
+            PaymentView()
+                .navigationBarTitle("구독하기", displayMode: .inline)
         } label: {
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
@@ -194,24 +197,16 @@ struct SubscribeView: View {
                         .foregroundColor(Color.gray_900)
                         .font(.button1())
                 }
+
         }
+        
     }
     
     fileprivate func createTab() -> some View {
-            return Button(action: {
-            }, label: {
-                RoundedRectangle(cornerRadius: 100)
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
-                    .foregroundColor(Color.green_main)
-                    .overlay{
-                        Text("구독하기")
-                            .foregroundColor(Color.gray_900)
-                            .font(.button1())
-                    }
-                    .padding(.bottom, 30)
-            })
+        return subscribeButton
+            .padding(.bottom, 30)
             .transition(.scale)
-        }
+    }
 }
 
 struct ViewOffsetKey: PreferenceKey {

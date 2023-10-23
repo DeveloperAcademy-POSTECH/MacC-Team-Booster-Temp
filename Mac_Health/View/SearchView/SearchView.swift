@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     var body: some View {
+        //네비게이션 스택
         NavigationStack {
             ZStack {
                 Color.gray_900.ignoresSafeArea()
@@ -34,9 +35,18 @@ struct SearchView: View {
                     Spacer()
                 }.frame(maxWidth: .infinity)
                 VStack(spacing: 20){
-                    ForEach(1...5, id: \.self) {idx in
-                        InfluencerCard()
+                    ForEach(0..<5, id: \.self) {idx in
+                        //전문가들의 일상 루틴에서 구독 뷰
+                        NavigationLink {
+                            SubscribeView()
+                                .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
+                        } label: {
+                            InfluencerCard()
+                        }
+                       
+
                     }
+                    .toolbar(.hidden, for: .tabBar)
                 }
                 
             }

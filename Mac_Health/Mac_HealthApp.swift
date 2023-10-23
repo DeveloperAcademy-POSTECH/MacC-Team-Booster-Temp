@@ -11,8 +11,8 @@ import SwiftUI
 struct Mac_HealthApp: App {
     var body: some Scene {
         WindowGroup {
-//            MainView()
-            SubscribeView()
+            MainView()
+//            SubscribeView()
 //            PaymentView()
 //            SearchView()
                 .onAppear {
