@@ -30,7 +30,7 @@ struct DetailWorkoutSheet: View {
             HStack {
                 Text("대체 운동")
                     .font(.title2())
-                    .foregroundColor(.lable_900)
+                    .foregroundColor(.label_900)
                     .padding(.bottom, UIScreen.getHeight(24))
                 Spacer()
             }
@@ -48,7 +48,7 @@ struct DetailWorkoutSheet: View {
                 .foregroundColor(.gray_600)
             Text("클로즈 그립 대체")
                 .font(.body())
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
             Spacer()
         }
     }
@@ -58,7 +58,7 @@ struct DetailWorkoutSheet: View {
         VStack(alignment: .leading, spacing: 24) {
             Text("관련 영상")
                 .font(.title2())
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
             ScrollView(.horizontal) {
                 RoundedRectangle(cornerRadius: 8)
                     .frame(width: UIScreen.getWidth(267), height: UIScreen.getHeight(160))
@@ -78,7 +78,7 @@ struct DetailWorkoutSheet: View {
             Text("고정축이 흔들리면 정확한 타겟이 불가능하기 때문에 꼭! 랫 풀 다운 할 때는 발꿈치를 들어서 무릎 패드와 다리 사이에 공간이 없도록 단단한 지지대를 만들어 주는 것이 굉장히 중요합니다.")
                 .multilineTextAlignment(.leading)
                 .lineSpacing(3)
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
                 .font(.headline1())
         }.padding()
     }
@@ -93,7 +93,7 @@ struct DetailWorkoutSheet: View {
     var WorkoutType: some View {
         HStack {
             Text("등")
-                .foregroundColor(.lable_700)
+                .foregroundColor(.label_700)
                 .font(.body())
             Spacer()
         }.padding(.horizontal)
@@ -102,7 +102,7 @@ struct DetailWorkoutSheet: View {
     var NavigationBar: some View {
         HStack {
             Text("클로즈그립 렛풀다운")
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
                 .font(.title1())
             Spacer()
             Button {
@@ -113,7 +113,7 @@ struct DetailWorkoutSheet: View {
                     .foregroundColor(.gray_600)
                     .overlay {
                         Image(systemName: "multiply")
-                            .foregroundColor(.lable_700)
+                            .foregroundColor(.label_700)
                             .font(.headline1())
                     }
             }

@@ -11,13 +11,13 @@ struct WorkoutCell: View {
     var body: some View {
         HStack {
             Rectangle().frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
-                .foregroundColor(.lable_400)
+                .foregroundColor(.label_400)
             VStack(alignment: .leading) {
                 Text("클로스 그립 렛풀다운")
-                    .foregroundColor(.lable_900)
+                    .foregroundColor(.label_900)
                     .font(.headline1())
                 Text("3세트 | 10-15 reps")
-                    .foregroundColor(.lable_400)
+                    .foregroundColor(.label_400)
                     .font(.body2())
             }.padding()
             Spacer()

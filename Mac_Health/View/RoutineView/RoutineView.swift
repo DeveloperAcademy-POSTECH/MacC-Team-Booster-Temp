@@ -47,7 +47,7 @@ struct RoutineView: View {
                 .frame(width: UIScreen.getWidth(47))
             Text("휴식")
                 .font(.title2())
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
             Spacer()
         }
     }
@@ -57,7 +57,7 @@ struct RoutineView: View {
             .multilineTextAlignment(.center)
             .lineSpacing(5)
             .font(.title2())
-            .foregroundColor(.lable_900)
+            .foregroundColor(.label_900)
             .padding(.bottom, UIScreen.getHeight(40))
     }
     
@@ -92,7 +92,7 @@ struct RoutineView: View {
                     HStack {
                         Text("등")
                             .font(.headline1())
-                            .foregroundColor(.lable_400)
+                            .foregroundColor(.label_400)
                         Spacer()
                     }
                     .frame(width: UIScreen.getWidth(350))
@@ -125,11 +125,11 @@ struct RoutineView: View {
                             //MARK: -여기부분에 선수님의 이름들어가야함
                             Text("전문가의 일상 운동")
                                 .font(.headline1())
-                                .foregroundColor(.lable_900)
+                                .foregroundColor(.label_900)
                             //MARK: - 여기부분에 해당 일의 루틴이 들어가야함
                             Text("등/가슴 Day")
                                 .font(.body2())
-                                .foregroundColor(.lable_700)
+                                .foregroundColor(.label_700)
                         }
                         .padding()
                         Spacer()
@@ -162,7 +162,7 @@ struct RoutineView: View {
                     Image(systemName: "chevron.forward")
                         .font(.body())
                 }
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
                 .font(.title2())
             }
             Spacer()

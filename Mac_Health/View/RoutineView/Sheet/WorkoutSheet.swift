@@ -40,7 +40,7 @@ struct WorkoutSheet: View {
                     .multilineTextAlignment(.center)
                     .lineSpacing(5)
                     .font(.title2())
-                    .foregroundColor(.lable_900)
+                    .foregroundColor(.label_900)
                 Button {
                     
                 } label: {
@@ -72,7 +72,7 @@ struct WorkoutSheet: View {
         HStack(spacing: UIScreen.getWidth(16)) {
             RoundedRectangle(cornerRadius: 8)
             ///오늘이면 today == date ? fill_2 : label_900
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
                 .frame(width: UIScreen.getWidth(40), height: UIScreen.getHeight(40))
                 .overlay {
                     Text("\(date)")
@@ -82,7 +82,7 @@ struct WorkoutSheet: View {
                 }
             Text("등, 이두")
                 .font(.headline1())
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
             Spacer()
             ///다한거 아니면 없도록 한다.
             Circle()
@@ -122,11 +122,11 @@ struct WorkoutSheet: View {
     func notSelectedCapsul(text: String) -> some View {
         Capsule()
             .strokeBorder()
-            .foregroundColor(.lable_400)
+            .foregroundColor(.label_400)
             .frame(minWidth: UIScreen.getWidth(54), idealHeight: UIScreen.getHeight(34))
             .overlay {
                 Text(text)
-                    .foregroundColor(.lable_900)
+                    .foregroundColor(.label_900)
                     .font(.button2())
             }
     }
@@ -146,7 +146,7 @@ struct WorkoutSheet: View {
     var NavigationBar: some View {
         HStack {
             Text("날짜별 루틴")
-                .foregroundColor(.lable_900)
+                .foregroundColor(.label_900)
                 .font(.title1())
             Spacer()
             Button {
@@ -157,7 +157,7 @@ struct WorkoutSheet: View {
                     .foregroundColor(.gray_600)
                     .overlay {
                         Image(systemName: "multiply")
-                            .foregroundColor(.lable_700)
+                            .foregroundColor(.label_700)
                             .font(.headline1())
                     }
             }
