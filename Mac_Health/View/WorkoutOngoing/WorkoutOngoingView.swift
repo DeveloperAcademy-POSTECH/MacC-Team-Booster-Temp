@@ -143,10 +143,15 @@ struct WorkoutOngoingView: View {
                         Button {
                             workoutOngoingVM.decreaseWorkoutSet()
                         } label: {
-                            Image(systemName: "minus")
-                                .foregroundColor(.label_900)
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                .overlay {
+                                    Image(systemName: "minus")
+                                        .foregroundColor(.label_900)
+                                }
                         }
-                        .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
+                        .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
                         
                         Text("\(workoutOngoingVM.workoutSet.count)세트")
                             .foregroundColor(.label_700)
@@ -154,10 +159,14 @@ struct WorkoutOngoingView: View {
                         Button {
                             workoutOngoingVM.increaseWorkoutSet()
                         } label: {
-                            Image(systemName: "plus")
-                                .foregroundColor(.label_900)
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                .overlay {
+                                    Image(systemName: "plus")
+                                    .foregroundColor(.label_900)
+                                }
                         }
-                        .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                     }
                     .font(.body())
                 }
@@ -345,7 +354,7 @@ struct WorkoutOngoingView: View {
                 }
                 
                 ScrollView {
-                    ForEach(0..<workoutOngoingVM.workoutModel.alternativeWorkout.count) { index in
+                    ForEach(workoutOngoingVM.workoutModel.alternativeWorkout.indices) { index in
                         AlternativeWorkoutCard(isSelectedWorkout: currentWorkoutNumber == index ? true : false)
                     }
                 }
@@ -379,7 +388,7 @@ struct WorkoutOngoingView: View {
             }
             
             ScrollView(.horizontal) {
-                ForEach(0..<workoutOngoingVM.workoutModel.relatedContentURL.count) { index in
+                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
                     RelatedContentCard(contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
                 }
             }
