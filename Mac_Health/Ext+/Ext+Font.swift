@@ -20,77 +20,49 @@ struct Pretentard {
 
 extension Font {
     static func title1() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 24 * setFontSize()).weight(.semibold)
+        return Font.custom(Pretentard.semiBold, size: 24)
     }
     static func title2() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 20 * setFontSize()).weight(.semibold)
+        return Font.custom(Pretentard.semiBold, size: 20)
     }
     static func headline1() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 16 * setFontSize()).weight(.semibold)
+        return Font.custom(Pretentard.semiBold, size: 16)
     }
     static func headline2() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 14 * setFontSize()).weight(.semibold)
+        return Font.custom(Pretentard.semiBold, size: 14)
     }
     static func body() -> Font {
-        return Font.custom(Pretentard.regular, size: 16 * setFontSize()).weight(.regular)
+        return Font.custom(Pretentard.regular, size: 16)
     }
     static func body2() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 14 * setFontSize()).weight(.semibold)
+        return Font.custom(Pretentard.semiBold, size: 14)
     }
     static func button1() -> Font {
-        return Font.custom(Pretentard.bold, size: 16 * setFontSize()).bold()
+        return Font.custom(Pretentard.bold, size: 16)
     }
     static func button2() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 14 * setFontSize()).weight(.semibold)
-    }
-    
-    ///기기별 폰트 사이즈 대응
-    static func setFontSize() -> Double {
-        let height = UIScreen.screenHeight
-        var size = 1.0
-
-        switch height {
-        case 480.0: // Iphone 3,4S => 3.5 inch
-            size = 0.85
-        case 568.0: // iphone 5, SE => 4 inch
-            size = 0.9
-        case 667.0: // iphone 6, 6s, 7, 8 => 4.7 inch
-            size = 0.9
-        case 736.0: // iphone 6s+ 6+, 7+, 8+ => 5.5 inch
-            size = 0.95
-        case 812.0: // iphone X, XS => 5.8 inch, 13 mini, 12, mini
-            size = 0.98
-        case 844.0: // iphone 14, iphone 13 pro, iphone 13, 12 pro, 12
-            size = 1
-        case 852.0: // iphone 14 pro
-            size = 1
-        case 926.0: // iphone 14 plus, iphone 13 pro max, 12 pro max
-            size = 1.05
-        case 896.0: // iphone XR => 6.1 inch  // iphone XS MAX => 6.5 inch, 11 pro max, 11
-            size = 1.05
-        case 932.0: // iPhone14 Pro Max
-            size = 1.08
-        default:
-            size = 1
-        }
-        return size
+        return Font.custom(Pretentard.semiBold, size: 14)
     }
 }
 
 extension Font {
-    
-    static func registeFonts() {
-        registe(name: Pretentard.bold, withExtension: "otf")
-        registe(name: Pretentard.extraBold, withExtension: "otf")
-        registe(name: Pretentard.light, withExtension: "otf")
-        registe(name: Pretentard.regular, withExtension: "otf")
-        registe(name: Pretentard.semiBold, withExtension: "otf")
-        registe(name: Pretentard.extraLight, withExtension: "otf")
-        registe(name: Pretentard.medium, withExtension: "otf")
-        registe(name: Pretentard.thin, withExtension: "otf")
+    enum fontExtention: String {
+        case otf
+        case ttf
     }
     
-    static func registe(name: String, withExtension: String) {
+    static func registeFonts() {
+        self.register(name: Pretentard.bold, withExtension: fontExtention.otf.rawValue)
+        self.register(name: Pretentard.extraBold, withExtension: fontExtention.otf.rawValue)
+        self.register(name: Pretentard.light, withExtension: fontExtention.otf.rawValue)
+        self.register(name: Pretentard.regular, withExtension: fontExtention.otf.rawValue)
+        self.register(name: Pretentard.semiBold, withExtension: fontExtention.otf.rawValue)
+        self.register(name: Pretentard.extraLight, withExtension: fontExtention.otf.rawValue)
+        self.register(name: Pretentard.medium, withExtension: fontExtention.otf.rawValue)
+        self.register(name: Pretentard.thin, withExtension:fontExtention.otf.rawValue)
+    }
+    
+    static func register(name: String, withExtension: String) {
         guard let url = Bundle.main.url(forResource: name, withExtension: withExtension),CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
         else {
             return print("failed to regist \(name) font")

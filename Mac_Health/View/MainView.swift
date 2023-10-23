@@ -9,7 +9,14 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        RoutineView()
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundColor(.accentColor)
+            Text("Hello, world!")
+                .font(.button1())
+        }
+        .padding()
     }
 }
 
