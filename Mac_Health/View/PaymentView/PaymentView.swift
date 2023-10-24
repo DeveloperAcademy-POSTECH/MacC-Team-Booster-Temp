@@ -10,6 +10,7 @@ import SwiftUI
 struct PaymentView: View {
     
     @State var paymentSelected = false
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     var routineTitle = "정회승의 Smart Routine"
     var influencerImage = "Influencer1"
@@ -28,7 +29,6 @@ struct PaymentView: View {
             
             ScrollView {
                 VStack{
-                    
                     //루틴 카드
                     paymentCard
                         .padding(.bottom, 20)
@@ -44,10 +44,6 @@ struct PaymentView: View {
                     
                     //앱스토어 구매안내
                     appStoreDescription
-                    
-                   
-                    
-                    
                 }
             }
             //구독 버튼
@@ -56,9 +52,10 @@ struct PaymentView: View {
                 paymentButton
 //                    .padding(.bottom, 20)
             }
-                
         }
     }
+
+    
     
     @ViewBuilder
     var paymentCard: some View {

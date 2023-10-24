@@ -12,21 +12,21 @@ struct SubscribeView: View {
     @State var seeMore:Bool = false
     @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = "한국인 최초로 북미에서 열리는 프로쇼 우승 (텍사스 프로, 2023.8.18)"
     //배열로 빼서 불렛별로 줄 맞출지 추후 수정 예정
     var award: Array = [
-"2023년 TEXAS PRO SHOW MEN'S CLASSIC PHYSIQUE 1위",
-"2022년 MR.Olympia 클래식 피지크 15위",
-"2022년 MONSTERZYM CLASSIC PHYSIQUE PRO 1위",
-"2021년 AGP CLASSIC PHYSIQUE PRO 4위",
-"2020년 아마추어 올림피아 부산 CLASSIC PHYSIQUE CLASS B 1위",
-]
+        "2023년 TEXAS PRO SHOW MEN'S CLASSIC PHYSIQUE 1위",
+        "2022년 MR.Olympia 클래식 피지크 15위",
+        "2022년 MONSTERZYM CLASSIC PHYSIQUE PRO 1위",
+        "2021년 AGP CLASSIC PHYSIQUE PRO 4위",
+        "2020년 아마추어 올림피아 부산 CLASSIC PHYSIQUE CLASS B 1위",
+    ]
     
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
-            
             ScrollView {
                 VStack{
                 //구독 페이지 설명
@@ -50,7 +50,6 @@ struct SubscribeView: View {
                 //구독 버튼
                 subscribeButton
                 //인플루언서 설명
-                    
                     VStack(alignment: .leading){
                         Text("소개")
                             .foregroundColor(.label_900)
@@ -90,14 +89,11 @@ struct SubscribeView: View {
                             .mask(
                             Rectangle()
                                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(80)))
-                            
                         }
                         .padding(.leading, 20)
-                        
                         Image("seeMoreGradient")
                             .resizable()
                             .scaledToFit()
-                        
                         Button {
                             seeMore = true
                         } label: {
@@ -113,16 +109,6 @@ struct SubscribeView: View {
                 }
                 else {
                     VStack(alignment: .leading){
-//                        Text("소개")
-//                            .foregroundColor(.label_900)
-//                            .font(.headline1())
-//                        Text(introduce)
-//                            .foregroundColor(.label_800)
-//                            .font(.body)
-//                            .padding(.bottom, 20)
-//                        Text("수상경력")
-//                            .foregroundColor(.label_900)
-//                            .font(.headline1())
                         ForEach(0..<award.count, id: \.self) { index in
                             HStack {VStack {
                                 Text("•")
@@ -145,12 +131,9 @@ struct SubscribeView: View {
                     }
                     .padding()
                 }
-                
                 //루틴 미리보기
                 RoutinePreview(previewRoutine: previewRoutine[0])
                     .padding(.horizontal, 10)
-                
-                
             }
                 .background(GeometryReader {
                     return Color.clear.preference(key: ViewOffsetKey.self, value: -$0.frame(in: .named("scroll")).origin.y)
@@ -171,15 +154,27 @@ struct SubscribeView: View {
                 showTab ?
                 createTab() : nil, alignment: Alignment.bottom
             )
-        }.ignoresSafeArea(.all)
-//            .overlay {
-//                VStack{
-//                    Spacer()
-//                    subscribeButton
-//                }
-//            }
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton
+            }
+        }
+        .ignoresSafeArea(.all)
     }
-    
+        
+        var BackButton: some View {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.label_900)
+                    .font(.body())
+            }
+        }
+        
+        
     
     var subscribeButton: some View {
         NavigationLink {
