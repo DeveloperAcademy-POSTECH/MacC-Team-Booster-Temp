@@ -80,27 +80,6 @@ extension Font {
     }
 }
 
-extension Font {
-    
-    static func registeFonts() {
-        registe(name: Pretentard.bold, withExtension: "otf")
-        registe(name: Pretentard.extraBold, withExtension: "otf")
-        registe(name: Pretentard.light, withExtension: "otf")
-        registe(name: Pretentard.regular, withExtension: "otf")
-        registe(name: Pretentard.semiBold, withExtension: "otf")
-        registe(name: Pretentard.extraLight, withExtension: "otf")
-        registe(name: Pretentard.medium, withExtension: "otf")
-        registe(name: Pretentard.thin, withExtension: "otf")
-    }
-    
-    static func registe(name: String, withExtension: String) {
-        guard let url = Bundle.main.url(forResource: name, withExtension: withExtension),CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
-        else {
-            return print("failed to regist \(name) font")
-        }
-    }
-}
-
 struct Font_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
@@ -122,9 +101,6 @@ struct Font_Previews: PreviewProvider {
                 .font(.button2())
             Text("caption")
                 .font(.caption())
-        }
-        .onAppear {
-            Font.registeFonts()
         }
     }
 }

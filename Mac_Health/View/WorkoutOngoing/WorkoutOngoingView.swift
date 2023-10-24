@@ -23,7 +23,11 @@ struct WorkoutOngoingView: View {
                     Spacer()
                     Spacer()
                     workoutInfomation
-                    workoutImage
+                    ZStack {
+                        workoutImage
+                        workoutTipButton
+                    }
+                    Spacer()
                     workoutSetButton
                     workoutSetCard
                     relatedContent
@@ -32,9 +36,6 @@ struct WorkoutOngoingView: View {
             }
             
             VStack {
-                Spacer()
-                workoutTipButton
-                Spacer()
                 Spacer()
                 workouFloatingButton
             }
@@ -164,7 +165,7 @@ struct WorkoutOngoingView: View {
                                 .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
                                 .overlay {
                                     Image(systemName: "plus")
-                                    .foregroundColor(.label_900)
+                                        .foregroundColor(.label_900)
                                 }
                         }
                     }
@@ -274,7 +275,7 @@ struct WorkoutOngoingView: View {
                         Spacer()
                     }
                     .padding(.horizontal)
-
+                    
                     ScrollView {
                         // MARK: ForEach
                         Button {
@@ -464,8 +465,5 @@ struct WorkoutOngoingView: View {
 struct WorkoutOngoingView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutOngoingView(currentWorkoutNumber: 1)
-            .onAppear {
-                Font.registeFonts()
-            }
     }
 }
