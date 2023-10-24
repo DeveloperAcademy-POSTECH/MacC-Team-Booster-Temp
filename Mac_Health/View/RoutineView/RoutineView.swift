@@ -20,7 +20,8 @@ struct RoutineView: View {
 //                RestDay
                 WorkoutRoutine
                 Spacer()
-                ExplainText
+                ///로그인 되어있으면 없앰
+//                ExplainText
                 BottomButton
             }
         }
@@ -31,6 +32,10 @@ struct RoutineView: View {
         .sheet(isPresented: $showDetail) {
             DetailWorkoutSheet()
         }
+        .fullScreenCover(isPresented: $routineVM.showWorkOutOnGoing) {
+            WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: routineVM)
+        }
+        
     }
     
 //    var Influencers: some View {
@@ -64,23 +69,25 @@ struct RoutineView: View {
     var BottomButton: some View {
         /// 여기는 상태에 따라서 다 다르게 행동해야함
         Button {
-            if true {
-                print("둘러보기")
-            }
-            else {
-                print("운동하러가기")
-            }
+//            if true {
+//                print("둘러보기")
+//            }
+//            else {
+            routineVM.showWorkOutOnGoing.toggle()
+//            }
             
         } label: {
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
-                .foregroundColor(.green)
+                .foregroundColor(.green_main)
                 .overlay {
                     ///로그인 안되어있으면
-                    Text(true ? "루틴 둘러보기" : "운동 시작하기")
+                    ///Text(true ? "루틴 둘러보기" : "운동 시작하기")
+                    Text("운동 시작하기")
                         .foregroundColor(.gray_900)
                         .font(.button1())
                 }
+                .padding()
         }
     }
     
@@ -104,13 +111,15 @@ struct RoutineView: View {
                     }
                     WorkoutCell()
                     WorkoutCell()
+                    WorkoutCell()
+                    
                 }
                 ///로그인의 유무에 따라서 있고 없고
-                LinearGradient(colors: [.gray_900, .clear], startPoint: .bottom, endPoint: .top)
+//                LinearGradient(colors: [.gray_900, .clear], startPoint: .bottom, endPoint: .top)
             }
             ///로그인의 유무에 따라서 있고 없고
         }
-        .disabled(true)
+//        .disabled(true)
     }
     
     var TopBanner: some View {

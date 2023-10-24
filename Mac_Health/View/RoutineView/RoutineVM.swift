@@ -11,6 +11,10 @@ class RoutineVM: ObservableObject {
     
     ///메인뷰 이전 루틴 확인용 시트 모달 변수
     @Published var isDailyRoutineOpen = false
+    @Published var showWorkOutOnGoing = false
+    
+    
+    //여기서 타이머 있고,
     
     var date: String {
         let date =  Date()

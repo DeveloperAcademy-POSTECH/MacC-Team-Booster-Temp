@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WorkoutOngoingView: View {
     let currentWorkoutNumber: Int
+    @ObservedObject var routineVM: RoutineVM
     @StateObject var workoutOngoingVM = WorkoutOngoingVM()
     // MARK: 임시 이미지 지우기
     var body: some View {
@@ -52,6 +53,7 @@ struct WorkoutOngoingView: View {
             }
             Button("완료하기") {
                 // MARK: 완료하기
+                routineVM.showWorkOutOnGoing.toggle()
             }
         }
     }
@@ -60,7 +62,7 @@ struct WorkoutOngoingView: View {
     var Navigation: some View {
         HStack {
             Button {
-                // MARK: dismiss
+                routineVM.showWorkOutOnGoing.toggle()
             } label: {
                 Image(systemName: "chevron.down")
                     .foregroundColor(.label_700)
@@ -309,6 +311,7 @@ struct WorkoutOngoingView: View {
                     }
                     Button("완료하기") {
                         // MARK: 완료하기
+                        routineVM.showWorkOutOnGoing.toggle()
                     }
                 }
             }
@@ -464,6 +467,6 @@ struct WorkoutOngoingView: View {
 
 struct WorkoutOngoingView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutOngoingView(currentWorkoutNumber: 1)
+        WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: RoutineVM())
     }
 }

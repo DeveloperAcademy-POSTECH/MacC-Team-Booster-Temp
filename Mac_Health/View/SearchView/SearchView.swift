@@ -10,17 +10,19 @@ import SwiftUI
 struct SearchView: View {
     var body: some View {
         //네비게이션 스택
-        NavigationStack {
             ZStack {
                 Color.gray_900.ignoresSafeArea()
-                
-                ScrollView {
-                    TopImage()
-                    RecomendCardScroll
-                    
+                    VStack {
+                        ScrollView {
+                        TopImage()
+                        RecomendCardScroll
+                    }
+                        .padding(.bottom, 35)
+                    Spacer()
+                        .frame(height: UITabBarController().height)
                 }
-            }.ignoresSafeArea(.all)
-        }
+                .ignoresSafeArea()
+            }
     }
 
     
@@ -33,9 +35,9 @@ struct SearchView: View {
                         .font(.title2())
                         .padding(.leading, 20)
                     Spacer()
-                }.frame(maxWidth: .infinity)
+                }
                 VStack(spacing: 20){
-                    ForEach(0..<5, id: \.self) {idx in
+                    ForEach(0..<2, id: \.self) {idx in
                         //전문가들의 일상 루틴에서 구독 뷰
                         NavigationLink {
                             SubscribeView()
@@ -43,12 +45,8 @@ struct SearchView: View {
                         } label: {
                             InfluencerCard()
                         }
-                       
-
                     }
-                    .toolbar(.hidden, for: .tabBar)
                 }
-                
             }
     }
 }

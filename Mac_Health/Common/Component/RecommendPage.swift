@@ -14,7 +14,7 @@ struct RecommendPage: View {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-            Color.black.ignoresSafeArea()
+            Color.gray_900.ignoresSafeArea()
             HStack{
                 Spacer()
                 Image(recommendBG)
@@ -27,10 +27,7 @@ struct RecommendPage: View {
                 .frame(width: UIScreen.getWidth(350))
                 .clipped()
                 
-            Image("gradient")
-                .resizable()
-                .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth*0.9)
-            
+            LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
             HStack{
                 VStack(alignment: .leading, spacing: 16){
                     Text("정회승의 Smart Routine")
@@ -45,7 +42,7 @@ struct RecommendPage: View {
             }
             .padding(.leading, 20)
         }
-        .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth*0.9)
+        .frame(height: UIScreen.getHeight(358))
     }
 }
 
