@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 extension Color {
   init(hex: String) {
     let scanner = Scanner(string: hex)
@@ -22,7 +21,6 @@ extension Color {
     let b = Double((rgb >>  0) & 0xFF) / 255.0
     self.init(red: r, green: g, blue: b)
   }
-    
     
     static let gray_900 = Color(hex: "0C0C0C")
     static let gray_800 = Color(hex: "1C1C1C")
@@ -46,4 +44,94 @@ extension Color {
     static let yellow_main = Color(hex: "D9FA48")
     static let dim = Color(hex: "000000").opacity(0.7)
     static let tabbar_main = UIColor(Color(hex: "000000").opacity(0.75))
+}
+
+struct Color_Previews: PreviewProvider {
+    static var previews: some View {
+        ScrollView {
+            VStack(spacing: 0) {
+                Rectangle()
+                    .foregroundColor(.gray_900)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.gray_800)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.gray_700)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.gray_600)
+                Divider()
+                
+                Rectangle()
+                    .foregroundColor(.label_900)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.label_800)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.label_700)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.label_600)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.label_500)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.label_400)
+                Divider()
+
+                Rectangle()
+                    .foregroundColor(.fill_1)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.fill_2)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.fill_3)
+                Divider()
+                
+                Rectangle()
+                    .foregroundColor(.fill_1)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.fill_2)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.fill_3)
+                Divider()
+                
+                Rectangle()
+                    .foregroundColor(.green_main)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.green_10)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.red_main)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.blue_main)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.purple_main)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.pink_main)
+                Divider()
+                Rectangle()
+                    .foregroundColor(.yellow_main)
+                Divider()
+                
+                Rectangle()
+                    .foregroundColor(.dim)
+                Divider()
+                Rectangle()
+                    .foregroundColor(Color(uiColor: Color.tabbar_main))
+                Divider()
+            }
+            .frame(height: 800)
+        }
+    }
 }
