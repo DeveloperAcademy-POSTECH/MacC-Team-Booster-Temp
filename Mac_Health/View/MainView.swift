@@ -15,7 +15,7 @@ import SwiftUI
 
 struct MainView: View {
     init() {
-        UITabBar.appearance().backgroundColor = Color.tabbar_black
+        UITabBar.appearance().backgroundColor = Color.tabbar_main
     }
     
     var body: some View {
@@ -36,20 +36,20 @@ struct MainView: View {
                     Text("record")
                         .foregroundColor(.white)
                 }
-                    
-                    .tabItem {
-                        Image(systemName: "list.clipboard.fill")
-                        Text("기록")
-                    }
+                
+                .tabItem {
+                    Image(systemName: "list.clipboard.fill")
+                    Text("기록")
+                }
                 ZStack{
                     Color.gray_900.ignoresSafeArea()
                     Text("profile")
                         .foregroundColor(.white)
                 }
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text("프로필")
-                    }
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("프로필")
+                }
             }
             .foregroundColor(.label_600)
             .accentColor(.label_900)

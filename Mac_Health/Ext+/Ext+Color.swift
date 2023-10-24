@@ -45,5 +45,5 @@ extension Color {
     static let pink_main = Color(hex: "FE7394")
     static let yellow_main = Color(hex: "D9FA48")
     static let dim = Color(hex: "000000").opacity(0.7)
-    static let tabbar_black = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    static let tabbar_main = UIColor(Color(hex: "000000").opacity(0.75))
 }
