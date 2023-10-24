@@ -13,9 +13,6 @@ struct Mac_HealthApp: App {
         WindowGroup {
 //            MainView()
             WorkoutOngoingView(currentWorkoutNumber: 1)
-                .onAppear {
-                    Font.registeFonts()
-                }
         }
     }
 }
