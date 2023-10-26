@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DetailWorkoutSheet: View {
-    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
