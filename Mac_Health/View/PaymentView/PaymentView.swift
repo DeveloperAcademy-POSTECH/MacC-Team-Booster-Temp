@@ -71,21 +71,10 @@ struct PaymentView: View {
                 }
                 .frame(height: UIScreen.getHeight(156))
                 Spacer()
-                ZStack{
-                    HStack{
-                        Spacer()
-                        Image(backgroundImage)
-                            .resizable()
-                            .scaledToFit()
-                    }
-                    Image(influencerImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: UIScreen.getHeight(72))
-                        .padding(.top, 50)
-                }
-                .frame(width: UIScreen.getWidth(156))
             }
+            Image("TopBanner1")
+            .resizable()
+            .scaledToFit()
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
             .mask(

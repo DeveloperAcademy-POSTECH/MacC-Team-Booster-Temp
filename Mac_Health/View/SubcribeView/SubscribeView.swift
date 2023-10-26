@@ -36,7 +36,7 @@ struct SubscribeView: View {
                             ForEach(1...3, id: \.self) { idx in
                                 //둘러보기에서 구독 뷰
                                 ZStack{
-                                    Image("Influencer\(idx)")
+                                    Image("RotateInfluencer\(idx)")
                                         .resizable()
                                         .scaledToFit()
                                     LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
