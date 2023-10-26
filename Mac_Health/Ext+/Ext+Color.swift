@@ -46,90 +46,19 @@ extension Color {
     static let tabbar_main = UIColor(Color(hex: "000000").opacity(0.75))
 }
 
+extension Color: CaseIterable {
+    public static var allCases: [Color] = [.gray_900, .gray_800, .gray_800, .gray_700, .gray_600, .label_900, .label_800, .label_700, .label_600, .label_500, .label_400, .fill_1, .fill_2, .fill_3, .green_main, .green_10, .red_main, .blue_main, .purple_main, .pink_main, .yellow_main, Color(uiColor: Color.tabbar_main)]
+}
+
 struct Color_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
             VStack(spacing: 0) {
-                Rectangle()
-                    .foregroundColor(.gray_900)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.gray_800)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.gray_700)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.gray_600)
-                Divider()
-                
-                Rectangle()
-                    .foregroundColor(.label_900)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.label_800)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.label_700)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.label_600)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.label_500)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.label_400)
-                Divider()
-
-                Rectangle()
-                    .foregroundColor(.fill_1)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.fill_2)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.fill_3)
-                Divider()
-                
-                Rectangle()
-                    .foregroundColor(.fill_1)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.fill_2)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.fill_3)
-                Divider()
-                
-                Rectangle()
-                    .foregroundColor(.green_main)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.green_10)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.red_main)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.blue_main)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.purple_main)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.pink_main)
-                Divider()
-                Rectangle()
-                    .foregroundColor(.yellow_main)
-                Divider()
-                
-                Rectangle()
-                    .foregroundColor(.dim)
-                Divider()
-                Rectangle()
-                    .foregroundColor(Color(uiColor: Color.tabbar_main))
-                Divider()
+                ForEach(Color.allCases, id: \.self) { color in
+                    Rectangle()
+                        .foregroundColor(color)
+                    Divider()
+                }
             }
             .frame(height: 800)
         }
