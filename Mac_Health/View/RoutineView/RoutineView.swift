@@ -35,7 +35,8 @@ struct RoutineView: View {
         .fullScreenCover(isPresented: $routineVM.showWorkOutOnGoing) {
             WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: routineVM)
         }
-        
+        //darkmode test용
+        .presentationCompactAdaptation(.automatic)
     }
     
 //    var Influencers: some View {
