@@ -131,7 +131,7 @@ struct RoutineView: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 3) {
                             //MARK: -여기부분에 선수님의 이름들어가야함
-                            Text("전문가의 일상 운동")
+                            Text("정회승의 Smart Routine")
                                 .font(.headline1())
                                 .foregroundColor(.label_900)
                             //MARK: - 여기부분에 해당 일의 루틴이 들어가야함
@@ -141,14 +141,10 @@ struct RoutineView: View {
                         }
                         .padding()
                         Spacer()
-                        Capsule()
-                            .foregroundColor(.yellow_main)
-                            .frame(height: UIScreen.getHeight(130))
-                            .offset(x: UIScreen.getWidth(130))
                     }
                     HStack {
                         Spacer()
-                        Image("healthman")
+                        Image("TopBanner1")
                             .font(.body2())
                     }
                 }

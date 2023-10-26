@@ -62,7 +62,7 @@ struct Color_Previews: PreviewProvider {
                 Rectangle()
                     .foregroundColor(.gray_600)
 //                Divider()
-//                
+//
 //                Rectangle()
 //                    .foregroundColor(.label_900)
 //                Divider()
@@ -82,8 +82,8 @@ struct Color_Previews: PreviewProvider {
 //                    .foregroundColor(.label_400)
 //                Divider()
 
-//                Rectangle()
-//                    .foregroundColor(.fill_1)
+                Rectangle()
+                    .foregroundColor(.fill_1)
 //                Divider()
 //                Rectangle()
 //                    .foregroundColor(.fill_2)
