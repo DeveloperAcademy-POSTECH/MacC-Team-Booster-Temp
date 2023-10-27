@@ -39,6 +39,7 @@
 		D5B7805C2AE51AD900A8B76A /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805B2AE51AD900A8B76A /* PaymentView.swift */; };
 		D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805F2AE51E5300A8B76A /* TopImage.swift */; };
 		F80FB43F2AEA54FF008961BD /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FB43E2AEA54FF008961BD /* RecordView.swift */; };
+		F80FB4412AEBE0ED008961BD /* RecordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FB4402AEBE0ED008961BD /* RecordDetailView.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
@@ -87,6 +88,7 @@
 		D5B7805F2AE51E5300A8B76A /* TopImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImage.swift; sourceTree = "<group>"; };
 		F80BF2A72AE6A07D00EA4E07 /* Mac-Health-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Health-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F80FB43E2AEA54FF008961BD /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		F80FB4402AEBE0ED008961BD /* RecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailView.swift; sourceTree = "<group>"; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
 		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingVM.swift; sourceTree = "<group>"; };
 		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				F80FB43E2AEA54FF008961BD /* RecordView.swift */,
+				F80FB4402AEBE0ED008961BD /* RecordDetailView.swift */,
 			);
 			path = RecordView;
 			sourceTree = "<group>";
@@ -343,11 +346,12 @@
 			};
 			buildConfigurationList = 0DA3274F2AE1321600319BAB /* Build configuration list for PBXProject "Mac_Health" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 0DA3274B2AE1321600319BAB;
 			productRefGroup = 0DA327552AE1321600319BAB /* Products */;
@@ -390,6 +394,7 @@
 				F8FD48DE2AE7F13C007DB402 /* FloatingButton.swift in Sources */,
 				F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */,
 				F89B3BED2AE5064200CACBD9 /* AlternativeRoutineCard.swift in Sources */,
+				F80FB4412AEBE0ED008961BD /* RecordDetailView.swift in Sources */,
 				F80FB43F2AEA54FF008961BD /* RecordView.swift in Sources */,
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
 				D5B780522AE3D65000A8B76A /* RoutinePreview.swift in Sources */,
