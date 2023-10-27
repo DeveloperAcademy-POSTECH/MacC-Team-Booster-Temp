@@ -17,15 +17,31 @@ struct RecordDetailEditView: View {
                 workoutDetail
                 Spacer()
             }
+            .alert("저장하지 않고 나가시겠어요?", isPresented: .constant(false)) {
+                Button("취소") {
+                }
+                Button("확인") {
+                }
+            }
+            .alert("저장하시겠어요?", isPresented: .constant(false)) {
+                Button("취소") {
+                }
+                Button("확인") {
+                }
+            }
         }
     }
     
     @ViewBuilder
     var navigation: some View {
         HStack {
-            Image(systemName: "xmark")
-                .font(.headline1())
-                .foregroundColor(.label_700)
+            Button {
+                
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.headline1())
+                    .foregroundColor(.label_700)
+            }
             Spacer()
             
             Text("수정하기")
@@ -33,9 +49,13 @@ struct RecordDetailEditView: View {
                 .foregroundColor(.white)
             Spacer()
             
-            Image(systemName: "checkmark")
-                .font(.headline1())
-                .foregroundColor(.label_700)
+            Button {
+                
+            } label: {
+                Image(systemName: "checkmark")
+                    .font(.headline1())
+                    .foregroundColor(.label_700)
+            }
         }
         .padding(.horizontal)
     }

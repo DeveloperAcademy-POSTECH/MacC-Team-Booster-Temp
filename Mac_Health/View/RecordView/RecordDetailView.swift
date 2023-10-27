@@ -26,9 +26,13 @@ struct RecordDetailView: View {
     @ViewBuilder
     var navigation: some View {
         HStack {
-            Image(systemName: "chevron.left")
-                .font(.headline1())
-                .foregroundColor(.label_700)
+            Button {
+                
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.headline1())
+                    .foregroundColor(.label_700)
+            }
             Spacer()
             
             Text("2023년 6월 23일")
@@ -36,9 +40,13 @@ struct RecordDetailView: View {
                 .foregroundColor(.white)
             Spacer()
             
-            Image(systemName: "pencil")
-                .font(.headline1())
-                .foregroundColor(.label_700)
+            Button {
+                
+            } label: {
+                Image(systemName: "pencil")
+                    .font(.headline1())
+                    .foregroundColor(.label_700)
+            }
         }
         .padding(.horizontal)
     }
