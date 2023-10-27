@@ -13,8 +13,6 @@ struct PaymentView: View {
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var routineTitle = "정회승의 Smart Routine"
-    var influencerImage = "Influencer1"
-    var backgroundImage = "Background1"
     var appStoreExplain: Array = [
         "App Store 결제는 현재 사용하고 있는 App Store 계정을 통해 결제 됩니다.",
         "일부 사용자의 경우, App Store 상황에 따라 구독 마지막 날 결제될 수 있습니다.",
@@ -36,11 +34,22 @@ struct PaymentView: View {
                     //할인 혜택
                     Button {
                         paymentSelected.toggle()
+                        print("1달 선택")
                     } label: {
-                        selectingPayment
+                        SelectedPaymentButton(month: "1개월", price: "9,900", paymentSelected: $paymentSelected, discounted: false)
                     }
-                    selectingPayment
-                    selectingPayment
+                    Button {
+                        paymentSelected.toggle()
+                        print("3달 선택")
+                    } label: {
+                        SelectedPaymentButton(month: "3개월", price: "23,400", paymentSelected: $paymentSelected, discounted: false)
+                    }
+                    Button {
+                        paymentSelected.toggle()
+                        print("6달 선택")
+                    } label: {
+                        SelectedPaymentButton(month: "6개월", price: "32,400", paymentSelected: $paymentSelected, discounted: false)
+                    }
                     
                     //앱스토어 구매안내
                     appStoreDescription
@@ -87,50 +96,26 @@ struct PaymentView: View {
     @ViewBuilder
     var selectingPayment: some View {
         
-        if paymentSelected == false {
-            Rectangle()
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(80))
-                .foregroundColor(Color.gray_900)
-                .cornerRadius(8)
-                .overlay{
-                    HStack{
-                        Text("1개월")
-                        Spacer()
-                        Text("9,900원")
-                    }
-                    .foregroundColor(.label_900)
-                    .font(.headline1())
-                    .padding(20)
-                    .foregroundColor(.white)
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .foregroundColor(.label_500)
-                    
-                }
-                .padding(.bottom, 12)
-        } else {
-            Rectangle()
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(80))
-                .foregroundColor(Color.green_10)
-                .cornerRadius(8)
-                .overlay{
-                    HStack{
-                        Text("1개월")
-                        Spacer()
-                        Text("9,900원")
-                    }
-                    .foregroundColor(.label_900)
-                    .font(.headline1())
-                    .padding(20)
-                    .foregroundColor(.white)
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .foregroundColor(.green_main)
-                    
-                }
-                .padding(.bottom, 12)
-        }
-
+        Rectangle()
+                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(80))
+                        .foregroundColor(paymentSelected ? Color.green_10 : Color.gray_900)
+                        .cornerRadius(8)
+                        .overlay{
+                            HStack{
+                                Text("1개월")
+                                Spacer()
+                                Text("9,900원")
+                            }
+                            .foregroundColor(.label_900)
+                            .font(.headline1())
+                            .padding(20)
+                            .foregroundColor(.white)
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(lineWidth: 1)
+                                .foregroundColor(paymentSelected ? .green_main : .label_500)
+        
+                        }
+                        .padding(.bottom, 12)
     }
     
     @ViewBuilder
@@ -171,15 +156,43 @@ struct PaymentView: View {
         Button {
             print("결제가 됩니다.")
         } label: {
-            RoundedRectangle(cornerRadius: 100)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
-                .foregroundColor(Color.green_main)
-                .overlay{
-                    Text("구독하기")
-                        .foregroundColor(Color.gray_900)
-                        .font(.button1())
+            FloatingButton(backgroundColor: .green_main) { Text("구독하기")
+                    .foregroundColor(.gray_900)
+                    .font(.button1())
                 }
         }
+    }
+}
+
+struct SelectedPaymentButton: View {
+    var month: String
+    var price: String
+    var discountedPrice: String?
+    @Binding var paymentSelected: Bool
+    var discounted: Bool
+//    @ViewBuilder let content: Content?
+    
+    var body: some View {
+            Rectangle()
+                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(80))
+                            .foregroundColor(paymentSelected ? Color.green_10 : Color.gray_900)
+                            .cornerRadius(8)
+                            .overlay{
+                                HStack{
+                                    Text(month)
+                                    Spacer()
+                                    Text(price+"원")
+                                }
+                                .foregroundColor(.label_900)
+                                .font(.headline1())
+                                .padding(20)
+                                .foregroundColor(.white)
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(lineWidth: 1)
+                                    .foregroundColor(paymentSelected ? .green_main : .label_500)
+            
+                            }
+                            .padding(.bottom, 12)
     }
 }
 

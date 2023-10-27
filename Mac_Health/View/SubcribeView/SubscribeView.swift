@@ -181,14 +181,10 @@ struct SubscribeView: View {
             PaymentView()
                 .navigationBarTitle("구독하기", displayMode: .inline)
         } label: {
-            RoundedRectangle(cornerRadius: 100)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
-                .foregroundColor(Color.green_main)
-                .overlay{
-                    Text("구독하기")
-                        .foregroundColor(Color.gray_900)
-                        .font(.button1())
-                }
+            FloatingButton(backgroundColor: .green_main) { Text("구독하기")
+                    .foregroundColor(.gray_900)
+                    .font(.button1())
+            }
 
         }
         
