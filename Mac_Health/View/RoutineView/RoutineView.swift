@@ -39,6 +39,18 @@ struct RoutineView: View {
     
 //    var Influencers: some View {
 //        //이거는 시저가 짜둔거에서 가져오면 됨
+//        ScrollView{
+//            ForEach(1..<4, id: \.self) {idx in
+//                //전문가들의 일상 루틴에서 구독 뷰
+//                NavigationLink {
+//                    SubscribeView()
+//                        .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
+//                } label: {
+//                    InfluencerCard(cardBannerNum: idx)
+//                }
+//                .padding(.bottom, 20)
+//            }
+//        }
 //    }
     
     
