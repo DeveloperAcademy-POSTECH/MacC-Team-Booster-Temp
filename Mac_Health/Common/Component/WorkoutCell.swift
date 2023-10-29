@@ -10,7 +10,9 @@ import SwiftUI
 struct WorkoutCell: View {
     var body: some View {
         HStack {
-            Rectangle().frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+            Image("CloseGripLatPullDown")
+                .resizable()
+            .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .foregroundColor(.label_400)
             VStack(alignment: .leading) {
                 Text("클로스 그립 렛풀다운")

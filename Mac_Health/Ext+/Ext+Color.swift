@@ -46,6 +46,7 @@ extension Color {
     static let tabbar_main = UIColor(Color(hex: "000000").opacity(0.75))
 }
 
+
 extension Color: CaseIterable {
     public static var allCases: [Color] = [.gray_900, .gray_800, .gray_800, .gray_700, .gray_600, .label_900, .label_800, .label_700, .label_600, .label_500, .label_400, .fill_1, .fill_2, .fill_3, .green_main, .green_10, .red_main, .blue_main, .purple_main, .pink_main, .yellow_main, .dim, Color(uiColor: Color.tabbar_main)]
     
@@ -103,19 +104,3 @@ extension Color: CaseIterable {
     }
 }
 
-struct Color_Previews: PreviewProvider {
-    static var previews: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                ForEach(Color.allCases, id: \.self) { color in
-                    HStack {
-                        Text("\(color.colorStyle)")
-                        Rectangle()
-                            .foregroundColor(color)
-                    }
-                    Divider()
-                }
-            }
-        }
-    }
-}

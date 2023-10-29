@@ -393,7 +393,10 @@ struct WorkoutOngoingView: View {
             
             ScrollView(.horizontal) {
                 ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
-                    RelatedContentCard(contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+                    HStack{
+                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+                        RelatedContentCard(videoNum: 2, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+                    }
                 }
             }
         }

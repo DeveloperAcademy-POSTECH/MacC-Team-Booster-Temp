@@ -11,8 +11,7 @@ struct InfluencerCard: View {
     
     var routineTitle = "최진혁의 Special Tip"
     var history = "피지크 PRO🏆"
-    var influencerImage = "Influencer2"
-    var backgroundImage = "Background2"
+    var cardBannerNum: Int
     
     var body: some View {
         
@@ -36,22 +35,9 @@ struct InfluencerCard: View {
                 }
                 .frame(height: UIScreen.getHeight(156))
                 Spacer()
-                ZStack{
-                    HStack{
-                        Spacer()
-                        Image(backgroundImage)
-                            .resizable()
-                            .scaledToFit()
-                    }
-                    Image(influencerImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: UIScreen.getHeight(156))
-                        .padding(.top, 20)
-                        .padding(.trailing, 20)
-                }
-                .frame(width: UIScreen.getWidth(156))
             }
+            Image("CardBanner\(cardBannerNum)")
+            .frame(width: UIScreen.getWidth(156))
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(156))
             .mask(
@@ -63,6 +49,6 @@ struct InfluencerCard: View {
 
 struct InfluencerCard_Previews: PreviewProvider {
     static var previews: some View {
-        InfluencerCard()
+        InfluencerCard(cardBannerNum: 1)
     }
 }
