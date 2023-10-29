@@ -46,10 +46,68 @@ extension Color {
     static let tabbar_main = UIColor(Color(hex: "000000").opacity(0.75))
 }
 
+extension Color: CaseIterable {
+    public static var allCases: [Color] = [.gray_900, .gray_800, .gray_800, .gray_700, .gray_600, .label_900, .label_800, .label_700, .label_600, .label_500, .label_400, .fill_1, .fill_2, .fill_3, .green_main, .green_10, .red_main, .blue_main, .purple_main, .pink_main, .yellow_main, .dim, Color(uiColor: Color.tabbar_main)]
+    
+    var colorStyle: String {
+        switch self {
+        case .gray_900:
+            return "gray_900"
+        case .gray_800:
+            return "gray_800"
+        case .gray_700:
+            return "gray_700"
+        case .gray_600:
+            return "gray_600"
+        case .label_900:
+            return "label_900"
+        case .label_800:
+            return "label_800"
+        case .label_700:
+            return "label_700"
+        case .label_600:
+            return "label_600"
+        case .label_500:
+            return "label_500"
+        case .label_400:
+            return "label_400"
+        case .fill_1:
+            return "fill_1"
+        case .fill_2:
+            return "fill_2"
+        case .fill_3:
+            return "fill_3"
+        case .gray_900:
+            return "gray_900"
+        case .green_main:
+            return "green_main"
+        case .green_10:
+            return "green_10"
+        case .red_main:
+            return "red_main"
+        case .blue_main:
+            return "blue_main"
+        case .purple_main:
+            return "purple_main"
+        case .pink_main:
+            return "pink_main"
+        case .yellow_main:
+            return "yellow_main"
+        case .dim:
+            return "dim"
+        case Color(uiColor: Color.tabbar_main):
+            return "tabbar_main"
+        default:
+            return "default"
+        }
+    }
+}
+
 struct Color_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
             VStack(spacing: 0) {
+
                 Rectangle()
                     .foregroundColor(.gray_900)
                 Divider()
@@ -129,9 +187,15 @@ struct Color_Previews: PreviewProvider {
 //                Divider()
 //                Rectangle()
 //                    .foregroundColor(Color(uiColor: Color.tabbar_main))
-//                Divider()
+
+                ForEach(Color.allCases, id: \.self) { color in
+                    HStack {
+                        Text("\(color.colorStyle)")
+                        Rectangle()
+                            .foregroundColor(color)
+                    }
+
             }
-            .frame(height: 800)
         }
     }
 }

@@ -167,7 +167,6 @@ struct WorkoutSheet: View {
 
 struct WorkoutView_Preview: PreviewProvider {
     static var previews: some View {
-        @StateObject var VM = RoutineVM()
-        WorkoutSheet(routineVM: VM)
+        WorkoutSheet(routineVM: RoutineVM())
     }
 }
