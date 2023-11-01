@@ -34,39 +34,39 @@ struct RecordView: View {
     @ViewBuilder
     var calender: some View {
         VStack {
-            HStack {
-                Button {
-                    //
-                } label: {
-                    Text("6월 2023")
-                        .font(.title2())
-                        .foregroundColor(.label_900)
-                    Image(systemName: "chevron.right")
-                        .font(.title2())
-                        .foregroundColor(.green_main)
-                }
-                
-                Spacer()
-                
-                Button {
-                    //
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title2())
-                        .foregroundColor(.green_main)
-                }
-                
-                Button {
-                    //
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.title2())
-                        .foregroundColor(.green_main)
-                }
-            }
-            .padding(.horizontal)
+            //            HStack {
+            //                Button {
+            //                    //
+            //                } label: {
+            //                    Text("6월 2023")
+            //                        .font(.title2())
+            //                        .foregroundColor(.label_900)
+            //                    Image(systemName: "chevron.right")
+            //                        .font(.title2())
+            //                        .foregroundColor(.green_main)
+            //                }
+            //
+            //                Spacer()
+            //
+            //                Button {
+            //                    //
+            //                } label: {
+            //                    Image(systemName: "chevron.left")
+            //                        .font(.title2())
+            //                        .foregroundColor(.green_main)
+            //                }
+            //
+            //                Button {
+            //                    //
+            //                } label: {
+            //                    Image(systemName: "chevron.right")
+            //                        .font(.title2())
+            //                        .foregroundColor(.green_main)
+            //                }
+            //            }
+            //            .padding(.horizontal)
             
-            //            CalendarView()
+            CalendarView()
         }
     }
     
@@ -111,46 +111,51 @@ struct RecordView: View {
     }
 }
 
-//struct CalendarView: UIViewRepresentable {
-//    var calendarView: UICalendarView = {
-//        var calendarView = UICalendarView()
-//        calendarView.calendar = Calendar(identifier: .gregorian)
-//        calendarView.locale = Locale(identifier: "ko-KR")
-//        calendarView.timeZone = TimeZone(identifier: "ko-KR")
-//        calendarView.wantsDateDecorations = true
-//        calendarView.backgroundColor = .clear
-//        calendarView.tintColor = UIColor(Color.green_main)
-//        calendarView.fontDesign = UIFontDescriptor.SystemDesign.default
-//        
-//        return calendarView
-//    }()
-//    
-//    func makeUIView(context: Context) -> some UICalendarView {
-//        calendarView.delegate = context.coordinator
-//        //        let dateSelection = UICalendarSelectionMultiDate(delegate: context.coordinator)
-//        //        let selectedDates: [DateComponents] = [DateComponents(calendar: Calendar(identifier: .gregorian), year:2023, month: 10, day: 8),
-//        //                                                DateComponents(calendar: Calendar(identifier: .gregorian), year:2023, month: 10, day: 9),
-//        //                                                DateComponents(calendar: Calendar(identifier: .gregorian), year:2023, month: 10, day: 10)]
-//        //        dateSelection.setSelectedDates(selectedDates, animated: false)
-//        //        calendarView.selectionBehavior = dateSelection
-//        
-//        return calendarView
-//    }
-//    
-//    func updateUIView(_ uiView: UIViewType, context: Context) {
-//        //
-//    }
-//    
-//    func makeCoordinator() -> Coordinator {
-//        return Coordinator()
-//    }
-//    
-//    class Coordinator: NSObject, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
-//        func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-//            //
-//        }
-//    }
-//}
+struct CalendarView: UIViewRepresentable {
+    var calendarView: UICalendarView = {
+        var calendarView = UICalendarView()
+        calendarView.calendar = Calendar(identifier: .gregorian)
+        calendarView.locale = Locale(identifier: "ko-KR")
+        calendarView.timeZone = TimeZone(identifier: "ko-KR")
+        calendarView.wantsDateDecorations = true
+        calendarView.backgroundColor = .clear
+        calendarView.tintColor = UIColor(Color.green_main)
+        calendarView.fontDesign = UIFontDescriptor.SystemDesign.default
+        
+        calendarView.availableDateRange = DateInterval(start: .now, end: .distantFuture)
+        
+        return calendarView
+    }()
+    
+    func makeUIView(context: Context) -> some UICalendarView {
+        calendarView.delegate = context.coordinator
+        let dateSelection = UICalendarSelectionSingleDate(delegate: context.coordinator)
+        calendarView.selectionBehavior = dateSelection
+        
+        return calendarView
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        //
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator()
+    }
+    
+    class Coordinator: NSObject, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
+        func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+            return .default(color: UIColor(Color.green_main))
+        }
+        
+        func dateSelection(_ selection: UICalendarSelectionSingleDate, canSelectDate dateComponents: DateComponents?) -> Bool {
+            return true
+        }
+        func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+            //
+        }
+    }
+}
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
