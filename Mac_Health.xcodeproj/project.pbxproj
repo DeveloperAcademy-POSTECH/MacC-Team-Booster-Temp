@@ -40,6 +40,7 @@
 		D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */; };
 		D5B7805C2AE51AD900A8B76A /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805B2AE51AD900A8B76A /* PaymentView.swift */; };
 		D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805F2AE51E5300A8B76A /* TopImage.swift */; };
+		D5D8F1792AF2A97B0032A788 /* TodaySpecificViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F1782AF2A97B0032A788 /* TodaySpecificViewModel.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
@@ -88,6 +89,7 @@
 		D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRoutine.swift; sourceTree = "<group>"; };
 		D5B7805B2AE51AD900A8B76A /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		D5B7805F2AE51E5300A8B76A /* TopImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImage.swift; sourceTree = "<group>"; };
+		D5D8F1782AF2A97B0032A788 /* TodaySpecificViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySpecificViewModel.swift; sourceTree = "<group>"; };
 		F80BF2A72AE6A07D00EA4E07 /* Mac-Health-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Health-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
 		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingVM.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				D56A0C6F2AF2153A004D1747 /* TodayRoutineView.swift */,
+				D5D8F1782AF2A97B0032A788 /* TodaySpecificViewModel.swift */,
 			);
 			path = TodayRoutineView;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				D5B7805C2AE51AD900A8B76A /* PaymentView.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				0D58514B2AE2E9E700C8875A /* RoutineView.swift in Sources */,
+				D5D8F1792AF2A97B0032A788 /* TodaySpecificViewModel.swift in Sources */,
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,7 +561,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mac_Health/Preview Content\"";
-				DEVELOPMENT_TEAM = YPDFZL299R;
+				DEVELOPMENT_TEAM = 33F2H2TBU4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mac-Health-Info.plist";
