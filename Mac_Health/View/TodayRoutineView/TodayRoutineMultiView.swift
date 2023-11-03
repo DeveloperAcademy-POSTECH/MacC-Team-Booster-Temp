@@ -1,13 +1,13 @@
 //
-//  StartView.swift
+//  TodayRoutineMultiView.swift
 //  Mac_Health
 //
-//  Created by 정회승 on 2023/11/01.
+//  Created by 정회승 on 11/2/23.
 //
 
 import SwiftUI
 
-struct StartView: View {
+struct TodayRoutineMultiView: View {
     var body: some View {
         VStack{
             Image("appTitle")
@@ -17,16 +17,13 @@ struct StartView: View {
             ScrollView{
                 ForEach(1..<4, id: \.self) {idx in
                     SubscribedInfluencerCard(cardBannerNum: idx)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 10)
                 }
             }
         }
     }
-    
 }
 
-struct StartView_Previews: PreviewProvider {
-    static var previews: some View {
-        StartView()
-    }
+#Preview {
+    TodayRoutineMultiView()
 }

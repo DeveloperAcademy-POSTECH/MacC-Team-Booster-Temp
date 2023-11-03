@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodayRoutineView: View {
-    var todayText = "오늘은 컨디션이 좀 안 좋아서 살살 했어요"
+    var todayText = "오늘은 컨디션이 좀 안 좋아서 살살 했어요오늘은 컨디션이 좀 안 좋아서 살살 했어요오늘은 컨디션이 좀 안 좋아서 살살 했어요오늘은 컨디션이 좀 안 좋아서 살살 했어요"
     var Influencer = "정회승"
     var body: some View {
         VStack{
@@ -30,14 +30,20 @@ struct TodayRoutineView: View {
                         .font(.body)
                         .foregroundColor(.label_800)
                 }
+                .padding(.horizontal, 20)
             }
             .frame(width: UIScreen.getWidth(350))
             .padding(.vertical, 20)
-                .background{
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(.gray_700)
-                }
-
+            .background{
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.gray_700)
+            }
+            .background{
+                RoundedRectangle(cornerRadius: 8)
+                    ///label_500 적용 안됨
+                    .stroke(.white, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+            }
+            
             ZStack{
                 VStack{
                     HStack{
@@ -45,9 +51,15 @@ struct TodayRoutineView: View {
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Spacer()
-                        Image(systemName: "calendar")
-                            .font(.title2())
-                            .foregroundColor(.green_main)
+                        Button {
+                            print("open calendar")
+                        } label: {
+                            Image(systemName: "calendar")
+                                .font(.title2())
+                                .foregroundColor(.green_main)
+                        }
+                        
+                        
                     }
                     .padding(20)
                     VStack{
@@ -71,21 +83,27 @@ struct TodayRoutineView: View {
                     }
                     Spacer()
                     //운동 시작 버튼
-                    RoundedRectangle(cornerRadius: 100)
-                        .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
-                        .foregroundColor(.green_main)
-                        .overlay { Text("운동 시작")
-                                .foregroundColor(.gray_900)
-                                .font(.button1())
-                        }.padding(.bottom, 10)
+                    Button {
+                        print("start workout")
+                    } label: {
+                        RoundedRectangle(cornerRadius: 100)
+                            .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
+                            .foregroundColor(.green_main)
+                            .overlay { Text("운동 시작")
+                                    .foregroundColor(.gray_900)
+                                    .font(.button1())
+                            }.padding(.bottom, 10)
+                    }
+                    
+                    
                 }
             }
             .frame(width: UIScreen.getWidth(350))
             .padding(.vertical, 10)
-                .background{
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(.gray_700)
-                }
+            .background{
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.gray_700)
+            }
         }
         
     }
