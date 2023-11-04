@@ -9,10 +9,75 @@ import SwiftUI
 
 struct AlternativeWorkoutSheet: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.gray_800.ignoresSafeArea()
+            
+            VStack {
+                NavitationTitle
+                AlternativeWorkoutList
+                
+                FinishButton
+            }
+        }
+        .presentationDetents([.height(UIScreen.getHeight(519))])
+    }
+    
+    var NavitationTitle: some View {
+        VStack {
+            HStack {
+                Text("운동 대체하기")
+                    .font(.title1())
+                    .foregroundColor(.label_900)
+                
+                Spacer()
+                
+                Button {
+                    //
+                } label: {
+                    Circle()
+                        .foregroundColor(.gray_600)
+                        .frame(width: UIScreen.getWidth(30), height: UIScreen.getHeight(30))
+                        .overlay {
+                            Image(systemName: "multiply")
+                                .foregroundColor(.label_700)
+                                .font(.headline1())
+                        }
+                }
+            }
+            
+            HStack {
+                Text("클로즈 그립 랫 풀 다운")
+                    .font(.body())
+                    .foregroundColor(.label_700)
+                
+                Spacer()
+            }
+        }
+        .padding()
+    }
+    
+    var AlternativeWorkoutList: some View {
+        ScrollView {
+            AlternativeWorkoutCard(isSelectedWorkout: false)
+            AlternativeWorkoutCard(isSelectedWorkout: true)
+        }
+    }
+    
+    var FinishButton: some View {
+        Button {
+            
+        } label: {
+            FloatingButton(backgroundColor: .green_main) {
+                Text("완료")
+                    .font(.button1())
+                    .foregroundColor(.gray_900)
+            }
+        }
     }
 }
 
-#Preview {
-    AlternativeWorkoutSheet()
+struct AlternativeWorkoutSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        AlternativeWorkoutSheet()
+    }
 }

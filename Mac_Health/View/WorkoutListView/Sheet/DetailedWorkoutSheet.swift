@@ -23,6 +23,7 @@ struct DetailedWorkoutSheet: View {
                 }
             }
         }
+        .presentationDetents([.height(UIScreen.getHeight(684))])
     }
     
     var NavigationTitle: some View {
@@ -34,7 +35,7 @@ struct DetailedWorkoutSheet: View {
             Spacer()
             
             Button {
-                //                dismiss()
+                
             } label: {
                 Circle()
                     .foregroundColor(.gray_600)
