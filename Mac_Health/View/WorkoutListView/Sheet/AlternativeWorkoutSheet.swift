@@ -25,6 +25,7 @@ struct AlternativeWorkoutSheet: View {
     var NavitationTitle: some View {
         VStack {
             HStack {
+                // TODO: .
                 Text("운동 대체하기")
                     .font(.title1())
                     .foregroundColor(.label_900)
@@ -32,7 +33,7 @@ struct AlternativeWorkoutSheet: View {
                 Spacer()
                 
                 Button {
-                    //
+                    // TODO: .
                 } label: {
                     Circle()
                         .foregroundColor(.gray_600)
@@ -46,6 +47,7 @@ struct AlternativeWorkoutSheet: View {
             }
             
             HStack {
+                // TODO: .
                 Text("클로즈 그립 랫 풀 다운")
                     .font(.body())
                     .foregroundColor(.label_700)
@@ -58,6 +60,7 @@ struct AlternativeWorkoutSheet: View {
     
     var AlternativeWorkoutList: some View {
         ScrollView {
+            // TODO: .
             AlternativeWorkoutCard(isSelectedWorkout: false)
             AlternativeWorkoutCard(isSelectedWorkout: true)
         }
@@ -65,7 +68,7 @@ struct AlternativeWorkoutSheet: View {
     
     var FinishButton: some View {
         Button {
-            
+            // TODO: .
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("완료")

@@ -11,6 +11,9 @@ struct WorkoutListView: View {
     @State var isDetailedWorkoutShow = false
     @State var isConfirmationDialogShow = false
     @State var isAlternativeWorkoutShow = false
+    @State var isDeleteAlertShow = false
+    
+    let workoutName = "클로즈 그립 랫 풀 다운"
     
     var body: some View {
         VStack {
@@ -22,23 +25,21 @@ struct WorkoutListView: View {
         .sheet(isPresented: $isDetailedWorkoutShow) {
             DetailedWorkoutSheet()
         }
-        .confirmationDialog("클로즈 그립 랫 풀 다운", isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
+        .confirmationDialog(workoutName, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
             ConfirmationDialog
         }
-        .alert("운동을 삭제하시겠습니까?", isPresented: $isAlternativeWorkoutShow) {
-            Button("취소") {
-                // MARK: 취소
-            }
-            Button("삭제") {
-                // MARK: 완료하기
-            }
+        .sheet(isPresented: $isAlternativeWorkoutShow) {
+            AlternativeWorkoutSheet()
+        }
+        .alert("운동을 삭제하시겠습니까?", isPresented: $isDeleteAlertShow) {
+            DeleteAlert
         }
     }
     
     var NavigationTitle: some View {
         HStack(alignment: .bottom) {
             Button {
-                
+                // TODO: dismiss
             } label: {
                 Image(systemName: "chevron.left")
                     .foregroundColor(.label_700)
@@ -59,6 +60,7 @@ struct WorkoutListView: View {
     var WokroutList: some View {
         VStack {
             HStack {
+                // TODO:
                 Text("등")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -67,6 +69,7 @@ struct WorkoutListView: View {
             }
             
             ScrollView {
+                // TODO:
                 WorkoutListCell
                     .onTapGesture {
                         isDetailedWorkoutShow = true
@@ -82,21 +85,25 @@ struct WorkoutListView: View {
                 .foregroundColor(.fill_1)
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .overlay {
+                    // TODO: .
                     Image("CloseGripLatPullDown")
                         .resizable()
                 }
             
             VStack(alignment: .leading) {
-                Text("클로즈 그립 랫 풀 다운")
+                // TODO: .
+                Text(workoutName)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 HStack {
+                    // TODO: .
                     Text("3세트")
                         .foregroundColor(.label_700)
                         .font(.body2())
                     Text("|")
                         .foregroundColor(.label_400)
                         .font(.body2())
+                    // TODO:
                     Text("10-15회")
                         .foregroundColor(.label_700)
                         .font(.body2())
@@ -106,6 +113,7 @@ struct WorkoutListView: View {
             Spacer()
             
             Button {
+                // TODO: .
                 isConfirmationDialogShow = true
             } label: {
                 Image(systemName: "ellipsis")
@@ -116,7 +124,7 @@ struct WorkoutListView: View {
     
     var WorkoutStartButton: some View {
         Button {
-        
+            // TODO: .
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")
@@ -129,21 +137,33 @@ struct WorkoutListView: View {
     @ViewBuilder
     var ConfirmationDialog: some View {
         Button {
+            // TODO: .
             isAlternativeWorkoutShow = true
         } label: {
             Text("운동 대체")
         }
         
         Button {
-            
+            // TODO: .
+            isDeleteAlertShow = true
         } label: {
             Text("삭제")
         }
         
         Button(role: .cancel) {
-            //
+            // TODO: .
         } label: {
             Text("취소")
+        }
+    }
+    
+    @ViewBuilder
+    var DeleteAlert: some View {
+        Button("취소") {
+            // TODO: .
+        }
+        Button("삭제") {
+            // TODO: .
         }
     }
 }
