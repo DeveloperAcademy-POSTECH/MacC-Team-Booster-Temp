@@ -9,15 +9,18 @@ import SwiftUI
 
 struct TodayRoutineMultiView: View {
     var body: some View {
-        VStack{
-            Image("appTitle")
-                .resizable()
-                .scaledToFit()
-                .padding(.bottom, 20)
-            ScrollView{
-                ForEach(1..<4, id: \.self) {idx in
-                    SubscribedInfluencerCard(cardBannerNum: idx)
-                        .padding(.bottom, 10)
+        ZStack{
+            Color.gray_900.ignoresSafeArea()
+            VStack{
+                Image("appTitle")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.bottom, 20)
+                ScrollView{
+                    ForEach(1..<4, id: \.self) {idx in
+                        SubscribedInfluencerCard(cardBannerNum: idx)
+                            .padding(.bottom, 10)
+                    }
                 }
             }
         }
