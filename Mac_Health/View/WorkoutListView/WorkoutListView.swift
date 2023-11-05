@@ -60,7 +60,7 @@ struct WorkoutListView: View {
     var WokroutList: some View {
         VStack {
             HStack {
-                // TODO:
+                // TODO: .
                 Text("등")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -69,7 +69,7 @@ struct WorkoutListView: View {
             }
             
             ScrollView {
-                // TODO:
+                // TODO: .
                 WorkoutListCell
                     .onTapGesture {
                         isDetailedWorkoutShow = true

@@ -43,6 +43,9 @@ extension Font {
     static func button2() -> Font {
         return Font.custom(Pretentard.semiBold, size: 14 * setFontSize()).weight(.semibold)
     }
+    static func largeTitle() -> Font {
+        return Font.custom(Pretentard.semiBold, size: 36 * setFontSize()).weight(.semibold)
+    }
     
     ///기기별 폰트 사이즈 대응
     static func setFontSize() -> Double {
@@ -81,7 +84,7 @@ extension Font {
 }
 
 extension Font: CaseIterable {
-    public static var allCases: [Font] = [.title1(), .title2(), .headline1(), .headline2(), .body(), .body2(), .button1(), .button2()]
+    public static var allCases: [Font] = [.title1(), .title2(), .headline1(), .headline2(), .body(), .body2(), .button1(), .button2(), largeTitle()]
     
     var fontStyle: String {
         switch self {
@@ -101,6 +104,8 @@ extension Font: CaseIterable {
             return "button1"
         case .button2():
             return "button2"
+        case .largeTitle():
+            return "largeTitle"
         default:
             return "default"
         }
