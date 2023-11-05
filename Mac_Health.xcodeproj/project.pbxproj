@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4495B62AF277B000F25CD4 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495B52AF277B000F25CD4 /* CalenderView.swift */; };
+		0D4495B92AF6A60600F25CD4 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495B82AF6A60600F25CD4 /* FSCalendar */; };
+		0D4495BC2AF6A87C00F25CD4 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495BB2AF6A87C00F25CD4 /* FSCalendarView.swift */; };
+		0D4495BF2AF6BDFD00F25CD4 /* DetailRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495BE2AF6BDFD00F25CD4 /* DetailRecordView.swift */; };
 		0D58514B2AE2E9E700C8875A /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D58514A2AE2E9E700C8875A /* RoutineView.swift */; };
 		0D58514C2AE2EF9D00C8875A /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276F2AE13C3200319BAB /* Pretendard-Thin.otf */; };
 		0D58514E2AE2EFA200C8875A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276D2AE13C3200319BAB /* Pretendard-Regular.otf */; };
@@ -39,7 +43,6 @@
 		D5B7805C2AE51AD900A8B76A /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805B2AE51AD900A8B76A /* PaymentView.swift */; };
 		D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805F2AE51E5300A8B76A /* TopImage.swift */; };
 		F80FB43F2AEA54FF008961BD /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FB43E2AEA54FF008961BD /* RecordView.swift */; };
-		F80FB4412AEBE0ED008961BD /* RecordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FB4402AEBE0ED008961BD /* RecordDetailView.swift */; };
 		F80FB4432AEBE594008961BD /* RecordDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80FB4422AEBE594008961BD /* RecordDetailEditView.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */; };
@@ -55,6 +58,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D4495B52AF277B000F25CD4 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		0D4495BB2AF6A87C00F25CD4 /* FSCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
+		0D4495BE2AF6BDFD00F25CD4 /* DetailRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordView.swift; sourceTree = "<group>"; };
 		0D58514A2AE2E9E700C8875A /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		0D5851572AE4F34400C8875A /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		0D5851592AE4FB6300C8875A /* RoutineVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineVM.swift; sourceTree = "<group>"; };
@@ -89,7 +95,6 @@
 		D5B7805F2AE51E5300A8B76A /* TopImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImage.swift; sourceTree = "<group>"; };
 		F80BF2A72AE6A07D00EA4E07 /* Mac-Health-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Health-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F80FB43E2AEA54FF008961BD /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
-		F80FB4402AEBE0ED008961BD /* RecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailView.swift; sourceTree = "<group>"; };
 		F80FB4422AEBE594008961BD /* RecordDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailEditView.swift; sourceTree = "<group>"; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
 		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingVM.swift; sourceTree = "<group>"; };
@@ -109,12 +114,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4495B92AF6A60600F25CD4 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D4495B42AF277A600F25CD4 /* CalenderView */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495B52AF277B000F25CD4 /* CalenderView.swift */,
+				0D4495BB2AF6A87C00F25CD4 /* FSCalendarView.swift */,
+			);
+			path = CalenderView;
+			sourceTree = "<group>";
+		};
+		0D4495BD2AF6BDD700F25CD4 /* DetailRecordView */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495BE2AF6BDFD00F25CD4 /* DetailRecordView.swift */,
+			);
+			path = DetailRecordView;
+			sourceTree = "<group>";
+		};
 		0DA3274B2AE1321600319BAB = {
 			isa = PBXGroup;
 			children = (
@@ -192,8 +215,9 @@
 		F80FB43D2AEA54EC008961BD /* RecordView */ = {
 			isa = PBXGroup;
 			children = (
+				0D4495BD2AF6BDD700F25CD4 /* DetailRecordView */,
+				0D4495B42AF277A600F25CD4 /* CalenderView */,
 				F80FB43E2AEA54FF008961BD /* RecordView.swift */,
-				F80FB4402AEBE0ED008961BD /* RecordDetailView.swift */,
 				F80FB4422AEBE594008961BD /* RecordDetailEditView.swift */,
 			);
 			path = RecordView;
@@ -328,6 +352,9 @@
 			dependencies = (
 			);
 			name = Mac_Health;
+			packageProductDependencies = (
+				0D4495B82AF6A60600F25CD4 /* FSCalendar */,
+			);
 			productName = Mac_Health;
 			productReference = 0DA327542AE1321600319BAB /* Mac_Health.app */;
 			productType = "com.apple.product-type.application";
@@ -357,6 +384,9 @@
 				ko,
 			);
 			mainGroup = 0DA3274B2AE1321600319BAB;
+			packageReferences = (
+				0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 0DA327552AE1321600319BAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -395,15 +425,17 @@
 				F80FB4432AEBE594008961BD /* RecordDetailEditView.swift in Sources */,
 				F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */,
 				F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */,
+				0D4495B62AF277B000F25CD4 /* CalenderView.swift in Sources */,
 				F8FD48DE2AE7F13C007DB402 /* FloatingButton.swift in Sources */,
+				0D4495BF2AF6BDFD00F25CD4 /* DetailRecordView.swift in Sources */,
 				F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */,
 				F89B3BED2AE5064200CACBD9 /* AlternativeRoutineCard.swift in Sources */,
-				F80FB4412AEBE0ED008961BD /* RecordDetailView.swift in Sources */,
 				F80FB43F2AEA54FF008961BD /* RecordView.swift in Sources */,
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
 				D5B780522AE3D65000A8B76A /* RoutinePreview.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				D5B780452AE3AEDF00A8B76A /* RecommendPage.swift in Sources */,
+				0D4495BC2AF6A87C00F25CD4 /* FSCalendarView.swift in Sources */,
 				D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */,
 				0D5851582AE4F34400C8875A /* WorkoutCell.swift in Sources */,
 				0D58515F2AE5B0E300C8875A /* DetailWorkoutSheet.swift in Sources */,
@@ -634,6 +666,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0D4495B82AF6A60600F25CD4 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0DA3274C2AE1321600319BAB /* Project object */;
 }
