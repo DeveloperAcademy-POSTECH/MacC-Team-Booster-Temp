@@ -73,7 +73,7 @@ struct TotalRoutineView: View {
             ///데이터에서 받아온 달력과 운동에 관해서 작성,
             ForEach(Range(0...10)) { a in
                 NavigationLink {
-                    DateRoutinveView()
+                    DateRoutineView()
                         .navigationBarTitle("\(a)월\(a)일", displayMode: .inline)
                 } label: {
                     TodayWorkoutCell(date: a)

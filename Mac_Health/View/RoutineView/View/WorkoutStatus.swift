@@ -20,7 +20,7 @@ struct WorkoutStatus: View {
             NavigationTitle
             WokroutList
             
-            WorkoutStartButton
+//            WorkoutStartButton
         }
         .sheet(isPresented: $isDetailedWorkoutShow) {
             DetailedWorkoutSheet()
@@ -87,17 +87,17 @@ struct WorkoutStatus: View {
         WorkoutSequenceCard(isCurrentWorkout: false, isFinish: true)
     }
     
-    var WorkoutStartButton: some View {
-        Button {
-            // TODO: .
-        } label: {
-            FloatingButton(backgroundColor: .green_main) {
-                Text("시작")
-                    .foregroundColor(.gray_900)
-                    .font(.button1())
-            }
-        }
-    }
+//    var WorkoutStartButton: some View {
+//        Button {
+//            // TODO: .
+//        } label: {
+//            FloatingButton(backgroundColor: .green_main) {
+//                Text("시작")
+//                    .foregroundColor(.gray_900)
+//                    .font(.button1())
+//            }
+//        }
+//    }
     
     @ViewBuilder
     var ConfirmationDialog: some View {

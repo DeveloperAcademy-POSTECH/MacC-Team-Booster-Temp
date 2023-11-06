@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DateRoutinveView: View {
+struct DateRoutineView: View {
     
     @State var showDetail = false
     @Environment(\.dismiss) var dismiss: DismissAction
@@ -106,5 +106,5 @@ struct DateRoutinveView: View {
 }
 
 #Preview {
-    DateRoutinveView()
+    DateRoutineView()
 }
