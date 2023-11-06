@@ -184,7 +184,7 @@
 				D56A0C6E2AF21526004D1747 /* TodayRoutineView */,
 				F8BE834E2AE68D600094A509 /* WorkoutOngoing */,
 				F8BE83502AE68D700094A509 /* PaymentView */,
-				F8BE83542AE68EBE0094A509 /* SubcribeView */,
+				F8BE83542AE68EBE0094A509 /* SubscribeView */,
 				F8BE835B2AE68F1B0094A509 /* SearchView */,
 				F8BE83522AE68E9C0094A509 /* RoutineView */,
 				0DA327592AE1321600319BAB /* MainView.swift */,
@@ -309,13 +309,13 @@
 			path = Sheet;
 			sourceTree = "<group>";
 		};
-		F8BE83542AE68EBE0094A509 /* SubcribeView */ = {
+		F8BE83542AE68EBE0094A509 /* SubscribeView */ = {
 			isa = PBXGroup;
 			children = (
 				D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */,
 				F8BE834F2AE68D680094A509 /* RoutinePreview */,
 			);
-			path = SubcribeView;
+			path = SubscribeView;
 			sourceTree = "<group>";
 		};
 		F8BE835B2AE68F1B0094A509 /* SearchView */ = {
