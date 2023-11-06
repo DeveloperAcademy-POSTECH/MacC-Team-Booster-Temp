@@ -230,6 +230,8 @@
 				F82674C12AF67EA6002BFACD /* Sheet */,
 			);
 			path = WorkoutListView;
+			sourceTree = "<group>";
+		};
 		D569C7862AF5147900FDADED /* NavigationView */ = {
 			isa = PBXGroup;
 			children = (
