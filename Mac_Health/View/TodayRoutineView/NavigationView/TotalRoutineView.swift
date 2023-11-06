@@ -1,35 +1,46 @@
 //
-//  DailyWorkoutSheet.swift
+//  TotalRoutineView.swift
 //  Mac_Health
 //
-//  Created by 최진용 on 2023/10/22.
+//  Created by 정회승 on 11/2/23.
 //
 
 import SwiftUI
 
+enum WorkoutType: String, CaseIterable {
+    case 전체, 등, 가슴, 이두, 삼두, 하체, 후면사슬, 복근
+}
 
-
-struct WorkoutSheet: View {
+struct TotalRoutineView: View {
     @ObservedObject var routineVM: RoutineVM
+    @Environment(\.dismiss) var dismiss: DismissAction
     ///운동 정렬용 선택
     @State var selection: String = "전체"
     let workoutTypes = WorkoutType.allCases
     
     var body: some View {
         ZStack {
-            Color.gray_800.ignoresSafeArea()
+            Color.gray_900.ignoresSafeArea()
             VStack {
-                NavigationBar
+//                NavigationBar
                 SortingSlider
                 ///여기에는 달력에 맞는 운동 넣어주기
                 ZStack {
+                    //선택된 selection 들이 포함된 운동
                     Workouts
                     ///if logInt ? 0 : 3
-                        .blur(radius: 3)
-                    Blind
+                        .blur(radius: 0)
+//                    Blind
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton
+            }
+        }
+
     }
     
     var Blind: some View {
@@ -61,7 +72,15 @@ struct WorkoutSheet: View {
         ScrollView {
             ///데이터에서 받아온 달력과 운동에 관해서 작성,
             ForEach(Range(0...10)) { a in
-                TodayWorkoutCell(date: a)
+                NavigationLink {
+                    DateRoutinveView()
+                        .navigationBarTitle("\(a)월\(a)일", displayMode: .inline)
+                } label: {
+                    TodayWorkoutCell(date: a)
+                        .padding(.vertical, 8)
+                }
+
+
             }
         }.padding(.horizontal)
     }
@@ -161,10 +180,18 @@ struct WorkoutSheet: View {
             }
         }.padding()
     }
+    
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_900)
+                .font(.body())
+        }
+    }
 }
 
-struct WorkoutView_Preview: PreviewProvider {
-    static var previews: some View {
-        WorkoutSheet(routineVM: RoutineVM())
-    }
+#Preview {
+    TotalRoutineView(routineVM: RoutineVM())
 }
