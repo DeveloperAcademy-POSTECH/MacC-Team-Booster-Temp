@@ -40,15 +40,15 @@
 		D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */; };
 		D5B7805C2AE51AD900A8B76A /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805B2AE51AD900A8B76A /* PaymentView.swift */; };
 		D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805F2AE51E5300A8B76A /* TopImage.swift */; };
+		D5D8F1792AF2A97B0032A788 /* TodaySpecificViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F1782AF2A97B0032A788 /* TodaySpecificViewModel.swift */; };
+		D5D8F17B2AF399830032A788 /* TodayRoutineMultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17A2AF399830032A788 /* TodayRoutineMultiView.swift */; };
+		D5D8F17E2AF39EC80032A788 /* TotalRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17D2AF39EC80032A788 /* TotalRoutineView.swift */; };
 		F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */; };
 		F82674C52AF68F11002BFACD /* AlternativeWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C42AF68F11002BFACD /* AlternativeWorkoutSheet.swift */; };
 		F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C72AF7A7AD002BFACD /* PauseSheet.swift */; };
 		F82674CD2AF7DA9B002BFACD /* WorkoutStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674CC2AF7DA9B002BFACD /* WorkoutStatus.swift */; };
 		F82674CF2AF7F099002BFACD /* WorkoutStatusEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674CE2AF7F099002BFACD /* WorkoutStatusEdit.swift */; };
 		F843AFA12AF6737300EDA547 /* WorkoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843AFA02AF6737300EDA547 /* WorkoutListView.swift */; };
-		D5D8F1792AF2A97B0032A788 /* TodaySpecificViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F1782AF2A97B0032A788 /* TodaySpecificViewModel.swift */; };
-		D5D8F17B2AF399830032A788 /* TodayRoutineMultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17A2AF399830032A788 /* TodayRoutineMultiView.swift */; };
-		D5D8F17E2AF39EC80032A788 /* TotalRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17D2AF39EC80032A788 /* TotalRoutineView.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
@@ -194,9 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				F843AF9F2AF6735B00EDA547 /* WorkoutListView */,
-				F8BE834E2AE68D600094A509 /* WorkoutOngoingView */,
 				D56A0C6E2AF21526004D1747 /* TodayRoutineView */,
-				F8BE834E2AE68D600094A509 /* WorkoutOngoing */,
+				F8BE834E2AE68D600094A509 /* WorkoutOngoingView */,
 				F8BE83502AE68D700094A509 /* PaymentView */,
 				F8BE83542AE68EBE0094A509 /* SubscribeView */,
 				F8BE835B2AE68F1B0094A509 /* SearchView */,
@@ -204,6 +203,26 @@
 				0DA327592AE1321600319BAB /* MainView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D569C7862AF5147900FDADED /* NavigationView */ = {
+			isa = PBXGroup;
+			children = (
+				D5D8F17D2AF39EC80032A788 /* TotalRoutineView.swift */,
+				D569C7882AF5152100FDADED /* DateRoutinveView.swift */,
+			);
+			path = NavigationView;
+			sourceTree = "<group>";
+		};
+		D56A0C6E2AF21526004D1747 /* TodayRoutineView */ = {
+			isa = PBXGroup;
+			children = (
+				D56A0C6F2AF2153A004D1747 /* TodayRoutineView.swift */,
+				D5D8F1782AF2A97B0032A788 /* TodaySpecificViewModel.swift */,
+				D5D8F17A2AF399830032A788 /* TodayRoutineMultiView.swift */,
+				D569C7862AF5147900FDADED /* NavigationView */,
+			);
+			path = TodayRoutineView;
 			sourceTree = "<group>";
 		};
 		F82674C12AF67EA6002BFACD /* Sheet */ = {
@@ -230,26 +249,6 @@
 				F82674C12AF67EA6002BFACD /* Sheet */,
 			);
 			path = WorkoutListView;
-			sourceTree = "<group>";
-		};
-		D569C7862AF5147900FDADED /* NavigationView */ = {
-			isa = PBXGroup;
-			children = (
-				D5D8F17D2AF39EC80032A788 /* TotalRoutineView.swift */,
-				D569C7882AF5152100FDADED /* DateRoutinveView.swift */,
-			);
-			path = NavigationView;
-			sourceTree = "<group>";
-		};
-		D56A0C6E2AF21526004D1747 /* TodayRoutineView */ = {
-			isa = PBXGroup;
-			children = (
-				D56A0C6F2AF2153A004D1747 /* TodayRoutineView.swift */,
-				D5D8F1782AF2A97B0032A788 /* TodaySpecificViewModel.swift */,
-				D5D8F17A2AF399830032A788 /* TodayRoutineMultiView.swift */,
-				D569C7862AF5147900FDADED /* NavigationView */,
-			);
-			path = TodayRoutineView;
 			sourceTree = "<group>";
 		};
 		F89B3BF22AE5142800CACBD9 /* Model */ = {
@@ -618,7 +617,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mac_Health/Preview Content\"";
-				DEVELOPMENT_TEAM = 33F2H2TBU4;
+				DEVELOPMENT_TEAM = VA3J8597P8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mac-Health-Info.plist";
@@ -627,12 +626,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "it794613.Mac-Health";
+				PRODUCT_BUNDLE_IDENTIFIER = com.booster.BEFLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -651,7 +651,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mac_Health/Preview Content\"";
-				DEVELOPMENT_TEAM = 33F2H2TBU4;
+				DEVELOPMENT_TEAM = VA3J8597P8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mac-Health-Info.plist";
@@ -660,12 +660,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "it794613.Mac-Health";
+				PRODUCT_BUNDLE_IDENTIFIER = com.booster.BEFLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
