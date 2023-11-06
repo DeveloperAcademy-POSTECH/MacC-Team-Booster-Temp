@@ -12,6 +12,7 @@ struct WorkoutOngoingView: View {
     @ObservedObject var routineVM: RoutineVM
     @StateObject var workoutOngoingVM = WorkoutOngoingVM()
     @State var isPauseShow = false
+    @State var isFinishShow = false
     
     var body: some View {
         ZStack {
@@ -48,6 +49,15 @@ struct WorkoutOngoingView: View {
         //        .sheet(isPresented: $workoutOngoingVM.isAlternativeWorkoutShow) {
         //            alternativeWorkoutSheet
         //        }
+        .alert("운동을 중단하시겠습니까?", isPresented: $isFinishShow) {
+            Button("운동중단") {
+                // MARK: 취소
+            }
+            Button("취소") {
+                // MARK: 완료하기
+                routineVM.showWorkOutOnGoing.toggle()
+            }
+        }
         .alert("운동을 완료할까요?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
             Button("취소") {
                 // MARK: 취소
@@ -66,6 +76,7 @@ struct WorkoutOngoingView: View {
         HStack {
             Button {
                 // TODO: .
+                isFinishShow = true
             } label: {
                 Image(systemName: "xmark")
                     .foregroundColor(.label_700)
