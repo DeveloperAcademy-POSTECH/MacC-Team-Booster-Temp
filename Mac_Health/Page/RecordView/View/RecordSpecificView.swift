@@ -1,5 +1,5 @@
 //
-//  DetailRecordView.swift
+//  RecordSpecificView.swift
 //  Mac_Health
 //
 //  Created by 최진용 on 11/5/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailRecordView: View {
+struct RecordSpecificView: View {
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -114,8 +114,8 @@ struct DetailRecordView: View {
     
 }
 
-struct DetailRecordView_Preview: PreviewProvider {
+struct RecordSpecificView_Preview: PreviewProvider {
     static var previews: some View {
-        DetailRecordView()
+        RecordSpecificView()
     }
 }

@@ -42,7 +42,7 @@ struct RecordView: View {
     
     var RecordCard: some View {
         NavigationLink {
-            DetailRecordView()
+            RecordSpecificView()
         } label: {
             RecordCell
         }

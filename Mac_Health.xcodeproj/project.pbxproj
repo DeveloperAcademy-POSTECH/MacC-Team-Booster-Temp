@@ -58,8 +58,8 @@
 		F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */; };
 		F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13E2AFA35210068F885 /* CalenderView.swift */; };
 		F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13F2AFA35210068F885 /* RecordView.swift */; };
-		F8F3A1462AFA35210068F885 /* DetailRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A1412AFA35210068F885 /* DetailRecordView.swift */; };
-		F8F3A1472AFA35210068F885 /* RecordDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A1422AFA35210068F885 /* RecordDetailEditView.swift */; };
+		F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A1412AFA35210068F885 /* RecordSpecificView.swift */; };
+		F8F3A1472AFA35210068F885 /* RecordEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A1422AFA35210068F885 /* RecordEditView.swift */; };
 		F8FD48DE2AE7F13C007DB402 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD48DD2AE7F13C007DB402 /* FloatingButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,8 +116,8 @@
 		F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
 		F8F3A13E2AFA35210068F885 /* CalenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		F8F3A13F2AFA35210068F885 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordView.swift; path = Mac_Health/Page/RecordView/View/RecordView.swift; sourceTree = SOURCE_ROOT; };
-		F8F3A1412AFA35210068F885 /* DetailRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRecordView.swift; sourceTree = "<group>"; };
-		F8F3A1422AFA35210068F885 /* RecordDetailEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordDetailEditView.swift; path = Mac_Health/Page/RecordView/View/RecordDetailEditView.swift; sourceTree = SOURCE_ROOT; };
+		F8F3A1412AFA35210068F885 /* RecordSpecificView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordSpecificView.swift; sourceTree = "<group>"; };
+		F8F3A1422AFA35210068F885 /* RecordEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordEditView.swift; path = Mac_Health/Page/RecordView/View/RecordEditView.swift; sourceTree = SOURCE_ROOT; };
 		F8FD48DD2AE7F13C007DB402 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -347,8 +347,8 @@
 			children = (
 				F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */,
 				F8F3A13E2AFA35210068F885 /* CalenderView.swift */,
-				F8F3A1412AFA35210068F885 /* DetailRecordView.swift */,
-				F8F3A1422AFA35210068F885 /* RecordDetailEditView.swift */,
+				F8F3A1412AFA35210068F885 /* RecordSpecificView.swift */,
+				F8F3A1422AFA35210068F885 /* RecordEditView.swift */,
 				F8F3A13F2AFA35210068F885 /* RecordView.swift */,
 			);
 			path = View;
@@ -442,7 +442,7 @@
 			files = (
 				F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */,
 				F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */,
-				F8F3A1472AFA35210068F885 /* RecordDetailEditView.swift in Sources */,
+				F8F3A1472AFA35210068F885 /* RecordEditView.swift in Sources */,
 				F8FD48DE2AE7F13C007DB402 /* FloatingButton.swift in Sources */,
 				F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */,
 				D569C78B2AF9440600FDADED /* RoutineVM.swift in Sources */,
@@ -475,7 +475,7 @@
 				F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */,
 				D5D8F17E2AF39EC80032A788 /* ChangeRoutineView.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
-				F8F3A1462AFA35210068F885 /* DetailRecordView.swift in Sources */,
+				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				F843AFA12AF6737300EDA547 /* WorkoutListView.swift in Sources */,
 				D5D8F1792AF2A97B0032A788 /* TodaySpecificViewModel.swift in Sources */,
