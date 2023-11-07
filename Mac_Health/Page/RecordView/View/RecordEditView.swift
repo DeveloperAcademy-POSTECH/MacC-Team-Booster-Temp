@@ -13,7 +13,7 @@ struct RecordEditView: View {
             Color.gray_900.ignoresSafeArea()
             
             VStack {
-                navigation
+                NavigationTitle
                 workoutDetail
                 Spacer()
             }
@@ -33,7 +33,7 @@ struct RecordEditView: View {
     }
     
     @ViewBuilder
-    var navigation: some View {
+    var NavigationTitle: some View {
         HStack {
             Button {
                 
