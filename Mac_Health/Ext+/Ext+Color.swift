@@ -44,6 +44,9 @@ extension Color {
     static let yellow_main = Color(hex: "D9FA48")
     static let dim = Color(hex: "000000").opacity(0.7)
     static let tabbar_main = UIColor(Color(hex: "000000").opacity(0.75))
+    static let calendar_week = UIColor(Color(hex: "F5F5F5").opacity(0.7))
+    static let calendar_outdated_gray = UIColor(Color(hex: "F5F5F5").opacity(0.8))
+    static let calendar_white = UIColor(Color(hex: "F5F5F5"))
 }
 
 
