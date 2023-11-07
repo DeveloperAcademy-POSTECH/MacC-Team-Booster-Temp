@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorkoutListView: View {
+    @Environment(\.dismiss) var dismiss
+    
     @State var isDetailedWorkoutShow = false
     @State var isConfirmationDialogShow = false
     @State var isAlternativeWorkoutShow = false
@@ -17,11 +19,17 @@ struct WorkoutListView: View {
     
     var body: some View {
         VStack {
-            NavigationTitle
             WorkoutList
             
             WorkoutStartButton
         }
+        .navigationTitle("운동 루틴 편집")
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton
+            }
+        }
+        .navigationBarBackButtonHidden()
         .sheet(isPresented: $isDetailedWorkoutShow) {
             DetailedWorkoutSheet()
         }
@@ -36,25 +44,14 @@ struct WorkoutListView: View {
         }
     }
     
-    var NavigationTitle: some View {
-        HStack(alignment: .bottom) {
-            Button {
-                // TODO: dismiss
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.label_700)
-            }
-            
-            Spacer()
-            
-            Text("운동 목록 편집")
-                .foregroundColor(.label_900)
-            
-            Spacer()
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_700)
+                .font(.headline1())
         }
-        .font(.headline1())
-        .padding(.horizontal)
-        .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(100))
     }
     
     var WorkoutList: some View {
