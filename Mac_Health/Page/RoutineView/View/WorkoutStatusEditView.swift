@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct WorkoutStatusEdit: View {
+struct WorkoutStatusEditView: View {
     @State var isDetailedWorkoutShow = false
     @State var isConfirmationDialogShow = false
     @State var isAlternativeWorkoutShow = false
     @State var isDeleteAlertShow = false
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     let workoutName = "클로즈 그립 랫 풀 다운"
     
@@ -38,6 +39,7 @@ struct WorkoutStatusEdit: View {
         HStack(alignment: .bottom) {
             Button {
                 // TODO: dismiss
+                dismiss()
             } label: {
                 Image(systemName: "xmark")
                     .foregroundColor(.label_700)
@@ -156,6 +158,6 @@ struct WorkoutStatusEdit: View {
 
 struct WorkoutStatusEdit_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutStatusEdit()
+        WorkoutStatusEditView()
     }
 }

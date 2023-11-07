@@ -15,7 +15,7 @@ struct SearchView: View {
                     VStack {
                         ScrollView {
                         TopImage()
-                        RecomendCardScroll
+                        RecommendCardScroll
                     }
                         .padding(.bottom, 35)
                     Spacer()
@@ -27,7 +27,7 @@ struct SearchView: View {
 
     
     @ViewBuilder
-    var RecomendCardScroll: some View {
+    var RecommendCardScroll: some View {
             VStack(spacing: 20){
                 HStack {
                     Text("전문가들의 일상 루틴")

@@ -11,7 +11,7 @@ enum WorkoutType: String, CaseIterable {
     case 전체, 등, 가슴, 이두, 삼두, 하체, 후면사슬, 복근
 }
 
-struct TotalRoutineView: View {
+struct ChangeRoutineView: View {
     @ObservedObject var routineVM: RoutineVM
     @Environment(\.dismiss) var dismiss: DismissAction
     ///운동 정렬용 선택
@@ -22,7 +22,6 @@ struct TotalRoutineView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             VStack {
-//                NavigationBar
                 SortingSlider
                 ///여기에는 달력에 맞는 운동 넣어주기
                 ZStack {
@@ -30,7 +29,7 @@ struct TotalRoutineView: View {
                     Workouts
                     ///if logInt ? 0 : 3
                         .blur(radius: 0)
-//                    Blind
+                    //                    Blind
                 }
             }
         }
@@ -40,7 +39,6 @@ struct TotalRoutineView: View {
                 BackButton
             }
         }
-
     }
     
     var Blind: some View {
@@ -73,14 +71,14 @@ struct TotalRoutineView: View {
             ///데이터에서 받아온 달력과 운동에 관해서 작성,
             ForEach(Range(0...10)) { a in
                 NavigationLink {
-                    DateRoutinveView()
+                    SelectedRoutineView()
                         .navigationBarTitle("\(a)월\(a)일", displayMode: .inline)
                 } label: {
                     TodayWorkoutCell(date: a)
                         .padding(.vertical, 8)
                 }
-
-
+                
+                
             }
         }.padding(.horizontal)
     }
@@ -160,26 +158,6 @@ struct TotalRoutineView: View {
             }
     }
     
-    var NavigationBar: some View {
-        HStack {
-            Text("날짜별 루틴")
-                .foregroundColor(.label_900)
-                .font(.title1())
-            Spacer()
-            Button {
-                routineVM.isDailyRoutineOpen.toggle()
-            } label: {
-                Circle()
-                    .frame(width: UIScreen.getWidth(30))
-                    .foregroundColor(.gray_600)
-                    .overlay {
-                        Image(systemName: "multiply")
-                            .foregroundColor(.label_700)
-                            .font(.headline1())
-                    }
-            }
-        }.padding()
-    }
     
     var BackButton: some View {
         Button {
@@ -193,5 +171,5 @@ struct TotalRoutineView: View {
 }
 
 #Preview {
-    TotalRoutineView(routineVM: RoutineVM())
+    ChangeRoutineView(routineVM: RoutineVM())
 }

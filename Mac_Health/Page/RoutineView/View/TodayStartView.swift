@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TodayRoutineView: View {
+struct TodayStartView: View {
     @State var todayText = "오늘은 컨디션이 좀 안 좋아서 살살 했어요"
     @State var Influencer = "정회승"
     var body: some View {
@@ -63,7 +63,7 @@ struct TodayRoutineView: View {
                                 .foregroundColor(.label_900)
                             Spacer()
                             NavigationLink {
-                                TotalRoutineView(routineVM: RoutineVM())
+                                ChangeRoutineView(routineVM: RoutineVM())
                                     .navigationBarTitle("전체 루틴", displayMode: .inline)
                             } label: {
                                 Image(systemName: "calendar")
@@ -142,6 +142,6 @@ struct TodayRoutineView: View {
 
 struct TodayRoutineView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayRoutineView()
+        TodayStartView()
     }
 }

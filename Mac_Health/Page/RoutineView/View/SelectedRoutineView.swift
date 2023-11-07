@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DateRoutinveView: View {
+struct SelectedRoutineView: View {
     
     @State var showDetail = false
     @Environment(\.dismiss) var dismiss: DismissAction
@@ -16,23 +16,7 @@ struct DateRoutinveView: View {
         ZStack{
             ScrollView{
                 VStack{
-                    ForEach(TodaySpecificViewModel.allCases, id: \.self) { option in
-                        HStack{
-                            VStack{
-                                Image(systemName: option.image)
-                                    .font(.body())
-                                    .foregroundColor(.label_700)
-                                    .padding(.leading, 15)
-                            }
-                            VStack{
-                                Text(option.contents)
-                                    .font(.body())
-                                    .foregroundColor(.label_900)
-                            }
-                            Spacer()
-                        }
-                        .padding(5)
-                    }
+                    SpecificInformation
                 }
                 .padding(.vertical, 20)
                 Divider()
@@ -65,6 +49,27 @@ struct DateRoutinveView: View {
         }
 
     }
+    
+    var SpecificInformation: some View {
+        ForEach(TodaySpecificViewModel.allCases, id: \.self) { option in
+            HStack{
+                VStack{
+                    Image(systemName: option.image)
+                        .font(.body())
+                        .foregroundColor(.label_700)
+                        .padding(.leading, 15)
+                }
+                VStack{
+                    Text(option.contents)
+                        .font(.body())
+                        .foregroundColor(.label_900)
+                }
+                Spacer()
+            }
+            .padding(5)
+        }
+    }
+
     
     var WorkoutRoutine: some View {
         //        ScrollView {
@@ -106,5 +111,5 @@ struct DateRoutinveView: View {
 }
 
 #Preview {
-    DateRoutinveView()
+    SelectedRoutineView()
 }

@@ -22,7 +22,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             TabView {
-                TodayRoutineView()
+                TodayStartView()
                     .tabItem {
                         Image(systemName: "dumbbell")
                         Text("루틴")
