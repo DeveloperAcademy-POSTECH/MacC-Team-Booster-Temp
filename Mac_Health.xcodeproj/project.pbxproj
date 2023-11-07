@@ -59,6 +59,7 @@
 		F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */; };
 		F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */; };
 		F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */; };
+		F8DFEAEC2AFA190F00BC721B /* LoginTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DFEAEB2AFA190F00BC721B /* LoginTestView.swift */; };
 		F8FD48DE2AE7F13C007DB402 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD48DD2AE7F13C007DB402 /* FloatingButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetCard.swift; sourceTree = "<group>"; };
 		F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		F8DFEAC32AF8FD8E00BC721B /* Mac_Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_Health.entitlements; sourceTree = "<group>"; };
+		F8DFEAEB2AFA190F00BC721B /* LoginTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTestView.swift; sourceTree = "<group>"; };
 		F8FD48DD2AE7F13C007DB402 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +205,7 @@
 				F8BE835B2AE68F1B0094A509 /* SearchView */,
 				F8BE83522AE68E9C0094A509 /* RoutineView */,
 				0DA327592AE1321600319BAB /* MainView.swift */,
+				F8DFEAEB2AFA190F00BC721B /* LoginTestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				0D58514B2AE2E9E700C8875A /* RoutineView.swift in Sources */,
 				D5D8F1792AF2A97B0032A788 /* TodaySpecificViewModel.swift in Sources */,
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
+				F8DFEAEC2AFA190F00BC721B /* LoginTestView.swift in Sources */,
 				D569C7892AF5152100FDADED /* DateRoutinveView.swift in Sources */,
 				D5D8F17B2AF399830032A788 /* TodayRoutineMultiView.swift in Sources */,
 			);
