@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DetailWorkoutSheet: View {
+    @Environment(\.dismiss) var dismiss: DismissAction
+    
     var body: some View {
         ZStack {
             Color.gray_800.ignoresSafeArea()
@@ -43,10 +45,11 @@ struct DetailWorkoutSheet: View {
     
     func alternativeCell() -> some View {
         HStack(spacing: 17) {
-            Rectangle()
+            Image("CloseGripLatPullDown")
+                .resizable()
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .foregroundColor(.gray_600)
-            Text("클로즈 그립 대체")
+            Text("클로즈 그립 랫 풀 다운 대체 1")
                 .font(.body())
                 .foregroundColor(.label_900)
             Spacer()
@@ -59,10 +62,29 @@ struct DetailWorkoutSheet: View {
             Text("관련 영상")
                 .font(.title2())
                 .foregroundColor(.label_900)
+            
+            //자료 변경 필요
             ScrollView(.horizontal) {
-                RoundedRectangle(cornerRadius: 8)
-                    .frame(width: UIScreen.getWidth(267), height: UIScreen.getHeight(160))
-                    .foregroundColor(.gray_600)
+                HStack{
+                    Image("youtubesample1")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.getWidth(267), height: UIScreen.getHeight(160))
+                        .mask{
+                            RoundedRectangle(cornerRadius: 8)
+                                .frame(width: UIScreen.getWidth(267), height: UIScreen.getHeight(160))
+                                .foregroundColor(.gray_600)
+                        }
+                    Image("youtubesample")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.getWidth(267), height: UIScreen.getHeight(160))
+                        .mask{
+                            RoundedRectangle(cornerRadius: 8)
+                                .frame(width: UIScreen.getWidth(267), height: UIScreen.getHeight(160))
+                                .foregroundColor(.gray_600)
+                        }
+                }
             }
         }.padding(.horizontal)
     }
@@ -70,8 +92,9 @@ struct DetailWorkoutSheet: View {
     var Tips: some View {
         VStack {
             HStack {
-                Circle()
-                    .frame(width: UIScreen.getWidth(48))
+                Image("descriptionFace1")
+                    .resizable()
+                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
                     .foregroundColor(.gray_600)
                 Spacer()
             }.padding(.bottom)
@@ -106,7 +129,8 @@ struct DetailWorkoutSheet: View {
                 .font(.title1())
             Spacer()
             Button {
-                
+                print("exit")
+                dismiss()
             } label: {
                 Circle()
                     .frame(width: UIScreen.getWidth(30))

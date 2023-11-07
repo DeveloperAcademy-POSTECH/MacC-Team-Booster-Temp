@@ -37,13 +37,13 @@ struct SearchView: View {
                     Spacer()
                 }
                 VStack(spacing: 20){
-                    ForEach(0..<2, id: \.self) {idx in
+                    ForEach(1..<4, id: \.self) {idx in
                         //전문가들의 일상 루틴에서 구독 뷰
                         NavigationLink {
                             SubscribeView()
                                 .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
                         } label: {
-                            InfluencerCard()
+                            InfluencerCard(cardBannerNum: idx)
                         }
                     }
                 }

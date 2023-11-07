@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-enum WorkoutType: String, CaseIterable {
-    case 전체, 등, 가슴, 이두, 삼두, 하체
-}
+
 
 struct WorkoutSheet: View {
     @ObservedObject var routineVM: RoutineVM
@@ -35,27 +33,27 @@ struct WorkoutSheet: View {
     }
     
     var Blind: some View {
-            VStack(spacing: UIScreen.getHeight(28)) {
-                Text("구독을 통해\n매일의 루틴 정보를 확인할수 있어요")
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(5)
-                    .font(.title2())
-                    .foregroundColor(.label_900)
-                Button {
-                    
-                } label: {
-                    Capsule()
-                        .foregroundColor(.green_main)
-                        .frame(width: UIScreen.getWidth(180), height: UIScreen.getHeight(60))
-                        .overlay {
-                            Text("둘러보기")
-                                .foregroundColor(.gray_900)
-                                .font(.button1())
-                                
-                        }
-                }
-
+        VStack(spacing: UIScreen.getHeight(28)) {
+            Text("구독을 통해\n매일의 루틴 정보를 확인할수 있어요")
+                .multilineTextAlignment(.center)
+                .lineSpacing(5)
+                .font(.title2())
+                .foregroundColor(.label_900)
+            Button {
+                
+            } label: {
+                Capsule()
+                    .foregroundColor(.green_main)
+                    .frame(width: UIScreen.getWidth(180), height: UIScreen.getHeight(60))
+                    .overlay {
+                        Text("둘러보기")
+                            .foregroundColor(.gray_900)
+                            .font(.button1())
+                        
+                    }
             }
+            
+        }
     }
     
     
@@ -111,7 +109,7 @@ struct WorkoutSheet: View {
                             notSelectedCapsul(text: type.rawValue)
                         }
                     }
-
+                    
                 }.frame(height: UIScreen.getHeight(34))
             }.padding(.horizontal)
                 .padding(.bottom)
@@ -167,7 +165,6 @@ struct WorkoutSheet: View {
 
 struct WorkoutView_Preview: PreviewProvider {
     static var previews: some View {
-        @StateObject var VM = RoutineVM()
-        WorkoutSheet(routineVM: VM)
+        WorkoutSheet(routineVM: RoutineVM())
     }
 }

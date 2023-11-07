@@ -13,13 +13,15 @@ struct AlternativeWorkoutCard: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
+            .foregroundColor(.fill_3)
             .overlay {
                 HStack {
                     RoundedRectangle(cornerRadius: 4)
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                         .foregroundColor(.fill_1)
                         .overlay {
-                            Image(systemName: "eraser.line.dashed")
+                            Image("CloseGripLatPullDown")
+                                .resizable()
                         }
                     
                     Text("클로즈 그립 랫 풀 다운")

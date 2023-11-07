@@ -8,18 +8,29 @@
 import SwiftUI
 
 struct RelatedContentCard: View {
+    let videoNum: Int
     let contentURL: String
     
     var body: some View {
-        HStack {
-            RoundedRectangle(cornerRadius: 8)
+        ZStack {
+            Image("youtubesample\(videoNum)")
+                .resizable()
+                .scaledToFill()
                 .frame(width: UIScreen.getWidth(268), height: UIScreen.getHeight(160))
-                .foregroundColor(.fill_1)
-                .overlay {
-                    Text(contentURL)
-                        .font(.title1())
-                        .foregroundColor(.label_900)
+                .mask{
+                    RoundedRectangle(cornerRadius: 8)
+                        .frame(width: UIScreen.getWidth(268), height: UIScreen.getHeight(160))
                 }
+            HStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .frame(width: UIScreen.getWidth(268), height: UIScreen.getHeight(160))
+                    .foregroundColor(.fill_1)
+                    .overlay {
+                        Text(contentURL)
+                            .font(.button1())
+                            .foregroundColor(.label_900)
+                    }
+            }
         }
     }
 }
@@ -29,7 +40,7 @@ struct RelatedContentCard_Previews: PreviewProvider {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            RelatedContentCard(contentURL: "https://www.youtube.com")
+            RelatedContentCard(videoNum: 1, contentURL:  "https://www.youtube.com")
         }
     }
 }

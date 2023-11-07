@@ -17,7 +17,9 @@ struct WorkoutSequenceCard: View {
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .foregroundColor(.fill_1)
                 .overlay {
-                    Image(systemName: "eraser.line.dashed")
+                    Image("CloseGripLatPullDown")
+                        .resizable()
+                        .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 }
             Spacer()
             Spacer()

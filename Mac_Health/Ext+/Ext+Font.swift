@@ -52,12 +52,15 @@ extension Font {
     static func button2() -> Font {
         return Font.custom(Pretentard.semiBold, size: 14 * setFontSize()).weight(.semibold)
     }
+    static func largeTitle() -> Font {
+        return Font.custom(Pretentard.semiBold, size: 36 * setFontSize()).weight(.semibold)
+    }
     
     ///기기별 폰트 사이즈 대응
     static func setFontSize() -> Double {
         let height = UIScreen.screenHeight
         var size = 1.0
-
+        
         switch height {
         case 480.0: // Iphone 3,4S => 3.5 inch
             size = 0.85
@@ -89,27 +92,42 @@ extension Font {
     }
 }
 
+extension Font: CaseIterable {
+    public static var allCases: [Font] = [.title1(), .title2(), .headline1(), .headline2(), .body(), .body2(), .button1(), .button2(), largeTitle()]
+    
+    var fontStyle: String {
+        switch self {
+        case .title1():
+            return "title1"
+        case .title2():
+            return "title2"
+        case .headline1():
+            return "headline1"
+        case .headline2():
+            return "headline2"
+        case .body():
+            return "body"
+        case .body2():
+            return "body2"
+        case .button1():
+            return "button1"
+        case .button2():
+            return "button2"
+        case .largeTitle():
+            return "largeTitle"
+        default:
+            return "default"
+        }
+    }
+}
+
 struct Font_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            Text("title1")
-                .font(.title1())
-            Text("title2")
-                .font(.title2())
-            Text("headline1")
-                .font(.headline1())
-            Text("headline2")
-                .font(.headline2())
-            Text("body")
-                .font(.body())
-            Text("body2")
-                .font(.body2())
-            Text("button1")
-                .font(.button1())
-            Text("button2")
-                .font(.button2())
-            Text("caption")
-                .font(.caption())
+            ForEach(Font.allCases, id: \.self) { font in
+                Text("\(font.fontStyle)")
+                    .font(font)
+            }
         }
     }
 }

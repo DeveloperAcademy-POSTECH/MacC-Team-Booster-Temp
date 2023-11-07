@@ -35,11 +35,22 @@ struct RoutineView: View {
         .fullScreenCover(isPresented: $routineVM.showWorkOutOnGoing) {
             WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: routineVM)
         }
-        
     }
     
 //    var Influencers: some View {
 //        //이거는 시저가 짜둔거에서 가져오면 됨
+//        ScrollView{
+//            ForEach(1..<4, id: \.self) {idx in
+//                //전문가들의 일상 루틴에서 구독 뷰
+//                NavigationLink {
+//                    SubscribeView()
+//                        .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
+//                } label: {
+//                    InfluencerCard(cardBannerNum: idx)
+//                }
+//                .padding(.bottom, 20)
+//            }
+//        }
 //    }
     
     
@@ -132,7 +143,7 @@ struct RoutineView: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 3) {
                             //MARK: -여기부분에 선수님의 이름들어가야함
-                            Text("전문가의 일상 운동")
+                            Text("정회승의 Smart Routine")
                                 .font(.headline1())
                                 .foregroundColor(.label_900)
                             //MARK: - 여기부분에 해당 일의 루틴이 들어가야함
@@ -142,14 +153,10 @@ struct RoutineView: View {
                         }
                         .padding()
                         Spacer()
-                        Capsule()
-                            .foregroundColor(.yellow_main)
-                            .frame(height: UIScreen.getHeight(130))
-                            .offset(x: UIScreen.getWidth(130))
                     }
                     HStack {
                         Spacer()
-                        Image("healthman")
+                        Image("TopBanner1")
                             .font(.body2())
                     }
                 }
