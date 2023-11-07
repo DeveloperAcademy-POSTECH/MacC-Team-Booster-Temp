@@ -1,15 +1,9 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  Mac_Health
 //
 //  Created by 최진용 on 2023/10/19.
 //
-
-/*
- 데이터 흐름
- 
- */
-
 
 import SwiftUI
 
@@ -55,7 +49,7 @@ struct MainView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }
