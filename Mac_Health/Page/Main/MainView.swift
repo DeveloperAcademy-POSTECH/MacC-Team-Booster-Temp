@@ -1,15 +1,9 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  Mac_Health
 //
 //  Created by 최진용 on 2023/10/19.
 //
-
-/*
- 데이터 흐름
- 
- */
-
 
 import SwiftUI
 
@@ -34,15 +28,11 @@ struct MainView: View {
                         Text("둘러보기")
                     }
                 
-                ZStack{
-                    Color.gray_900.ignoresSafeArea()
-                    Text("record")
-                        .foregroundColor(.white)
-                }
-                .tabItem {
-                    Image(systemName: "list.clipboard.fill")
-                    Text("기록")
-                }
+                RecordView()
+                    .tabItem {
+                        Image(systemName: "list.clipboard.fill")
+                        Text("기록")
+                    }
                 
                 ZStack{
                     Color.gray_900.ignoresSafeArea()
@@ -59,7 +49,7 @@ struct MainView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }

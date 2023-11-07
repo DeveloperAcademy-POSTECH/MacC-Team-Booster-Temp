@@ -110,8 +110,8 @@ struct TodayStartView: View {
                         }
                         .padding(.bottom, 20)
                         //운동 시작 버튼
-                        Button {
-                            print("start workout")
+                        NavigationLink {
+                            WorkoutListView()
                         } label: {
                             RoundedRectangle(cornerRadius: 100)
                                 .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
@@ -121,8 +121,6 @@ struct TodayStartView: View {
                                         .font(.button1())
                                 }.padding(.bottom, 10)
                         }
-                        
-                        
                     }
                 }
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
