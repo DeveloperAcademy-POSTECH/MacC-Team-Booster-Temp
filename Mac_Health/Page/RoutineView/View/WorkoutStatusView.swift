@@ -58,16 +58,6 @@ struct WorkoutStatusView: View {
         }
     }
     
-    var NavigationTitle: some View {
-        HStack(alignment: .bottom) {
-            Text("운동 목록")
-                .foregroundColor(.label_900)
-        }
-        .font(.headline1())
-        .padding(.horizontal)
-        .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(100))
-    }
-    
     var EditButton: some View {
         NavigationLink {
             WorkoutStatusEditView()
