@@ -35,7 +35,7 @@ struct WorkoutListView: View {
             DetailedWorkoutSheet()
         }
         .confirmationDialog(workoutName, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
-            ConfirmationDialog
+            AlternativeActionSheet
         }
         .sheet(isPresented: $isAlternativeWorkoutShow) {
             AlternativeWorkoutSheet()
@@ -133,7 +133,7 @@ struct WorkoutListView: View {
     }
     
     @ViewBuilder
-    var ConfirmationDialog: some View {
+    var AlternativeActionSheet: some View {
         Button {
             // TODO: .
             isAlternativeWorkoutShow = true
