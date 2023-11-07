@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4495C62AFA6AE400F25CD4 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C52AFA6AE400F25CD4 /* CombineMoya */; };
+		0D4495C82AFA6AE400F25CD4 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C72AFA6AE400F25CD4 /* Moya */; };
+		0D4495CA2AFA6AE400F25CD4 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C92AFA6AE400F25CD4 /* ReactiveMoya */; };
+		0D4495CC2AFA6AE400F25CD4 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495CB2AFA6AE400F25CD4 /* RxMoya */; };
+		0D4495CE2AFA6AF400F25CD4 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495CD2AFA6AF400F25CD4 /* GeneralAPI.swift */; };
+		0D4495DC2AFAB9AD00F25CD4 /* ResponsePostExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495DB2AFAB9AD00F25CD4 /* ResponsePostExercise.swift */; };
+		0D4495DE2AFABA4300F25CD4 /* ResponseDeleteExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495DD2AFABA4300F25CD4 /* ResponseDeleteExercise.swift */; };
+		0D4495E22AFABB1900F25CD4 /* ResponseGetSpecificExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495E12AFABB1900F25CD4 /* ResponseGetSpecificExercise.swift */; };
+		0D4495E52AFABB9700F25CD4 /* ResponsePatchSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495E42AFABB9700F25CD4 /* ResponsePatchSet.swift */; };
+		0D4495E82AFABBE000F25CD4 /* RequestPatchSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495E72AFABBE000F25CD4 /* RequestPatchSet.swift */; };
+		0D4495EB2AFABC7000F25CD4 /* ResponsePatchSetFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495EA2AFABC7000F25CD4 /* ResponsePatchSetFinish.swift */; };
+		0D4495EF2AFABCFC00F25CD4 /* ResponsePatchRoutineFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495EE2AFABCFC00F25CD4 /* ResponsePatchRoutineFinish.swift */; };
+		0D4495F22AFABD3500F25CD4 /* ResponseGetInfluencerRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495F12AFABD3500F25CD4 /* ResponseGetInfluencerRoutine.swift */; };
+		0D4495F52AFABDCA00F25CD4 /* ResponseGetInfluencerAllRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495F42AFABDCA00F25CD4 /* ResponseGetInfluencerAllRoutine.swift */; };
 		0D58514B2AE2E9E700C8875A /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D58514A2AE2E9E700C8875A /* RoutineView.swift */; };
 		0D58514C2AE2EF9D00C8875A /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276F2AE13C3200319BAB /* Pretendard-Thin.otf */; };
 		0D58514E2AE2EFA200C8875A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276D2AE13C3200319BAB /* Pretendard-Regular.otf */; };
@@ -63,6 +77,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D4495CD2AFA6AF400F25CD4 /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
+		0D4495DB2AFAB9AD00F25CD4 /* ResponsePostExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePostExercise.swift; sourceTree = "<group>"; };
+		0D4495DD2AFABA4300F25CD4 /* ResponseDeleteExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDeleteExercise.swift; sourceTree = "<group>"; };
+		0D4495E12AFABB1900F25CD4 /* ResponseGetSpecificExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGetSpecificExercise.swift; sourceTree = "<group>"; };
+		0D4495E42AFABB9700F25CD4 /* ResponsePatchSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePatchSet.swift; sourceTree = "<group>"; };
+		0D4495E72AFABBE000F25CD4 /* RequestPatchSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPatchSet.swift; sourceTree = "<group>"; };
+		0D4495EA2AFABC7000F25CD4 /* ResponsePatchSetFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePatchSetFinish.swift; sourceTree = "<group>"; };
+		0D4495EE2AFABCFC00F25CD4 /* ResponsePatchRoutineFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePatchRoutineFinish.swift; sourceTree = "<group>"; };
+		0D4495F12AFABD3500F25CD4 /* ResponseGetInfluencerRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGetInfluencerRoutine.swift; sourceTree = "<group>"; };
+		0D4495F42AFABDCA00F25CD4 /* ResponseGetInfluencerAllRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGetInfluencerAllRoutine.swift; sourceTree = "<group>"; };
 		0D58514A2AE2E9E700C8875A /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		0D5851572AE4F34400C8875A /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		0D5851592AE4FB6300C8875A /* RoutineVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineVM.swift; sourceTree = "<group>"; };
@@ -125,12 +149,177 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4495C82AFA6AE400F25CD4 /* Moya in Frameworks */,
+				0D4495C62AFA6AE400F25CD4 /* CombineMoya in Frameworks */,
+				0D4495CC2AFA6AE400F25CD4 /* RxMoya in Frameworks */,
+				0D4495CA2AFA6AE400F25CD4 /* ReactiveMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D4495C12AFA6AA600F25CD4 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495C32AFA6ABD00F25CD4 /* Domain */,
+				0D4495C22AFA6AAF00F25CD4 /* Bases */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		0D4495C22AFA6AAF00F25CD4 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495CD2AFA6AF400F25CD4 /* GeneralAPI.swift */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		0D4495C32AFA6ABD00F25CD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495D62AFAB93C00F25CD4 /* GetInfluencerAllRoutine */,
+				0D4495D52AFAB93100F25CD4 /* GetInfluencerRoutine */,
+				0D4495D42AFAB92800F25CD4 /* PatchRoutineFinish */,
+				0D4495D22AFAB91800F25CD4 /* PatchSetFinish */,
+				0D4495D12AFAB91200F25CD4 /* PatchSet */,
+				0D4495DF2AFABAF200F25CD4 /* GetSpecificExercise */,
+				0D4495D02AFAB90B00F25CD4 /* DeleteExercise */,
+				0D4495CF2AFAB8FF00F25CD4 /* PostExercise */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		0D4495CF2AFAB8FF00F25CD4 /* PostExercise */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495D82AFAB94F00F25CD4 /* Response */,
+			);
+			path = PostExercise;
+			sourceTree = "<group>";
+		};
+		0D4495D02AFAB90B00F25CD4 /* DeleteExercise */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495DD2AFABA4300F25CD4 /* ResponseDeleteExercise.swift */,
+			);
+			path = DeleteExercise;
+			sourceTree = "<group>";
+		};
+		0D4495D12AFAB91200F25CD4 /* PatchSet */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495E62AFABBD100F25CD4 /* Reqest */,
+				0D4495E32AFABB8A00F25CD4 /* Response */,
+			);
+			path = PatchSet;
+			sourceTree = "<group>";
+		};
+		0D4495D22AFAB91800F25CD4 /* PatchSetFinish */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495E92AFABC5A00F25CD4 /* Response */,
+			);
+			path = PatchSetFinish;
+			sourceTree = "<group>";
+		};
+		0D4495D42AFAB92800F25CD4 /* PatchRoutineFinish */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495ED2AFABCE600F25CD4 /* Response */,
+			);
+			path = PatchRoutineFinish;
+			sourceTree = "<group>";
+		};
+		0D4495D52AFAB93100F25CD4 /* GetInfluencerRoutine */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495F02AFABD2300F25CD4 /* Response */,
+			);
+			path = GetInfluencerRoutine;
+			sourceTree = "<group>";
+		};
+		0D4495D62AFAB93C00F25CD4 /* GetInfluencerAllRoutine */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495F32AFABDA500F25CD4 /* Response */,
+			);
+			path = GetInfluencerAllRoutine;
+			sourceTree = "<group>";
+		};
+		0D4495D82AFAB94F00F25CD4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495DB2AFAB9AD00F25CD4 /* ResponsePostExercise.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0D4495DF2AFABAF200F25CD4 /* GetSpecificExercise */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495E02AFABB0100F25CD4 /* Response */,
+			);
+			path = GetSpecificExercise;
+			sourceTree = "<group>";
+		};
+		0D4495E02AFABB0100F25CD4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495E12AFABB1900F25CD4 /* ResponseGetSpecificExercise.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0D4495E32AFABB8A00F25CD4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495E42AFABB9700F25CD4 /* ResponsePatchSet.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0D4495E62AFABBD100F25CD4 /* Reqest */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495E72AFABBE000F25CD4 /* RequestPatchSet.swift */,
+			);
+			path = Reqest;
+			sourceTree = "<group>";
+		};
+		0D4495E92AFABC5A00F25CD4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495EA2AFABC7000F25CD4 /* ResponsePatchSetFinish.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0D4495ED2AFABCE600F25CD4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495EE2AFABCFC00F25CD4 /* ResponsePatchRoutineFinish.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0D4495F02AFABD2300F25CD4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495F12AFABD3500F25CD4 /* ResponseGetInfluencerRoutine.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0D4495F32AFABDA500F25CD4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495F42AFABDCA00F25CD4 /* ResponseGetInfluencerAllRoutine.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		0DA3274B2AE1321600319BAB = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +443,7 @@
 		F89B3BF22AE5142800CACBD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0D4495C12AFA6AA600F25CD4 /* NetWork */,
 				F8BE83512AE68DDF0094A509 /* Workout */,
 				D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */,
 				D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */,
@@ -384,6 +574,12 @@
 			dependencies = (
 			);
 			name = Mac_Health;
+			packageProductDependencies = (
+				0D4495C52AFA6AE400F25CD4 /* CombineMoya */,
+				0D4495C72AFA6AE400F25CD4 /* Moya */,
+				0D4495C92AFA6AE400F25CD4 /* ReactiveMoya */,
+				0D4495CB2AFA6AE400F25CD4 /* RxMoya */,
+			);
 			productName = Mac_Health;
 			productReference = 0DA327542AE1321600319BAB /* Mac_Health.app */;
 			productType = "com.apple.product-type.application";
@@ -412,6 +608,9 @@
 				Base,
 			);
 			mainGroup = 0DA3274B2AE1321600319BAB;
+			packageReferences = (
+				0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 0DA327552AE1321600319BAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -456,22 +655,29 @@
 				D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */,
 				F89B3BED2AE5064200CACBD9 /* AlternativeRoutineCard.swift in Sources */,
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
+				0D4495F52AFABDCA00F25CD4 /* ResponseGetInfluencerAllRoutine.swift in Sources */,
 				D5B780522AE3D65000A8B76A /* RoutinePreview.swift in Sources */,
 				F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */,
 				F82674CD2AF7DA9B002BFACD /* WorkoutStatus.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */,
 				0D5851582AE4F34400C8875A /* WorkoutCell.swift in Sources */,
+				0D4495CE2AFA6AF400F25CD4 /* GeneralAPI.swift in Sources */,
+				0D4495EF2AFABCFC00F25CD4 /* ResponsePatchRoutineFinish.swift in Sources */,
 				0D58515F2AE5B0E300C8875A /* DetailWorkoutSheet.swift in Sources */,
 				0D58515D2AE4FCA500C8875A /* WorkoutSheet.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
+				0D4495EB2AFABC7000F25CD4 /* ResponsePatchSetFinish.swift in Sources */,
 				0D58515A2AE4FB6300C8875A /* RoutineVM.swift in Sources */,
 				0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */,
+				0D4495E82AFABBE000F25CD4 /* RequestPatchSet.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
+				0D4495E52AFABB9700F25CD4 /* ResponsePatchSet.swift in Sources */,
 				F82674CF2AF7F099002BFACD /* WorkoutStatusEdit.swift in Sources */,
 				F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */,
 				F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */,
 				F89B3BE72AE502F000CACBD9 /* WorkoutSequenceCard.swift in Sources */,
+				0D4495DC2AFAB9AD00F25CD4 /* ResponsePostExercise.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
 				F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */,
 				F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */,
@@ -480,9 +686,12 @@
 				F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */,
 				D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */,
 				D5D8F17E2AF39EC80032A788 /* TotalRoutineView.swift in Sources */,
+				0D4495E22AFABB1900F25CD4 /* ResponseGetSpecificExercise.swift in Sources */,
+				0D4495DE2AFABA4300F25CD4 /* ResponseDeleteExercise.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				D5B7805C2AE51AD900A8B76A /* PaymentView.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
+				0D4495F22AFABD3500F25CD4 /* ResponseGetInfluencerRoutine.swift in Sources */,
 				F843AFA12AF6737300EDA547 /* WorkoutListView.swift in Sources */,
 				0D58514B2AE2E9E700C8875A /* RoutineView.swift in Sources */,
 				D5D8F1792AF2A97B0032A788 /* TodaySpecificViewModel.swift in Sources */,
@@ -699,6 +908,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0D4495C52AFA6AE400F25CD4 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		0D4495C72AFA6AE400F25CD4 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		0D4495C92AFA6AE400F25CD4 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		0D4495CB2AFA6AE400F25CD4 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0DA3274C2AE1321600319BAB /* Project object */;
 }
