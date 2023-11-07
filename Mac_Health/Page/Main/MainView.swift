@@ -34,15 +34,11 @@ struct MainView: View {
                         Text("둘러보기")
                     }
                 
-                ZStack{
-                    Color.gray_900.ignoresSafeArea()
-                    Text("record")
-                        .foregroundColor(.white)
-                }
-                .tabItem {
-                    Image(systemName: "list.clipboard.fill")
-                    Text("기록")
-                }
+                RecordView()
+                    .tabItem {
+                        Image(systemName: "list.clipboard.fill")
+                        Text("기록")
+                    }
                 
                 ZStack{
                     Color.gray_900.ignoresSafeArea()
