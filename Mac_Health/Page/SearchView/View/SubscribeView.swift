@@ -50,87 +50,7 @@ struct SubscribeView: View {
                 //구독 버튼
                 subscribeButton
                 //인플루언서 설명
-                    VStack(alignment: .leading){
-                        Text("소개")
-                            .foregroundColor(.label_900)
-                            .font(.headline1())
-                            .padding(.top, 20)
-                        Text(introduce)
-                            .foregroundColor(.label_800)
-                            .font(.body)
-                            .padding(.bottom, 20)
-                        Text("수상경력")
-                            .foregroundColor(.label_900)
-                            .font(.headline1())
-                    }
-                    
-                if seeMore == false {
-                    ZStack(alignment: .bottom){
-                        VStack(alignment: .leading){
-                            ForEach(0..<award.count, id: \.self) { index in
-                                HStack {VStack {
-                                    Text("•")
-                                            .font(.body)
-                                        .foregroundColor(.label_800)
-                                    Spacer()
-                                }
-                                    VStack(alignment: .leading){
-                                        HStack {
-                                            Text(award[index])
-                                                .font(.body)
-                                                .foregroundColor(.label_800)
-                                            Spacer()
-                                        }
-                                        Spacer()
-                                    }
-                                }
-                                .padding(.leading, 10)
-                            }
-                            .mask(
-                            Rectangle()
-                                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(80)))
-                        }
-                        .padding(.leading, 20)
-                        Image("seeMoreGradient")
-                            .resizable()
-                            .scaledToFit()
-                        Button {
-                            seeMore = true
-                        } label: {
-                            Text("더보기")
-                                .font(.headline1())
-                                .foregroundColor(Color.label_900)
-                        }
-                        .offset(y: 10)
-                        
-                    }
-                    .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
-                    .padding()
-                }
-                else {
-                    VStack(alignment: .leading){
-                        ForEach(0..<award.count, id: \.self) { index in
-                            HStack {VStack {
-                                Text("•")
-                                        .font(.body)
-                                    .foregroundColor(.label_800)
-                                Spacer()
-                            }
-                                VStack(alignment: .leading){
-                                    HStack {
-                                        Text(award[index])
-                                            .font(.body)
-                                            .foregroundColor(.label_800)
-                                        Spacer()
-                                    }
-                                    Spacer()
-                                }
-                            }
-                            .padding(.leading, 20)
-                        }
-                    }
-                    .padding()
-                }
+                    introInfluencer
                 //루틴 미리보기
                 RoutinePreview(previewRoutine: previewRoutine[0])
                     .padding(.horizontal, 10)
@@ -173,6 +93,91 @@ struct SubscribeView: View {
                     .font(.body())
             }
         }
+    
+    @ViewBuilder
+    var introInfluencer: some View {
+        VStack(alignment: .leading){
+            Text("소개")
+                .foregroundColor(.label_900)
+                .font(.headline1())
+                .padding(.top, 20)
+            Text(introduce)
+                .foregroundColor(.label_800)
+                .font(.body)
+                .padding(.bottom, 20)
+            Text("수상경력")
+                .foregroundColor(.label_900)
+                .font(.headline1())
+        }
+        
+    if seeMore == false {
+        ZStack(alignment: .bottom){
+            VStack(alignment: .leading){
+                ForEach(0..<award.count, id: \.self) { index in
+                    HStack {VStack {
+                        Text("•")
+                                .font(.body)
+                            .foregroundColor(.label_800)
+                        Spacer()
+                    }
+                        VStack(alignment: .leading){
+                            HStack {
+                                Text(award[index])
+                                    .font(.body)
+                                    .foregroundColor(.label_800)
+                                Spacer()
+                            }
+                            Spacer()
+                        }
+                    }
+                    .padding(.leading, 10)
+                }
+                .mask(
+                Rectangle()
+                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(80)))
+            }
+            .padding(.leading, 20)
+            Image("seeMoreGradient")
+                .resizable()
+                .scaledToFit()
+            Button {
+                seeMore = true
+            } label: {
+                Text("더보기")
+                    .font(.headline1())
+                    .foregroundColor(Color.label_900)
+            }
+            .offset(y: 10)
+            
+        }
+        .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
+        .padding()
+    }
+    else {
+        VStack(alignment: .leading){
+            ForEach(0..<award.count, id: \.self) { index in
+                HStack {VStack {
+                    Text("•")
+                            .font(.body)
+                        .foregroundColor(.label_800)
+                    Spacer()
+                }
+                    VStack(alignment: .leading){
+                        HStack {
+                            Text(award[index])
+                                .font(.body)
+                                .foregroundColor(.label_800)
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                }
+                .padding(.leading, 20)
+            }
+        }
+        .padding()
+    }
+    }
         
         
     

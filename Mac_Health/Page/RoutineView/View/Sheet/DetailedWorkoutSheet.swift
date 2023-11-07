@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DetailedWorkoutSheet: View {
+    
+    @Environment(\.dismiss) var dismiss: DismissAction
     var body: some View {
         ZStack {
             Color.gray_800.ignoresSafeArea()
@@ -37,6 +39,7 @@ struct DetailedWorkoutSheet: View {
             
             Button {
                 // TODO: .
+                dismiss()
             } label: {
                 Circle()
                     .foregroundColor(.gray_600)

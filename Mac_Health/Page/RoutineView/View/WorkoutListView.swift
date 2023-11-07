@@ -18,7 +18,7 @@ struct WorkoutListView: View {
     var body: some View {
         VStack {
             NavigationTitle
-            WokroutList
+            WorkoutList
             
             WorkoutStartButton
         }
@@ -47,7 +47,7 @@ struct WorkoutListView: View {
             
             Spacer()
             
-            Text("운동 목록")
+            Text("운동 목록 편집")
                 .foregroundColor(.label_900)
             
             Spacer()
@@ -57,7 +57,7 @@ struct WorkoutListView: View {
         .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(100))
     }
     
-    var WokroutList: some View {
+    var WorkoutList: some View {
         VStack {
             HStack {
                 // TODO: .

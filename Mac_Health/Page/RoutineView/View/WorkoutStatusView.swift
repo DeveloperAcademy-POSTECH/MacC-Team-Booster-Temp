@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkoutStatus: View {
+struct WorkoutStatusView: View {
     @State var isDetailedWorkoutShow = false
     @State var isConfirmationDialogShow = false
     @State var isAlternativeWorkoutShow = false
@@ -18,9 +18,9 @@ struct WorkoutStatus: View {
     var body: some View {
         VStack {
             NavigationTitle
-            WokroutList
+            WorkoutList
             
-//            WorkoutStartButton
+            //            WorkoutStartButton
         }
         .sheet(isPresented: $isDetailedWorkoutShow) {
             DetailedWorkoutSheet()
@@ -52,16 +52,19 @@ struct WorkoutStatus: View {
             
             Spacer()
             
-            Text("편집")
-                .font(.headline1())
-                .foregroundColor(.green_main)
+            Button(action: {}, label: {
+                Text("편집")
+                    .font(.headline1())
+                    .foregroundColor(.green_main)
+            })
+            
         }
         .font(.headline1())
         .padding(.horizontal)
         .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(100))
     }
     
-    var WokroutList: some View {
+    var WorkoutList: some View {
         VStack {
             HStack {
                 // TODO: .
@@ -84,20 +87,22 @@ struct WorkoutStatus: View {
     }
     
     var WorkoutListCell: some View {
-        WorkoutSequenceCard(isCurrentWorkout: false, isFinish: true)
+        VStack{
+            WorkoutSequenceCard(isCurrentWorkout: false, isFinish: true)
+        }
     }
     
-//    var WorkoutStartButton: some View {
-//        Button {
-//            // TODO: .
-//        } label: {
-//            FloatingButton(backgroundColor: .green_main) {
-//                Text("시작")
-//                    .foregroundColor(.gray_900)
-//                    .font(.button1())
-//            }
-//        }
-//    }
+    //    var WorkoutStartButton: some View {
+    //        Button {
+    //            // TODO: .
+    //        } label: {
+    //            FloatingButton(backgroundColor: .green_main) {
+    //                Text("시작")
+    //                    .foregroundColor(.gray_900)
+    //                    .font(.button1())
+    //            }
+    //        }
+    //    }
     
     @ViewBuilder
     var ConfirmationDialog: some View {
@@ -135,6 +140,6 @@ struct WorkoutStatus: View {
 
 struct WorkoutStatus_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutStatus()
+        WorkoutStatusView()
     }
 }

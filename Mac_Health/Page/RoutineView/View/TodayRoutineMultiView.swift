@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TodayRoutineMultiView: View {
+struct MultiRoutineView: View {
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -28,5 +28,5 @@ struct TodayRoutineMultiView: View {
 }
 
 #Preview {
-    TodayRoutineMultiView()
+    MultiRoutineView()
 }
