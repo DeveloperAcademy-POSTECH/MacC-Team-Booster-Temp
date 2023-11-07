@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct DetailedWorkoutSheet: View {
+    @Environment(\.dismiss) var dismiss
     
-    @Environment(\.dismiss) var dismiss: DismissAction
     var body: some View {
         ZStack {
             Color.gray_800.ignoresSafeArea()
             
             VStack {
+                Spacer()
                 NavigationTitle
                 ScrollView {
                     VStack {
