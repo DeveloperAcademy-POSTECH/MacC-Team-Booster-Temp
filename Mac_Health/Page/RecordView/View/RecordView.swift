@@ -16,7 +16,7 @@ struct RecordView: View {
                 Color.gray_900.ignoresSafeArea()
                 
                 VStack {
-                    Title
+                    NavigationTitle
                     Calender
                     RecordCard
                     Spacer()
@@ -25,7 +25,7 @@ struct RecordView: View {
         }
     }
     
-    var Title: some View {
+    var NavigationTitle: some View {
         HStack {
             Text("기록")
                 .font(.title2())

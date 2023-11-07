@@ -20,7 +20,7 @@ struct WorkoutOngoingView: View {
             
             VStack {
                 Spacer()
-                Navigation
+                NavigationTitle
                 
                 ScrollView {
                     Spacer()
@@ -72,7 +72,7 @@ struct WorkoutOngoingView: View {
         }
     }
     
-    var Navigation: some View {
+    var NavigationTitle: some View {
         HStack {
             Button {
                 // TODO: .
