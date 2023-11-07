@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct WorkoutOngoingView: View {
+    @Environment(\.dismiss) var dismiss
+    
     let currentWorkoutNumber: Int
     @ObservedObject var routineVM: RoutineVM
     @StateObject var workoutOngoingVM = WorkoutOngoingVM()
     @State var isPauseShow = false
     @State var isFinishShow = false
+    @State var isAlternativeShow = false
+    
+    let workoutName = "클로즈 그립 랫 풀 다운"
     
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             
             VStack {
-                Spacer()
-                NavigationTitle
-                
                 ScrollView {
                     Spacer()
                     Spacer()
@@ -43,8 +45,22 @@ struct WorkoutOngoingView: View {
                 WorkoutButton
             }
         }
-        .sheet(isPresented: $workoutOngoingVM.isRoutineSequenceShow) {
-            ///sheet에서 네비게이션 링크로 변경
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton
+            }
+            
+            ToolbarItem(placement: .principal) {
+                NavigationTitle
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                EditButton
+            }
+        }
+        .navigationBarBackButtonHidden()
+        .confirmationDialog(workoutName, isPresented: $isAlternativeShow, titleVisibility: .visible) {
+            AlternativeActionSheet
         }
         //        .sheet(isPresented: $workoutOngoingVM.isAlternativeWorkoutShow) {
         //            alternativeWorkoutSheet
@@ -72,47 +88,70 @@ struct WorkoutOngoingView: View {
         }
     }
     
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "xmark")
+                .foregroundColor(.label_700)
+                .font(.headline1())
+        }
+    }
+    
     var NavigationTitle: some View {
         HStack {
-            Button {
-                // TODO: .
-                isFinishShow = true
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.label_700)
-            }
-            
-            Spacer()
-            
-            Group {
-                Image(systemName: "flame.fill")
-                    .foregroundColor(.label_700)
-                Text("00:00:00")
-                    .foregroundColor(.label_900)
-                Button {
-                    isPauseShow = true
-                } label: {
-                    Circle()
-                        .foregroundColor(.gray_700)
-                        .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
-                        .overlay {
-                            Image(systemName: "pause.fill")
-                                .foregroundColor(.label_900)
-                        }
+            Image(systemName: "flame.fill")
+                .foregroundColor(.label_700)
+                .font(.headline2())
+            Text("00:00:00")
+                .foregroundColor(.label_900)
+                .font(.headline1())
+            Circle()
+                .foregroundColor(.gray_700)
+                .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
+                .overlay {
+                    Image(systemName: "pause.fill")
+                        .resizable()
+                        .foregroundColor(.label_900)
+                        .frame(width: UIScreen.getWidth(11), height: UIScreen.getHeight(14))
                 }
-            }
-            .font(.headline1())
-            
-            Spacer()
-            
-            Button {
-                // TODO: .
-            } label: {
-                Image(systemName: "ellipsis")
-                    .foregroundColor(.label_700)
-            }
+                .onTapGesture {
+                    isPauseShow = true
+                }
         }
-        .padding(.horizontal)
+    }
+    
+    var EditButton: some View {
+        Button {
+            isAlternativeShow = true
+        } label: {
+            Image(systemName: "ellipsis")
+                .foregroundColor(.label_700)
+                .font(.headline1())
+        }
+    }
+    
+    @ViewBuilder
+    var AlternativeActionSheet: some View {
+        Button {
+            // TODO: .
+            isAlternativeShow = true
+        } label: {
+            Text("운동 대체")
+        }
+        
+        Button {
+            // TODO: .
+            //            isDeleteAlertShow = true
+        } label: {
+            Text("삭제")
+        }
+        
+        Button(role: .cancel) {
+            // TODO: .
+        } label: {
+            Text("취소")
+        }
     }
     
     var workoutInfomation: some View {
@@ -226,8 +265,8 @@ struct WorkoutOngoingView: View {
     var WorkoutButton: some View {
         FloatingButton(backgroundColor: .gray_600) {
             HStack {
-                Button {
-                    workoutOngoingVM.showRoutineSequenceShow()
+                NavigationLink {
+                    WorkoutStatusView()
                 } label: {
                     Image(systemName: "list.bullet")
                         .foregroundColor(.green_main)
@@ -265,7 +304,7 @@ struct WorkoutOngoingView: View {
         }
     }
     
-
+    
     var RelatedContent: some View {
         VStack {
             HStack {
