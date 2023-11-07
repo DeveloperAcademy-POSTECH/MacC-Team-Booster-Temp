@@ -195,10 +195,11 @@
 		0DA327752AE13F5200319BAB /* Page */ = {
 			isa = PBXGroup;
 			children = (
-				F8F3A13B2AFA34EF0068F885 /* RecordView */,
 				D569C78F2AF9456900FDADED /* Main */,
 				D569C78C2AF9451D00FDADED /* RoutineView */,
 				F8BE835B2AE68F1B0094A509 /* SearchView */,
+				F8F3A13B2AFA34EF0068F885 /* RecordView */,
+				F8F3A14C2AFA69A60068F885 /* ProfileView */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -352,6 +353,13 @@
 				F8F3A13F2AFA35210068F885 /* RecordView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F8F3A14C2AFA69A60068F885 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
