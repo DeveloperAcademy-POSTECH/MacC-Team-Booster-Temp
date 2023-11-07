@@ -1,5 +1,5 @@
 //
-//  RecordDetailEditView.swift
+//  RecordEditView.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 10/27/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecordDetailEditView: View {
+struct RecordEditView: View {
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
@@ -110,8 +110,8 @@ struct RecordDetailEditView: View {
     }
 }
 
-struct RecordDetailEditView_Previews: PreviewProvider {
+struct RecordEditView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordDetailEditView()
+        RecordEditView()
     }
 }
