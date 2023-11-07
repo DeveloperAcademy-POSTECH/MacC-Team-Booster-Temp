@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorkoutStatusView: View {
+    @Environment(\.dismiss) var dismiss
+    
     @State var isDetailedWorkoutShow = false
     @State var isConfirmationDialogShow = false
     @State var isAlternativeWorkoutShow = false
@@ -17,16 +19,26 @@ struct WorkoutStatusView: View {
     
     var body: some View {
         VStack {
-            NavigationTitle
             WorkoutList
             
             //            WorkoutStartButton
         }
+        .navigationTitle("운동 목록")
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                EditButton
+            }
+        }
+        .navigationBarBackButtonHidden()
         .sheet(isPresented: $isDetailedWorkoutShow) {
             DetailedWorkoutSheet()
         }
         .confirmationDialog(workoutName, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
-            ConfirmationDialog
+            AlternativeActionSheet
         }
         .sheet(isPresented: $isAlternativeWorkoutShow) {
             AlternativeWorkoutSheet()
@@ -36,32 +48,34 @@ struct WorkoutStatusView: View {
         }
     }
     
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .font(.headline1())
+                .foregroundColor(.label_700)
+        }
+    }
+    
     var NavigationTitle: some View {
         HStack(alignment: .bottom) {
-            Button {
-                // TODO: dismiss
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.label_700)
-            }
-            
-            Spacer()
-            
             Text("운동 목록")
                 .foregroundColor(.label_900)
-            
-            Spacer()
-            
-            Button(action: {}, label: {
-                Text("편집")
-                    .font(.headline1())
-                    .foregroundColor(.green_main)
-            })
-            
         }
         .font(.headline1())
         .padding(.horizontal)
         .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(100))
+    }
+    
+    var EditButton: some View {
+        NavigationLink {
+            WorkoutStatusEditView()
+        } label: {
+            Text("편집")
+                .font(.headline1())
+                .foregroundColor(.green_main)
+        }
     }
     
     var WorkoutList: some View {
@@ -105,7 +119,7 @@ struct WorkoutStatusView: View {
     //    }
     
     @ViewBuilder
-    var ConfirmationDialog: some View {
+    var AlternativeActionSheet: some View {
         Button {
             // TODO: .
             isAlternativeWorkoutShow = true
