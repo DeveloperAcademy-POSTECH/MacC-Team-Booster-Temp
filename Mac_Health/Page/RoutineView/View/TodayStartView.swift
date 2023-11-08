@@ -10,6 +10,9 @@ import SwiftUI
 struct TodayStartView: View {
     @State var todayText = "오늘은 컨디션이 좀 안 좋아서 살살 했어요"
     @State var Influencer = "정회승"
+    
+    @StateObject var vm = TodayStartViewModel()
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
