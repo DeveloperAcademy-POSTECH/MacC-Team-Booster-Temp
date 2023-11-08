@@ -12,6 +12,8 @@ enum WorkoutType: String, CaseIterable {
 }
 
 struct ChangeRoutineView: View {
+    @StateObject var vm = ChangeRoutineViewModel()
+    
     @ObservedObject var routineVM: RoutineVM
     @Environment(\.dismiss) var dismiss: DismissAction
     ///운동 정렬용 선택

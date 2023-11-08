@@ -6,13 +6,34 @@
 //
 
 import SwiftUI
+import Moya
 
-struct ChangeRoutineViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class ChangeRoutineViewModel: ObservableObject {
+    let provider = MoyaProvider<GeneralAPI>()
+    let id = 1
+    
+    @Published var routines = ResponseGetUsersInfluencersRoutines(routines: [])
+    
+    init() {
+        self.fetchRoutines()
     }
-}
-
-#Preview {
-    ChangeRoutineViewModel()
+    
+    func fetchRoutines() {
+        provider.request(.GetUsersInfluencersRoutines(id: id)) { result in
+            switch result {
+            case .success(let resp):
+                switch resp.statusCode {
+                case 200:
+                    let resultData = try! JSONDecoder().decode([Routine].self, from: resp.data)
+                    self.routines = ResponseGetUsersInfluencersRoutines(routines: resultData)
+                    print(self.routines)
+                default:
+                    print("Status Code: \(resp.statusCode)")
+                    break
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
