@@ -67,6 +67,7 @@ struct Exercise: Codable {
 struct InfluencerRoutine: Codable {
     var routineId: Int
     var part: String
+    var date: String
     var numberOfExercise: Int
     var burnedKCalories: Int
     var requiredMinutes: Int
@@ -92,6 +93,10 @@ struct ResponsePatchUsersRoutinesFinish: Codable {
 /// GetUsersRoutines
 struct ResponseGetUsersRoutines: Codable {
     var routines: [InfluencerRoutine]
+    
+    enum CodingKeys: CodingKey {
+        case routines
+    }
 }
 
 /// GetUsersRoutinesId
