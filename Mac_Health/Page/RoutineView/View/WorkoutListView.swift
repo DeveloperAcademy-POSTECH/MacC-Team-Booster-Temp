@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WorkoutListView: View {
+    // TODO: WorkoutListView 데이터 작업
     @Environment(\.dismiss) var dismiss
     
     @State var isDetailedWorkoutShow = false
