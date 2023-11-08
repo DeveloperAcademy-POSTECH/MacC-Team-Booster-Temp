@@ -6,13 +6,34 @@
 //
 
 import SwiftUI
+import Moya
 
-struct SelectedRoutineViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class SelectedRoutineViewModel: ObservableObject {
+    let provider = MoyaProvider<GeneralAPI>()
+    let id = 1
+    
+    @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
+    
+    init() {
+        self.fetchRoutine()
     }
-}
-
-#Preview {
-    SelectedRoutineViewModel()
+    
+    func fetchRoutine() {
+        provider.request(.GetUsersRoutinesId(id: id)) { result in
+            switch result {
+            case .success(let resp):
+                switch resp.statusCode {
+                case 200:
+                    let resultData = try! JSONDecoder().decode(ResponseGetUsersRoutinesId.self, from: resp.data)
+                    self.routine = resultData
+                    print(self.routine)
+                default:
+                    print("Status Code: \(resp.statusCode)")
+                    break
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

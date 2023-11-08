@@ -54,6 +54,7 @@
 		F877F0AC2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0AB2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift */; };
 		F877F0AE2AFBE9BD009D49B4 /* TodayStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */; };
 		F877F0B02AFBEB38009D49B4 /* ChangeRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0AF2AFBEB38009D49B4 /* ChangeRoutineViewModel.swift */; };
+		F877F0B22AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
@@ -117,6 +118,7 @@
 		F877F0AB2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRoutineMultiViewModel.swift; sourceTree = "<group>"; };
 		F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStartViewModel.swift; sourceTree = "<group>"; };
 		F877F0AF2AFBEB38009D49B4 /* ChangeRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoutineViewModel.swift; sourceTree = "<group>"; };
+		F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineViewModel.swift; sourceTree = "<group>"; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
 		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingVM.swift; sourceTree = "<group>"; };
 		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */,
 				F877F0AB2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift */,
 				F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */,
+				F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				F89B3BE92AE503B500CACBD9 /* CheckButton.swift in Sources */,
 				F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */,
 				D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */,
+				F877F0B22AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift in Sources */,
 				F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */,
 				D5D8F17E2AF39EC80032A788 /* ChangeRoutineView.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,

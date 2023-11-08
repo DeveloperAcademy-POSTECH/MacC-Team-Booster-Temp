@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SelectedRoutineView: View {
+    @StateObject var vm = SelectedRoutineViewModel()
     
     @State var showDetail = false
     @Environment(\.dismiss) var dismiss: DismissAction
