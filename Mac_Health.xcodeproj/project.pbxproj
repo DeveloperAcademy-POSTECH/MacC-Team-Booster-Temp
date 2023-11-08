@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4495B92AF6A60600F25CD4 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495B82AF6A60600F25CD4 /* FSCalendar */; };
 		0D4495C62AFA6AE400F25CD4 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C52AFA6AE400F25CD4 /* CombineMoya */; };
 		0D4495C82AFA6AE400F25CD4 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C72AFA6AE400F25CD4 /* Moya */; };
 		0D4495CA2AFA6AE400F25CD4 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C92AFA6AE400F25CD4 /* ReactiveMoya */; };
 		0D4495CC2AFA6AE400F25CD4 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495CB2AFA6AE400F25CD4 /* RxMoya */; };
 		0D4495CE2AFA6AF400F25CD4 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495CD2AFA6AF400F25CD4 /* GeneralAPI.swift */; };
-		0D4495B92AF6A60600F25CD4 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495B82AF6A60600F25CD4 /* FSCalendar */; };
 		0D58514C2AE2EF9D00C8875A /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276F2AE13C3200319BAB /* Pretendard-Thin.otf */; };
 		0D58514E2AE2EFA200C8875A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276D2AE13C3200319BAB /* Pretendard-Regular.otf */; };
 		0D58514F2AE2EFA400C8875A /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA327702AE13C3200319BAB /* Pretendard-Medium.otf */; };
@@ -47,10 +47,11 @@
 		F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */; };
 		F82674C52AF68F11002BFACD /* AlternativeWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C42AF68F11002BFACD /* AlternativeWorkoutSheet.swift */; };
 		F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C72AF7A7AD002BFACD /* PauseSheet.swift */; };
-		F838A12C2AFB79E500688893 /* APIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838A12B2AFB79E500688893 /* APIBody.swift */; };
 		F82674CD2AF7DA9B002BFACD /* WorkoutStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */; };
 		F82674CF2AF7F099002BFACD /* WorkoutStatusEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */; };
+		F838A12C2AFB79E500688893 /* APIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838A12B2AFB79E500688893 /* APIBody.swift */; };
 		F843AFA12AF6737300EDA547 /* WorkoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843AFA02AF6737300EDA547 /* WorkoutListView.swift */; };
+		F877F0AC2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0AB2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
@@ -107,10 +108,11 @@
 		F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C42AF68F11002BFACD /* AlternativeWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C72AF7A7AD002BFACD /* PauseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseSheet.swift; sourceTree = "<group>"; };
-		F838A12B2AFB79E500688893 /* APIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBody.swift; sourceTree = "<group>"; };
 		F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStatusView.swift; sourceTree = "<group>"; };
 		F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStatusEditView.swift; sourceTree = "<group>"; };
+		F838A12B2AFB79E500688893 /* APIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBody.swift; sourceTree = "<group>"; };
 		F843AFA02AF6737300EDA547 /* WorkoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListView.swift; sourceTree = "<group>"; };
+		F877F0AB2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRoutineMultiViewModel.swift; sourceTree = "<group>"; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
 		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingVM.swift; sourceTree = "<group>"; };
 		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				D5D8F1782AF2A97B0032A788 /* TodaySpecificViewModel.swift */,
 				D569C78A2AF9440600FDADED /* RoutineVM.swift */,
 				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingVM.swift */,
+				F877F0AB2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 			files = (
 				F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */,
 				F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */,
+				F877F0AC2AFBBA40009D49B4 /* TodayRoutineMultiViewModel.swift in Sources */,
 				F8F3A1472AFA35210068F885 /* RecordEditView.swift in Sources */,
 				F8FD48DE2AE7F13C007DB402 /* FloatingButton.swift in Sources */,
 				F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */,
@@ -731,14 +735,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.3;
-			};
-		};				
 		0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -747,9 +743,22 @@
 				minimumVersion = 2.8.4;
 			};
 		};
+		0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0D4495B82AF6A60600F25CD4 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		0D4495C52AFA6AE400F25CD4 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
@@ -769,11 +778,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
-		};			
-		0D4495B82AF6A60600F25CD4 /* FSCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */;
-			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
