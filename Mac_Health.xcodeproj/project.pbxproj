@@ -737,6 +737,8 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 15.0.3;
+			};
+		};				
 		0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -767,6 +769,7 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};			
 		0D4495B82AF6A60600F25CD4 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */;
