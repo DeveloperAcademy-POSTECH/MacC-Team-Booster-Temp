@@ -26,6 +26,19 @@ struct ResponseDeleteRoutinesExercisesSets: Codable {
 }
 //:
 
+// MARK: DeleteRoutinesExercisesSets
+struct ResponsePatchRoutinesExercisesAlternate: Codable {
+    var name: String
+    var part: String
+    var exerciseId: Int
+    var exerciseImageUrl: String
+    var tip: String
+    var videoUrl: String
+    var sets: [ExerciseSet]
+    var alternativeExercises: [AlternativeExercise]
+}
+//:
+
 // MARK: GetRoutinesExercises
 struct ResponseGetRoutinesExercises: Codable {
     var name: String
