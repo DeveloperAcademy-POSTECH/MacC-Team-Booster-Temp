@@ -13,6 +13,7 @@ struct ChangeNicknameView: View {
     @Binding var nickname: String
     @State var changingNickname: String = ""
     @State private var isSaveActive = false
+    @State private var characterCount = 0
     
     var body: some View {
         ZStack{
@@ -27,6 +28,7 @@ struct ChangeNicknameView: View {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
             }
+            //nill 값이 아니거나 이전 값하고 다를 경우 activate
             ToolbarItem(placement: .topBarTrailing) {
                 if isSaveActive {
                                     SaveButton
@@ -51,10 +53,8 @@ struct ChangeNicknameView: View {
                         .foregroundColor(.label_700)
                         .font(.body())
                     //글자수 카운트
-                    Text("12")
-                        .foregroundColor(.label_700)
-                        .font(.body())
-                    Text("/20")
+                    
+                    Text("\(characterCount)/20")
                         .foregroundColor(.label_700)
                         .font(.body())
                         .padding(.trailing, 20)
@@ -63,8 +63,10 @@ struct ChangeNicknameView: View {
                 .background(Color.gray_700)
                 .cornerRadius(8.0)
             .padding(.top, 20)
-            .onChange(of: changingNickname) { _ in
-                isSaveActive = changingNickname != nickname
+            .onChange(of: changingNickname) { newValue in
+                // Update character count
+                characterCount = newValue.count
+                isSaveActive = changingNickname != nickname && changingNickname != "" && 2 < characterCount && characterCount <= 20
             }
     }
     

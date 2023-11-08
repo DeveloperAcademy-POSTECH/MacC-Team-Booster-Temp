@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State var nickName: String = "랜덤닉네임04"
+    @State var nickName: String = "random04"
     @State var notiToggle: Bool = true
     @State var versionState: String = "1.0.0"
     
@@ -22,10 +22,13 @@ struct ProfileView: View {
                 } label: {
                     ProfileManage(nickName: nickName)
                 }
+                //로그인 전 unactive
                 AlertToggle(notiToggle: notiToggle)
                 versionInformaion
                 inquiry
+                //로그인 전 unactive
                 useInformation
+                //로그인 전 unactive
                 personalInformation
                 Spacer()
                 }
@@ -45,7 +48,7 @@ struct ProfileView: View {
     func ProfileManage(nickName: String) -> some View {
         RoundedRectangle(cornerRadius: 8.0)
             .foregroundColor(.gray_700)
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
+            .frame(width: UIScreen.getWidth(360), height: UIScreen.getHeight(72))
             .overlay{
                 HStack(spacing:2){
                     //로그인 x -> nickName => "둘러보기", "프로필 관리" => "로그인 하러 가기"
@@ -66,6 +69,7 @@ struct ProfileView: View {
                         .padding(.trailing, 20)
                 }
             }
+            .padding(.top, 20)
     }
     
     func AlertToggle(notiToggle: Bool) -> some View {
@@ -77,6 +81,7 @@ struct ProfileView: View {
                 Spacer()
                 
                 Toggle("", isOn: $notiToggle)
+                    .toggleStyle(SwitchToggleStyle(tint: Color.green_main))
             }
             
             HStack{
