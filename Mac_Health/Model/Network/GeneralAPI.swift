@@ -95,7 +95,7 @@ extension GeneralAPI: TargetType {
         case .PatchUsersRoutinesFinish(let routineId):
             return "/users/routines/\(routineId)/finish"
         case .GetUsersRoutines(let date):
-            return "/users/routines/?date=\(date)"
+            return "/users/routines/date=\(date)"
         case .GetUsersRoutinesId(let id):
             return "/users/routines/\(id)"
         case .GetUsersInfluencersRoutines(let id):
