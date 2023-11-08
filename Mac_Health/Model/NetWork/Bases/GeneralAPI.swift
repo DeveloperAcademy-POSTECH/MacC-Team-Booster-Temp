@@ -30,7 +30,7 @@ enum GeneralAPI {
 
 extension GeneralAPI: TargetType {
     var baseURL: URL {
-        let url = "https://befle.store/api-docs"
+        let url = "https://dev.befle.store"
         guard let baseURL = URL(string: url) else { fatalError() }
         return baseURL
     }
