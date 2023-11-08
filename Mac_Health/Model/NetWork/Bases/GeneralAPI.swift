@@ -26,9 +26,7 @@ enum GeneralAPI {
     case GetInfluencerRoutine(id: Int)
     //인플루언서 운동 전체 가져오기
     case GetInfluencerAllRoutine(id: Int)
-
 }
-
 
 extension GeneralAPI: TargetType {
     var baseURL: URL {
@@ -99,12 +97,9 @@ extension GeneralAPI: TargetType {
         case .GetInfluencerAllRoutine(id: _):
             return .requestPlain
         }
-
     }
     
     var headers: [String : String]? {
         return nil
     }
-    
-    
 }
