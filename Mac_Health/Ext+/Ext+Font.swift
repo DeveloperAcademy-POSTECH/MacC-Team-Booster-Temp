@@ -19,6 +19,15 @@ struct Pretentard {
 }
 
 extension Font {
+    static func calendarWeek() -> UIFont {
+        return UIFont(name: Pretentard.semiBold, size: 13 * setFontSize())!
+    }
+    static func calendarDate() -> UIFont {
+        return UIFont(name: Pretentard.medium, size: 20 * setFontSize())!
+    }
+    static func calendarTitle() -> UIFont {
+        return UIFont(name: Pretentard.semiBold, size: 17 * setFontSize())!
+    }
     static func title1() -> Font {
         return Font.custom(Pretentard.semiBold, size: 24 * setFontSize()).weight(.semibold)
     }
