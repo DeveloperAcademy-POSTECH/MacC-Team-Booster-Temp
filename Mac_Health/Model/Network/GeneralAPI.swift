@@ -85,13 +85,13 @@ extension GeneralAPI: TargetType {
     var path: String {
         switch self {
         case .PatchRoutinesExercisesSets(let routineId, let exerciseId):
-            return "/routines/\(routineId)/exercises/\(exerciseId)/sets"
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets"
         case .DeleteRoutinesExercisesSets(let routineId, let exerciseId):
-            return "/routines/\(routineId)/exercises/\(exerciseId)/sets"
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets"
         case .PatchRoutinesExercisesAlternate(let routineId, let exerciseId, let alternativeExerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/alternate/\(alternativeExerciseId)"
         case .GetRoutinesExercises(let routineId, let exerciseId):
-            return "/routines/\(routineId)/exercises/\(exerciseId)"
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)"
         case .PatchUsersRoutinesFinish(let routineId):
             return "/users/routines/\(routineId)/finish"
         case .GetUsersRoutines:
