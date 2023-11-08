@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4495C62AFA6AE400F25CD4 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C52AFA6AE400F25CD4 /* CombineMoya */; };
+		0D4495C82AFA6AE400F25CD4 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C72AFA6AE400F25CD4 /* Moya */; };
+		0D4495CA2AFA6AE400F25CD4 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495C92AFA6AE400F25CD4 /* ReactiveMoya */; };
+		0D4495CC2AFA6AE400F25CD4 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495CB2AFA6AE400F25CD4 /* RxMoya */; };
+		0D4495CE2AFA6AF400F25CD4 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4495CD2AFA6AF400F25CD4 /* GeneralAPI.swift */; };
 		0D4495B92AF6A60600F25CD4 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4495B82AF6A60600F25CD4 /* FSCalendar */; };
 		0D58514C2AE2EF9D00C8875A /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276F2AE13C3200319BAB /* Pretendard-Thin.otf */; };
 		0D58514E2AE2EFA200C8875A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3276D2AE13C3200319BAB /* Pretendard-Regular.otf */; };
@@ -42,6 +47,7 @@
 		F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */; };
 		F82674C52AF68F11002BFACD /* AlternativeWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C42AF68F11002BFACD /* AlternativeWorkoutSheet.swift */; };
 		F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C72AF7A7AD002BFACD /* PauseSheet.swift */; };
+		F838A12C2AFB79E500688893 /* APIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838A12B2AFB79E500688893 /* APIBody.swift */; };
 		F82674CD2AF7DA9B002BFACD /* WorkoutStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */; };
 		F82674CF2AF7F099002BFACD /* WorkoutStatusEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */; };
 		F843AFA12AF6737300EDA547 /* WorkoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843AFA02AF6737300EDA547 /* WorkoutListView.swift */; };
@@ -64,6 +70,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D4495CD2AFA6AF400F25CD4 /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
 		0D5851572AE4F34400C8875A /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		0DA327542AE1321600319BAB /* Mac_Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mac_Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DA327572AE1321600319BAB /* Mac_HealthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mac_HealthApp.swift; sourceTree = "<group>"; };
@@ -100,6 +107,7 @@
 		F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C42AF68F11002BFACD /* AlternativeWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C72AF7A7AD002BFACD /* PauseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseSheet.swift; sourceTree = "<group>"; };
+		F838A12B2AFB79E500688893 /* APIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBody.swift; sourceTree = "<group>"; };
 		F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStatusView.swift; sourceTree = "<group>"; };
 		F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStatusEditView.swift; sourceTree = "<group>"; };
 		F843AFA02AF6737300EDA547 /* WorkoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListView.swift; sourceTree = "<group>"; };
@@ -126,6 +134,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4495C82AFA6AE400F25CD4 /* Moya in Frameworks */,
+				0D4495C62AFA6AE400F25CD4 /* CombineMoya in Frameworks */,
+				0D4495CC2AFA6AE400F25CD4 /* RxMoya in Frameworks */,
+				0D4495CA2AFA6AE400F25CD4 /* ReactiveMoya in Frameworks */,
 				0D4495B92AF6A60600F25CD4 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D4495C12AFA6AA600F25CD4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0D4495CD2AFA6AF400F25CD4 /* GeneralAPI.swift */,
+				F838A12B2AFB79E500688893 /* APIBody.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		0DA3274B2AE1321600319BAB = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +298,7 @@
 		F89B3BF22AE5142800CACBD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0D4495C12AFA6AA600F25CD4 /* Network */,
 				F8BE83512AE68DDF0094A509 /* Workout */,
 				D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */,
 			);
@@ -379,6 +401,10 @@
 			);
 			name = Mac_Health;
 			packageProductDependencies = (
+				0D4495C52AFA6AE400F25CD4 /* CombineMoya */,
+				0D4495C72AFA6AE400F25CD4 /* Moya */,
+				0D4495C92AFA6AE400F25CD4 /* ReactiveMoya */,
+				0D4495CB2AFA6AE400F25CD4 /* RxMoya */,
 				0D4495B82AF6A60600F25CD4 /* FSCalendar */,
 			);
 			productName = Mac_Health;
@@ -411,6 +437,7 @@
 			);
 			mainGroup = 0DA3274B2AE1321600319BAB;
 			packageReferences = (
+				0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */,
 				0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 0DA327552AE1321600319BAB /* Products */;
@@ -459,12 +486,14 @@
 				D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */,
 				F89B3BED2AE5064200CACBD9 /* AlternativeWorkoutCard.swift in Sources */,
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
+				F838A12C2AFB79E500688893 /* APIBody.swift in Sources */,
 				F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */,
 				F82674CD2AF7DA9B002BFACD /* WorkoutStatusView.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */,
 				D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */,
 				0D5851582AE4F34400C8875A /* WorkoutCell.swift in Sources */,
+				0D4495CE2AFA6AF400F25CD4 /* GeneralAPI.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
 				0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */,
 				F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */,
@@ -702,6 +731,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
 		0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -713,6 +748,25 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0D4495C52AFA6AE400F25CD4 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		0D4495C72AFA6AE400F25CD4 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		0D4495C92AFA6AE400F25CD4 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		0D4495CB2AFA6AE400F25CD4 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		0D4495B82AF6A60600F25CD4 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */;
