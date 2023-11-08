@@ -58,7 +58,7 @@ struct RecordView: View {
                         Ellipse()
                             .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
                             .foregroundColor(.yellow_main)
-                        Text("박재훈")
+                        Text("정회승")
                             .font(.headline2())
                             .foregroundColor(.label_900)
                         Spacer()
