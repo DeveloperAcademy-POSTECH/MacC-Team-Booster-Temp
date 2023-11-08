@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WorkoutOngoingView: View {
+    
     @Environment(\.dismiss) var dismiss
     
     let currentWorkoutNumber: Int

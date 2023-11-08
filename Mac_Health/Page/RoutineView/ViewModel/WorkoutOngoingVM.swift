@@ -6,8 +6,123 @@
 //
 
 import SwiftUI
+import Moya
 
 class WorkoutOngoingVM: ObservableObject {
+    let provider = MoyaProvider<GeneralAPI>()
+    let routineId = 1
+    let exerciseId = 1
+    let setId = 1
+    let weight = 5
+    let reps = 10
+    
+    @Published var routine = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrl: "", sets: [], alternativeExercises: [])
+    
+    init() {
+        self.fetchRoutine()
+    }
+    
+    func fetchRoutine() {
+        // TODO: 여러 번(= 8번) init 되는 거 수정
+        provider.request(.GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) { result in
+            switch result {
+            case .success(let resp):
+                switch resp.statusCode {
+                case 200:
+                    let resultData = try! JSONDecoder().decode(ResponseGetRoutinesExercises.self, from: resp.data)
+                    self.routine = resultData
+                    print(self.routine)
+                default:
+                    print("Status Code: \(resp.statusCode)")
+                    break
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func postIncreaseSet() {
+        provider.request(.PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId)) { result in
+            switch result {
+            case .success(let resp):
+                switch resp.statusCode {
+                case 200:
+                    let resultData = try! JSONDecoder().decode(ResponsePostRoutinesExercisesSets.self, from: resp.data)
+                    self.routine.sets = resultData.sets
+                    print(self.routine)
+                default:
+                    print("Status Code: \(resp.statusCode)")
+                    break
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteDecreaseSet() {
+        provider.request(.DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId)) { result in
+            switch result {
+            case .success(let resp):
+                switch resp.statusCode {
+                case 200:
+                    let resultData = try! JSONDecoder().decode(ResponseDeleteRoutinesExercisesSets.self, from: resp.data)
+                    self.routine.sets = resultData.sets
+                    print(self.routine)
+                default:
+                    print("Status Code: \(resp.statusCode)")
+                    break
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func patchSetFinish() {
+        provider.request(.PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId)) { result in
+            switch result {
+            case .success(let resp):
+                switch resp.statusCode {
+                case 200:
+                    let resultData = try! JSONDecoder().decode(ResponsePatchUsersRoutinesExercisesSetsFinish.self, from: resp.data)
+                    self.routine.sets[self.setId].weight = resultData.weight
+                    self.routine.sets[self.setId].reps = resultData.reps
+                    self.routine.sets[self.setId].isDone = resultData.isDone
+                    print(self.routine)
+                default:
+                    print("Status Code: \(resp.statusCode)")
+                    break
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func patchSetModification(weight: Int, reps: Int) {
+        provider.request(.PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps)) { result in
+            switch result {
+            case .success(let resp):
+                switch resp.statusCode {
+                case 200:
+                    let resultData = try! JSONDecoder().decode(ResponsePatchUsersRoutinesExercisesSets.self, from: resp.data)
+                    self.routine.sets[self.setId].weight = resultData.weight
+                    self.routine.sets[self.setId].reps = resultData.reps
+                    self.routine.sets[self.setId].isDone = resultData.isDone
+                    print(self.routine)
+                default:
+                    print("Status Code: \(resp.statusCode)")
+                    break
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
 //    let workoutModel: WorkoutModel
 //    @Published var isRoutineSequenceShow = false
 //    @Published var isAlternativeWorkoutShow = false
