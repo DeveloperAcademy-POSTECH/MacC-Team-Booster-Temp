@@ -7,26 +7,31 @@
 
 import SwiftUI
 
-// MARK: PatchRoutinesExercisesSets
-struct ResponsePatchRoutinesExercisesSets: Codable {
-    var sets: [ExerciseSet]
-}
-
+// MARK: user-exercise-controller
 struct ExerciseSet: Codable {
     var setId: Int
     var weight: Int?
     var reps: Int
     var isDone: Bool
 }
-//:
 
-// MARK: DeleteRoutinesExercisesSets
+struct AlternativeExercise: Codable {
+    var alternativeExerciseId: Int
+    var name: String
+    var exerciseImageUrl: String
+}
+
+/// PatchRoutinesExercisesSets
+struct ResponsePatchRoutinesExercisesSets: Codable {
+    var sets: [ExerciseSet]
+}
+
+/// DeleteRoutinesExercisesSets
 struct ResponseDeleteRoutinesExercisesSets: Codable {
     var sets: [ExerciseSet]
 }
-//:
 
-// MARK: DeleteRoutinesExercisesSets
+/// PatchRoutinesExercisesAlternate
 struct ResponsePatchRoutinesExercisesAlternate: Codable {
     var name: String
     var part: String
@@ -37,9 +42,8 @@ struct ResponsePatchRoutinesExercisesAlternate: Codable {
     var sets: [ExerciseSet]
     var alternativeExercises: [AlternativeExercise]
 }
-//:
 
-// MARK: GetRoutinesExercises
+/// GetRoutinesExercises
 struct ResponseGetRoutinesExercises: Codable {
     var name: String
     var part: String
@@ -50,24 +54,14 @@ struct ResponseGetRoutinesExercises: Codable {
     var sets: [ExerciseSet]
     var alternativeExercises: [AlternativeExercise]
 }
+//:
 
-struct AlternativeExercise: Codable {
-    var alternativeExerciseId: Int
+// MARK: user-routine-controller
+struct Exercise: Codable {
+    var id: Int
     var name: String
     var exerciseImageUrl: String
-}
-//:
-
-// MARK: PatchUsersRoutinesFinish
-struct ResponsePatchUsersRoutinesFinish: Codable {
-    var isDone: Bool
-}
-//:
-
-
-// MARK: GetUsersRoutines
-struct ResponseGetUsersRoutines: Codable {
-    var routines: [InfluencerRoutine]
+    var numberOfSet: Int
 }
 
 struct InfluencerRoutine: Codable {
@@ -82,9 +76,25 @@ struct InfluencerRoutine: Codable {
     var influencerProfileImageUrl: String
     var influencerId: Int
 }
-//:
 
-// MARK: GetUsersRoutinesId
+struct Routine: Codable {
+    var part: String
+    var date: String
+    var isDone: Bool
+    var routineId: Int
+}
+
+/// PatchUsersRoutinesFinish
+struct ResponsePatchUsersRoutinesFinish: Codable {
+    var isDone: Bool
+}
+
+/// GetUsersRoutines
+struct ResponseGetUsersRoutines: Codable {
+    var routines: [InfluencerRoutine]
+}
+
+/// GetUsersRoutinesId
 struct ResponseGetUsersRoutinesId: Codable {
     var part: String
     var numberOfExercise: Int
@@ -93,28 +103,14 @@ struct ResponseGetUsersRoutinesId: Codable {
     var exercises: [Exercise]
 }
 
-struct Exercise: Codable {
-    var id: Int
-    var name: String
-    var exerciseImageUrl: String
-    var numberOfSet: Int
-}
-//:
-
-// MARK: GetUsersInfluencersRoutines
+/// GetUsersInfluencersRoutines
 struct ResponseGetUsersInfluencersRoutines: Codable {
     var routines: [Routine]
 }
-
-struct Routine: Codable {
-    var part: String
-    var date: String
-    var isDone: Bool
-    var routineId: Int
-}
 //:
 
-// MARK: PatchUsersRoutinesExercisesSets
+// MARK: user-set-conteroller
+/// PatchUsersRoutinesExercisesSets
 struct RequestPatchUsersRoutinesExercisesSets: Codable {
     var weight: Int
     var reps: Int
@@ -125,24 +121,24 @@ struct ResponsePatchUsersRoutinesExercisesSets: Codable {
     var weight: Int
     var isDone: Bool
 }
-//:
 
-// MARK: PatchUsersRoutinesExercisesSetsFinish
+/// PatchUsersRoutinesExercisesSetsFinish
 struct ResponsePatchUsersRoutinesExercisesSetsFinish: Codable {
     var reps: Int
     var weight: Int
     var isDone: Bool
 }
-//:
 
-// MARK: PatchUsersRoutinesExercisesSetsCancle
+/// PatchUsersRoutinesExercisesSetsCancle
 struct ResponsePatchUsersRoutinesExercisesSetsCancle: Codable {
     var reps: Int
     var weight: Int
     var isDone: Bool
 }
+//:
 
-// MARK: GetRoutines
+// MARK: test
+/// GetRoutines
 struct ResponseGetRoutines: Codable {
     var routines: [TestRoutine]
 }
@@ -156,9 +152,8 @@ struct TestRoutine: Codable {
     var introduce: String
     var profileImageUrl: String
 }
-//:
 
-// MARK: GetInfluencersRoutines
+/// GetInfluencersRoutines
 struct ResponseGetInfluencersRoutines: Codable {
     var routines: [TestRoutine]
 }
