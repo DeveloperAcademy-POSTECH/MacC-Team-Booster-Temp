@@ -94,8 +94,8 @@ extension GeneralAPI: TargetType {
             return "/routines/\(routineId)/exercises/\(exerciseId)"
         case .PatchUsersRoutinesFinish(let routineId):
             return "/users/routines/\(routineId)/finish"
-        case .GetUsersRoutines(let date):
-            return "/users/routines/date=\(date)"
+        case .GetUsersRoutines:
+            return "/users/routines"
         case .GetUsersRoutinesId(let id):
             return "/users/routines/\(id)"
         case .GetUsersInfluencersRoutines(let id):
@@ -138,7 +138,7 @@ extension GeneralAPI: TargetType {
         case .PatchRoutinesExercisesAlternate: return .requestPlain
         case .GetRoutinesExercises: return .requestPlain
         case .PatchUsersRoutinesFinish: return .requestPlain
-        case .GetUsersRoutines: return .requestPlain
+        case .GetUsersRoutines(date: let date): return .requestParameters(parameters: ["date" : date], encoding: URLEncoding.queryString)
         case .GetUsersRoutinesId: return .requestPlain
         case .GetUsersInfluencersRoutines: return .requestPlain
         case .PatchUsersRoutinesExercisesSets(_, _, _, weight: let weight, reps: let reps): return .requestJSONEncodable(RequestPatchUsersRoutinesExercisesSets(weight: weight, reps: reps))
@@ -150,6 +150,9 @@ extension GeneralAPI: TargetType {
     }
     
     var headers: [String : String]? {
-        return nil
+        switch self {
+        default:
+            return ["Content-Type": "application/json"]
+        }
     }
 }
