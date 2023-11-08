@@ -16,6 +16,9 @@ enum GeneralAPI {
     /// 세트 수 하나 감소 - WorkoutOngoingView
     case DeleteRoutinesExercisesSets(routineId: Int, exerciseId: Int)
     
+    /// 운동 대체 - AlternativeWorkoutSheet
+    case PatchRoutinesExercisesAlternate(routineId: Int, exerciseId: Int, alternativeExerciseId: Int)
+    
     /// 루틴 정보 - WorkoutOngoingView
     case GetRoutinesExercises(routineId: Int, exerciseId: Int)
     //:
@@ -69,6 +72,8 @@ extension GeneralAPI: TargetType {
             return "/routines/\(routineId)/exercises/\(exerciseId)/sets"
         case .DeleteRoutinesExercisesSets(let routineId, let exerciseId):
             return "/routines/\(routineId)/exercises/\(exerciseId)/sets"
+        case .PatchRoutinesExercisesAlternate(let routineId, let exerciseId, let alternativeExerciseId):
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)/alternate/\(alternativeExerciseId)"
         case .GetRoutinesExercises(let routineId, let exerciseId):
             return "/routines/\(routineId)/exercises/\(exerciseId)"
         case .PatchUsersRoutinesFinish(let routineId):
@@ -96,6 +101,7 @@ extension GeneralAPI: TargetType {
         switch self {
         case .PatchRoutinesExercisesSets: return .patch
         case .DeleteRoutinesExercisesSets: return .delete
+        case .PatchRoutinesExercisesAlternate: return .patch
         case .GetRoutinesExercises: return .get
         case .PatchUsersRoutinesFinish: return .patch
         case .GetUsersRoutines: return .get
@@ -113,6 +119,7 @@ extension GeneralAPI: TargetType {
         switch self {
         case .PatchRoutinesExercisesSets: return .requestPlain
         case .DeleteRoutinesExercisesSets: return .requestPlain
+        case .PatchRoutinesExercisesAlternate: return .requestPlain
         case .GetRoutinesExercises: return .requestPlain
         case .PatchUsersRoutinesFinish: return .requestPlain
         case .GetUsersRoutines: return .requestPlain
@@ -124,25 +131,6 @@ extension GeneralAPI: TargetType {
         case .GetRoutines: return .requestPlain
         case .GetInfluencersRoutines: return .requestPlain
         }
-//        switch self {
-//        case .PostExercise(routineId: _, exerciseId: _):
-//            return .requestPlain
-//        case .DeleteExercise(routineId: _, exerciseId: _):
-//            return .requestPlain
-//        //TODO: 여기 부분 다시 처리해줘야함
-//        case .PatchSet(routineId: _, exerciseId: _, setId: _, weight: let weight, reps: let reps):
-//            return .requestJSONEncodable(RequestPatchSet(weight: weight, reps: reps))
-//        case .PatchSetFinish(routineId: _, exerciseId: _, setId: _):
-//            return .requestPlain
-//        case .GetSpecificExercise(routineId: _, exerciseId: _):
-//            return .requestPlain
-//        case .PatchRoutineFinish(routineId: _):
-//            return .requestPlain
-//        case .GetInfluencerRoutine(id: _):
-//            return .requestPlain
-//        case .GetInfluencerAllRoutine(id: _):
-//            return .requestPlain
-//        }
     }
     
     var headers: [String : String]? {
