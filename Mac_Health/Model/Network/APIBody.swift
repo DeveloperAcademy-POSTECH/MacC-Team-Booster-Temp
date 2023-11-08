@@ -22,7 +22,7 @@ struct AlternativeExercise: Codable {
 }
 
 /// PostRoutinesExercisesSets
-struct ResponsePatchRoutinesExercisesSets: Codable {
+struct ResponsePostRoutinesExercisesSets: Codable {
     var sets: [ExerciseSet]
 }
 
