@@ -46,7 +46,7 @@ enum GeneralAPI {
     /// 전체 인플루언서 루틴 정보 - TodayRoutineMultiView
     case GetUsersRoutines(date: String)
     
-    /// 개인 인플루언서 루틴 정보 - TodayStartView
+    /// 개인 인플루언서 루틴 정보 - TodayStartView, SelectedRoutineView
     case GetUsersRoutinesId(id: Int)
     
     /// 개인 인플루언서 전체 루틴 정보 - ChangeRoutineView
