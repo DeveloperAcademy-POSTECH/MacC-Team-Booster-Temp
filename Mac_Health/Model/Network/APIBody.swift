@@ -21,7 +21,7 @@ struct AlternativeExercise: Codable {
     var exerciseImageUrl: String
 }
 
-/// PatchRoutinesExercisesSets
+/// PostRoutinesExercisesSets
 struct ResponsePatchRoutinesExercisesSets: Codable {
     var sets: [ExerciseSet]
 }

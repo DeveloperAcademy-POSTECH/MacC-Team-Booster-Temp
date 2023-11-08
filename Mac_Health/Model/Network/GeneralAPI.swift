@@ -27,7 +27,7 @@ import Moya
 enum GeneralAPI {
     // MARK: user-exercise-controller
     /// 세트 수 하나 증가 - WorkoutOngoingView
-    case PatchRoutinesExercisesSets(routineId: Int, exerciseId: Int)
+    case PostRoutinesExercisesSets(routineId: Int, exerciseId: Int)
     
     /// 세트 수 하나 감소 - WorkoutOngoingView
     case DeleteRoutinesExercisesSets(routineId: Int, exerciseId: Int)
@@ -84,7 +84,7 @@ extension GeneralAPI: TargetType {
     
     var path: String {
         switch self {
-        case .PatchRoutinesExercisesSets(let routineId, let exerciseId):
+        case .PostRoutinesExercisesSets(let routineId, let exerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets"
         case .DeleteRoutinesExercisesSets(let routineId, let exerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets"
@@ -115,7 +115,7 @@ extension GeneralAPI: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .PatchRoutinesExercisesSets: return .patch
+        case .PostRoutinesExercisesSets: return .post
         case .DeleteRoutinesExercisesSets: return .delete
         case .PatchRoutinesExercisesAlternate: return .patch
         case .GetRoutinesExercises: return .get
@@ -133,7 +133,7 @@ extension GeneralAPI: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .PatchRoutinesExercisesSets: return .requestPlain
+        case .PostRoutinesExercisesSets: return .requestPlain
         case .DeleteRoutinesExercisesSets: return .requestPlain
         case .PatchRoutinesExercisesAlternate: return .requestPlain
         case .GetRoutinesExercises: return .requestPlain
