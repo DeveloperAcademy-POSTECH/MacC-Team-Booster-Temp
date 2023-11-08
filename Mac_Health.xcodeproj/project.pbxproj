@@ -159,13 +159,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D4495C12AFA6AA600F25CD4 /* NetWork */ = {
+		0D4495C12AFA6AA600F25CD4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				0D4495C32AFA6ABD00F25CD4 /* Domain */,
 				0D4495C22AFA6AAF00F25CD4 /* Bases */,
 			);
-			path = NetWork;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		0D4495C22AFA6AAF00F25CD4 /* Bases */ = {
@@ -443,7 +443,7 @@
 		F89B3BF22AE5142800CACBD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0D4495C12AFA6AA600F25CD4 /* NetWork */,
+				0D4495C12AFA6AA600F25CD4 /* Network */,
 				F8BE83512AE68DDF0094A509 /* Workout */,
 				D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */,
 				D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */,
