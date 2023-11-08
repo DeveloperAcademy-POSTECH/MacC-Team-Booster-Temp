@@ -9,23 +9,51 @@ import SwiftUI
 import Moya
 
 enum GeneralAPI {
-    //TODO: 대체운동 추가하는 api 만들어야 합니다.
-    //운동추가
-    case PostExercise(routineId: Int, exerciseId: Int)
-    //운동삭제
-    case DeleteExercise(routineId: Int, exerciseId: Int)
-    //운동세트수 조정
-    case PatchSet(routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int)
-    //운동세트 완료
-    case PatchSetFinish(routineId: Int, exerciseId: Int, setId: Int)
-    //특정 운동의 설명가져오기(디테일뷰)
-    case GetSpecificExercise(routineId: Int, exerciseId: Int)
-    //운동 완료
-    case PatchRoutineFinish(routineId: Int)
-    //해당 날짜 운동 가져오기
-    case GetInfluencerRoutine(id: Int)
-    //인플루언서 운동 전체 가져오기
-    case GetInfluencerAllRoutine(id: Int)
+    // MARK: user-exercise-controller
+    /// 세트 수 하나 증가 - WorkoutOngoingView
+    case PatchRoutinesExercisesSets(routineId: Int, exerciseId: Int)
+    
+    /// 세트 수 하나 감소 - WorkoutOngoingView
+    case DeleteRoutinesExercisesSets(routineId: Int, exerciseId: Int)
+    
+    /// 루틴 정보 - WorkoutOngoingView
+    case GetRoutinesExercises(routineId: Int, exerciseId: Int)
+    //:
+    
+    // MARK: user-routine-controller
+    /// 루틴 완료 - WorkoutOngoingView
+    case PatchUsersRoutinesFinish(routineId: Int)
+    
+    /// 전체 인플루언서 루틴 정보 - TodayRoutineMultiView
+    case GetUsersRoutines(date: String)
+    
+    /// 개인 인플루언서 루틴 정보 - TodayRoutineView
+    case GetUsersRoutinesId(id: Int)
+    
+    /// 개인 인플루언서 전체 루틴 정보 - TotalRoutineView
+    case GetUsersInfluencersRoutines(id: Int)
+    //:
+    
+    // MARK: user-set-controller
+    /// 세트 조정 - WorkoutOngoingView
+    case PatchUsersRoutinesExercisesSets(routineId: Int, exerciseId: Int, SetId: Int)
+    
+    /// 세트 완료 - WorkoutOngoingView
+    case PatchUsersRoutinesExercisesSetsFinish(routineId: Int, exerciseId: Int, SetId: Int)
+    
+    /// 세트 취소(안 씀) - WorkoutOngoingView
+    case PatchUsersRoutinesExercisesSetsCancle(routineId: Int, exerciseId: Int, SetId: Int)
+    //:
+    
+    // MARK: routine-controller
+    /// 테스트 용 GetUsersRoutines
+    case GetRoutines
+    //:
+    
+    // MARK: routine-controller
+    /// 테스트 용 GetUsersInfluencersRoutines
+    case GetInfluencersRoutines(id: Int)
+    //:
 }
 
 extension GeneralAPI: TargetType {
