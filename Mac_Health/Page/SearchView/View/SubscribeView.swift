@@ -14,6 +14,7 @@ struct SubscribeView: View {
     @State var scrollOffset: CGFloat = 0.00
     @State var subscribingSheet = false
     @State var subscribed = true
+    @State var loggedIn = true
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = "한국인 최초로 북미에서 열리는 프로쇼 우승 (텍사스 프로, 2023.8.18)"
@@ -199,14 +200,38 @@ struct SubscribeView: View {
 
         }
         .alert(isPresented: $subscribingSheet) {
+            loggedIn ?
+            subscribed ?
+            Alert(
+                title: Text("구독이 취소되었습니다."),
+                message: Text(""),
+                dismissButton: .destructive(Text("확인"),
+                                        action: {
+                                            //구독 취소
+                                            
+                                })
+            ) :
             Alert(
                 title: Text("구독이 완료되었습니다."),
                 message: Text(""),
                 dismissButton: .destructive(Text("확인"),
                                         action: {
-
+                                            //구독 완료
+                                            
                                 })
             )
+            :
+            Alert(
+                title: Text("로그인이 필요합니다."),
+                message: Text(""),
+                primaryButton: .destructive(Text("확인"),
+                                        action: {
+                                            //로그인 뷰 이동
+                                            
+                                }),
+                                secondaryButton: .cancel(Text("취소"))
+            )
+            
         }
         
     }
