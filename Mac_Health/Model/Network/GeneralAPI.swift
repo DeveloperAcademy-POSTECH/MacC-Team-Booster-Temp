@@ -8,6 +8,22 @@
 import SwiftUI
 import Moya
 
+/*
+ let provider = MoyaProvider<GeneralAPI>()
+ 
+ func name(param) {
+     provider.request(.PatchUsersRoutinesExercisesSets(routineId: 1, exerciseId: 1, setId: 27, weight: 5, reps: 10)) { result in
+         switch result {
+         case .success(let resp):
+             let resultData = try! JSONDecoder().decode(ResponsePatchUsersRoutinesExercisesSets.self, from: resp.data)
+             print(resultData)
+         case .failure(let error):
+             print(error.localizedDescription)
+         }
+     }
+ }
+ */
+
 enum GeneralAPI {
     // MARK: user-exercise-controller
     /// 세트 수 하나 증가 - WorkoutOngoingView
@@ -49,12 +65,12 @@ enum GeneralAPI {
     //:
     
     // MARK: routine-controller
-    /// 테스트 용 GetUsersRoutines
+    /// 테스트 용 - GetUsersRoutines
     case GetRoutines
     //:
     
     // MARK: routine-controller
-    /// 테스트 용 GetUsersInfluencersRoutines
+    /// 테스트 용 - GetUsersInfluencersRoutines
     case GetInfluencersRoutines(id: Int)
     //:
 }
