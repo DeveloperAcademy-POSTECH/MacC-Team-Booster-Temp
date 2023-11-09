@@ -16,6 +16,7 @@ struct WorkoutOngoingView: View {
     @State var isPauseShow = false
     @State var isFinishShow = false
     @State var isAlternativeShow = false
+    @State private var currentIndex = 0
     
     let workoutName = "클로즈 그립 랫 풀 다운"
     
@@ -28,10 +29,7 @@ struct WorkoutOngoingView: View {
                     Spacer()
                     Spacer()
                     workoutInfomation
-                    ZStack {
-                        WorkoutImage
-                        WorkoutTipButton
-                    }
+                    ImageTip(currentIndex: $currentIndex)
                     Spacer()
                     WorkoutSetButton
                     WorkoutSetList
@@ -337,6 +335,80 @@ struct WorkoutOngoingView: View {
         .padding(.horizontal)
     }
     
+    var EmptyFloatingButton: some View {
+        FloatingButton(backgroundColor: .clear) { }
+    }
+}
+
+struct ImageTip: View {
+    @Binding var currentIndex: Int
+    @StateObject var workoutOngoingVM = WorkoutOngoingVM()
+    
+    var body: some View {
+        TabView(selection: $currentIndex){
+            
+                Button{
+                    withAnimation{
+                        currentIndex = 1
+                    }
+                } label: {
+                    ZStack{
+                    WorkoutTipButton
+                    WorkoutImage
+                }
+                .tag(0)
+                }
+                    
+            WorkoutTip
+                .tag(1)
+            
+        }
+        .frame(height: UIScreen.getHeight(300))
+        .tabViewStyle(.page)
+    }
+    
+    var WorkoutImage: some View {
+        Image("tempWorkoutImage")
+            .resizable()
+        //            .scaledToFit()
+            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
+            .foregroundColor(.gray_600)
+            .padding(.horizontal)
+    }
+    
+    var WorkoutTip: some View {
+        RoundedRectangle(cornerRadius: 7.2)
+            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+            .foregroundColor(.gray_800)
+            .overlay {
+                VStack {
+                    HStack {
+                        Text("\(workoutOngoingVM.workoutModel.influencerName)'s Tip")
+                            .font(.headline2())
+                            .foregroundColor(.label_700)
+                        Spacer()
+                        Button {
+                            withAnimation{
+                                currentIndex = 0
+                            }
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.headline2())
+                                .foregroundColor(.label_700)
+                        }
+                    }
+                    Spacer()
+                    
+                    Text(workoutOngoingVM.workoutModel.workoutTip)
+                        .font(.body())
+                        .foregroundColor(.label_900)
+                    Spacer()
+                    Spacer()
+                }
+                .padding()
+            }
+    }
+    
     @ViewBuilder
     var WorkoutTipButton: some View {
         if !workoutOngoingVM.isWorkoutTipShow {
@@ -345,7 +417,7 @@ struct WorkoutOngoingView: View {
                     .font(.button2())
                     .foregroundColor(.label_500)
                 RoundedRectangle(cornerRadius: 7.2)
-                    .frame(width: UIScreen.getWidth(315), height: UIScreen.getHeight(68))
+                    .frame(width: UIScreen.getWidth(315), height: UIScreen.getHeight(220))
                     .foregroundColor(.fill_1)
                     .overlay {
                         HStack {
@@ -362,40 +434,6 @@ struct WorkoutOngoingView: View {
                 workoutOngoingVM.showWorkoutTip()
             }
         }
-        else {
-            RoundedRectangle(cornerRadius: 7.2)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-                .foregroundColor(.gray_800)
-                .overlay {
-                    VStack {
-                        HStack {
-                            Text("\(workoutOngoingVM.workoutModel.influencerName)'s Tip")
-                                .font(.headline2())
-                                .foregroundColor(.label_700)
-                            Spacer()
-                            Button {
-                                workoutOngoingVM.dismissWorkoutTip()
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .font(.headline2())
-                                    .foregroundColor(.label_700)
-                            }
-                        }
-                        Spacer()
-                        
-                        Text(workoutOngoingVM.workoutModel.workoutTip)
-                            .font(.body())
-                            .foregroundColor(.label_900)
-                        Spacer()
-                        Spacer()
-                    }
-                    .padding()
-                }
-        }
-    }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
     }
 }
 
