@@ -12,6 +12,9 @@ struct SubscribeView: View {
     @State var seeMore:Bool = false
     @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
+    @State var subscribingSheet = false
+    @State var subscribed = true
+    @State var loggedIn = true
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = "한국인 최초로 북미에서 열리는 프로쇼 우승 (텍사스 프로, 2023.8.18)"
@@ -182,14 +185,53 @@ struct SubscribeView: View {
         
     
     var subscribeButton: some View {
-        NavigationLink {
-            
+        Button {
+            self.subscribingSheet = true
+            self.subscribed.toggle()
         } label: {
-            FloatingButton(backgroundColor: .green_main) { Text("구독하기")
+            FloatingButton(backgroundColor: subscribed ? .green_main : .gray_900) { subscribed ? Text("구독")
                     .foregroundColor(.gray_900)
+                    .font(.button1())
+                :
+                Text("구독 취소")
+                    .foregroundColor(.red_main)
                     .font(.button1())
             }
 
+        }
+        .alert(isPresented: $subscribingSheet) {
+            loggedIn ?
+            subscribed ?
+            Alert(
+                title: Text("구독이 취소되었습니다."),
+                message: Text(""),
+                dismissButton: .destructive(Text("확인"),
+                                        action: {
+                                            //구독 취소
+                                            
+                                })
+            ) :
+            Alert(
+                title: Text("구독이 완료되었습니다."),
+                message: Text(""),
+                dismissButton: .destructive(Text("확인"),
+                                        action: {
+                                            //구독 완료
+                                            
+                                })
+            )
+            :
+            Alert(
+                title: Text("로그인이 필요합니다."),
+                message: Text(""),
+                primaryButton: .destructive(Text("확인"),
+                                        action: {
+                                            //로그인 뷰 이동
+                                            
+                                }),
+                                secondaryButton: .cancel(Text("취소"))
+            )
+            
         }
         
     }

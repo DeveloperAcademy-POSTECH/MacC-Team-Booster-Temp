@@ -14,6 +14,7 @@ enum WorkoutType: String, CaseIterable {
 struct ChangeRoutineView: View {
     @ObservedObject var routineVM: RoutineVM
     @Environment(\.dismiss) var dismiss: DismissAction
+    
     ///운동 정렬용 선택
     @State var selection: String = "전체"
     let workoutTypes = WorkoutType.allCases
@@ -171,5 +172,7 @@ struct ChangeRoutineView: View {
 }
 
 #Preview {
-    ChangeRoutineView(routineVM: RoutineVM())
+    NavigationStack{
+        ChangeRoutineView(routineVM: RoutineVM())
+    }
 }

@@ -34,11 +34,7 @@ struct MainView: View {
                         Text("기록")
                     }
                 
-                ZStack{
-                    Color.gray_900.ignoresSafeArea()
-                    Text("profile")
-                        .foregroundColor(.white)
-                }
+                ProfileView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("프로필")

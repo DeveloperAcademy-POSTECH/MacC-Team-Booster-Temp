@@ -144,6 +144,8 @@ struct WorkoutStatusView: View {
 
 struct WorkoutStatus_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutStatusView()
+        NavigationStack{
+            WorkoutStatusView()
+        }
     }
 }

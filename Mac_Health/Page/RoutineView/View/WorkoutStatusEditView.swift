@@ -153,6 +153,8 @@ struct WorkoutStatusEditView: View {
 
 struct WorkoutStatusEdit_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutStatusEditView()
+        NavigationStack{
+            WorkoutStatusEditView()
+        }
     }
 }

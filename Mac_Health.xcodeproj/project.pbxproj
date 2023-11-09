@@ -31,10 +31,13 @@
 		0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327692AE13BE000319BAB /* Ext+Font.swift */; };
 		0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */; };
 		0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */; };
+		D5436CA52AFB6B8000D82943 /* ManageProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */; };
+		D5436CA82AFB75B200D82943 /* ChangeNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */; };
 		D569C7892AF5152100FDADED /* SelectedRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569C7882AF5152100FDADED /* SelectedRoutineView.swift */; };
 		D569C78B2AF9440600FDADED /* RoutineVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569C78A2AF9440600FDADED /* RoutineVM.swift */; };
 		D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */; };
 		D56A0C702AF2153A004D1747 /* TodayStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */; };
+		D584CD892AFB556C00AFA1FF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584CD882AFB556C00AFA1FF /* ProfileView.swift */; };
 		D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780352AE26B2100A8B76A /* SearchView.swift */; };
 		D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780422AE3962200A8B76A /* InfluencerCard.swift */; };
 		D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */; };
@@ -90,10 +93,13 @@
 		0DA327742AE13C3200319BAB /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIScreen.swift"; sourceTree = "<group>"; };
 		0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UITabBarController.swift"; sourceTree = "<group>"; };
+		D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfileView.swift; sourceTree = "<group>"; };
+		D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNicknameView.swift; sourceTree = "<group>"; };
 		D569C7882AF5152100FDADED /* SelectedRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineView.swift; sourceTree = "<group>"; };
 		D569C78A2AF9440600FDADED /* RoutineVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineVM.swift; sourceTree = "<group>"; };
 		D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedInfluencerCard.swift; sourceTree = "<group>"; };
 		D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStartView.swift; sourceTree = "<group>"; };
+		D584CD882AFB556C00AFA1FF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D5B780352AE26B2100A8B76A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D5B780422AE3962200A8B76A /* InfluencerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerCard.swift; sourceTree = "<group>"; };
 		D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendInfluencer.swift; sourceTree = "<group>"; };
@@ -295,6 +301,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D584CD872AFB555A00AFA1FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D584CD882AFB556C00AFA1FF /* ProfileView.swift */,
+				D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */,
+				D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F89B3BF22AE5142800CACBD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +396,7 @@
 		F8F3A14C2AFA69A60068F885 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
+				D584CD872AFB555A00AFA1FF /* View */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -489,12 +506,14 @@
 				F838A12C2AFB79E500688893 /* APIBody.swift in Sources */,
 				F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */,
 				F82674CD2AF7DA9B002BFACD /* WorkoutStatusView.swift in Sources */,
+				D584CD892AFB556C00AFA1FF /* ProfileView.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */,
 				D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */,
 				0D5851582AE4F34400C8875A /* WorkoutCell.swift in Sources */,
 				0D4495CE2AFA6AF400F25CD4 /* GeneralAPI.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
+				D5436CA52AFB6B8000D82943 /* ManageProfileView.swift in Sources */,
 				0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */,
 				F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
@@ -510,6 +529,7 @@
 				F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */,
 				D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */,
 				F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */,
+				D5436CA82AFB75B200D82943 /* ChangeNicknameView.swift in Sources */,
 				D5D8F17E2AF39EC80032A788 /* ChangeRoutineView.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,

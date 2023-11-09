@@ -34,8 +34,8 @@ struct RecordSpecificView: View {
     
     var RoutineDescriptionCard: some View {
         VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
-            Text("박재훈")
-            Text("2023년 3월 24일 루틴")
+            Text("정회승")
+            Text("2023년 4월 23일 루틴")
             Description(image: "figure.arms.open", text: "등 이두")
             Description(image: "square.stack.fill", text: "7개")
             Description(image: "clock.fill", text: "50분")
@@ -50,6 +50,7 @@ struct RecordSpecificView: View {
             Image(systemName: image)
                 .foregroundColor(.label_700)
                 .font(.body2())
+                .frame(width: UIScreen.getWidth(30))
             Text(text)
                 .foregroundColor(.label_900)
                 .font(.body())

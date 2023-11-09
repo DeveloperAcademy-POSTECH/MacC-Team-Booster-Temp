@@ -54,87 +54,84 @@ struct TodayStartView: View {
                     
                 }
                 
-                
-                ZStack{
-                    VStack{
-                        HStack{
-                            Text("11월 1일 수요일")
-                                .font(.title2())
-                                .foregroundColor(.label_900)
-                            Spacer()
-                            NavigationLink {
-                                ChangeRoutineView(routineVM: RoutineVM())
-                                    .navigationBarTitle("전체 루틴", displayMode: .inline)
-                            } label: {
-                                Image(systemName: "calendar")
-                                    .font(.title2())
-                                    .foregroundColor(.green_main)
-                            }
-                            
-                            
-                        }
-                        .padding(20)
-                        VStack{
-                            ForEach(TodaySpecificViewModel.allCases, id: \.self) { option in
-                                HStack{
-                                    VStack{
-                                        Image(systemName: option.image)
-                                            .font(.body())
-                                            .foregroundColor(.label_700)
-                                            .padding(.leading, 15)
-                                    }
-                                    VStack{
-                                        Text(option.contents)
-                                            .font(.body())
-                                            .foregroundColor(.label_900)
-                                    }
-                                    Spacer()
-                                }
-                                .padding(5)
-                                
-                                
-                                
-                            }
-                            //if 휴식날
-                            //                            VStack{
-                            //                                Image(systemName: "moon.stars.fill")
-                            //                                    .resizable()
-                            //                                    .foregroundColor(.label_500)
-                            //                                    .frame(width: 50, height: 50)
-                            //                                    .padding()
-                            //                                    .padding(.top, 10)
-                            //                                Text("휴식")
-                            //                                    .font(.headline1())
-                            //                                    .foregroundColor(.label_900)
-                            //                            }
-                        }
-                        .padding(.bottom, 20)
-                        //운동 시작 버튼
-                        NavigationLink {
-                            WorkoutListView()
-                        } label: {
-                            RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
-                                .foregroundColor(.green_main)
-                                .overlay { Text("운동 시작")
-                                        .foregroundColor(.gray_900)
-                                        .font(.button1())
-                                }.padding(.bottom, 10)
-                        }
-                    }
-                }
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
-                .padding(.vertical, 10)
-                .background{
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(.gray_700)
-                }
+                TodayCard()
             }
             .padding(.bottom, 35)
             Spacer()
                 .frame(height: UITabBarController().height)
             
         }
+    }
+    
+    var RoutineDescriptionCard: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
+                Description(image: "figure.arms.open", text: "등 이두")
+                Description(image: "square.stack.fill", text: "7개")
+                Description(image: "clock.fill", text: "50분")
+                Description(image: "flame.circle.fill", text: "569kcal")
+            }.padding(.bottom)
+            Spacer()
+        }
+    }
+    
+
+    func Description(image: String, text: String) -> some View {
+        HStack {
+            Image(systemName: image)
+                .foregroundColor(.label_700)
+                .font(.body2())
+                .frame(width: UIScreen.getWidth(30))
+            Text(text)
+                .foregroundColor(.label_900)
+                .font(.body())
+        }
+    }
+    
+    func TodayCard () -> some View {
+        ZStack{
+            VStack(alignment: .center){
+                HStack{
+                    Text("11월 1일 수요일")
+                        .font(.title2())
+                        .foregroundColor(.label_900)
+                    Spacer()
+                    NavigationLink {
+                        ChangeRoutineView(routineVM: RoutineVM())
+                            .navigationBarTitle("전체 루틴", displayMode: .inline)
+                    } label: {
+                        Image(systemName: "calendar")
+                            .font(.title2())
+                            .foregroundColor(.green_main)
+                    }
+                    
+                    
+                }
+                .padding(20)
+                RoutineDescriptionCard
+                .padding(.bottom, 20)
+                .padding(.leading,10)
+                //운동 시작 버튼
+                NavigationLink {
+                    WorkoutListView()
+                } label: {
+                    RoundedRectangle(cornerRadius: 100)
+                        .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
+                        .foregroundColor(.green_main)
+                        .overlay { Text("운동 시작")
+                                .foregroundColor(.gray_900)
+                                .font(.button1())
+                        }.padding(.bottom, 10)
+                }
+            }
+        }
+        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
+        .padding(.vertical, 10)
+        .background{
+            RoundedRectangle(cornerRadius: 8)
+                .foregroundColor(.gray_700)
+        }
+
     }
 }
 
