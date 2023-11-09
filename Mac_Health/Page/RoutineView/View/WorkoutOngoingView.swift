@@ -74,6 +74,7 @@ struct WorkoutOngoingView: View {
                 routineVM.showWorkOutOnGoing.toggle()
             }
         }
+        //운동 완료 후 창닫기
         .alert("운동을 완료할까요?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
             Button("취소") {
                 // MARK: 취소
@@ -263,45 +264,55 @@ struct WorkoutOngoingView: View {
     }
     
     var WorkoutButton: some View {
-        FloatingButton(backgroundColor: .gray_600) {
-            HStack {
-                NavigationLink {
-                    WorkoutStatusView()
-                } label: {
-                    Image(systemName: "list.bullet")
-                        .foregroundColor(.green_main)
-                }
-                
-                Spacer()
-                
-                Button {
-                    workoutOngoingVM.controlRepetition()
-                } label: {
-                    if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
-                        RoundedRectangle(cornerRadius: 100)
-                            .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
-                            .foregroundColor(.red_main)
-                            .overlay {
-                                Text("운동 완료")
-                                    .font(.button1())
-                                    .foregroundColor(.label_900)
+        RoundedRectangle(cornerRadius: 100)
+            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
+            .foregroundColor(.gray_600)
+            .overlay {
+                    HStack {
+                        NavigationLink {
+                            WorkoutStatusView()
+                        } label: {
+                            Image(systemName: "list.bullet")
+                                .foregroundColor(.green_main)
+                                .font(.title1())
+                                .padding(.leading)
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            workoutOngoingVM.controlRepetition()
+                        } label: {
+                            if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
+                                RoundedRectangle(cornerRadius: 100)
+                                    .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
+                                    .foregroundColor(.red_main)
+                                    .overlay {
+                                        Text("운동 완료")
+                                            .font(.button1())
+                                            .foregroundColor(.label_900)
+                                    }
                             }
-                    }
-                    else {
-                        RoundedRectangle(cornerRadius: 100)
-                            .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
-                            .foregroundColor(.green_main)
-                            .overlay {
-                                Text("다음 세트 >")
-                                    .font(.button1())
-                                    .foregroundColor(.gray_900)
+                            else {
+                                RoundedRectangle(cornerRadius: 100)
+                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                    .foregroundColor(.green_main)
+                                    .overlay {
+                                        HStack{
+                                            Text("다음 세트")
+                                                .font(.button1())
+                                                .foregroundColor(.gray_900)
+                                            Image(systemName: "chevron.right")
+                                                .font(.button2())
+                                                .foregroundColor(.gray_900)
+                                        }
+                                    }
                             }
+                        }
                     }
-                }
+                    .padding(.horizontal)
+                    .bold()
             }
-            .padding(.horizontal)
-            .bold()
-        }
     }
     
     
