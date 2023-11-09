@@ -71,6 +71,7 @@
 		F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A1412AFA35210068F885 /* RecordSpecificView.swift */; };
 		F8F3A1472AFA35210068F885 /* RecordEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A1422AFA35210068F885 /* RecordEditView.swift */; };
 		F8FC2A4C2AFCA0A3006CEE17 /* GeneralAPIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC2A4B2AFCA0A3006CEE17 /* GeneralAPIManger.swift */; };
+		F8FC2A4F2AFCD2ED006CEE17 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC2A4E2AFCD2ED006CEE17 /* RecordViewModel.swift */; };
 		F8FD48DE2AE7F13C007DB402 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD48DD2AE7F13C007DB402 /* FloatingButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +137,7 @@
 		F8F3A1412AFA35210068F885 /* RecordSpecificView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordSpecificView.swift; sourceTree = "<group>"; };
 		F8F3A1422AFA35210068F885 /* RecordEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordEditView.swift; path = Mac_Health/Page/RecordView/View/RecordEditView.swift; sourceTree = SOURCE_ROOT; };
 		F8FC2A4B2AFCA0A3006CEE17 /* GeneralAPIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPIManger.swift; sourceTree = "<group>"; };
+		F8FC2A4E2AFCD2ED006CEE17 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		F8FD48DD2AE7F13C007DB402 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -376,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				F8F3A1482AFA35310068F885 /* View */,
+				F8FC2A4D2AFCD2D4006CEE17 /* ViewModel */,
 			);
 			path = RecordView;
 			sourceTree = "<group>";
@@ -397,6 +400,14 @@
 			children = (
 			);
 			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		F8FC2A4D2AFCD2D4006CEE17 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F8FC2A4E2AFCD2ED006CEE17 /* RecordViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,6 +524,7 @@
 				0D4495CE2AFA6AF400F25CD4 /* GeneralAPI.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
 				0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */,
+				F8FC2A4F2AFCD2ED006CEE17 /* RecordViewModel.swift in Sources */,
 				F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
 				F82674CF2AF7F099002BFACD /* WorkoutStatusEditView.swift in Sources */,

@@ -151,25 +151,29 @@ struct RecordedTime: Codable {
     var nano: Int
 }
 
-struct RecordedExercise: Codable {
-    var name: String
-    var sets: [Int]
-}
-
 struct RecordedSet: Codable {
-    var weight: Int
+    var weight: Int?
     var reps: Int
 }
 
-/// GetUsersRecords
-struct ResponseGetUsersRecords: Codable {
+struct RecordedExercise: Codable {
+    var name: String
+    var sets: [RecordedSet]
+}
+
+struct Records: Codable {
     var date: String
-    var time: RecordedTime
+    var time: String
     var part: String
     var numberOfExercise: Int
     var burnedKCalories: Int
     var requiredMinutes: Int
     var exercises: [RecordedExercise]
+}
+
+/// GetUsersRecords
+struct ResponseGetUsersRecords: Codable {
+    var records: [Records]
 }
 //:
 

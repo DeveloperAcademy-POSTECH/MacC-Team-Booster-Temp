@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecordView: View {
+    @StateObject var vm = RecordViewModel()
     @State var testState = "test"
     
     var body: some View {
