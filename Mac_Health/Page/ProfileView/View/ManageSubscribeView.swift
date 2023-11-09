@@ -25,6 +25,7 @@ struct ManageSubscribeView: View {
             }
         }
         .navigationBarTitle("구독 관리", displayMode: .inline)
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton

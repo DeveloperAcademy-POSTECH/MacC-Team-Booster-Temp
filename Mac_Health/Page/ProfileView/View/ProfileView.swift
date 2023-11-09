@@ -28,7 +28,12 @@ struct ProfileView: View {
                 loggedIn ? AlertToggle(notiToggle: notiToggle) : nil
                 versionInformaion
                 //로그인 전 unactive
-                loggedIn ? subscribeManagement : nil
+                loggedIn ? 
+                NavigationLink {
+                    ManageSubscribeView()
+                } label: {
+                    subscribeManagement
+                } : nil
                 inquiry
                 //로그인 전 unactive
                 loggedIn ? useInformation : nil
