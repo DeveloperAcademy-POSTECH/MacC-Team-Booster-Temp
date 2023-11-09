@@ -40,6 +40,9 @@ enum GeneralAPI {
     //:
     
     // MARK: user-routine-controller
+    /// 운동 시간 업데이트 - WorkoutOngoingView
+    case PatchUsersRoutines(routineId: Int, time: String)
+    
     /// 루틴 완료 - WorkoutOngoingView
     case PatchUsersRoutinesFinish(routineId: Int)
     
@@ -51,6 +54,11 @@ enum GeneralAPI {
     
     /// 개인 인플루언서 전체 루틴 정보 - ChangeRoutineView
     case GetUsersInfluencersRoutines(id: Int)
+    //:
+    
+    // MARK: user-record-controller
+    /// 운동 기록 - RecordView
+    case GetUsersRecords
     //:
     
     // MARK: user-set-controller
@@ -92,6 +100,8 @@ extension GeneralAPI: TargetType {
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/alternate/\(alternativeExerciseId)"
         case .GetRoutinesExercises(let routineId, let exerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)"
+        case .PatchUsersRoutines(let routineId, _):
+            return "/users/routines/\(routineId)"
         case .PatchUsersRoutinesFinish(let routineId):
             return "/users/routines/\(routineId)/finish"
         case .GetUsersRoutines:
@@ -106,6 +116,8 @@ extension GeneralAPI: TargetType {
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets/\(setId)/finish"
         case .PatchUsersRoutinesExercisesSetsCancle(let routineId, let exerciseId, let setId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets/\(setId)/cancle"
+        case .GetUsersRecords:
+            return "/users/records"
         case .GetRoutines:
             return "/routines"
         case .GetInfluencersRoutines(let id):
@@ -119,6 +131,7 @@ extension GeneralAPI: TargetType {
         case .DeleteRoutinesExercisesSets: return .delete
         case .PatchRoutinesExercisesAlternate: return .patch
         case .GetRoutinesExercises: return .get
+        case .PatchUsersRoutines: return .patch
         case .PatchUsersRoutinesFinish: return .patch
         case .GetUsersRoutines: return .get
         case .GetUsersRoutinesId: return .get
@@ -126,6 +139,7 @@ extension GeneralAPI: TargetType {
         case .PatchUsersRoutinesExercisesSets: return .patch
         case .PatchUsersRoutinesExercisesSetsFinish: return .patch
         case .PatchUsersRoutinesExercisesSetsCancle: return .patch
+        case .GetUsersRecords: return .get
         case .GetRoutines: return .get
         case .GetInfluencersRoutines: return .get
         }
@@ -137,13 +151,15 @@ extension GeneralAPI: TargetType {
         case .DeleteRoutinesExercisesSets: return .requestPlain
         case .PatchRoutinesExercisesAlternate: return .requestPlain
         case .GetRoutinesExercises: return .requestPlain
+        case .PatchUsersRoutines(_, time: let time): return .requestParameters(parameters: ["time": time], encoding: URLEncoding.queryString)
         case .PatchUsersRoutinesFinish: return .requestPlain
-        case .GetUsersRoutines(date: let date): return .requestParameters(parameters: ["date" : date], encoding: URLEncoding.queryString)
+        case .GetUsersRoutines(date: let date): return .requestParameters(parameters: ["date": date], encoding: URLEncoding.queryString)
         case .GetUsersRoutinesId: return .requestPlain
         case .GetUsersInfluencersRoutines: return .requestPlain
         case .PatchUsersRoutinesExercisesSets(_, _, _, weight: let weight, reps: let reps): return .requestJSONEncodable(RequestPatchUsersRoutinesExercisesSets(weight: weight, reps: reps))
         case .PatchUsersRoutinesExercisesSetsFinish: return .requestPlain
         case .PatchUsersRoutinesExercisesSetsCancle: return .requestPlain
+        case .GetUsersRecords: return .requestPlain
         case .GetRoutines: return .requestPlain
         case .GetInfluencersRoutines: return .requestPlain
         }

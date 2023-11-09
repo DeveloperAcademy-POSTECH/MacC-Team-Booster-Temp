@@ -85,6 +85,11 @@ struct Routine: Codable {
     var routineId: Int
 }
 
+/// PatcheUsersRoutines
+struct RequestPatchUsersRoutines: Codable {
+    var time: String
+}
+
 /// PatchUsersRoutinesFinish
 struct ResponsePatchUsersRoutinesFinish: Codable {
     var isDone: Bool
@@ -93,10 +98,6 @@ struct ResponsePatchUsersRoutinesFinish: Codable {
 /// GetUsersRoutines
 struct ResponseGetUsersRoutines: Codable {
     var routines: [InfluencerRoutine]
-    
-    enum CodingKeys: CodingKey {
-        case routines
-    }
 }
 
 /// GetUsersRoutinesId
@@ -139,6 +140,36 @@ struct ResponsePatchUsersRoutinesExercisesSetsCancle: Codable {
     var reps: Int
     var weight: Int
     var isDone: Bool
+}
+//:
+
+// MARK: user-record-controller
+struct RecordedTime: Codable {
+    var hour: Int
+    var minute: Int
+    var second: Int
+    var nano: Int
+}
+
+struct RecordedExercise: Codable {
+    var name: String
+    var sets: [Int]
+}
+
+struct RecordedSet: Codable {
+    var weight: Int
+    var reps: Int
+}
+
+/// GetUsersRecords
+struct ResponseGetUsersRecords: Codable {
+    var date: String
+    var time: RecordedTime
+    var part: String
+    var numberOfExercise: Int
+    var burnedKCalories: Int
+    var requiredMinutes: Int
+    var exercises: [RecordedExercise]
 }
 //:
 
