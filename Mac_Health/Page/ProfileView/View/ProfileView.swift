@@ -11,6 +11,8 @@ struct ProfileView: View {
     @State var nickName: String = "random04"
     @State var notiToggle: Bool = true
     @State var versionState: String = "1.0.0"
+    //로그인 상태값 모델로 가젹오기
+    @State var loggedIn: Bool = false
     
     var body: some View {
         ZStack{
@@ -23,13 +25,13 @@ struct ProfileView: View {
                     ProfileManage(nickName: nickName)
                 }
                 //로그인 전 unactive
-                AlertToggle(notiToggle: notiToggle)
+                loggedIn ? AlertToggle(notiToggle: notiToggle) : nil
                 versionInformaion
+                //로그인 전 unactive
+                loggedIn ? subscribeManagement : nil
                 inquiry
                 //로그인 전 unactive
-                useInformation
-                //로그인 전 unactive
-                personalInformation
+                loggedIn ? useInformation : nil
                 Spacer()
                 }
             }
@@ -42,7 +44,7 @@ struct ProfileView: View {
                 .foregroundColor(.label_900)
             Spacer()
         }
-        .padding(.horizontal)
+        .padding()
     }
     
     func ProfileManage(nickName: String) -> some View {
@@ -52,7 +54,7 @@ struct ProfileView: View {
             .overlay{
                 HStack(spacing:2){
                     //로그인 x -> nickName => "둘러보기", "프로필 관리" => "로그인 하러 가기"
-                    Text(nickName)
+                    Text(loggedIn ? nickName : "둘러보기")
                         .foregroundColor(.label_900)
                         .font(.body())
                         .padding(.leading, 20)
@@ -60,11 +62,11 @@ struct ProfileView: View {
                         .foregroundColor(.label_700)
                         .font(.body())
                     Spacer()
-                    Text("프로필 관리")
-                        .foregroundColor(.label_700)
+                    Text(loggedIn ? "프로필 관리" : "로그인 하러 가기")
+                        .foregroundColor(loggedIn ? .label_700 : .green_main)
                         .font(.body())
                     Image(systemName: "chevron.right")
-                        .foregroundColor(.label_700)
+                        .foregroundColor(loggedIn ? .label_700 : .green_main)
                         .font(.body2())
                         .padding(.trailing, 20)
                 }
@@ -89,18 +91,19 @@ struct ProfileView: View {
                     .font(.body())
                     .foregroundColor(.label_700)
             }
+            Divider()
             }
         .padding()
     }
     
     var versionInformaion : some View {
         VStack(alignment: .leading, spacing: 8){
-            Divider()
             HStack{
                 Text("버전정보")
                     .font(.headline1())
                     .foregroundColor(.label_900)
                     .padding(.top)
+                Spacer()
             }
             
             HStack{
@@ -109,6 +112,18 @@ struct ProfileView: View {
                     .foregroundColor(.label_700)
                     .padding(.bottom)
             }
+            }
+        .padding(.horizontal)
+    }
+    
+    var subscribeManagement : some View {
+        //노션 페이지 마련
+        VStack(alignment: .leading, spacing: 8){
+            Divider()
+                Text("구독관리")
+                    .font(.headline1())
+                    .foregroundColor(.label_900)
+                    .padding(.vertical)
             }
         .padding(.horizontal)
 
@@ -131,7 +146,7 @@ struct ProfileView: View {
         //노션 페이지 마련
         VStack(alignment: .leading, spacing: 8){
             Divider()
-                Text("이용약관")
+                Text("이용약관 및 개인정보처리방침")
                     .font(.headline1())
                     .foregroundColor(.label_900)
                     .padding(.top)
@@ -140,18 +155,7 @@ struct ProfileView: View {
 
     }
     
-    var personalInformation : some View {
-        //노션 페이지 마련
-        VStack(alignment: .leading, spacing: 8){
-            Divider()
-                Text("개인정보처리방침")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                    .padding(.top)
-            }
-        .padding(.horizontal)
-
-    }
+    
 }
 
 #Preview {

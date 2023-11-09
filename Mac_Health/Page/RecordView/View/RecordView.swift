@@ -32,7 +32,7 @@ struct RecordView: View {
                 .foregroundColor(.label_900)
             Spacer()
         }
-        .padding(.horizontal)
+        .padding()
     }
     
     var Calender: some View {
@@ -85,7 +85,7 @@ struct RecordView: View {
 }
 
 
-struct ecordView_Previews: PreviewProvider {
+struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
         RecordView()
     }
