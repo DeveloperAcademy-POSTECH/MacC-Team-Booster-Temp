@@ -1,5 +1,5 @@
 //
-//  WorkoutOngoing.swift
+//  WorkoutOngoingView.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 2023/10/20.
@@ -12,8 +12,8 @@ struct WorkoutOngoingView: View {
     @Environment(\.dismiss) var dismiss
     
     let currentWorkoutNumber: Int
-    @ObservedObject var routineVM: RoutineVM
-    @StateObject var workoutOngoingVM = WorkoutOngoingVM()
+    @ObservedObject var routineVM: RoutineViewModel
+    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     @State var isPauseShow = false
     @State var isFinishShow = false
     @State var isAlternativeShow = false
@@ -400,6 +400,6 @@ struct WorkoutOngoingView: View {
 
 struct WorkoutOngoingView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: RoutineVM())
+        WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: RoutineViewModel())
     }
 }

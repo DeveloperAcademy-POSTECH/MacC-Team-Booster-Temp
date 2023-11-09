@@ -1,5 +1,5 @@
 //
-//  TotalRoutineView.swift
+//  ChangeRoutineView.swift
 //  Mac_Health
 //
 //  Created by 정회승 on 11/2/23.
@@ -14,7 +14,7 @@ enum WorkoutType: String, CaseIterable {
 struct ChangeRoutineView: View {
     @StateObject var vm = ChangeRoutineViewModel()
     
-    @ObservedObject var routineVM: RoutineVM
+    @ObservedObject var routineVM: RoutineViewModel
     @Environment(\.dismiss) var dismiss: DismissAction
     ///운동 정렬용 선택
     @State var selection: String = "전체"
@@ -173,5 +173,5 @@ struct ChangeRoutineView: View {
 }
 
 #Preview {
-    ChangeRoutineView(routineVM: RoutineVM())
+    ChangeRoutineView(routineVM: RoutineViewModel())
 }

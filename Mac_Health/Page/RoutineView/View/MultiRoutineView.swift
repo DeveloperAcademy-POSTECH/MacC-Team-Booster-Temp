@@ -1,5 +1,5 @@
 //
-//  TodayRoutineMultiView.swift
+//  MultiRoutineView.swift
 //  Mac_Health
 //
 //  Created by 정회승 on 11/2/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MultiRoutineView: View {
-    @StateObject var vm = TodayRoutineMultiViewModel()
+    @StateObject var vm = MultiRoutineViewModel()
     
     var body: some View {
         ZStack{

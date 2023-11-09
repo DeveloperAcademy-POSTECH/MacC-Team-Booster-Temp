@@ -1,5 +1,5 @@
 //
-//  DetailedWorkout.swift
+//  DetailedWorkoutSheet.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 11/4/23.
@@ -118,7 +118,7 @@ struct DetailedWorkoutSheet: View {
     }
 }
 
-struct DetailedWorkout_Previews: PreviewProvider {
+struct DetailedWorkoutSheet_Previews: PreviewProvider {
     static var previews: some View {
         DetailedWorkoutSheet()
     }

@@ -1,5 +1,5 @@
 //
-//  WorkoutOngoingVM.swift
+//  WorkoutOngoingViewModel.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 2023/10/20.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class WorkoutOngoingVM: ObservableObject {
+class WorkoutOngoingViewModel: ObservableObject {
     let routineId = 1
     let exerciseId = 1
     let setId = 1

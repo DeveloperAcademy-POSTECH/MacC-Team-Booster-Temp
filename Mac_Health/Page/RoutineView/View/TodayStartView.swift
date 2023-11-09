@@ -1,5 +1,5 @@
 //
-//  TodayRoutineView.swift
+//  TodayStartView.swift
 //  Mac_Health
 //
 //  Created by 정회승 on 2023/11/01.
@@ -66,7 +66,7 @@ struct TodayStartView: View {
                                 .foregroundColor(.label_900)
                             Spacer()
                             NavigationLink {
-                                ChangeRoutineView(routineVM: RoutineVM())
+                                ChangeRoutineView(routineVM: RoutineViewModel())
                                     .navigationBarTitle("전체 루틴", displayMode: .inline)
                             } label: {
                                 Image(systemName: "calendar")
@@ -141,7 +141,7 @@ struct TodayStartView: View {
     }
 }
 
-struct TodayRoutineView_Previews: PreviewProvider {
+struct TodayStartView_Previews: PreviewProvider {
     static var previews: some View {
         TodayStartView()
     }
