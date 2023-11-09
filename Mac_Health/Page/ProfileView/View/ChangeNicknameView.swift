@@ -66,7 +66,7 @@ struct ChangeNicknameView: View {
             .onChange(of: changingNickname) { newValue in
                 // Update character count
                 characterCount = newValue.count
-                isSaveActive = changingNickname != nickname && changingNickname != "" && 2 < characterCount && characterCount <= 20
+                isSaveActive = changingNickname != nickname && changingNickname != "" && 1 < characterCount && characterCount <= 20
             }
     }
     

@@ -21,13 +21,7 @@ struct TodayStartView: View {
                         .frame(width: UIScreen.getWidth(390))
                         .offset(x:20, y: 30)
                     //인플루언서의 오늘의 루틴
-                    HStack{
-                        Text("\(Influencer)의 \n오늘의 루틴")
-                            .font(.title1())
-                            .foregroundColor(.label_900)
-                            .padding(.leading, 20)
-                        Spacer()
-                    }
+                    NavigationTitle
                     
                     //오늘의 상태 텍스트
                     VStack {
@@ -53,14 +47,25 @@ struct TodayStartView: View {
                     }
                     
                 }
-                
+                Spacer()
                 TodayCard()
             }
-            .padding(.bottom, 35)
+            .padding(.bottom)
             Spacer()
                 .frame(height: UITabBarController().height)
             
         }
+    }
+    
+    var NavigationTitle: some View {
+        HStack {
+            Text("\(Influencer)의 \n오늘의 루틴")
+                .font(.title1())
+                .foregroundColor(.label_900)
+            Spacer()
+        }
+        .padding(.horizontal)
+        .padding(.top, 30)
     }
     
     var RoutineDescriptionCard: some View {
@@ -107,26 +112,26 @@ struct TodayStartView: View {
                     
                     
                 }
-                .padding(20)
+                .padding(.horizontal)
+                .padding(.bottom)
                 RoutineDescriptionCard
-                .padding(.bottom, 20)
+                .padding(.bottom, 10)
                 .padding(.leading,10)
                 //운동 시작 버튼
                 NavigationLink {
                     WorkoutListView()
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
-                        .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
+                        .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
                         .foregroundColor(.green_main)
                         .overlay { Text("운동 시작")
                                 .foregroundColor(.gray_900)
                                 .font(.button1())
-                        }.padding(.bottom, 10)
+                        }
                 }
             }
         }
-        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
-        .padding(.vertical, 10)
+        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(320))
         .background{
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
