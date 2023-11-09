@@ -387,15 +387,6 @@ struct ImageTip: View {
                             .font(.headline2())
                             .foregroundColor(.label_700)
                         Spacer()
-                        Button {
-                            withAnimation{
-                                currentIndex = 0
-                            }
-                        } label: {
-                            Image(systemName: "xmark")
-                                .font(.headline2())
-                                .foregroundColor(.label_700)
-                        }
                     }
                     Spacer()
                     
@@ -413,26 +404,26 @@ struct ImageTip: View {
     var WorkoutTipButton: some View {
         HStack {
             Spacer()
-                Image(systemName: "chevron.backward")
-                    .font(.button2())
-                    .foregroundColor(.label_500)
+            Image(systemName: "chevron.backward")
+                .font(.button2())
+                .foregroundColor(.label_500)
             RoundedRectangle(cornerRadius: 8.0)
-                    .frame(width: UIScreen.getWidth(80), height: UIScreen.getHeight(68))
-                    .foregroundColor(.fill_1)
-                    .overlay {
-                        HStack {
-                            Text("팁")
-                                .font(.button2())
-                                .foregroundColor(.green_main)
-                            Spacer()
-                        }
-                        .padding(.horizontal)
+                .frame(width: UIScreen.getWidth(80), height: UIScreen.getHeight(68))
+                .foregroundColor(.fill_1)
+                .overlay {
+                    HStack {
+                        Text("팁")
+                            .font(.button2())
+                            .foregroundColor(.green_main)
+                        Spacer()
                     }
-            }
-            .offset(x: UIScreen.getWidth(30))
-//            .onTapGesture {
-//                workoutOngoingVM.showWorkoutTip()
-//            }
+                    .padding(.horizontal)
+                }
+        }
+        .offset(x: UIScreen.getWidth(30))
+        //            .onTapGesture {
+        //                workoutOngoingVM.showWorkoutTip()
+        //            }
     }
 }
 

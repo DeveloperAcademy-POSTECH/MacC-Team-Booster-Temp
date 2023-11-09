@@ -17,14 +17,21 @@ struct SubscribeView: View {
     @State var loggedIn = true
     @Environment(\.dismiss) var dismiss: DismissAction
     
-    var introduce = "한국인 최초로 북미에서 열리는 프로쇼 우승 (텍사스 프로, 2023.8.18)"
+    var introduce = """
+안녕하세요! 운동하는 개발자 정회승입니다🐵
+여러분과 함께 운동하기 위해
+제 운동일지를 공유하게 되었습니다
+"""
     //배열로 빼서 불렛별로 줄 맞출지 추후 수정 예정
     var award: Array = [
-        "2023년 TEXAS PRO SHOW MEN'S CLASSIC PHYSIQUE 1위",
-        "2022년 MR.Olympia 클래식 피지크 15위",
-        "2022년 MONSTERZYM CLASSIC PHYSIQUE PRO 1위",
-        "2021년 AGP CLASSIC PHYSIQUE PRO 4위",
-        "2020년 아마추어 올림피아 부산 CLASSIC PHYSIQUE CLASS B 1위",
+        "Wngp 서울 클래식피지크 체급 1위",
+        "Wngp 서울 보디빌딩 체급 1위",
+        "Wngp 서울 클래식피지크 그랑프리 2위",
+        "Wngp 서울 보디빌딩 그랑프리 3위",
+        "Npc 내츄럴 보디빌딩 오픈 4위",
+        "Npc 내츄럴 클래식피지크 노비스 1위",
+        "미스터 스누 22 연건 1위",
+        "미스터 스누 23 관악 2위",
     ]
     
     var body: some View {
@@ -33,23 +40,7 @@ struct SubscribeView: View {
             ScrollView {
                 VStack{
                 //구독 페이지 설명
-                    ZStack{
-                        topBackground
-                        TabView {
-                            ForEach(1...3, id: \.self) { idx in
-                                //둘러보기에서 구독 뷰
-                                ZStack{
-                                    Image("RotateInfluencer\(idx)")
-                                        .resizable()
-                                        .scaledToFit()
-                                    LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
-                                }
-                            }
-                        }
-                        .tabViewStyle(.page)
-                        topInfluencerDescription
-                            
-                    }
+                    IntroPage
                 //구독 버튼
                 subscribeButton
                 //인플루언서 설명
@@ -86,6 +77,27 @@ struct SubscribeView: View {
         }
         .ignoresSafeArea(.all)
     }
+    
+    @ViewBuilder
+    var IntroPage: some View {
+        ZStack{
+            topBackground
+            TabView {
+                ForEach(1...3, id: \.self) { idx in
+                    //둘러보기에서 구독 뷰
+                    ZStack{
+                        Image("RotateInfluencer\(idx)")
+                            .resizable()
+                            .scaledToFit()
+                        LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
+                    }
+                }
+            }
+            .tabViewStyle(.page)
+            topInfluencerDescription
+                
+        }
+    }
         
         var BackButton: some View {
             Button {
@@ -100,31 +112,38 @@ struct SubscribeView: View {
     @ViewBuilder
     var introInfluencer: some View {
         VStack(alignment: .leading){
-            Text("소개")
-                .foregroundColor(.label_900)
-                .font(.headline1())
+            HStack {
+                Text("인사말")
+                    .foregroundColor(.label_900)
+                    .font(.headline1())
                 .padding(.top, 20)
+                Spacer()
+            }
             Text(introduce)
                 .foregroundColor(.label_800)
                 .font(.body)
-                .padding(.bottom, 20)
+                .padding(.vertical, 10)
             Text("수상경력")
                 .foregroundColor(.label_900)
                 .font(.headline1())
+                .padding(.top, 20)
         }
+        .padding(.leading)
+        .frame(maxWidth: .infinity)
         
     if seeMore == false {
-        ZStack(alignment: .bottom){
+        ZStack(alignment: .top){
             VStack(alignment: .leading){
                 ForEach(0..<award.count, id: \.self) { index in
-                    HStack {VStack {
+                    HStack{
+                        VStack{
                         Text("•")
                                 .font(.body)
                             .foregroundColor(.label_800)
                         Spacer()
                     }
                         VStack(alignment: .leading){
-                            HStack {
+                            HStack{
                                 Text(award[index])
                                     .font(.body)
                                     .foregroundColor(.label_800)
@@ -135,31 +154,32 @@ struct SubscribeView: View {
                     }
                     .padding(.leading, 10)
                 }
-                .mask(
-                Rectangle()
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(80)))
             }
-            .padding(.leading, 20)
-            Image("seeMoreGradient")
-                .resizable()
-                .scaledToFit()
+            .mask(
+            Rectangle()
+                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230)))
+            .padding()
+            LinearGradient(colors: [.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
             Button {
                 seeMore = true
             } label: {
-                Text("더보기")
-                    .font(.headline1())
-                    .foregroundColor(Color.label_900)
+                VStack{
+                    Spacer()
+                        .frame(height: UIScreen.getHeight(170))
+                    Text("더보기")
+                        .font(.headline1())
+                        .foregroundColor(Color.label_900)
+                }
             }
-            .offset(y: 10)
             
         }
         .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
-        .padding()
     }
     else {
         VStack(alignment: .leading){
             ForEach(0..<award.count, id: \.self) { index in
-                HStack {VStack {
+                HStack {
+                    VStack {
                     Text("•")
                             .font(.body)
                         .foregroundColor(.label_800)
@@ -175,7 +195,7 @@ struct SubscribeView: View {
                         Spacer()
                     }
                 }
-                .padding(.leading, 20)
+                .padding(.leading, 10)
             }
         }
         .padding()
