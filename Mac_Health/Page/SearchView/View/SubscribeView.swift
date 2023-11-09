@@ -46,6 +46,7 @@ struct SubscribeView: View {
                     //인플루언서 설명
                     introInfluencer
                     bodyInformation
+                    strengthInformation
                     //루틴 미리보기
                     RoutinePreview()
                         .padding(.horizontal)
@@ -285,19 +286,41 @@ struct SubscribeView: View {
     
     var bodyInformation: some View {
         HStack{
-            VStack(alignment: .leading){
+            VStack(alignment: .leading, spacing: 5){
                 Text("신체정보")
                     .foregroundColor(.label_900)
                     .font(.headline1())
                     .padding(.top, 20)
+                    .padding(.bottom, 5)
                 Text("키: 173cm")
                     .foregroundColor(.label_800)
                     .font(.body)
-                    .padding(.vertical, 10)
                 Text("몸무게: 80kg")
                     .foregroundColor(.label_800)
                     .font(.body)
-                    .padding(.vertical, 10)
+            }
+         Spacer()
+        }
+        .padding(.horizontal)
+    }
+    
+    var strengthInformation: some View {
+        HStack{
+            VStack(alignment: .leading, spacing: 5){
+                Text("3대 중량")
+                    .foregroundColor(.label_900)
+                    .font(.headline1())
+                    .padding(.top, 20)
+                    .padding(.bottom, 5)
+                Text("Squat: 210kg")
+                    .foregroundColor(.label_800)
+                    .font(.body)
+                Text("Deadlift: 280kg")
+                    .foregroundColor(.label_800)
+                    .font(.body)
+                Text("Bench Press: 140kg")
+                    .foregroundColor(.label_800)
+                    .font(.body)
             }
          Spacer()
         }
@@ -359,7 +382,7 @@ struct RoutinePreview: View {
                             
                         }
                     }
-                    .padding(.vertical, 20)
+                    .padding(.top, 20)
                     Spacer()
                 }
                 HStack{
