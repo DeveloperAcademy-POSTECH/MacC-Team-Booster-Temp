@@ -9,6 +9,11 @@ import SwiftUI
 import Moya
 
 class GeneralAPIManger {
+    /// Generic API 요청 함수
+    /// - Parameters:
+    ///     - for target: target API
+    ///     - type: 디코딩 할 구조체 타입
+    ///     - compeletion: 디코딩 된 데이터 또는 에러를 반환 
     static func request<T: Codable>(for target: GeneralAPI, type: T.Type, completion: @escaping ((Result<T, MoyaError>) -> ())) {
         let provider = MoyaProvider<GeneralAPI>()
         
