@@ -12,7 +12,7 @@ struct ProfileView: View {
     @State var notiToggle: Bool = true
     @State var versionState: String = "1.0.0"
     //로그인 상태값 모델로 가젹오기
-    @State var loggedIn: Bool = false
+    @State var loggedIn: Bool = true
     
     var body: some View {
         ZStack{
