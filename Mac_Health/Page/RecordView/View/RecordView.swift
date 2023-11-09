@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecordView: View {
     @State var testState = "test"
+    @State var logOut: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -19,6 +20,7 @@ struct RecordView: View {
                     NavigationTitle
                     Calender
                     RecordCard
+                    logOut ? nil : beforeLoginText
                     Spacer()
                 }
             }
@@ -63,7 +65,7 @@ struct RecordView: View {
                             .foregroundColor(.label_900)
                         Spacer()
                         
-                        Text("1시간 32분 12초")
+                        Text("52분 12초")
                             .font(.headline2())
                             .foregroundColor(.label_900)
                     }
@@ -74,13 +76,24 @@ struct RecordView: View {
                             .foregroundColor(.label_900)
                         Spacer()
                         
-                        Text("14500g")
+                        Text("5200g")
                             .font(.body2())
                             .foregroundColor(.label_900)
                     }
                 }
                 .padding()
             }
+    }
+    var beforeLoginText: some View {
+        HStack{
+            Image(systemName: "info.circle")
+            Text("운동기록 예시입니다")
+            Spacer()
+        }
+        .padding(.horizontal, 25)
+        .padding(.vertical, 5)
+        .font(.caption)
+        .foregroundColor(.label_700)
     }
 }
 
