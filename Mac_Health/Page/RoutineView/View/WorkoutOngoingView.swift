@@ -266,50 +266,50 @@ struct WorkoutOngoingView: View {
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
             .foregroundColor(.gray_600)
             .overlay {
-                    HStack {
-                        NavigationLink {
-                            WorkoutStatusView()
-                        } label: {
-                            Image(systemName: "list.bullet")
-                                .foregroundColor(.green_main)
-                                .font(.title1())
-                                .padding(.leading)
+                HStack {
+                    NavigationLink {
+                        WorkoutStatusView()
+                    } label: {
+                        Image(systemName: "list.bullet")
+                            .foregroundColor(.green_main)
+                            .font(.title1())
+                            .padding(.leading)
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        workoutOngoingVM.controlRepetition()
+                    } label: {
+                        if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
+                            RoundedRectangle(cornerRadius: 100)
+                                .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
+                                .foregroundColor(.red_main)
+                                .overlay {
+                                    Text("운동 완료")
+                                        .font(.button1())
+                                        .foregroundColor(.label_900)
+                                }
                         }
-                        
-                        Spacer()
-                        
-                        Button {
-                            workoutOngoingVM.controlRepetition()
-                        } label: {
-                            if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
-                                RoundedRectangle(cornerRadius: 100)
-                                    .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
-                                    .foregroundColor(.red_main)
-                                    .overlay {
-                                        Text("운동 완료")
+                        else {
+                            RoundedRectangle(cornerRadius: 100)
+                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                .foregroundColor(.green_main)
+                                .overlay {
+                                    HStack{
+                                        Text("다음 세트")
                                             .font(.button1())
-                                            .foregroundColor(.label_900)
+                                            .foregroundColor(.gray_900)
+                                        Image(systemName: "chevron.right")
+                                            .font(.button2())
+                                            .foregroundColor(.gray_900)
                                     }
-                            }
-                            else {
-                                RoundedRectangle(cornerRadius: 100)
-                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                    .foregroundColor(.green_main)
-                                    .overlay {
-                                        HStack{
-                                            Text("다음 세트")
-                                                .font(.button1())
-                                                .foregroundColor(.gray_900)
-                                            Image(systemName: "chevron.right")
-                                                .font(.button2())
-                                                .foregroundColor(.gray_900)
-                                        }
-                                    }
-                            }
+                                }
                         }
                     }
-                    .padding(.horizontal)
-                    .bold()
+                }
+                .padding(.horizontal)
+                .bold()
             }
     }
     
@@ -347,18 +347,18 @@ struct ImageTip: View {
     var body: some View {
         TabView(selection: $currentIndex){
             
+            ZStack{
+                WorkoutImage
                 Button{
                     withAnimation{
                         currentIndex = 1
                     }
                 } label: {
-                    ZStack{
                     WorkoutTipButton
-                    WorkoutImage
                 }
-                .tag(0)
-                }
-                    
+            }
+            .tag(0)
+            
             WorkoutTip
                 .tag(1)
             
@@ -411,13 +411,13 @@ struct ImageTip: View {
     
     @ViewBuilder
     var WorkoutTipButton: some View {
-        if !workoutOngoingVM.isWorkoutTipShow {
-            HStack {
+        HStack {
+            Spacer()
                 Image(systemName: "chevron.backward")
                     .font(.button2())
                     .foregroundColor(.label_500)
-                RoundedRectangle(cornerRadius: 7.2)
-                    .frame(width: UIScreen.getWidth(315), height: UIScreen.getHeight(220))
+            RoundedRectangle(cornerRadius: 8.0)
+                    .frame(width: UIScreen.getWidth(80), height: UIScreen.getHeight(68))
                     .foregroundColor(.fill_1)
                     .overlay {
                         HStack {
@@ -429,11 +429,10 @@ struct ImageTip: View {
                         .padding(.horizontal)
                     }
             }
-            .offset(x: UIScreen.getWidth(300))
-            .onTapGesture {
-                workoutOngoingVM.showWorkoutTip()
-            }
-        }
+            .offset(x: UIScreen.getWidth(30))
+//            .onTapGesture {
+//                workoutOngoingVM.showWorkoutTip()
+//            }
     }
 }
 
