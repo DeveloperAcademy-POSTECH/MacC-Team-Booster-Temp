@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PauseSheet: View {
+    @ObservedObject var viewModel: StopwatchVM
+    @Environment(\.dismiss) var dismiss: DismissAction
     var body: some View {
         ZStack {
             Color.gray_800.ignoresSafeArea()
@@ -20,7 +22,8 @@ struct PauseSheet: View {
                     .font(.largeTitle())
                     .foregroundColor(.label_900)
                 Button {
-                    
+                    dismiss()
+                    viewModel.Start()
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(.green_main)
@@ -42,6 +45,6 @@ struct PauseSheet: View {
 
 struct PauseSheet_Preview: PreviewProvider {
     static var previews: some View {
-        PauseSheet()
+        PauseSheet(viewModel: StopwatchVM())
     }
 }

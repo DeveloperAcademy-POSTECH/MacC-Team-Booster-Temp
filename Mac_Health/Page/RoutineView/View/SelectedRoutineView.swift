@@ -51,7 +51,7 @@ struct SelectedRoutineView: View {
     }
     
     var SpecificInformation: some View {
-        ForEach(TodaySpecificViewModel.allCases, id: \.self) { option in
+        ForEach(TodaySpecificVM.allCases, id: \.self) { option in
             HStack{
                 VStack{
                     Image(systemName: option.image)

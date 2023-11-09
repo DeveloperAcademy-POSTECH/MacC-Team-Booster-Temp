@@ -122,7 +122,7 @@ struct WorkoutListView: View {
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            WorkoutOngoingView(currentWorkoutNumber: 0, routineVM: routineVM)
+            WorkoutOngoingView(viewModel: StopwatchVM(), currentWorkoutNumber: 0, routineVM: routineVM)
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")

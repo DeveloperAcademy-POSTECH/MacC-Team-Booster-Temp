@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WorkoutOngoingView: View {
     @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel = StopwatchVM()
     
     let currentWorkoutNumber: Int
     @ObservedObject var routineVM: RoutineVM
@@ -47,6 +48,7 @@ struct WorkoutOngoingView: View {
                 WorkoutButton
             }
         }
+        
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
@@ -124,9 +126,13 @@ struct WorkoutOngoingView: View {
             )
         }
         .sheet(isPresented: $isPauseShow) {
-            PauseSheet()
+            PauseSheet(viewModel: viewModel)
+        }
+        .onAppear{
+            viewModel.Start()
         }
     }
+    
     
     var BackButton: some View {
         Button {
@@ -138,14 +144,15 @@ struct WorkoutOngoingView: View {
         }
     }
     
+    @ViewBuilder
     var NavigationTitle: some View {
         HStack {
             Image(systemName: "flame.fill")
                 .foregroundColor(.label_700)
                 .font(.headline2())
-            Text("00:00:00")
-                .foregroundColor(.label_900)
+            Text(timeFormatted(viewModel.elapsedTime))
                 .font(.headline1())
+                .foregroundColor(.label_900)
             Circle()
                 .foregroundColor(.gray_700)
                 .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
@@ -157,8 +164,16 @@ struct WorkoutOngoingView: View {
                 }
                 .onTapGesture {
                     isPauseShow = true
+                    viewModel.Stop()
                 }
         }
+    }
+    
+    private func timeFormatted(_ seconds: TimeInterval) -> String {
+        let hours = Int(seconds) / 3600
+        let minutes = Int(seconds) / 60
+        let seconds = Int(seconds) % 60
+        return String(format: "%02d:%02d:%02d",hours, minutes, seconds)
     }
     
     var EditButton: some View {
@@ -475,7 +490,7 @@ struct ImageTip: View {
 struct WorkoutOngoingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: RoutineVM())
+            WorkoutOngoingView(viewModel: StopwatchVM(), currentWorkoutNumber: 1, routineVM: RoutineVM())
         }
     }
 }

@@ -15,36 +15,16 @@ struct TodayStartView: View {
             Color.gray_900.ignoresSafeArea()
             VStack{
                 ZStack(alignment: .top) {
+                    //사진
                     Image(systemName: "person")
                         .resizable()
                     //                        .scaledToFill()
                         .frame(width: UIScreen.getWidth(390))
-                        .offset(x:20, y: 30)
                     //인플루언서의 오늘의 루틴
                     NavigationTitle
                     
                     //오늘의 상태 텍스트
-                    VStack {
-                        Spacer()
-                        HStack(alignment: .top){
-                            VStack(alignment: .leading){
-                                Text(todayText)
-                                    .font(.body)
-                                    .foregroundColor(.label_800)
-                            }
-                            .padding(20)
-                        }
-                        .frame(width: UIScreen.getWidth(350))
-                        .background{
-                            RoundedRectangle(cornerRadius: 8)
-                                .foregroundColor(.gray_700)
-                        }
-                        .background{
-                            RoundedRectangle(cornerRadius: 8)
-                            ///label_500 적용 안됨
-                                .stroke(.white, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
-                        }
-                    }
+                    TodayText
                     
                 }
                 Spacer()
@@ -90,6 +70,31 @@ struct TodayStartView: View {
             Text(text)
                 .foregroundColor(.label_900)
                 .font(.body())
+        }
+    }
+    
+    @ViewBuilder
+    var TodayText: some View {
+        VStack {
+            Spacer()
+            HStack(alignment: .top){
+                VStack(alignment: .leading){
+                    Text(todayText)
+                        .font(.body)
+                        .foregroundColor(.label_800)
+                }
+                .padding(20)
+            }
+            .frame(width: UIScreen.getWidth(350))
+            .background{
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.gray_700)
+            }
+            .background{
+                RoundedRectangle(cornerRadius: 8)
+                ///label_500 적용 안됨
+                    .stroke(.white, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+            }
         }
     }
     
