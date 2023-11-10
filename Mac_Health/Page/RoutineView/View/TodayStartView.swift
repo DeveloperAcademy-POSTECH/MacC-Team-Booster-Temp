@@ -44,8 +44,7 @@ struct TodayStartView: View {
                             ///label_500 적용 안됨
                                 .stroke(.white, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
                         }
-                    }
-                    
+                    }                    
                 }
                 
                 Spacer()
@@ -100,20 +99,17 @@ struct TodayStartView: View {
                 HStack{
                     // TODO: 데이트 포매터
                     Text("\(vm.routine.date)")
-                    //                    Text("11월 1일 수요일")
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()
                     NavigationLink {
-                        ChangeRoutineView(routineVM: RoutineViewModel())
+                        ChangeRoutineView()
                             .navigationBarTitle("전체 루틴", displayMode: .inline)
                     } label: {
                         Image(systemName: "calendar")
                             .font(.title2())
                             .foregroundColor(.green_main)
                     }
-                    
-                    
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -139,7 +135,6 @@ struct TodayStartView: View {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
-        
     }
 }
 
