@@ -14,9 +14,9 @@ struct SelectedRoutineView: View {
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
-        ZStack{
-            ScrollView{
-                VStack{
+        ZStack {
+            ScrollView {
+                VStack {
                     SpecificInformation
                 }
                 .padding(.vertical, 20)
@@ -24,9 +24,8 @@ struct SelectedRoutineView: View {
                     .foregroundColor(.fill_1)
                     .padding(.horizontal, 20)
                 WorkoutRoutine
-                
             }
-            VStack{
+            VStack {
                 Spacer()
                 Button {
                     print("start workout")
@@ -34,13 +33,10 @@ struct SelectedRoutineView: View {
                     FloatingButton(backgroundColor: .green_main) { Text("운동 시작")
                             .foregroundColor(.gray_900)
                             .font(.button1())
-                }
-
-                
+                    }
                 }
                 .padding()
-        }
-       
+            }
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -48,19 +44,18 @@ struct SelectedRoutineView: View {
                 BackButton
             }
         }
-
     }
     
     var SpecificInformation: some View {
         ForEach(TodaySpecificViewModel.allCases, id: \.self) { option in
-            HStack{
-                VStack{
+            HStack {
+                VStack {
                     Image(systemName: option.image)
                         .font(.body())
                         .foregroundColor(.label_700)
                         .padding(.leading, 15)
                 }
-                VStack{
+                VStack {
                     Text(option.contents)
                         .font(.body())
                         .foregroundColor(.label_900)
@@ -70,10 +65,8 @@ struct SelectedRoutineView: View {
             .padding(5)
         }
     }
-
     
     var WorkoutRoutine: some View {
-        //        ScrollView {
         ZStack {
             //운동 부위 갯수별 load
             VStack(spacing: 16) {
