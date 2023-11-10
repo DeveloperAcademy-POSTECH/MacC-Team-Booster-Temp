@@ -392,7 +392,7 @@ struct WorkoutOngoingView: View {
 
 struct ImageTip: View {
     @Binding var currentIndex: Int
-    @StateObject var workoutOngoingVM = WorkoutOngoingVM()
+    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     
     var body: some View {
         TabView(selection: $currentIndex){

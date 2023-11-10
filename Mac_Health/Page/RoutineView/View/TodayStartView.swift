@@ -106,7 +106,7 @@ struct TodayStartView: View {
                         .foregroundColor(.label_900)
                     Spacer()
                     NavigationLink {
-                        ChangeRoutineView(routineVM: RoutineVM())
+                        ChangeRoutineView(routineVM: RoutineViewModel())
                             .navigationBarTitle("전체 루틴", displayMode: .inline)
                     } label: {
                         Image(systemName: "calendar")
