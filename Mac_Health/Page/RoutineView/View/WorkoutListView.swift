@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct WorkoutListView: View {
+    // TODO: WorkoutListView 데이터 작업
     @Environment(\.dismiss) var dismiss
     
     @State var isDetailedWorkoutShow = false
     @State var isConfirmationDialogShow = false
     @State var isAlternativeWorkoutShow = false
     @State var isDeleteAlertShow = false
-    @StateObject var routineVM = RoutineVM()
+    @StateObject var routineVM = RoutineViewModel()
     
     let workoutName = "클로즈 그립 랫 풀 다운"
     

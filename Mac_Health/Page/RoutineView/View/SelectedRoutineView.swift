@@ -1,5 +1,5 @@
 //
-//  DateRoutinveView.swift
+//  SelectedRoutineView.swift
 //  Mac_Health
 //
 //  Created by 정회승 on 11/3/23.
@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SelectedRoutineView: View {
+    @StateObject var vm = SelectedRoutineViewModel()
     
     @State var showDetail = false
     @Environment(\.dismiss) var dismiss: DismissAction

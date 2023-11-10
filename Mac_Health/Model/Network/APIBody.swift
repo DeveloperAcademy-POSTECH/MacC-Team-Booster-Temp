@@ -21,8 +21,8 @@ struct AlternativeExercise: Codable {
     var exerciseImageUrl: String
 }
 
-/// PatchRoutinesExercisesSets
-struct ResponsePatchRoutinesExercisesSets: Codable {
+/// PostRoutinesExercisesSets
+struct ResponsePostRoutinesExercisesSets: Codable {
     var sets: [ExerciseSet]
 }
 
@@ -67,6 +67,7 @@ struct Exercise: Codable {
 struct InfluencerRoutine: Codable {
     var routineId: Int
     var part: String
+    var date: String
     var numberOfExercise: Int
     var burnedKCalories: Int
     var requiredMinutes: Int
@@ -82,6 +83,11 @@ struct Routine: Codable {
     var date: String
     var isDone: Bool
     var routineId: Int
+}
+
+/// PatcheUsersRoutines
+struct RequestPatchUsersRoutines: Codable {
+    var time: String
 }
 
 /// PatchUsersRoutinesFinish
@@ -134,6 +140,40 @@ struct ResponsePatchUsersRoutinesExercisesSetsCancle: Codable {
     var reps: Int
     var weight: Int
     var isDone: Bool
+}
+//:
+
+// MARK: user-record-controller
+struct RecordedTime: Codable {
+    var hour: Int
+    var minute: Int
+    var second: Int
+    var nano: Int
+}
+
+struct RecordedSet: Codable {
+    var weight: Int?
+    var reps: Int
+}
+
+struct RecordedExercise: Codable {
+    var name: String
+    var sets: [RecordedSet]
+}
+
+struct Records: Codable {
+    var date: String
+    var time: String
+    var part: String
+    var numberOfExercise: Int
+    var burnedKCalories: Int
+    var requiredMinutes: Int
+    var exercises: [RecordedExercise]
+}
+
+/// GetUsersRecords
+struct ResponseGetUsersRecords: Codable {
+    var records: [Records]
 }
 //:
 

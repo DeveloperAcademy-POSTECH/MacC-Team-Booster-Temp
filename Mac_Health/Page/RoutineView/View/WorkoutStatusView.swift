@@ -1,5 +1,5 @@
 //
-//  WorkoutStatus.swift
+//  WorkoutStatusView.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 11/5/23.
@@ -142,7 +142,7 @@ struct WorkoutStatusView: View {
     }
 }
 
-struct WorkoutStatus_Previews: PreviewProvider {
+struct WorkoutStatusView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
             WorkoutStatusView()

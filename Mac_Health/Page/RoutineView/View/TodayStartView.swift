@@ -1,5 +1,5 @@
 //
-//  TodayRoutineView.swift
+//  TodayStartView.swift
 //  Mac_Health
 //
 //  Created by 정회승 on 2023/11/01.
@@ -10,6 +10,9 @@ import SwiftUI
 struct TodayStartView: View {
     @State var todayText = "오늘은 컨디션이 좀 안 좋아서 살살 했어요"
     @State var Influencer = "정회승"
+    
+    @StateObject var vm = TodayStartViewModel()
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -47,6 +50,7 @@ struct TodayStartView: View {
                     }
                     
                 }
+                  
                 Spacer()
                 TodayCard()
             }
@@ -140,7 +144,7 @@ struct TodayStartView: View {
     }
 }
 
-struct TodayRoutineView_Previews: PreviewProvider {
+struct TodayStartView_Previews: PreviewProvider {
     static var previews: some View {
         TodayStartView()
     }

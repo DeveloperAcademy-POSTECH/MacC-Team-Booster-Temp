@@ -27,7 +27,7 @@ import Moya
 enum GeneralAPI {
     // MARK: user-exercise-controller
     /// 세트 수 하나 증가 - WorkoutOngoingView
-    case PatchRoutinesExercisesSets(routineId: Int, exerciseId: Int)
+    case PostRoutinesExercisesSets(routineId: Int, exerciseId: Int)
     
     /// 세트 수 하나 감소 - WorkoutOngoingView
     case DeleteRoutinesExercisesSets(routineId: Int, exerciseId: Int)
@@ -40,17 +40,25 @@ enum GeneralAPI {
     //:
     
     // MARK: user-routine-controller
+    /// 운동 시간 업데이트 - WorkoutOngoingView
+    case PatchUsersRoutines(routineId: Int, time: String)
+    
     /// 루틴 완료 - WorkoutOngoingView
     case PatchUsersRoutinesFinish(routineId: Int)
     
     /// 전체 인플루언서 루틴 정보 - TodayRoutineMultiView
     case GetUsersRoutines(date: String)
     
-    /// 개인 인플루언서 루틴 정보 - TodayRoutineView
+    /// 개인 인플루언서 루틴 정보 - TodayStartView, SelectedRoutineView
     case GetUsersRoutinesId(id: Int)
     
-    /// 개인 인플루언서 전체 루틴 정보 - TotalRoutineView
+    /// 개인 인플루언서 전체 루틴 정보 - ChangeRoutineView
     case GetUsersInfluencersRoutines(id: Int)
+    //:
+    
+    // MARK: user-record-controller
+    /// 운동 기록 - RecordView
+    case GetUsersRecords
     //:
     
     // MARK: user-set-controller
@@ -84,18 +92,20 @@ extension GeneralAPI: TargetType {
     
     var path: String {
         switch self {
-        case .PatchRoutinesExercisesSets(let routineId, let exerciseId):
-            return "/routines/\(routineId)/exercises/\(exerciseId)/sets"
+        case .PostRoutinesExercisesSets(let routineId, let exerciseId):
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets"
         case .DeleteRoutinesExercisesSets(let routineId, let exerciseId):
-            return "/routines/\(routineId)/exercises/\(exerciseId)/sets"
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets"
         case .PatchRoutinesExercisesAlternate(let routineId, let exerciseId, let alternativeExerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/alternate/\(alternativeExerciseId)"
         case .GetRoutinesExercises(let routineId, let exerciseId):
-            return "/routines/\(routineId)/exercises/\(exerciseId)"
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)"
+        case .PatchUsersRoutines(let routineId, _):
+            return "/users/routines/\(routineId)"
         case .PatchUsersRoutinesFinish(let routineId):
             return "/users/routines/\(routineId)/finish"
-        case .GetUsersRoutines(let date):
-            return "/users/routines/?date=\(date)"
+        case .GetUsersRoutines:
+            return "/users/routines"
         case .GetUsersRoutinesId(let id):
             return "/users/routines/\(id)"
         case .GetUsersInfluencersRoutines(let id):
@@ -106,6 +116,8 @@ extension GeneralAPI: TargetType {
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets/\(setId)/finish"
         case .PatchUsersRoutinesExercisesSetsCancle(let routineId, let exerciseId, let setId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets/\(setId)/cancle"
+        case .GetUsersRecords:
+            return "/users/records"
         case .GetRoutines:
             return "/routines"
         case .GetInfluencersRoutines(let id):
@@ -115,10 +127,11 @@ extension GeneralAPI: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .PatchRoutinesExercisesSets: return .patch
+        case .PostRoutinesExercisesSets: return .post
         case .DeleteRoutinesExercisesSets: return .delete
         case .PatchRoutinesExercisesAlternate: return .patch
         case .GetRoutinesExercises: return .get
+        case .PatchUsersRoutines: return .patch
         case .PatchUsersRoutinesFinish: return .patch
         case .GetUsersRoutines: return .get
         case .GetUsersRoutinesId: return .get
@@ -126,6 +139,7 @@ extension GeneralAPI: TargetType {
         case .PatchUsersRoutinesExercisesSets: return .patch
         case .PatchUsersRoutinesExercisesSetsFinish: return .patch
         case .PatchUsersRoutinesExercisesSetsCancle: return .patch
+        case .GetUsersRecords: return .get
         case .GetRoutines: return .get
         case .GetInfluencersRoutines: return .get
         }
@@ -133,23 +147,28 @@ extension GeneralAPI: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .PatchRoutinesExercisesSets: return .requestPlain
+        case .PostRoutinesExercisesSets: return .requestPlain
         case .DeleteRoutinesExercisesSets: return .requestPlain
         case .PatchRoutinesExercisesAlternate: return .requestPlain
         case .GetRoutinesExercises: return .requestPlain
+        case .PatchUsersRoutines(_, time: let time): return .requestParameters(parameters: ["time": time], encoding: URLEncoding.queryString)
         case .PatchUsersRoutinesFinish: return .requestPlain
-        case .GetUsersRoutines: return .requestPlain
+        case .GetUsersRoutines(date: let date): return .requestParameters(parameters: ["date": date], encoding: URLEncoding.queryString)
         case .GetUsersRoutinesId: return .requestPlain
         case .GetUsersInfluencersRoutines: return .requestPlain
         case .PatchUsersRoutinesExercisesSets(_, _, _, weight: let weight, reps: let reps): return .requestJSONEncodable(RequestPatchUsersRoutinesExercisesSets(weight: weight, reps: reps))
         case .PatchUsersRoutinesExercisesSetsFinish: return .requestPlain
         case .PatchUsersRoutinesExercisesSetsCancle: return .requestPlain
+        case .GetUsersRecords: return .requestPlain
         case .GetRoutines: return .requestPlain
         case .GetInfluencersRoutines: return .requestPlain
         }
     }
     
     var headers: [String : String]? {
-        return nil
+        switch self {
+        default:
+            return ["Content-Type": "application/json"]
+        }
     }
 }
