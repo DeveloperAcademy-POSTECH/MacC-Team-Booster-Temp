@@ -28,9 +28,10 @@ struct SelectedRoutineView: View {
             VStack {
                 Spacer()
                 Button {
-                    print("start workout")
+                    
                 } label: {
-                    FloatingButton(backgroundColor: .green_main) { Text("운동 시작")
+                    FloatingButton(backgroundColor: .green_main) {
+                        Text("운동 시작")
                             .foregroundColor(.gray_900)
                             .font(.button1())
                     }
@@ -71,19 +72,20 @@ struct SelectedRoutineView: View {
             //운동 부위 갯수별 load
             VStack(spacing: 16) {
                 HStack {
-                    Text("등")
+                    Text(vm.routine.part)
                         .font(.headline1())
                         .foregroundColor(.label_900)
                     Spacer()
                 }
                 .frame(width: UIScreen.getWidth(350))
                 .padding(.top ,UIScreen.getHeight(20))
-                WorkoutCell()
-                ///누르면 detail셀이 나와야한다.
-                    .onTapGesture {
-                        showDetail.toggle()
-                    }
-                WorkoutCell()
+                
+                ForEach(0..<vm.routine.exercises.count, id: \.self) { index in
+                    WorkoutCell(exercise: vm.routine.exercises[index])
+                        .onTapGesture {
+                            showDetail.toggle()
+                        }
+                }
             }
             ///로그인의 유무에 따라서 있고 없고
             //                LinearGradient(colors: [.gray_900, .clear], startPoint: .bottom, endPoint: .top)
