@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct SubscribedInfluencerCard: View {
-    var influencerTitle = "정회승의 Smart Routine"
-    var todayPart = "등, 이두"
-    var setCount = "6개"
-    var cardBannerNum: Int
+    let routine: InfluencerRoutine
     
     var body: some View {
         ZStack{
@@ -19,7 +16,7 @@ struct SubscribedInfluencerCard: View {
                 .foregroundColor(.gray_700)
             HStack{
                 VStack(alignment: .leading){
-                    Text(influencerTitle)
+                    Text("\(routine.name)의 \(routine.routineName)")
                         .font(.headline1())
                         .foregroundColor(.label_900)
                         .padding(.leading, 20)
@@ -27,25 +24,33 @@ struct SubscribedInfluencerCard: View {
                     
                     Spacer()
                     HStack{
-                        Text(todayPart)
-                            .font(.headline2())
-                            .foregroundColor(.label_700)
-                            .padding(.leading, 20)
-                            .padding(.bottom, 24)
-                        Text("|")
-                            .font(.headline2())
-                            .foregroundColor(.label_700)
-                            .padding(.bottom, 24)
-                        Text(setCount)
-                            .font(.headline2())
-                            .foregroundColor(.label_700)
-                            .padding(.bottom, 24)
+                        if routine.numberOfExercise == 0 {
+                            Text("휴식")
+                                .font(.headline2())
+                                .foregroundColor(.label_700)
+                                .padding(.leading, 20)
+                                .padding(.bottom, 24)
+                        }
+                        else {
+                            Text(routine.part)
+                                .font(.headline2())
+                                .foregroundColor(.label_700)
+                                .padding(.leading, 20)
+                                .padding(.bottom, 24)
+                            Text("|")
+                                .font(.headline2())
+                                .foregroundColor(.label_700)
+                                .padding(.bottom, 24)
+                            Text("\(routine.numberOfExercise)개")
+                                .font(.headline2())
+                                .foregroundColor(.label_700)
+                                .padding(.bottom, 24)
+                        }
                     }
                 }
                 .frame(height: UIScreen.getHeight(156))
                 Spacer()
-                Image("CardBanner\(cardBannerNum)")
-                    .resizable()
+                AsyncImage(url: URL(string: routine.influencerProfileImageUrl))
                     .scaledToFill()
                     .frame(width: UIScreen.getWidth(156))
             }
@@ -60,7 +65,7 @@ struct SubscribedInfluencerCard: View {
 
 struct SubscribedInfluencerCard_Previews: PreviewProvider {
     static var previews: some View {
-        SubscribedInfluencerCard(cardBannerNum: 1)
+        SubscribedInfluencerCard(routine: InfluencerRoutine(routineId: 1, part: "등, 이두", date: "2023-10-30", numberOfExercise: 6, burnedKCalories: 300, requiredMinutes: 300, comment: "오늘도 화이팅!", name: "정회승", routineName: "올라잇", influencerProfileImageUrl: "", influencerId: 5))
     }
 }
 
