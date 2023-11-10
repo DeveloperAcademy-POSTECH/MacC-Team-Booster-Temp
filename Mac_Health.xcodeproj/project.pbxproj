@@ -70,6 +70,7 @@
 		F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */; };
 		F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */; };
 		F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */; };
+		F8A4BF672AFE618F00413213 /* WorkoutListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */; };
 		F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */; };
 		F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13E2AFA35210068F885 /* CalenderView.swift */; };
 		F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13F2AFA35210068F885 /* RecordView.swift */; };
@@ -141,6 +142,7 @@
 		F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedContentCard.swift; sourceTree = "<group>"; };
 		F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetCard.swift; sourceTree = "<group>"; };
 		F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListViewModel.swift; sourceTree = "<group>"; };
 		F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
 		F8F3A13E2AFA35210068F885 /* CalenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		F8F3A13F2AFA35210068F885 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordView.swift; path = Mac_Health/Page/RecordView/View/RecordView.swift; sourceTree = SOURCE_ROOT; };
@@ -292,6 +294,7 @@
 				F877F0AB2AFBBA40009D49B4 /* MultiRoutineViewModel.swift */,
 				F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */,
 				F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */,
+				F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */,
 				D569C78B2AF9440600FDADED /* RoutineViewModel.swift in Sources */,
 				F82674C52AF68F11002BFACD /* AlternativeWorkoutSheet.swift in Sources */,
+				F8A4BF672AFE618F00413213 /* WorkoutListViewModel.swift in Sources */,
 				D56A0C702AF2153A004D1747 /* TodayStartView.swift in Sources */,
 				D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */,
 				F89B3BED2AE5064200CACBD9 /* AlternativeWorkoutCard.swift in Sources */,
