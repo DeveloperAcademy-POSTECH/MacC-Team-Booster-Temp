@@ -35,9 +35,10 @@ struct InfluencerCard: View {
                 }
                 .frame(height: UIScreen.getHeight(156))
                 Spacer()
+                Image("CardBanner\(cardBannerNum)")
+                .frame(width: UIScreen.getWidth(156))
             }
-            Image("CardBanner\(cardBannerNum)")
-            .frame(width: UIScreen.getWidth(156))
+            
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(156))
             .mask(

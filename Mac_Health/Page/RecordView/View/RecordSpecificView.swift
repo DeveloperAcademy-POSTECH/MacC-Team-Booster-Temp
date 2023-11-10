@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecordSpecificView: View {
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -23,10 +24,14 @@ struct RecordSpecificView: View {
             }
             .padding()
             ///날짜는 상위뷰에서 받아와야함
-        }.navigationTitle("2203년 6월 23일")
+        }.navigationBarTitle("2203년 6월 23일", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     BackButton
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    //login 되야 활성화
+                    EditButton
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -34,8 +39,8 @@ struct RecordSpecificView: View {
     
     var RoutineDescriptionCard: some View {
         VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
-            Text("박재훈")
-            Text("2023년 3월 24일 루틴")
+            Text("정회승")
+            Text("2023년 4월 23일 루틴")
             Description(image: "figure.arms.open", text: "등 이두")
             Description(image: "square.stack.fill", text: "7개")
             Description(image: "clock.fill", text: "50분")
@@ -50,6 +55,7 @@ struct RecordSpecificView: View {
             Image(systemName: image)
                 .foregroundColor(.label_700)
                 .font(.body2())
+                .frame(width: UIScreen.getWidth(30))
             Text(text)
                 .foregroundColor(.label_900)
                 .font(.body())
@@ -58,8 +64,8 @@ struct RecordSpecificView: View {
     
     
     var EditButton: some View {
-        Button {
-            
+        NavigationLink {
+            RecordEditView()
         } label: {
             Image(systemName: "pencil")
                 .foregroundColor(.label_700)
@@ -116,6 +122,8 @@ struct RecordSpecificView: View {
 
 struct RecordSpecificView_Preview: PreviewProvider {
     static var previews: some View {
-        RecordSpecificView()
+        NavigationStack{
+            RecordSpecificView()
+        }
     }
 }

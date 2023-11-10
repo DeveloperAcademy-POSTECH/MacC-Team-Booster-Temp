@@ -21,7 +21,7 @@ struct WorkoutStatusEditView: View {
         VStack {
             WokroutList
         }
-        .navigationTitle("운동 목록 편집")
+        .navigationBarTitle("운동 목록 편집", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
@@ -153,6 +153,8 @@ struct WorkoutStatusEditView: View {
 
 struct WorkoutStatusEditView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutStatusEditView()
+        NavigationStack{
+            WorkoutStatusEditView()
+        }
     }
 }

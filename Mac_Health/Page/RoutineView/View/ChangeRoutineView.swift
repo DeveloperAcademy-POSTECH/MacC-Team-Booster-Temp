@@ -16,6 +16,7 @@ struct ChangeRoutineView: View {
     
     @ObservedObject var routineVM: RoutineViewModel
     @Environment(\.dismiss) var dismiss: DismissAction
+    
     ///운동 정렬용 선택
     @State var selection: String = "전체"
     let workoutTypes = WorkoutType.allCases
@@ -173,5 +174,7 @@ struct ChangeRoutineView: View {
 }
 
 #Preview {
-    ChangeRoutineView(routineVM: RoutineViewModel())
+    NavigationStack{
+        ChangeRoutineView(routineVM: RoutineViewModel())
+    }
 }
