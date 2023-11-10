@@ -37,4 +37,11 @@ class PauseStopwatchVM: ObservableObject {
             timer = nil
         }
     }
+    
+    func reset() {
+            elapsedTime = 0
+            isRunning = false
+            timer?.invalidate()
+            timer = nil
+        }
 }
