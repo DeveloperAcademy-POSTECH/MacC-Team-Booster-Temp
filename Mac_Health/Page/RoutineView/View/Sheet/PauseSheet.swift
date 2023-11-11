@@ -11,6 +11,7 @@ struct PauseSheet: View {
     @ObservedObject var viewModel: StopwatchVM
     @StateObject var pauseViewModel = PauseStopwatchVM()
     @Environment(\.dismiss) var dismiss: DismissAction
+    
     var body: some View {
         ZStack {
             Color.gray_800.ignoresSafeArea()
