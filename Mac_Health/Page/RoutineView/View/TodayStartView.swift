@@ -115,21 +115,41 @@ struct TodayStartView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
-                RoutineDescriptionCard
-                    .padding(.bottom, 10)
-                    .padding(.leading,10)
-                //운동 시작 버튼
-                NavigationLink {
-                    WorkoutListView()
-                } label: {
-                    RoundedRectangle(cornerRadius: 100)
-                        .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
-                        .foregroundColor(.green_main)
-                        .overlay {
-                            Text("운동 시작")
-                                .foregroundColor(.gray_900)
-                                .font(.button1())
-                        }
+                
+                if routine.part == "휴식" {
+                    VStack {
+                        Image(systemName: "moon.stars.fill")
+                            .font(.system(size: 60))
+                            .foregroundColor(.label_500)
+                            .padding(.bottom)
+                        Text("휴식")
+                            .foregroundColor(.label_900)
+                            .font(.headline1())
+                    }
+                    
+                    // TODO: EmptyFloatingButton으로 변경
+                    FloatingButton(backgroundColor: .clear) { }
+                        .padding(.bottom)
+                        .padding(.bottom)
+                }
+                else {
+                    RoutineDescriptionCard
+                        .padding(.bottom, 10)
+                        .padding(.leading,10)
+                    //운동 시작 버튼
+                    // TODO: 운동 완료시 disabledl
+                    NavigationLink {
+                        WorkoutListView()
+                    } label: {
+                        RoundedRectangle(cornerRadius: 100)
+                            .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
+                            .foregroundColor(.green_main)
+                            .overlay {
+                                Text("운동 시작")
+                                    .foregroundColor(.gray_900)
+                                    .font(.button1())
+                            }
+                    }
                 }
             }
         }
@@ -143,6 +163,6 @@ struct TodayStartView: View {
 
 struct TodayStartView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayStartView(routine: InfluencerRoutine(routineId: 1, part: "등, 가슴", date: "2023-10-24", numberOfExercise: 6, burnedKCalories: 580, requiredMinutes: 50, comment: "오늘은 컨디션이 안 좋아서 살살 했어요.", name: "정회승", routineName: "", influencerProfileImageUrl: "", influencerId: 1))
+        TodayStartView(routine: InfluencerRoutine(routineId: 1, part: "등", date: "2023-10-24", numberOfExercise: 6, burnedKCalories: 580, requiredMinutes: 50, comment: "오늘은 컨디션이 안 좋아서 살살 했어요.", name: "정회승", routineName: "", influencerProfileImageUrl: "", influencerId: 1))
     }
 }
