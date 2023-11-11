@@ -15,9 +15,7 @@ struct WorkoutListView: View {
     @State var isConfirmationDialogShow = false
     @State var isAlternativeWorkoutShow = false
     @State var isDeleteAlertShow = false
-    @StateObject var routineVM = RoutineViewModel()
-    
-    let workoutName = "클로즈 그립 랫 풀 다운"
+    @StateObject var vm = WorkoutListViewModel()
     
     var body: some View {
         VStack {
@@ -35,7 +33,7 @@ struct WorkoutListView: View {
         .sheet(isPresented: $isDetailedWorkoutShow) {
             DetailedWorkoutSheet()
         }
-        .confirmationDialog(workoutName, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.routine.part, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
         .sheet(isPresented: $isAlternativeWorkoutShow) {
@@ -59,7 +57,6 @@ struct WorkoutListView: View {
     var WorkoutList: some View {
         VStack {
             HStack {
-                // TODO: .
                 Text("등")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -68,35 +65,39 @@ struct WorkoutListView: View {
             }
             
             ScrollView {
-                // TODO: .
-                WorkoutListCell
-                    .onTapGesture {
-                        isDetailedWorkoutShow = true
-                    }
+                ForEach($vm.routine.exercises, id: \.id) {
+                    WorkoutListCell(exercise: $0)
+                }
+//                WorkoutListCell(index: 0, exercise: $vm.routine.exercises[0])
+//                    .onTapGesture {
+//                        // TODO: 각 셀 마다 데이터 바인딩해서 시트 지정
+//                        isDetailedWorkoutShow = true
+//                    }
             }
         }
         .padding(.horizontal)
     }
     
-    var WorkoutListCell: some View {
+    func WorkoutListCell(exercise: Binding<Exercise>) -> some View {
         HStack {
             RoundedRectangle(cornerRadius: 4)
                 .foregroundColor(.fill_1)
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .overlay {
-                    // TODO: .
-                    Image("CloseGripLatPullDown")
-                        .resizable()
+                    // TODO: 이미지 사이즈
+                    AsyncImage(url: URL(string: exercise.exerciseImageUrl.wrappedValue)) {
+                        $0.image?
+                            .resizable()
+                    }
                 }
             
             VStack(alignment: .leading) {
-                // TODO: .
-                Text(workoutName)
+                Text(vm.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 HStack {
                     // TODO: .
-                    Text("3세트")
+                    Text("\(exercise.numberOfSet.wrappedValue)세트")
                         .foregroundColor(.label_700)
                         .font(.body2())
                     Text("|")
@@ -113,17 +114,16 @@ struct WorkoutListView: View {
             
             Button {
                 // TODO: .
-                isConfirmationDialogShow = true
             } label: {
                 Image(systemName: "ellipsis")
-                .foregroundColor(.label_700)
+                    .foregroundColor(.label_700)
             }
         }
     }
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            WorkoutOngoingView(currentWorkoutNumber: 0, routineVM: routineVM)
+            //            WorkoutOngoingView(currentWorkoutNumber: 0, routineVM: routineVM)
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")
@@ -137,14 +137,12 @@ struct WorkoutListView: View {
     var AlternativeActionSheet: some View {
         Button {
             // TODO: .
-            isAlternativeWorkoutShow = true
         } label: {
             Text("운동 대체")
         }
         
         Button {
             // TODO: .
-            isDeleteAlertShow = true
         } label: {
             Text("삭제")
         }
@@ -166,7 +164,6 @@ struct WorkoutListView: View {
         }
     }
 }
-
 
 struct WorkoutListView_Previews: PreviewProvider {
     static var previews: some View {

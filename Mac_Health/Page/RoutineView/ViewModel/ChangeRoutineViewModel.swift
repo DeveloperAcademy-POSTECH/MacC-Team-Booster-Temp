@@ -8,6 +8,7 @@
 import SwiftUI
 
 class ChangeRoutineViewModel: ObservableObject {
+    // TODO: 데이트 포매터로 운동 일 수 파싱
     @Published var routines = ResponseGetUsersInfluencersRoutines(routines: [])
     
     init() {

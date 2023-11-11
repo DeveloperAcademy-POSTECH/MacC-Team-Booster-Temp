@@ -8,20 +8,22 @@
 import SwiftUI
 
 class TodayStartViewModel: ObservableObject {
-    @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
+    // TODO: 데이터 바인딩 수정
+    @Published var routines = ResponseGetUsersRoutines(routines: [])
+    @Published var routine: InfluencerRoutine = InfluencerRoutine(routineId: 0, part: "", date: "", numberOfExercise: 0, burnedKCalories: 0, requiredMinutes: 0, comment: "", name: "", routineName: "", influencerProfileImageUrl: "", influencerId: 0)
     
     init() {
-        self.fetchRoutine()
+        self.fetchRoutines()
     }
     
-    func fetchRoutine() {
-        let id = 1
+    func fetchRoutines() {
+        // TODO: date 오늘 날짜로
+        let date = "2023-10-30"
         
-        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: id), type: ResponseGetUsersRoutinesId.self) {
+        GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
             switch $0 {
-            case .success(let routine):
-                self.routine = routine
-                print(self.routine)
+            case .success(let routines):
+                self.routine = routines.first!
             case .failure(let error):
                 print(error.localizedDescription)
             }

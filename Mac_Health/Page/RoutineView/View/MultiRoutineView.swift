@@ -18,14 +18,16 @@ struct MultiRoutineView: View {
                     .resizable()
                     .scaledToFit()
                     .padding(.bottom, 20)
-                ScrollView{
-                    ForEach(1..<4, id: \.self) {idx in
-                        SubscribedInfluencerCard(cardBannerNum: idx)
-                            .padding(.bottom, 10)
+                ScrollView {
+                    if !vm.routines.routines.isEmpty {
+                        ForEach(0..<vm.routines.routines.count, id: \.self) {
+                            SubscribedInfluencerCard(routine: vm.routines.routines[$0])
+                                .padding(.bottom, 10)
+                        }
                     }
                 }
             }
-        } 
+        }
     }
 }
 

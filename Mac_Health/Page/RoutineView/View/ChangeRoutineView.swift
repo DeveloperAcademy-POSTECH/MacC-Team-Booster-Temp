@@ -12,10 +12,8 @@ enum WorkoutType: String, CaseIterable {
 }
 
 struct ChangeRoutineView: View {
-    @StateObject var vm = ChangeRoutineViewModel()
-    
-    @ObservedObject var routineVM: RoutineViewModel
     @Environment(\.dismiss) var dismiss: DismissAction
+    @StateObject var vm = ChangeRoutineViewModel()
     
     ///운동 정렬용 선택
     @State var selection: String = "전체"
@@ -51,6 +49,7 @@ struct ChangeRoutineView: View {
                 .lineSpacing(5)
                 .font(.title2())
                 .foregroundColor(.label_900)
+            
             Button {
                 
             } label: {
@@ -61,56 +60,56 @@ struct ChangeRoutineView: View {
                         Text("둘러보기")
                             .foregroundColor(.gray_900)
                             .font(.button1())
-                        
                     }
             }
-            
         }
     }
     
-    
     var Workouts: some View {
         ScrollView {
-            ///데이터에서 받아온 달력과 운동에 관해서 작성,
-            ForEach(Range(0...10)) { a in
+            ForEach(0..<vm.routines.routines.count, id: \.self) { idx in
                 NavigationLink {
                     SelectedRoutineView()
-                        .navigationBarTitle("\(a)월\(a)일", displayMode: .inline)
+                    // TODO: 데이트 포매터 사용
+                        .navigationBarTitle("\(idx)월\(idx)일", displayMode: .inline)
                 } label: {
-                    TodayWorkoutCell(date: a)
+                    TodayWorkoutCell(index: idx)
                         .padding(.vertical, 8)
                 }
-                
-                
             }
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
     }
     
-    func TodayWorkoutCell(date: Int) -> some View {
+    func TodayWorkoutCell(index: Int) -> some View {
         HStack(spacing: UIScreen.getWidth(16)) {
             RoundedRectangle(cornerRadius: 8)
-            ///오늘이면 today == date ? fill_2 : label_900
+            // TODO: 오늘이면 today == date ? fill_2 : label_900
                 .foregroundColor(.label_900)
                 .frame(width: UIScreen.getWidth(40), height: UIScreen.getHeight(40))
                 .overlay {
-                    Text("\(date)")
+                    // TODO: 데이트 포매터 사용
+                    Text("\(vm.routines.routines[index].date)")
                         .font(.headline1())
                     ///오늘이면 today == date ? label_900 : gray_900
                         .foregroundColor(.gray_900)
                 }
-            Text("등, 이두")
+            Text("\(vm.routines.routines[index].part)")
                 .font(.headline1())
                 .foregroundColor(.label_900)
+            
             Spacer()
-            ///다한거 아니면 없도록 한다.
-            Circle()
-                .frame(width: UIScreen.getWidth(36))
-                .foregroundColor(.green_10)
-                .overlay {
-                    Image(systemName: "checkmark")
-                        .foregroundColor(.green_main)
-                        .font(.body2())
-                }
+            
+            if vm.routines.routines[index].isDone {
+                Circle()
+                    .frame(width: UIScreen.getWidth(36))
+                    .foregroundColor(.green_10)
+                    .overlay {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.green_main)
+                            .font(.body2())
+                    }
+            }
         }
     }
     
@@ -129,10 +128,11 @@ struct ChangeRoutineView: View {
                             notSelectedCapsul(text: type.rawValue)
                         }
                     }
-                    
-                }.frame(height: UIScreen.getHeight(34))
-            }.padding(.horizontal)
-                .padding(.bottom)
+                }
+                .frame(height: UIScreen.getHeight(34))
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
         }
     }
     
@@ -161,7 +161,6 @@ struct ChangeRoutineView: View {
             }
     }
     
-    
     var BackButton: some View {
         Button {
             dismiss()
@@ -175,6 +174,6 @@ struct ChangeRoutineView: View {
 
 #Preview {
     NavigationStack{
-        ChangeRoutineView(routineVM: RoutineViewModel())
+        ChangeRoutineView()
     }
 }

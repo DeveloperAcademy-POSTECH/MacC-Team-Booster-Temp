@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct TodayStartView: View {
-    @State var todayText = "오늘은 컨디션이 좀 안 좋아서 살살 했어요"
-    @State var Influencer = "정회승"
-    
     @StateObject var vm = TodayStartViewModel()
     
     var body: some View {
@@ -18,11 +15,13 @@ struct TodayStartView: View {
             Color.gray_900.ignoresSafeArea()
             VStack{
                 ZStack(alignment: .top) {
-                    Image(systemName: "person")
-                        .resizable()
-                    //                        .scaledToFill()
-                        .frame(width: UIScreen.getWidth(390))
-                        .offset(x:20, y: 30)
+                    AsyncImage(url: URL(string: vm.routine.influencerProfileImageUrl)) {
+                        $0.image?
+                            .scaledToFill()
+                            .frame(width: UIScreen.getWidth(390))
+                            .offset(x:20, y: 30)
+                    }
+                    
                     //인플루언서의 오늘의 루틴
                     NavigationTitle
                     
@@ -31,7 +30,7 @@ struct TodayStartView: View {
                         Spacer()
                         HStack(alignment: .top){
                             VStack(alignment: .leading){
-                                Text(todayText)
+                                Text(vm.routine.comment)
                                     .font(.body)
                                     .foregroundColor(.label_800)
                             }
@@ -48,9 +47,8 @@ struct TodayStartView: View {
                                 .stroke(.white, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
                         }
                     }
-                    
                 }
-                  
+                
                 Spacer()
                 TodayCard()
             }
@@ -63,7 +61,7 @@ struct TodayStartView: View {
     
     var NavigationTitle: some View {
         HStack {
-            Text("\(Influencer)의 \n오늘의 루틴")
+            Text("\(vm.routine.name)의 \n오늘의 루틴")
                 .font(.title1())
                 .foregroundColor(.label_900)
             Spacer()
@@ -75,16 +73,16 @@ struct TodayStartView: View {
     var RoutineDescriptionCard: some View {
         HStack {
             VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
-                Description(image: "figure.arms.open", text: "등 이두")
-                Description(image: "square.stack.fill", text: "7개")
-                Description(image: "clock.fill", text: "50분")
-                Description(image: "flame.circle.fill", text: "569kcal")
+                Description(image: "figure.arms.open", text: vm.routine.part)
+                Description(image: "square.stack.fill", text: "\(vm.routine.numberOfExercise)개")
+                Description(image: "clock.fill", text: "\(vm.routine.requiredMinutes)분")
+                Description(image: "flame.circle.fill", text: "\(vm.routine.burnedKCalories)kcal")
             }.padding(.bottom)
             Spacer()
         }
     }
     
-
+    
     func Description(image: String, text: String) -> some View {
         HStack {
             Image(systemName: image)
@@ -101,26 +99,25 @@ struct TodayStartView: View {
         ZStack{
             VStack(alignment: .center){
                 HStack{
-                    Text("11월 1일 수요일")
+                    // TODO: 데이트 포매터
+                    Text("\(vm.routine.date)")
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()
                     NavigationLink {
-                        ChangeRoutineView(routineVM: RoutineVM())
+                        ChangeRoutineView()
                             .navigationBarTitle("전체 루틴", displayMode: .inline)
                     } label: {
                         Image(systemName: "calendar")
                             .font(.title2())
                             .foregroundColor(.green_main)
                     }
-                    
-                    
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
                 RoutineDescriptionCard
-                .padding(.bottom, 10)
-                .padding(.leading,10)
+                    .padding(.bottom, 10)
+                    .padding(.leading,10)
                 //운동 시작 버튼
                 NavigationLink {
                     WorkoutListView()
@@ -140,7 +137,6 @@ struct TodayStartView: View {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
-
     }
 }
 
