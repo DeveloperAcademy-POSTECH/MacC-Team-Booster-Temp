@@ -19,8 +19,12 @@ struct MultiRoutineView: View {
             ScrollView {
                 if !vm.routines.routines.isEmpty {
                     ForEach(vm.routines.routines, id: \.self) { routine in
-                        SubscribedInfluencerCard(routine: routine)
-                            .padding(.bottom, 10)
+                        NavigationLink {
+                            TodayStartView(routine: routine)
+                        } label: {
+                            SubscribedInfluencerCard(routine: routine)
+                                .padding(.bottom, 10)
+                        }
                     }
                 }
             }

@@ -8,60 +8,60 @@
 import SwiftUI
 
 struct TodayStartView: View {
+    let routine: InfluencerRoutine
     @StateObject var vm = TodayStartViewModel()
     
     var body: some View {
-        ZStack{
-            Color.gray_900.ignoresSafeArea()
-            VStack{
+        ZStack {
+            VStack {
                 ZStack(alignment: .top) {
-                    AsyncImage(url: URL(string: vm.routine.influencerProfileImageUrl)) {
-                        $0.image?
+                    AsyncImage(url: URL(string: routine.influencerProfileImageUrl)) { image in
+                        image
+                            .resizable()
                             .scaledToFill()
                             .frame(width: UIScreen.getWidth(390))
                             .offset(x:20, y: 30)
+                    } placeholder: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(50)
                     }
-                    
                     //인플루언서의 오늘의 루틴
                     NavigationTitle
-                    
                     //오늘의 상태 텍스트
                     VStack {
                         Spacer()
-                        HStack(alignment: .top){
-                            VStack(alignment: .leading){
-                                Text(vm.routine.comment)
+                        HStack(alignment: .top) {
+                            VStack(alignment: .leading) {
+                                Text(routine.comment)
                                     .font(.body)
                                     .foregroundColor(.label_800)
                             }
                             .padding(20)
                         }
                         .frame(width: UIScreen.getWidth(350))
-                        .background{
+                        .background {
                             RoundedRectangle(cornerRadius: 8)
                                 .foregroundColor(.gray_700)
-                        }
-                        .background{
                             RoundedRectangle(cornerRadius: 8)
-                            ///label_500 적용 안됨
-                                .stroke(.white, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+                                .stroke(lineWidth: 1.0)
+                                .foregroundColor(.label_500)
                         }
                     }
                 }
-                
                 Spacer()
                 TodayCard()
             }
             .padding(.bottom)
             Spacer()
                 .frame(height: UITabBarController().height)
-            
         }
     }
     
     var NavigationTitle: some View {
         HStack {
-            Text("\(vm.routine.name)의 \n오늘의 루틴")
+            Text("\(routine.name)의\n오늘의 루틴")
                 .font(.title1())
                 .foregroundColor(.label_900)
             Spacer()
@@ -73,11 +73,12 @@ struct TodayStartView: View {
     var RoutineDescriptionCard: some View {
         HStack {
             VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
-                Description(image: "figure.arms.open", text: vm.routine.part)
-                Description(image: "square.stack.fill", text: "\(vm.routine.numberOfExercise)개")
-                Description(image: "clock.fill", text: "\(vm.routine.requiredMinutes)분")
-                Description(image: "flame.circle.fill", text: "\(vm.routine.burnedKCalories)kcal")
-            }.padding(.bottom)
+                Description(image: "figure.arms.open", text: routine.part)
+                Description(image: "square.stack.fill", text: "\(routine.numberOfExercise)개")
+                Description(image: "clock.fill", text: "\(routine.requiredMinutes)분")
+                Description(image: "flame.circle.fill", text: "\(routine.burnedKCalories)kcal")
+            }
+            .padding(.bottom)
             Spacer()
         }
     }
@@ -95,12 +96,11 @@ struct TodayStartView: View {
         }
     }
     
-    func TodayCard () -> some View {
-        ZStack{
-            VStack(alignment: .center){
-                HStack{
-                    // TODO: 데이트 포매터
-                    Text("\(vm.routine.date)")
+    func TodayCard() -> some View {
+        ZStack {
+            VStack(alignment: .center) {
+                HStack {
+                    Text("\(vm.dateFormat(from: routine.date))")
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()
@@ -125,7 +125,8 @@ struct TodayStartView: View {
                     RoundedRectangle(cornerRadius: 100)
                         .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
                         .foregroundColor(.green_main)
-                        .overlay { Text("운동 시작")
+                        .overlay {
+                            Text("운동 시작")
                                 .foregroundColor(.gray_900)
                                 .font(.button1())
                         }
@@ -133,7 +134,7 @@ struct TodayStartView: View {
             }
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(320))
-        .background{
+        .background {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
@@ -142,6 +143,6 @@ struct TodayStartView: View {
 
 struct TodayStartView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayStartView()
+        TodayStartView(routine: InfluencerRoutine(routineId: 1, part: "등, 가슴", date: "2023-10-24", numberOfExercise: 6, burnedKCalories: 580, requiredMinutes: 50, comment: "오늘은 컨디션이 안 좋아서 살살 했어요.", name: "정회승", routineName: "", influencerProfileImageUrl: "", influencerId: 1))
     }
 }

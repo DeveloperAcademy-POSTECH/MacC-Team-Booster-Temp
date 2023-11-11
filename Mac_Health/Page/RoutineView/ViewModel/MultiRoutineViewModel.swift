@@ -20,8 +20,8 @@ class MultiRoutineViewModel: ObservableObject {
         
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
             switch $0 {
-            case .success(let routine):
-                self.routines.routines = routine
+            case .success(let routines):
+                self.routines.routines = routines
             case .failure(let error):
                 print(error.localizedDescription)
             }
