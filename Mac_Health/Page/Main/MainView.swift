@@ -16,7 +16,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             TabView {
-                TodayStartView()
+                MultiRoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
                         Text("루틴")
