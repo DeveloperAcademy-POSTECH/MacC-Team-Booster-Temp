@@ -11,19 +11,16 @@ struct MultiRoutineView: View {
     @StateObject var vm = MultiRoutineViewModel()
     
     var body: some View {
-        ZStack{
-            Color.gray_900.ignoresSafeArea()
-            VStack{
-                Image("appTitle")
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.bottom, 20)
-                ScrollView {
-                    if !vm.routines.routines.isEmpty {
-                        ForEach(0..<vm.routines.routines.count, id: \.self) {
-                            SubscribedInfluencerCard(routine: vm.routines.routines[$0])
-                                .padding(.bottom, 10)
-                        }
+        VStack {
+            Image("appTitle")
+                .resizable()
+                .scaledToFit()
+                .padding(.bottom, 20)
+            ScrollView {
+                if !vm.routines.routines.isEmpty {
+                    ForEach(vm.routines.routines, id: \.self) { routine in
+                        SubscribedInfluencerCard(routine: routine)
+                            .padding(.bottom, 10)
                     }
                 }
             }

@@ -64,7 +64,7 @@ struct Exercise: Codable, Identifiable {
     var numberOfSet: Int
 }
 
-struct InfluencerRoutine: Codable {
+struct InfluencerRoutine: Codable, Hashable {
     var routineId: Int
     var part: String
     var date: String
