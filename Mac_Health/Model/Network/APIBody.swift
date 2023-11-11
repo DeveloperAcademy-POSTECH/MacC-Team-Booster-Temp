@@ -57,7 +57,7 @@ struct ResponseGetRoutinesExercises: Codable {
 //:
 
 // MARK: user-routine-controller
-struct Exercise: Codable {
+struct Exercise: Codable, Identifiable {
     var id: Int
     var name: String
     var exerciseImageUrl: String

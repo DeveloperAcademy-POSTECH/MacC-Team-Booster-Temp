@@ -50,9 +50,11 @@ struct SubscribedInfluencerCard: View {
                 }
                 .frame(height: UIScreen.getHeight(156))
                 Spacer()
-                AsyncImage(url: URL(string: routine.influencerProfileImageUrl))
-                    .scaledToFill()
-                    .frame(width: UIScreen.getWidth(156))
+                AsyncImage(url: URL(string: routine.influencerProfileImageUrl)) {
+                    $0.image?
+                        .scaledToFill()
+                        .frame(width: UIScreen.getWidth(156))
+                }
             }
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(156))

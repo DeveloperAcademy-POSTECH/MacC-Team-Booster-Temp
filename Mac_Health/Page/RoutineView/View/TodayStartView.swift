@@ -15,10 +15,12 @@ struct TodayStartView: View {
             Color.gray_900.ignoresSafeArea()
             VStack{
                 ZStack(alignment: .top) {
-                    AsyncImage(url: URL(string: vm.routine.influencerProfileImageUrl))
-                        .scaledToFill()
-                        .frame(width: UIScreen.getWidth(390))
-                        .offset(x:20, y: 30)
+                    AsyncImage(url: URL(string: vm.routine.influencerProfileImageUrl)) {
+                        $0.image?
+                            .scaledToFill()
+                            .frame(width: UIScreen.getWidth(390))
+                            .offset(x:20, y: 30)
+                    }
                     
                     //인플루언서의 오늘의 루틴
                     NavigationTitle
@@ -44,7 +46,7 @@ struct TodayStartView: View {
                             ///label_500 적용 안됨
                                 .stroke(.white, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
                         }
-                    }                    
+                    }
                 }
                 
                 Spacer()

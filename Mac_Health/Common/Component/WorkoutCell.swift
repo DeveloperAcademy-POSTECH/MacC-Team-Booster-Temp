@@ -12,9 +12,11 @@ struct WorkoutCell: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: exercise.exerciseImageUrl))
-                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
-                .foregroundColor(.label_400)
+            AsyncImage(url: URL(string: exercise.exerciseImageUrl)) {
+                $0.image
+                    .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+            }
+            .foregroundColor(.label_400)
             VStack(alignment: .leading) {
                 Text(exercise.name)
                     .foregroundColor(.label_900)
