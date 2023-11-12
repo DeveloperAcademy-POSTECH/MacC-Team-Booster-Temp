@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WorkoutListView: View {
+    let routineId: Int
     // TODO: WorkoutListView 데이터 작업
     @Environment(\.dismiss) var dismiss
     
@@ -167,6 +168,6 @@ struct WorkoutListView: View {
 
 struct WorkoutListView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutListView()
+        WorkoutListView(routineId: 1)
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-ㅣclass SelectedRoutineViewModel: ObservableObject {
+class SelectedRoutineViewModel: ObservableObject {
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     
     func fetchRoutine(routineId: Int) {
