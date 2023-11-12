@@ -79,10 +79,11 @@ struct WorkoutOngoingView: View {
                 routineVM.showWorkOutOnGoing.toggle()
             }
         }
-        //운동 완료 후 창닫기
-        .alert("운동을 완료할까요?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
+        //TODO: 운동 완료 후 창닫기 (수행하지 않지 않은 운동이 있을 때만)
+        .alert("완료하지 않은 운동이 있습니다.\n해당 운동을 확인하시겠습니까?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
             Button("취소") {
                 // MARK: 취소
+                dismiss()
             }
             NavigationLink("완료하기") {
                 // MARK: 완료하기

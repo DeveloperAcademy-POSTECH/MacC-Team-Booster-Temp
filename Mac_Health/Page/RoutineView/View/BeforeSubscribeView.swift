@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct BeforeSubscribeView: View {
+    
+    @Binding var tabSelection: Int
     var body: some View {
         //구독 X
         ZStack{
@@ -25,8 +27,8 @@ struct BeforeSubscribeView: View {
                 .font(.title2())
                 .foregroundColor(.label_900)
                 .padding()
-                NavigationLink{
-                    SearchView()
+                Button{
+                    self.tabSelection = 2
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .frame(width: UIScreen.getWidth(180), height: UIScreen.getHeight(60))
@@ -45,6 +47,6 @@ struct BeforeSubscribeView: View {
 
 #Preview {
     NavigationStack{
-        BeforeSubscribeView()
+        BeforeSubscribeView(tabSelection: .constant(1))
     }
 }
