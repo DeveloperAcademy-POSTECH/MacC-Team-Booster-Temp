@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
+    @Binding var tabSelection: Int
     var body: some View {
         //네비게이션 스택 2인 이상
 //            ZStack {
@@ -30,7 +31,7 @@ struct SearchView: View {
                 VStack {
                     NavigationTitle
                     NavigationLink {
-                        SubscribeView()
+                        SubscribeView(tabSelection: $tabSelection)
                     } label: {
                         SearchCard
                     }
@@ -123,7 +124,7 @@ struct SearchView: View {
                     ForEach(1..<4, id: \.self) {idx in
                         //전문가들의 일상 루틴에서 구독 뷰
                         NavigationLink {
-                            SubscribeView()
+                            SubscribeView(tabSelection: $tabSelection)
                                 .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
                         } label: {
                             InfluencerCard(cardBannerNum: idx)
@@ -136,6 +137,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(tabSelection: .constant(1))
     }
 }

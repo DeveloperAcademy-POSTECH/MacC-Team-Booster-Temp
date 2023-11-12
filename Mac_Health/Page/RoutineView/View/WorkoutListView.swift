@@ -14,6 +14,7 @@ struct WorkoutListView: View {
     @State var isConfirmationDialogShow = false
     @State var isAlternativeWorkoutShow = false
     @State var isDeleteAlertShow = false
+    @Binding var tabSelection: Int
     @StateObject var routineVM = RoutineVM()
     
     let workoutName = "클로즈 그립 랫 풀 다운"
@@ -122,7 +123,7 @@ struct WorkoutListView: View {
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            WorkoutOngoingView(viewModel: StopwatchVM(), currentWorkoutNumber: 0, routineVM: routineVM)
+            WorkoutOngoingView(viewModel: StopwatchVM(), tabSelection: $tabSelection, currentWorkoutNumber: 0, routineVM: routineVM)
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")
@@ -169,6 +170,6 @@ struct WorkoutListView: View {
 
 struct WorkoutListView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutListView()
+        WorkoutListView(tabSelection: .constant(3))
     }
 }

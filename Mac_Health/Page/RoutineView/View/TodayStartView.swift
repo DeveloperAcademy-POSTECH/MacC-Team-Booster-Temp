@@ -10,6 +10,7 @@ import SwiftUI
 struct TodayStartView: View {
     @State var todayText = "오늘은 컨디션이 좀 안 좋아서 살살 했어요"
     @State var Influencer = "정회승"
+    @Binding var tabSelection: Int
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -124,7 +125,7 @@ struct TodayStartView: View {
                 .padding(.leading,10)
                 //운동 시작 버튼
                 NavigationLink {
-                    WorkoutListView()
+                    WorkoutListView(tabSelection: $tabSelection)
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
@@ -147,6 +148,6 @@ struct TodayStartView: View {
 
 struct TodayRoutineView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayStartView()
+        TodayStartView(tabSelection: .constant(3))
     }
 }

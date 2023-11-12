@@ -18,14 +18,16 @@ struct MainView: View {
     var body: some View {
         NavigationStack(path: $path) {
             TabView(selection: $tabSelection){
-                BeforeSubscribeView(tabSelection: $tabSelection)
+                //TODO: 로그인 전/ 구독전/ 구독 후 구분
+//                BeforeSubscribeView(tabSelection: $tabSelection)
+                TodayStartView(tabSelection: $tabSelection)
                     .tabItem {
                         Image(systemName: "dumbbell")
                         Text("루틴")
                     }
                     .tag(1)
                 
-                SearchView()
+                SearchView(tabSelection: $tabSelection)
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("둘러보기")

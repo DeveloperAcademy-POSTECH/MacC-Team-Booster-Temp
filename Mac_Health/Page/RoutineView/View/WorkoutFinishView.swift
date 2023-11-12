@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorkoutFinishView: View {
+    
+    @Binding var tabSelection: Int
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -59,14 +61,26 @@ struct WorkoutFinishView: View {
                 .padding()
                 Spacer()
                     .frame(height: 100)
-                FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
-                        .foregroundColor(.gray_900)
-                        .font(.button1())
+                Button{
+                    self.tabSelection = 3
+                    print(self.tabSelection)
+                } label: {
+                    FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
+                            .foregroundColor(.gray_900)
+                            .font(.button1())
+                    }
+                    .padding(.bottom, 5)
+                    
                 }
-                .padding(.bottom, 5)
-                FloatingButton(backgroundColor: .gray_600) { Text("닫기")
-                        .foregroundColor(.green_main)
-                        .font(.button1())
+                
+                Button{
+                    
+                } label: {
+                    FloatingButton(backgroundColor: .gray_600) { Text("닫기")
+                            .foregroundColor(.green_main)
+                            .font(.button1())
+                }
+                
                 }
             }
         }
@@ -76,5 +90,5 @@ struct WorkoutFinishView: View {
 }
 
 #Preview {
-    WorkoutFinishView()
+    WorkoutFinishView(tabSelection: .constant(3))
 }

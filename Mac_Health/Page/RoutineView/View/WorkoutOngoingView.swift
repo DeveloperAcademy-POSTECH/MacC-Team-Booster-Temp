@@ -11,6 +11,7 @@ struct WorkoutOngoingView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = StopwatchVM()
     @FocusState private var isFocused: Bool
+    @Binding var tabSelection: Int
     
     let currentWorkoutNumber: Int
     @ObservedObject var routineVM: RoutineVM
@@ -87,7 +88,7 @@ struct WorkoutOngoingView: View {
             }
             NavigationLink("완료하기") {
                 // MARK: 완료하기
-                WorkoutFinishView()
+                WorkoutFinishView(tabSelection: $tabSelection)
             }
         }
         .alert(isPresented: $isDeleteAlertShow) {
@@ -495,7 +496,7 @@ struct ImageTip: View {
 struct WorkoutOngoingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            WorkoutOngoingView(viewModel: StopwatchVM(), currentWorkoutNumber: 1, routineVM: RoutineVM())
+            WorkoutOngoingView(viewModel: StopwatchVM(), tabSelection: .constant(3), currentWorkoutNumber: 1, routineVM: RoutineVM())
         }
     }
 }
