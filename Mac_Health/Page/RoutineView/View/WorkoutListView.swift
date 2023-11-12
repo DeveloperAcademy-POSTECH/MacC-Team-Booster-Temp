@@ -9,20 +9,18 @@ import SwiftUI
 
 struct WorkoutListView: View {
     let routineId: Int
-    // TODO: WorkoutListView 데이터 작업
-    @Environment(\.dismiss) var dismiss
     
-    @State var isDetailedWorkoutShow = false
-    @State var isConfirmationDialogShow = false
-    @State var isAlternativeWorkoutShow = false
-    @State var isDeleteAlertShow = false
     @StateObject var vm = WorkoutListViewModel()
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
             WorkoutList
             
             WorkoutStartButton
+        }
+        .onAppear {
+            vm.fetchRoutine(routineId: routineId)
         }
         .navigationTitle("운동 루틴 편집")
         .toolbar {
@@ -31,16 +29,16 @@ struct WorkoutListView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .sheet(isPresented: $isDetailedWorkoutShow) {
+        .sheet(isPresented: $vm.isDetailedWorkoutShow) {
             DetailedWorkoutSheet()
         }
-        .confirmationDialog(vm.routine.part, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.routine.part, isPresented: $vm.isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-        .sheet(isPresented: $isAlternativeWorkoutShow) {
+        .sheet(isPresented: $vm.isAlternativeWorkoutShow) {
             AlternativeWorkoutSheet()
         }
-        .alert("운동을 삭제하시겠습니까?", isPresented: $isDeleteAlertShow) {
+        .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteAlertShow) {
             DeleteAlert
         }
     }
@@ -58,6 +56,7 @@ struct WorkoutListView: View {
     var WorkoutList: some View {
         VStack {
             HStack {
+                // TODO: 부위 별로 수정
                 Text("등")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -66,14 +65,9 @@ struct WorkoutListView: View {
             }
             
             ScrollView {
-                ForEach($vm.routine.exercises, id: \.id) {
-                    WorkoutListCell(exercise: $0)
+                ForEach($vm.routine.exercises, id: \.id) { exercise in
+                    WorkoutListCell(exercise: exercise)
                 }
-//                WorkoutListCell(index: 0, exercise: $vm.routine.exercises[0])
-//                    .onTapGesture {
-//                        // TODO: 각 셀 마다 데이터 바인딩해서 시트 지정
-//                        isDetailedWorkoutShow = true
-//                    }
             }
         }
         .padding(.horizontal)
@@ -85,29 +79,33 @@ struct WorkoutListView: View {
                 .foregroundColor(.fill_1)
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .overlay {
-                    // TODO: 이미지 사이즈
-                    AsyncImage(url: URL(string: exercise.exerciseImageUrl.wrappedValue)) {
-                        $0.image?
+                    AsyncImage(url: URL(string: exercise.exerciseImageUrl.wrappedValue)) { image in
+                        image
                             .resizable()
+                    } placeholder: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.label_400)
+                            .padding()
                     }
                 }
             
             VStack(alignment: .leading) {
-                Text(vm.routine.part)
+                Text(exercise.name.wrappedValue)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 HStack {
-                    // TODO: .
                     Text("\(exercise.numberOfSet.wrappedValue)세트")
                         .foregroundColor(.label_700)
                         .font(.body2())
-                    Text("|")
-                        .foregroundColor(.label_400)
-                        .font(.body2())
-                    // TODO:
-                    Text("10-15회")
-                        .foregroundColor(.label_700)
-                        .font(.body2())
+//                    Text("|")
+//                        .foregroundColor(.label_400)
+//                        .font(.body2())
+                    // TODO: reps 추가
+//                    Text("10-15회")
+//                        .foregroundColor(.label_700)
+//                        .font(.body2())
                 }
             }
             
