@@ -244,7 +244,6 @@
 		D569C78C2AF9451D00FDADED /* RoutineView */ = {
 			isa = PBXGroup;
 			children = (
-				D58066522AFD313B003BB276 /* StopwatchPractice */,
 				D569C7902AF9459900FDADED /* View */,
 				D569C7912AF945A200FDADED /* ViewModel */,
 			);
@@ -314,13 +313,6 @@
 				D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D58066522AFD313B003BB276 /* StopwatchPractice */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = StopwatchPractice;
 			sourceTree = "<group>";
 		};
 		D584CD872AFB555A00AFA1FF /* View */ = {

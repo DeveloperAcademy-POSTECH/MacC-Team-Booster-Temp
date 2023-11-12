@@ -25,7 +25,6 @@ struct PauseSheet: View {
                     .foregroundColor(.label_900)
                 Button {
                     dismiss()
-                    viewModel.Start()
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(.green_main)
@@ -46,6 +45,7 @@ struct PauseSheet: View {
         }
         .onDisappear{
             pauseViewModel.reset()
+            viewModel.Start()
         }
         .presentationDetents([.height(UIScreen.getHeight(378))])
     }
