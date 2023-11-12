@@ -10,6 +10,7 @@ import SwiftUI
 struct WorkoutOngoingView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = StopwatchVM()
+    @FocusState private var isFocused: Bool
     
     let currentWorkoutNumber: Int
     @ObservedObject var routineVM: RoutineVM
@@ -45,7 +46,7 @@ struct WorkoutOngoingView: View {
             
             VStack {
                 Spacer()
-                WorkoutButton
+                isFocused ? nil : WorkoutButton
             }
         }
         
@@ -131,6 +132,9 @@ struct WorkoutOngoingView: View {
         .onAppear{
             viewModel.Start()
         }
+        .onTapGesture {
+                    isFocused = false
+                }
     }
     
     
@@ -307,7 +311,7 @@ struct WorkoutOngoingView: View {
     
     var WorkoutSetList: some View {
         ForEach($workoutOngoingVM.workoutSet) { $workoutSet in
-            WorkoutSetCard(workoutSet: $workoutSet)
+            WorkoutSetCard(workoutSet: $workoutSet, isFocused: $isFocused)
                 .overlay {
                     if workoutSet.index == workoutOngoingVM.currentSet {
                         RoundedRectangle(cornerRadius: 8)
@@ -341,7 +345,7 @@ struct WorkoutOngoingView: View {
                     } label: {
                         if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
                             RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
+                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
                                 .foregroundColor(.red_main)
                                 .overlay {
                                     Text("운동 완료")
