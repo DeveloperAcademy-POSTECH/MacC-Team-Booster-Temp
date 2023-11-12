@@ -12,19 +12,29 @@ struct WorkoutCell: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: exercise.exerciseImageUrl)) {
-                $0.image
-                    .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
-            }
-            .foregroundColor(.label_400)
+            RoundedRectangle(cornerRadius: 4)
+                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                .foregroundColor(.fill_1)
+                .overlay {
+                    AsyncImage(url: URL(string: exercise.exerciseImageUrl)) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    } placeholder: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.label_400)
+                    }
+                }
+            
             VStack(alignment: .leading) {
                 Text(exercise.name)
                     .foregroundColor(.label_900)
                     .font(.headline1())
-                //                Text("3세트 | 10-15 reps")
-                // TODO: 10-15 reps
-                Text("\(exercise.numberOfSet) 세트")
-                    .foregroundColor(.label_400)
+                // TODO: 10-15 reps 추가
+                Text("\(exercise.numberOfSet)세트")
+                    .foregroundColor(.label_700)
                     .font(.body2())
             }
             .padding()

@@ -65,7 +65,7 @@ struct ChangeRoutineView: View {
         ScrollView {
             ForEach(vm.routines.routines, id: \.self) { routine in
                 NavigationLink {
-                    SelectedRoutineView()
+                    SelectedRoutineView(routineId: routine.routineId)
                         .navigationBarTitle("\(vm.dateFormat(from: routine.date))", displayMode: .inline)
                 } label: {
                     TodayWorkoutCell(routine: routine)

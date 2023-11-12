@@ -10,11 +10,7 @@ import SwiftUI
 class SelectedRoutineViewModel: ObservableObject {
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     
-    init() {
-        self.fetchRoutine()
-    }
-    
-    func fetchRoutine() {
+    func fetchRoutine(routineId: Int) {
         let id = 1
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: id), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
