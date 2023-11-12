@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SelectedRoutineView: View {
-    @StateObject var vm = SelectedRoutineViewModel()
+    let routineId: Int
     
-    @State var showDetail = false
+    @StateObject var vm = SelectedRoutineViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -24,6 +24,10 @@ struct SelectedRoutineView: View {
                     .foregroundColor(.fill_1)
                     .padding(.horizontal, 20)
                 WorkoutRoutine
+                
+                // TODO: empty floating button 변경
+                FloatingButton(backgroundColor: .clear) { }
+                    .padding()
             }
             VStack {
                 Spacer()
@@ -39,6 +43,9 @@ struct SelectedRoutineView: View {
                 .padding()
             }
         }
+        .onAppear {
+            vm.fetchRoutine(routineId: routineId)
+        }
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -48,23 +55,26 @@ struct SelectedRoutineView: View {
     }
     
     var SpecificInformation: some View {
-        ForEach(TodaySpecificViewModel.allCases, id: \.self) { option in
-            HStack {
-                VStack {
-                    Image(systemName: option.image)
-                        .font(.body())
-                        .foregroundColor(.label_700)
-                        .padding(.leading, 15)
-                }
-                VStack {
-                    Text(option.contents)
-                        .font(.body())
-                        .foregroundColor(.label_900)
-                }
-                Spacer()
-            }
-            .padding(5)
+        VStack {
+            Information(systemName: "figure.arms.open", description: vm.routine.part)
+            Information(systemName: "square.stack.fill", description: "\(vm.routine.numberOfExercise)개")
+            Information(systemName: "clock.fill", description: "\(vm.routine.requiredMinutes)분")
+            Information(systemName: "flame.circle.fill", description: "\(vm.routine.burnedKCalories)kcal")
         }
+    }
+    
+    func Information(systemName: String, description: String) -> some View {
+        HStack {
+            Image(systemName: systemName)
+                .font(.body())
+                .foregroundColor(.label_700)
+                .padding(.leading, 15)
+            Text(description)
+                .font(.body())
+                .foregroundColor(.label_900)
+            Spacer()
+        }
+        .padding(5)
     }
     
     var WorkoutRoutine: some View {
@@ -80,11 +90,8 @@ struct SelectedRoutineView: View {
                 .frame(width: UIScreen.getWidth(350))
                 .padding(.top ,UIScreen.getHeight(20))
                 
-                ForEach(0..<vm.routine.exercises.count, id: \.self) { index in
-                    WorkoutCell(exercise: vm.routine.exercises[index])
-                        .onTapGesture {
-                            showDetail.toggle()
-                        }
+                ForEach(vm.routine.exercises, id: \.self) { exercise in
+                    WorkoutCell(exercise: exercise)
                 }
             }
             ///로그인의 유무에 따라서 있고 없고
@@ -107,5 +114,5 @@ struct SelectedRoutineView: View {
 }
 
 #Preview {
-    SelectedRoutineView()
+    SelectedRoutineView(routineId: 1)
 }
