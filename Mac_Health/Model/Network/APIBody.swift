@@ -78,7 +78,7 @@ struct InfluencerRoutine: Codable, Hashable {
     var influencerId: Int
 }
 
-struct Routine: Codable {
+struct Routine: Codable, Hashable {
     var part: String
     var date: String
     var isDone: Bool
