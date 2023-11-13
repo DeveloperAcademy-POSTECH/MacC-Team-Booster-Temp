@@ -18,29 +18,8 @@ struct TodayStartView: View {
             VStack {
                 ZStack(alignment: .top) {
                     InfluencerImage
-                    //인플루언서의 오늘의 루틴
                     NavigationTitle
-                    //오늘의 상태 텍스트
-
-                    VStack {
-                        Spacer()
-                        HStack(alignment: .top) {
-                            VStack(alignment: .leading) {
-                                Text(routine.comment)
-                                    .font(.body)
-                                    .foregroundColor(.label_800)
-                            }
-                            .padding(20)
-                        }
-                        .frame(width: UIScreen.getWidth(350))
-                        .background {
-                            RoundedRectangle(cornerRadius: 8)
-                                .foregroundColor(.gray_700)
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(lineWidth: 1.0)
-                                .foregroundColor(.label_500)
-                        }
-                    }
+                    InfluencerComment
                 }
                 Spacer()
                 TodayCard()
@@ -74,6 +53,28 @@ struct TodayStartView: View {
                 .resizable()
                 .scaledToFit()
                 .padding(50)
+        }
+    }
+    
+    var InfluencerComment: some View {
+        VStack {
+            Spacer()
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text(routine.comment)
+                        .font(.body)
+                        .foregroundColor(.label_800)
+                }
+                .padding(20)
+            }
+            .frame(width: UIScreen.getWidth(350))
+            .background {
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.gray_700)
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(lineWidth: 1.0)
+                    .foregroundColor(.label_500)
+            }
         }
     }
     
