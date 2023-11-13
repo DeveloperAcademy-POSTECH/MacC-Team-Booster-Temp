@@ -13,6 +13,8 @@ struct TodayStartView: View {
     
     var body: some View {
         ZStack {
+            Color.gray_900.ignoresSafeArea()
+            
             VStack {
                 ZStack(alignment: .top) {
                     AsyncImage(url: URL(string: routine.influencerProfileImageUrl)) { image in
