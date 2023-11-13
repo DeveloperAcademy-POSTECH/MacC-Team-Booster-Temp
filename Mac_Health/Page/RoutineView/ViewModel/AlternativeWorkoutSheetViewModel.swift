@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-struct AlternativeWorkoutSheetViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class AlternativeWorkoutSheetViewModel: ObservableObject {
+    @Published var selection = -1
+    
+    func patchAlternate(routineId: Int, exerciseId: Int, alternativeExerciseId: Int) {
+        // TODO: 성공 시 dismiss
+        GeneralAPIManger.request(for: .PatchRoutinesExercisesAlternate(routineId: routineId, exerciseId: exerciseId, alternativeExerciseId: alternativeExerciseId), type: ResponsePatchRoutinesExercisesAlternate.self) {
+            switch $0 {
+            case .success(let routine):
+                print(routine)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
-}
-
-#Preview {
-    AlternativeWorkoutSheetViewModel()
 }
