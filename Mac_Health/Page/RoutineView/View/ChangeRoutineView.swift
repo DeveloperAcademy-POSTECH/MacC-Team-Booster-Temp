@@ -159,8 +159,8 @@ struct ChangeRoutineView: View {
             dismiss()
         } label: {
             Image(systemName: "chevron.left")
-                .foregroundColor(.label_900)
-                .font(.body())
+                .foregroundColor(.label_700)
+                .font(.body())l
         }
     }
 }
