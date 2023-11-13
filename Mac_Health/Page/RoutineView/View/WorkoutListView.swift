@@ -30,14 +30,14 @@ struct WorkoutListView: View {
         }
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $vm.isDetailedWorkoutShow) {
-//            DetailedWorkoutSheet()
+            DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedExercise].id)
         }
-        .confirmationDialog(vm.routine.part, isPresented: $vm.isConfirmationDialogShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.selectedExercise == -1 ? "" : vm.routine.exercises[vm.selectedExercise].name , isPresented: $vm.isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-//        .sheet(isPresented: $vm.isAlternativeWorkoutShow) {
-//            AlternativeWorkoutSheet()
-//        }
+        .sheet(isPresented: $vm.isAlternativeWorkoutSheetShow) {
+            // TODO: 대체 운동
+        }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteAlertShow) {
             DeleteAlert
         }
@@ -57,7 +57,7 @@ struct WorkoutListView: View {
         VStack {
             HStack {
                 // TODO: 부위 별로 수정
-                Text("등")
+                Text(vm.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 
@@ -65,17 +65,18 @@ struct WorkoutListView: View {
             }
             
             ScrollView {
-                ForEach($vm.routine.exercises, id: \.id) { exercise in
-                    WorkoutListCell(exercise: exercise)
+                ForEach(0..<vm.routine.exercises.count, id: \.self) { index in
+                    WorkoutListCell(index: index)
                 }
             }
         }
         .padding(.horizontal)
     }
     
-    func WorkoutListCell(exercise: Binding<Exercise>) -> some View {
+    func WorkoutListCell(index: Int) -> some View {
         HStack {
             Button {
+                vm.selectedExercise = index
                 vm.isDetailedWorkoutShow = true
             } label: {
                 HStack {
@@ -83,7 +84,7 @@ struct WorkoutListView: View {
                         .foregroundColor(.fill_1)
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                         .overlay {
-                            AsyncImage(url: URL(string: exercise.exerciseImageUrl.wrappedValue)) { image in
+                            AsyncImage(url: URL(string: vm.routine.exercises[index].exerciseImageUrl)) { image in
                                 image
                                     .resizable()
                             } placeholder: {
@@ -96,11 +97,11 @@ struct WorkoutListView: View {
                         }
                     
                     VStack(alignment: .leading) {
-                        Text(exercise.name.wrappedValue)
+                        Text(vm.routine.exercises[index].name)
                             .foregroundColor(.label_900)
                             .font(.headline1())
                         HStack {
-                            Text("\(exercise.numberOfSet.wrappedValue)세트")
+                            Text("\(vm.routine.exercises[index].numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
                             //                    Text("|")
@@ -120,17 +121,13 @@ struct WorkoutListView: View {
             Spacer()
             
             Button {
-                // TODO: 대체 운동
-                vm.isDetailedWorkoutShow = true
+                vm.selectedExercise = index
+                vm.isConfirmationDialogShow = true
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
             }
             .padding()
-        }
-        // TODO: 클릭한 시트 인덱스 관리
-        .sheet(isPresented: $vm.isDetailedWorkoutShow) {
-            DetailedWorkoutSheet(routineId: routineId, exerciseId: exercise.id.wrappedValue)
         }
     }
     
@@ -156,7 +153,7 @@ struct WorkoutListView: View {
         }
         
         Button {
-            // TODO: .
+            vm.isDeleteAlertShow = true
         } label: {
             Text("삭제")
         }

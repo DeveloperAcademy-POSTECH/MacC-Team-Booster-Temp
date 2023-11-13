@@ -17,25 +17,40 @@ struct ChangeRoutineView: View {
     @StateObject var vm = ChangeRoutineViewModel()
     
     var body: some View {
-        VStack {
-            SortingSlider
-            ZStack {
-                //선택된 selection 들이 포함된 운동
-                Workouts
-                ///if logInt ? 0 : 3
-                    .blur(radius: 0)
-                //                    Blind
+        ZStack {
+            Color.gray_900.ignoresSafeArea()
+            
+            VStack {
+                SortingSlider
+                ZStack {
+                    //선택된 selection 들이 포함된 운동
+                    Workouts
+                    ///if logInt ? 0 : 3
+                        .blur(radius: 0)
+                    //                    Blind
+                }
+            }
+            .onAppear {
+                vm.fetchRoutines(influencerId: influencerId)
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    NavigationTitle
+                }
             }
         }
-        .onAppear {
-            vm.fetchRoutines(influencerId: influencerId)
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton
-            }
-        }
+    }
+    
+    var NavigationTitle: some View {
+        Text("전체 루틴")
+            .font(.headline1())
+            .foregroundColor(.label_900)
     }
     
     var Blind: some View {
@@ -63,6 +78,7 @@ struct ChangeRoutineView: View {
     
     var Workouts: some View {
         ScrollView {
+            // TODO: 월 별 데이터
             ForEach(vm.routines.routines, id: \.self) { routine in
                 NavigationLink {
                     SelectedRoutineView(routineId: routine.routineId)
@@ -157,7 +173,7 @@ struct ChangeRoutineView: View {
             dismiss()
         } label: {
             Image(systemName: "chevron.left")
-                .foregroundColor(.label_900)
+                .foregroundColor(.label_700)
                 .font(.body())
         }
     }

@@ -12,7 +12,9 @@ class WorkoutListViewModel: ObservableObject {
     @Published var isDetailedWorkoutShow = false
     @Published var isConfirmationDialogShow = false
     @Published var isAlternativeWorkoutShow = false
+    @Published var isAlternativeWorkoutSheetShow = false
     @Published var isDeleteAlertShow = false
+    @Published var selectedExercise = -1
     
     func fetchRoutine(routineId: Int) {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
