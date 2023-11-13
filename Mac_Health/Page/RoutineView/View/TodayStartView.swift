@@ -30,6 +30,7 @@ struct TodayStartView: View {
                     //인플루언서의 오늘의 루틴
                     NavigationTitle
                     //오늘의 상태 텍스트
+
                     VStack {
                         Spacer()
                         HStack(alignment: .top) {

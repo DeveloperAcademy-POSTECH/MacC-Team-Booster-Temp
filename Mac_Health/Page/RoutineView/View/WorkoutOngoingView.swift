@@ -14,6 +14,8 @@ struct WorkoutOngoingView: View {
     
     @Environment(\.dismiss) var dismiss
     @StateObject var vm = WorkoutOngoingViewModel()
+    @StateObject var viewModel = StopwatchVM()
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         ZStack {
@@ -34,7 +36,7 @@ struct WorkoutOngoingView: View {
             
             VStack {
                 Spacer()
-                WorkoutButton
+                isFocused ? nil : WorkoutButton
             }
         }
         .onAppear {
@@ -119,8 +121,14 @@ struct WorkoutOngoingView: View {
         .sheet(isPresented: $vm.isPauseShow) {
             // TODO: 타이머 붙이기
             PauseSheet()
+        .onAppear{
+            viewModel.Start()
         }
+        .onTapGesture {
+                    isFocused = false
+                }
     }
+    
     
     var BackButton: some View {
         Button {
@@ -132,18 +140,20 @@ struct WorkoutOngoingView: View {
         }
     }
     
+    @ViewBuilder
     var NavigationTitle: some View {
         HStack {
             Image(systemName: "flame.fill")
                 .foregroundColor(.label_700)
                 .font(.headline2())
             // TODO: 운동 시간
-            Text("00:00:00")
+            Text(timeFormatted(viewModel.elapsedTime))
                 .foregroundColor(.label_900)
                 .font(.headline1())
             // TODO: 운동 상태
             Button {
                 vm.isPauseShow = true
+                    viewModel.Stop()
             } label: {
                 Circle()
                     .foregroundColor(.gray_700)
@@ -156,6 +166,13 @@ struct WorkoutOngoingView: View {
                     }
             }
         }
+    }
+      
+      private func timeFormatted(_ seconds: TimeInterval) -> String {
+        let hours = Int(seconds) / 3600
+        let minutes = Int(seconds) / 60
+        let seconds = Int(seconds) % 60
+        return String(format: "%02d:%02d:%02d",hours, minutes, seconds)
     }
     
     var AlternativeButton: some View {

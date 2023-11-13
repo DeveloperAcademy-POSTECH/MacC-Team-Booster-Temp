@@ -28,13 +28,15 @@ struct FloatingButton_Previews: PreviewProvider {
             VStack{
                 
                 //루틴 둘러보기
-                FloatingButton(backgroundColor: .green_main) { Text("루틴 둘러보기")
+                FloatingButton(backgroundColor: .green_main) { 
+                    Text("루틴 둘러보기")
                         .foregroundColor(.gray_900)
                         .font(.button1())
                 }
                 
                 //green 둘러보기
-                FloatingButton(backgroundColor: .gray_600) { Text("둘러보기")
+                FloatingButton(backgroundColor: .gray_600) { 
+                    Text("둘러보기")
                         .foregroundColor(.green_main)
                         .font(.button1())
                 }

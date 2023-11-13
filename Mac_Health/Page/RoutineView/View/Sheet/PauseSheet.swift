@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct PauseSheet: View {
+    @ObservedObject var viewModel: StopwatchVM
+    @StateObject var pauseViewModel = PauseStopwatchVM()
+    @Environment(\.dismiss) var dismiss: DismissAction
+    
     var body: some View {
         ZStack {
             Color.gray_800.ignoresSafeArea()
@@ -16,11 +20,11 @@ struct PauseSheet: View {
                 Text("운동 정지")
                     .font(.headline1())
                     .foregroundColor(.label_700)
-                Text("00:00:15")
+                Text(timeFormatted(pauseViewModel.elapsedTime))
                     .font(.largeTitle())
                     .foregroundColor(.label_900)
                 Button {
-                    
+                    dismiss()
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(.green_main)
@@ -36,12 +40,25 @@ struct PauseSheet: View {
                 }
             }
         }
+        .onAppear{
+            pauseViewModel.Start()
+        }
+        .onDisappear{
+            pauseViewModel.reset()
+            viewModel.Start()
+        }
         .presentationDetents([.height(UIScreen.getHeight(378))])
+    }
+    
+    private func timeFormatted(_ seconds: TimeInterval) -> String {
+        let minutes = Int(seconds) / 60
+        let seconds = Int(seconds) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 
 struct PauseSheet_Preview: PreviewProvider {
     static var previews: some View {
-        PauseSheet()
+        PauseSheet(viewModel: StopwatchVM())
     }
 }

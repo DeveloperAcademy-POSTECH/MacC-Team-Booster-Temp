@@ -10,6 +10,7 @@ import SwiftUI
 struct WorkoutSetCard: View {
     let index: Int
     @Binding var set: ExerciseSet
+    var isFocused: FocusState<Bool>.Binding
     
     var body: some View {
         HStack {
@@ -22,6 +23,7 @@ struct WorkoutSetCard: View {
                 .foregroundColor(.gray_700)
                 .overlay {
                     TextField("자율", value: $set.weight, format: .number)
+                        .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_500)
                         .multilineTextAlignment(.trailing)
@@ -36,6 +38,7 @@ struct WorkoutSetCard: View {
                 .foregroundColor(.gray_700)
                 .overlay {
                     TextField("", value: $set.reps, format: .number)
+                        .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_900)
                         .multilineTextAlignment(.trailing)

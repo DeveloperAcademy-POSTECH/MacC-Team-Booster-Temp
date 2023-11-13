@@ -13,17 +13,15 @@ struct RecordView: View {
     @State var logOut: Bool = false
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.gray_900.ignoresSafeArea()
-                
-                VStack {
-                    NavigationTitle
-                    Calender
-                    RecordCard
-                    logOut ? nil : beforeLoginText
-                    Spacer()
-                }
+        ZStack {
+            Color.gray_900.ignoresSafeArea()
+            
+            VStack {
+                NavigationTitle
+                Calender
+                RecordCard
+                logOut ? nil : beforeLoginText
+                Spacer()
             }
         }
     }
@@ -85,6 +83,7 @@ struct RecordView: View {
                 .padding()
             }
     }
+    //TODO: 로그인x or 구독 x
     var beforeLoginText: some View {
         HStack{
             Image(systemName: "info.circle")
