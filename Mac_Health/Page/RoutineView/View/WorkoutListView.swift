@@ -30,14 +30,11 @@ struct WorkoutListView: View {
         }
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $vm.isDetailedWorkoutShow) {
-//            DetailedWorkoutSheet()
+            DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.selectedExercise)
         }
         .confirmationDialog(vm.routine.part, isPresented: $vm.isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-//        .sheet(isPresented: $vm.isAlternativeWorkoutShow) {
-//            AlternativeWorkoutSheet()
-//        }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteAlertShow) {
             DeleteAlert
         }
@@ -76,6 +73,7 @@ struct WorkoutListView: View {
     func WorkoutListCell(exercise: Binding<Exercise>) -> some View {
         HStack {
             Button {
+                vm.selectedExercise = exercise.id.wrappedValue
                 vm.isDetailedWorkoutShow = true
             } label: {
                 HStack {
@@ -127,10 +125,6 @@ struct WorkoutListView: View {
                     .foregroundColor(.label_700)
             }
             .padding()
-        }
-        // TODO: 클릭한 시트 인덱스 관리
-        .sheet(isPresented: $vm.isDetailedWorkoutShow) {
-            DetailedWorkoutSheet(routineId: routineId, exerciseId: exercise.id.wrappedValue)
         }
     }
     
