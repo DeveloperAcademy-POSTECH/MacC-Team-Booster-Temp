@@ -8,7 +8,7 @@
 import SwiftUI
 
 class DetailedWorkoutSheetViewModel: ObservableObject {
-    @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [])
+    @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     
     func fetchExercise(routineId: Int, exerciseId: Int) {
         print(routineId, exerciseId)
