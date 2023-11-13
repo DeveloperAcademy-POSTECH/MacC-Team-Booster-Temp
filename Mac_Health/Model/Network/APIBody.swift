@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: user-exercise-controller
-struct ExerciseSet: Codable {
+struct ExerciseSet: Codable, Hashable {
     var setId: Int
     var weight: Int?
     var reps: Int
@@ -41,6 +41,7 @@ struct ResponsePatchRoutinesExercisesAlternate: Codable {
     var videoUrls: [String]
     var sets: [ExerciseSet]
     var alternativeExercises: [AlternativeExercise]
+    var faceImageUrl: String
 }
 
 /// GetRoutinesExercises
@@ -53,6 +54,7 @@ struct ResponseGetRoutinesExercises: Codable {
     var videoUrls: [String]
     var sets: [ExerciseSet]
     var alternativeExercises: [AlternativeExercise]
+    var faceImageUrl: String
 }
 //:
 
