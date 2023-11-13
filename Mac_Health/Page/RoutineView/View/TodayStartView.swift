@@ -17,18 +17,7 @@ struct TodayStartView: View {
             
             VStack {
                 ZStack(alignment: .top) {
-                    AsyncImage(url: URL(string: routine.influencerProfileImageUrl)) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: UIScreen.getWidth(390))
-                            .offset(x:20, y: 30)
-                    } placeholder: {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .resizable()
-                            .scaledToFit()
-                            .padding(50)
-                    }
+                    InfluencerImage
                     //인플루언서의 오늘의 루틴
                     NavigationTitle
                     //오늘의 상태 텍스트
@@ -71,6 +60,21 @@ struct TodayStartView: View {
         }
         .padding(.horizontal)
         .padding(.top, 30)
+    }
+    
+    var InfluencerImage: some View {
+        AsyncImage(url: URL(string: routine.influencerProfileImageUrl)) { image in
+            image
+                .resizable()
+                .scaledToFill()
+                .frame(width: UIScreen.getWidth(390))
+                .offset(x:20, y: 30)
+        } placeholder: {
+            Image(systemName: "arrow.triangle.2.circlepath")
+                .resizable()
+                .scaledToFit()
+                .padding(50)
+        }
     }
     
     var RoutineDescriptionCard: some View {
