@@ -16,12 +16,9 @@ struct MainView: View {
     @State private var tabSelection = 1
     
     var body: some View {
-        NavigationStack(path: $path) {
-            TabView(selection: $tabSelection){
-                //TODO: 로그인 전/ 구독전/ 구독 후 구분
-//                BeforeSubscribeView(tabSelection: $tabSelection)
-                MockUpStartView(tabSelection: $tabSelection)
-//                TodayStartView(tabSelection: $tabSelection)
+        NavigationStack {
+            TabView {
+                MultiRoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
                         Text("루틴")

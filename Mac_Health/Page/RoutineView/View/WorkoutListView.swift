@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct WorkoutListView: View {
+    let routineId: Int
+    
+    @StateObject var vm = WorkoutListViewModel()
     @Environment(\.dismiss) var dismiss
-    
-    @State var isDetailedWorkoutShow = false
-    @State var isConfirmationDialogShow = false
-    @State var isAlternativeWorkoutShow = false
-    @State var isDeleteAlertShow = false
-    @Binding var tabSelection: Int
-    @StateObject var routineVM = RoutineVM()
-    
-    let workoutName = "클로즈 그립 랫 풀 다운"
     
     var body: some View {
         VStack {
             WorkoutList
             
             WorkoutStartButton
+        }
+        .onAppear {
+            vm.fetchRoutine(routineId: routineId)
         }
         .navigationTitle("운동 루틴 편집")
         .toolbar {
@@ -32,16 +29,16 @@ struct WorkoutListView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .sheet(isPresented: $isDetailedWorkoutShow) {
-            DetailedWorkoutSheet()
+        .sheet(isPresented: $vm.isDetailedWorkoutShow) {
+//            DetailedWorkoutSheet()
         }
-        .confirmationDialog(workoutName, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.routine.part, isPresented: $vm.isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-        .sheet(isPresented: $isAlternativeWorkoutShow) {
+        .sheet(isPresented: $vm.isAlternativeWorkoutShow) {
             AlternativeWorkoutSheet()
         }
-        .alert("운동을 삭제하시겠습니까?", isPresented: $isDeleteAlertShow) {
+        .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteAlertShow) {
             DeleteAlert
         }
     }
@@ -59,7 +56,7 @@ struct WorkoutListView: View {
     var WorkoutList: some View {
         VStack {
             HStack {
-                // TODO: .
+                // TODO: 부위 별로 수정
                 Text("등")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -68,62 +65,76 @@ struct WorkoutListView: View {
             }
             
             ScrollView {
-                // TODO: .
-                WorkoutListCell
-                    .onTapGesture {
-                        isDetailedWorkoutShow = true
-                    }
+                ForEach($vm.routine.exercises, id: \.id) { exercise in
+                    WorkoutListCell(exercise: exercise)
+                }
             }
         }
         .padding(.horizontal)
     }
     
-    var WorkoutListCell: some View {
+    func WorkoutListCell(exercise: Binding<Exercise>) -> some View {
         HStack {
-            RoundedRectangle(cornerRadius: 4)
-                .foregroundColor(.fill_1)
-                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
-                .overlay {
-                    // TODO: .
-                    Image("CloseGripLatPullDown")
-                        .resizable()
-                }
-            
-            VStack(alignment: .leading) {
-                // TODO: .
-                Text(workoutName)
-                    .foregroundColor(.label_900)
-                    .font(.headline1())
+            Button {
+                vm.isDetailedWorkoutShow = true
+            } label: {
                 HStack {
-                    // TODO: .
-                    Text("3세트")
-                        .foregroundColor(.label_700)
-                        .font(.body2())
-                    Text("|")
-                        .foregroundColor(.label_400)
-                        .font(.body2())
-                    // TODO:
-                    Text("10-15회")
-                        .foregroundColor(.label_700)
-                        .font(.body2())
+                    RoundedRectangle(cornerRadius: 4)
+                        .foregroundColor(.fill_1)
+                        .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                        .overlay {
+                            AsyncImage(url: URL(string: exercise.exerciseImageUrl.wrappedValue)) { image in
+                                image
+                                    .resizable()
+                            } placeholder: {
+                                Image(systemName: "arrow.triangle.2.circlepath")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.label_400)
+                                    .padding()
+                            }
+                        }
+                    
+                    VStack(alignment: .leading) {
+                        Text(exercise.name.wrappedValue)
+                            .foregroundColor(.label_900)
+                            .font(.headline1())
+                        HStack {
+                            Text("\(exercise.numberOfSet.wrappedValue)세트")
+                                .foregroundColor(.label_700)
+                                .font(.body2())
+                            //                    Text("|")
+                            //                        .foregroundColor(.label_400)
+                            //                        .font(.body2())
+                            // TODO: reps 추가
+                            //                    Text("10-15회")
+                            //                        .foregroundColor(.label_700)
+                            //                        .font(.body2())
+                        }
+                    }
+                    
+                    Spacer()
                 }
             }
-            
+    
             Spacer()
             
             Button {
-                // TODO: .
-                isConfirmationDialogShow = true
+                vm.isDetailedWorkoutShow = true
             } label: {
                 Image(systemName: "ellipsis")
-                .foregroundColor(.label_700)
+                    .foregroundColor(.label_700)
             }
+            .padding()
+        }
+        .sheet(isPresented: $vm.isDetailedWorkoutShow) {
+            DetailedWorkoutSheet(routineId: routineId, exerciseId: exercise.id.wrappedValue)
         }
     }
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            WorkoutOngoingView(viewModel: StopwatchVM(), tabSelection: $tabSelection, currentWorkoutNumber: 0, routineVM: routineVM)
+            //            WorkoutOngoingView(currentWorkoutNumber: 0, routineVM: routineVM)
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")
@@ -137,14 +148,12 @@ struct WorkoutListView: View {
     var AlternativeActionSheet: some View {
         Button {
             // TODO: .
-            isAlternativeWorkoutShow = true
         } label: {
             Text("운동 대체")
         }
         
         Button {
             // TODO: .
-            isDeleteAlertShow = true
         } label: {
             Text("삭제")
         }
@@ -167,9 +176,8 @@ struct WorkoutListView: View {
     }
 }
 
-
 struct WorkoutListView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutListView(tabSelection: .constant(3))
+        WorkoutListView(routineId: 1)
     }
 }

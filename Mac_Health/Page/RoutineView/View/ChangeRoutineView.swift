@@ -1,5 +1,5 @@
 //
-//  TotalRoutineView.swift
+//  ChangeRoutineView.swift
 //  Mac_Health
 //
 //  Created by 정회승 on 11/2/23.
@@ -12,27 +12,23 @@ enum WorkoutType: String, CaseIterable {
 }
 
 struct ChangeRoutineView: View {
-    @ObservedObject var routineVM: RoutineVM
+    let influencerId: Int
     @Environment(\.dismiss) var dismiss: DismissAction
-    
-    ///운동 정렬용 선택
-    @State var selection: String = "전체"
-    let workoutTypes = WorkoutType.allCases
+    @StateObject var vm = ChangeRoutineViewModel()
     
     var body: some View {
-        ZStack {
-            Color.gray_900.ignoresSafeArea()
-            VStack {
-                SortingSlider
-                ///여기에는 달력에 맞는 운동 넣어주기
-                ZStack {
-                    //선택된 selection 들이 포함된 운동
-                    Workouts
-                    ///if logInt ? 0 : 3
-                        .blur(radius: 0)
-                    //                    Blind
-                }
+        VStack {
+            SortingSlider
+            ZStack {
+                //선택된 selection 들이 포함된 운동
+                Workouts
+                ///if logInt ? 0 : 3
+                    .blur(radius: 0)
+                //                    Blind
             }
+        }
+        .onAppear {
+            vm.fetchRoutines(influencerId: influencerId)
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -49,8 +45,9 @@ struct ChangeRoutineView: View {
                 .lineSpacing(5)
                 .font(.title2())
                 .foregroundColor(.label_900)
+            
             Button {
-                
+                // TODO: 버튼 기능
             } label: {
                 Capsule()
                     .foregroundColor(.green_main)
@@ -59,83 +56,79 @@ struct ChangeRoutineView: View {
                         Text("둘러보기")
                             .foregroundColor(.gray_900)
                             .font(.button1())
-                        
                     }
             }
-            
         }
     }
-    
     
     var Workouts: some View {
         ScrollView {
-            ///데이터에서 받아온 달력과 운동에 관해서 작성,
-            ForEach(Range(0...10)) { a in
+            ForEach(vm.routines.routines, id: \.self) { routine in
                 NavigationLink {
-                    SelectedRoutineView()
-                        .navigationBarTitle("\(a)월\(a)일", displayMode: .inline)
+                    SelectedRoutineView(routineId: routine.routineId)
+                        .navigationBarTitle("\(vm.dateFormat(from: routine.date))", displayMode: .inline)
                 } label: {
-                    TodayWorkoutCell(date: a)
+                    TodayWorkoutCell(routine: routine)
                         .padding(.vertical, 8)
                 }
-                
-                
             }
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
     }
     
-    func TodayWorkoutCell(date: Int) -> some View {
+    func TodayWorkoutCell(routine: Routine) -> some View {
         HStack(spacing: UIScreen.getWidth(16)) {
             RoundedRectangle(cornerRadius: 8)
-            ///오늘이면 today == date ? fill_2 : label_900
-                .foregroundColor(.label_900)
+                .foregroundColor(vm.dateCompare(from: routine.date) ? .label_900 : .fill_2)
                 .frame(width: UIScreen.getWidth(40), height: UIScreen.getHeight(40))
                 .overlay {
-                    Text("\(date)")
+                    Text("\(vm.dayFormat(from: routine.date))")
                         .font(.headline1())
-                    ///오늘이면 today == date ? label_900 : gray_900
-                        .foregroundColor(.gray_900)
+                        .foregroundColor(vm.dateCompare(from: routine.date) ? .gray_900 : .label_900)
                 }
-            Text("등, 이두")
+            Text("\(routine.part)")
                 .font(.headline1())
                 .foregroundColor(.label_900)
+            
             Spacer()
-            ///다한거 아니면 없도록 한다.
-            Circle()
-                .frame(width: UIScreen.getWidth(36))
-                .foregroundColor(.green_10)
-                .overlay {
-                    Image(systemName: "checkmark")
-                        .foregroundColor(.green_main)
-                        .font(.body2())
-                }
+            
+            if routine.isDone {
+                Circle()
+                    .frame(width: UIScreen.getWidth(36))
+                    .foregroundColor(.green_10)
+                    .overlay {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.green_main)
+                            .font(.body2())
+                    }
+            }
         }
     }
-    
     
     var SortingSlider: some View {
         ScrollView(.horizontal) {
             HStack(spacing: UIScreen.getWidth(6)) {
-                ForEach(workoutTypes, id: \.self) { type in
+                ForEach(WorkoutType.allCases, id: \.self) { type in
                     Button {
-                        selection = type.rawValue
+                        vm.selection = type.rawValue
                     } label: {
-                        if type.rawValue == selection {
-                            selectedCapsul(text: type.rawValue)
+                        if type.rawValue == vm.selection {
+                            SelectedCapsule(text: type.rawValue)
                         }
                         else {
-                            notSelectedCapsul(text: type.rawValue)
+                            NotSelectedCapsule(text: type.rawValue)
                         }
                     }
-                    
-                }.frame(height: UIScreen.getHeight(34))
-            }.padding(.horizontal)
-                .padding(.bottom)
+                }
+                .frame(height: UIScreen.getHeight(34))
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
         }
     }
     
     @ViewBuilder
-    func notSelectedCapsul(text: String) -> some View {
+    func NotSelectedCapsule(text: String) -> some View {
         Capsule()
             .strokeBorder()
             .foregroundColor(.label_400)
@@ -148,7 +141,7 @@ struct ChangeRoutineView: View {
     }
     
     @ViewBuilder
-    func selectedCapsul(text: String) -> some View {
+    func SelectedCapsule(text: String) -> some View {
         Capsule()
             .foregroundColor(.green_main)
             .frame(minWidth: UIScreen.getWidth(54), idealHeight: UIScreen.getHeight(34))
@@ -158,7 +151,6 @@ struct ChangeRoutineView: View {
                     .font(.button2())
             }
     }
-    
     
     var BackButton: some View {
         Button {
@@ -173,6 +165,6 @@ struct ChangeRoutineView: View {
 
 #Preview {
     NavigationStack{
-        ChangeRoutineView(routineVM: RoutineVM())
+        ChangeRoutineView(influencerId: 1)
     }
 }

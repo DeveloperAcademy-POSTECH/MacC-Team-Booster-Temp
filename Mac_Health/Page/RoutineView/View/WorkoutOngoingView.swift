@@ -1,5 +1,5 @@
 //
-//  WorkoutOngoing.swift
+//  WorkoutOngoingView.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 2023/10/20.
@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct WorkoutOngoingView: View {
+    
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = StopwatchVM()
     @FocusState private var isFocused: Bool
     @Binding var tabSelection: Int
     
     let currentWorkoutNumber: Int
-    @ObservedObject var routineVM: RoutineVM
-    @StateObject var workoutOngoingVM = WorkoutOngoingVM()
+    @ObservedObject var routineVM: RoutineViewModel
+    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     @State var isPauseShow = false
 //    @State var isFinishShow = false
     @State var isAlternativeShow = false
@@ -233,7 +234,8 @@ struct WorkoutOngoingView: View {
             Spacer()
             
             HStack {
-                Text(workoutOngoingVM.workoutModel.workoutName)
+//                Text(workoutOngoingVM.workoutModel.workoutName)
+                Text("운동 명")
                     .font(.title1())
                     .foregroundColor(.label_900)
                 
@@ -276,7 +278,7 @@ struct WorkoutOngoingView: View {
                 .overlay {
                     HStack {
                         Button {
-                            workoutOngoingVM.decreaseWorkoutSet()
+//                            workoutOngoingVM.decreaseWorkoutSet()
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
@@ -288,11 +290,12 @@ struct WorkoutOngoingView: View {
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
                         
-                        Text("\(workoutOngoingVM.workoutSet.count)세트")
+//                        Text("\(workoutOngoingVM.workoutSet.count)세트")
+                        Text("세트")
                             .foregroundColor(.label_700)
                         
                         Button {
-                            workoutOngoingVM.increaseWorkoutSet()
+//                            workoutOngoingVM.increaseWorkoutSet()
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
@@ -312,17 +315,18 @@ struct WorkoutOngoingView: View {
     }
     
     var WorkoutSetList: some View {
-        ForEach($workoutOngoingVM.workoutSet) { $workoutSet in
-            WorkoutSetCard(workoutSet: $workoutSet, isFocused: $isFocused)
-                .overlay {
-                    if workoutSet.index == workoutOngoingVM.currentSet {
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(lineWidth: 1)
-                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
-                            .foregroundColor(.green_main)
-                    }
-                }
-        }
+        WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 0, repetition: 5, isFinish: false)), isFocused: $isFocused)
+//        ForEach($workoutOngoingVM.workoutSet) { $workoutSet in
+//            WorkoutSetCard(workoutSet: $workoutSet)
+//                .overlay {
+//                    if workoutSet.index == workoutOngoingVM.currentSet {
+//                        RoundedRectangle(cornerRadius: 8)
+//                            .stroke(lineWidth: 1)
+//                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
+//                            .foregroundColor(.green_main)
+//                    }
+//                }
+//        }
     }
     
     var WorkoutButton: some View {
@@ -388,17 +392,18 @@ struct WorkoutOngoingView: View {
             }
             
             ScrollView(.horizontal) {
-                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
-                    HStack{
-                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                    }
-                }
+                RelatedContentCard(videoNum: 0, contentURL: "")
+//                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
+//                    HStack{
+//                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+//                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+//                    }
+//                }
             }
         }
         .padding(.horizontal)
     }
-    
+   
     var EmptyFloatingButton: some View {
         FloatingButton(backgroundColor: .clear) { }
     }
@@ -408,7 +413,7 @@ struct WorkoutOngoingView: View {
 
 struct ImageTip: View {
     @Binding var currentIndex: Int
-    @StateObject var workoutOngoingVM = WorkoutOngoingVM()
+    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     
     var body: some View {
         TabView(selection: $currentIndex){
@@ -496,7 +501,7 @@ struct ImageTip: View {
 struct WorkoutOngoingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            WorkoutOngoingView(viewModel: StopwatchVM(), tabSelection: .constant(3), currentWorkoutNumber: 1, routineVM: RoutineVM())
+            WorkoutOngoingView(tabSelection: .constant(2), currentWorkoutNumber: 1, routineVM: RoutineViewModel())
         }
     }
 }

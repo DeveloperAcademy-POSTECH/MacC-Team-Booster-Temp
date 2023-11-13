@@ -137,7 +137,7 @@ struct MockUpStartView: View {
                 .padding(.leading,10)
                 //운동 시작 버튼
                 NavigationLink {
-                    MockUpWorkoutOngoingView(tabSelection: $tabSelection, routineVM: RoutineVM())
+                    MockUpWorkoutOngoingView(tabSelection: $tabSelection)
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))

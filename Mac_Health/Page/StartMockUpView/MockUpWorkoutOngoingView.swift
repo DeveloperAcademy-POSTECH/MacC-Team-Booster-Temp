@@ -14,8 +14,8 @@ struct MockUpWorkoutOngoingView: View {
     @Binding var tabSelection: Int
     
 //    let currentWorkoutNumber: Int
-    @ObservedObject var routineVM: RoutineVM
-    @StateObject var workoutOngoingVM = WorkoutOngoingVM()
+//    @ObservedObject var routineVM: RoutineVM
+    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     @State var isPauseShow = false
 //    @State var isFinishShow = false
     @State var isAlternativeShow = false
@@ -74,7 +74,7 @@ struct MockUpWorkoutOngoingView: View {
             }
             Button("취소") {
                 // MARK: 완료하기
-                routineVM.showWorkOutOnGoing.toggle()
+//                routineVM.showWorkOutOnGoing.toggle()
             }
         }
         //TODO: 운동 완료 후 창닫기 (수행하지 않지 않은 운동이 있을 때만)
@@ -329,6 +329,6 @@ struct MockUpWorkoutOngoingView: View {
 
 #Preview {
     NavigationStack{
-        MockUpWorkoutOngoingView(viewModel: StopwatchVM(), tabSelection: .constant(3), routineVM: RoutineVM())
+        MockUpWorkoutOngoingView(viewModel: StopwatchVM(), tabSelection: .constant(3))
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecordView: View {
+    @StateObject var vm = RecordViewModel()
     @State var testState = "test"
     @State var logOut: Bool = false
     

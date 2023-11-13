@@ -10,7 +10,7 @@ import SwiftUI
 struct MockUpFinishView: View {
     
     @StateObject var viewModel = StopwatchVM()
-    @StateObject var workoutOngoingVM = WorkoutOngoingVM()
+    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     @Binding var tabSelection: Int
     
     
@@ -54,9 +54,9 @@ struct MockUpFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-                        Text("\(String(Int(workoutOngoingVM.totalVolume())))kg")
-                            .font(.title2())
-                            .foregroundColor(.label_900)
+//                        Text("\(String(Int(workoutOngoingVM.totalVolume())))kg")
+//                            .font(.title2())
+//                            .foregroundColor(.label_900)
                         Text("총 볼륨")
                             .font(.body2())
                             .foregroundColor(.label_700)
