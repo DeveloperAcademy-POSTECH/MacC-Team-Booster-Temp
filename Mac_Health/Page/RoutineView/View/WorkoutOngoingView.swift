@@ -8,33 +8,22 @@
 import SwiftUI
 
 struct WorkoutOngoingView: View {
+    // TODO: 몇 번째 운동 작업
+    let routineId: Int
+    let exerciseId: Int
     
     @Environment(\.dismiss) var dismiss
-    
-    let currentWorkoutNumber: Int
-    @ObservedObject var routineVM: RoutineViewModel
-    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
-    @State var isPauseShow = false
-//    @State var isFinishShow = false
-    @State var isAlternativeShow = false
-    @State var isAlternativeWorkoutShow = false
-    @State private var currentIndex = 0
-    @State var isDeleteAlertShow: Bool = false
-    @State var exitAlertShow: Bool = false
-    @State var existUnfinished: Bool = false
-    
-    let workoutName = "클로즈 그립 랫 풀 다운"
+    @StateObject var vm = WorkoutOngoingViewModel()
     
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             
             VStack {
+                // TODO: 상단 여백 제거
                 ScrollView {
-                    Spacer()
-                    Spacer()
-                    workoutInfomation
-                    ImageTip(currentIndex: $currentIndex)
+                    WorkoutInfomation
+                    WorkoutImageAndTip
                     Spacer()
                     WorkoutSetButton
                     WorkoutSetList
@@ -48,6 +37,9 @@ struct WorkoutOngoingView: View {
                 WorkoutButton
             }
         }
+        .onAppear {
+            vm.fetchExercise(routineId: routineId, exerciseId: exerciseId)
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
@@ -58,80 +50,81 @@ struct WorkoutOngoingView: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                EditButton
+                AlternativeButton
             }
         }
         .navigationBarBackButtonHidden()
-        .confirmationDialog(workoutName, isPresented: $isAlternativeShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.routine.name, isPresented: $vm.isAlternativeShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-        .sheet(isPresented: $isAlternativeWorkoutShow) {
-            AlternativeWorkoutSheet()
+        .sheet(isPresented: $vm.isAlternativeSheetShow) {
+            AlternativeWorkoutSheet(baseExercise: vm.routine.name, baseRoutineId: routineId, baseExerciseId: exerciseId, alternativeExercise: vm.routine.alternativeExercises)
         }
-        .alert("운동을 중단하시겠습니까?", isPresented: $exitAlertShow) {
-            Button("운동중단") {
-                // MARK: 취소
-            }
-            Button("취소") {
-                // MARK: 완료하기
-                routineVM.showWorkOutOnGoing.toggle()
-            }
-        }
-        //운동 완료 후 창닫기
-        .alert("운동을 완료할까요?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
-            Button("취소") {
-                // MARK: 취소
-            }
-            NavigationLink("완료하기") {
-                // MARK: 완료하기
-                WorkoutFinishView()
-            }
-        }
-        .alert(isPresented: $isDeleteAlertShow) {
-            Alert(
-                title: Text("운동을 삭제하시겠습니까?"),
-                message: Text(""),
-                primaryButton: .destructive(Text("삭제"),
-                                            action: {
-                                                
-                                            }),
-                secondaryButton: .cancel(Text("취소"))
-            )
-        }
-        .alert(isPresented: $isDeleteAlertShow) {
-            Alert(
-                title: Text("운동을 삭제하시겠습니까?"),
-                message: Text(""),
-                primaryButton: .destructive(Text("삭제"),
-                                            action: {
-                                                
-                                            }),
-                secondaryButton: .cancel(Text("취소"))
-            )
-        }
-        //MARK: 운동 완료는 했지만 운동이 존재할 경우
-        .alert(isPresented: $existUnfinished) {
-            Alert(
-                title: Text("완료하지 않은 운동이 있습니다/n해당 운동을 확인하시겠습니까?"),
-                message: Text(""),
-                primaryButton: .destructive(Text("운동완료"),
-                                            action: {
-                                                
-                                            }),
-                secondaryButton: .destructive(Text("확인"),
-                                              action: {
-                                                  
-                                              })
-            )
-        }
-        .sheet(isPresented: $isPauseShow) {
+        //        .alert("운동을 중단하시겠습니까?", isPresented: $exitAlertShow) {
+        //            Button("운동중단") {
+        //                // MARK: 취소
+        //            }
+        //            Button("취소") {
+        //                // MARK: 완료하기
+        ////                routineVM.showWorkOutOnGoing.toggle()
+        //            }
+        //        }
+        //        //운동 완료 후 창닫기
+        //        .alert("운동을 완료할까요?", isPresented: $vm.isWorkoutFinishAlertShow) {
+        //            Button("취소") {
+        //                // MARK: 취소
+        //            }
+        //            NavigationLink("완료하기") {
+        //                // MARK: 완료하기
+        //                WorkoutFinishView()
+        //            }
+        //        }
+        //        .alert(isPresented: $isDeleteAlertShow) {
+        //            Alert(
+        //                title: Text("운동을 삭제하시겠습니까?"),
+        //                message: Text(""),
+        //                primaryButton: .destructive(Text("삭제"),
+        //                                            action: {
+        //
+        //                                            }),
+        //                secondaryButton: .cancel(Text("취소"))
+        //            )
+        //        }
+        //        .alert(isPresented: $isDeleteAlertShow) {
+        //            Alert(
+        //                title: Text("운동을 삭제하시겠습니까?"),
+        //                message: Text(""),
+        //                primaryButton: .destructive(Text("삭제"),
+        //                                            action: {
+        //
+        //                                            }),
+        //                secondaryButton: .cancel(Text("취소"))
+        //            )
+        //        }
+        //        //MARK: 운동 완료는 했지만 운동이 존재할 경우
+        //        .alert(isPresented: $existUnfinished) {
+        //            Alert(
+        //                title: Text("완료하지 않은 운동이 있습니다/n해당 운동을 확인하시겠습니까?"),
+        //                message: Text(""),
+        //                primaryButton: .destructive(Text("운동완료"),
+        //                                            action: {
+        //
+        //                                            }),
+        //                secondaryButton: .destructive(Text("확인"),
+        //                                              action: {
+        //
+        //                                              })
+        //            )
+        //        }
+        .sheet(isPresented: $vm.isPauseShow) {
+            // TODO: 타이머 붙이기
             PauseSheet()
         }
     }
     
     var BackButton: some View {
         Button {
-            exitAlertShow = true
+            dismiss()
         } label: {
             Image(systemName: "xmark")
                 .foregroundColor(.label_700)
@@ -144,27 +137,30 @@ struct WorkoutOngoingView: View {
             Image(systemName: "flame.fill")
                 .foregroundColor(.label_700)
                 .font(.headline2())
+            // TODO: 운동 시간
             Text("00:00:00")
                 .foregroundColor(.label_900)
                 .font(.headline1())
-            Circle()
-                .foregroundColor(.gray_700)
-                .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
-                .overlay {
-                    Image(systemName: "pause.fill")
-                        .resizable()
-                        .foregroundColor(.label_900)
-                        .frame(width: UIScreen.getWidth(11), height: UIScreen.getHeight(14))
-                }
-                .onTapGesture {
-                    isPauseShow = true
-                }
+            // TODO: 운동 상태
+            Button {
+                vm.isPauseShow = true
+            } label: {
+                Circle()
+                    .foregroundColor(.gray_700)
+                    .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
+                    .overlay {
+                        Image(systemName: "pause.fill")
+                            .resizable()
+                            .foregroundColor(.label_900)
+                            .frame(width: UIScreen.getWidth(11), height: UIScreen.getHeight(14))
+                    }
+            }
         }
     }
     
-    var EditButton: some View {
+    var AlternativeButton: some View {
         Button {
-            isAlternativeShow = true
+            vm.isAlternativeShow = true
         } label: {
             Image(systemName: "ellipsis")
                 .foregroundColor(.label_700)
@@ -175,15 +171,13 @@ struct WorkoutOngoingView: View {
     @ViewBuilder
     var AlternativeActionSheet: some View {
         Button {
-            // TODO: .
-            isAlternativeWorkoutShow = true
+            vm.isAlternativeSheetShow = true
         } label: {
             Text("운동 대체")
         }
         
         Button {
             // TODO: .
-            isDeleteAlertShow = true
         } label: {
             Text("삭제")
         }
@@ -196,15 +190,15 @@ struct WorkoutOngoingView: View {
         }
     }
     
-    
-    var workoutInfomation: some View {
+    var WorkoutInfomation: some View {
         VStack {
             HStack {
+                // TODO: 운동 리스트
                 Text("3 / 10")
                     .foregroundColor(.label_700)
                 Text("|")
                     .foregroundColor(.label_400)
-                Text("등")
+                Text(vm.routine.part)
                     .foregroundColor(.label_700)
                 Spacer()
             }
@@ -213,40 +207,88 @@ struct WorkoutOngoingView: View {
             Spacer()
             
             HStack {
-//                Text(workoutOngoingVM.workoutModel.workoutName)
-                Text("운동 명")
+                Text(vm.routine.name)
                     .font(.title1())
                     .foregroundColor(.label_900)
-                
-                //                Button {
-                //                    workoutOngoingVM.showAlternativeWorkout()
-                //                } label: {
-                //                    RoundedRectangle(cornerRadius: 4)
-                //                        .frame(width: UIScreen.getWidth(52), height: UIScreen.getHeight(28))
-                //                        .foregroundColor(.gray_700)
-                //                        .overlay {
-                //                            HStack(spacing: 4) {
-                //                                Image(systemName: "arrow.2.squarepath")
-                //                                Text("대체")
-                //                            }
-                //                            .font(.caption())
-                //                            .foregroundColor(.label_700)
-                //                        }
-                //                }
-                
                 Spacer()
             }
         }
         .padding(.horizontal)
     }
     
-    var WorkoutImage: some View {
-        Image("tempWorkoutImage")
-            .resizable()
-        //            .scaledToFit()
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-            .foregroundColor(.gray_600)
-            .padding(.horizontal)
+    var WorkoutImageAndTip: some View {
+        TabView(selection: $vm.tabSelection){
+            ZStack {
+                AsyncImage(url: URL(string: vm.routine.exerciseImageUrl)) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.gray_600)
+                }
+                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
+                .padding()
+                
+                HStack {
+                    Spacer()
+                    Image(systemName: "chevron.backward")
+                        .foregroundColor(.label_500)
+                    Button {
+                        withAnimation {
+                            vm.tabSelection = 1
+                        }
+                    } label: {
+                        // TODO: 팁 사이즈 바꾸기 - 지금 오른쪽 라디우스 나옴
+                        RoundedRectangle(cornerRadius: 8.0)
+                            .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
+                            .foregroundColor(.fill_1)
+                            .overlay {
+                                Text("팁")
+                                    .foregroundColor(.green_main)
+                            }
+                    }
+                }
+                .font(.button2())
+            }
+            .tag(0)
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 7.2)
+                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                    .foregroundColor(.gray_800)
+                    .overlay {
+                        VStack {
+                            HStack {
+                                AsyncImage(url: URL(string: vm.routine.faceImageUrl)) { image in
+                                    image
+                                        .resizable()
+                                } placeholder: {
+                                    Image(systemName: "arrow.triangle.2.circlepath")
+                                        .resizable()
+                                        .foregroundColor(.gray_600)
+                                        .padding()
+                                }
+                                .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                Spacer()
+                            }
+                            Spacer()
+                            
+                            Text(vm.routine.tip)
+                                .font(.body())
+                                .foregroundColor(.label_900)
+                            Spacer()
+                            Spacer()
+                        }
+                        .padding()
+                    }
+            }
+            .tag(1)
+        }
+        .frame(height: UIScreen.getHeight(300))
+        .tabViewStyle(.page)
     }
     
     var WorkoutSetButton: some View {
@@ -257,7 +299,7 @@ struct WorkoutOngoingView: View {
                 .overlay {
                     HStack {
                         Button {
-//                            workoutOngoingVM.decreaseWorkoutSet()
+                            vm.deleteDecreaseSet(routineId: routineId, exerciseId: exerciseId)
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
@@ -269,12 +311,11 @@ struct WorkoutOngoingView: View {
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
                         
-//                        Text("\(workoutOngoingVM.workoutSet.count)세트")
-                        Text("세트")
+                        Text("\(vm.routine.sets.count)세트")
                             .foregroundColor(.label_700)
                         
                         Button {
-//                            workoutOngoingVM.increaseWorkoutSet()
+                            vm.postIncreaseSet(routineId: routineId, exerciseId: exerciseId)
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
@@ -289,23 +330,24 @@ struct WorkoutOngoingView: View {
                 }
             Spacer()
         }
-        .padding(.horizontal)
-        .padding(.vertical)
+        .padding()
     }
     
+    @ViewBuilder
     var WorkoutSetList: some View {
-        WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 0, repetition: 5, isFinish: false)))
-//        ForEach($workoutOngoingVM.workoutSet) { $workoutSet in
-//            WorkoutSetCard(workoutSet: $workoutSet)
-//                .overlay {
-//                    if workoutSet.index == workoutOngoingVM.currentSet {
-//                        RoundedRectangle(cornerRadius: 8)
-//                            .stroke(lineWidth: 1)
-//                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
-//                            .foregroundColor(.green_main)
-//                    }
-//                }
-//        }
+        if !vm.routine.sets.isEmpty {
+            ForEach(0..<vm.routine.sets.count, id: \.self) { index in
+                WorkoutSetCard(index: index + 1, set: $vm.routine.sets[index])
+                    .overlay {
+                        if index == vm.currentSetIndex {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(lineWidth: 1)
+                                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
+                                .foregroundColor(.green_main)
+                        }
+                    }
+            }
+        }
     }
     
     var WorkoutButton: some View {
@@ -326,11 +368,11 @@ struct WorkoutOngoingView: View {
                     Spacer()
                     
                     Button {
-                        workoutOngoingVM.controlRepetition()
+                        vm.workoutSetController(routineId: routineId, excerciseId: exerciseId)
                     } label: {
-                        if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
+                        if vm.currentSetIndex == vm.routine.sets.count - 1 {
                             RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
+                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
                                 .foregroundColor(.red_main)
                                 .overlay {
                                     Text("운동 완료")
@@ -346,11 +388,10 @@ struct WorkoutOngoingView: View {
                                     HStack{
                                         Text("다음 세트")
                                             .font(.button1())
-                                            .foregroundColor(.gray_900)
                                         Image(systemName: "chevron.right")
                                             .font(.button2())
-                                            .foregroundColor(.gray_900)
                                     }
+                                    .foregroundColor(.gray_900)
                                 }
                         }
                     }
@@ -359,7 +400,6 @@ struct WorkoutOngoingView: View {
                 .bold()
             }
     }
-    
     
     var RelatedContent: some View {
         VStack {
@@ -371,116 +411,28 @@ struct WorkoutOngoingView: View {
             }
             
             ScrollView(.horizontal) {
+                // TODO: 유튜브 카드 수정 후 고치기
                 RelatedContentCard(videoNum: 0, contentURL: "")
-//                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
-//                    HStack{
-//                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-//                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-//                    }
-//                }
+                //                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
+                //                    HStack{
+                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+                //                    }
+                //                }
             }
         }
         .padding(.horizontal)
     }
-   
+    
     var EmptyFloatingButton: some View {
         FloatingButton(backgroundColor: .clear) { }
-    }
-    
-    
-}
-
-struct ImageTip: View {
-    @Binding var currentIndex: Int
-    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
-    
-    var body: some View {
-        TabView(selection: $currentIndex){
-            
-            ZStack{
-                WorkoutImage
-                Button{
-                    withAnimation{
-                        currentIndex = 1
-                    }
-                } label: {
-                    WorkoutTipButton
-                }
-            }
-            .tag(0)
-            
-            WorkoutTip
-                .tag(1)
-            
-        }
-        .frame(height: UIScreen.getHeight(300))
-        .tabViewStyle(.page)
-    }
-    
-    var WorkoutImage: some View {
-        Image("tempWorkoutImage")
-            .resizable()
-        //            .scaledToFit()
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
-            .foregroundColor(.gray_600)
-            .padding(.horizontal)
-    }
-    
-    var WorkoutTip: some View {
-        RoundedRectangle(cornerRadius: 7.2)
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-            .foregroundColor(.gray_800)
-            .overlay {
-                VStack {
-                    HStack {
-                        Text("\(workoutOngoingVM.workoutModel.influencerName)'s Tip")
-                            .font(.headline2())
-                            .foregroundColor(.label_700)
-                        Spacer()
-                    }
-                    Spacer()
-                    
-                    Text(workoutOngoingVM.workoutModel.workoutTip)
-                        .font(.body())
-                        .foregroundColor(.label_900)
-                    Spacer()
-                    Spacer()
-                }
-                .padding()
-            }
-    }
-    
-    @ViewBuilder
-    var WorkoutTipButton: some View {
-        HStack {
-            Spacer()
-            Image(systemName: "chevron.backward")
-                .font(.button2())
-                .foregroundColor(.label_500)
-            RoundedRectangle(cornerRadius: 8.0)
-                .frame(width: UIScreen.getWidth(80), height: UIScreen.getHeight(68))
-                .foregroundColor(.fill_1)
-                .overlay {
-                    HStack {
-                        Text("팁")
-                            .font(.button2())
-                            .foregroundColor(.green_main)
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                }
-        }
-        .offset(x: UIScreen.getWidth(30))
-        //            .onTapGesture {
-        //                workoutOngoingVM.showWorkoutTip()
-        //            }
     }
 }
 
 struct WorkoutOngoingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            WorkoutOngoingView(currentWorkoutNumber: 1, routineVM: RoutineViewModel())
+            WorkoutOngoingView(routineId: 1, exerciseId: 1)
         }
     }
 }
