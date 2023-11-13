@@ -24,6 +24,17 @@ class WorkoutOngoingVM: ObservableObject {
         }
     }
     
+    //TODO: check 총 볼륨 합
+    func totalVolume() -> CGFloat {
+        var totalvolume = 0
+
+        for set in workoutSet {
+            totalvolume += (set.kg ?? 0) * (set.repetition ?? 0)
+        }
+
+        return CGFloat(totalvolume)
+    }
+    
     func decreaseWorkoutSet() {
         if workoutSet.count > 1 {
             if workoutSet.count == currentSet {

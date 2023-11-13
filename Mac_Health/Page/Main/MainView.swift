@@ -20,7 +20,8 @@ struct MainView: View {
             TabView(selection: $tabSelection){
                 //TODO: 로그인 전/ 구독전/ 구독 후 구분
 //                BeforeSubscribeView(tabSelection: $tabSelection)
-                TodayStartView(tabSelection: $tabSelection)
+                MockUpStartView(tabSelection: $tabSelection)
+//                TodayStartView(tabSelection: $tabSelection)
                     .tabItem {
                         Image(systemName: "dumbbell")
                         Text("루틴")
