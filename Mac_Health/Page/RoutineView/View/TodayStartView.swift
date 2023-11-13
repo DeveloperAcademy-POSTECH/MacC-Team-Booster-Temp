@@ -10,6 +10,7 @@ import SwiftUI
 struct TodayStartView: View {
     let routine: InfluencerRoutine
     @StateObject var vm = TodayStartViewModel()
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -28,7 +29,22 @@ struct TodayStartView: View {
             Spacer()
                 .frame(height: UITabBarController().height)
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton
+            }
+        }
         .navigationBarBackButtonHidden()
+    }
+    
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_900)
+                .font(.body())
+        }
     }
     
     var NavigationTitle: some View {
