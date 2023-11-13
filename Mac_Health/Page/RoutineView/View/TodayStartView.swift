@@ -139,7 +139,7 @@ struct TodayStartView: View {
                     //운동 시작 버튼
                     // TODO: 운동 완료시 disabledl
                     NavigationLink {
-                        WorkoutListView()
+                        WorkoutListView(routineId: routine.routineId)
                     } label: {
                         RoundedRectangle(cornerRadius: 100)
                             .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))

@@ -13,6 +13,7 @@ struct RelatedContentCard: View {
     
     var body: some View {
         ZStack {
+            // TODO: 유튜브 링크를 통해서 썸네일로 받아오기
             Image("youtubesample\(videoNum)")
                 .resizable()
                 .scaledToFill()

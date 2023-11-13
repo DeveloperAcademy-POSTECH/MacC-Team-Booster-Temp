@@ -38,7 +38,7 @@ struct ResponsePatchRoutinesExercisesAlternate: Codable {
     var exerciseId: Int
     var exerciseImageUrl: String
     var tip: String
-    var videoUrl: String
+    var videoUrls: [String]
     var sets: [ExerciseSet]
     var alternativeExercises: [AlternativeExercise]
 }
@@ -50,7 +50,7 @@ struct ResponseGetRoutinesExercises: Codable {
     var exerciseId: Int
     var exerciseImageUrl: String
     var tip: String
-    var videoUrl: String
+    var videoUrls: [String]
     var sets: [ExerciseSet]
     var alternativeExercises: [AlternativeExercise]
 }

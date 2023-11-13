@@ -31,8 +31,8 @@ struct SelectedRoutineView: View {
             }
             VStack {
                 Spacer()
-                Button {
-                    // TODO: WorkoutListView 네비게이션
+                NavigationLink {
+                    WorkoutListView(routineId: routineId)
                 } label: {
                     FloatingButton(backgroundColor: .green_main) {
                         Text("운동 시작")

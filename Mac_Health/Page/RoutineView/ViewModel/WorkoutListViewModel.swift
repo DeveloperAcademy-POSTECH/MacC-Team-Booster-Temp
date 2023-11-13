@@ -8,16 +8,14 @@
 import SwiftUI
 
 class WorkoutListViewModel: ObservableObject {
-//    @Published var routine = ResponseGetUsersRoutinesId()
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
+    @Published var isDetailedWorkoutShow = false
+    @Published var isConfirmationDialogShow = false
+    @Published var isAlternativeWorkoutShow = false
+    @Published var isDeleteAlertShow = false
     
-    init() {
-        self.fetchRoutine()
-    }
-    
-    func fetchRoutine() {
-        let id = 1
-        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: id), type: ResponseGetUsersRoutinesId.self) {
+    func fetchRoutine(routineId: Int) {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
                 self.routine = routine
