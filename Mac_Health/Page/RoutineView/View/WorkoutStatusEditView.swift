@@ -28,9 +28,9 @@ struct WorkoutStatusEditView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .sheet(isPresented: $isDetailedWorkoutShow) {
-            DetailedWorkoutSheet()
-        }
+//        .sheet(isPresented: $isDetailedWorkoutShow) {
+//            DetailedWorkoutSheet()
+//        }
         .confirmationDialog(workoutName, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
             ConfirmationDialog
         }
