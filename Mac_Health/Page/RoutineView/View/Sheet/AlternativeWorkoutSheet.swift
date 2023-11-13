@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct AlternativeWorkoutSheet: View {
+    let baseExercise: String
+    let baseRoutineId: Int
+    let baseExerciseId: Int
+    let alternativeExercise: [AlternativeExercise]
+    
+    @StateObject var vm = AlternativeWorkoutSheetViewModel()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -27,7 +33,6 @@ struct AlternativeWorkoutSheet: View {
     var NavitationTitle: some View {
         VStack {
             HStack {
-                // TODO: .
                 Text("운동 대체하기")
                     .font(.title1())
                     .foregroundColor(.label_900)
@@ -35,7 +40,6 @@ struct AlternativeWorkoutSheet: View {
                 Spacer()
                 
                 Button {
-                    // TODO: .
                     dismiss()
                 } label: {
                     Circle()
@@ -50,8 +54,7 @@ struct AlternativeWorkoutSheet: View {
             }
             
             HStack {
-                // TODO: .
-                Text("클로즈 그립 랫 풀 다운")
+                Text(baseExercise)
                     .font(.body())
                     .foregroundColor(.label_700)
                 
@@ -63,15 +66,21 @@ struct AlternativeWorkoutSheet: View {
     
     var AlternativeWorkoutList: some View {
         ScrollView {
-            // TODO: .
-            AlternativeWorkoutCard(isSelectedWorkout: false)
-            AlternativeWorkoutCard(isSelectedWorkout: true)
+            ForEach(0..<alternativeExercise.count, id: \.self) { index in
+                Button {
+                    vm.selection = index
+                } label: {
+                    AlternativeWorkoutCard(alternativeWorkout: alternativeExercise[index], isSelectedWorkout: vm.selection == index)
+                }
+            }
         }
     }
     
     var FinishButton: some View {
         Button {
-            // TODO: .
+            if vm.selection != -1 {
+                vm.patchAlternate(routineId: baseRoutineId, exerciseId: baseExerciseId, alternativeExerciseId: alternativeExercise[vm.selection].alternativeExerciseId)
+            }
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("완료")
@@ -84,6 +93,8 @@ struct AlternativeWorkoutSheet: View {
 
 struct AlternativeWorkoutSheet_Previews: PreviewProvider {
     static var previews: some View {
-        AlternativeWorkoutSheet()
+        NavigationStack {
+            AlternativeWorkoutSheet(baseExercise: "클로즈 그립 랫 풀 다운", baseRoutineId: 1, baseExerciseId: 1, alternativeExercise: [])
+        }
     }
 }

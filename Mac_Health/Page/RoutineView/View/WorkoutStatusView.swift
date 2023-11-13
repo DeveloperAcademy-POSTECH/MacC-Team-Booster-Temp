@@ -40,9 +40,9 @@ struct WorkoutStatusView: View {
         .confirmationDialog(workoutName, isPresented: $isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-        .sheet(isPresented: $isAlternativeWorkoutShow) {
-            AlternativeWorkoutSheet()
-        }
+//        .sheet(isPresented: $isAlternativeWorkoutShow) {
+//            AlternativeWorkoutSheet()
+//        }
         .alert("운동을 삭제하시겠습니까?", isPresented: $isDeleteAlertShow) {
             DeleteAlert
         }

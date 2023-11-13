@@ -35,9 +35,9 @@ struct WorkoutListView: View {
         .confirmationDialog(vm.routine.part, isPresented: $vm.isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-        .sheet(isPresented: $vm.isAlternativeWorkoutShow) {
-            AlternativeWorkoutSheet()
-        }
+//        .sheet(isPresented: $vm.isAlternativeWorkoutShow) {
+//            AlternativeWorkoutSheet()
+//        }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteAlertShow) {
             DeleteAlert
         }
@@ -120,6 +120,7 @@ struct WorkoutListView: View {
             Spacer()
             
             Button {
+                // TODO: 대체 운동
                 vm.isDetailedWorkoutShow = true
             } label: {
                 Image(systemName: "ellipsis")
@@ -127,6 +128,7 @@ struct WorkoutListView: View {
             }
             .padding()
         }
+        // TODO: 클릭한 시트 인덱스 관리
         .sheet(isPresented: $vm.isDetailedWorkoutShow) {
             DetailedWorkoutSheet(routineId: routineId, exerciseId: exercise.id.wrappedValue)
         }
@@ -134,7 +136,8 @@ struct WorkoutListView: View {
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            //            WorkoutOngoingView(currentWorkoutNumber: 0, routineVM: routineVM)
+            // TODO: 운동 1 / 10
+//            WorkoutOngoingView(routineId: routineId, exerciseId: )
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")

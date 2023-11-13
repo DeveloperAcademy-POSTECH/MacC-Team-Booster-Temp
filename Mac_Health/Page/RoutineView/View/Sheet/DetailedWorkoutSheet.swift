@@ -88,11 +88,16 @@ struct DetailedWorkoutSheet: View {
     var WorkoutTip: some View {
         VStack {
             HStack {
-                // TODO: 서버 데이터 구조 바뀌면 갱신 페이스 이미지
-                Image("descriptionFace1")
-                    .resizable()
-                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
-                    .foregroundColor(.gray_600)
+                AsyncImage(url: URL(string: vm.exercise.faceImageUrl)) { image in
+                    image
+                        .resizable()
+                } placeholder: {
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                        .resizable()
+                        .foregroundColor(.gray_600)
+                        .padding()
+                }
+                .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
                 
                 Spacer()
             }
