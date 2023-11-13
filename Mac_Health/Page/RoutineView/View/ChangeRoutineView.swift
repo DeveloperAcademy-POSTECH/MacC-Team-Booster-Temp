@@ -78,6 +78,7 @@ struct ChangeRoutineView: View {
     
     var Workouts: some View {
         ScrollView {
+            // TODO: 월 별 데이터
             ForEach(vm.routines.routines, id: \.self) { routine in
                 NavigationLink {
                     SelectedRoutineView(routineId: routine.routineId)
