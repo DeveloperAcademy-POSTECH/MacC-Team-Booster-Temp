@@ -30,14 +30,23 @@ struct ChangeRoutineView: View {
         .onAppear {
             vm.fetchRoutines(influencerId: influencerId)
         }
-        .navigationTitle("전체 루틴")
-        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton
             }
+            
+            ToolbarItem(placement: .principal) {
+                NavigationTitle
+            }
         }
+    }
+    
+    var NavigationTitle: some View {
+        Text("전체 루틴")
+            .font(.headline1())
+            .foregroundColor(.label_900)
     }
     
     var Blind: some View {
@@ -160,7 +169,7 @@ struct ChangeRoutineView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
-                .font(.body())l
+                .font(.body())
         }
     }
 }
