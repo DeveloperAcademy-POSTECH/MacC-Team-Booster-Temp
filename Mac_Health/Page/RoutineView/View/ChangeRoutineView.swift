@@ -30,6 +30,8 @@ struct ChangeRoutineView: View {
         .onAppear {
             vm.fetchRoutines(influencerId: influencerId)
         }
+        .navigationTitle("전체 루틴")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
