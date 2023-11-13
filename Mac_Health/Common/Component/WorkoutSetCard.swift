@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WorkoutSetCard: View {
     @Binding var workoutSet: WorkoutSetModel
+    var isFocused: FocusState<Bool>.Binding
     
     var body: some View {
         HStack {
@@ -21,6 +22,7 @@ struct WorkoutSetCard: View {
                 .foregroundColor(.gray_700)
                 .overlay {
                     TextField("자율", value: $workoutSet.kg, format: .number)
+                        .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_500)
                         .multilineTextAlignment(.trailing)
@@ -35,6 +37,7 @@ struct WorkoutSetCard: View {
                 .foregroundColor(.gray_700)
                 .overlay {
                     TextField("", value: $workoutSet.repetition, format: .number)
+                        .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_900)
                         .multilineTextAlignment(.trailing)
@@ -58,17 +61,17 @@ struct WorkoutSetCard: View {
     }
 }
 
-struct WorkoutSetCard_Previews:
-    PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-            
-            VStack {
-                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 1, kg: 5, repetition: 5, isFinish: true)))
-                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 2, kg: 5, repetition: 5, isFinish: true)))
-                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 3, kg: 5, repetition: 5, isFinish: false)))
-            }
-        }
-    }
-}
+//struct WorkoutSetCard_Previews:
+//    PreviewProvider {
+//    static var previews: some View {
+//        ZStack {
+//            Color.black.ignoresSafeArea()
+//            
+//            VStack {
+//                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 1, kg: 5, repetition: 5, isFinish: true)), isFocused: <#FocusState<Bool>.Binding#>)
+//                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 2, kg: 5, repetition: 5, isFinish: true)), isFocused: <#FocusState<Bool>.Binding#>)
+//                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 3, kg: 5, repetition: 5, isFinish: false)), isFocused: <#FocusState<Bool>.Binding#>)
+//            }
+//        }
+//    }
+//}

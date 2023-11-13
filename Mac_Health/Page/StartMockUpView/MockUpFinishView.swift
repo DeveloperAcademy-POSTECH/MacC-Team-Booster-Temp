@@ -1,15 +1,19 @@
 //
-//  WorkoutFinishView.swift
+//  MockUpFinishView.swift
 //  Mac_Health
 //
-//  Created by 정회승 on 11/9/23.
+//  Created by 정회승 on 11/13/23.
 //
 
 import SwiftUI
 
-struct WorkoutFinishView: View {
+struct MockUpFinishView: View {
     
+    @StateObject var viewModel = StopwatchVM()
+    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     @Binding var tabSelection: Int
+    
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -24,7 +28,7 @@ struct WorkoutFinishView: View {
                     .foregroundColor(.gray_700)
                     .overlay{
                         VStack(spacing: 5){
-                            Text("23.11.08")
+                            Text(getNowDateTime())
                                 .font(.title1())
                                 .foregroundColor(.label_900)
                             Text("오늘도 고생 많으셨어요!")
@@ -34,7 +38,7 @@ struct WorkoutFinishView: View {
                     }
                 HStack(spacing: 40){
                     VStack(spacing: 3){
-                        Text("45분")
+                        Text("\(String(timeFormatted(viewModel.elapsedTime)))")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("운동시간")
@@ -42,7 +46,7 @@ struct WorkoutFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-                        Text("632kcal")
+                        Text("580kcal")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("소모칼로리")
@@ -50,9 +54,9 @@ struct WorkoutFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-                        Text("6300kg")
-                            .font(.title2())
-                            .foregroundColor(.label_900)
+//                        Text("\(String(Int(workoutOngoingVM.totalVolume())))kg")
+//                            .font(.title2())
+//                            .foregroundColor(.label_900)
                         Text("총 볼륨")
                             .font(.body2())
                             .foregroundColor(.label_700)
@@ -74,11 +78,16 @@ struct WorkoutFinishView: View {
                 }
                 
                 Button{
+                    print("move to login view")
                     
                 } label: {
-                    FloatingButton(backgroundColor: .gray_600) { Text("닫기")
-                            .foregroundColor(.green_main)
-                            .font(.button1())
+                    FloatingButton(backgroundColor: .white) {
+                        HStack {
+                            Image(systemName: "apple.logo")
+                            Text("Apple로 로그인하고 함께하기")
+                        }
+                        .foregroundColor(.gray_900)
+                    .font(.button1())
                 }
                 
                 }
@@ -87,8 +96,28 @@ struct WorkoutFinishView: View {
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
     }
+    
+    func getNowDateTime() -> String {
+        let nowDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier:  "ko")
+        
+        dateFormatter.dateFormat = "yy.MM.dd"
+        let date_String = dateFormatter.string(from: nowDate)
+        return date_String
+    }
+    
+    private func timeFormatted(_ seconds: TimeInterval) -> String {
+        let hours = Int(seconds) / 3600
+        let minutes = Int(seconds) / 60
+        return if hours >= 1 {
+            String(format: "%01d시간%02d분",hours, minutes)
+        } else {
+            String(format: "%01d분", minutes)
+        }
+    }
 }
 
 #Preview {
-    WorkoutFinishView(tabSelection: .constant(3))
+    MockUpFinishView(tabSelection: .constant(1))
 }

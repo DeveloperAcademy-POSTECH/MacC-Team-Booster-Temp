@@ -18,7 +18,6 @@ struct AlternativeWorkoutSheet: View {
                 Spacer()
                 NavitationTitle
                 AlternativeWorkoutList
-                
                 FinishButton
             }
         }

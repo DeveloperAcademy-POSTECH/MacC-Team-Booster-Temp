@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum TodaySpecificViewModel: Int, CaseIterable, Identifiable {
+enum TodaySpecificVM: Int, CaseIterable, Identifiable {
 
     case part
     case setCount
