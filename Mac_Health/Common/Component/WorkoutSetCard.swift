@@ -65,6 +65,6 @@ struct WorkoutSetCard: View {
 struct WorkoutSetCard_Previews:
     PreviewProvider {
     static var previews: some View {
-        WorkoutSetCard(index: 1, set: .constant(ExerciseSet(setId: 1, reps: 5, isDone: false)))
+        WorkoutSetCard(index: 1, set: .constant(ExerciseSet(setId: 1, reps: 5, isDone: false)), isFocused: FocusState().projectedValue)
     }
 }

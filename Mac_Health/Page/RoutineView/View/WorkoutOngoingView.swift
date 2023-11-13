@@ -14,7 +14,7 @@ struct WorkoutOngoingView: View {
     
     @Environment(\.dismiss) var dismiss
     @StateObject var vm = WorkoutOngoingViewModel()
-    @StateObject var viewModel = StopwatchVM()
+    @StateObject var stopwatch = StopwatchVM()
     @FocusState private var isFocused: Bool
     
     var body: some View {
@@ -41,6 +41,7 @@ struct WorkoutOngoingView: View {
         }
         .onAppear {
             vm.fetchExercise(routineId: routineId, exerciseId: exerciseId)
+            stopwatch.Start()
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -119,17 +120,14 @@ struct WorkoutOngoingView: View {
         //            )
         //        }
         .sheet(isPresented: $vm.isPauseShow) {
-            // TODO: 타이머 붙이기
-            PauseSheet()
-        .onAppear{
-            viewModel.Start()
-        }
-        .onTapGesture {
+            PauseSheet(viewModel: stopwatch)
+                .onTapGesture {
                     isFocused = false
                 }
+        }
     }
     
-    
+    @ViewBuilder
     var BackButton: some View {
         Button {
             dismiss()
@@ -147,13 +145,13 @@ struct WorkoutOngoingView: View {
                 .foregroundColor(.label_700)
                 .font(.headline2())
             // TODO: 운동 시간
-            Text(timeFormatted(viewModel.elapsedTime))
+            Text(stopwatch.timeFormatted())
                 .foregroundColor(.label_900)
                 .font(.headline1())
             // TODO: 운동 상태
             Button {
                 vm.isPauseShow = true
-                    viewModel.Stop()
+                stopwatch.Stop()
             } label: {
                 Circle()
                     .foregroundColor(.gray_700)
@@ -166,13 +164,6 @@ struct WorkoutOngoingView: View {
                     }
             }
         }
-    }
-      
-      private func timeFormatted(_ seconds: TimeInterval) -> String {
-        let hours = Int(seconds) / 3600
-        let minutes = Int(seconds) / 60
-        let seconds = Int(seconds) % 60
-        return String(format: "%02d:%02d:%02d",hours, minutes, seconds)
     }
     
     var AlternativeButton: some View {
@@ -354,7 +345,7 @@ struct WorkoutOngoingView: View {
     var WorkoutSetList: some View {
         if !vm.routine.sets.isEmpty {
             ForEach(0..<vm.routine.sets.count, id: \.self) { index in
-                WorkoutSetCard(index: index + 1, set: $vm.routine.sets[index])
+                WorkoutSetCard(index: index + 1, set: $vm.routine.sets[index], isFocused: $isFocused)
                     .overlay {
                         if index == vm.currentSetIndex {
                             RoundedRectangle(cornerRadius: 8)
