@@ -12,6 +12,7 @@ class WorkoutListViewModel: ObservableObject {
     @Published var isDetailedWorkoutShow = false
     @Published var isConfirmationDialogShow = false
     @Published var isAlternativeWorkoutShow = false
+    @Published var isAlternativeWorkoutSheetShow = false
     @Published var isDeleteAlertShow = false
     @Published var selectedExercise = -1
     
@@ -25,8 +26,5 @@ class WorkoutListViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
         }
-    }
-    func detailWorkoutParameter() {
-        
     }
 }
