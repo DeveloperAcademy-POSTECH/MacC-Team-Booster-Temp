@@ -15,7 +15,7 @@ struct ExerciseSet: Codable, Hashable {
     var isDone: Bool
 }
 
-struct AlternativeExercise: Codable {
+struct AlternativeExercise: Codable, Hashable {
     var alternativeExerciseId: Int
     var name: String
     var exerciseImageUrl: String
