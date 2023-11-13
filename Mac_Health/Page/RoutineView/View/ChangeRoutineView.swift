@@ -17,28 +17,32 @@ struct ChangeRoutineView: View {
     @StateObject var vm = ChangeRoutineViewModel()
     
     var body: some View {
-        VStack {
-            SortingSlider
-            ZStack {
-                //선택된 selection 들이 포함된 운동
-                Workouts
-                ///if logInt ? 0 : 3
-                    .blur(radius: 0)
-                //                    Blind
-            }
-        }
-        .onAppear {
-            vm.fetchRoutines(influencerId: influencerId)
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton
-            }
+        ZStack {
+            Color.gray_900.ignoresSafeArea()
             
-            ToolbarItem(placement: .principal) {
-                NavigationTitle
+            VStack {
+                SortingSlider
+                ZStack {
+                    //선택된 selection 들이 포함된 운동
+                    Workouts
+                    ///if logInt ? 0 : 3
+                        .blur(radius: 0)
+                    //                    Blind
+                }
+            }
+            .onAppear {
+                vm.fetchRoutines(influencerId: influencerId)
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    NavigationTitle
+                }
             }
         }
     }
