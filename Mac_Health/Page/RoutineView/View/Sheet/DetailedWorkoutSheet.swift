@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DetailedWorkoutSheet: View {
+    let routineId: Int
+    let exerciseId: Int
+    @StateObject var vm = DetailedWorkoutSheetViewModel()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -26,20 +29,21 @@ struct DetailedWorkoutSheet: View {
                 }
             }
         }
+        .onAppear {
+            vm.fetchExercise(routineId: routineId, exerciseId: exerciseId)
+        }
         .presentationDetents([.height(UIScreen.getHeight(684))])
     }
     
     var NavigationTitle: some View {
         HStack {
-            // TODO: .
-            Text("클로즈 그립 랫 풀 다운")
+            Text("\(vm.exercise.name)")
                 .font(.title1())
                 .foregroundColor(.label_900)
             
             Spacer()
             
             Button {
-                // TODO: .
                 dismiss()
             } label: {
                 Circle()
@@ -59,18 +63,24 @@ struct DetailedWorkoutSheet: View {
     var WorkoutCard: some View {
         VStack {
             HStack {
-                // TODO: .
-                Text("등")
+                Text("\(vm.exercise.part)")
                     .foregroundColor(.label_700)
                     .font(.body())
                 
                 Spacer()
             }
-            // TODO: .
-            Image("Workout")
-                .resizable()
-                .scaledToFit()
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+            AsyncImage(url: URL(string: vm.exercise.exerciseImageUrl)) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+            } placeholder: {
+                Image(systemName: "arrow.triangle.2.circlepath")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                    .padding()
+            }
         }
         .padding(.horizontal)
     }
@@ -78,7 +88,7 @@ struct DetailedWorkoutSheet: View {
     var WorkoutTip: some View {
         VStack {
             HStack {
-                // TODO: .
+                // TODO: 서버 데이터 구조 바뀌면 갱신 페이스 이미지
                 Image("descriptionFace1")
                     .resizable()
                     .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
@@ -87,8 +97,7 @@ struct DetailedWorkoutSheet: View {
                 Spacer()
             }
             .padding(.bottom)
-            // TODO: .
-            Text("고정축이 흔들리면 정확한 타겟이 불가능하기 때문에 꼭! 랫 풀 다운 할 때는 발꿈치를 들어서 무릎 패드와 다리 사이에 공간이 없도록 단단한 지지대를 만들어 주는 것이 굉장히 중요합니다.\n")
+            Text("\(vm.exercise.tip)\n")
                 .multilineTextAlignment(.leading)
                 .lineSpacing(3)
                 .foregroundColor(.label_900)
@@ -109,7 +118,7 @@ struct DetailedWorkoutSheet: View {
             
             ScrollView(.horizontal) {
                 HStack{
-                    // TODO: .
+                    // TODO: 유튜브 링크 통해서 작업하기
                     RelatedContentCard(videoNum: 0, contentURL: "")
                 }
             }
@@ -120,6 +129,6 @@ struct DetailedWorkoutSheet: View {
 
 struct DetailedWorkoutSheet_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedWorkoutSheet()
+        DetailedWorkoutSheet(routineId: 1, exerciseId: 1)
     }
 }

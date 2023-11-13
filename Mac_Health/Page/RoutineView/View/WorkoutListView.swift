@@ -30,7 +30,7 @@ struct WorkoutListView: View {
         }
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $vm.isDetailedWorkoutShow) {
-            DetailedWorkoutSheet()
+//            DetailedWorkoutSheet()
         }
         .confirmationDialog(vm.routine.part, isPresented: $vm.isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
@@ -75,48 +75,60 @@ struct WorkoutListView: View {
     
     func WorkoutListCell(exercise: Binding<Exercise>) -> some View {
         HStack {
-            RoundedRectangle(cornerRadius: 4)
-                .foregroundColor(.fill_1)
-                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
-                .overlay {
-                    AsyncImage(url: URL(string: exercise.exerciseImageUrl.wrappedValue)) { image in
-                        image
-                            .resizable()
-                    } placeholder: {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.label_400)
-                            .padding()
-                    }
-                }
-            
-            VStack(alignment: .leading) {
-                Text(exercise.name.wrappedValue)
-                    .foregroundColor(.label_900)
-                    .font(.headline1())
+            Button {
+                vm.isDetailedWorkoutShow = true
+            } label: {
                 HStack {
-                    Text("\(exercise.numberOfSet.wrappedValue)세트")
-                        .foregroundColor(.label_700)
-                        .font(.body2())
-//                    Text("|")
-//                        .foregroundColor(.label_400)
-//                        .font(.body2())
-                    // TODO: reps 추가
-//                    Text("10-15회")
-//                        .foregroundColor(.label_700)
-//                        .font(.body2())
+                    RoundedRectangle(cornerRadius: 4)
+                        .foregroundColor(.fill_1)
+                        .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                        .overlay {
+                            AsyncImage(url: URL(string: exercise.exerciseImageUrl.wrappedValue)) { image in
+                                image
+                                    .resizable()
+                            } placeholder: {
+                                Image(systemName: "arrow.triangle.2.circlepath")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.label_400)
+                                    .padding()
+                            }
+                        }
+                    
+                    VStack(alignment: .leading) {
+                        Text(exercise.name.wrappedValue)
+                            .foregroundColor(.label_900)
+                            .font(.headline1())
+                        HStack {
+                            Text("\(exercise.numberOfSet.wrappedValue)세트")
+                                .foregroundColor(.label_700)
+                                .font(.body2())
+                            //                    Text("|")
+                            //                        .foregroundColor(.label_400)
+                            //                        .font(.body2())
+                            // TODO: reps 추가
+                            //                    Text("10-15회")
+                            //                        .foregroundColor(.label_700)
+                            //                        .font(.body2())
+                        }
+                    }
+                    
+                    Spacer()
                 }
             }
-            
+    
             Spacer()
             
             Button {
-                // TODO: .
+                vm.isDetailedWorkoutShow = true
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
             }
+            .padding()
+        }
+        .sheet(isPresented: $vm.isDetailedWorkoutShow) {
+            DetailedWorkoutSheet(routineId: routineId, exerciseId: exercise.id.wrappedValue)
         }
     }
     
