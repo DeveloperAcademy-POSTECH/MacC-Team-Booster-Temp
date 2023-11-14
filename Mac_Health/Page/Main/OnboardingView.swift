@@ -8,7 +8,6 @@
 import SwiftUI
 import AuthenticationServices
 
-// TODO: 토큰 재발급 기능 필요
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
     @State var isPass = false
