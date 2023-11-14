@@ -9,6 +9,7 @@ import SwiftUI
 import AuthenticationServices
 
 // TODO: 추후 온보딩으로 변경
+// TODO: 토큰 재발급 기능 필요
 struct LoginTestView: View {
     @State var isPass = false
     
