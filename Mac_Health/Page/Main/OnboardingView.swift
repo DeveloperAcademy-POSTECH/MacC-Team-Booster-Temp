@@ -9,6 +9,7 @@ import SwiftUI
 import AuthenticationServices
 
 // TODO: 토큰 재발급 기능 필요
+/// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
     @State var isPass = false
     
@@ -67,26 +68,27 @@ struct OnboardingView: View {
                 }
             }
         }
-        //        .onAppear {
-        //            let appleIDProvider = ASAuthorizationAppleIDProvider()
-        //            appleIDProvider.getCredentialState(forUserID: "") { (credentialState, error) in
-        //                switch credentialState {
-        //                    case .authorized:
-        //                       print("authorized")
-        //                    case .revoked:
-        //                       print("revoked")
-        //                    case .notFound:
-        //                       print("notFound")
-        //                    default:
-        //                        break
-        //                }
-        //            }
-        //        }
+        .onAppear {
+            isLogined()
+        }
     }
     
     /// 애플 로그인 성공 시 서버에 액세스 토큰 요청 함수
     func postLogin(identifier: String, identityToken: String, authorizationCode: String) {
         GeneralAPIManger.request(for: .PostLogin(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode), type: Token.self) {
+            switch $0 {
+            case .success(let token):
+                saveUser(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                self.isPass = true
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    /// 자동 로그인 용 토큰 재발급 함수
+    func getReissue(refreshToken: String) {
+        GeneralAPIManger.request(for: .GetReissue(refreshToken: refreshToken), type: Token.self) {
             switch $0 {
             case .success(let token):
                 saveUser(accessToken: token.accessToken, refreshToken: token.refreshToken)
@@ -103,15 +105,13 @@ struct OnboardingView: View {
         UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
     }
     
-    func isLogined() -> Bool {
-        let userDefaults = UserDefaults.standard
-        
-        if userDefaults.string(forKey: "refreshToken") != nil, userDefaults.string(forKey: "accessToken") != nil {
-            return true
+    /// 자동 로그인 검사 함수
+    func isLogined(){
+        if let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") {
+            getReissue(refreshToken: refreshToken)
+            return
         }
-        else {
-            return false
-        }
+        // TODO: 액세스 토큰 분기? - 필요한지 잘 모르겠음
     }
 }
 
