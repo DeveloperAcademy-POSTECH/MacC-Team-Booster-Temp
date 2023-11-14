@@ -8,7 +8,7 @@
 import SwiftUI
 import AuthenticationServices
 
-struct LoginTestView: View {
+fileprivate struct LoginTestView: View {
     var body: some View {
         ZStack {
             Color.gray.ignoresSafeArea()
@@ -41,7 +41,7 @@ struct LoginTestView: View {
         }
         .onAppear {
             let appleIDProvider = ASAuthorizationAppleIDProvider()
-            appleIDProvider.getCredentialState(forUserID: "000376.30357e79eb8a443ea573b62544408c6b.1202") { (credentialState, error) in
+            appleIDProvider.getCredentialState(forUserID: "") { (credentialState, error) in
                 switch credentialState {
                     case .authorized:
                        print("authorized")
@@ -75,7 +75,7 @@ struct LoginTestView: View {
     
 }
 
-struct LoginTestView_Preview: PreviewProvider {
+fileprivate struct LoginTestView_Preview: PreviewProvider {
     static var previews: some View {
         LoginTestView()
     }
