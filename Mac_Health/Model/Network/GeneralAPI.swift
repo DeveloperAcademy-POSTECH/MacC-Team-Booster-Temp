@@ -52,11 +52,6 @@ enum GeneralAPI {
     case GetUsersInfluencersRoutines(id: Int)
     //:
     
-    // MARK: user-record-controller
-    /// 운동 기록 - RecordView
-    case GetUsersRecords
-    //:
-    
     // MARK: user-set-controller
     /// 세트 조정 - WorkoutOngoingView
     case PatchUsersRoutinesExercisesSets(routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int)
@@ -66,6 +61,11 @@ enum GeneralAPI {
     
     /// 세트 취소(안 씀) - WorkoutOngoingView
     case PatchUsersRoutinesExercisesSetsCancle(routineId: Int, exerciseId: Int, setId: Int)
+    //:
+    
+    // MARK: user-record-controller
+    /// 운동 기록 - RecordView
+    case GetUsersRecords
     //:
     
     // MARK: routine-controller
