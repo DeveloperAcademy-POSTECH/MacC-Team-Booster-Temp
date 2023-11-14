@@ -57,7 +57,7 @@
 		D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */; };
 		D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */; };
 		D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805F2AE51E5300A8B76A /* TopImage.swift */; };
-		D5D8F17B2AF399830032A788 /* MultiRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17A2AF399830032A788 /* MultiRoutineView.swift */; };
+		D5D8F17B2AF399830032A788 /* MultiInfluencerRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17A2AF399830032A788 /* MultiInfluencerRoutineView.swift */; };
 		D5D8F17E2AF39EC80032A788 /* ChangeRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */; };
 		F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */; };
 		F82674C52AF68F11002BFACD /* AlternativeWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C42AF68F11002BFACD /* AlternativeWorkoutSheet.swift */; };
@@ -147,7 +147,7 @@
 		D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
 		D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRoutine.swift; sourceTree = "<group>"; };
 		D5B7805F2AE51E5300A8B76A /* TopImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImage.swift; sourceTree = "<group>"; };
-		D5D8F17A2AF399830032A788 /* MultiRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiRoutineView.swift; sourceTree = "<group>"; };
+		D5D8F17A2AF399830032A788 /* MultiInfluencerRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiInfluencerRoutineView.swift; sourceTree = "<group>"; };
 		D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoutineView.swift; sourceTree = "<group>"; };
 		F80BF2A72AE6A07D00EA4E07 /* Mac-Health-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Health-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheet.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 				F8DACB572B03FCB800C3E95C /* RoutineView.swift */,
 				F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */,
 				F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */,
-				D5D8F17A2AF399830032A788 /* MultiRoutineView.swift */,
+				D5D8F17A2AF399830032A788 /* MultiInfluencerRoutineView.swift */,
 				D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */,
 				D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */,
 				D569C7882AF5152100FDADED /* SelectedRoutineView.swift */,
@@ -698,12 +698,12 @@
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
 				F8DFEAEC2AFA190F00BC721B /* OnboardingView.swift in Sources */,
 				D569C7892AF5152100FDADED /* SelectedRoutineView.swift in Sources */,
-				D5D8F17B2AF399830032A788 /* MultiRoutineView.swift in Sources */,
+				D5D8F17B2AF399830032A788 /* MultiInfluencerRoutineView.swift in Sources */,
 				D569C7892AF5152100FDADED /* SelectedRoutineView.swift in Sources */,
-				D5D8F17B2AF399830032A788 /* MultiRoutineView.swift in Sources */,
+				D5D8F17B2AF399830032A788 /* MultiInfluencerRoutineView.swift in Sources */,
 				D58066582AFD3B4A003BB276 /* PauseStopwatchVM.swift in Sources */,
 				D571836A2B02084C00A11FFC /* MockUpWorkoutOngoingView.swift in Sources */,
-				D5D8F17B2AF399830032A788 /* MultiRoutineView.swift in Sources */,
+				D5D8F17B2AF399830032A788 /* MultiInfluencerRoutineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
