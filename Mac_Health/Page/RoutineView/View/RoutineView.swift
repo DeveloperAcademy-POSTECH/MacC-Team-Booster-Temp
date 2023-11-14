@@ -8,6 +8,7 @@
 import SwiftUI
 
 // TODO: vm 추가 - 인플루언서 구독 조회
+/// 루틴 탭 최상위 뷰
 struct RoutineView: View {
     @State var influencerIds: [Int] = []
     
