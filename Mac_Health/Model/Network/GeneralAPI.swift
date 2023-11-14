@@ -88,6 +88,7 @@ extension GeneralAPI: TargetType {
     
     var path: String {
         switch self {
+            // MARK: user-exercise-controller
         case .PostRoutinesExercisesSets(let routineId, let exerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets"
         case .DeleteRoutinesExercisesSets(let routineId, let exerciseId):
@@ -96,6 +97,18 @@ extension GeneralAPI: TargetType {
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/alternate/\(alternativeExerciseId)"
         case .GetRoutinesExercises(let routineId, let exerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)"
+            //:
+            // MARK: auth-controller
+        case .PostLogin(identifier: let identifier, identityToken: let identityToken, authorizationCode: let authorizationCode):
+            return ""
+        case .GetReissue(refreshToken: let refreshToken):
+            return ""
+            //:
+            // MARK: user-controller
+        case .PatchUsers(name: let name):
+            return ""
+            //:
+            // MARK: user-routine-controller
         case .PatchUsersRoutines(let routineId, _):
             return "/users/routines/\(routineId)"
         case .PatchUsersRoutinesFinish(let routineId):
@@ -106,18 +119,27 @@ extension GeneralAPI: TargetType {
             return "/users/routines/\(id)"
         case .GetUsersInfluencersRoutines(let id):
             return "/users/influencers/\(id)/routines"
+            //:
+            // MARK: user-set-controller
         case .PatchUsersRoutinesExercisesSets(let routineId, let exerciseId, let setId, _, _):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets/\(setId)"
         case .PatchUsersRoutinesExercisesSetsFinish(let routineId, let exerciseId, let setId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets/\(setId)/finish"
         case .PatchUsersRoutinesExercisesSetsCancle(let routineId, let exerciseId, let setId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/sets/\(setId)/cancle"
+            //:
+            // MARK: user-record-controller
         case .GetUsersRecords:
             return "/users/records"
+            //:
+            // MARK: routine-controller
         case .GetRoutines:
             return "/routines"
+            //:
+            // MARK: influencer-controller
         case .GetInfluencersRoutines(let id):
             return "/influencers/\(id)/routines"
+            //:
         }
     }
     
