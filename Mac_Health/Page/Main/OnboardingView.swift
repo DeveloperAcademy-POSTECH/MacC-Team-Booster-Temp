@@ -15,7 +15,9 @@ struct OnboardingView: View {
     var body: some View {
         if !isPass {
             // 로그인 전
-            Onboarding
+            NavigationStack {
+                Onboarding
+            }
         }
         else {
             // 로그인 성공 시
@@ -29,32 +31,41 @@ struct OnboardingView: View {
             // TODO: 색 변경
             Color.gray.ignoresSafeArea()
             
-            // TODO: 사이즈 변경
-            FloatingButton(backgroundColor: .clear) {
-                SignInWithAppleButton(.signIn) { request in
-                    request.requestedScopes = [.email]
-                } onCompletion: { results in
-                    // TODO: 추후 vm 생성
-                    switch results {
-                    case .success(let result):
-                        switch result.credential {
-                        case let userCredential as ASAuthorizationAppleIDCredential:
-                            let identifier = userCredential.user
-                            let identityToken = String(data: userCredential.identityToken!, encoding: .utf8)
-                            let authorizationCode = String(data: userCredential.authorizationCode!, encoding: .utf8)
-                            
-                            postLogin(identifier: identifier, identityToken: identityToken!, authorizationCode: authorizationCode!)
-                        default:
-                            break
+            // TODO: 텍스트 사이즈 변경
+            VStack {
+                FloatingButton(backgroundColor: .clear) {
+                    SignInWithAppleButton(.signIn) { request in
+                        request.requestedScopes = [.email]
+                    } onCompletion: { results in
+                        // TODO: 추후 vm 생성
+                        switch results {
+                        case .success(let result):
+                            switch result.credential {
+                            case let userCredential as ASAuthorizationAppleIDCredential:
+                                let identifier = userCredential.user
+                                let identityToken = String(data: userCredential.identityToken!, encoding: .utf8)
+                                let authorizationCode = String(data: userCredential.authorizationCode!, encoding: .utf8)
+                                
+                                postLogin(identifier: identifier, identityToken: identityToken!, authorizationCode: authorizationCode!)
+                            default:
+                                break
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
                         }
-                    case .failure(let error):
-                        print(error.localizedDescription)
+                    }
+                    .cornerRadius(100)
+                    .signInWithAppleButtonStyle(.white)
+                }
+                // TODO: 둘러보기 버튼 추가
+                NavigationLink {
+                    MockUpStartView(tabSelection: .constant(1))
+                } label: {
+                    FloatingButton(backgroundColor: .fill_2) {
+                        Text("둘러보기")
                     }
                 }
-                .cornerRadius(100)
-                .signInWithAppleButtonStyle(.white)
             }
-            // TODO: 둘러보기 버튼 추가
         }
         //        .onAppear {
         //            let appleIDProvider = ASAuthorizationAppleIDProvider()
