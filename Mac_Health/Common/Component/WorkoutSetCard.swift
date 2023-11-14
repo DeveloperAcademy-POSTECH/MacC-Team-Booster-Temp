@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct WorkoutSetCard: View {
-    @Binding var workoutSet: WorkoutSetModel
+    let index: Int
+    @Binding var set: ExerciseSet
+    var isFocused: FocusState<Bool>.Binding
     
     var body: some View {
         HStack {
-            Text("\(workoutSet.index)")
+            Text("\(index)")
                 .foregroundColor(.label_900)
             Spacer()
             
@@ -20,7 +22,8 @@ struct WorkoutSetCard: View {
                 .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
                 .foregroundColor(.gray_700)
                 .overlay {
-                    TextField("자율", value: $workoutSet.kg, format: .number)
+                    TextField("자율", value: $set.weight, format: .number)
+                        .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_500)
                         .multilineTextAlignment(.trailing)
@@ -34,7 +37,8 @@ struct WorkoutSetCard: View {
                 .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
                 .foregroundColor(.gray_700)
                 .overlay {
-                    TextField("", value: $workoutSet.repetition, format: .number)
+                    TextField("", value: $set.reps, format: .number)
+                        .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_900)
                         .multilineTextAlignment(.trailing)
@@ -44,7 +48,7 @@ struct WorkoutSetCard: View {
                 .foregroundColor(.label_700)
             Spacer()
             
-            if workoutSet.isFinish {
+            if set.isDone {
                 CheckButton()
             }
             else {
@@ -61,14 +65,6 @@ struct WorkoutSetCard: View {
 struct WorkoutSetCard_Previews:
     PreviewProvider {
     static var previews: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-            
-            VStack {
-                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 1, kg: 5, repetition: 5, isFinish: true)))
-                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 2, kg: 5, repetition: 5, isFinish: true)))
-                WorkoutSetCard(workoutSet: .constant(WorkoutSetModel(index: 3, kg: 5, repetition: 5, isFinish: false)))
-            }
-        }
+        WorkoutSetCard(index: 1, set: .constant(ExerciseSet(setId: 1, reps: 5, isDone: false)), isFocused: FocusState().projectedValue)
     }
 }

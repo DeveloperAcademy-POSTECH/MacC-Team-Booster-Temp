@@ -11,13 +11,13 @@ struct TopImage: View {
     
     //    @StateObject private var searchVM = SearchVM()
     //    var recommend: RecommendInfluencer?
-    
+    @Binding var tabSelection: Int
     var body: some View {
         TabView {
             ForEach(1...3, id: \.self) { idx in
                 //둘러보기에서 구독 뷰
                 NavigationLink {
-                    SubscribeView()
+                    SubscribeView(tabSelection: $tabSelection)
                         .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
                 } label: {
                     RecommendPage(RecommendBannerNum: idx)
@@ -79,6 +79,6 @@ struct RecommendPage: View {
 
 struct TopImageView_Previews: PreviewProvider {
     static var previews: some View {
-        TopImage()
+        TopImage(tabSelection: .constant(1))
     }
 }
