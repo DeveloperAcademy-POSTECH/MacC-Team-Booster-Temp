@@ -322,14 +322,7 @@
 				F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */,
 				F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */,
 				D5D8F17A2AF399830032A788 /* MultiInfluencerRoutineView.swift */,
-				D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */,
-				D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */,
-				D569C7882AF5152100FDADED /* SelectedRoutineView.swift */,
-				F843AFA02AF6737300EDA547 /* WorkoutListView.swift */,
-				F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */,
-				F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */,
-				F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */,
-				D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */,
+				F8DACB622B0417E000C3E95C /* Temp */,
 				D569C7922AF945C200FDADED /* Sheet */,
 			);
 			path = View;
@@ -338,18 +331,10 @@
 		D569C7912AF945A200FDADED /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */,
-				D58066532AFD3152003BB276 /* StopwatchVM.swift */,
-				D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */,
-				F877F0AF2AFBEB38009D49B4 /* ChangeRoutineViewModel.swift */,
 				D569C78A2AF9440600FDADED /* RoutineViewModel.swift */,
-				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */,
-				F877F0AB2AFBBA40009D49B4 /* MultiInfluencerRoutineViewModel.swift */,
-				F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */,
-				F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */,
-				F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */,
-				F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */,
 				F8DACB602B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift */,
+				F877F0AB2AFBBA40009D49B4 /* MultiInfluencerRoutineViewModel.swift */,
+				F8DACB632B04182900C3E95C /* Temp */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -499,6 +484,37 @@
 				F8DACB5C2B04010100C3E95C /* MainViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F8DACB622B0417E000C3E95C /* Temp */ = {
+			isa = PBXGroup;
+			children = (
+				D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */,
+				D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */,
+				D569C7882AF5152100FDADED /* SelectedRoutineView.swift */,
+				F843AFA02AF6737300EDA547 /* WorkoutListView.swift */,
+				F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */,
+				F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */,
+				F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */,
+				D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */,
+			);
+			path = Temp;
+			sourceTree = "<group>";
+		};
+		F8DACB632B04182900C3E95C /* Temp */ = {
+			isa = PBXGroup;
+			children = (
+				F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */,
+				D58066532AFD3152003BB276 /* StopwatchVM.swift */,
+				D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */,
+				F877F0AF2AFBEB38009D49B4 /* ChangeRoutineViewModel.swift */,
+				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */,
+				F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */,
+				F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */,
+				F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */,
+				F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */,
+			);
+			path = Temp;
 			sourceTree = "<group>";
 		};
 		F8F3A13B2AFA34EF0068F885 /* RecordView */ = {
