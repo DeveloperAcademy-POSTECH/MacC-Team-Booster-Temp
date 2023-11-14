@@ -184,28 +184,47 @@ extension GeneralAPI: TargetType {
     
     var task: Moya.Task {
         switch self {
+            // MARK: user-exercise-controller
         case .PostRoutinesExercisesSets: return .requestPlain
         case .DeleteRoutinesExercisesSets: return .requestPlain
         case .PatchRoutinesExercisesAlternate: return .requestPlain
         case .GetRoutinesExercises: return .requestPlain
+            //:
+            // MARK: auth-controller
+        case .PostLogin(identifier: let identifier, identityToken: let identityToken, authorizationCode: let authorizationCode): return .requestParameters(parameters: ["identifier": identifier, "identityToken": identityToken, "authorizationCode": authorizationCode], encoding: URLEncoding.queryString)
+        case .GetReissue: return .requestPlain
+            //:
+            // MARK: user-controller
+        case .PatchUsers(name: let name): return .requestParameters(parameters: ["name": name], encoding: URLEncoding.queryString)
+            //:
+            // MARK: user-routine-controller
         case .PatchUsersRoutines(_, time: let time): return .requestParameters(parameters: ["time": time], encoding: URLEncoding.queryString)
         case .PatchUsersRoutinesFinish: return .requestPlain
         case .GetUsersRoutines(date: let date): return .requestParameters(parameters: ["date": date], encoding: URLEncoding.queryString)
         case .GetUsersRoutinesId: return .requestPlain
         case .GetUsersInfluencersRoutines: return .requestPlain
+            //:
+            // MARK: user-set-controller
         case .PatchUsersRoutinesExercisesSets(_, _, _, weight: let weight, reps: let reps): return .requestJSONEncodable(RequestPatchUsersRoutinesExercisesSets(weight: weight, reps: reps))
         case .PatchUsersRoutinesExercisesSetsFinish: return .requestPlain
         case .PatchUsersRoutinesExercisesSetsCancle: return .requestPlain
+            //:
+            // MARK: user-record-controller
         case .GetUsersRecords: return .requestPlain
+            //:
+            // MARK: routine-controller
         case .GetRoutines: return .requestPlain
+            //:
+            // MARK: influencer-controller
         case .GetInfluencersRoutines: return .requestPlain
+            //:
         }
     }
     
     var headers: [String : String]? {
         switch self {
         default:
-            return ["Content-Type": "application/json" ]
+            return ["Content-Type": "application/json"]
         }
     }
 }
