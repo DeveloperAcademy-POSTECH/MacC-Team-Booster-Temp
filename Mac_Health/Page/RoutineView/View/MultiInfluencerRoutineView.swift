@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// 인플루언서 다중 구독 뷰
 struct MultiInfluencerRoutineView: View {
     @StateObject var vm = MultiInfluencerRoutineViewModel()
     
