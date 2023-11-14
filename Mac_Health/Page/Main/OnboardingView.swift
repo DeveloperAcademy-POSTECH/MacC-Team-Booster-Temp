@@ -25,50 +25,74 @@ struct OnboardingView: View {
         }
     }
     
-    // TODO: 뷰 디테일 작업
     var Onboarding: some View {
         ZStack {
-            // TODO: 색 변경
-            Color.gray.ignoresSafeArea()
+            Color.gray_900.ignoresSafeArea()
             
-            // TODO: 텍스트 사이즈 변경
+            // TODO: 온보딩 추가 시 작업
+            /// 온보딩
             VStack {
-                FloatingButton(backgroundColor: .clear) {
-                    SignInWithAppleButton(.signIn) { request in
-                        request.requestedScopes = [.email]
-                    } onCompletion: { results in
-                        // TODO: 추후 vm 생성
-                        switch results {
-                        case .success(let result):
-                            switch result.credential {
-                            case let userCredential as ASAuthorizationAppleIDCredential:
-                                let identifier = userCredential.user
-                                let identityToken = String(data: userCredential.identityToken!, encoding: .utf8)
-                                let authorizationCode = String(data: userCredential.authorizationCode!, encoding: .utf8)
-                                
-                                postLogin(identifier: identifier, identityToken: identityToken!, authorizationCode: authorizationCode!)
-                            default:
-                                break
-                            }
-                        case .failure(let error):
-                            print(error.localizedDescription)
+                TabView {
+                    ForEach(1...3, id: \.self) { _ in
+                        HStack {
+                            Rectangle()
+                                .foregroundColor(.green_main)
                         }
                     }
-                    .cornerRadius(100)
-                    .signInWithAppleButtonStyle(.white)
+                    .frame(width:UIScreen.getWidth(390), height: UIScreen.getHeight(500))
+                    .tabViewStyle(.page)
                 }
-                // TODO: 둘러보기 버튼 추가
-                NavigationLink {
-                    MockUpStartView(tabSelection: .constant(1))
-                } label: {
-                    FloatingButton(backgroundColor: .fill_2) {
-                        Text("둘러보기")
-                    }
-                }
+                
+                /// 로그인 버튼
+                LoginButton
+                
+                /// 둘러보기 버튼
+                PreviewButton
             }
+            Spacer()
+                .frame(height: UIScreen.getHeight(20))
         }
         .onAppear {
             isLogined()
+        }
+    }
+    
+    var LoginButton: some View {
+        FloatingButton(backgroundColor: .clear) {
+            SignInWithAppleButton(.signIn) { request in
+                request.requestedScopes = [.email]
+            } onCompletion: { results in
+                // TODO: 추후 vm 생성
+                switch results {
+                case .success(let result):
+                    switch result.credential {
+                    case let userCredential as ASAuthorizationAppleIDCredential:
+                        let identifier = userCredential.user
+                        let identityToken = String(data: userCredential.identityToken!, encoding: .utf8)
+                        let authorizationCode = String(data: userCredential.authorizationCode!, encoding: .utf8)
+                        
+                        postLogin(identifier: identifier, identityToken: identityToken!, authorizationCode: authorizationCode!)
+                    default:
+                        break
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            .cornerRadius(100)
+            .signInWithAppleButtonStyle(.white)
+        }
+    }
+    
+    var PreviewButton: some View {
+        NavigationLink {
+            MockUpStartView(tabSelection: .constant(1))
+        } label: {
+            FloatingButton(backgroundColor: .gray_600) {
+                Text("둘러보기")
+                    .foregroundColor(.green_main)
+                    .font(.button1())
+            }
         }
     }
     
@@ -116,6 +140,8 @@ struct OnboardingView: View {
 
 struct OnboardingView_Preview: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        NavigationStack {
+            OnboardingView()
+        }
     }
 }
