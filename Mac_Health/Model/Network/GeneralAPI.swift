@@ -168,7 +168,7 @@ extension GeneralAPI: TargetType {
     var headers: [String : String]? {
         switch self {
         default:
-            return ["Content-Type": "application/json"]
+            return ["Content-Type": "application/json", "Authorization": "Bearer eyJraWQiOiJXNldjT0tCIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwczovL2FwcGxlaWQuYXBwbGUuY29tIiwiYXVkIjoiY29tLmJvb3N0ZXIuQkVGTEUiLCJleHAiOjE2OTk5MzgwMTIsImlhdCI6MTY5OTg1MTYxMiwic3ViIjoiMDAxOTMxLjY1OGEyODllM2E1NjRhNWZiMDJiNGVmNzE2NmVmNDFlLjA4MzgiLCJhdF9oYXNoIjoiV1A4TGsydzYtcVQtbVNQXzBiRW0wUSIsImVtYWlsIjoiNzc2bjdxbWh3dEBwcml2YXRlcmVsYXkuYXBwbGVpZC5jb20iLCJlbWFpbF92ZXJpZmllZCI6InRydWUiLCJpc19wcml2YXRlX2VtYWlsIjoidHJ1ZSIsImF1dGhfdGltZSI6MTY5OTg1MTQzNywibm9uY2Vfc3VwcG9ydGVkIjp0cnVlfQ.xPUNqZVSAVmbYCHgDj27FiyD959h3vvoeTjIGae-oyLaMaKIyDNC4_py1MpOVqMA4Lyj_FvNDZyI6ivuFhy6Ns3gNW_Jw7k5a9E_uI4b49tDiEW8t5s7NkbMzET0KcAgr582NrCHdRbhviNHRlZX9iH1zIi2bWlVea2IhV91fxv9dIFKNlkofOU5MRI1sFCRyxZZh1JofQ4AZYVS3TyhcCur8Q92OdsCbyqY0nuHAcnAmOlwxdoFtHPUOepR4Em72HMzt8_kTozuRtb2_wBBi2nGh_xN-MODCIfJF1SVsnKDqgjvmJAsYQaKJlYsaBXSKu7WOnptKkDVdkBigyKNjg"]
         }
     }
 }

@@ -29,6 +29,7 @@ class GeneralAPIManger {
                     }
                 }
                 else {
+                    print(resp)
                     completion(.failure(.statusCode(resp)))
                 }
             case .failure(let error):

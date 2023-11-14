@@ -40,6 +40,10 @@
 		D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183672B01EE8500A11FFC /* MockUpStartView.swift */; };
 		D571836A2B02084C00A11FFC /* MockUpWorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */; };
 		D571836D2B020A6800A11FFC /* MockUpFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571836C2B020A6800A11FFC /* MockUpFinishView.swift */; };
+		D57183722B02232800A11FFC /* MockUpStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183712B02232800A11FFC /* MockUpStopwatchViewModel.swift */; };
+		D57183752B02234300A11FFC /* MockUpPauseStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183742B02234300A11FFC /* MockUpPauseStopwatchViewModel.swift */; };
+		D57183782B02235C00A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183772B02235C00A11FFC /* MockUpWorkoutOngoingViewModel.swift */; };
+		D571837B2B02FE5D00A11FFC /* MockUpPauseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571837A2B02FE5D00A11FFC /* MockUpPauseSheet.swift */; };
 		D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */; };
 		D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */; };
 		D58066512AFD2B11003BB276 /* BeforeSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066502AFD2B11003BB276 /* BeforeSubscribeView.swift */; };
@@ -119,6 +123,10 @@
 		D57183672B01EE8500A11FFC /* MockUpStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpStartView.swift; sourceTree = "<group>"; };
 		D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingView.swift; sourceTree = "<group>"; };
 		D571836C2B020A6800A11FFC /* MockUpFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpFinishView.swift; sourceTree = "<group>"; };
+		D57183712B02232800A11FFC /* MockUpStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpStopwatchViewModel.swift; sourceTree = "<group>"; };
+		D57183742B02234300A11FFC /* MockUpPauseStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpPauseStopwatchViewModel.swift; sourceTree = "<group>"; };
+		D57183772B02235C00A11FFC /* MockUpWorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
+		D571837A2B02FE5D00A11FFC /* MockUpPauseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpPauseSheet.swift; sourceTree = "<group>"; };
 		D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscribeView.swift; sourceTree = "<group>"; };
 		D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFinishView.swift; sourceTree = "<group>"; };
 		D58066502AFD2B11003BB276 /* BeforeSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeSubscribeView.swift; sourceTree = "<group>"; };
@@ -351,11 +359,39 @@
 		D57183662B01EE5900A11FFC /* StartMockUpView */ = {
 			isa = PBXGroup;
 			children = (
+				D571836F2B0222F400A11FFC /* ViewModel */,
+				D571836E2B0222E800A11FFC /* View */,
+			);
+			path = StartMockUpView;
+			sourceTree = "<group>";
+		};
+		D571836E2B0222E800A11FFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D57183792B02FE4A00A11FFC /* Sheet */,
 				D57183672B01EE8500A11FFC /* MockUpStartView.swift */,
 				D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */,
 				D571836C2B020A6800A11FFC /* MockUpFinishView.swift */,
 			);
-			path = StartMockUpView;
+			path = View;
+			sourceTree = "<group>";
+		};
+		D571836F2B0222F400A11FFC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D57183712B02232800A11FFC /* MockUpStopwatchViewModel.swift */,
+				D57183742B02234300A11FFC /* MockUpPauseStopwatchViewModel.swift */,
+				D57183772B02235C00A11FFC /* MockUpWorkoutOngoingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D57183792B02FE4A00A11FFC /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				D571837A2B02FE5D00A11FFC /* MockUpPauseSheet.swift */,
+			);
+			path = Sheet;
 			sourceTree = "<group>";
 		};
 		D584CD872AFB555A00AFA1FF /* View */ = {
@@ -574,6 +610,7 @@
 				F89B3BED2AE5064200CACBD9 /* AlternativeWorkoutCard.swift in Sources */,
 				F886927D2AFFF12E0043EE9A /* Ext+String.swift in Sources */,
 				F886927B2AFFF0710043EE9A /* Ext+Date.swift in Sources */,
+				D57183722B02232800A11FFC /* MockUpStopwatchViewModel.swift in Sources */,
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
 				F838A12C2AFB79E500688893 /* APIBody.swift in Sources */,
 				F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */,
@@ -595,6 +632,7 @@
 				D58066542AFD3152003BB276 /* StopwatchVM.swift in Sources */,
 				F82674CF2AF7F099002BFACD /* WorkoutStatusEditView.swift in Sources */,
 				D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */,
+				D57183782B02235C00A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */,
 				D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */,
 				F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */,
 				D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */,
@@ -606,6 +644,8 @@
 				F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */,
 				F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */,
 				0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */,
+				D57183752B02234300A11FFC /* MockUpPauseStopwatchViewModel.swift in Sources */,
+				D571837B2B02FE5D00A11FFC /* MockUpPauseSheet.swift in Sources */,
 				F89B3BE92AE503B500CACBD9 /* CheckButton.swift in Sources */,
 				F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */,
 				D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */,

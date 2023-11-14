@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MockUpFinishView: View {
     
-    @StateObject var viewModel = StopwatchVM()
-    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
+    @StateObject var viewModel = MockUpStopwatchViewModel()
+    @StateObject var workoutOngoingVM = MockUpWorkoutOngoingViewModel()
     @Binding var tabSelection: Int
     
     
