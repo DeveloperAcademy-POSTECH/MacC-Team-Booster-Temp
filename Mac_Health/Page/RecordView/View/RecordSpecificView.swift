@@ -14,6 +14,7 @@ struct RecordSpecificView: View {
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
+            
             ScrollView {
                 VStack(alignment: .leading) {
                     RoutineDescriptionCard
@@ -23,33 +24,37 @@ struct RecordSpecificView: View {
                 }
             }
             .padding()
-            ///날짜는 상위뷰에서 받아와야함
-        }.navigationBarTitle("2203년 6월 23일", displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    BackButton
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    //login 되야 활성화
-                    EditButton
-                }
+        }
+        // TODO: 타이틀 폰트 체크
+        .navigationBarTitle(record.date, displayMode: .inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton
             }
-            .navigationBarBackButtonHidden(true)
+            ToolbarItem(placement: .topBarTrailing) {
+                //login 되야 활성화
+                EditButton
+            }
+        }
+        .navigationBarBackButtonHidden(true)
     }
     
     var RoutineDescriptionCard: some View {
         VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
-            Text("정회승")
+            // TODO: 인플루언서 네임
+            Text("")
+            // TODO: 폰트
             Text("2023년 4월 23일 루틴")
-            Description(image: "figure.arms.open", text: "등 이두")
-            Description(image: "square.stack.fill", text: "7개")
+            Description(image: "figure.arms.open", text: record.part)
+            Description(image: "square.stack.fill", text: "\(record.numberOfExercise)개")
+            // TODO: 한 시간 넘어가면 어떻게 되는지 묻기
             Description(image: "clock.fill", text: "50분")
-            Description(image: "flame.circle.fill", text: "569kcal")
+            Description(image: "flame.circle.fill", text: "\(record.burnedKCalories)kcal")
+            // TODO: 총 무게
             Description(image: "dumbbell.fill", text: "13400kg")
         }.padding(.bottom)
     }
     
-
     func Description(image: String, text: String) -> some View {
         HStack {
             Image(systemName: image)
@@ -62,7 +67,6 @@ struct RecordSpecificView: View {
         }
     }
     
-    
     var EditButton: some View {
         NavigationLink {
             RecordEditView()
@@ -71,9 +75,7 @@ struct RecordSpecificView: View {
                 .foregroundColor(.label_700)
                 .font(.headline1())
         }
-
     }
-    
     
     var BackButton: some View {
         Button {
@@ -91,7 +93,7 @@ struct RecordSpecificView: View {
                 HStack {
                     Text("클로즈 그립 랫풀다운")
                     Spacer()
-                    Text("1450 kg")
+                    Text("1450kg")
                 }
                 .font(.headline1())
                 .foregroundColor(.label_900)
@@ -107,6 +109,7 @@ struct RecordSpecificView: View {
                 }
             }
         }
+        
         func makeSet(id: Int, kg: Int, rep: Int) -> some View {
             HStack(spacing: 16) {
                 Text("\(id)세트")
@@ -117,7 +120,6 @@ struct RecordSpecificView: View {
             .foregroundColor(.label_700)
         }
     }
-    
 }
 
 struct RecordSpecificView_Preview: PreviewProvider {
