@@ -99,14 +99,14 @@ extension GeneralAPI: TargetType {
             return "/users/routines/\(routineId)/exercises/\(exerciseId)"
             //:
             // MARK: auth-controller
-        case .PostLogin(identifier: let identifier, identityToken: let identityToken, authorizationCode: let authorizationCode):
-            return ""
+        case .PostLogin:
+            return "/login"
         case .GetReissue(refreshToken: let refreshToken):
-            return ""
+            return "/\(refreshToken)/reissue"
             //:
             // MARK: user-controller
-        case .PatchUsers(name: let name):
-            return ""
+        case .PatchUsers:
+            return "/users"
             //:
             // MARK: user-routine-controller
         case .PatchUsersRoutines(let routineId, _):
