@@ -9,4 +9,20 @@ import SwiftUI
 
 class MainViewModel: ObservableObject {
     @Published var tabSelection = 0
+    
+    func changeToRoutineTab() {
+        tabSelection = 0
+    }
+    
+    func changeToSearchTab() {
+        tabSelection = 1
+    }
+    
+    func changeToRecordTab() {
+        tabSelection = 2
+    }
+    
+    func changeToProfileTab() {
+        tabSelection = 3l
+    }
 }
