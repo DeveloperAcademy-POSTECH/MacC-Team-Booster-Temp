@@ -145,21 +145,40 @@ extension GeneralAPI: TargetType {
     
     var method: Moya.Method {
         switch self {
+            // MARK: user-exercise-controller
         case .PostRoutinesExercisesSets: return .post
         case .DeleteRoutinesExercisesSets: return .delete
         case .PatchRoutinesExercisesAlternate: return .patch
         case .GetRoutinesExercises: return .get
+            //:
+            // MARK: auth-controller
+        case .PostLogin: return .post
+        case .GetReissue: return .get
+            //:
+            // MARK: user-controller
+        case .PatchUsers: return .patch
+            //:
+            // MARK: user-routine-controller
         case .PatchUsersRoutines: return .patch
         case .PatchUsersRoutinesFinish: return .patch
         case .GetUsersRoutines: return .get
         case .GetUsersRoutinesId: return .get
         case .GetUsersInfluencersRoutines: return .get
+            //:
+            // MARK: user-set-controller
         case .PatchUsersRoutinesExercisesSets: return .patch
         case .PatchUsersRoutinesExercisesSetsFinish: return .patch
         case .PatchUsersRoutinesExercisesSetsCancle: return .patch
+            //:
+            // MARK: user-record-controller
         case .GetUsersRecords: return .get
+            //:
+            // MARK: routine-controller
         case .GetRoutines: return .get
+            //:
+            // MARK: influencer-controller
         case .GetInfluencersRoutines: return .get
+            //:
         }
     }
     
