@@ -1,5 +1,5 @@
 //
-//  LoginTestView.swift
+//  OnboardingView.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 11/6/23.
@@ -8,9 +8,8 @@
 import SwiftUI
 import AuthenticationServices
 
-// TODO: 추후 온보딩으로 변경
 // TODO: 토큰 재발급 기능 필요
-struct LoginTestView: View {
+struct OnboardingView: View {
     @State var isPass = false
     
     var body: some View {
@@ -99,8 +98,8 @@ struct LoginTestView: View {
     }
 }
 
-struct LoginTestView_Preview: PreviewProvider {
+struct OnboardingView_Preview: PreviewProvider {
     static var previews: some View {
-        LoginTestView()
+        OnboardingView()
     }
 }
