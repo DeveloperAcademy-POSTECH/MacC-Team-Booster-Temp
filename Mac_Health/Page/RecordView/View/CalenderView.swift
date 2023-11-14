@@ -10,8 +10,7 @@ import FSCalendar
 
 
 struct CalendarView: UIViewControllerRepresentable {
-
-    @Binding var testState: String
+    @Binding var recordedDate: [String]
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let view = FSCalendarView()
@@ -20,29 +19,46 @@ struct CalendarView: UIViewControllerRepresentable {
         return view
     }
     
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
-    }
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(parent: self, testState: _testState)
+        return Coordinator(parent: self, recordedDate: $recordedDate)
     }
     
-    class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource {
+    class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
         var parent: CalendarView
-        @Binding var testState: String
+        @Binding var recordedDate: [String]
         
-        init(parent: CalendarView, testState: Binding<String>) {
+        init(parent: CalendarView, recordedDate: Binding<[String]>) {
             self.parent = parent
-            self._testState = testState
+            self._recordedDate = recordedDate
         }
         
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            print(dateFormatter.string(from: date))
+            
         }
         
+        func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            if recordedDate.contains(dateFormatter.string(from: date)) {
+                return 1
+            }
+            
+            return 0
+        }
+        
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+              
+            if recordedDate.contains(dateFormatter.string(from: date)) {
+                return [UIColor(Color.green_main)]
+            }
+            
+            return nil
+        }
     }
 }
 

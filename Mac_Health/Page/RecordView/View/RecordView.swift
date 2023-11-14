@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RecordView: View {
     @StateObject var vm = RecordViewModel()
-    @State var testState = "test"
     @State var logOut: Bool = false
     
     var body: some View {
@@ -37,7 +36,8 @@ struct RecordView: View {
     }
     
     var Calender: some View {
-        CalendarView(testState: $testState).frame(height: UIScreen.getHeight(362))
+        CalendarView(recordedDate: $vm.recordedDate)
+            .frame(height: UIScreen.getHeight(362))
             .padding(.horizontal)
     }
     

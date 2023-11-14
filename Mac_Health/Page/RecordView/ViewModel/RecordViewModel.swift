@@ -9,6 +9,7 @@ import SwiftUI
 
 class RecordViewModel: ObservableObject {
     @Published var records = ResponseGetUsersRecords(records: [])
+    @Published var recordedDate = [String]()
     
     init() {
         fetchRecords()
@@ -20,10 +21,16 @@ class RecordViewModel: ObservableObject {
             case .success(let records):
                 print(records)
                 self.records.records = records
-                print(self.records)
+                self.fetchRecodedDate()
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func fetchRecodedDate() {
+        recordedDate = records.records.map {
+            $0.date
         }
     }
 }
