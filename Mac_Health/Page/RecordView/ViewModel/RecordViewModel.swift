@@ -9,6 +9,7 @@ import SwiftUI
 
 class RecordViewModel: ObservableObject {
     @Published var records = ResponseGetUsersRecords(records: [])
+    @Published var selectedDate = ""
     @Published var recordedDate = [String]()
     
     init() {

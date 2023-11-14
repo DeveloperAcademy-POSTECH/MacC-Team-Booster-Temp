@@ -10,6 +10,7 @@ import FSCalendar
 
 
 struct CalendarView: UIViewControllerRepresentable {
+    @Binding var selectedDate: String
     @Binding var recordedDate: [String]
     
     func makeUIViewController(context: Context) -> some UIViewController {
@@ -22,20 +23,25 @@ struct CalendarView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(parent: self, recordedDate: $recordedDate)
+        return Coordinator(parent: self, selectedDate: $selectedDate, recordedDate: $recordedDate)
     }
     
     class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
         var parent: CalendarView
+        @Binding var selectedDate: String
         @Binding var recordedDate: [String]
         
-        init(parent: CalendarView, recordedDate: Binding<[String]>) {
+        init(parent: CalendarView, selectedDate: Binding<String>, recordedDate: Binding<[String]>) {
             self.parent = parent
+            self._selectedDate = selectedDate
             self._recordedDate = recordedDate
         }
         
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
             
+            selectedDate = dateFormatter.string(from: date)
         }
         
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
