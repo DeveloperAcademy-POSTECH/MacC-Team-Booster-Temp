@@ -15,7 +15,7 @@ struct MainView: View {
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
     }
     @State private var path = NavigationPath()
-    @State private var tabSelection = 1
+    @State private var tabSelection = 0
     
     var body: some View {
         NavigationStack {
@@ -25,28 +25,28 @@ struct MainView: View {
                         Image(systemName: "dumbbell")
                         Text("루틴")
                     }
-                    .tag(1)
+                    .tag(0)
                 
                 SearchView(tabSelection: $tabSelection)
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("둘러보기")
                     }
-                    .tag(2)
+                    .tag(1)
                 
                 RecordView()
                     .tabItem {
                         Image(systemName: "list.clipboard.fill")
                         Text("기록")
                     }
-                    .tag(3)
+                    .tag(2)
                 
                 ProfileView()
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("프로필")
-                }
-                .tag(4)
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("프로필")
+                    }
+                    .tag(3)
             }
             .tint(.label_900)
         }
