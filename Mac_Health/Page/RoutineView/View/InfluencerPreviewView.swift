@@ -9,6 +9,8 @@ import SwiftUI
 
 /// 구독한 인플루언서가 없을 때 보여지는 뷰
 struct InfluencerPreviewView: View {
+    @EnvironmentObject var mainVM: MainViewModel
+    
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
@@ -25,7 +27,7 @@ struct InfluencerPreviewView: View {
                 .foregroundColor(.label_900)
                 .padding()
                 Button {
-                    
+                    mainVM.changeToSearchTab()
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .frame(width: UIScreen.getWidth(180), height: UIScreen.getHeight(60))
