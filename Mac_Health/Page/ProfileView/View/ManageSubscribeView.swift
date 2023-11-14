@@ -41,7 +41,7 @@ struct ManageSubscribeView: View {
                     .foregroundColor(.label_900)
                 Spacer()
                 Button {
-                    self.cancelingSubscribed = true
+                    cancelingSubscribed.toggle()
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .frame(width: 76, height: 32)
@@ -52,16 +52,12 @@ struct ManageSubscribeView: View {
                                 .font(.button2())
                         }
                 }
-                .alert(isPresented: $cancelingSubscribed) {
-                    Alert(
-                        title: Text("구독을 취소하시겠습니까?"),
-        //                message: Text(""),
-                        primaryButton: .destructive(Text("확인"),
-                                                action: {
-
-                                        }),
-                                        secondaryButton: .cancel(Text("취소"))
-                    )
+                //TODO: 여기서 취소버튼누르면 네트워킹 쏴줘야함.
+                .alert("구독을 취소하시겠습니까?", isPresented: $cancelingSubscribed) {
+                    Button("취소") { }
+                    Button("확인") {
+                        
+                    }.bold()
                 }
             }
             
