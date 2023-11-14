@@ -88,6 +88,7 @@
 		F8DACB582B03FCB800C3E95C /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB572B03FCB800C3E95C /* RoutineView.swift */; };
 		F8DACB5A2B03FE6500C3E95C /* InfluencerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */; };
 		F8DACB5D2B04010100C3E95C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB5C2B04010100C3E95C /* MainViewModel.swift */; };
+		F8DACB5F2B040C7900C3E95C /* SingleInfluencerRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */; };
 		F8DFEAEC2AFA190F00BC721B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */; };
 		F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */; };
 		F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13E2AFA35210068F885 /* CalenderView.swift */; };
@@ -178,6 +179,7 @@
 		F8DACB572B03FCB800C3E95C /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerPreviewView.swift; sourceTree = "<group>"; };
 		F8DACB5C2B04010100C3E95C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerRoutineView.swift; sourceTree = "<group>"; };
 		F8DFEAC32AF8FD8E00BC721B /* Mac_Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_Health.entitlements; sourceTree = "<group>"; };
 		F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			children = (
 				F8DACB572B03FCB800C3E95C /* RoutineView.swift */,
 				F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */,
+				F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */,
 				D5D8F17A2AF399830032A788 /* MultiRoutineView.swift */,
 				D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */,
 				D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */,
@@ -637,6 +640,7 @@
 				D56A0C702AF2153A004D1747 /* TodayStartView.swift in Sources */,
 				D571836D2B020A6800A11FFC /* MockUpFinishView.swift in Sources */,
 				D57183902B03399300A11FFC /* MockUpWorkoutSetModel.swift in Sources */,
+				F8DACB5F2B040C7900C3E95C /* SingleInfluencerRoutineView.swift in Sources */,
 				D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */,
 				F89B3BED2AE5064200CACBD9 /* AlternativeWorkoutCard.swift in Sources */,
 				F886927D2AFFF12E0043EE9A /* Ext+String.swift in Sources */,
