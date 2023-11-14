@@ -23,6 +23,6 @@ class MainViewModel: ObservableObject {
     }
     
     func changeToProfileTab() {
-        tabSelection = 3l
+        tabSelection = 3
     }
 }
