@@ -169,5 +169,7 @@ struct MockUpStartView: View {
 }
 
 #Preview {
-    MockUpStartView(tabSelection: .constant(3))
+    NavigationStack{
+        MockUpStartView(tabSelection: .constant(3))
+    }
 }

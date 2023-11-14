@@ -9,13 +9,13 @@ import SwiftUI
 
 struct MockUpWorkoutOngoingView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel = StopwatchVM()
+    @StateObject var viewModel = MockUpStopwatchViewModel()
     @FocusState private var isFocused: Bool
     @Binding var tabSelection: Int
     
 //    let currentWorkoutNumber: Int
 //    @ObservedObject var routineVM: RoutineVM
-    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
+    @StateObject var workoutOngoingVM = MockUpWorkoutOngoingViewModel()
     @State var isPauseShow = false
 //    @State var isFinishShow = false
     @State var isAlternativeShow = false
@@ -89,7 +89,7 @@ struct MockUpWorkoutOngoingView: View {
             }
         }
         .sheet(isPresented: $isPauseShow) {
-            PauseSheet(viewModel: viewModel)
+            MockUpPauseSheet(viewModel: viewModel)
         }
         .onAppear{
             viewModel.Start()
@@ -329,6 +329,6 @@ struct MockUpWorkoutOngoingView: View {
 
 #Preview {
     NavigationStack{
-        MockUpWorkoutOngoingView(viewModel: StopwatchVM(), tabSelection: .constant(3))
+        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
     }
 }
