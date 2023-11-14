@@ -36,7 +36,7 @@ struct MockUpWorkoutOngoingView: View {
                     Spacer()
                     Spacer()
                     workoutInfomation
-                    ImageTip(currentIndex: $currentIndex)
+//                    ImageTip(currentIndex: $currentIndex)
                     Spacer()
                     WorkoutSetButton
                     WorkoutSetList
@@ -263,15 +263,15 @@ struct MockUpWorkoutOngoingView: View {
     
     var WorkoutSetList: some View {
         ForEach($workoutOngoingVM.workoutSet) { $workoutSet in
-            WorkoutSetCard(workoutSet: $workoutSet, isFocused: $isFocused)
-                .overlay {
-                    if workoutSet.index == workoutOngoingVM.currentSet {
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(lineWidth: 1)
-                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
-                            .foregroundColor(.green_main)
-                    }
-                }
+//            WorkoutSetCard(workoutSet: $workoutSet, isFocused: $isFocused)
+//                .overlay {
+//                    if workoutSet.index == workoutOngoingVM.currentSet {
+//                        RoundedRectangle(cornerRadius: 8)
+//                            .stroke(lineWidth: 1)
+//                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
+//                            .foregroundColor(.green_main)
+//                    }
+//                }
         }
     }
     

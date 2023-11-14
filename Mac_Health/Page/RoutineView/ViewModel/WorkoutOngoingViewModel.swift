@@ -8,25 +8,20 @@
 import SwiftUI
 
 class WorkoutOngoingViewModel: ObservableObject {
-    let routineId = 1
-    let exerciseId = 1
-    let setId = 1
     let weight = 5
     let reps = 10
     
-    @Published var routine = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [])
+    @Published var routine = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
+    @Published var tabSelection = 0
+    @Published var currentSetIndex = 0
+    @Published var isPauseShow = false
+    @Published var isAlternativeShow = false
+    @Published var isAlternativeSheetShow = false
     
-    init() {
-        workoutModel = WorkoutModel(workoutDate: "10월 5일(일)", influencerName: "정회승", workoutName: "클로즈 그립 랫 풀 다운", workoutSet: 4, workoutKgs: [0, 0, 0, 0], workoutReps: [10, 10, 15, 15], alternativeWorkout: ["클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운"], relatedContentURL: [ "http://www.youtube.com"], workoutTip: "고정축이 흔들리면 정확한 타겟이 불가능하기 때문에 꼭! 랫 풀 다운 할 때는 발꿈치를 들어서 무릎 패드와 다리 사이에 공간이 없도록 단단한 지지대를 만들어 주는 것이 굉장히 중요합니다.")
-        
-        for i in 0..<workoutModel.workoutSet {
-            workoutSet.append(WorkoutSetModel(index: i + 1, kg: workoutModel.workoutKgs[i], repetition: workoutModel.workoutReps[i], isFinish: false))
-        }
-        self.fetchRoutine()
-        
-    }
+    // TODO: 세트 수정 시 세트 업데이트 로직 추가
     
-    func fetchRoutine() {
+    /// 운동 루틴 불러오는 함수
+    func fetchExercise(routineId: Int, exerciseId: Int) {
         // TODO: 여러 번(= 8번) init 되는 거 수정
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
@@ -39,11 +34,12 @@ class WorkoutOngoingViewModel: ObservableObject {
         }
     }
     
-    func postIncreaseSet() {
-        GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: ResponsePostRoutinesExercisesSets.self) {
+    /// 운동 세트 증가 함수
+    func postIncreaseSet(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
             switch $0 {
             case .success(let set):
-                self.routine.sets = set.sets
+                self.routine.sets = set
                 print(self.routine)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -51,11 +47,12 @@ class WorkoutOngoingViewModel: ObservableObject {
         }
     }
     
-    func deleteDecreaseSet() {
-        GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: ResponseDeleteRoutinesExercisesSets.self) {
+    /// 운동 세트 감소 함수
+    func deleteDecreaseSet(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
             switch $0 {
             case .success(let set):
-                self.routine.sets = set.sets
+                self.routine.sets = set
                 print(self.routine)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -63,98 +60,47 @@ class WorkoutOngoingViewModel: ObservableObject {
         }
     }
     
-    func patchSetFinish() {
-        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
-            switch $0 {
-            case .success(let set):
-                self.routine.sets[self.setId].weight = set.weight
-                self.routine.sets[self.setId].reps = set.reps
-                self.routine.sets[self.setId].isDone = set.isDone
-                print(self.routine)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+    /// 운동 세트 완료 함수
+    func workoutSetController(routineId: Int, excerciseId: Int) {
+        if currentSetIndex < routine.sets.count {
+            patchSetFinish(routineId: routineId, exerciseId: excerciseId)
+        }
+        else {
+            // TODO: 운동 완료
         }
     }
     
-    func patchSetModification(weight: Int, reps: Int) {
-        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
+    /// 운동 세트 완료 함수 - isDone
+    func patchSetFinish(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: routine.sets[currentSetIndex].setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
             case .success(let set):
-                self.routine.sets[self.setId].weight = set.weight
-                self.routine.sets[self.setId].reps = set.reps
-                self.routine.sets[self.setId].isDone = set.isDone
-                print(self.routine)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    
-        let workoutModel: WorkoutModel
-        @Published var isRoutineSequenceShow = false
-        @Published var isAlternativeWorkoutShow = false
-        @Published var isWorkoutFinishAlertShow = false
-        @Published var isWorkoutTipShow = false
-        @Published var workoutSet: [WorkoutSetModel] = []
-        @Published var currentSet = 1
-    
-    //    init() {
-    //
-    //    }
-    //
-        func decreaseWorkoutSet() {
-            if workoutSet.count > 1 {
-                if workoutSet.count == currentSet {
-                    currentSet -= 1
+                self.routine.sets[self.currentSetIndex].weight = set.weight
+                self.routine.sets[self.currentSetIndex].reps = set.reps
+                self.routine.sets[self.currentSetIndex].isDone = set.isDone
+                
+                // TODO: 로직 추후 변경 - 인덱스가 총 카운트 넘어가는 거 검사
+                if self.currentSetIndex < self.routine.sets.count - 1 {
+                    self.currentSetIndex += 1
                 }
-                workoutSet.removeLast()
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
+    }
     
-        func increaseWorkoutSet() {
-            if workoutSet.count < 10 {
-                workoutSet.append(WorkoutSetModel(index: workoutSet.count + 1, kg: 0, repetition: 0, isFinish: false))
+    /// 운동 세트 수정 함수
+    func patchSetModification(routineId: Int, exerciseId: Int, weight: Int, reps: Int) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: 0, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
+            switch $0 {
+            case .success(let set):
+                self.routine.sets[0].weight = set.weight
+                self.routine.sets[0].reps = set.reps
+                self.routine.sets[0].isDone = set.isDone
+                print(self.routine)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
-    
-        func controlRepetition() {
-            if workoutSet.count == currentSet {
-                workoutSet[currentSet - 1].isFinish = true
-                showWorkoutFinishAlert()
-            }
-            else {
-                workoutSet[currentSet - 1].isFinish = true
-                currentSet += 1
-            }
-        }
-    
-        func showAlternativeWorkout() {
-            isAlternativeWorkoutShow = true
-        }
-    
-        func dismissAlternativeWorkOut() {
-            isAlternativeWorkoutShow = false
-        }
-    
-        func showWorkoutFinishAlert() {
-            isWorkoutFinishAlertShow = true
-        }
-    
-        func showRoutineSequenceShow() {
-            isRoutineSequenceShow = true
-        }
-    
-        func dismissRoutineSequenceShow() {
-            isRoutineSequenceShow = false
-        }
-    
-        func showWorkoutTip() {
-            isWorkoutTipShow = true
-        }
-    
-        func dismissWorkoutTip() {
-            isWorkoutTipShow = false
-        }
+    }
 }

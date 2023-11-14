@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlternativeWorkoutCard: View {
+    let alternativeWorkout: AlternativeExercise
     let isSelectedWorkout: Bool
     
     var body: some View {
@@ -20,11 +21,19 @@ struct AlternativeWorkoutCard: View {
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                         .foregroundColor(.fill_1)
                         .overlay {
-                            Image("CloseGripLatPullDown")
-                                .resizable()
+                            AsyncImage(url: URL(string: alternativeWorkout.exerciseImageUrl)) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                            } placeholder: {
+                                Image(systemName: "arrow.triangle.2.circlepath")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.gray_600)
+                            }
                         }
                     
-                    Text("클로즈 그립 랫 풀 다운")
+                    Text(alternativeWorkout.name)
                         .font(.headline1())
                         .foregroundColor(isSelectedWorkout ? .green_main : .label_900)
                     Spacer()
@@ -47,8 +56,7 @@ struct AlternativeWorkoutCard_Previews: PreviewProvider {
             Color.black.ignoresSafeArea()
             
             VStack {
-                AlternativeWorkoutCard(isSelectedWorkout: false)
-                AlternativeWorkoutCard(isSelectedWorkout: true)
+                AlternativeWorkoutCard(alternativeWorkout: AlternativeExercise(alternativeExerciseId: 1, name: "", exerciseImageUrl: ""), isSelectedWorkout: false)
             }
         }
     }

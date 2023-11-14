@@ -1,8 +1,16 @@
+////
+////  MockUpStartView.swift
+////  Mac_Health
+////
+////  Created by 정회승 on 11/13/23.
+////
 //
-//  MockUpStartView.swift
-//  Mac_Health
+//import SwiftUI
 //
-//  Created by 정회승 on 11/13/23.
+//struct MockUpStartView: View {
+//    @State var todayText = "반가워요 득근해봅시다💪"
+//    @Binding var tabSelection: Int
+//    var Influencer = "정회승"
 //
 
 import SwiftUI

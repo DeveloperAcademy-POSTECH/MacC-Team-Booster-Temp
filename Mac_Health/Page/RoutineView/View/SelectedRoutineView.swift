@@ -114,5 +114,7 @@ struct SelectedRoutineView: View {
 }
 
 #Preview {
-    SelectedRoutineView(routineId: 1)
+    NavigationStack {
+        SelectedRoutineView(routineId: 1)
+    }
 }
