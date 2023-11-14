@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: 메인 뷰 모델 추가
 struct MainView: View {
     init() {
         UITabBar.appearance().backgroundColor = Color.tabbar_main
