@@ -48,6 +48,8 @@ struct CalendarView: UIViewControllerRepresentable {
 
 struct cordView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordView()
+        NavigationStack{
+            RecordView()
+        }
     }
 }

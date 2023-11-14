@@ -61,10 +61,10 @@ struct WorkoutSetCard: View {
         .padding(.vertical, 5)
     }
 }
-
-struct WorkoutSetCard_Previews:
-    PreviewProvider {
-    static var previews: some View {
-        WorkoutSetCard(index: 1, set: .constant(ExerciseSet(setId: 1, reps: 5, isDone: false)), isFocused: FocusState().projectedValue)
-    }
-}
+//
+//struct WorkoutSetCard_Previews:
+//    PreviewProvider {
+//    static var previews: some View {
+//        WorkoutSetCard(index: 1, set: .constant(ExerciseSet(setId: 1, reps: 5, isDone: false)), isFocused: FocusState().projectedValue)
+//    }
+//}

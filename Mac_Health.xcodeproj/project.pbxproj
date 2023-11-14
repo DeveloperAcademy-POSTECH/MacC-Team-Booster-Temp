@@ -40,6 +40,12 @@
 		D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183672B01EE8500A11FFC /* MockUpStartView.swift */; };
 		D571836A2B02084C00A11FFC /* MockUpWorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */; };
 		D571836D2B020A6800A11FFC /* MockUpFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571836C2B020A6800A11FFC /* MockUpFinishView.swift */; };
+		D57183802B030AB200A11FFC /* MockUpPauseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571837F2B030AB200A11FFC /* MockUpPauseSheet.swift */; };
+		D57183822B030ACF00A11FFC /* MockUpStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183812B030ACF00A11FFC /* MockUpStopwatchViewModel.swift */; };
+		D57183842B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */; };
+		D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */; };
+		D571838D2B03103F00A11FFC /* YoutubeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571838C2B03103F00A11FFC /* YoutubeCardView.swift */; };
+		D57183902B03399300A11FFC /* MockUpWorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */; };
 		D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */; };
 		D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */; };
 		D58066512AFD2B11003BB276 /* BeforeSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066502AFD2B11003BB276 /* BeforeSubscribeView.swift */; };
@@ -120,6 +126,12 @@
 		D57183672B01EE8500A11FFC /* MockUpStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpStartView.swift; sourceTree = "<group>"; };
 		D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingView.swift; sourceTree = "<group>"; };
 		D571836C2B020A6800A11FFC /* MockUpFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpFinishView.swift; sourceTree = "<group>"; };
+		D571837F2B030AB200A11FFC /* MockUpPauseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpPauseSheet.swift; sourceTree = "<group>"; };
+		D57183812B030ACF00A11FFC /* MockUpStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpStopwatchViewModel.swift; sourceTree = "<group>"; };
+		D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpPauseStopwatchViewModel.swift; sourceTree = "<group>"; };
+		D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
+		D571838C2B03103F00A11FFC /* YoutubeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeCardView.swift; sourceTree = "<group>"; };
+		D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutSetModel.swift; sourceTree = "<group>"; };
 		D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscribeView.swift; sourceTree = "<group>"; };
 		D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFinishView.swift; sourceTree = "<group>"; };
 		D58066502AFD2B11003BB276 /* BeforeSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeSubscribeView.swift; sourceTree = "<group>"; };
@@ -276,6 +288,7 @@
 			children = (
 				D569C7902AF9459900FDADED /* View */,
 				D569C7912AF945A200FDADED /* ViewModel */,
+				D57183872B030E8500A11FFC /* Youtube */,
 			);
 			path = RoutineView;
 			sourceTree = "<group>";
@@ -354,11 +367,40 @@
 		D57183662B01EE5900A11FFC /* StartMockUpView */ = {
 			isa = PBXGroup;
 			children = (
+				D571837D2B030A9D00A11FFC /* ViewModel */,
+				D571837C2B030A8F00A11FFC /* View */,
+			);
+			path = StartMockUpView;
+			sourceTree = "<group>";
+		};
+		D571837C2B030A8F00A11FFC /* View */ = {
+			isa = PBXGroup;
+			children = (
 				D57183672B01EE8500A11FFC /* MockUpStartView.swift */,
 				D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */,
 				D571836C2B020A6800A11FFC /* MockUpFinishView.swift */,
+				D571837F2B030AB200A11FFC /* MockUpPauseSheet.swift */,
 			);
-			path = StartMockUpView;
+			path = View;
+			sourceTree = "<group>";
+		};
+		D571837D2B030A9D00A11FFC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D57183812B030ACF00A11FFC /* MockUpStopwatchViewModel.swift */,
+				D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */,
+				D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */,
+				D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D57183872B030E8500A11FFC /* Youtube */ = {
+			isa = PBXGroup;
+			children = (
+				D571838C2B03103F00A11FFC /* YoutubeCardView.swift */,
+			);
+			path = Youtube;
 			sourceTree = "<group>";
 		};
 		D584CD872AFB555A00AFA1FF /* View */ = {
@@ -564,6 +606,7 @@
 			files = (
 				F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */,
 				F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */,
+				D57183822B030ACF00A11FFC /* MockUpStopwatchViewModel.swift in Sources */,
 				F877F0AC2AFBBA40009D49B4 /* MultiRoutineViewModel.swift in Sources */,
 				F8F3A1472AFA35210068F885 /* RecordEditView.swift in Sources */,
 				F8FD48DE2AE7F13C007DB402 /* FloatingButton.swift in Sources */,
@@ -571,12 +614,15 @@
 				D569C78B2AF9440600FDADED /* RoutineViewModel.swift in Sources */,
 				F82674C52AF68F11002BFACD /* AlternativeWorkoutSheet.swift in Sources */,
 				F8A4BF672AFE618F00413213 /* WorkoutListViewModel.swift in Sources */,
+				D571838D2B03103F00A11FFC /* YoutubeCardView.swift in Sources */,
 				D56A0C702AF2153A004D1747 /* TodayStartView.swift in Sources */,
 				D571836D2B020A6800A11FFC /* MockUpFinishView.swift in Sources */,
+				D57183902B03399300A11FFC /* MockUpWorkoutSetModel.swift in Sources */,
 				D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */,
 				F89B3BED2AE5064200CACBD9 /* AlternativeWorkoutCard.swift in Sources */,
 				F886927D2AFFF12E0043EE9A /* Ext+String.swift in Sources */,
 				F886927B2AFFF0710043EE9A /* Ext+Date.swift in Sources */,
+				D57183842B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift in Sources */,
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
 				F838A12C2AFB79E500688893 /* APIBody.swift in Sources */,
 				F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */,
@@ -614,8 +660,10 @@
 				F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */,
 				D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */,
 				F877F0B22AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift in Sources */,
+				D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */,
 				F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */,
 				D5436CA82AFB75B200D82943 /* ChangeNicknameView.swift in Sources */,
+				D57183802B030AB200A11FFC /* MockUpPauseSheet.swift in Sources */,
 				D5D8F17E2AF39EC80032A788 /* ChangeRoutineView.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,
