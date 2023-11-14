@@ -1,5 +1,5 @@
 //
-//  MultiRoutineViewModel.swift
+//  MultiInfluencerRoutineViewModel.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 11/8/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class MultiRoutineViewModel: ObservableObject {
+class MultiInfluencerRoutineViewModel: ObservableObject {
     @Published var routines = ResponseGetUsersRoutines(routines: [])
     
     init() {
