@@ -79,13 +79,23 @@ struct ChangeRoutineView: View {
     var Workouts: some View {
         ScrollView {
             // TODO: 월 별 데이터
-            ForEach(vm.routines.routines, id: \.self) { routine in
-                NavigationLink {
-                    SelectedRoutineView(routineId: routine.routineId)
-                        .navigationBarTitle("\(vm.dateFormat(from: routine.date))", displayMode: .inline)
-                } label: {
-                    TodayWorkoutCell(routine: routine)
-                        .padding(.vertical, 8)
+            ForEach(Array(vm.monthlyroutines.keys), id: \.self) { key in
+                VStack {
+                    HStack {
+                        Text("\(key)월")
+                            .foregroundColor(.label_900)
+                            .font(.headline1())
+                        Spacer()
+                    }
+                    ForEach(vm.monthlyroutines[key]!, id: \.self) { some in
+                        NavigationLink {
+                            SelectedRoutineView(routineId: some.routineId)
+                                .navigationBarTitle("\(vm.dateFormat(from: some.date))", displayMode: .inline)
+                        } label: {
+                            TodayWorkoutCell(routine: some)
+                                .padding(.vertical, 8)
+                        }
+                    }
                 }
             }
         }
