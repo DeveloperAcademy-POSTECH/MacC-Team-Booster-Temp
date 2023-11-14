@@ -27,7 +27,7 @@ enum GeneralAPI {
     /// 로그인
     case PostLogin(identifier: String, identityToken: String, authorizationCode: String)
     /// 토큰 재발급
-    case GetReiㅣssue(refreshToken: String)
+    case GetReissue(refreshToken: String)
     //:
     
     // MARK: user-routine-controller
