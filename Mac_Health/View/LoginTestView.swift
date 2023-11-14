@@ -22,14 +22,10 @@ struct LoginTestView: View {
                         switch result.credential {
                         case let userCredential as ASAuthorizationAppleIDCredential:
                             let identifier = userCredential.user
-                            let fullName = userCredential.fullName
-                            let name = (fullName?.familyName ?? "") + (fullName?.givenName ?? "")
                             let idToken = String(data: userCredential.identityToken!, encoding: .utf8)
                             let authorizationCode = String(data: userCredential.authorizationCode!, encoding: .utf8)
                             
                             print(identifier)
-                            print(fullName)
-                            print(name)
                             print(idToken)
                             print(authorizationCode)
                         default:
