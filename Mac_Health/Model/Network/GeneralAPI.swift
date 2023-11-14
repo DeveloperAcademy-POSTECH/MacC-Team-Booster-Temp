@@ -86,6 +86,13 @@ extension GeneralAPI: TargetType {
         return baseURL
     }
     
+    var authorization: (String, String) {
+        if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
+            return ("Authorization", "Bearer \(accessToken)")
+        }
+        return ("Authorization", "")
+    }
+    
     var path: String {
         switch self {
             // MARK: user-exercise-controller
@@ -191,7 +198,7 @@ extension GeneralAPI: TargetType {
         case .GetRoutinesExercises: return .requestPlain
             //:
             // MARK: auth-controller
-        case .PostLogin(identifier: let identifier, identityToken: let identityToken, authorizationCode: let authorizationCode): return .requestParameters(parameters: ["identifier": identifier, "identityToken": identityToken, "authorizationCode": authorizationCode], encoding: URLEncoding.queryString)
+        case .PostLogin(identifier: let identifier, identityToken: let identityToken, authorizationCode: let authorizationCode): return .requestJSONEncodable(Credential(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode))
         case .GetReissue: return .requestPlain
             //:
             // MARK: user-controller
@@ -221,10 +228,10 @@ extension GeneralAPI: TargetType {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         default:
-            return ["Content-Type": "application/json"]
+            return ["Content-Type": "application/json", "\(authorization.0)": "\(authorization.1)"]
         }
     }
 }
