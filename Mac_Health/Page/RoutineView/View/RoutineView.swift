@@ -20,7 +20,7 @@ struct RoutineView: View {
 //            TodayStartView(routine:)
             EmptyView()
         default: /// 구독 여러 명일 때 보여줄 뷰
-            MultiRoutineView()
+            MultiInfluencerRoutineView()
         }
     }
 }
