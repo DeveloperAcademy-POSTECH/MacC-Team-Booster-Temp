@@ -7,11 +7,38 @@
 
 import SwiftUI
 
-// TODO: 둘러보기 뷰 작업
 /// 구독한 인플루언서가 없을 때 보여지는 뷰
 struct InfluencerPreviewView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.gray_900.ignoresSafeArea()
+            VStack {
+                Image("appTitle")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.bottom, 20)
+                Spacer()
+                VStack {
+                    Text("인플루언서의 운동일지를\n구독하고 따라해보세요.")
+                }
+                .font(.title2())
+                .foregroundColor(.label_900)
+                .padding()
+                Button {
+                    
+                } label: {
+                    RoundedRectangle(cornerRadius: 100)
+                        .frame(width: UIScreen.getWidth(180), height: UIScreen.getHeight(60))
+                        .foregroundColor(.green_main)
+                        .overlay {
+                            Text("둘러보기")
+                                .font(.button1())
+                                .foregroundColor(.gray_900)
+                        }
+                }
+                Spacer()
+            }
+        }
     }
 }
 
