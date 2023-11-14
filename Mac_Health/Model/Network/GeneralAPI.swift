@@ -30,6 +30,11 @@ enum GeneralAPI {
     case GetReissue(refreshToken: String)
     //:
     
+    // MARK: user-controller
+    /// 닉네임 변경
+    case PatchUsers(name: String)
+    //:
+    
     // MARK: user-routine-controller
     /// 운동 시간 업데이트 - WorkoutOngoingView
     case PatchUsersRoutines(routineId: Int, time: String)
