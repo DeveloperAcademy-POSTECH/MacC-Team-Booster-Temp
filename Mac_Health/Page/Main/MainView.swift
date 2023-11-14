@@ -20,7 +20,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             TabView {
-                MultiRoutineView()
+                RoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
                         Text("루틴")
