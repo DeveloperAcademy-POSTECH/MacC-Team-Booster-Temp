@@ -59,6 +59,7 @@ struct CalendarView: UIViewControllerRepresentable {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
               
+            // TODO: 선택된 날짜 색 수정
             if recordedDate.contains(dateFormatter.string(from: date)) {
                 return [UIColor(Color.green_main)]
             }
