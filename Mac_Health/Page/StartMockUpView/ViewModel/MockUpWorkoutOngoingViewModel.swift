@@ -78,3 +78,4 @@ class MockUpWorkoutOngoingViewModel: ObservableObject{
         isWorkoutTipShow = false
     }
 }
+
