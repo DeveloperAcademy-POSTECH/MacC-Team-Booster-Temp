@@ -10,7 +10,7 @@ import SwiftUI
 // TODO: 메인 뷰 모델 추가
 struct MainView: View {
     @StateObject var vm = MainViewModel()
-    ㅣ
+    
     init() {
         UITabBar.appearance().backgroundColor = Color.tabbar_main
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
