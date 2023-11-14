@@ -44,6 +44,7 @@
 		D57183822B030ACF00A11FFC /* MockUpStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183812B030ACF00A11FFC /* MockUpStopwatchViewModel.swift */; };
 		D57183842B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */; };
 		D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */; };
+		D571838D2B03103F00A11FFC /* YoutubeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571838C2B03103F00A11FFC /* YoutubeCardView.swift */; };
 		D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */; };
 		D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */; };
 		D58066512AFD2B11003BB276 /* BeforeSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066502AFD2B11003BB276 /* BeforeSubscribeView.swift */; };
@@ -127,6 +128,7 @@
 		D57183812B030ACF00A11FFC /* MockUpStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpStopwatchViewModel.swift; sourceTree = "<group>"; };
 		D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpPauseStopwatchViewModel.swift; sourceTree = "<group>"; };
 		D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
+		D571838C2B03103F00A11FFC /* YoutubeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeCardView.swift; sourceTree = "<group>"; };
 		D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscribeView.swift; sourceTree = "<group>"; };
 		D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFinishView.swift; sourceTree = "<group>"; };
 		D58066502AFD2B11003BB276 /* BeforeSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeSubscribeView.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			children = (
 				D569C7902AF9459900FDADED /* View */,
 				D569C7912AF945A200FDADED /* ViewModel */,
+				D57183872B030E8500A11FFC /* Youtube */,
 			);
 			path = RoutineView;
 			sourceTree = "<group>";
@@ -384,6 +387,14 @@
 				D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D57183872B030E8500A11FFC /* Youtube */ = {
+			isa = PBXGroup;
+			children = (
+				D571838C2B03103F00A11FFC /* YoutubeCardView.swift */,
+			);
+			path = Youtube;
 			sourceTree = "<group>";
 		};
 		D584CD872AFB555A00AFA1FF /* View */ = {
@@ -597,6 +608,7 @@
 				D569C78B2AF9440600FDADED /* RoutineViewModel.swift in Sources */,
 				F82674C52AF68F11002BFACD /* AlternativeWorkoutSheet.swift in Sources */,
 				F8A4BF672AFE618F00413213 /* WorkoutListViewModel.swift in Sources */,
+				D571838D2B03103F00A11FFC /* YoutubeCardView.swift in Sources */,
 				D56A0C702AF2153A004D1747 /* TodayStartView.swift in Sources */,
 				D571836D2B020A6800A11FFC /* MockUpFinishView.swift in Sources */,
 				D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */,
