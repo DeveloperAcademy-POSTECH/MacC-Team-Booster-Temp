@@ -11,6 +11,10 @@ class SingleInfluencerRoutineViewModel: ObservableObject {
     /// 뷰에 보여질 운동
     @Published var routine = ""
     
+    /*
+     routine은 인플루언서와 (오늘)날짜로 검색
+     */
+    
     /// 오늘 운동 조회
     func patchRoutine(influencerId: Int) {
         // TODO: 오늘 날짜, 인플루언서 아이디로 서버에 데이터 요청

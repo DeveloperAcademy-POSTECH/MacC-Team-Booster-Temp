@@ -12,6 +12,11 @@ class WholeRoutineViewModel: ObservableObject {
     /// 전체 루틴 목록
     @Published var routines: [String] = []
     
+    /*
+     routines는 인플루언서 아이디로 검색한 모든 루틴 목록
+     SingleInfluencerRoutineView에 1개 전달
+     */
+    
     // TODO: 루틴 부위들 추가
     /// 선택된 부위
     @Published var selectedPart: String = ""

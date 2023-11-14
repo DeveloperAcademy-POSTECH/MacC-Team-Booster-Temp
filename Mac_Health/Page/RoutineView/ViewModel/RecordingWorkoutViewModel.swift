@@ -11,6 +11,10 @@ class RecordingWorkoutViewModel: ObservableObject {
     /// 현재 진행 중인 운동
     @Published var workout = ""
     
+    /*
+     workout은 EditRoutineView에서 전달 받은 운동 1개
+     */
+    
     /// 현재 진행 중인 운동 시간
     @Published var workoutTime = ""
     

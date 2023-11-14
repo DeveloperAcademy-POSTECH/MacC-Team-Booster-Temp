@@ -11,6 +11,10 @@ class RoutineInformationViewModel: ObservableObject {
     /// 루틴 목록
     @Published var routine = ""
     
+    /*
+     routine은 WholeRoutineView에서 전달 받은 루틴 1개
+     */
+    
     /// 루틴 정보 조회 함수
     func fetchRoutine() {
         // TODO: 루틴 목록 조회

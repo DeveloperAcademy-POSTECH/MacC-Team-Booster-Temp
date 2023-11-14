@@ -12,6 +12,11 @@ class EditRoutineViewModel: ObservableObject {
     /// 운동 목록
     @Published var routine: String = ""
     
+    /*
+     routine은 RoutineInformationView에서 전달 받은 루틴 1개
+     또는 SingleInfluencerRoutineView에서 전달 받은 루틴 1개
+     */
+    
     /// 선택한 운동의 상세 정보 시트 여부
     @Published var isDetailedWorkoutSheetShow = false
     
