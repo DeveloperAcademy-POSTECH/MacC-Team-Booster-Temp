@@ -58,12 +58,54 @@ struct ResponseGetRoutinesExercises: Codable {
 }
 //:
 
+// MARK: auth-controller
+struct Credential: Codable {
+    var identifier: String
+    var identityToken: String
+    var authorizationCode: String
+}
+
+struct Token: Codable {
+    var accessToken: String
+    var refreshToken: String
+}
+
+/// PostLogin
+struct RequestPostLogin: Codable {
+    var credential: Credential
+}
+
+struct ResponsePostLogin: Codable {
+    var token: Token
+}
+
+/// GetReissue
+struct ResponseGetReissue: Codable {
+    var token: Token
+}
+//:
+
+// MARK: user-controller
+struct Nickname: Codable {
+    var name: String
+}
+
+struct RequsetPatchUsers: Codable {
+    var name: Nickname
+}
+
+struct ResponsePatchUsers: Codable {
+    var name: Nickname
+}
+//:
+
 // MARK: user-routine-controller
 struct Exercise: Codable, Hashable {
     var id: Int
     var name: String
     var exerciseImageUrl: String
     var numberOfSet: Int
+    var recommendReps: String
 }
 
 struct InfluencerRoutine: Codable, Hashable {
@@ -180,9 +222,15 @@ struct ResponseGetUsersRecords: Codable {
 //:
 
 // MARK: test
-/// GetRoutines
-struct ResponseGetRoutines: Codable {
-    var routines: [TestRoutine]
+struct BodySpec: Codable {
+    var height: Int
+    var weight: Int
+}
+
+struct BigThree: Codable {
+    var squat: Int
+    var benchPress: Int
+    var deadList: Int
 }
 
 struct TestRoutine: Codable {
@@ -193,6 +241,14 @@ struct TestRoutine: Codable {
     var comment: String
     var introduce: String
     var profileImageUrl: String
+    var awards: String
+    var bodySpec: BodySpec
+    var bigThree: BigThree
+}
+
+/// GetRoutines
+struct ResponseGetRoutines: Codable {
+    var routines: [TestRoutine]
 }
 
 /// GetInfluencersRoutines
