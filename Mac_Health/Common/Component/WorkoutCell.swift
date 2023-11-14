@@ -46,6 +46,6 @@ struct WorkoutCell: View {
 
 struct WorkoutCellView_Preview: PreviewProvider {
     static var previews: some View {
-        WorkoutCell(exercise: Exercise(id: 0, name: "", exerciseImageUrl: "", numberOfSet: 0))
+        WorkoutCell(exercise: Exercise(id: 0, name: "", exerciseImageUrl: "", numberOfSet: 0, recommendReps: ""))
     }
 }
