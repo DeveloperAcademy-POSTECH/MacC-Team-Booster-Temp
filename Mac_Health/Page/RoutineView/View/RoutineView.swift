@@ -13,16 +13,12 @@ struct RoutineView: View {
     
     var body: some View {
         switch influencerIds.count {
-            /// 구독 없을 때 보여줄 뷰
-        case 0:
+        case 0: /// 구독 없을 때 보여줄 뷰
             InfluencerPreviewView()
-            
-            /// 구독 한 명일 때 보여줄 뷰
-        case 1:
+        case 1: /// 구독 한 명일 때 보여줄 뷰
 //            TodayStartView(routine:)
             EmptyView()
-            /// 구독 여러 명일 때 보여줄 뷰
-        default:
+        default: /// 구독 여러 명일 때 보여줄 뷰
             MultiRoutineView()
         }
     }
