@@ -10,17 +10,35 @@ import SwiftUI
 class ChangeRoutineViewModel: ObservableObject {
     @Published var selection = "전체"
     @Published var routines = ResponseGetUsersInfluencersRoutines(routines: [])
+    @Published var monthlyroutines: [String : [Routine]] = [:]
+    //date는 string으로 2023-10-24로 됨
     
     func fetchRoutines(influencerId: Int) {
         GeneralAPIManger.request(for: .GetUsersInfluencersRoutines(id: influencerId), type: [Routine].self) {
             switch $0 {
             case .success(let routine):
                 self.routines.routines = routine
+                self.fetchMonthlyRoutines(routines: routine.self)
                 print(self.routines)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func fetchMonthlyRoutines(routines: [Routine]) {
+        for routine in routines {
+            let month = routine.date.components(separatedBy: "-")[1]
+            var updatedRutine: [Routine] = []
+            if let influencerRoutine = monthlyroutines[month] {
+                updatedRutine.append(contentsOf: influencerRoutine)
+            } else {
+                updatedRutine.append(routine)
+            }
+            monthlyroutines.updateValue(updatedRutine, forKey: month)
+        }
+        print("--------------------")
+        print(monthlyroutines)
     }
     
     func dateFormat(from date: String) -> String {

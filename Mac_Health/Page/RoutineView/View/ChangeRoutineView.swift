@@ -11,6 +11,21 @@ enum WorkoutType: String, CaseIterable {
     case 전체, 등, 가슴, 이두, 삼두, 하체, 후면사슬, 복근
 }
 
+enum Month: String, CaseIterable {
+    case January = "1"
+    case February = "2"
+    case March = "3"
+    case April = "4"
+    case May = "5"
+    case June = "6"
+    case July = "7"
+    case August = "8"
+    case September = "9"
+    case October = "10"
+    case November = "11"
+    case December = "12"
+}
+
 struct ChangeRoutineView: View {
     let influencerId: Int
     @Environment(\.dismiss) var dismiss: DismissAction
@@ -79,13 +94,23 @@ struct ChangeRoutineView: View {
     var Workouts: some View {
         ScrollView {
             // TODO: 월 별 데이터
-            ForEach(vm.routines.routines, id: \.self) { routine in
-                NavigationLink {
-                    SelectedRoutineView(routineId: routine.routineId)
-                        .navigationBarTitle("\(vm.dateFormat(from: routine.date))", displayMode: .inline)
-                } label: {
-                    TodayWorkoutCell(routine: routine)
-                        .padding(.vertical, 8)
+            ForEach(Array(vm.monthlyroutines.keys), id: \.self) { key in
+                VStack {
+                    HStack {
+                        Text("\(key)월")
+                            .foregroundColor(.label_900)
+                            .font(.headline1())
+                        Spacer()
+                    }
+                    ForEach(vm.monthlyroutines[key]!, id: \.self) { some in
+                        NavigationLink {
+                            SelectedRoutineView(routineId: some.routineId)
+                                .navigationBarTitle("\(vm.dateFormat(from: some.date))", displayMode: .inline)
+                        } label: {
+                            TodayWorkoutCell(routine: some)
+                                .padding(.vertical, 8)
+                        }
+                    }
                 }
             }
         }
