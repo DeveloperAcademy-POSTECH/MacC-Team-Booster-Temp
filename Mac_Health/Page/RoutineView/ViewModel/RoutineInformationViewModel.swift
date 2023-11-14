@@ -9,4 +9,4 @@ import SwiftUI
 
 class RoutineInformationViewModel: ObservableObject {
     
-}l
+}
