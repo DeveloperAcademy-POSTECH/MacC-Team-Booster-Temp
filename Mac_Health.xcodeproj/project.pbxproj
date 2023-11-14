@@ -97,6 +97,7 @@
 		F8DACB6D2B04207B00C3E95C /* RoutineInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB6C2B04207B00C3E95C /* RoutineInformationView.swift */; };
 		F8DACB6F2B0420B200C3E95C /* RoutineInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB6E2B0420B200C3E95C /* RoutineInformationViewModel.swift */; };
 		F8DACB712B04224E00C3E95C /* RecordingWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB702B04224E00C3E95C /* RecordingWorkoutView.swift */; };
+		F8DACB732B0422D500C3E95C /* RecordingWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB722B0422D500C3E95C /* RecordingWorkoutViewModel.swift */; };
 		F8DFEAEC2AFA190F00BC721B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */; };
 		F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */; };
 		F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13E2AFA35210068F885 /* CalenderView.swift */; };
@@ -196,6 +197,7 @@
 		F8DACB6C2B04207B00C3E95C /* RoutineInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineInformationView.swift; sourceTree = "<group>"; };
 		F8DACB6E2B0420B200C3E95C /* RoutineInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineInformationViewModel.swift; sourceTree = "<group>"; };
 		F8DACB702B04224E00C3E95C /* RecordingWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWorkoutView.swift; sourceTree = "<group>"; };
+		F8DACB722B0422D500C3E95C /* RecordingWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWorkoutViewModel.swift; sourceTree = "<group>"; };
 		F8DFEAC32AF8FD8E00BC721B /* Mac_Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_Health.entitlements; sourceTree = "<group>"; };
 		F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				F8DACB662B0418DD00C3E95C /* WholeRoutineViewModel.swift */,
 				F8DACB6E2B0420B200C3E95C /* RoutineInformationViewModel.swift */,
 				F8DACB6A2B041C6800C3E95C /* EditRoutineViewModel.swift */,
+				F8DACB722B0422D500C3E95C /* RecordingWorkoutViewModel.swift */,
 				F8DACB632B04182900C3E95C /* Temp */,
 			);
 			path = ViewModel;
@@ -712,6 +715,7 @@
 				F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
 				D58066542AFD3152003BB276 /* StopwatchVM.swift in Sources */,
+				F8DACB732B0422D500C3E95C /* RecordingWorkoutViewModel.swift in Sources */,
 				F82674CF2AF7F099002BFACD /* WorkoutStatusEditView.swift in Sources */,
 				D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */,
 				D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */,
