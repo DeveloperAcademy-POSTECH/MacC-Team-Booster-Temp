@@ -8,5 +8,5 @@
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    @Published var tabSelection = 1
+    @Published var tabSelection = 0
 }

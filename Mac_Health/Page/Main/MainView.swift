@@ -14,8 +14,8 @@ struct MainView: View {
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
     }
+    @StateObject var vm = MainViewModel()
     @State private var path = NavigationPath()
-    @State private var tabSelection = 0
     
     var body: some View {
         NavigationStack {
@@ -27,7 +27,7 @@ struct MainView: View {
                     }
                     .tag(0)
                 
-                SearchView(tabSelection: $tabSelection)
+                SearchView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("둘러보기")
