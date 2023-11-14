@@ -18,7 +18,7 @@ struct RecordView: View {
             VStack {
                 NavigationTitle
                 Calender
-                RecordCard
+                RecordCell
                 logOut ? nil : beforeLoginText
                 Spacer()
             }
@@ -41,18 +41,10 @@ struct RecordView: View {
             .padding(.horizontal)
     }
     
-    var RecordCard: some View {
-        NavigationLink {
-            RecordSpecificView()
-        } label: {
-            RecordCell
-        }
-    }
-    
     var RecordCell: some View {
         ForEach(vm.records.records.filter { $0.date == vm.selectedDate }, id: \.self) { record in
             NavigationLink {
-                
+                RecordSpecificView(record: record)
             } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.fill_1)
@@ -60,9 +52,9 @@ struct RecordView: View {
                     .overlay {
                         VStack {
                             HStack {
-    //                            Ellipse()
-    //                                .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
-    //                                .foregroundColor(.yellow_main)
+                                //                            Ellipse()
+                                //                                .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
+                                //                                .foregroundColor(.yellow_main)
                                 // TODO: 인플루언서 명
                                 Text("")
                                     .font(.headline2())
@@ -107,6 +99,8 @@ struct RecordView: View {
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordView()
+        NavigationStack {
+            RecordView()
+        }
     }
 }

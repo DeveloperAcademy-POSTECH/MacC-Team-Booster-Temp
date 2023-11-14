@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecordSpecificView: View {
-    
+    let record: Records
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -123,7 +123,7 @@ struct RecordSpecificView: View {
 struct RecordSpecificView_Preview: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            RecordSpecificView()
+            RecordSpecificView(record: Records(date: "", time: "", part: "", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, exercises: []))
         }
     }
 }
