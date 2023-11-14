@@ -89,6 +89,7 @@
 		F8DACB5A2B03FE6500C3E95C /* InfluencerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */; };
 		F8DACB5D2B04010100C3E95C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB5C2B04010100C3E95C /* MainViewModel.swift */; };
 		F8DACB5F2B040C7900C3E95C /* SingleInfluencerRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */; };
+		F8DACB612B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB602B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift */; };
 		F8DFEAEC2AFA190F00BC721B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */; };
 		F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */; };
 		F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13E2AFA35210068F885 /* CalenderView.swift */; };
@@ -180,6 +181,7 @@
 		F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerPreviewView.swift; sourceTree = "<group>"; };
 		F8DACB5C2B04010100C3E95C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerRoutineView.swift; sourceTree = "<group>"; };
+		F8DACB602B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerRoutineViewModel.swift; sourceTree = "<group>"; };
 		F8DFEAC32AF8FD8E00BC721B /* Mac_Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_Health.entitlements; sourceTree = "<group>"; };
 		F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */,
 				F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */,
 				F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */,
+				F8DACB602B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,
 				F877F0AE2AFBE9BD009D49B4 /* TodayStartViewModel.swift in Sources */,
+				F8DACB612B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				F843AFA12AF6737300EDA547 /* WorkoutListView.swift in Sources */,
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
