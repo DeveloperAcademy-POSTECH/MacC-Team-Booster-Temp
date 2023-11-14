@@ -17,7 +17,7 @@ struct TopImage: View {
             ForEach(1...3, id: \.self) { idx in
                 //둘러보기에서 구독 뷰
                 NavigationLink {
-                    SubscribeView(tabSelection: $tabSelection)
+                    SubscribeView()
                         .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
                 } label: {
                     RecommendPage(RecommendBannerNum: idx)
