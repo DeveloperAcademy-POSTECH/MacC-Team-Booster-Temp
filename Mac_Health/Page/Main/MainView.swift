@@ -19,7 +19,7 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            TabView {
+            TabView(selection: $vm.tabSelection) {
                 RoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
