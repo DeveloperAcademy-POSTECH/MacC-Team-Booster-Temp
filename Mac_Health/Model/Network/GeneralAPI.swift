@@ -23,6 +23,13 @@ enum GeneralAPI {
     case GetRoutinesExercises(routineId: Int, exerciseId: Int)
     //:
     
+    // MARK: auth-controller
+    /// 로그인
+    case PostLogin(identifier: String, identityToken: String, authorizationCode: String)
+    /// 토큰 재발급
+    case GetReiㅣssue(refreshToken: String)
+    //:
+    
     // MARK: user-routine-controller
     /// 운동 시간 업데이트 - WorkoutOngoingView
     case PatchUsersRoutines(routineId: Int, time: String)
