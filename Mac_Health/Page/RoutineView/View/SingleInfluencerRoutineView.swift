@@ -11,7 +11,7 @@ import SwiftUI
 /// 인플루언서 단일 구독 뷰
 struct SingleInfluencerRoutineView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("SingleInfluencerRoutineView")
     }
 }
 

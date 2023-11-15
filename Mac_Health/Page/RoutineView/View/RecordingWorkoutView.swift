@@ -10,7 +10,7 @@ import SwiftUI
 /// 운동 시작 했을 때 기록하기 위한 뷰
 struct RecordingWorkoutView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("RecordingWorkoutView")
     }
 }
 

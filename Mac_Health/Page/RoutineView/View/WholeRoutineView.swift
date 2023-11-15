@@ -10,7 +10,7 @@ import SwiftUI
 /// 인플루언서 개인의 전체 루틴 뷰
 struct WholeRoutineView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("WholeRoutineView")
     }
 }
 
