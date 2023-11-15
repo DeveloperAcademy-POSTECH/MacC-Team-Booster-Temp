@@ -8,14 +8,8 @@
 import SwiftUI
 
 class EditRoutineViewModel: ObservableObject {
-    // TODO: 전달 받은 운동 보여주기 - 패치하거나, 상위 뷰에서 받아오기
     /// 운동 목록
-    @Published var routine: String = ""
-    
-    /*
-     routine은 RoutineInformationView에서 전달 받은 루틴 1개
-     또는 SingleInfluencerRoutineView에서 전달 받은 루틴 1개
-     */
+    @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     
     /// 선택한 운동의 상세 정보 시트 여부
     @Published var isDetailedWorkoutSheetShow = false
@@ -30,8 +24,16 @@ class EditRoutineViewModel: ObservableObject {
     @Published var isDeleteWorkoutAlertShow = false
     
     /// 운동 목록 조회
-    func fetchRoutine() {
-        // TODO: 운동 목록 조회하기
+    func fetchRoutine(routineId: Int) {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
+            switch $0 {
+            case .success(let routine):
+                self.routine = routine
+                print(self.routine)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /// 운동 부위 별 분류 함수
