@@ -51,6 +51,7 @@ class WholeRoutineViewModel: ObservableObject {
         print(Array(routinesByMonth.keys))
     }
     
+    /// "2023-10-24"를 "10월 24일"로 전환해주는 함수
     func formatForDate(from date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM월 dd일"
@@ -60,6 +61,7 @@ class WholeRoutineViewModel: ObservableObject {
         return dateFormatter.string(from: date.toDate() ?? Date())
     }
     
+    /// "2023-10-24"를 "24"로 전환해주는 함수
     func formatForDay(from date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
@@ -69,6 +71,7 @@ class WholeRoutineViewModel: ObservableObject {
         return dateFormatter.string(from: date.toDate() ?? Date())
     }
     
+    /// 전달 받은 "2023-10-24"가 오늘 날짜인지 검사하는 함수
     func compareToday(from date: String) -> Bool {
         let difference = Calendar.current.dateComponents([.day], from: date.toDate() ?? Date(), to: Date())
         if difference.day == 0 {

@@ -19,19 +19,11 @@ struct WholeRoutineView: View {
     @StateObject var vm = WholeRoutineViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
     
+    // TODO: 컨벤션 맞춰 컴포넌트 명 변경
     var body: some View {
         VStack {
             SortingSlider
             Workouts
-            NavigationLink{
-                if !vm.routines.routines.isEmpty {
-                    RoutineInformationView(routineId: vm.routines.routines[0].routineId)
-                    //TODO: "2023-10-24"식 "10월 24일"식으로
-                        .navigationTitle(vm.routines.routines[0].date)
-                }
-            } label: {
-                Text("WholeRoutineView")
-            }
         }
         .navigationTitle("전체루틴")
         .navigationBarBackButtonHidden()
@@ -95,8 +87,6 @@ struct WholeRoutineView: View {
     
     var Workouts: some View {
         ScrollView {
-            // TODO: 월 별 데이터
-            
             ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
                 VStack {
                     HStack {
