@@ -17,7 +17,7 @@ struct RoutineView: View {
         case 0: /// 구독 없을 때 보여줄 뷰
             InfluencerPreviewView()
         case 1: /// 구독 한 명일 때 보여줄 뷰
-            SingleInfluencerRoutineView()
+            SingleInfluencerRoutineView(routine: $vm.routines.routines[0])
         default: /// 구독 여러 명일 때 보여줄 뷰
             MultiInfluencerRoutineView()
         }
