@@ -20,7 +20,8 @@ struct WholeRoutineView: View {
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
-        VStack{
+        VStack {
+            SortingSlider
             Workouts
             NavigationLink{
                 if !vm.routines.routines.isEmpty {
@@ -45,6 +46,53 @@ struct WholeRoutineView: View {
         }
     }
     
+    var SortingSlider: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: UIScreen.getWidth(6)) {
+                ForEach(WorkoutPart.allCases, id: \.self) { type in
+                    Button {
+                        vm.selectedPart = type.rawValue
+                    } label: {
+                        if vm.selectedPart == type.rawValue  {
+                            SelectedCapsule(text: type.rawValue)
+                        }
+                        else {
+                            NotSelectedCapsule(text: type.rawValue)
+                        }
+                    }
+                }
+                .frame(height: UIScreen.getHeight(34))
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+        }
+    }
+    
+    @ViewBuilder
+    func NotSelectedCapsule(text: String) -> some View {
+        Capsule()
+            .strokeBorder()
+            .foregroundColor(.label_400)
+            .frame(minWidth: UIScreen.getWidth(54), idealHeight: UIScreen.getHeight(34))
+            .overlay {
+                Text(text)
+                    .foregroundColor(.label_900)
+                    .font(.button2())
+            }
+    }
+    
+    @ViewBuilder
+    func SelectedCapsule(text: String) -> some View {
+        Capsule()
+            .foregroundColor(.green_main)
+            .frame(minWidth: UIScreen.getWidth(54), idealHeight: UIScreen.getHeight(34))
+            .overlay {
+                Text(text)
+                    .foregroundColor(.gray_900)
+                    .font(.button2())
+            }
+    }
+    
     var Workouts: some View {
         ScrollView {
             // TODO: 월 별 데이터
@@ -59,7 +107,7 @@ struct WholeRoutineView: View {
                     }
                     ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
                         NavigationLink {
-                            SelectedRoutineView(routineId: some.routineId)
+                            RoutineInformationView(routineId: some.routineId)
                                 .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
                         } label: {
                             TodayWorkoutCell(routine: some)

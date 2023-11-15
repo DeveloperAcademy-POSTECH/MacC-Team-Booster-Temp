@@ -13,7 +13,7 @@ class WholeRoutineViewModel: ObservableObject {
     @Published var routines = ResponseGetUsersInfluencersRoutines(routines: [])
     
     /// 선택된 부위
-    @Published var selectedPart: WorkoutPart = .전체
+    @Published var selectedPart = "전체"
     
     /// 월 별 운동 목록
     @Published var routinesByMonth: [String : [Routine]] = [:]
