@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecordView: View {
     @StateObject var vm = RecordViewModel()
-    @State var logOut: Bool = false
+    @Binding var loggedIn: Bool
     
     var body: some View {
         ZStack {
@@ -19,7 +19,7 @@ struct RecordView: View {
                 NavigationTitle
                 Calender
                 RecordCell
-                logOut ? nil : beforeLoginText
+                loggedIn ? nil : beforeLoginText
                 Spacer()
             }
         }
@@ -84,23 +84,58 @@ struct RecordView: View {
     }
     //TODO: 로그인x or 구독 x
     var beforeLoginText: some View {
-        HStack{
-            Image(systemName: "info.circle")
-            Text("운동기록 예시입니다")
-            Spacer()
+        VStack{
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.fill_1)
+                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
+                    .overlay {
+                        VStack {
+                            HStack {
+                                Ellipse()
+                                    .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
+                                    .foregroundColor(.yellow_main)
+                                Text("정회승")
+                                    .font(.headline2())
+                                    .foregroundColor(.label_900)
+                                Spacer()
+                                
+                                Text("52분 12초")
+                                    .font(.headline2())
+                                    .foregroundColor(.label_900)
+                            }
+                            Spacer()
+                            HStack {
+                                Text("등/가슴")
+                                    .font(.body2())
+                                    .foregroundColor(.label_900)
+                                Spacer()
+                                
+                                Text("5200kg")
+                                    .font(.body2())
+                                    .foregroundColor(.label_900)
+                            }
+                        }
+                        .padding()
+                    }
+
+            HStack{
+                Image(systemName: "info.circle")
+                Text("운동기록 예시입니다")
+                Spacer()
+            }
+            .padding(.horizontal, 25)
+            .padding(.vertical, 5)
+            .font(.caption)
+            .foregroundColor(.label_700)
         }
-        .padding(.horizontal, 25)
-        .padding(.vertical, 5)
-        .font(.caption)
-        .foregroundColor(.label_700)
     }
 }
 
 
-struct RecordView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            RecordView()
-        }
-    }
-}
+//struct RecordView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            RecordView()
+//        }
+//    }
+//}

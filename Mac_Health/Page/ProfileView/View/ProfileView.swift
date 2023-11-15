@@ -12,23 +12,33 @@ struct ProfileView: View {
     @State var notiToggle: Bool = true
     @State var versionState: String = "1.0.0"
     //로그인 상태값 모델로 가젹오기
-    @State var loggedIn: Bool = true
+    @Binding var loggedIn: Bool
+    @Environment(\.dismiss) var dismiss
+    
     
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             VStack{
                 NavigationTitle
-                NavigationLink {
-                    ManageProfileView(nickName: $nickName)
-                } label: {
-                    ProfileManage(nickName: nickName)
+                if loggedIn {
+                    NavigationLink {
+                    } label: {
+                        ProfileManage(nickName: nickName)
+                    }
+                } else {
+                    Button{
+                        dismiss()
+                    } label: {
+                        ProfileManage(nickName: nickName)
+                    }
                 }
+                
                 //로그인 전 unactive
                 loggedIn ? AlertToggle(notiToggle: notiToggle) : nil
                 versionInformaion
                 //로그인 전 unactive
-                loggedIn ? 
+                loggedIn ?
                 NavigationLink {
                     ManageSubscribeView()
                 } label: {
@@ -163,8 +173,8 @@ struct ProfileView: View {
     
 }
 
-#Preview {
-    NavigationStack{
-        ProfileView()
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        ProfileView()
+//    }
+//}

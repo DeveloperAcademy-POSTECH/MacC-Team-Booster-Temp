@@ -420,7 +420,7 @@ struct WorkoutOngoingView: View {
             
             ScrollView(.horizontal) {
                 // TODO: 유튜브 카드 수정 후 고치기
-                RelatedContentCard(videoNum: 0, contentURL: "")
+                RelatedContentCard()
                 //                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
                 //                    HStack{
                 //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])

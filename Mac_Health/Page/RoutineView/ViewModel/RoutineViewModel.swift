@@ -10,7 +10,6 @@ import SwiftUI
 class RoutineViewModel: ObservableObject {
     // TODO: 데이터 모델명 리네임
     @Published var routines = ResponseGetUsersRoutines(routines: [])
-    
     init() {
         self.fetchRoutines()
     }
@@ -29,4 +28,5 @@ class RoutineViewModel: ObservableObject {
             }
         }
     }
+    
 }

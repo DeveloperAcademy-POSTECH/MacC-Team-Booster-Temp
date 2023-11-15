@@ -46,6 +46,9 @@
 		D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */; };
 		D571838D2B03103F00A11FFC /* YoutubeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571838C2B03103F00A11FFC /* YoutubeCardView.swift */; };
 		D57183902B03399300A11FFC /* MockUpWorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */; };
+		D57E93C82B04A02E00D6D986 /* MockUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */; };
+		D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */; };
+		D57E93CC2B04A05F00D6D986 /* MockUpSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */; };
 		D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */; };
 		D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */; };
 		D58066542AFD3152003BB276 /* StopwatchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066532AFD3152003BB276 /* StopwatchVM.swift */; };
@@ -146,6 +149,9 @@
 		D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
 		D571838C2B03103F00A11FFC /* YoutubeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeCardView.swift; sourceTree = "<group>"; };
 		D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutSetModel.swift; sourceTree = "<group>"; };
+		D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpMainView.swift; sourceTree = "<group>"; };
+		D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSearchView.swift; sourceTree = "<group>"; };
+		D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSubscribeView.swift; sourceTree = "<group>"; };
 		D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscribeView.swift; sourceTree = "<group>"; };
 		D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFinishView.swift; sourceTree = "<group>"; };
 		D58066532AFD3152003BB276 /* StopwatchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchVM.swift; sourceTree = "<group>"; };
@@ -409,6 +415,9 @@
 				D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */,
 				D571836C2B020A6800A11FFC /* MockUpFinishView.swift */,
 				D571837F2B030AB200A11FFC /* MockUpPauseSheet.swift */,
+				D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */,
+				D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */,
+				D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -674,6 +683,7 @@
 			files = (
 				F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */,
 				F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */,
+				D57E93C82B04A02E00D6D986 /* MockUpMainView.swift in Sources */,
 				F8DACB6D2B04207B00C3E95C /* RoutineInformationView.swift in Sources */,
 				D57183822B030ACF00A11FFC /* MockUpStopwatchViewModel.swift in Sources */,
 				F8DACB6B2B041C6800C3E95C /* EditRoutineViewModel.swift in Sources */,
@@ -708,8 +718,10 @@
 				D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */,
 				F8DACB6F2B0420B200C3E95C /* RoutineInformationViewModel.swift in Sources */,
 				F8DACB752B04294500C3E95C /* RecordingRoutineView.swift in Sources */,
+				D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */,
 				0D5851582AE4F34400C8875A /* WorkoutCell.swift in Sources */,
 				0D4495CE2AFA6AF400F25CD4 /* GeneralAPI.swift in Sources */,
+				D57E93CC2B04A05F00D6D986 /* MockUpSubscribeView.swift in Sources */,
 				0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */,
 				D5436CA52AFB6B8000D82943 /* ManageProfileView.swift in Sources */,
 				0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */,
@@ -893,7 +905,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mac_Health/Preview Content\"";
-				DEVELOPMENT_TEAM = 33F2H2TBU4;
+				DEVELOPMENT_TEAM = VA3J8597P8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mac-Health-Info.plist";
@@ -928,7 +940,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mac_Health/Preview Content\"";
-				DEVELOPMENT_TEAM = 33F2H2TBU4;
+				DEVELOPMENT_TEAM = VA3J8597P8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mac-Health-Info.plist";

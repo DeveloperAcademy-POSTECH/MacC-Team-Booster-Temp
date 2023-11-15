@@ -124,7 +124,7 @@ struct DetailedWorkoutSheet: View {
             ScrollView(.horizontal) {
                 HStack{
                     // TODO: 유튜브 링크 통해서 작업하기
-                    RelatedContentCard(videoNum: 0, contentURL: "")
+                    RelatedContentCard()
                 }
             }
         }
