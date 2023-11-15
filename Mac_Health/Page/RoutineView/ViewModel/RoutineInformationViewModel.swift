@@ -8,17 +8,11 @@
 import SwiftUI
 
 class RoutineInformationViewModel: ObservableObject {
-    /// 루틴 목록
-    @Published var routine = ""
-    
-    /*
-     routine은 WholeRoutineView에서 전달 받은 루틴 1개
-     */
+    // MARK: 상위 뷰에서 바인딩 받아서 사용 여부 불확실
+//    /// 루틴 목록
+//    @Published var routine: Routine = Routine(part: "", date: "", isDone: false, routineId: 1)
     
     /// 루틴 정보 조회 함수
-    func fetchRoutine() {
-        // TODO: 루틴 목록 조회
-    }
     
     /// 루틴 부위 별 분류 함수
     func fetchByPart() {

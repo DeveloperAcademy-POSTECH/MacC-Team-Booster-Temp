@@ -9,9 +9,9 @@ import SwiftUI
 
 /// 루틴 정보를 확인하는 뷰
 /// - Parameters:
-///  - routine: 정보를 확인할 루틴
+///  - routineId: 정보를 확인할 루틴 id
 struct RoutineInformationView: View {
-    @Binding var routine: Routine
+    let routineId: Int
     @StateObject var vm = RoutineInformationViewModel()
     
     var body: some View {
@@ -20,5 +20,5 @@ struct RoutineInformationView: View {
 }
 
 #Preview {
-    RoutineInformationView(routine: .constant(Routine(part: "", date: "", isDone: false, routineId: 1)))
+    RoutineInformationView(routineId: 1)
 }
