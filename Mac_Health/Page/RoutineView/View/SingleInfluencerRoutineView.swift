@@ -136,7 +136,7 @@ struct SingleInfluencerRoutineView: View {
                         .foregroundColor(.label_900)
                     Spacer()
                     NavigationLink {
-                        ChangeRoutineView(influencerId: routine.influencerId)
+                        WholeRoutineView(influencerId: routine.influencerId)
                     } label: {
                         Image(systemName: "calendar")
                             .font(.title2())
