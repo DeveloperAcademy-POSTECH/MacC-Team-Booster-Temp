@@ -18,13 +18,11 @@ struct WholeRoutineView: View {
     let influencerId: Int
     @StateObject var vm = WholeRoutineViewModel()
     
-    init(influencerId: Int) {
-        self.influencerId = influencerId
-        vm.fetchRoutines(influencerId: influencerId)
-    }
-    
     var body: some View {
         Text("WholeRoutineView")
+            .onAppear {
+                vm.fetchRoutines(influencerId: influencerId)
+            }
     }
 }
 
