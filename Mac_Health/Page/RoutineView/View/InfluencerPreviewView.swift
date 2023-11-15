@@ -8,6 +8,8 @@
 import SwiftUI
 
 /// 구독한 인플루언서가 없을 때 보여지는 뷰
+///  - Parameters:
+///   - maivVM: 탭 전환 함수 호출을 위한 메인 뷰 모델
 struct InfluencerPreviewView: View {
     @EnvironmentObject var mainVM: MainViewModel
     

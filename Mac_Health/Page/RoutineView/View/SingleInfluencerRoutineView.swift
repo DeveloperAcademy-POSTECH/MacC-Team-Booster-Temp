@@ -9,6 +9,8 @@ import SwiftUI
 
 // TODO: 서버에서 isDone 추가 시 그에 따른 갱신 작업
 /// 인플루언서 단일 구독 뷰
+///  - Parameters:
+///   - routine: 인플루언서의 오늘 운동 목록
 struct SingleInfluencerRoutineView: View {
     @Binding var routine: InfluencerRoutine
     @StateObject var vm = SingleInfluencerRoutineViewModel()
