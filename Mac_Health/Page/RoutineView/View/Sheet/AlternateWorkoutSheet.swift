@@ -12,8 +12,8 @@ struct AlternateWorkoutSheet: View {
     let baseRoutineId: Int
     let baseExerciseId: Int
     let alternativeExercise: [AlternativeExercise]
-    
     @StateObject var vm = AlternativeWorkoutSheetViewModel()
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
