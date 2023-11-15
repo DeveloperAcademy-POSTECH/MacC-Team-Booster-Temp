@@ -86,7 +86,9 @@ struct OnboardingView: View {
     
     var PreviewButton: some View {
         NavigationLink {
-            MockUpStartView(tabSelection: .constant(1))
+            MockUpMainView()
+                .navigationBarBackButtonHidden()
+                .navigationBarTitleDisplayMode(.inline)
         } label: {
             FloatingButton(backgroundColor: .gray_600) {
                 Text("둘러보기")

@@ -12,6 +12,7 @@ struct MockUpFinishView: View {
     @StateObject var viewModel = StopwatchVM()
     @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     @Binding var tabSelection: Int
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     
     var body: some View {
@@ -54,9 +55,9 @@ struct MockUpFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-//                        Text("\(String(Int(workoutOngoingVM.totalVolume())))kg")
-//                            .font(.title2())
-//                            .foregroundColor(.label_900)
+                        Text("4230kg")
+                            .font(.title2())
+                            .foregroundColor(.label_900)
                         Text("총 볼륨")
                             .font(.body2())
                             .foregroundColor(.label_700)
@@ -66,6 +67,7 @@ struct MockUpFinishView: View {
                 Spacer()
                     .frame(height: 100)
                 Button{
+                    dismiss()
                     self.tabSelection = 3
                     print(self.tabSelection)
                 } label: {

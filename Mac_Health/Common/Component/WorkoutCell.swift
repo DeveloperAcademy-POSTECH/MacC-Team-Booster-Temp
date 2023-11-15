@@ -33,7 +33,7 @@ struct WorkoutCell: View {
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 // TODO: 10-15 reps 추가
-                Text("\(exercise.numberOfSet)세트")
+                Text("\(exercise.numberOfSet)세트 | \(exercise.recommendReps)")
                     .foregroundColor(.label_700)
                     .font(.body2())
             }

@@ -1,21 +1,20 @@
 //
-//  SubscribeView.swift
+//  MockUpSubscribeView.swift
 //  Mac_Health
 //
-//  Created by 정회승 on 2023/10/21.
+//  Created by 정회승 on 11/15/23.
 //
 
 import SwiftUI
 
-struct SubscribeView: View {
+struct MockUpSubscribeView: View {
     
-    @State var seeMore:Bool = false
     @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
     @State var subscribingSheet = false
+    @State var loggedIn: Bool = true
     @Binding var tabSelection: Int
     @Binding var subscribed: Bool
-    @State var loggedIn = true
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = """
@@ -212,53 +211,13 @@ struct SubscribeView: View {
     
     @ViewBuilder
     var subscribeButton: some View {
-        if loggedIn {
-             Button {
-                 self.subscribingSheet = true
-                 self.subscribed.toggle()
-             } label: {
-                 FloatingButton(backgroundColor: subscribed ? .gray_900 :.green_main) { subscribed ? Text("구독취소")
-                         .foregroundColor(.red_main)
-                         .font(.button1())
-                     :
-                     Text("구독")
-                         .foregroundColor(.gray_900)
-                         .font(.button1())
-                 }
-                 
-             }
-             .alert(isPresented: $subscribingSheet) {
-                 subscribed ? Alert(
-                     title: Text("구독이 완료되었습니다."),
-                     message: Text(""),
-                     dismissButton: .destructive(Text("확인"),
-                                                 action: {
-                                                     //구독 완료
-                                                     subscribed = true
-                                                     dismiss()
-                                                     dismiss()
-                                                     self.tabSelection = 1
-                                                     print(self.tabSelection)
-                                                 })
-                 ) : Alert(
-                     title: Text("구독이 취소되었습니다."),
-                     message: Text(""),
-                     dismissButton: .destructive(Text("확인"),
-                                                 action: {
-                                                     //구독 취소
-                                                     subscribed = false
-                                                     
-                                                 })
-                 )
-             }
-         } else {
-             FloatingButton(backgroundColor: .gray_600) {Text("둘러보기 중")
-                     .foregroundColor(.label_400)
-                     .font(.button1())
-             }
-         }
-         
-     }
+        FloatingButton(backgroundColor: .gray_600) {Text("둘러보기 중")
+                        .foregroundColor(.label_400)
+                        .font(.button1())
+                }
+                
+            
+        }
     
     fileprivate func createTab() -> some View {
         return subscribeButton
@@ -347,136 +306,7 @@ struct SubscribeView: View {
     
 }
 
-struct ViewOffsetKey: PreferenceKey {
-    typealias Value = CGFloat
-    static var defaultValue = CGFloat.zero
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value += nextValue()
-    }
-}
 
-struct RoutinePreview: View {
-    //날짜 변환
-    var date: String = "2023년 10월 15일"
-    var firstPart = "등"
-    
-    var body: some View {
-        ZStack{
-            Color.gray_900.ignoresSafeArea()
-            VStack {
-                HStack{
-                    VStack(alignment: .leading){
-                        Divider()
-                            .foregroundColor(.fill_1)
-                            .padding(.top)
-                        Text("운동일지 미리보기")
-                            .font(.title2)
-                            .foregroundColor(.label_900)
-                            .padding(.top, 30)
-                        HStack{
-                            Text(date)
-                                .font(.headline2())
-                                .foregroundColor(.label_700)
-                            Rectangle()
-                                .frame(width:1, height: 10)
-                                .foregroundColor(.label_400)
-                            Text("등/복근")
-                                .font(.headline2())
-                                .foregroundColor(.label_700)
-                            
-                        }
-                    }
-                    .padding(.top, 20)
-                    Spacer()
-                }
-                HStack{
-                    Text(firstPart)
-                        .font(.headline1())
-                        .foregroundColor(.label_900)
-                        .padding(.vertical, 20)
-                    Spacer()
-                }
-                //운동 루틴
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "하이퍼 익스텐션", SetCount: "3세트", part: "등")
-                //첫 운동 팁 설명
-                //ZStack{
-                
-                //                }
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "덤벨 풀 오버", SetCount: "3세트", part: "등")
-                HStack(alignment: .top){
-                    Image("descriptionFace1")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: UIScreen.getWidth(48))
-                        .padding(10)
-                    VStack(alignment: .leading){
-                        Text("운동 팁 예시")
-                            .font(.body2())
-                            .foregroundColor(.label_500)
-                            .padding(.bottom, 5)
-                        Text("견갑의 가동 범위를 늘려 주기 좋은 풀 오버입니다. 골반을 지면 가까이 붙여주시고 팔꿈치는 하늘을 향하게 해주세요. 그리고 이두가 귀에 닿을 정도로 가까이해서 내려가주세요.")
-                            .font(.body)
-                            .foregroundColor(.label_900)
-                    }
-                    .padding(10)
-                }
-                .padding(10)
-                .background{
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(.gray_700)
-                }
-                .padding(.vertical, 20)
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "바벨 로우(머신)", SetCount: "3세트", part: "등")
-                
-            }
-            .padding(.bottom, 30)
-            VStack{
-                Spacer()
-                LinearGradient(colors: [.clear, .clear, .clear, .clear, .gray_900.opacity(0.5), .gray_900], startPoint: .top, endPoint: .bottom)
-            }
-        }
-        
-    }
-    
-}
-
-struct WorkoutExplain: View {
-    let ImageName: String
-    let WorkoutName: String
-    let SetCount: String
-    let part: String
-    
-    var body: some View {
-        HStack{
-            Image(ImageName)
-                .resizable()
-                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
-            VStack(alignment: .leading){
-                Text(WorkoutName)
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                HStack{
-                    Text(SetCount)
-                        .font(.headline2())
-                        .foregroundColor(.label_700)
-                    Rectangle()
-                        .frame(width:1, height: 10)
-                        .foregroundColor(.label_400)
-                    Text(part)
-                        .font(.headline2())
-                        .foregroundColor(.label_700)
-                    
-                }
-            }
-            
-            Spacer()
-        }
-        .frame(maxWidth: .infinity)
-    }
-}
-
-//struct SubscribeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SubscribeView()
-//    }
+//#Preview {
+//    MockUpSubscribeView()
 //}

@@ -1,16 +1,15 @@
 //
-//  SearchView.swift
+//  MockUpSearchView.swift
 //  Mac_Health
 //
-//  Created by 정회승 on 2023/10/20.
+//  Created by 정회승 on 11/15/23.
 //
 
 import SwiftUI
 
-struct SearchView: View {
-    
-    @Binding var subscribed: Bool
+struct MockUpSearchView: View {
     @Binding var tabSelection: Int
+    @Binding var subscribed: Bool
     var body: some View {
         //네비게이션 스택 2인 이상
 //            ZStack {
@@ -33,7 +32,7 @@ struct SearchView: View {
                 VStack {
                     NavigationTitle
                     NavigationLink {
-                        SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
+                        MockUpSubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
                     } label: {
                         SearchCard
                     }
@@ -67,7 +66,7 @@ struct SearchView: View {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.gray_700)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
-            Image("Influencer1")
+            Image(systemName: "person.fill")
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.blue)
@@ -126,7 +125,8 @@ struct SearchView: View {
                     ForEach(1..<4, id: \.self) {idx in
                         //전문가들의 일상 루틴에서 구독 뷰
                         NavigationLink {
-                            SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
+                            MockUpSubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
+                                .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
                         } label: {
                             InfluencerCard(cardBannerNum: idx)
                         }
@@ -136,8 +136,6 @@ struct SearchView: View {
     }
 }
 
-//struct SearchView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchView()
-//    }
+//#Preview {
+//    MockUpSearchView()
 //}

@@ -68,11 +68,11 @@ struct CalendarView: UIViewControllerRepresentable {
         }
     }
 }
-
-struct cordView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack{
-            RecordView()
-        }
-    }
-}
+//
+//struct cordView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack{
+//            RecordView()
+//        }
+//    }
+//}

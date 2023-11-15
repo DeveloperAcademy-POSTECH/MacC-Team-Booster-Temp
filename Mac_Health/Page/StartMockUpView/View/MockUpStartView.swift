@@ -19,16 +19,16 @@ struct MockUpStartView: View {
     @State var todayText = "반가워요 득근해봅시다💪"
     @Binding var tabSelection: Int
     var Influencer = "정회승"
-
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             VStack{
                 ZStack(alignment: .top) {
                     //사진
-                    Image(systemName: "person")
+                    Image("Influencer1")
                         .resizable()
-                    //                        .scaledToFill()
+                        .scaledToFill()
                         .frame(width: UIScreen.getWidth(390))
                     //인플루언서의 오늘의 루틴
                     NavigationTitle
@@ -45,6 +45,8 @@ struct MockUpStartView: View {
                 .frame(height: UITabBarController().height)
             
         }
+        .navigationBarBackButtonHidden()
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     var NavigationTitle: some View {
@@ -56,13 +58,13 @@ struct MockUpStartView: View {
                 Spacer()
             }
             .padding(.horizontal)
-        .padding(.top, 30)
+            .padding(.top, 30)
             HStack {
                 Text("둘러보기 중")
                     .font(.body2())
-                .foregroundColor(.label_700)
-                .padding(.horizontal)
-                .padding(.top, 1)
+                    .foregroundColor(.label_700)
+                    .padding(.horizontal)
+                    .padding(.top, 1)
                 Spacer()
             }
             
@@ -81,7 +83,7 @@ struct MockUpStartView: View {
         }
     }
     
-
+    
     func Description(image: String, text: String) -> some View {
         HStack {
             Image(systemName: image)
@@ -127,22 +129,22 @@ struct MockUpStartView: View {
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()
-//                    NavigationLink {
-//                        ChangeRoutineView(routineVM: RoutineVM())
-//                            .navigationBarTitle("전체 루틴", displayMode: .inline)
-//                    } label: {
-//                        Image(systemName: "calendar")
-//                            .font(.title2())
-//                            .foregroundColor(.green_main)
-//                    }
+                    //                    NavigationLink {
+                    //                        ChangeRoutineView(routineVM: RoutineVM())
+                    //                            .navigationBarTitle("전체 루틴", displayMode: .inline)
+                    //                    } label: {
+                    //                        Image(systemName: "calendar")
+                    //                            .font(.title2())
+                    //                            .foregroundColor(.green_main)
+                    //                    }
                     
                     
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
                 RoutineDescriptionCard
-                .padding(.bottom, 10)
-                .padding(.leading,10)
+                    .padding(.bottom, 10)
+                    .padding(.leading,10)
                 //운동 시작 버튼
                 NavigationLink {
                     MockUpWorkoutOngoingView(tabSelection: $tabSelection)
@@ -162,7 +164,7 @@ struct MockUpStartView: View {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
-
+        
     }
     
     func getNowDateTime() -> String {
