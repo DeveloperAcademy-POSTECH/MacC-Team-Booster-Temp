@@ -38,7 +38,8 @@ struct EditRoutineView: View {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            // TODO: 대체 운동
+            // TODO: 대체 운동 넣기
+//            AlternativeWorkoutSheet(baseExercise: vm.routine.exercises[vm.selectedExercise], baseRoutineId: routineId, baseExerciseId: vm.routine.exercises[vm.selectedExercise], alternativeExercise: )
         }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
             DeleteAlert
@@ -174,7 +175,7 @@ struct EditRoutineView: View {
             // TODO: .
         }
         Button("삭제") {
-            // TODO: 완료
+            // TODO: - 서버에서 삭제하는건가요? - MORO
             vm.routine.exercises.remove(at: Int(vm.selectedExercise))
         }
     }}
