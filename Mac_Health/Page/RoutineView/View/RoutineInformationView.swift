@@ -11,11 +11,14 @@ import SwiftUI
 /// - Parameters:
 ///  - routine: 정보를 확인할 루틴
 struct RoutineInformationView: View {
+    @Binding var routine: Routine
+    @StateObject var vm = RoutineInformationViewModel()
+    
     var body: some View {
         Text("RoutineInformationView")
     }
 }
 
 #Preview {
-    RoutineInformationView()
+    RoutineInformationView(routine: .constant(Routine(part: "", date: "", isDone: false, routineId: 1)))
 }
