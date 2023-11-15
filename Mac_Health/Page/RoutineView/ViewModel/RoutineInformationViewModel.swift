@@ -9,15 +9,19 @@ import SwiftUI
 
 class RoutineInformationViewModel: ObservableObject {
     /// 루틴 목록
-    @Published var routine = ""
-    
-    /*
-     routine은 WholeRoutineView에서 전달 받은 루틴 1개
-     */
+    @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     
     /// 루틴 정보 조회 함수
-    func fetchRoutine() {
-        // TODO: 루틴 목록 조회
+    func fetchRoutine(routineId: Int) {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
+            switch $0 {
+            case .success(let routine):
+                self.routine = routine
+                print(self.routine)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /// 루틴 부위 별 분류 함수

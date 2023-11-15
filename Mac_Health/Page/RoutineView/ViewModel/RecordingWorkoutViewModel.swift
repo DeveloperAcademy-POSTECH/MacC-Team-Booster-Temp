@@ -9,11 +9,7 @@ import SwiftUI
 
 class RecordingWorkoutViewModel: ObservableObject {
     /// 현재 진행 중인 운동
-    @Published var workout = ""
-    
-    /*
-     workout은 EditRoutineView에서 전달 받은 운동 1개
-     */
+    @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     
     /// 현재 진행 중인 운동 시간
     @Published var workoutTime = ""
@@ -44,8 +40,16 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     
     /// 현재 진행 중인 운동 정보 조회 함수
-    func fetchWorkout() {
-        
+    func fetchWorkout(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
+            switch $0 {
+            case .success(let workout):
+                self.workout = workout
+                print(self.workout)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /// 운동 시간 일시 정지 함수

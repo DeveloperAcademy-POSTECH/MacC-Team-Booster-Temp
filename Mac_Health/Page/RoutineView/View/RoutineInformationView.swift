@@ -8,12 +8,20 @@
 import SwiftUI
 
 /// 루틴 정보를 확인하는 뷰
+/// - Parameters:
+///  - routineId: 정보를 확인할 루틴 id
 struct RoutineInformationView: View {
+    let routineId: Int
+    @StateObject var vm = RoutineInformationViewModel()
+    
     var body: some View {
         Text("RoutineInformationView")
+            .onAppear {
+                vm.fetchRoutine(routineId: routineId)
+            }
     }
 }
 
 #Preview {
-    RoutineInformationView()
+    RoutineInformationView(routineId: 1)
 }
