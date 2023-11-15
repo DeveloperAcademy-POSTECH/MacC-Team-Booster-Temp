@@ -44,7 +44,6 @@
 		D57183822B030ACF00A11FFC /* MockUpStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183812B030ACF00A11FFC /* MockUpStopwatchViewModel.swift */; };
 		D57183842B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */; };
 		D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */; };
-		D571838D2B03103F00A11FFC /* YoutubeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571838C2B03103F00A11FFC /* YoutubeCardView.swift */; };
 		D57183902B03399300A11FFC /* MockUpWorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */; };
 		D57E93C82B04A02E00D6D986 /* MockUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */; };
 		D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */; };
@@ -147,7 +146,6 @@
 		D57183812B030ACF00A11FFC /* MockUpStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpStopwatchViewModel.swift; sourceTree = "<group>"; };
 		D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpPauseStopwatchViewModel.swift; sourceTree = "<group>"; };
 		D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
-		D571838C2B03103F00A11FFC /* YoutubeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeCardView.swift; sourceTree = "<group>"; };
 		D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutSetModel.swift; sourceTree = "<group>"; };
 		D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpMainView.swift; sourceTree = "<group>"; };
 		D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSearchView.swift; sourceTree = "<group>"; };
@@ -324,7 +322,6 @@
 			children = (
 				D569C7902AF9459900FDADED /* View */,
 				D569C7912AF945A200FDADED /* ViewModel */,
-				D57183872B030E8500A11FFC /* Youtube */,
 			);
 			path = RoutineView;
 			sourceTree = "<group>";
@@ -367,6 +364,7 @@
 				F8DACB6E2B0420B200C3E95C /* RoutineInformationViewModel.swift */,
 				F8DACB6A2B041C6800C3E95C /* EditRoutineViewModel.swift */,
 				F8DACB722B0422D500C3E95C /* RecordingWorkoutViewModel.swift */,
+				F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */,
 				F8DACB632B04182900C3E95C /* Temp */,
 			);
 			path = ViewModel;
@@ -431,14 +429,6 @@
 				D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D57183872B030E8500A11FFC /* Youtube */ = {
-			isa = PBXGroup;
-			children = (
-				D571838C2B03103F00A11FFC /* YoutubeCardView.swift */,
-			);
-			path = Youtube;
 			sourceTree = "<group>";
 		};
 		D584CD872AFB555A00AFA1FF /* View */ = {
@@ -540,7 +530,6 @@
 		F8DACB632B04182900C3E95C /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */,
 				D58066532AFD3152003BB276 /* StopwatchVM.swift */,
 				D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */,
 				F877F0AF2AFBEB38009D49B4 /* ChangeRoutineViewModel.swift */,
@@ -694,7 +683,6 @@
 				D569C78B2AF9440600FDADED /* RoutineViewModel.swift in Sources */,
 				F82674C52AF68F11002BFACD /* AlternativeWorkoutSheet.swift in Sources */,
 				F8A4BF672AFE618F00413213 /* WorkoutListViewModel.swift in Sources */,
-				D571838D2B03103F00A11FFC /* YoutubeCardView.swift in Sources */,
 				D56A0C702AF2153A004D1747 /* TodayStartView.swift in Sources */,
 				D571836D2B020A6800A11FFC /* MockUpFinishView.swift in Sources */,
 				D57183902B03399300A11FFC /* MockUpWorkoutSetModel.swift in Sources */,
