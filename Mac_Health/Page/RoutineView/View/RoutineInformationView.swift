@@ -16,6 +16,9 @@ struct RoutineInformationView: View {
     
     var body: some View {
         Text("RoutineInformationView")
+            .onAppear {
+                vm.fetchRoutine(routineId: routineId)
+            }
     }
 }
 

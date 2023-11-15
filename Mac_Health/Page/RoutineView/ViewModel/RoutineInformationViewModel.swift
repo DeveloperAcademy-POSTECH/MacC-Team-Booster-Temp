@@ -8,11 +8,21 @@
 import SwiftUI
 
 class RoutineInformationViewModel: ObservableObject {
-    // MARK: 상위 뷰에서 바인딩 받아서 사용 여부 불확실
-//    /// 루틴 목록
-//    @Published var routine: Routine = Routine(part: "", date: "", isDone: false, routineId: 1)
+    /// 루틴 목록
+    @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     
     /// 루틴 정보 조회 함수
+    func fetchRoutine(routineId: Int) {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
+            switch $0 {
+            case .success(let routine):
+                self.routine = routine
+                print(self.routine)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     /// 루틴 부위 별 분류 함수
     func fetchByPart() {
