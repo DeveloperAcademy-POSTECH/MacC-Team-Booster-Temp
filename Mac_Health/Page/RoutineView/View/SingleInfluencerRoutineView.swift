@@ -15,7 +15,6 @@ struct SingleInfluencerRoutineView: View {
     
     //MARK: MORO -운동 완료값 불러와서 적용
     
-    
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
