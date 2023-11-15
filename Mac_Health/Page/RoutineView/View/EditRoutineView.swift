@@ -41,8 +41,8 @@ struct EditRoutineView: View {
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
             // TODO: 대체 운동 넣기
-//            AlternativeWorkoutSheet(baseExercise: vm.routine.exercises[vm.selectedExercise], baseRoutineId: routineId, baseExerciseId: vm.routine.exercises[vm.selectedExercise], alternativeExercise: )
-        }l
+            //            AlternativeWorkoutSheet(baseExercise: vm.routine.exercises[vm.selectedExercise], baseRoutineId: routineId, baseExerciseId: vm.routine.exercises[vm.selectedExercise], alternativeExercise: )
+        }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
             DeleteAlert
         }
@@ -122,7 +122,7 @@ struct EditRoutineView: View {
                     Spacer()
                 }
             }
-    
+            
             Spacer()
             
             Button {
@@ -139,7 +139,7 @@ struct EditRoutineView: View {
     var WorkoutStartButton: some View {
         NavigationLink {
             // TODO: 운동 1 / 10
-//            WorkoutOngoingView(routineId: routineId, exerciseId: )
+            //            WorkoutOngoingView(routineId: routineId, exerciseId: )
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")
