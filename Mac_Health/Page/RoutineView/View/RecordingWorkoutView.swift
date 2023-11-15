@@ -18,6 +18,9 @@ struct RecordingWorkoutView: View {
     
     var body: some View {
         Text("RecordingWorkoutView")
+            .onAppear {
+                vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+            }
     }
 }
 
