@@ -23,6 +23,9 @@ class EditRoutineViewModel: ObservableObject {
     /// 선택한 운동의 삭제 얼럿 여부
     @Published var isDeleteWorkoutAlertShow = false
     
+    //클릭한 운동 번호 받아오기
+    @Published var selectedExercise = -1
+    
     /// 운동 목록 조회
     func fetchRoutine(routineId: Int) {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {

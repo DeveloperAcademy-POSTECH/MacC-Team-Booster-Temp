@@ -209,7 +209,7 @@ struct SubscribeView: View {
         }
     }
     
-    
+    //TODO: 구독 버튼 누르면 구독한 ID 서버 저장
     @ViewBuilder
     var subscribeButton: some View {
         if loggedIn {
