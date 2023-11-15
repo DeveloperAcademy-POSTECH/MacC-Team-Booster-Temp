@@ -15,7 +15,6 @@ struct SubscribeView: View {
     @State var subscribingSheet = false
     @State var subscribed = true
     @State var loggedIn = true
-    @Binding var tabSelection: Int
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = """
@@ -244,8 +243,8 @@ struct SubscribeView: View {
                     dismissButton: .destructive(Text("확인"),
                                                 action: {
                                                     //구독 완료
-                                                    self.tabSelection = 1
-                                                    print(self.tabSelection)
+//                                                    self.tabSelection = 1
+//                                                    print(self.tabSelection)
                                                 })
                 )
             }
@@ -475,6 +474,6 @@ struct WorkoutExplain: View {
 
 struct SubscribeView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscribeView(tabSelection: .constant(1))
+        SubscribeView()
     }
 }

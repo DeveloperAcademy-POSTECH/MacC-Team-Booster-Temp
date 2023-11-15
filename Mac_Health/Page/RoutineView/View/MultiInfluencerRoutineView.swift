@@ -1,5 +1,5 @@
 //
-//  MultiRoutineView.swift
+//  MultiInfluencerRoutineView.swift
 //  Mac_Health
 //
 //  Created by 정회승 on 11/2/23.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct MultiRoutineView: View {
-    @StateObject var vm = MultiRoutineViewModel()
+/// 인플루언서 다중 구독 뷰
+struct MultiInfluencerRoutineView: View {
+    @StateObject var vm = MultiInfluencerRoutineViewModel()
     
     var body: some View {
         ZStack {
@@ -37,5 +38,5 @@ struct MultiRoutineView: View {
 }
 
 #Preview {
-    MultiRoutineView()
+    MultiInfluencerRoutineView()
 }

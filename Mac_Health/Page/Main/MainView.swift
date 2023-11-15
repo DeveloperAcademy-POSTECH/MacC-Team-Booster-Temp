@@ -7,46 +7,48 @@
 
 import SwiftUI
 
+// TODO: 메인 뷰 모델 추가
 struct MainView: View {
+    @StateObject var vm = MainViewModel()
+    
     init() {
         UITabBar.appearance().backgroundColor = Color.tabbar_main
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
     }
-    @State private var path = NavigationPath()
-    @State private var tabSelection = 1
     
     var body: some View {
         NavigationStack {
-            TabView {
-                MultiRoutineView()
+            TabView(selection: $vm.tabSelection) {
+                RoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
                         Text("루틴")
                     }
-                    .tag(1)
+                    .tag(0)
                 
-                SearchView(tabSelection: $tabSelection)
+                SearchView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("둘러보기")
                     }
-                    .tag(2)
+                    .tag(1)
                 
                 RecordView()
                     .tabItem {
                         Image(systemName: "list.clipboard.fill")
                         Text("기록")
                     }
-                    .tag(3)
+                    .tag(2)
                 
                 ProfileView()
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("프로필")
-                }
-                .tag(4)
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("프로필")
+                    }
+                    .tag(3)
             }
+            .environmentObject(vm)
             .tint(.label_900)
         }
     }
