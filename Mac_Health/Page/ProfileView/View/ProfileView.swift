@@ -23,6 +23,7 @@ struct ProfileView: View {
                 NavigationTitle
                 if loggedIn {
                     NavigationLink {
+                        ManageProfileView(nickName: $nickName)
                     } label: {
                         ProfileManage(nickName: nickName)
                     }

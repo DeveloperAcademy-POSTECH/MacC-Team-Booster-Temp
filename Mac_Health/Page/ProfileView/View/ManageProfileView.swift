@@ -15,13 +15,17 @@ struct ManageProfileView: View {
     @Binding var nickName: String
     //need 이메일 가리는 logic
     var email = "sam****@naver.com"
-
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             VStack{
                 NicknameBanner(nickName: nickName)
-                EmailBanner(email: email)
+                //TODO: email 받아왔는지 확인
+                if email == "" {
+                } else {
+                    EmailBanner(email: email)
+                }
                 SignOut(deletingAccount: deletingAccount)
                 LogOut(loggingOutSheet: loggingOutSheet)
                 Spacer()
@@ -62,7 +66,7 @@ struct ManageProfileView: View {
                     .font(.body())
                     .foregroundColor(.label_700)
             }
-            }
+        }
         .padding([.horizontal, .top])
     }
     
@@ -83,12 +87,14 @@ struct ManageProfileView: View {
             }
             .padding(.bottom)
             Divider()
-            }
+        }
         .padding()
     }
     
     func SignOut(deletingAccount: Bool) -> some View {
-        Button(action: {self.deletingAccount = true}, label: {
+        Button{
+            self.deletingAccount = true
+        } label: {
             HStack{
                 Text("회원탈퇴")
                     .font(.body())
@@ -96,24 +102,20 @@ struct ManageProfileView: View {
                 Spacer()
             }
             .padding()
-
-        })
-        .alert(isPresented: $deletingAccount) {
-            Alert(
-                title: Text("탈퇴하시겠습니까?"),
-                message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
-                primaryButton: .destructive(Text("탈퇴"),
-                                        action: {
-
-                                }),
-                                secondaryButton: .destructive(Text("취소"),
-                                                              action: {
-
-                                                      })
-            )
+            
         }
-        .accentColor(.green_main)
+        .alert(isPresented: $deletingAccount) {
+            let firstButton = Alert.Button.default(Text("취소").bold()) {
+                print("primary button pressed")
             }
+            let secondButton = Alert.Button.default(Text("탈퇴")) {
+                print("secondary button pressed")
+            }
+            return Alert(title: Text("탈퇴하시겠습니까"),
+                         message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
+                         primaryButton: firstButton, secondaryButton: secondButton)
+        }
+    }
     
     func LogOut(loggingOutSheet: Bool) -> some View {
         Button(action: {self.loggingOutSheet = true}, label: {
@@ -124,20 +126,18 @@ struct ManageProfileView: View {
                 Spacer()
             }
             .padding()
-
+            
         })
-        .alert(isPresented: $loggingOutSheet) {
-            Alert(
-                title: Text("로그아웃하시겠습니까?"),
-//                message: Text(""),
-                primaryButton: .destructive(Text("로그아웃"),
-                                        action: {
-
-                                }),
-                                secondaryButton: .cancel(Text("취소"))
-            )
-        }
+        .alert("로그아웃하시겠습니까?", isPresented: $loggingOutSheet) {
+            Button("취소") { }
+            Button{
+                
+            } label: {
+                Text("로그아웃")
+                    .bold()
             }
+        }
+    }
     
     var BackButton: some View {
         Button {

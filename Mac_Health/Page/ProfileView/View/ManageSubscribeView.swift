@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ManageSubscribeView: View {
     
+    var title: String = "정회승의 Smart Routine"
+    var startDate: String = "2023.07.03"
     @State var cancelingSubscribed: Bool = false
     @Environment(\.dismiss) var dismiss
     var body: some View {
@@ -19,8 +21,7 @@ struct ManageSubscribeView: View {
 //                .font(.headline1())
             
             ScrollView{
-                subscribeBanner(title: "정회승의 Smart Routine", date: "2023.07.03~")
-                subscribeBanner(title: "이현웅의 Special Tip", date: "2023.08.03~")
+                subscribeBanner(title: title, date: "\(startDate)~")
                 Spacer()
             }
         }
@@ -55,9 +56,12 @@ struct ManageSubscribeView: View {
                 //TODO: 여기서 취소버튼누르면 네트워킹 쏴줘야함.
                 .alert("구독을 취소하시겠습니까?", isPresented: $cancelingSubscribed) {
                     Button("취소") { }
-                    Button("확인") {
+                    Button{
                         
-                    }.bold()
+                    } label: {
+                         Text("확인")
+                            .bold()
+                    }
                 }
             }
             

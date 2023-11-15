@@ -89,6 +89,7 @@ struct ChangeNicknameView: View {
                     .foregroundColor(.green_main)
             }
         }
+    
     var unactiveSaveButton: some View {
         Button {
             print("need to change name")
