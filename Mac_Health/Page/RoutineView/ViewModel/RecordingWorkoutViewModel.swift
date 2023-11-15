@@ -63,13 +63,29 @@ class RecordingWorkoutViewModel: ObservableObject {
     }
     
     /// 운동 세트 감소 함수
-    func decreaseSetCount() {
-        
+    func decreaseSetCount(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
+            switch $0 {
+            case .success(let sets):
+                self.workout.sets = sets
+                print(self.workout)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /// 운동 세트 증가 함수
-    func increseSetCount() {
-        
+    func increseSetCount(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
+            switch $0 {
+            case .success(let sets):
+                self.workout.sets = sets
+                print(self.workout)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /// 무게 편집 함수
