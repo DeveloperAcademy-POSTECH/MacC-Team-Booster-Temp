@@ -12,6 +12,7 @@ class RoutineViewModel: ObservableObject {
     @Published var routines = ResponseGetUsersRoutines(routines: [])
     init() {
         self.fetchRoutines()
+        self.tempfetcher()
     }
     
     func fetchRoutines() {
@@ -29,4 +30,20 @@ class RoutineViewModel: ObservableObject {
         }
     }
     
+    @Published var RoutineViewRoutine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
+    @Published var RecordingRoutineViewRoutine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
+    
+    func tempfetcher() {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: 2), type: ResponseGetUsersRoutinesId.self) {
+            switch $0 {
+            case .success(let routine):
+                self.RoutineViewRoutine = routine
+                self.RecordingRoutineViewRoutine = routine
+                print(self.RoutineViewRoutine)
+                print(self.RecordingRoutineViewRoutine)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

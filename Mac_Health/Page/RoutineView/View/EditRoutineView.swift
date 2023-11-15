@@ -16,6 +16,8 @@ struct EditRoutineView: View {
     let routineId: Int
     @StateObject var vm = EditRoutineViewModel()
     
+    @EnvironmentObject var routineVM: RoutineViewModel
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -45,6 +47,7 @@ struct EditRoutineView: View {
             // TODO: 대체 운동 넣기
 //            AlternateWorkoutSheet(baseExercise: vm.routine.exercises[vm.selectedExercise], baseRoutineId: routineId, baseExerciseId: vm.routine.exercises[vm.selectedExercise], alternativeExercise: )
         }
+
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
             DeleteAlert
         }
@@ -141,6 +144,8 @@ struct EditRoutineView: View {
     var WorkoutStartButton: some View {
         NavigationLink {
             // TODO: 운동 1 / 10
+            RecordingWorkoutView(routineId: 1, exerciseId: 1)
+                .environmentObject(routineVM)
             //            WorkoutOngoingView(routineId: routineId, exerciseId: )
         } label: {
             FloatingButton(backgroundColor: .green_main) {

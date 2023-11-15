@@ -17,6 +17,7 @@ struct RoutineView: View {
             InfluencerPreviewView()
         case 1: /// 구독 한 명일 때 보여줄 뷰
             SingleInfluencerRoutineView(routine: $vm.routines.routines[0])
+                .environmentObject(vm)
         default: /// 구독 여러 명일 때 보여줄 뷰
             MultiInfluencerRoutineView()
         }

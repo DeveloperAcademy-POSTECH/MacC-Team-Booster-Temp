@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PauseSheet: View {
-    @ObservedObject var viewModel: StopwatchVM
+    @ObservedObject var viewModel: RecordingWorkoutViewModel
     @StateObject var pauseViewModel = PauseStopwatchVM()
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -57,8 +57,8 @@ struct PauseSheet: View {
     }
 }
 
-struct PauseSheet_Preview: PreviewProvider {
-    static var previews: some View {
-        PauseSheet(viewModel: StopwatchVM())
-    }
-}
+//struct PauseSheet_Preview: PreviewProvider {
+//    static var previews: some View {
+//        PauseSheet(viewModel: StopwatchVM())
+//    }
+//}
