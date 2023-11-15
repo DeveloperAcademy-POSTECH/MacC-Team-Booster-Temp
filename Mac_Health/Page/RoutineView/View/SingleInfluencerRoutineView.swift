@@ -7,14 +7,13 @@
 
 import SwiftUI
 
+// TODO: 서버에서 isDone 추가 시 그에 따른 갱신 작업
 /// 인플루언서 단일 구독 뷰
 struct SingleInfluencerRoutineView: View {
     @Binding var routine: InfluencerRoutine
     @StateObject var vm = SingleInfluencerRoutineViewModel()
-    @Environment(\.dismiss) var dismiss: DismissAction
     
-    //MARK: MORO -운동 완료값 불러와서 적용
-    // ㄴ 헉베가 isDone 추가해줘야 함
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
         ZStack {
@@ -97,7 +96,6 @@ struct SingleInfluencerRoutineView: View {
         }
     }
     
-    
     func Description(image: String, text: String) -> some View {
         HStack {
             Image(systemName: image)
@@ -110,13 +108,11 @@ struct SingleInfluencerRoutineView: View {
         }
     }
     
-    
     func TodayCard() -> some View {
         ZStack {
             VStack(alignment: .center) {
                 HStack {
-                    //TODO: yyyy-MM-dd -> "MM월 dd일 E요일"로 변환 -YONG
-                    Text("\(routine.date)")
+                    Text("\(vm.formatForDate(from: routine.date))")
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()
