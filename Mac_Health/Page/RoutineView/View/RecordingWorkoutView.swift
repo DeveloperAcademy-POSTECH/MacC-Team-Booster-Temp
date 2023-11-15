@@ -16,11 +16,22 @@ struct RecordingWorkoutView: View {
     let exerciseId: Int
     @StateObject var vm = RecordingWorkoutViewModel()
     
+    @EnvironmentObject var routineVM: RoutineViewModel
+    
     var body: some View {
-        Text("RecordingWorkoutView")
-            .onAppear {
-                vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+        ZStack {
+            Text("RecordingWorkoutView")
+            NavigationLink {
+                RecordingRoutineView()
+                    .environmentObject(routineVM)
+            } label: {
+                Text("asd")
             }
+            
+                .onAppear {
+                    vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+                }
+        }
     }
 }
 

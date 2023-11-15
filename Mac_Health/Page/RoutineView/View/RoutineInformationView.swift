@@ -13,6 +13,9 @@ import SwiftUI
 struct RoutineInformationView: View {
     let routineId: Int
     @StateObject var vm = RoutineInformationViewModel()
+    
+    @EnvironmentObject var routineVM: RoutineViewModel
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -55,6 +58,7 @@ struct RoutineInformationView: View {
                 BackButton
             }
         }
+        .environmentObject(routineVM)
     }
     
     var SpecificInformation: some View {
