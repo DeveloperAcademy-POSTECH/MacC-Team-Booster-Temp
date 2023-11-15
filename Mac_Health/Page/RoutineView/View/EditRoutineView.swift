@@ -10,7 +10,7 @@ import SwiftUI
 /// 운동 시작 했을 때 운동 시작하기 전 운동 목록 편집하는 뷰
 struct EditRoutineView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("EditRoutineView")
     }
 }
 

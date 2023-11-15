@@ -7,14 +7,18 @@
 
 import SwiftUI
 
-// TODO: 인플루언서 아이디 받아서 조회 후 데이터 뿌려주기
 /// 인플루언서 단일 구독 뷰
 struct SingleInfluencerRoutineView: View {
+    @Binding var routine: InfluencerRoutine
+    @StateObject var vm = SingleInfluencerRoutineViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Text("SingleInfluencerRoutineView")
+        }
     }
 }
 
 #Preview {
-    SingleInfluencerRoutineView()
+    SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 1, part: "", date: "", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", influencerProfileImageUrl: "", influencerId: 1)))
 }
