@@ -12,7 +12,8 @@ enum WorkoutPart: String, CaseIterable {
 }
 
 /// 인플루언서 개인의 전체 루틴 뷰
-///  - Parameter : influencerId를 전달 받아서 해당 인플루언서의 전체 루틴을 조회
+///  - Parameters:
+///   - influencerId: 조회할 인플루언서의 id
 struct WholeRoutineView: View {
     let influencerId: Int
     @StateObject var vm = WholeRoutineViewModel()
