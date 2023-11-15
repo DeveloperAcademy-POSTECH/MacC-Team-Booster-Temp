@@ -31,7 +31,10 @@ class RoutineViewModel: ObservableObject {
     }
     
     @Published var RoutineViewRoutine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
+    
     @Published var RecordingRoutineViewRoutine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
+    
+    @Published var isDetailedWorkoutSheetShow = false
     
     func tempfetcher() {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: 2), type: ResponseGetUsersRoutinesId.self) {

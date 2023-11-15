@@ -38,6 +38,16 @@ class RecordingWorkoutViewModel: ObservableObject {
     /// 운동이 남아있을 때 운동 완료 얼럿 여부
     @Published var isDiscontinuewAlertShow = false
     
+    //MARK: 선택한 운동: 선택한 운동 받아오기 - YONG
+    @Published var selectedExercise = -1
+    
+    //팁 이미지 전환
+    @Published var tabSelection = 0
+    
+    @Published var elapsedTime: TimeInterval = 0
+    @Published var isRunning: Bool = false
+    private var timer: Timer?
+    
     
     /// 현재 진행 중인 운동 정보 조회 함수
     func fetchWorkout(routineId: Int, exerciseId: Int) {
@@ -132,4 +142,38 @@ class RecordingWorkoutViewModel: ObservableObject {
     func viewRoutine() {
         
     }
+    
+    func Start() {
+        isRunning = true
+
+        if isRunning {
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+                self?.elapsedTime += 1
+            }
+        } else {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    
+    func Stop() {
+        isRunning = false
+
+        if isRunning {
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+                self?.elapsedTime += 1
+            }
+        } else {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    
+    func timeFormatted() -> String {
+        let hours = Int(elapsedTime) / 3600
+        let minutes = Int(elapsedTime) / 60
+        let seconds = Int(elapsedTime) % 60
+        return String(format: "%02d:%02d:%02d",hours, minutes, seconds)
+    }
+
 }

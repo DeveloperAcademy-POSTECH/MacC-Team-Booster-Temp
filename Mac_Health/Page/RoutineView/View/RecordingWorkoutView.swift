@@ -41,13 +41,7 @@ struct RecordingWorkoutView: View {
                 Spacer()
                 isFocused ? nil : WorkoutButton
             }
-            
-            NavigationLink {
-                RecordingRoutineView()
-                    .environmentObject(routineVM)
-            } label: {
-                Text("asd")
-            }
+
         }
         .onAppear {
             vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
@@ -308,7 +302,8 @@ struct RecordingWorkoutView: View {
                 .overlay {
                     HStack {
                         NavigationLink {
-                            WorkoutStatusView()
+                            RecordingRoutineView()
+                                .environmentObject(routineVM)
                         } label: {
                             Image(systemName: "list.bullet")
                                 .foregroundColor(.green_main)
