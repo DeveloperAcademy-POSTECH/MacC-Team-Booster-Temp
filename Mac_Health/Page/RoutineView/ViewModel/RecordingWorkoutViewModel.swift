@@ -15,7 +15,7 @@ class RecordingWorkoutViewModel: ObservableObject {
     @Published var workoutTime = ""
     
     /// 현재 진행 중인 운동 세트 인덱스
-    @Published var currentSet = ""
+    @Published var currentSet = 0
     
     /// 현재 진행 중인 운동의 상세 정보 시트 여부
     @Published var isDetailedWorkoutSheetShow = false
@@ -104,8 +104,18 @@ class RecordingWorkoutViewModel: ObservableObject {
     }
     
     /// 현재 세트 완료 함수
-    func finishSet() {
-        
+    func finishSet(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: workout.sets[currentSet].setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
+            switch $0 {
+            case .success(let set):
+                self.workout.sets[self.currentSet].weight = set.weight
+                self.workout.sets[self.currentSet].reps = set.reps
+                self.workout.sets[self.currentSet].isDone = set.isDone
+                print(self.workout)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /// 다음 운동 이동 네비게이션 용 함수
