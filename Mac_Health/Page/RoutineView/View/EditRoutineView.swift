@@ -43,7 +43,7 @@ struct EditRoutineView: View {
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
             // TODO: 대체 운동 넣기
-                        AlternativeWorkoutSheet(baseExercise: vm.routine.exercises[vm.selectedExercise], baseRoutineId: routineId, baseExerciseId: vm.routine.exercises[vm.selectedExercise], alternativeExercise: )
+//            AlternateWorkoutSheet(baseExercise: vm.routine.exercises[vm.selectedExercise], baseRoutineId: routineId, baseExerciseId: vm.routine.exercises[vm.selectedExercise], alternativeExercise: )
         }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
             DeleteAlert
