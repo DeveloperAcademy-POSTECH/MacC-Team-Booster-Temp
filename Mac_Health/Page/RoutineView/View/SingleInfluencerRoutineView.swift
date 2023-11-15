@@ -13,6 +13,7 @@ struct SingleInfluencerRoutineView: View {
     @StateObject var vm = SingleInfluencerRoutineViewModel()
     
     //MARK: MORO -운동 완료값 불러와서 적용
+    // ㄴ 헉베가 isDone 추가해줘야 함
     
     
     var body: some View {
