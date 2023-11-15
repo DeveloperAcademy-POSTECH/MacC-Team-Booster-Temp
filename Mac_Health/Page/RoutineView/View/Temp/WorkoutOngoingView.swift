@@ -61,7 +61,7 @@ struct WorkoutOngoingView: View {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternativeSheetShow) {
-            AlternativeWorkoutSheet(baseExercise: vm.routine.name, baseRoutineId: routineId, baseExerciseId: exerciseId, alternativeExercise: vm.routine.alternativeExercises)
+            AlternateWorkoutSheet(baseExercise: vm.routine.name, baseRoutineId: routineId, baseExerciseId: exerciseId, alternativeExercise: vm.routine.alternativeExercises)
         }
         //        .alert("운동을 중단하시겠습니까?", isPresented: $exitAlertShow) {
         //            Button("운동중단") {

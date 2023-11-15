@@ -35,7 +35,7 @@ struct WorkoutStatusEditView: View {
             ConfirmationDialog
         }
 //        .sheet(isPresented: $isAlternativeWorkoutShow) {
-//            AlternativeWorkoutSheet()
+//            AlternateWorkoutSheet()
 //        }
         .alert("운동을 삭제하시겠습니까?", isPresented: $isDeleteAlertShow) {
             DeleteAlert

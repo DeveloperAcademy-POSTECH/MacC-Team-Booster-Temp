@@ -1,5 +1,5 @@
 //
-//  AlternativeWorkoutSheet.swift
+//  AlternateWorkoutSheet.swift
 //  Mac_Health
 //
 //  Created by 송재훈 on 11/4/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlternativeWorkoutSheet: View {
+struct AlternateWorkoutSheet: View {
     let baseExercise: String
     let baseRoutineId: Int
     let baseExerciseId: Int
@@ -94,7 +94,7 @@ struct AlternativeWorkoutSheet: View {
 struct AlternativeWorkoutSheet_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AlternativeWorkoutSheet(baseExercise: "클로즈 그립 랫 풀 다운", baseRoutineId: 1, baseExerciseId: 1, alternativeExercise: [])
+            AlternateWorkoutSheet(baseExercise: "클로즈 그립 랫 풀 다운", baseRoutineId: 1, baseExerciseId: 1, alternativeExercise: [])
         }
     }
 }
