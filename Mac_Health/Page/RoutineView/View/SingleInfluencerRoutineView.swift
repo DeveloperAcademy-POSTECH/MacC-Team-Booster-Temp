@@ -168,7 +168,7 @@ struct SingleInfluencerRoutineView: View {
                             }
                     } else {
                         NavigationLink {
-                            WorkoutListView(routineId: routine.routineId)
+                            EditRoutineView(routineId: routine.routineId)
                         } label: {
                             RoundedRectangle(cornerRadius: 100)
                                 .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))

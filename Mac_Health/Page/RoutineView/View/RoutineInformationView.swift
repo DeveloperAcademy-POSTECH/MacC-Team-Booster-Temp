@@ -34,7 +34,7 @@ struct RoutineInformationView: View {
             VStack {
                 Spacer()
                 NavigationLink {
-                    WorkoutListView(routineId: routineId)
+                    EditRoutineView(routineId: routineId)
                 } label: {
                     FloatingButton(backgroundColor: .green_main) {
                         Text("운동 시작")
