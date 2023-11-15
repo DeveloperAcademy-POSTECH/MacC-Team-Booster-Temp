@@ -126,6 +126,7 @@ struct OnboardingView: View {
     
     /// 전달 받은 액세스 토큰 유저 디폴트 저장 함수
     func saveUser(accessToken: String, refreshToken: String) {
+        print(accessToken)
         UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
         UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
     }

@@ -16,7 +16,7 @@
 import SwiftUI
 
 struct MockUpStartView: View {
-    @State var todayText = "반가워요 득근해봅시다💪"
+    var todayText = "반가워요 득근해봅시다💪"
     @Binding var tabSelection: Int
     var Influencer = "정회승"
     

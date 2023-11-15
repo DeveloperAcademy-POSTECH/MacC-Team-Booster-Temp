@@ -8,6 +8,8 @@
 import SwiftUI
 
 class SingleInfluencerRoutineViewModel: ObservableObject {
+    //오늘 운동 했는지
+    @Published var finishWorkout: Bool = false
     /*
      routine은 인플루언서와 (오늘)날짜로 검색
      */
