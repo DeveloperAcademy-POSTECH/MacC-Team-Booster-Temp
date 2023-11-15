@@ -21,6 +21,7 @@ struct WholeRoutineView: View {
     
     var body: some View {
         VStack{
+            Workouts
             NavigationLink{
                 if !vm.routines.routines.isEmpty {
                     RoutineInformationView(routineId: vm.routines.routines[0].routineId)
@@ -41,6 +42,62 @@ struct WholeRoutineView: View {
         }
         .onAppear {
             vm.fetchRoutines(influencerId: influencerId)
+        }
+    }
+    
+    var Workouts: some View {
+        ScrollView {
+            // TODO: 월 별 데이터
+            
+            ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
+                VStack {
+                    HStack {
+                        Text("\(key)월")
+                            .foregroundColor(.label_900)
+                            .font(.headline1())
+                        Spacer()
+                    }
+                    ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
+                        NavigationLink {
+                            SelectedRoutineView(routineId: some.routineId)
+                                .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
+                        } label: {
+                            TodayWorkoutCell(routine: some)
+                                .padding(.vertical, 8)
+                        }
+                    }
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+    
+    func TodayWorkoutCell(routine: Routine) -> some View {
+        HStack(spacing: UIScreen.getWidth(16)) {
+            RoundedRectangle(cornerRadius: 8)
+                .foregroundColor(vm.compareToday(from: routine.date) ? .label_900 : .fill_2)
+                .frame(width: UIScreen.getWidth(40), height: UIScreen.getHeight(40))
+                .overlay {
+                    Text("\(vm.formatForDay(from: routine.date))")
+                        .font(.headline1())
+                        .foregroundColor(vm.compareToday(from: routine.date) ? .gray_900 : .label_900)
+                }
+            Text("\(routine.part)")
+                .font(.headline1())
+                .foregroundColor(.label_900)
+            
+            Spacer()
+            
+            if routine.isDone {
+                Circle()
+                    .frame(width: UIScreen.getWidth(36))
+                    .foregroundColor(.green_10)
+                    .overlay {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.green_main)
+                            .font(.body2())
+                    }
+            }
         }
     }
     

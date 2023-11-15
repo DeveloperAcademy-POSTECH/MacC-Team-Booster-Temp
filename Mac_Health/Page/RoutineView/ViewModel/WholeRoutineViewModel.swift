@@ -26,6 +26,7 @@ class WholeRoutineViewModel: ObservableObject {
             case .success(let routine):
                 self.routines.routines = routine
                 self.fetchByMonth()
+                print("asdsadas")
                 print(self.routines)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -46,6 +47,34 @@ class WholeRoutineViewModel: ObservableObject {
             }
             
             routinesByMonth.updateValue(updatedRoutine, forKey: month)
+        }
+        print(Array(routinesByMonth.keys))
+    }
+    
+    func formatForDate(from date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일"
+        dateFormatter.timeZone = TimeZone(identifier: "ko-KR")
+        dateFormatter.locale = Locale(identifier: "ko-KR")
+        
+        return dateFormatter.string(from: date.toDate() ?? Date())
+    }
+    
+    func formatForDay(from date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd"
+        dateFormatter.timeZone = TimeZone(identifier: "ko-KR")
+        dateFormatter.locale = Locale(identifier: "ko-KR")
+        
+        return dateFormatter.string(from: date.toDate() ?? Date())
+    }
+    
+    func compareToday(from date: String) -> Bool {
+        let difference = Calendar.current.dateComponents([.day], from: date.toDate() ?? Date(), to: Date())
+        if difference.day == 0 {
+            return true
+        } else {
+            return false
         }
     }
     
