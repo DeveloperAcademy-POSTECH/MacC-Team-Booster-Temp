@@ -11,6 +11,7 @@ import SwiftUI
 struct SingleInfluencerRoutineView: View {
     @Binding var routine: InfluencerRoutine
     @StateObject var vm = SingleInfluencerRoutineViewModel()
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     //MARK: MORO -운동 완료값 불러와서 적용
     
@@ -32,24 +33,8 @@ struct SingleInfluencerRoutineView: View {
             Spacer()
                 .frame(height: UITabBarController().height)
         }
-//        .toolbar {
-//            ToolbarItem(placement: .topBarLeading) {
-//                BackButton
-//            }
-//        }
-        .navigationBarBackButtonHidden()
         
     }
-    
-//    var BackButton: some View {
-//        Button {
-//            dismiss()
-//        } label: {
-//            Image(systemName: "chevron.left")
-//                .foregroundColor(.label_700)
-//                .font(.body())
-//        }
-//    }
     
     var NavigationTitle: some View {
         HStack {
@@ -203,6 +188,16 @@ struct SingleInfluencerRoutineView: View {
         .background {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
+        }
+    }
+    
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_900)
+                .font(.body())
         }
     }
 }
