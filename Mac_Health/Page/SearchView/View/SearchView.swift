@@ -61,7 +61,6 @@ struct SearchView: View {
         .padding()
     }
     
-    @ViewBuilder
     var SearchCard: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 8.0)
@@ -112,28 +111,28 @@ struct SearchView: View {
             }
     }
     
-    @ViewBuilder
-    var RecommendCardScroll: some View {
-            VStack(spacing: 20){
-                HStack {
-                    Text("전문가들의 일상 루틴")
-                        .foregroundColor(.label_900)
-                        .font(.title2())
-                        .padding(.leading, 20)
-                    Spacer()
-                }
-                VStack(spacing: 20){
-                    ForEach(1..<4, id: \.self) {idx in
-                        //전문가들의 일상 루틴에서 구독 뷰
-                        NavigationLink {
-                            SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
-                        } label: {
-                            InfluencerCard(cardBannerNum: idx)
-                        }
-                    }
-                }
-            }
-    }
+//    @ViewBuilder
+//    var RecommendCardScroll: some View {
+//            VStack(spacing: 20){
+//                HStack {
+//                    Text("전문가들의 일상 루틴")
+//                        .foregroundColor(.label_900)
+//                        .font(.title2())
+//                        .padding(.leading, 20)
+//                    Spacer()
+//                }
+//                VStack(spacing: 20){
+//                    ForEach(1..<4, id: \.self) {idx in
+//                        //전문가들의 일상 루틴에서 구독 뷰
+//                        NavigationLink {
+//                            SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
+//                        } label: {
+//                            InfluencerCard(cardBannerNum: idx)
+//                        }
+//                    }
+//                }
+//            }
+//    }
 }
 
 //struct SearchView_Previews: PreviewProvider {

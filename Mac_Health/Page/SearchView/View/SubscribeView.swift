@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SubscribeView: View {
     
-    @State var seeMore:Bool = false
+//    @State var seeMore:Bool = false
     @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
     @State var subscribingSheet = false
@@ -227,29 +227,10 @@ struct SubscribeView: View {
                  }
                  
              }
-             .alert(isPresented: $subscribingSheet) {
-                 subscribed ? Alert(
-                     title: Text("구독이 완료되었습니다."),
-                     message: Text(""),
-                     dismissButton: .destructive(Text("확인"),
-                                                 action: {
-                                                     //구독 완료
-                                                     subscribed = true
-                                                     dismiss()
-                                                     dismiss()
-                                                     self.tabSelection = 1
-                                                     print(self.tabSelection)
-                                                 })
-                 ) : Alert(
-                     title: Text("구독이 취소되었습니다."),
-                     message: Text(""),
-                     dismissButton: .destructive(Text("확인"),
-                                                 action: {
-                                                     //구독 취소
-                                                     subscribed = false
-                                                     
-                                                 })
-                 )
+             .alert(subscribed ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $subscribingSheet) {
+                 Button("확인") {
+                     //TODO: 서버에 vm.routines.routines 변화
+                 }
              }
          } else {
              FloatingButton(backgroundColor: .gray_600) {Text("둘러보기 중")
