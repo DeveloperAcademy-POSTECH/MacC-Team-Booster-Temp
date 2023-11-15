@@ -26,6 +26,7 @@ class WholeRoutineViewModel: ObservableObject {
             case .success(let routine):
                 self.routines.routines = routine
                 self.fetchByMonth()
+                print("-----")
                 print(self.routines)
             case .failure(let error):
                 print(error.localizedDescription)

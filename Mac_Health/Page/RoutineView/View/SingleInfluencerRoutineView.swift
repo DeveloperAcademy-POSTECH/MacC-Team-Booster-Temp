@@ -11,10 +11,10 @@ import SwiftUI
 struct SingleInfluencerRoutineView: View {
     @Binding var routine: InfluencerRoutine
     @StateObject var vm = SingleInfluencerRoutineViewModel()
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     //MARK: MORO -운동 완료값 불러와서 적용
     // ㄴ 헉베가 isDone 추가해줘야 함
-    
     
     var body: some View {
         ZStack {
@@ -33,24 +33,8 @@ struct SingleInfluencerRoutineView: View {
             Spacer()
                 .frame(height: UITabBarController().height)
         }
-//        .toolbar {
-//            ToolbarItem(placement: .topBarLeading) {
-//                BackButton
-//            }
-//        }
-        .navigationBarBackButtonHidden()
         
     }
-    
-//    var BackButton: some View {
-//        Button {
-//            dismiss()
-//        } label: {
-//            Image(systemName: "chevron.left")
-//                .foregroundColor(.label_700)
-//                .font(.body())
-//        }
-//    }
     
     var NavigationTitle: some View {
         HStack {
@@ -185,7 +169,7 @@ struct SingleInfluencerRoutineView: View {
                             }
                     } else {
                         NavigationLink {
-                            WorkoutListView(routineId: routine.routineId)
+                            EditRoutineView(routineId: routine.routineId)
                         } label: {
                             RoundedRectangle(cornerRadius: 100)
                                 .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
@@ -204,6 +188,16 @@ struct SingleInfluencerRoutineView: View {
         .background {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
+        }
+    }
+    
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_900)
+                .font(.body())
         }
     }
 }

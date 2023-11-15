@@ -17,12 +17,41 @@ enum WorkoutPart: String, CaseIterable {
 struct WholeRoutineView: View {
     let influencerId: Int
     @StateObject var vm = WholeRoutineViewModel()
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
-        Text("WholeRoutineView")
-            .onAppear {
-                vm.fetchRoutines(influencerId: influencerId)
+        VStack{
+            NavigationLink{
+                if !vm.routines.routines.isEmpty {
+                    RoutineInformationView(routineId: vm.routines.routines[0].routineId)
+                    //TODO: "2023-10-24"식 "10월 24일"식으로
+                        .navigationTitle(vm.routines.routines[0].date)
+                }
+            } label: {
+                Text("WholeRoutineView")
             }
+        }
+        .navigationTitle("전체루틴")
+        .navigationBarBackButtonHidden()
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton
+            }
+        }
+        .onAppear {
+            vm.fetchRoutines(influencerId: influencerId)
+        }
+    }
+    
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_900)
+                .font(.body())
+        }
     }
 }
 

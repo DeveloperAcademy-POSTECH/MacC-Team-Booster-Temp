@@ -55,6 +55,7 @@ extension Font {
     static func largeTitle() -> Font {
         return Font.custom(Pretentard.semiBold, size: 36 * setFontSize()).weight(.semibold)
     }
+
     
     ///기기별 폰트 사이즈 대응
     static func setFontSize() -> Double {

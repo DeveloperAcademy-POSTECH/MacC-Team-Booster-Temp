@@ -27,30 +27,41 @@ struct OnboardingView: View {
     
     var Onboarding: some View {
         ZStack {
-            Color.gray_900.ignoresSafeArea()
+            Image("로그인배경")
+                .resizable()
+                .scaledToFill()
             
             // TODO: 온보딩 추가 시 작업
             /// 온보딩
             VStack {
-                TabView {
-                    ForEach(1...3, id: \.self) { _ in
-                        HStack {
-                            Rectangle()
-                                .foregroundColor(.green_main)
-                        }
-                    }
-                    .frame(width:UIScreen.getWidth(390), height: UIScreen.getHeight(500))
-                    .tabViewStyle(.page)
-                }
+                Spacer()
                 
+                HStack {
+                    VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
+                            Text("몸좋은 사람들의")
+                            Text("운동일지 구독")
+                        }
+                        .font(.title1())
+                        .foregroundColor(.label_900)
+                        .padding(.bottom, 10)
+                        
+                        Text("Be my Influencer, BEFL")
+                            .font(.system(size: 20, weight: .light, design: .default))
+                            .foregroundColor(.label_700)
+                    }
+                    .padding(32)
+                    Spacer()
+                }
                 /// 로그인 버튼
                 LoginButton
                 
                 /// 둘러보기 버튼
                 PreviewButton
+                Spacer()
+                    .frame(height: UIScreen.getHeight(68))
             }
-            Spacer()
-                .frame(height: UIScreen.getHeight(20))
+            
         }
         .onAppear {
             isLogined()

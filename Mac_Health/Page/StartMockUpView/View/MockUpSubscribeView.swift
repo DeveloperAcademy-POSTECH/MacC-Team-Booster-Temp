@@ -71,7 +71,7 @@ struct MockUpSubscribeView: View {
                 createTab() : nil, alignment: Alignment.bottom
             )
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton
