@@ -45,6 +45,9 @@ struct RoutineInformationView: View {
                 .padding()
             }
         }
+        .onAppear {
+            vm.fetchRoutine(routineId: routineId)
+        }
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -52,9 +55,6 @@ struct RoutineInformationView: View {
                 BackButton
             }
         }
-            .onAppear {
-                vm.fetchRoutine(routineId: routineId)
-            }
     }
     
     var SpecificInformation: some View {
