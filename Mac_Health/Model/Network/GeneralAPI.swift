@@ -10,22 +10,23 @@ import Moya
 
 enum GeneralAPI {
     // MARK: user-exercise-controller
-    /// 세트 수 하나 증가 - WorkoutOngoingView
+    /// 세트 수 하나 증가
     case PostRoutinesExercisesSets(routineId: Int, exerciseId: Int)
     
-    /// 세트 수 하나 감소 - WorkoutOngoingView
+    /// 세트 수 하나 감소
     case DeleteRoutinesExercisesSets(routineId: Int, exerciseId: Int)
     
-    /// 운동 대체 - AlternativeWorkoutSheet
+    /// 운동 대체
     case PatchRoutinesExercisesAlternate(routineId: Int, exerciseId: Int, alternativeExerciseId: Int)
     
-    /// 루틴 정보 - WorkoutOngoingView
+    /// 루틴 정보
     case GetRoutinesExercises(routineId: Int, exerciseId: Int)
     //:
     
     // MARK: auth-controller
     /// 로그인
     case PostLogin(identifier: String, identityToken: String, authorizationCode: String)
+    
     /// 토큰 재발급
     case GetReissue(refreshToken: String)
     //:
@@ -36,45 +37,45 @@ enum GeneralAPI {
     //:
     
     // MARK: user-routine-controller
-    /// 운동 시간 업데이트 - WorkoutOngoingView
+    /// 운동 시간 업데이트
     case PatchUsersRoutines(routineId: Int, time: String)
     
-    /// 루틴 완료 - WorkoutOngoingView
+    /// 루틴 완료
     case PatchUsersRoutinesFinish(routineId: Int)
     
-    /// 전체 인플루언서 루틴 정보 - TodayRoutineMultiView
+    /// 전체 인플루언서 루틴 정보
     case GetUsersRoutines(date: String)
     
-    /// 개인 인플루언서 루틴 정보 - TodayStartView, SelectedRoutineView
+    /// 개인 인플루언서 루틴 정보
     case GetUsersRoutinesId(id: Int)
     
-    /// 개인 인플루언서 전체 루틴 정보 - ChangeRoutineView
+    /// 개인 인플루언서 전체 루틴 정보
     case GetUsersInfluencersRoutines(id: Int)
     //:
     
     // MARK: user-set-controller
-    /// 세트 조정 - WorkoutOngoingView
+    /// 세트 조정
     case PatchUsersRoutinesExercisesSets(routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int)
     
-    /// 세트 완료 - WorkoutOngoingView
+    /// 세트 완료
     case PatchUsersRoutinesExercisesSetsFinish(routineId: Int, exerciseId: Int, setId: Int)
     
-    /// 세트 취소(안 씀) - WorkoutOngoingView
+    /// 세트 취소(안 씀)
     case PatchUsersRoutinesExercisesSetsCancle(routineId: Int, exerciseId: Int, setId: Int)
     //:
     
     // MARK: user-record-controller
-    /// 운동 기록 - RecordView
+    /// 운동 기록
     case GetUsersRecords
     //:
     
     // MARK: routine-controller
-    /// 테스트 용 - GetUsersRoutines
+    /// 테스트 용
     case GetRoutines
     //:
     
     // MARK: routine-controller
-    /// 테스트 용 - GetUsersInfluencersRoutines
+    /// 테스트 용
     case GetInfluencersRoutines(id: Int)
     //:
 }
