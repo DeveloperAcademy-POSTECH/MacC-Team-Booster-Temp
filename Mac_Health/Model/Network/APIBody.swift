@@ -106,6 +106,7 @@ struct Exercise: Codable, Hashable {
     var exerciseImageUrl: String
     var numberOfSet: Int
     var recommendReps: String
+    var isDone: Bool
 }
 
 struct InfluencerRoutine: Codable, Hashable {
@@ -120,6 +121,7 @@ struct InfluencerRoutine: Codable, Hashable {
     var routineName: String
     var influencerProfileImageUrl: String
     var influencerId: Int
+    var isDone: Bool
 }
 
 struct Routine: Codable, Hashable {
