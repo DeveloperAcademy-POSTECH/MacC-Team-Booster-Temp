@@ -270,42 +270,47 @@ struct RecordingWorkoutView: View {
     
     var WorkoutSetButton: some View {
         HStack {
-            RoundedRectangle(cornerRadius: 4)
-                .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
-                .foregroundColor(.gray_700)
-                .overlay {
-                    HStack {
-                        Button {
-                            vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId)
-                        } label: {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
-                                .overlay {
-                                    Image(systemName: "minus")
-                                        .foregroundColor(.label_900)
-                                }
+            Button{
+                vm.finishSet(routineId: routineId, exerciseId: exerciseId)
+            } label: {
+                RoundedRectangle(cornerRadius: 4)
+                    .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
+                    .foregroundColor(.gray_700)
+                    .overlay {
+                        HStack {
+                            Button {
+                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId)
+                                vm.workout.sets.count
+                            } label: {
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                    .overlay {
+                                        Image(systemName: "minus")
+                                            .foregroundColor(.label_900)
+                                    }
+                            }
+                            .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
+                            
+                            Text("\(vm.workout.sets.count)세트")
+                                .foregroundColor(.label_700)
+                            
+                            Button {
+                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId)
+                            } label: {
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                    .overlay {
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.label_900)
+                                    }
+                            }
                         }
-                        .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
-                        
-                        Text("\(editRoutineVM.workout.sets.count)세트")
-                            .foregroundColor(.label_700)
-                        
-                        Button {
-                            vm.increseSetCount(routineId: routineId, exerciseId: exerciseId)
-                        } label: {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
-                                .overlay {
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.label_900)
-                                }
-                        }
+                        .font(.body())
                     }
-                    .font(.body())
-                }
-            Spacer()
+                Spacer()
+            }
         }
         .padding()
     }
@@ -313,7 +318,7 @@ struct RecordingWorkoutView: View {
     @ViewBuilder
     var WorkoutSetList: some View {
         if !vm.workout.sets.isEmpty {
-            ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
+            ForEach(0..<vm.workout.sets.count, id: \.self) { index in
                 WorkoutSetCard(index: index + 1, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
                     .overlay {
                         if index == vm.currentSet {
