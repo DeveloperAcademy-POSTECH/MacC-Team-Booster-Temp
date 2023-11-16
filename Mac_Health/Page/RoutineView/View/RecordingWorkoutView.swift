@@ -90,8 +90,39 @@ struct RecordingWorkoutView: View {
                          message: Text("운동기록은 삭제됩니다"),
                          primaryButton: firstButton, secondaryButton: secondButton)
         }
-        
+        .alert("운동을 삭제하시겠습니까?", isPresented: $editRoutineVM.isDeleteWorkoutAlertShow) {
+            Button("취소") {
 
+            }
+            Button("삭제") {
+                // TODO: 삭제하고 나서 WorkoutInfomation 업데이트 필요 ㅠㅠ
+                editRoutineVM.routine.exercises.remove(at: Int(editRoutineVM.onGoingExercise))
+            }
+        }
+
+    }
+    
+    @ViewBuilder
+    var AlternativeActionSheet: some View {
+        Button {
+            // TODO: .
+            editRoutineVM.isAlternateWorkoutSheetShow = true
+        } label: {
+            Text("운동 대체")
+        }
+        
+        Button {
+            // TODO: .
+            editRoutineVM.isDeleteWorkoutAlertShow = true
+        } label: {
+            Text("삭제")
+        }
+        
+        Button(role: .cancel) {
+            // TODO: .
+        } label: {
+            Text("취소")
+        }
     }
         
         @ViewBuilder
@@ -124,7 +155,7 @@ struct RecordingWorkoutView: View {
         
         var AlternativeButton: some View {
             Button {
-                editRoutineVM.isAlternateWorkoutSheetShow = true
+                editRoutineVM.isEditWorkoutActionShow = true
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
@@ -132,33 +163,12 @@ struct RecordingWorkoutView: View {
             }
         }
         
-        @ViewBuilder
-        var AlternativeActionSheet: some View {
-            Button {
-                editRoutineVM.isEditWorkoutActionShow = true
-            } label: {
-                Text("운동 대체")
-            }
-            
-            Button {
-                // TODO: .
-            } label: {
-                Text("삭제")
-            }
-            
-            
-            Button(role: .cancel) {
-                // TODO: .
-            } label: {
-                Text("취소")
-            }
-        }
         
         var WorkoutInfomation: some View {
             VStack {
                 HStack {
                     // TODO: 운동 리스트
-                    Text("\(editRoutineVM.selectedExercise + 1) / \(editRoutineVM.routine.exercises.count)")
+                    Text("\(editRoutineVM.onGoingExercise + 1) / \(editRoutineVM.routine.exercises.count)")
                         .foregroundColor(.label_700)
                     Text("|")
                         .foregroundColor(.label_400)

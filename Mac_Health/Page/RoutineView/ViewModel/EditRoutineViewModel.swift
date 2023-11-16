@@ -25,6 +25,8 @@ class EditRoutineViewModel: ObservableObject {
 
     @Published var selectedExercise = 0
     
+    @Published var onGoingExercise = 0
+    
     @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     
     /// 운동 목록 조회
