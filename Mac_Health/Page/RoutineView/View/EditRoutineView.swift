@@ -45,6 +45,9 @@ struct EditRoutineView: View {
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
             AlternateWorkoutSheet(routineId: routineId)
                 .environmentObject(vm)
+                .onDisappear{
+                    vm.fetchRoutine(routineId: routineId)
+                }
         }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
             DeleteAlert
@@ -179,7 +182,7 @@ struct EditRoutineView: View {
             // TODO: .
         }
         Button("삭제") {
-            // TODO: - 서버에서 삭제하는건가요? - MORO
+            // TODO: - 마지막 리스트 삭제하면 터져요 ㅠㅠ - MORO
             vm.routine.exercises.remove(at: Int(vm.selectedExercise))
         }
     }}
