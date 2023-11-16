@@ -58,7 +58,6 @@ struct RoutineInformationView: View {
                 BackButton
             }
         }
-        .environmentObject(routineVM)
     }
     
     var SpecificInformation: some View {
