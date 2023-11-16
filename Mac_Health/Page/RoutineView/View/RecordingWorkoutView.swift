@@ -79,6 +79,19 @@ struct RecordingWorkoutView: View {
                     isFocused = false
                 }
         }
+        .alert(isPresented: $vm.isStopAlertShow) {
+            let firstButton = Alert.Button.default(Text("운동중단").bold()) {
+                dismiss()
+            }
+            let secondButton = Alert.Button.default(Text("취소")) {
+                
+            }
+            return Alert(title: Text("운동을 중단하시겠습니까?"),
+                         message: Text("운동기록은 삭제됩니다"),
+                         primaryButton: firstButton, secondaryButton: secondButton)
+        }
+        
+
     }
         
         @ViewBuilder
@@ -93,7 +106,7 @@ struct RecordingWorkoutView: View {
                     .font(.headline1())
                 // TODO: 운동 상태
                 Button {
-                    vm.isStopAlertShow = true
+                    vm.isPauseSheetShow = true
                     vm.stop()
                 } label: {
                     Circle()
@@ -193,7 +206,7 @@ struct RecordingWorkoutView: View {
                             }
                         } label: {
                             // TODO: 팁 사이즈 바꾸기 - 지금 오른쪽 라디우스 나옴
-                            RoundedRectangle(cornerRadius: 8.0)
+                            RoundedShape(corners: [.bottomLeft, .topLeft])
                                 .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
                                 .foregroundColor(.fill_1)
                                 .overlay {
@@ -382,13 +395,24 @@ struct RecordingWorkoutView: View {
         @ViewBuilder
         var BackButton: some View {
             Button {
-                dismiss()
+                vm.isStopAlertShow = true
             } label: {
                 Image(systemName: "xmark")
                     .foregroundColor(.label_700)
                     .font(.headline1())
             }
         }
+    
+}
+
+struct RoundedShape: Shape {
+    var corners: UIRectCorner
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: 8, height: 8))
+    
+        return Path(path.cgPath)
+    }
 }
 
 #Preview {
