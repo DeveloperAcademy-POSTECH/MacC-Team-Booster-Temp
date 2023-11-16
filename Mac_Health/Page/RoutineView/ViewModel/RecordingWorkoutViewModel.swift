@@ -71,11 +71,11 @@ class RecordingWorkoutViewModel: ObservableObject {
     }
     
     /// 운동 세트 감소 함수
-    func decreaseSetCount(routineId: Int, exerciseId: Int) {
+    func decreaseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (([ExerciseSet]) -> ())) {
         GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
             switch $0 {
             case .success(let sets):
-                break
+                completion(sets)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -83,11 +83,11 @@ class RecordingWorkoutViewModel: ObservableObject {
     }
     
     /// 운동 세트 증가 함수
-    func increseSetCount(routineId: Int, exerciseId: Int) {
+    func increseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (([ExerciseSet]) -> ())) {
         GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
             switch $0 {
             case .success(let sets):
-                break
+                completion(sets)
             case .failure(let error):
                 print(error.localizedDescription)
             }

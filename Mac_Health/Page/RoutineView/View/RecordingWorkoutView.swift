@@ -249,7 +249,9 @@ struct RecordingWorkoutView: View {
                     .overlay {
                         HStack {
                             Button {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId)
+                                vm.decreaseSetCount(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId) {
+                                    editRoutineVM.workout.sets = $0
+                                }
                             } label: {
                                 Rectangle()
                                     .foregroundColor(.clear)
@@ -265,7 +267,9 @@ struct RecordingWorkoutView: View {
                                 .foregroundColor(.label_700)
                             
                             Button {
-                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId)
+                                vm.increseSetCount(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId) {
+                                    editRoutineVM.workout.sets = $0
+                                }
                             } label: {
                                 Rectangle()
                                     .foregroundColor(.clear)
