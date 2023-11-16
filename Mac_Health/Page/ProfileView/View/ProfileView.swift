@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State var nickName: String = "random04"
-    @State var notiToggle: Bool = true
-    @State var versionState: String = "1.0.0"
+    @StateObject var vm = ProfileViewModel()
     //로그인 상태값 모델로 가젹오기
     @Binding var loggedIn: Bool
     @Environment(\.dismiss) var dismiss
@@ -23,20 +21,20 @@ struct ProfileView: View {
                 NavigationTitle
                 if loggedIn {
                     NavigationLink {
-                        ManageProfileView(nickName: $nickName)
+                        ManageProfileView(nickname: $vm.nickname)
                     } label: {
-                        ProfileManage(nickName: nickName)
+                        ProfileManage(nickname: vm.nickname)
                     }
                 } else {
                     Button{
                         dismiss()
                     } label: {
-                        ProfileManage(nickName: nickName)
+                        ProfileManage(nickname: vm.nickname)
                     }
                 }
                 
                 //로그인 전 unactive
-                loggedIn ? AlertToggle(notiToggle: notiToggle) : nil
+                loggedIn ? AlertToggle(notiToggle: vm.notiToggle) : nil
                 versionInformaion
                 //로그인 전 unactive
                 loggedIn ?
@@ -63,14 +61,14 @@ struct ProfileView: View {
         .padding()
     }
     
-    func ProfileManage(nickName: String) -> some View {
+    func ProfileManage(nickname: String) -> some View {
         RoundedRectangle(cornerRadius: 8.0)
             .foregroundColor(.gray_700)
             .frame(width: UIScreen.getWidth(360), height: UIScreen.getHeight(72))
             .overlay{
                 HStack(spacing:2){
                     //로그인 x -> nickName => "둘러보기", "프로필 관리" => "로그인 하러 가기"
-                    Text(loggedIn ? nickName : "둘러보기")
+                    Text(loggedIn ? nickname : "둘러보기")
                         .foregroundColor(.label_900)
                         .font(.body())
                         .padding(.leading, 20)
@@ -98,7 +96,7 @@ struct ProfileView: View {
                     .foregroundColor(.label_900)
                 Spacer()
                 
-                Toggle("", isOn: $notiToggle)
+                Toggle("", isOn: $vm.notiToggle)
                     .toggleStyle(SwitchToggleStyle(tint: Color.green_main))
             }
             
@@ -123,7 +121,7 @@ struct ProfileView: View {
             }
             
             HStack{
-                Text(versionState)
+                Text(vm.versionState)
                     .font(.body())
                     .foregroundColor(.label_700)
                     .padding(.bottom)

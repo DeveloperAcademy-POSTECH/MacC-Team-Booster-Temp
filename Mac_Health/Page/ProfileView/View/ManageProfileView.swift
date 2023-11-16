@@ -12,7 +12,7 @@ struct ManageProfileView: View {
     @Environment(\.dismiss) var dismiss
     @State private var deletingAccount = false
     @State private var loggingOutSheet = false
-    @Binding var nickName: String
+    @Binding var nickname: String
     //need 이메일 가리는 logic
     var email = "sam****@naver.com"
     
@@ -20,7 +20,7 @@ struct ManageProfileView: View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             VStack{
-                NicknameBanner(nickName: nickName)
+                NicknameBanner(nickname: nickname)
                 //TODO: email 받아왔는지 확인
                 if email == "" {
                 } else {
@@ -40,7 +40,7 @@ struct ManageProfileView: View {
         .navigationBarBackButtonHidden()
     }
     
-    func NicknameBanner(nickName: String) -> some View {
+    func NicknameBanner(nickname: String) -> some View {
         VStack(alignment: .leading, spacing: 8){
             HStack{
                 Text("닉네임")
@@ -48,7 +48,7 @@ struct ManageProfileView: View {
                     .foregroundColor(.label_900)
                 Spacer()
                 NavigationLink {
-                    ChangeNicknameView(nickname: $nickName)
+                    ChangeNicknameView(nickname: $nickname)
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .frame(width: 52, height: 32)
@@ -62,7 +62,7 @@ struct ManageProfileView: View {
             }
             
             HStack{
-                Text(nickName)
+                Text(nickname)
                     .font(.body())
                     .foregroundColor(.label_700)
             }
@@ -150,8 +150,8 @@ struct ManageProfileView: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        ManageProfileView(nickName: .constant("랜덤닉네임04"))
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        ManageProfileView(nickName: .constant("랜덤닉네임04"))
+//    }
+//}
