@@ -43,7 +43,7 @@ struct EditRoutineView: View {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet()
+            AlternateWorkoutSheet(routineId: routineId)
                 .environmentObject(vm)
         }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {

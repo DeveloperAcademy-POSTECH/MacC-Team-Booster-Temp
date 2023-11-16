@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlternateWorkoutSheet: View {
+    let routineId: Int
     @StateObject var vm = AlternativeWorkoutSheetViewModel()
     
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
@@ -77,7 +78,11 @@ struct AlternateWorkoutSheet: View {
     var FinishButton: some View {
         Button {
             if vm.selection != -1 {
-//                vm.patchAlternate(routineId: baseRoutineId, exerciseId: baseExerciseId, alternativeExerciseId: alternativeExercise[vm.selection].alternativeExerciseId)
+                print(vm.selection)
+                vm.patchAlternate(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId, alternativeExerciseId: editRoutineVM.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
+                    editRoutineVM.workout = $0
+                    dismiss()
+                }
             }
         } label: {
             FloatingButton(backgroundColor: .green_main) {
@@ -92,7 +97,7 @@ struct AlternateWorkoutSheet: View {
 struct AlternativeWorkoutSheet_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AlternateWorkoutSheet()
+            AlternateWorkoutSheet(routineId: 1)
         }
     }
 }
