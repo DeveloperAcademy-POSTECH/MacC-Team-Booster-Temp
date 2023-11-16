@@ -84,7 +84,7 @@ struct ChangeNicknameView: View {
             Button {
                 print("save nickname")
                 vm.nickname = changingNickname
-                //TODO: name fetch 하기
+                //TODO: name Patch 하기
                 dismiss()
             } label: {
                 Text("완료")
