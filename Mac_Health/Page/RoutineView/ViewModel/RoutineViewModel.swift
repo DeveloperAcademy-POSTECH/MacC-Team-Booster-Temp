@@ -9,7 +9,9 @@ import SwiftUI
 
 class RoutineViewModel: ObservableObject {
     // TODO: 데이터 모델명 리네임
-    @Published var routines = ResponseGetUsersRoutines(routines: [])
+    @Published var todayRoutines = ResponseGetUsersRoutines(routine: [])
+//    @Published var routines = ResponseGetUsersRoutines(routines: [])
+    
     init() {
         self.fetchRoutines()
         self.tempfetcher()
@@ -26,8 +28,8 @@ class RoutineViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
             switch $0 {
             case .success(let routines):
-                self.routines.routines = routines
-                print(self.routines)
+                self.todayRoutines.routine = routines
+                print(self.todayRoutines)
             case .failure(let error):
                 print(error.localizedDescription)
             }

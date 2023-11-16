@@ -141,7 +141,7 @@ struct ResponsePatchUsersRoutinesFinish: Codable {
 
 /// GetUsersRoutines
 struct ResponseGetUsersRoutines: Codable {
-    var routines: [InfluencerRoutine]
+    var routine: [InfluencerRoutine]
 }
 
 /// GetUsersRoutinesId

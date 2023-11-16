@@ -8,7 +8,7 @@
 import SwiftUI
 
 class MultiInfluencerRoutineViewModel: ObservableObject {
-    @Published var routines = ResponseGetUsersRoutines(routines: [])
+    @Published var routines = ResponseGetUsersRoutines(routine: [])
     
     init() {
         self.fetchRoutines()
@@ -21,7 +21,7 @@ class MultiInfluencerRoutineViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
             switch $0 {
             case .success(let routines):
-                self.routines.routines = routines
+                self.routines.routine = routines
             case .failure(let error):
                 print(error.localizedDescription)
             }
