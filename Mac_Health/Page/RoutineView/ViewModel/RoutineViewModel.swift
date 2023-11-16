@@ -14,11 +14,11 @@ class RoutineViewModel: ObservableObject {
 //    @Published var routines = ResponseGetUsersRoutines(routines: [])
     
     init() {
-        self.fetchRoutines()
+        self.fetchTodayRoutines()
         self.tempfetcher()
     }
     
-    func fetchRoutines() {
+    func fetchTodayRoutines() {
         // TODO: date 오늘 날짜로
         #if DEBUG
         let date = "2023-11-16"
@@ -30,7 +30,6 @@ class RoutineViewModel: ObservableObject {
             switch $0 {
             case .success(let routines):
                 self.todayRoutines.routine = routines
-                print(self.todayRoutines)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -49,8 +48,6 @@ class RoutineViewModel: ObservableObject {
             case .success(let routine):
                 self.RoutineViewRoutine = routine
                 self.RecordingRoutineViewRoutine = routine
-                print(self.RoutineViewRoutine)
-                print(self.RecordingRoutineViewRoutine)
             case .failure(let error):
                 print(error.localizedDescription)
             }
