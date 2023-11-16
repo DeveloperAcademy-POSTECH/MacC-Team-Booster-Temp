@@ -170,7 +170,7 @@ struct RecordingWorkoutView: View {
     var WorkoutInfomation: some View {
         VStack {
             HStack {
-                // TODO: 운동 리스트
+                // TODO: 현재 운동 중인 운동이 아니라 이전에 선택된 운동 넘버링이 되어서 수정했습니다 -MORO
                 Text("\(editRoutineVM.onGoingExercise + 1) / \(editRoutineVM.routine.exercises.count)")
                     .foregroundColor(.label_700)
                 Text("|")
@@ -270,17 +270,13 @@ struct RecordingWorkoutView: View {
     
     var WorkoutSetButton: some View {
         HStack {
-            Button{
-                vm.finishSet(routineId: routineId, exerciseId: exerciseId)
-            } label: {
                 RoundedRectangle(cornerRadius: 4)
                     .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
                     .foregroundColor(.gray_700)
                     .overlay {
                         HStack {
                             Button {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId)
-                                vm.workout.sets.count
+//                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId)
                             } label: {
                                 Rectangle()
                                     .foregroundColor(.clear)
@@ -296,7 +292,7 @@ struct RecordingWorkoutView: View {
                                 .foregroundColor(.label_700)
                             
                             Button {
-                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId)
+//                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId)
                             } label: {
                                 Rectangle()
                                     .foregroundColor(.clear)
@@ -310,7 +306,6 @@ struct RecordingWorkoutView: View {
                         .font(.body())
                     }
                 Spacer()
-            }
         }
         .padding()
     }
@@ -350,7 +345,7 @@ struct RecordingWorkoutView: View {
                     Spacer()
                     
                     Button {
-                        vm.finishSet(routineId: routineId, exerciseId: exerciseId)
+                        
                     } label: {
                         if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
                             RoundedRectangle(cornerRadius: 100)
