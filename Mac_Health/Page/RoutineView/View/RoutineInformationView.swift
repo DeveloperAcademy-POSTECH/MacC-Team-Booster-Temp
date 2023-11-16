@@ -14,8 +14,6 @@ struct RoutineInformationView: View {
     let routineId: Int
     @StateObject var vm = RoutineInformationViewModel()
     
-    @EnvironmentObject var routineVM: RoutineViewModel
-    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
