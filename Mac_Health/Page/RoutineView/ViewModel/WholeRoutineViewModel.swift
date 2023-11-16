@@ -16,8 +16,7 @@ class WholeRoutineViewModel: ObservableObject {
     @Published var selectedPart = "전체"
     
     /// 월 별 운동 목록
-//    @Published var routinesByMonth: [String : [Routine]] = [:]
-    
+    @Published var routinesByMonth: [String : [Routine]] = [:]
     
     /// 전체 루틴 조회 함수
     func fetchWholeRoutine(influencerId: Int, completion: @escaping ([Routine]) -> ()) {
@@ -34,7 +33,6 @@ class WholeRoutineViewModel: ObservableObject {
             return completion(wholeRoutine)
         }
     }
-    
     
     /// 루틴 월 별 분류 함수
     func fetchByMonth(routines: [Routine]) -> [String : [Routine]] {

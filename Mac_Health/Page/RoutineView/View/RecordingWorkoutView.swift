@@ -304,7 +304,6 @@ struct RecordingWorkoutView: View {
                     HStack {
                         NavigationLink {
                             RecordingRoutineView()
-                                .environmentObject(routineVM)
                         } label: {
                             Image(systemName: "list.bullet")
                                 .foregroundColor(.green_main)

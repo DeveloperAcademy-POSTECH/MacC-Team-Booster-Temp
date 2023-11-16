@@ -144,7 +144,6 @@ struct EditRoutineView: View {
         NavigationLink {
             // TODO: 운동 1 / 10
             RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.first?.id ?? 1)
-                .environmentObject(routineVM)
                 .environmentObject(vm)
         } label: {
             FloatingButton(backgroundColor: .green_main) {

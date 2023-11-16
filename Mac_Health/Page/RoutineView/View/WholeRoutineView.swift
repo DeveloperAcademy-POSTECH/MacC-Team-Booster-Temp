@@ -18,8 +18,6 @@ struct WholeRoutineView: View {
     let influencerId: Int
     @StateObject var vm = WholeRoutineViewModel()
     
-    @EnvironmentObject var routineVM: RoutineViewModel
-    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     // TODO: 컨벤션 맞춰 컴포넌트 명 변경
@@ -38,7 +36,7 @@ struct WholeRoutineView: View {
         }
         .onAppear {
             vm.fetchWholeRoutine(influencerId: influencerId) {
-                routineVM.routinesByMonth = vm.fetchByMonth(routines: $0)
+                vm.routinesByMonth = vm.fetchByMonth(routines: $0)
             }
         }
     }
@@ -92,7 +90,7 @@ struct WholeRoutineView: View {
     
     var Workouts: some View {
         ScrollView {
-            ForEach(Array(routineVM.routinesByMonth.keys), id: \.self) { key in
+            ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
                 VStack {
                     HStack {
                         Text("\(key)월")
@@ -100,11 +98,10 @@ struct WholeRoutineView: View {
                             .font(.headline1())
                         Spacer()
                     }
-                    ForEach(routineVM.routinesByMonth[key]!, id: \.self) { some in
+                    ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
                         NavigationLink {
                             RoutineInformationView(routineId: some.routineId)
                                 .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
-                                .environmentObject(routineVM)
                         } label: {
                             TodayWorkoutCell(routine: some)
                                 .padding(.vertical, 8)

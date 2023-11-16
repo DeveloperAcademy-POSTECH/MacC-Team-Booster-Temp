@@ -38,7 +38,6 @@ struct RoutineInformationView: View {
                 Spacer()
                 NavigationLink {
                     EditRoutineView(routineId: routineId)
-                        .environmentObject(routineVM)
                 } label: {
                     FloatingButton(backgroundColor: .green_main) {
                         Text("운동 시작")

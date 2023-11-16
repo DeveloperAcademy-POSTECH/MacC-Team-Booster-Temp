@@ -18,9 +18,6 @@ struct RecordingRoutineView: View {
             
             //            WorkoutStartButton
         }
-        .onAppear {
-            print(routineVM.RecordingRoutineViewRoutine)
-        }
         .navigationTitle("운동 목록")
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -58,7 +55,7 @@ struct RecordingRoutineView: View {
         VStack {
             HStack {
                 // TODO: .
-                Text(routineVM.RecordingRoutineViewRoutine.part)
+                Text("TESER")
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 
@@ -69,7 +66,7 @@ struct RecordingRoutineView: View {
                 // TODO: .
                 WorkoutListCell
                     .onTapGesture {
-                        routineVM.isDetailedWorkoutSheetShow = true
+//                        routineVM.isDetailedWorkoutSheetShow = true
                     }
             }
         }
