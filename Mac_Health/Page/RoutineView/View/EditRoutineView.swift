@@ -12,6 +12,7 @@ import SwiftUI
 ///  - routineId: 수정할 루틴에 대한 id
 struct EditRoutineView: View {
     let routineId: Int
+    
     @StateObject var vm = EditRoutineViewModel()
     
     @Environment(\.dismiss) var dismiss: DismissAction
@@ -175,10 +176,10 @@ struct EditRoutineView: View {
             // TODO: .
         }
         Button("삭제") {
-            // TODO: - 서버에서 삭제하는건가요? - MORO
-            vm.routine.exercises.remove(at: Int(vm.selectedExercise))
+            vm.deleteWorkout(routineId: routineId, exerciseId: vm.workout.exerciseId)
         }
-    }}
+    }
+}
 
 #Preview {
     EditRoutineView(routineId: 1)

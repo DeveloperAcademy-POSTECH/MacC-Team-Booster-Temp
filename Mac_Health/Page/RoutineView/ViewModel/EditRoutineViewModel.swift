@@ -52,6 +52,17 @@ class EditRoutineViewModel: ObservableObject {
         }
     }
     
+    func deleteWorkout(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
+            switch $0 {
+            case .success:
+                break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     /// 운동 부위 별 분류 함수
     func fetchByPart() {
         // TODO: 부위 별로 운동 분류하기
