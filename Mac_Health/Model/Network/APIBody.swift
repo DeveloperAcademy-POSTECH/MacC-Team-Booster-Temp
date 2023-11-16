@@ -177,7 +177,7 @@ struct ResponsePatchUsersRoutinesExercisesSets: Codable {
 /// PatchUsersRoutinesExercisesSetsFinish
 struct ResponsePatchUsersRoutinesExercisesSetsFinish: Codable {
     var reps: Int
-    var weight: Int
+    var weight: Int?
     var isDone: Bool
 }
 

@@ -332,7 +332,9 @@ struct RecordingWorkoutView: View {
                             else {
                                 vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
                                     editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
-                                    editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
+                                    if $0.weight != nil {
+                                        editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
+                                    }
                                     editRoutineVM.workout.sets[vm.currentSet].isDone = $0.isDone
                                     vm.currentSet += 1
                                 }
