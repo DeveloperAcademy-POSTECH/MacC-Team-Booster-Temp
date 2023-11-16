@@ -285,7 +285,7 @@ struct RecordingWorkoutView: View {
         
         @ViewBuilder
         var WorkoutSetList: some View {
-            if !vm.workout.sets.isEmpty {
+            if !editRoutineVM.workout.sets.isEmpty {
                 ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                     WorkoutSetCard(index: index + 1, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
                         .overlay {
@@ -308,6 +308,7 @@ struct RecordingWorkoutView: View {
                     HStack {
                         NavigationLink {
                             RecordingRoutineView()
+                                .environmentObject(editRoutineVM)
                         } label: {
                             Image(systemName: "list.bullet")
                                 .foregroundColor(.green_main)
@@ -318,7 +319,7 @@ struct RecordingWorkoutView: View {
                         Spacer()
                         
                         Button {
-                            vm.finishSet(routineId: routineId, exerciseId: exerciseId)
+                            vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId)
                         } label: {
                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
                                 RoundedRectangle(cornerRadius: 100)

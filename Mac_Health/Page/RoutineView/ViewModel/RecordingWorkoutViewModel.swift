@@ -9,7 +9,6 @@ import SwiftUI
 
 class RecordingWorkoutViewModel: ObservableObject {
     /// 현재 진행 중인 운동
-    @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     
     /// 현재 진행 중인 운동 시간
     @Published var workoutTime = ""
@@ -55,7 +54,6 @@ class RecordingWorkoutViewModel: ObservableObject {
             switch $0 {
             case .success(let workout):
                 completion(workout)
-                self.workout = workout
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -77,8 +75,7 @@ class RecordingWorkoutViewModel: ObservableObject {
         GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
             switch $0 {
             case .success(let sets):
-                self.workout.sets = sets
-                print(self.workout)
+                break
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -90,8 +87,7 @@ class RecordingWorkoutViewModel: ObservableObject {
         GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
             switch $0 {
             case .success(let sets):
-                self.workout.sets = sets
-                print(self.workout)
+                break
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -103,10 +99,7 @@ class RecordingWorkoutViewModel: ObservableObject {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
             switch $0 {
             case .success(let set):
-                self.workout.sets[index].weight = set.weight
-                self.workout.sets[index].reps = set.reps
-                self.workout.sets[index].isDone = set.isDone
-                print(self.workout)
+                break
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -114,14 +107,11 @@ class RecordingWorkoutViewModel: ObservableObject {
     }
     
     /// 현재 세트 완료 함수
-    func finishSet(routineId: Int, exerciseId: Int) {
-        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: workout.sets[currentSet].setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
+    func finishSet(routineId: Int, exerciseId: Int, setId: Int) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
             case .success(let set):
-                self.workout.sets[self.currentSet].weight = set.weight
-                self.workout.sets[self.currentSet].reps = set.reps
-                self.workout.sets[self.currentSet].isDone = set.isDone
-                print(self.workout)
+                break
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -145,7 +135,7 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     func Start() {
         isRunning = true
-
+        
         if isRunning {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
                 self?.elapsedTime += 1
@@ -158,7 +148,7 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     func Stop() {
         isRunning = false
-
+        
         if isRunning {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
                 self?.elapsedTime += 1
@@ -175,5 +165,5 @@ class RecordingWorkoutViewModel: ObservableObject {
         let seconds = Int(elapsedTime) % 60
         return String(format: "%02d:%02d:%02d",hours, minutes, seconds)
     }
-
+    
 }
