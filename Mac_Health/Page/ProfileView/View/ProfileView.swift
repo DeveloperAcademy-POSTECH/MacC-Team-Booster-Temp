@@ -145,15 +145,18 @@ struct ProfileView: View {
     
     var inquiry : some View {
         //이메일 모달
-        VStack(alignment: .leading, spacing: 8){
-            Divider()
-                Text("문의하기")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                    .padding(.vertical)
-            }
-        .padding(.horizontal)
+        Link(destination: URL(string: "https://wiggly-basketball-0a4.notion.site/25e03fbff832400d9bfd8206cb688047" )!) {
+            VStack(alignment: .leading, spacing: 8){
+                Divider()
+                    Text("문의하기")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                        .padding(.vertical)
+                }
+            .padding(.horizontal)
 
+        }
+        
     }
     
     var useInformation : some View {
