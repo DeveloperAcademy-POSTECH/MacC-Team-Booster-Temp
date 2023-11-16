@@ -33,7 +33,6 @@ class EditRoutineViewModel: ObservableObject {
             switch $0 {
             case .success(let routine):
                 self.routine = routine
-                print(self.routine)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -45,7 +44,6 @@ class EditRoutineViewModel: ObservableObject {
             switch $0 {
             case .success(let workout):
                 self.workout = workout
-                print(self.workout)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -56,7 +54,8 @@ class EditRoutineViewModel: ObservableObject {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success:
-                break
+                // TODO: 석세스 nil 처리
+                self.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
             case .failure(let error):
                 print(error.localizedDescription)
             }
