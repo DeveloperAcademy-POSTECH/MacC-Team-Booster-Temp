@@ -14,8 +14,6 @@ struct EditRoutineView: View {
     let routineId: Int
     @StateObject var vm = EditRoutineViewModel()
     
-    @EnvironmentObject var routineVM: RoutineViewModel
-    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
