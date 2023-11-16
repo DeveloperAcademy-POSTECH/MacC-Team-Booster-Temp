@@ -16,26 +16,31 @@ class WholeRoutineViewModel: ObservableObject {
     @Published var selectedPart = "전체"
     
     /// 월 별 운동 목록
-    @Published var routinesByMonth: [String : [Routine]] = [:]
+//    @Published var routinesByMonth: [String : [Routine]] = [:]
     
     
     /// 전체 루틴 조회 함수
-    func fetchRoutines(influencerId: Int) {
+    func fetchWholeRoutine(influencerId: Int, completion: @escaping ([Routine]) -> ()) {
+        var wholeRoutine: [Routine] = []
+        
         GeneralAPIManger.request(for: .GetUsersInfluencersRoutines(id: influencerId), type: [Routine].self) {
             switch $0 {
             case .success(let routine):
-                self.routines.routines = routine
-                self.fetchByMonth()
-                print(self.routines)
+                wholeRoutine = routine
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            
+            return completion(wholeRoutine)
         }
     }
     
+    
     /// 루틴 월 별 분류 함수
-    func fetchByMonth() {
-        for routine in routines.routines {
+    func fetchByMonth(routines: [Routine]) -> [String : [Routine]] {
+        var routinesByMonth: [String : [Routine]] = [:]
+        
+        for routine in routines {
             let month = routine.date.components(separatedBy: "-")[1]
             var updatedRoutine: [Routine] = []
             
@@ -47,6 +52,9 @@ class WholeRoutineViewModel: ObservableObject {
             
             routinesByMonth.updateValue(updatedRoutine, forKey: month)
         }
+        
+        print(routinesByMonth)
+        return routinesByMonth
     }
     
     /// "2023-10-24"를 "10월 24일"로 전환해주는 함수

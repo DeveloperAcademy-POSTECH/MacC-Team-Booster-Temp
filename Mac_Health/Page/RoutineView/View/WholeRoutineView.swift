@@ -37,7 +37,9 @@ struct WholeRoutineView: View {
             }
         }
         .onAppear {
-            vm.fetchRoutines(influencerId: influencerId)
+            vm.fetchWholeRoutine(influencerId: influencerId) {
+                routineVM.routinesByMonth = vm.fetchByMonth(routines: $0)
+            }
         }
     }
     
@@ -90,7 +92,7 @@ struct WholeRoutineView: View {
     
     var Workouts: some View {
         ScrollView {
-            ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
+            ForEach(Array(routineVM.routinesByMonth.keys), id: \.self) { key in
                 VStack {
                     HStack {
                         Text("\(key)월")
@@ -98,10 +100,11 @@ struct WholeRoutineView: View {
                             .font(.headline1())
                         Spacer()
                     }
-                    ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
+                    ForEach(routineVM.routinesByMonth[key]!, id: \.self) { some in
                         NavigationLink {
                             RoutineInformationView(routineId: some.routineId)
                                 .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
+                                .environmentObject(routineVM)
                         } label: {
                             TodayWorkoutCell(routine: some)
                                 .padding(.vertical, 8)

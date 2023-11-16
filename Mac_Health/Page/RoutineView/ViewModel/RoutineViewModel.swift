@@ -12,6 +12,8 @@ class RoutineViewModel: ObservableObject {
     @Published var todayRoutines = ResponseGetUsersRoutines(routine: [])
     @Published var wholeRoutine = ResponseGetUsersInfluencersRoutines(routines: [])
 //    @Published var routines = ResponseGetUsersRoutines(routines: [])
+    /// 월 별 운동 목록
+    @Published var routinesByMonth: [String : [Routine]] = [:]
     
     init() {
         self.fetchTodayRoutines()
