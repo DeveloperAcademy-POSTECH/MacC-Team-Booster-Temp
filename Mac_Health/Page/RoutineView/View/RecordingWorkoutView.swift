@@ -334,6 +334,7 @@ struct RecordingWorkoutView: View {
                                     editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
                                     editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
                                     editRoutineVM.workout.sets[vm.currentSet].isDone = $0.isDone
+                                    vm.currentSet += 1
                                 }
                             }
                         } label: {
