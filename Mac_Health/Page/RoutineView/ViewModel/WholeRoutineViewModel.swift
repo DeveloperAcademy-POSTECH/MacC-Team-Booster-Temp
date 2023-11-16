@@ -53,7 +53,6 @@ class WholeRoutineViewModel: ObservableObject {
             routinesByMonth.updateValue(updatedRoutine, forKey: month)
         }
         
-        print(routinesByMonth)
         return routinesByMonth
     }
     
