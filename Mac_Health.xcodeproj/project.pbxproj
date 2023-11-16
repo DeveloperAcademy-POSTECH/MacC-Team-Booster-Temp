@@ -62,6 +62,7 @@
 		D5C5117C2B0562DC008B871E /* EditRecordingRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C5117B2B0562DC008B871E /* EditRecordingRoutineView.swift */; };
 		D5C5117E2B056378008B871E /* RecordingFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C5117D2B056378008B871E /* RecordingFinishView.swift */; };
 		D5C511812B059ECC008B871E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C511802B059ECC008B871E /* ProfileViewModel.swift */; };
+		D5C511832B061870008B871E /* SwiftUIMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C511822B061870008B871E /* SwiftUIMailView.swift */; };
 		D5D8F17B2AF399830032A788 /* MultiInfluencerRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17A2AF399830032A788 /* MultiInfluencerRoutineView.swift */; };
 		D5D8F17E2AF39EC80032A788 /* ChangeRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */; };
 		F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */; };
@@ -167,6 +168,7 @@
 		D5C5117B2B0562DC008B871E /* EditRecordingRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordingRoutineView.swift; sourceTree = "<group>"; };
 		D5C5117D2B056378008B871E /* RecordingFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingFinishView.swift; sourceTree = "<group>"; };
 		D5C511802B059ECC008B871E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		D5C511822B061870008B871E /* SwiftUIMailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIMailView.swift; sourceTree = "<group>"; };
 		D5D8F17A2AF399830032A788 /* MultiInfluencerRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiInfluencerRoutineView.swift; sourceTree = "<group>"; };
 		D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoutineView.swift; sourceTree = "<group>"; };
 		F80BF2A72AE6A07D00EA4E07 /* Mac-Health-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Health-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -373,6 +375,7 @@
 				F8DACB6A2B041C6800C3E95C /* EditRoutineViewModel.swift */,
 				F8DACB722B0422D500C3E95C /* RecordingWorkoutViewModel.swift */,
 				F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */,
+				D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */,
 				F8DACB632B04182900C3E95C /* Temp */,
 			);
 			path = ViewModel;
@@ -446,6 +449,7 @@
 				D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */,
 				D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */,
 				D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */,
+				D5C511822B061870008B871E /* SwiftUIMailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -546,7 +550,6 @@
 		F8DACB632B04182900C3E95C /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */,
 				F877F0AF2AFBEB38009D49B4 /* ChangeRoutineViewModel.swift */,
 				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */,
 				F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */,
@@ -766,6 +769,7 @@
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,
 				F877F0AE2AFBE9BD009D49B4 /* TodayStartViewModel.swift in Sources */,
+				D5C511832B061870008B871E /* SwiftUIMailView.swift in Sources */,
 				F8DACB612B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				F843AFA12AF6737300EDA547 /* WorkoutListView.swift in Sources */,
