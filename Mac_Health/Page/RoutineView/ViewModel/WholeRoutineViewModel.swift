@@ -26,7 +26,6 @@ class WholeRoutineViewModel: ObservableObject {
             case .success(let routine):
                 self.routines.routines = routine
                 self.fetchByMonth()
-                print("asdsadas")
                 print(self.routines)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -48,7 +47,6 @@ class WholeRoutineViewModel: ObservableObject {
             
             routinesByMonth.updateValue(updatedRoutine, forKey: month)
         }
-        print(Array(routinesByMonth.keys))
     }
     
     /// "2023-10-24"를 "10월 24일"로 전환해주는 함수
