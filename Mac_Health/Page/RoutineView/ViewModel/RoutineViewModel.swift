@@ -10,6 +10,7 @@ import SwiftUI
 class RoutineViewModel: ObservableObject {
     // TODO: 데이터 모델명 리네임
     @Published var todayRoutines = ResponseGetUsersRoutines(routine: [])
+    @Published var wholeRoutine = ResponseGetUsersInfluencersRoutines(routines: [])
 //    @Published var routines = ResponseGetUsersRoutines(routines: [])
     
     init() {
