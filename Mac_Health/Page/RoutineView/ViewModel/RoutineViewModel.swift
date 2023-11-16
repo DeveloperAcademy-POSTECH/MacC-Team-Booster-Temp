@@ -21,7 +21,6 @@ class RoutineViewModel: ObservableObject {
     }
     
     func fetchTodayRoutines() {
-        // TODO: date 오늘 날짜로
         #if DEBUG
         let date = "2023-11-16"
         #else
