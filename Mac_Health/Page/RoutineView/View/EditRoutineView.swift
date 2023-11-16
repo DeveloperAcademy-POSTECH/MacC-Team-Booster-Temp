@@ -112,13 +112,12 @@ struct EditRoutineView: View {
                             Text("\(vm.routine.exercises[index].numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
-                            //                    Text("|")
-                            //                        .foregroundColor(.label_400)
-                            //                        .font(.body2())
-                            // TODO: reps 추가
-                            //                    Text("10-15회")
-                            //                        .foregroundColor(.label_700)
-                            //                        .font(.body2())
+                            Text("|")
+                                .foregroundColor(.label_400)
+                                .font(.body2())
+                            Text("\(vm.routine.exercises[index].recommendReps)회")
+                                .foregroundColor(.label_700)
+                                .font(.body2())
                         }
                     }
                     

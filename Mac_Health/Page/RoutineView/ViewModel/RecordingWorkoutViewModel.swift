@@ -50,12 +50,12 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     
     /// 현재 진행 중인 운동 정보 조회 함수
-    func fetchWorkout(routineId: Int, exerciseId: Int) {
+    func fetchWorkout(routineId: Int, exerciseId: Int, completion: @escaping ((ResponseGetRoutinesExercises) -> ())) {
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success(let workout):
+                completion(workout)
                 self.workout = workout
-                print(self.workout)
             case .failure(let error):
                 print(error.localizedDescription)
             }

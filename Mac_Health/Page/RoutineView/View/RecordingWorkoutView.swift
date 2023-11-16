@@ -46,7 +46,9 @@ struct RecordingWorkoutView: View {
 
         }
         .onAppear {
-            vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+            vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
+                editRoutineVM.workout = $0
+            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
