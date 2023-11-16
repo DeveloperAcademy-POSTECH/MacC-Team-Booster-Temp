@@ -23,7 +23,9 @@ class EditRoutineViewModel: ObservableObject {
     /// 선택한 운동의 삭제 얼럿 여부
     @Published var isDeleteWorkoutAlertShow = false
     //MARK: 선택한 운동: 선택한 운동 받아오기 - YONG
-    @Published var selectedExercise = -1
+    @Published var selectedExercise = 0
+    
+    @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     
     /// 운동 목록 조회
     func fetchRoutine(routineId: Int) {
@@ -32,6 +34,18 @@ class EditRoutineViewModel: ObservableObject {
             case .success(let routine):
                 self.routine = routine
                 print(self.routine)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchWorkout(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
+            switch $0 {
+            case .success(let workout):
+                self.workout = workout
+                print(self.workout)
             case .failure(let error):
                 print(error.localizedDescription)
             }

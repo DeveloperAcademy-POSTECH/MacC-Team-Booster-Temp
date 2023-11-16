@@ -39,15 +39,13 @@ struct EditRoutineView: View {
         .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
             DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedExercise].id)
         }
-        // TODO: 분기 변경
-        .confirmationDialog(vm.selectedExercise == -1 ? "" : vm.routine.exercises[vm.selectedExercise].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.routine.exercises.isEmpty ? "" : vm.routine.exercises[vm.selectedExercise].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            // TODO: 대체 운동 넣기
-//            AlternateWorkoutSheet(baseExercise: vm.routine.exercises[vm.selectedExercise], baseRoutineId: routineId, baseExerciseId: vm.routine.exercises[vm.selectedExercise], alternativeExercise: )
+            AlternateWorkoutSheet()
+                .environmentObject(vm)
         }
-
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
             DeleteAlert
         }
@@ -132,6 +130,7 @@ struct EditRoutineView: View {
             
             Button {
                 vm.selectedExercise = index
+                vm.fetchWorkout(routineId: routineId, exerciseId: vm.routine.exercises[index].id)
                 vm.isEditWorkoutActionShow = true
             } label: {
                 Image(systemName: "ellipsis")
@@ -144,10 +143,9 @@ struct EditRoutineView: View {
     var WorkoutStartButton: some View {
         NavigationLink {
             // TODO: 운동 1 / 10
-            RecordingWorkoutView(routineId: 1, exerciseId: 1)
+            RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.first?.id ?? 1)
                 .environmentObject(routineVM)
                 .environmentObject(vm)
-            //            WorkoutOngoingView(routineId: routineId, exerciseId: )
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")
@@ -160,7 +158,6 @@ struct EditRoutineView: View {
     @ViewBuilder
     var AlternativeActionSheet: some View {
         Button {
-            // TODO: .
             vm.isAlternateWorkoutSheetShow = true
         } label: {
             Text("운동 대체")

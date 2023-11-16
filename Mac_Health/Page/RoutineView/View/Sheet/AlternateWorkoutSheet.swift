@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct AlternateWorkoutSheet: View {
-    let baseExercise: String
-    let baseRoutineId: Int
-    let baseExerciseId: Int
-    let alternativeExercise: [AlternativeExercise]
     @StateObject var vm = AlternativeWorkoutSheetViewModel()
+    
+    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     
     @Environment(\.dismiss) var dismiss
     
@@ -54,7 +52,7 @@ struct AlternateWorkoutSheet: View {
             }
             
             HStack {
-                Text(baseExercise)
+                Text(editRoutineVM.workout.name)
                     .font(.body())
                     .foregroundColor(.label_700)
                 
@@ -66,11 +64,11 @@ struct AlternateWorkoutSheet: View {
     
     var AlternativeWorkoutList: some View {
         ScrollView {
-            ForEach(0..<alternativeExercise.count, id: \.self) { index in
+            ForEach(0..<editRoutineVM.workout.alternativeExercises.count, id: \.self) { index in
                 Button {
                     vm.selection = index
                 } label: {
-                    AlternativeWorkoutCard(alternativeWorkout: alternativeExercise[index], isSelectedWorkout: vm.selection == index)
+                    AlternativeWorkoutCard(alternativeWorkout: editRoutineVM.workout.alternativeExercises[index], isSelectedWorkout: vm.selection == index)
                 }
             }
         }
@@ -79,7 +77,7 @@ struct AlternateWorkoutSheet: View {
     var FinishButton: some View {
         Button {
             if vm.selection != -1 {
-                vm.patchAlternate(routineId: baseRoutineId, exerciseId: baseExerciseId, alternativeExerciseId: alternativeExercise[vm.selection].alternativeExerciseId)
+//                vm.patchAlternate(routineId: baseRoutineId, exerciseId: baseExerciseId, alternativeExerciseId: alternativeExercise[vm.selection].alternativeExerciseId)
             }
         } label: {
             FloatingButton(backgroundColor: .green_main) {
@@ -94,7 +92,7 @@ struct AlternateWorkoutSheet: View {
 struct AlternativeWorkoutSheet_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AlternateWorkoutSheet(baseExercise: "클로즈 그립 랫 풀 다운", baseRoutineId: 1, baseExerciseId: 1, alternativeExercise: [])
+            AlternateWorkoutSheet()
         }
     }
 }

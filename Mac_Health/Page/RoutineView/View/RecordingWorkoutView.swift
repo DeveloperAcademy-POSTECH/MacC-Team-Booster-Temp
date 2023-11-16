@@ -18,6 +18,7 @@ struct RecordingWorkoutView: View {
 //    @StateObject var stopwatch = StopwatchViewModel()
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var routineVM: RoutineViewModel
+    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     @FocusState private var isFocused: Bool
     
     var body: some View {
@@ -64,7 +65,7 @@ struct RecordingWorkoutView: View {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(baseExercise: vm.workout.name, baseRoutineId: routineId, baseExerciseId: exerciseId, alternativeExercise: vm.workout.alternativeExercises)
+            AlternateWorkoutSheet()
             
         }
         .sheet(isPresented: $vm.isPauseSheetShow) {
