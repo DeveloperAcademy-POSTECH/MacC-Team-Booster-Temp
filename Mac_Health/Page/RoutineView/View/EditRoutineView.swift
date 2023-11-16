@@ -142,7 +142,6 @@ struct EditRoutineView: View {
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            // TODO: 운동 1 / 10
             RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.first?.id ?? 1)
                 .environmentObject(vm)
         } label: {

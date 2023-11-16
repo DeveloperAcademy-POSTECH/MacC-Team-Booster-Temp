@@ -14,11 +14,12 @@ import SwiftUI
 struct RecordingWorkoutView: View {
     let routineId: Int
     let exerciseId: Int
+    
     @StateObject var vm = RecordingWorkoutViewModel()
 //    @StateObject var stopwatch = StopwatchViewModel()
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var routineVM: RoutineViewModel
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    
+    @Environment(\.dismiss) var dismiss
     @FocusState private var isFocused: Bool
     
     var body: some View {

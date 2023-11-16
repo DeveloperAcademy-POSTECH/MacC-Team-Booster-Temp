@@ -22,7 +22,7 @@ class EditRoutineViewModel: ObservableObject {
     
     /// 선택한 운동의 삭제 얼럿 여부
     @Published var isDeleteWorkoutAlertShow = false
-    //MARK: 선택한 운동: 선택한 운동 받아오기 - YONG
+
     @Published var selectedExercise = 0
     
     @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
