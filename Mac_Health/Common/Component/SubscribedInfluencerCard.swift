@@ -64,6 +64,6 @@ struct SubscribedInfluencerCard: View {
 
 struct SubscribedInfluencerCard_Previews: PreviewProvider {
     static var previews: some View {
-        SubscribedInfluencerCard(routine: InfluencerRoutine(routineId: 1, part: "등, 이두", date: "2023-10-30", numberOfExercise: 6, burnedKCalories: 300, requiredMinutes: 300, comment: "오늘도 화이팅!", name: "정회승", routineName: "올라잇", influencerProfileImageUrl: "", influencerId: 5))
+        SubscribedInfluencerCard(routine: InfluencerRoutine(routineId: 1, part: "등, 이두", date: "2023-10-30", numberOfExercise: 6, burnedKCalories: 300, requiredMinutes: 300, comment: "오늘도 화이팅!", name: "정회승", routineName: "올라잇", influencerProfileImageUrl: "", influencerId: 5, isDone: false))
     }
 }

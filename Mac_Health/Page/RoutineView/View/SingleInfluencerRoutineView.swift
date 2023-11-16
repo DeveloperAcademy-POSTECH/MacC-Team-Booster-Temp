@@ -150,8 +150,8 @@ struct SingleInfluencerRoutineView: View {
                         .padding(.bottom, 10)
                         .padding(.leading,10)
                     //운동 시작 버튼
-                    // TODO: 운동 완료시 disabled
-                    if vm.finishWorkout {
+                    
+                    if routine.isDone {
                         RoundedRectangle(cornerRadius: 100)
                             .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
                             .foregroundColor(.gray_600)
@@ -201,5 +201,5 @@ struct SingleInfluencerRoutineView: View {
 }
 
 #Preview {
-    SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", influencerProfileImageUrl: "", influencerId: 1)))
+    SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", influencerProfileImageUrl: "", influencerId: 1, isDone: false)))
 }

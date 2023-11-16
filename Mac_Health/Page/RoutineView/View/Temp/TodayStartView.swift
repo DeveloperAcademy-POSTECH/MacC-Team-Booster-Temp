@@ -188,7 +188,7 @@ struct TodayStartView: View {
 struct TodayStartView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            TodayStartView(routine: InfluencerRoutine(routineId: 1, part: "등", date: "2023-10-24", numberOfExercise: 6, burnedKCalories: 580, requiredMinutes: 50, comment: "오늘은 컨디션이 안 좋아서 살살 했어요.", name: "정회승", routineName: "", influencerProfileImageUrl: "", influencerId: 1))
+            TodayStartView(routine: InfluencerRoutine(routineId: 1, part: "등", date: "2023-10-24", numberOfExercise: 6, burnedKCalories: 580, requiredMinutes: 50, comment: "오늘은 컨디션이 안 좋아서 살살 했어요.", name: "정회승", routineName: "", influencerProfileImageUrl: "", influencerId: 1, isDone: false))
         }
     }
 }
