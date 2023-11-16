@@ -81,6 +81,7 @@ struct AlternateWorkoutSheet: View {
                 print(vm.selection)
                 vm.patchAlternate(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId, alternativeExerciseId: editRoutineVM.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
                     editRoutineVM.workout = $0
+                    editRoutineVM.fetchRoutine(routineId: routineId)
                     dismiss()
                 }
             }
