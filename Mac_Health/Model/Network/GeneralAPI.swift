@@ -21,6 +21,9 @@ enum GeneralAPI {
     
     /// 루틴 정보
     case GetRoutinesExercises(routineId: Int, exerciseId: Int)
+    
+    /// 운동 삭제
+    case DeleteRoutinesExercises(routineId: Int, exerciseId: Int)
     //:
     
     // MARK: auth-controller
@@ -105,6 +108,8 @@ extension GeneralAPI: TargetType {
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/alternate/\(alternativeExerciseId)"
         case .GetRoutinesExercises(let routineId, let exerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)"
+        case .DeleteRoutinesExercises(let routineId, let exerciseId):
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)"
             //:
             // MARK: auth-controller
         case .PostLogin:
@@ -158,6 +163,7 @@ extension GeneralAPI: TargetType {
         case .DeleteRoutinesExercisesSets: return .delete
         case .PatchRoutinesExercisesAlternate: return .patch
         case .GetRoutinesExercises: return .get
+        case .DeleteRoutinesExercises: return .delete
             //:
             // MARK: auth-controller
         case .PostLogin: return .post
@@ -197,6 +203,7 @@ extension GeneralAPI: TargetType {
         case .DeleteRoutinesExercisesSets: return .requestPlain
         case .PatchRoutinesExercisesAlternate: return .requestPlain
         case .GetRoutinesExercises: return .requestPlain
+        case .DeleteRoutinesExercises: return .requestPlain
             //:
             // MARK: auth-controller
         case .PostLogin(identifier: let identifier, identityToken: let identityToken, authorizationCode: let authorizationCode): return .requestJSONEncodable(Credential(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode))
