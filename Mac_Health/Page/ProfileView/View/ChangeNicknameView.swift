@@ -10,7 +10,7 @@ import SwiftUI
 struct ChangeNicknameView: View {
     
     @Environment(\.dismiss) var dismiss
-    @Binding var nickname: String
+    @ObservedObject var vm: ProfileViewModel
     @State var changingNickname: String = ""
     @State private var isSaveActive = false
     @State private var characterCount = 0
@@ -19,7 +19,7 @@ struct ChangeNicknameView: View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             VStack{
-                changeNickname(changedNickname: nickname)
+                changeNickname(nickname: vm.nickname)
                 Spacer()
             }
         }
@@ -40,9 +40,9 @@ struct ChangeNicknameView: View {
         .navigationBarBackButtonHidden()
     }
     
-    func changeNickname(changedNickname: String) -> some View {
+    func changeNickname(nickname: String) -> some View {
                 HStack(spacing:2){
-                    TextField(changedNickname, text: $changingNickname)
+                    TextField(nickname, text: $changingNickname)
                         .foregroundColor(.label_900)
                         .font(.body())
                         .padding(.leading, 20)
@@ -66,7 +66,7 @@ struct ChangeNicknameView: View {
             .onChange(of: changingNickname) { newValue in
                 // Update character count
                 characterCount = newValue.count
-                isSaveActive = changingNickname != nickname && changingNickname != "" && 1 < characterCount && characterCount <= 20
+                isSaveActive = changingNickname != vm.nickname && changingNickname != "" && 1 < characterCount && characterCount <= 20
             }
     }
     
@@ -83,6 +83,9 @@ struct ChangeNicknameView: View {
     var SaveButton: some View {
             Button {
                 print("save nickname")
+                vm.nickname = changingNickname
+                //TODO: name fetch 하기
+                dismiss()
             } label: {
                 Text("완료")
                     .font(.headline1())
@@ -101,8 +104,8 @@ struct ChangeNicknameView: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        ChangeNicknameView(nickname: .constant("랜덤닉네임"))
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        ChangeNicknameView(nickname: .constant("랜덤닉네임"))
+//    }
+//}

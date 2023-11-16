@@ -57,7 +57,7 @@ struct ManageSubscribeView: View {
                 .alert("구독을 취소하시겠습니까?", isPresented: $cancelingSubscribed) {
                     Button("취소") { }
                     Button{
-                        
+                        dismiss()
                     } label: {
                          Text("확인")
                             .bold()

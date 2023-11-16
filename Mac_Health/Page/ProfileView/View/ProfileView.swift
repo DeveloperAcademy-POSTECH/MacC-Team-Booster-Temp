@@ -21,7 +21,7 @@ struct ProfileView: View {
                 NavigationTitle
                 if loggedIn {
                     NavigationLink {
-                        ManageProfileView(nickname: $vm.nickname)
+                        ManageProfileView(vm: vm)
                     } label: {
                         ProfileManage(nickname: vm.nickname)
                     }

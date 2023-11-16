@@ -10,24 +10,20 @@ import SwiftUI
 struct ManageProfileView: View {
     
     @Environment(\.dismiss) var dismiss
-    @State private var deletingAccount = false
-    @State private var loggingOutSheet = false
-    @Binding var nickname: String
-    //need 이메일 가리는 logic
-    var email = "sam****@naver.com"
+    @ObservedObject var vm: ProfileViewModel
     
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             VStack{
-                NicknameBanner(nickname: nickname)
+                NicknameBanner(nickname: vm.nickname)
                 //TODO: email 받아왔는지 확인
-                if email == "" {
+                if vm.email == "" {
                 } else {
-                    EmailBanner(email: email)
+                    EmailBanner(email: vm.email)
                 }
-                SignOut(deletingAccount: deletingAccount)
-                LogOut(loggingOutSheet: loggingOutSheet)
+                SignOut(deletingAccount: vm.deletingAccount)
+                LogOut(loggingOutSheet: vm.loggingOutSheet)
                 Spacer()
             }
         }
@@ -48,7 +44,7 @@ struct ManageProfileView: View {
                     .foregroundColor(.label_900)
                 Spacer()
                 NavigationLink {
-                    ChangeNicknameView(nickname: $nickname)
+                    ChangeNicknameView(vm: vm)
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .frame(width: 52, height: 32)
@@ -93,7 +89,7 @@ struct ManageProfileView: View {
     
     func SignOut(deletingAccount: Bool) -> some View {
         Button{
-            self.deletingAccount = true
+            self.vm.deletingAccount = true
         } label: {
             HStack{
                 Text("회원탈퇴")
@@ -104,7 +100,7 @@ struct ManageProfileView: View {
             .padding()
             
         }
-        .alert(isPresented: $deletingAccount) {
+        .alert(isPresented: $vm.deletingAccount) {
             let firstButton = Alert.Button.default(Text("취소").bold()) {
                 print("primary button pressed")
             }
@@ -118,7 +114,7 @@ struct ManageProfileView: View {
     }
     
     func LogOut(loggingOutSheet: Bool) -> some View {
-        Button(action: {self.loggingOutSheet = true}, label: {
+        Button(action: {self.vm.loggingOutSheet = true}, label: {
             HStack{
                 Text("로그아웃")
                     .font(.body())
@@ -128,7 +124,7 @@ struct ManageProfileView: View {
             .padding()
             
         })
-        .alert("로그아웃하시겠습니까?", isPresented: $loggingOutSheet) {
+        .alert("로그아웃하시겠습니까?", isPresented: $vm.loggingOutSheet) {
             Button("취소") { }
             Button{
                 
