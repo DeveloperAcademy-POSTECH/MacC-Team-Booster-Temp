@@ -64,11 +64,12 @@ struct RecordingWorkoutView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .confirmationDialog(vm.workout.exerciseId == -1 ? "" : vm.workout.name, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
+        .confirmationDialog(editRoutineVM.workout.name, isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-        .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
+        .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
             AlternateWorkoutSheet()
+                .environmentObject(editRoutineVM)
             
         }
         .sheet(isPresented: $vm.isPauseSheetShow) {
@@ -109,7 +110,7 @@ struct RecordingWorkoutView: View {
         
         var AlternativeButton: some View {
             Button {
-                vm.isAlternateWorkoutSheetShow = true
+                editRoutineVM.isAlternateWorkoutSheetShow = true
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
@@ -120,7 +121,7 @@ struct RecordingWorkoutView: View {
         @ViewBuilder
         var AlternativeActionSheet: some View {
             Button {
-                vm.isEditWorkoutActionShow = true
+                editRoutineVM.isEditWorkoutActionShow = true
             } label: {
                 Text("운동 대체")
             }
@@ -143,11 +144,11 @@ struct RecordingWorkoutView: View {
             VStack {
                 HStack {
                     // TODO: 운동 리스트
-                    Text("3 / 10")
+                    Text("\(editRoutineVM.selectedExercise + 1) / \(editRoutineVM.routine.exercises.count)")
                         .foregroundColor(.label_700)
                     Text("|")
                         .foregroundColor(.label_400)
-                    Text(vm.workout.part)
+                    Text(editRoutineVM.workout.part)
                         .foregroundColor(.label_700)
                     Spacer()
                 }
@@ -156,7 +157,7 @@ struct RecordingWorkoutView: View {
                 Spacer()
                 
                 HStack {
-                    Text(vm.workout.name)
+                    Text(editRoutineVM.workout.name)
                         .font(.title1())
                         .foregroundColor(.label_900)
                     Spacer()
@@ -168,7 +169,7 @@ struct RecordingWorkoutView: View {
         var WorkoutImageAndTip: some View {
             TabView(selection: $vm.tabSelection){
                 ZStack {
-                    AsyncImage(url: URL(string: vm.workout.exerciseImageUrl)) { image in
+                    AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
                         image
                             .resizable()
                             .scaledToFit()
@@ -211,7 +212,7 @@ struct RecordingWorkoutView: View {
                         .overlay {
                             VStack {
                                 HStack {
-                                    AsyncImage(url: URL(string: vm.workout.faceImageUrl)) { image in
+                                    AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
                                         image
                                             .resizable()
                                     } placeholder: {
@@ -225,7 +226,7 @@ struct RecordingWorkoutView: View {
                                 }
                                 Spacer()
                                 
-                                Text(vm.workout.tip)
+                                Text(editRoutineVM.workout.tip)
                                     .font(.body())
                                     .foregroundColor(.label_900)
                                 Spacer()
@@ -260,7 +261,7 @@ struct RecordingWorkoutView: View {
                             }
                             .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
                             
-                            Text("\(vm.workout.sets.count)세트")
+                            Text("\(editRoutineVM.workout.sets.count)세트")
                                 .foregroundColor(.label_700)
                             
                             Button {
@@ -285,8 +286,8 @@ struct RecordingWorkoutView: View {
         @ViewBuilder
         var WorkoutSetList: some View {
             if !vm.workout.sets.isEmpty {
-                ForEach(0..<vm.workout.sets.count, id: \.self) { index in
-                    WorkoutSetCard(index: index + 1, set: $vm.workout.sets[index], isFocused: $isFocused)
+                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
+                    WorkoutSetCard(index: index + 1, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
                         .overlay {
                             if index == vm.currentSet {
                                 RoundedRectangle(cornerRadius: 8)
@@ -319,7 +320,7 @@ struct RecordingWorkoutView: View {
                         Button {
                             vm.finishSet(routineId: routineId, exerciseId: exerciseId)
                         } label: {
-                            if vm.currentSet == vm.workout.sets.count - 1 {
+                            if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
                                 RoundedRectangle(cornerRadius: 100)
                                     .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
                                     .foregroundColor(.red_main)
