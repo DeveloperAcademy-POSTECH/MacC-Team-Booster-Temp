@@ -48,6 +48,7 @@ struct RecordingWorkoutView: View {
         .onAppear {
             vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
                 editRoutineVM.workout = $0
+                vm.start()
             }
         }
         .toolbar {
@@ -93,7 +94,7 @@ struct RecordingWorkoutView: View {
                 // TODO: 운동 상태
                 Button {
                     vm.isStopAlertShow = true
-                    vm.Stop()
+                    vm.stop()
                 } label: {
                     Circle()
                         .foregroundColor(.gray_700)

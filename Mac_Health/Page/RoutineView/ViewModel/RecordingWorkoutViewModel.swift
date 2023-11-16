@@ -143,7 +143,7 @@ class RecordingWorkoutViewModel: ObservableObject {
         
     }
     
-    func Start() {
+    func start() {
         isRunning = true
 
         if isRunning {
@@ -156,7 +156,7 @@ class RecordingWorkoutViewModel: ObservableObject {
         }
     }
     
-    func Stop() {
+    func stop() {
         isRunning = false
 
         if isRunning {
