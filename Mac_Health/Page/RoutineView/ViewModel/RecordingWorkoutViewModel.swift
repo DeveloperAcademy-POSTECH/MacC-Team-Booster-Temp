@@ -95,11 +95,11 @@ class RecordingWorkoutViewModel: ObservableObject {
     }
     
     /// 세트 무게 또는 횟수 편집 함수
-    func editSet(index: Int, routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int) {
+    func editSet(index: Int, routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
             switch $0 {
             case .success(let set):
-                break
+                completion(set)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -107,11 +107,11 @@ class RecordingWorkoutViewModel: ObservableObject {
     }
     
     /// 현재 세트 완료 함수
-    func finishSet(routineId: Int, exerciseId: Int, setId: Int) {
+    func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
             case .success(let set):
-                break
+                completion(set)
             case .failure(let error):
                 print(error.localizedDescription)
             }

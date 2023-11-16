@@ -291,7 +291,9 @@ struct RecordingWorkoutView: View {
         var WorkoutSetList: some View {
             if !editRoutineVM.workout.sets.isEmpty {
                 ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
-                    WorkoutSetCard(index: index + 1, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
+                    // TODO: 무게 조정 api 호출
+                    WorkoutSetCard(index: index, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
+                        .environmentObject(vm)
                         .overlay {
                             if index == vm.currentSet {
                                 RoundedRectangle(cornerRadius: 8)
@@ -323,7 +325,17 @@ struct RecordingWorkoutView: View {
                         Spacer()
                         
                         Button {
-                            vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId)
+                            // TODO: 루틴 완료
+                            if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
+                                // TODO: 운동 완료
+                            }
+                            else {
+                                vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
+                                    editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
+                                    editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
+                                    editRoutineVM.workout.sets[vm.currentSet].isDone = $0.isDone
+                                }
+                            }
                         } label: {
                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
                                 RoundedRectangle(cornerRadius: 100)
