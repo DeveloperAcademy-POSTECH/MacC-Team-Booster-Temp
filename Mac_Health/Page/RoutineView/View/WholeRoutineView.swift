@@ -35,9 +35,7 @@ struct WholeRoutineView: View {
             }
         }
         .onAppear {
-            vm.fetchWholeRoutine(influencerId: influencerId) {
-                vm.routinesByMonth = vm.fetchByMonth(routines: $0)
-            }
+            vm.fetchWholeRoutine(influencerId: influencerId)
         }
     }
     

@@ -8,10 +8,6 @@
 import SwiftUI
 
 class WholeRoutineViewModel: ObservableObject {
-    // TODO: 루틴 모델 변경
-    /// 전체 루틴 목록
-    @Published var routines = ResponseGetUsersInfluencersRoutines(routines: [])
-    
     /// 선택된 부위
     @Published var selectedPart = "전체"
     
@@ -19,18 +15,14 @@ class WholeRoutineViewModel: ObservableObject {
     @Published var routinesByMonth: [String : [Routine]] = [:]
     
     /// 전체 루틴 조회 함수
-    func fetchWholeRoutine(influencerId: Int, completion: @escaping ([Routine]) -> ()) {
-        var wholeRoutine: [Routine] = []
-        
+    func fetchWholeRoutine(influencerId: Int) {
         GeneralAPIManger.request(for: .GetUsersInfluencersRoutines(id: influencerId), type: [Routine].self) {
             switch $0 {
             case .success(let routine):
-                wholeRoutine = routine
+                self.routinesByMonth = self.fetchByMonth(routines: routine)
             case .failure(let error):
                 print(error.localizedDescription)
             }
-            
-            return completion(wholeRoutine)
         }
     }
     
