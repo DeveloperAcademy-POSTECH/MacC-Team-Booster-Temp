@@ -22,6 +22,7 @@ struct WholeRoutineView: View {
     
     // TODO: 컨벤션 맞춰 컴포넌트 명 변경
     var body: some View {
+        // TODO: 배경
         VStack {
             SortingSlider
             Workouts
