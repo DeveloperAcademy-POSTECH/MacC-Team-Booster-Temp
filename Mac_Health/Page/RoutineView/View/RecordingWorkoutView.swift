@@ -62,7 +62,7 @@ struct RecordingWorkoutView: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    AlternativeButton
+                    ActionSheet
                 }
             }
             .navigationBarBackButtonHidden()
@@ -111,9 +111,9 @@ struct RecordingWorkoutView: View {
             }
         }
         
-        var AlternativeButton: some View {
+        var ActionSheet: some View {
             Button {
-                editRoutineVM.isAlternateWorkoutSheetShow = true
+                editRoutineVM.isEditWorkoutActionShow = true
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
@@ -124,13 +124,13 @@ struct RecordingWorkoutView: View {
         @ViewBuilder
         var AlternativeActionSheet: some View {
             Button {
-                editRoutineVM.isEditWorkoutActionShow = true
+                editRoutineVM.isAlternateWorkoutSheetShow = true
             } label: {
                 Text("운동 대체")
             }
             
             Button {
-                // TODO: .
+                editRoutineVM.isDeleteWorkoutAlertShow = true
             } label: {
                 Text("삭제")
             }
