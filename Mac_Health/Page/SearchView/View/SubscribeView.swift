@@ -9,11 +9,9 @@ import SwiftUI
 
 struct SubscribeView: View {
     let influencerId: Int
-    //    @State var seeMore:Bool = false
-    @State var showTab = false
-    @State var scrollOffset: CGFloat = 0.00
-    @State var subscribingSheet = false
-    @State var loggedIn = true
+    
+    @StateObject var vm = SubscribeViewModel()
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = """
@@ -37,7 +35,7 @@ struct SubscribeView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             ScrollView {
-                VStack{
+                VStack {
                     //구독 페이지 설명
                     IntroPage
                     //구독 버튼
@@ -56,19 +54,22 @@ struct SubscribeView: View {
                 .onPreferenceChange(ViewOffsetKey.self) { offset in
                     withAnimation {
                         if offset > UIScreen.getHeight(422) {
-                            showTab = true
+                            vm.showTab = true
                         } else  {
-                            showTab = false
+                            vm.showTab = false
                         }
                     }
-                    scrollOffset = offset
+                    vm.scrollOffset = offset
                 }
             }
             .coordinateSpace(name: "scroll")
             .overlay(
-                showTab ?
+                vm.showTab ?
                 createTab() : nil, alignment: Alignment.bottom
             )
+        }
+        .onAppear {
+            vm.fetchInfluencer(influencerId: influencerId)
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -210,12 +211,12 @@ struct SubscribeView: View {
     
     @ViewBuilder
     var subscribeButton: some View {
-        if loggedIn {
+        if vm.loggedIn {
             Button {
-                self.subscribingSheet = true
-                self.subscribed.toggle()
+                vm.subscribingSheet = true
+                vm.influencer.isSubscription.toggle()
             } label: {
-                FloatingButton(backgroundColor: subscribed ? .gray_900 :.green_main) { subscribed ? Text("구독취소")
+                FloatingButton(backgroundColor: vm.influencer.isSubscription ? .gray_900 :.green_main) { vm.influencer.isSubscription ? Text("구독취소")
                         .foregroundColor(.red_main)
                         .font(.button1())
                     :
@@ -225,7 +226,7 @@ struct SubscribeView: View {
                 }
                 
             }
-            .alert(subscribed ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $subscribingSheet) {
+            .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.subscribingSheet) {
                 Button("확인") {
                     //TODO: 서버에 vm.routines.routines 변화
                 }
