@@ -183,79 +183,89 @@ struct RecordingWorkoutView: View {
             }
         }
         .padding(.horizontal)
+        .padding(.top)
     }
     
     var WorkoutImageAndTip: some View {
         TabView(selection: $vm.tabSelection){
-            ZStack {
-                AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } placeholder: {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.gray_600)
-                }
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
-                .padding()
-                
-                HStack {
-                    Spacer()
-                    Image(systemName: "chevron.backward")
-                        .foregroundColor(.label_500)
-                    Button {
-                        withAnimation {
-                            vm.tabSelection = 1
+                VStack{
+                    ZStack{
+                        AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            Image(systemName: "arrow.triangle.2.circlepath")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.gray_600)
                         }
-                    } label: {
-                        RoundedShape(corners: [.topLeft, .bottomLeft])
-                            .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
-                            .foregroundColor(.fill_1)
-                            .overlay {
-                                Text("팁")
-                                    .foregroundColor(.green_main)
+                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                        .padding(.horizontal)
+                        
+                        HStack {
+                            Spacer()
+                            Image(systemName: "chevron.backward")
+                                .foregroundColor(.label_500)
+                            Button {
+                                withAnimation {
+                                    vm.tabSelection = 1
+                                }
+                            } label: {
+                                RoundedShape(corners: [.topLeft, .bottomLeft])
+                                    .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
+                                    .foregroundColor(.fill_1)
+                                    .overlay {
+                                        Text("팁")
+                                            .foregroundColor(.green_main)
+                                    }
                             }
+                        }
                     }
+                    .font(.button2())
+                    Spacer()
+                        .frame(height: UIScreen.getHeight(50))
                 }
-                .font(.button2())
-            }
             .tag(0)
             
             ZStack {
-                RoundedRectangle(cornerRadius: 7.2)
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-                    .foregroundColor(.gray_800)
-                    .overlay {
-                        VStack {
-                            HStack {
-                                AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
-                                    image
-                                        .resizable()
-                                } placeholder: {
-                                    Image(systemName: "arrow.triangle.2.circlepath")
-                                        .resizable()
-                                        .foregroundColor(.gray_600)
-                                        .padding()
+                VStack{
+                    RoundedRectangle(cornerRadius: 7.2)
+                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                        .foregroundColor(.gray_800)
+                        .overlay {
+                            VStack {
+                                HStack {
+                                    AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
+                                        image
+                                            .resizable()
+                                    } placeholder: {
+                                        Image(systemName: "arrow.triangle.2.circlepath")
+                                            .resizable()
+                                            .foregroundColor(.gray_600)
+                                            .padding()
+                                    }
+                                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                    Spacer()
                                 }
-                                .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                Spacer()
+                                
+                                Text(editRoutineVM.workout.tip)
+                                    .font(.body())
+                                    .foregroundColor(.label_900)
+                                    .padding(.horizontal)
+                                Spacer()
                                 Spacer()
                             }
-                            Spacer()
-                            
-                            Text(editRoutineVM.workout.tip)
-                                .font(.body())
-                                .foregroundColor(.label_900)
-                            Spacer()
-                            Spacer()
+                            .padding()
                         }
-                        .padding()
-                    }
+                    Spacer()
+                        .frame(height: UIScreen.getHeight(50))
+                }
             }
             .tag(1)
         }
-        .frame(height: UIScreen.getHeight(300))
+        .frame(height: UIScreen.getHeight(270))
         .tabViewStyle(.page)
     }
     
@@ -423,8 +433,7 @@ struct RecordingWorkoutView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
-                .bold()
+                .padding(.trailing, 8)
             }
     }
     

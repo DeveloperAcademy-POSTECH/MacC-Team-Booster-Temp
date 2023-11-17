@@ -210,7 +210,6 @@ struct MockUpWorkoutOngoingView: View {
             .resizable()
         //            .scaledToFit()
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-            .foregroundColor(.gray_600)
             .padding(.horizontal)
     }
     
@@ -414,8 +413,8 @@ struct ImageTip: View {
     var WorkoutImage: some View {
         Image("tempWorkoutImage")
             .resizable()
+            .scaledToFit()
             .frame(height: UIScreen.getHeight(220))
-                    .scaledToFit()
     }
     
     var WorkoutTip: some View {
