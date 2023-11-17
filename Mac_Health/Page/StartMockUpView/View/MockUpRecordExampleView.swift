@@ -46,10 +46,12 @@ struct MockUpRecordExampleView: View {
             Text("정회승")
                 .font(.title2())
                 .foregroundColor(.label_900)
+                .padding(.bottom, 5)
             // TODO: 폰트
             Text("2023년 4월 23일 루틴")
                 .font(.caption())
                 .foregroundColor(.label_700)
+                .padding(.bottom)
             Description(image: "figure.arms.open", text: "어깨, 가슴, 삼두")
             Description(image: "square.stack.fill", text: "6개")
             // TODO: 한 시간 넘어가면 어떻게 되는지 묻기
@@ -65,7 +67,7 @@ struct MockUpRecordExampleView: View {
             Image(systemName: image)
                 .foregroundColor(.label_700)
                 .font(.body2())
-                .frame(width: UIScreen.getWidth(30))
+                .frame(width: UIScreen.getWidth(20))
             Text(text)
                 .foregroundColor(.label_900)
                 .font(.body())
@@ -127,5 +129,7 @@ struct MockUpRecordExampleView: View {
 }
 
 #Preview {
-    MockUpRecordExampleView()
+    NavigationStack{
+        MockUpRecordExampleView()
+    }
 }

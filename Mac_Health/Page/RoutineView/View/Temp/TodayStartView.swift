@@ -137,10 +137,10 @@ struct TodayStartView: View {
                             .foregroundColor(.green_main)
                     }
                 }
-                .padding(.horizontal)
-                .padding(.bottom)
+                .padding(.horizontal, 30)
+                .padding(.bottom, 70)
                 
-                if routine.part == "휴식" {
+//                if routine.part == "휴식" {
                     VStack {
                         Image(systemName: "moon.stars.fill")
                             .font(.system(size: 60))
@@ -151,30 +151,27 @@ struct TodayStartView: View {
                             .font(.headline1())
                     }
                     
-                    // TODO: EmptyFloatingButton으로 변경
-                    FloatingButton(backgroundColor: .clear) { }
-                        .padding(.bottom)
-                        .padding(.bottom)
-                }
-                else {
-                    RoutineDescriptionCard
-                        .padding(.bottom, 10)
-                        .padding(.leading,10)
-                    //운동 시작 버튼
-                    // TODO: 운동 완료시 disabledl
-                    NavigationLink {
-                        WorkoutListView(routineId: routine.routineId)
-                    } label: {
-                        RoundedRectangle(cornerRadius: 100)
-                            .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
-                            .foregroundColor(.green_main)
-                            .overlay {
-                                Text("운동 시작")
-                                    .foregroundColor(.gray_900)
-                                    .font(.button1())
-                            }
-                    }
-                }
+                    EmptyFloatingButton
+//                }
+//                else {
+//                    RoutineDescriptionCard
+//                        .padding(.bottom, 10)
+//                        .padding(.leading,10)
+//                    //운동 시작 버튼
+//                    // TODO: 운동 완료시 disabledl
+//                    NavigationLink {
+//                        WorkoutListView(routineId: routine.routineId)
+//                    } label: {
+//                        RoundedRectangle(cornerRadius: 100)
+//                            .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
+//                            .foregroundColor(.green_main)
+//                            .overlay {
+//                                Text("운동 시작")
+//                                    .foregroundColor(.gray_900)
+//                                    .font(.button1())
+//                            }
+//                    }
+//                }
             }
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(320))
@@ -182,6 +179,10 @@ struct TodayStartView: View {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
+    }
+    
+    var EmptyFloatingButton: some View {
+        FloatingButton(backgroundColor: .clear) { }
     }
 }
 

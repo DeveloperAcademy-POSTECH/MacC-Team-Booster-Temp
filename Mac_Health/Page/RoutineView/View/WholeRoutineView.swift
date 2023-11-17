@@ -29,7 +29,7 @@ struct WholeRoutineView: View {
             SortingSlider
             Workouts
         }
-        .navigationTitle("전체루틴")
+        .navigationTitle("전체 운동일지")
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -59,8 +59,9 @@ struct WholeRoutineView: View {
                 }
                 .frame(height: UIScreen.getHeight(34))
             }
-            .padding(.horizontal)
-            .padding(.bottom)
+            .padding()
+            .padding(.top, 5)
+
         }
     }
     
@@ -88,7 +89,7 @@ struct WholeRoutineView: View {
                     .font(.button2())
             }
     }
-    
+    //TODO: 클릭한 부위로 sorting
     var Workouts: some View {
         ScrollView {
             ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
@@ -97,6 +98,7 @@ struct WholeRoutineView: View {
                         Text("\(key)월")
                             .foregroundColor(.label_900)
                             .font(.headline1())
+                            .padding(.leading, 5)
                         Spacer()
                     }
                     ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
@@ -148,12 +150,14 @@ struct WholeRoutineView: View {
             dismiss()
         } label: {
             Image(systemName: "chevron.left")
-                .foregroundColor(.label_900)
-                .font(.body())
+                .foregroundColor(.label_700)
+                .font(.headline1())
         }
     }
 }
 
 #Preview {
-    WholeRoutineView(influencerId: 1)
+    NavigationStack{
+        WholeRoutineView(influencerId: 0)
+    }
 }

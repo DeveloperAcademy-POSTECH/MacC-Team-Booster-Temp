@@ -84,19 +84,19 @@ struct MockUpSubscribeView: View {
     @ViewBuilder
     var IntroPage: some View {
         ZStack{
-            topBackground
             TabView {
                 ForEach(1...3, id: \.self) { idx in
                     //둘러보기에서 구독 뷰
                     ZStack{
                         Image("bannerImage")
                             .resizable()
-                            .scaledToFit()
+                            .scaledToFill()
                         LinearGradient(colors: [.clear, .clear, .clear, .clear, .clear, .gray_900.opacity(0.5), .gray_900], startPoint: .top, endPoint: .bottom)
                     }
                 }
             }
             .tabViewStyle(.page)
+            .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(358))
             
         }
     }
@@ -124,8 +124,9 @@ struct MockUpSubscribeView: View {
                 }
                 Text(introduce)
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
                     .padding(.vertical, 10)
+                    .lineSpacing(8.0)
                 Text("수상경력")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -194,7 +195,7 @@ struct MockUpSubscribeView: View {
                             VStack(alignment: .leading){
                                 HStack {
                                     Text(award[index])
-                                        .font(.body)
+                                        .font(.body())
                                         .foregroundColor(.label_800)
                                     Spacer()
                                 }
@@ -291,20 +292,6 @@ struct MockUpSubscribeView: View {
         }
         .padding(.horizontal)
         .padding(.bottom, 10)
-    }
-    
-    var topBackground: some View {
-        ZStack(alignment: .bottomTrailing){
-            Color.gray_900.ignoresSafeArea()
-            HStack{
-                Spacer()
-                Image("Background1")
-                    .resizable()
-                    .scaledToFit()
-            }
-        }
-        .frame(height: UIScreen.getHeight(358))
-        
     }
     
 }
