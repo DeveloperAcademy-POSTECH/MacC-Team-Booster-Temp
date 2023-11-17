@@ -140,8 +140,8 @@ struct RecordingWorkoutView: View {
                 .font(.headline1())
             // TODO: 운동 상태
             Button {
-                vm.isPauseSheetShow = true
                 vm.stop()
+                vm.isPauseSheetShow = true
             } label: {
                 Circle()
                     .foregroundColor(.gray_700)
