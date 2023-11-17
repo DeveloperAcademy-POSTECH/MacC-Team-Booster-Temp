@@ -86,7 +86,7 @@ struct RecordView: View {
     var beforeLoginText: some View {
         VStack{
             NavigationLink {
-                MockUpRecordExampleView
+                MockUpRecordExampleView()
             } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.fill_1)
