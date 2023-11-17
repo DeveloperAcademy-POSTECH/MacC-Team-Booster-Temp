@@ -55,8 +55,7 @@ struct RecordingRoutineView: View {
     var WorkoutList: some View {
         VStack {
             HStack {
-                // TODO: .
-                Text("TESER")
+                Text(editRoutineVM.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 
