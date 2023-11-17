@@ -23,58 +23,63 @@ struct RecordingWorkoutView: View {
     @FocusState private var isFocused: Bool
     
     var body: some View {
-        ZStack {
-            Color.gray_900.ignoresSafeArea()
-            
-            VStack {
-                // TODO: 상단 여백 제거
-                ScrollView {
-                    WorkoutInfomation
-                    WorkoutImageAndTip
+        if vm.isFinish {
+            RecordingFinishView()
+        }
+        else {
+            ZStack {
+                Color.gray_900.ignoresSafeArea()
+                
+                VStack {
+                    // TODO: 상단 여백 제거
+                    ScrollView {
+                        WorkoutInfomation
+                        WorkoutImageAndTip
+                        Spacer()
+                        WorkoutSetButton
+                        WorkoutSetList
+                        RelatedContent
+                        EmptyFloatingButton
+                    }
+                }
+                
+                VStack {
                     Spacer()
-                    WorkoutSetButton
-                    WorkoutSetList
-                    RelatedContent
-                    EmptyFloatingButton
+                    isFocused ? nil : WorkoutButton
+                }
+                
+            }
+            .onAppear {
+                editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    BackButton
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    NavigationTitle
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    AlternativeButton
                 }
             }
-            
-            VStack {
-                Spacer()
-                isFocused ? nil : WorkoutButton
+            .navigationBarBackButtonHidden()
+            .confirmationDialog(editRoutineVM.workout.name, isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
+                AlternativeActionSheet
             }
-
-        }
-        .onAppear {
-            editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                BackButton
+            .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
+                AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
+                    .environmentObject(editRoutineVM)
+                
             }
-            
-            ToolbarItem(placement: .principal) {
-                NavigationTitle
+            .sheet(isPresented: $vm.isPauseSheetShow) {
+                PauseSheet(viewModel: vm)
+                    .onTapGesture {
+                        isFocused = false
+                    }
             }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                AlternativeButton
-            }
-        }
-        .navigationBarBackButtonHidden()
-        .confirmationDialog(editRoutineVM.workout.name, isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
-            AlternativeActionSheet
-        }
-        .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
-                .environmentObject(editRoutineVM)
-            
-        }
-        .sheet(isPresented: $vm.isPauseSheetShow) {
-            PauseSheet(viewModel: vm)
-                .onTapGesture {
-                    isFocused = false
-                }
         }
     }
         
@@ -290,7 +295,7 @@ struct RecordingWorkoutView: View {
             if !editRoutineVM.workout.sets.isEmpty {
                 ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                     // TODO: 무게 조정 api 호출
-                    WorkoutSetCard(index: index, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
+                    WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
                         .environmentObject(vm)
                         .overlay {
                             if index == vm.currentSet {
@@ -324,20 +329,22 @@ struct RecordingWorkoutView: View {
                         
                         Button {
                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                                if editRoutineVM.currentWorkoutIndex == editRoutineVM.routine.exercises.count {
-                                    // TODO: 루틴 완료
+                                if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
+                                    vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
+                                        editRoutineVM.workout.sets[vm.currentSet].isDone = true
+
+                                        vm.finishWorkout(routineId: routineId)
+                                    }
                                 }
                                 else {
-                                    vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
-                                        editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
-                                        if $0.weight != nil {
-                                            editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
-                                        }
-                                        editRoutineVM.workout.sets[vm.currentSet].isDone = $0.isDone
+                                    vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
+                                        editRoutineVM.workout.sets[vm.currentSet].isDone = true
                                         
                                         editRoutineVM.currentWorkoutIndex += 1
                                         editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
-                                        vm.currentSet = 0
+                                        if editRoutineVM.currentWorkoutIndex != editRoutineVM.routine.exercises.count {
+                                            vm.currentSet = 0
+                                        }
                                     }
                                 }
                             }

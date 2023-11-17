@@ -43,6 +43,8 @@ class RecordingWorkoutViewModel: ObservableObject {
     //팁 이미지 전환
     @Published var tabSelection = 0
     
+    @Published var isFinish = false
+    
     @Published var elapsedTime: TimeInterval = 0
     @Published var isRunning: Bool = false
     private var timer: Timer?
@@ -124,8 +126,15 @@ class RecordingWorkoutViewModel: ObservableObject {
     }
     
     /// 운동 완료 함수
-    func finishWorkout() {
-        
+    func finishWorkout(routineId: Int) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
+            switch $0 {
+            case .success:
+                self.isFinish = true
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /// 현재 운동 목록 네비게이션 용 함수
