@@ -246,6 +246,8 @@ struct RecordingWorkoutView: View {
                                             .padding()
                                     }
                                     .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                    .padding(.horizontal, 5)
+                                    .padding(.top, 4)
                                     Spacer()
                                 }
                                 Spacer()
