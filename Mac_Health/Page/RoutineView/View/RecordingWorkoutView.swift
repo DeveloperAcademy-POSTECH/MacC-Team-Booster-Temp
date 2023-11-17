@@ -93,7 +93,7 @@ struct RecordingWorkoutView: View {
                 // TODO: 운동 상태
                 Button {
                     vm.isStopAlertShow = true
-                    vm.Stop()
+                    vm.stop()
                 } label: {
                     Circle()
                         .foregroundColor(.gray_700)

@@ -12,7 +12,7 @@ class PauseStopwatchVM: ObservableObject {
     @Published var isRunning: Bool = false
     private var timer: Timer?
     
-    func Start() {
+    func start() {
         isRunning = true
         
         if isRunning {
@@ -25,7 +25,7 @@ class PauseStopwatchVM: ObservableObject {
         }
     }
     
-    func Stop() {
+    func stop() {
         isRunning = false
         
         if isRunning {

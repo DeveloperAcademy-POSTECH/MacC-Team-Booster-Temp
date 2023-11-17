@@ -41,11 +41,11 @@ struct PauseSheet: View {
             }
         }
         .onAppear{
-            pauseViewModel.Start()
+            pauseViewModel.start()
         }
         .onDisappear{
             pauseViewModel.reset()
-            viewModel.Start()
+            viewModel.start()
         }
         .presentationDetents([.height(UIScreen.getHeight(378))])
     }

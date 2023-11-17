@@ -42,6 +42,9 @@ struct EditRoutineView: View {
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
             AlternateWorkoutSheet(routineId: routineId)
                 .environmentObject(vm)
+                .onDisappear{
+                    vm.fetchRoutine(routineId: routineId)
+                }
         }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
             DeleteAlert
