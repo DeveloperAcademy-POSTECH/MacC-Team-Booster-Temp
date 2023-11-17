@@ -11,11 +11,11 @@ class SearchViewModel: ObservableObject {
     @Published var influencer = ResponseGetInfluencers(previews: [])
     
     func fetchInfluencer() {
-        GeneralAPIManger.request(for: .GetInfluencers, type: ResponseGetInfluencers.self) {
+        GeneralAPIManger.request(for: .GetInfluencers, type: [InfluencerPreview].self) {
             switch $0 {
-            case .success(let influencer):
+            case .success(let influencers):
                 // TODO: 데이터 붙이고 나서 다시 확인
-                self.influencer = influencer
+                self.influencer.previews = influencers
                 print(self.influencer)
             case .failure(let error):
                 print(error.localizedDescription)
