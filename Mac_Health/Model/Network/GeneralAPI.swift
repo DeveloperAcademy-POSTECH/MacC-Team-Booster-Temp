@@ -77,7 +77,11 @@ enum GeneralAPI {
     case GetRoutines
     //:
     
-    // MARK: routine-controller
+    // MARK: influencer-controller
+    /// 둘러보기 인플루언서들
+    case GetInfluencers
+    /// 둘러보기 상세
+    case GetInfluencersId(id: Int)
     /// 테스트 용
     case GetInfluencersRoutines(id: Int)
     //:
@@ -150,6 +154,10 @@ extension GeneralAPI: TargetType {
             return "/routines"
             //:
             // MARK: influencer-controller
+        case .GetInfluencers:
+            return "/influencers"
+        case .GetInfluencersId(let id):
+            return "/influencers/\(id)"
         case .GetInfluencersRoutines(let id):
             return "/influencers/\(id)/routines"
             //:
@@ -191,6 +199,8 @@ extension GeneralAPI: TargetType {
         case .GetRoutines: return .get
             //:
             // MARK: influencer-controller
+        case .GetInfluencers: return .get
+        case .GetInfluencersId: return .get
         case .GetInfluencersRoutines: return .get
             //:
         }
@@ -231,6 +241,8 @@ extension GeneralAPI: TargetType {
         case .GetRoutines: return .requestPlain
             //:
             // MARK: influencer-controller
+        case .GetInfluencers: return .requestPlain
+        case .GetInfluencersId: return .requestPlain
         case .GetInfluencersRoutines: return .requestPlain
             //:
         }

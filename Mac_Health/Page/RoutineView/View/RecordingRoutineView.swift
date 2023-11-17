@@ -9,14 +9,15 @@ import SwiftUI
 
 /// 운동 기록 중 운동 목록을 보기 위한 뷰
 struct RecordingRoutineView: View {
+    let routineId: Int
+        
+    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var routineVM: RoutineViewModel
     
     var body: some View {
         VStack {
             WorkoutList
-            
-            //            WorkoutStartButton
         }
         .navigationTitle("운동 목록")
         .toolbar {
@@ -43,7 +44,8 @@ struct RecordingRoutineView: View {
     
     var EditButton: some View {
         NavigationLink {
-            EditRecordingRoutineView()
+            EditRecordingRoutineView(routineId: routineId)
+                .environmentObject(editRoutineVM)
         } label: {
             Text("편집")
                 .font(.headline1())
@@ -54,8 +56,7 @@ struct RecordingRoutineView: View {
     var WorkoutList: some View {
         VStack {
             HStack {
-                // TODO: .
-                Text("TESER")
+                Text(editRoutineVM.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 
@@ -63,23 +64,63 @@ struct RecordingRoutineView: View {
             }
             
             ScrollView {
-                // TODO: .
-                WorkoutListCell
-                    .onTapGesture {
-//                        routineVM.isDetailedWorkoutSheetShow = true
-                    }
+                ForEach(0..<editRoutineVM.routine.exercises.count, id: \.self) { index in
+                    WorkoutCell(index: index)
+                }
             }
         }
         .padding(.horizontal)
     }
     
-    var WorkoutListCell: some View {
-        VStack{
-            WorkoutSequenceCard(isCurrentWorkout: false, isFinish: true)
+    func WorkoutCell(index: Int) -> some View {
+        HStack {
+            RoundedRectangle(cornerRadius: 4)
+                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                .foregroundColor(.fill_1)
+                .overlay {
+                    Image("CloseGripLatPullDown")
+                        .resizable()
+                        .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                }
+            Spacer()
+            Spacer()
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    if editRoutineVM.routine.exercises[index].id == editRoutineVM.workout.exerciseId {
+                        Image(systemName: "flame.fill")
+                            .font(.headline1())
+                            .foregroundColor(.green_main)
+                    }
+                    Text(editRoutineVM.routine.exercises[index].name)
+                        .font(.headline1())
+                        .foregroundColor(editRoutineVM.routine.exercises[index].id == editRoutineVM.workout.exerciseId ? .green_main : .label_900)
+                    Spacer()
+                }
+                HStack {
+                    Text("\(editRoutineVM.routine.exercises[index].numberOfSet)세트")
+                    Text("|")
+                    Text("\(editRoutineVM.routine.exercises[index].recommendReps)회")
+                }
+                .font(.body2())
+                .foregroundColor(.label_700)
+            }
+            
+            Spacer()
+            Spacer()
+            Spacer()
+            
+            if editRoutineVM.routine.exercises[index].isDone {
+                CheckButton()
+            }
+            else {
+                EmptyCheckButton()
+            }
         }
+        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(64))
     }
 }
 
 #Preview {
-    RecordingRoutineView()
+    RecordingRoutineView(routineId: 1)
 }

@@ -385,15 +385,21 @@ struct ImageTip: View {
     var body: some View {
         TabView(selection: $currentIndex){
             
-            ZStack{
-                WorkoutImage
-                Button{
-                    withAnimation{
-                        currentIndex = 1
+            VStack {
+                ZStack{
+                    WorkoutImage
+                    Button{
+                        withAnimation{
+                            currentIndex = 1
+                        }
+                    } label: {
+                        VStack{
+                            WorkoutTipButton
+                        }
                     }
-                } label: {
-                    WorkoutTipButton
                 }
+                Spacer()
+                    .frame(height: UIScreen.getHeight(100))
             }
             .tag(0)
             
@@ -401,17 +407,16 @@ struct ImageTip: View {
                 .tag(1)
             
         }
-        .frame(height: UIScreen.getHeight(300))
+        .frame(height: UIScreen.getHeight(220))
         .tabViewStyle(.page)
     }
     
     var WorkoutImage: some View {
         Image("tempWorkoutImage")
             .resizable()
-        //            .scaledToFit()
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
+                    .scaledToFit()
             .foregroundColor(.gray_600)
-            .padding(.horizontal)
     }
     
     var WorkoutTip: some View {
@@ -465,8 +470,8 @@ struct ImageTip: View {
     }
 }
 
-//#Preview {
-//    NavigationStack{
-//        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3), WorkoutSetList: <#some View#>)
-//    }
-//}
+#Preview {
+    NavigationStack{
+        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
+    }
+}
