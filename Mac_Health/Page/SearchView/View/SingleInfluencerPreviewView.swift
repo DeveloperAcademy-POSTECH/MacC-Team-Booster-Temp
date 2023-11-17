@@ -18,7 +18,7 @@ struct SingleInfluencerPreviewView: View {
             VStack {
                 NavigationTitle
                 NavigationLink {
-                    //                    SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
+                    SubscribeView(influencerId: influencer.influencerId)
                 } label: {
                     SearchCard
                 }
@@ -68,7 +68,7 @@ struct SingleInfluencerPreviewView: View {
                     .scaledToFit()
                     .padding(50)
             }
-                
+            
             HStack {
                 VStack(alignment: .leading) {
                     Spacer()

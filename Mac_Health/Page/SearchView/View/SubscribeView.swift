@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct SubscribeView: View {
-    
+    let influencerId: Int
     //    @State var seeMore:Bool = false
     @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
     @State var subscribingSheet = false
-    @Binding var tabSelection: Int
-    @Binding var subscribed: Bool
     @State var loggedIn = true
     @Environment(\.dismiss) var dismiss: DismissAction
     
