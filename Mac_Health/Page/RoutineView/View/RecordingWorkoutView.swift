@@ -18,9 +18,7 @@ struct RecordingWorkoutView: View {
     @StateObject var vm = RecordingWorkoutViewModel()
     //    @StateObject var stopwatch = StopwatchViewModel()
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
-    
     @Environment(\.dismiss) var dismiss
-    @FocusState private var isFocused: Bool
     
     var body: some View {
         if vm.isFinish {
@@ -45,7 +43,7 @@ struct RecordingWorkoutView: View {
                 
                 VStack {
                     Spacer()
-                    isFocused ? nil : WorkoutButton
+                    WorkoutButton
                 }
                 
             }
@@ -76,9 +74,6 @@ struct RecordingWorkoutView: View {
             }
             .sheet(isPresented: $vm.isPauseSheetShow) {
                 PauseSheet(viewModel: vm)
-                    .onTapGesture {
-                        isFocused = false
-                    }
             }
             .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
                 WorkoutStopAlert
@@ -87,6 +82,7 @@ struct RecordingWorkoutView: View {
             }
         }
     }
+<<<<<<< HEAD
     
     @ViewBuilder
     var NavigationTitle: some View {
@@ -99,11 +95,199 @@ struct RecordingWorkoutView: View {
                 .foregroundColor(.label_900)
                 .font(.headline1())
             // TODO: 운동 상태
+=======
+        
+        @ViewBuilder
+        var NavigationTitle: some View {
+            HStack {
+                Image(systemName: "flame.fill")
+                    .foregroundColor(.label_700)
+                    .font(.headline2())
+                // TODO: 운동 시간
+                Text(vm.timeFormatted())
+                    .foregroundColor(.label_900)
+                    .font(.headline1())
+                // TODO: 운동 상태
+                Button {
+                    vm.isStopAlertShow = true
+                    vm.stop()
+                } label: {
+                    Circle()
+                        .foregroundColor(.gray_700)
+                        .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
+                        .overlay {
+                            Image(systemName: "pause.fill")
+                                .resizable()
+                                .foregroundColor(.label_900)
+                                .frame(width: UIScreen.getWidth(11), height: UIScreen.getHeight(14))
+                        }
+                }
+            }
+        }
+    
+    @ViewBuilder
+    var WorkoutSetList: some View {
+        if !editRoutineVM.workout.sets.isEmpty {
+            ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
+                // TODO: 무게 조정 api 호출
+                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index])
+                    .environmentObject(vm)
+                    .overlay {
+                        if index == vm.currentSet {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(lineWidth: 1)
+                                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
+                                .foregroundColor(.green_main)
+                        }
+                    }
+            }
+        }
+    }
+        
+        var AlternativeButton: some View {
+>>>>>>> 11198a1 (debounce, focuse, color ... ect)
             Button {
                 vm.isStopAlertShow = true
                 vm.stop()
             } label: {
+<<<<<<< HEAD
                 Circle()
+=======
+                Image(systemName: "ellipsis")
+                    .foregroundColor(.label_700)
+                    .font(.headline1())
+            }
+        }
+        
+        @ViewBuilder
+        var AlternativeActionSheet: some View {
+            Button {
+                editRoutineVM.isEditWorkoutActionShow = true
+            } label: {
+                Text("운동 대체")
+            }
+            
+            Button {
+                // TODO: .
+            } label: {
+                Text("삭제")
+            }
+            
+            
+            Button(role: .cancel) {
+                // TODO: .
+            } label: {
+                Text("취소")
+            }
+        }
+        
+        var WorkoutInfomation: some View {
+            VStack {
+                HStack {
+                    // TODO: 운동 리스트
+                    Text("\(editRoutineVM.currentWorkoutIndex + 1) / \(editRoutineVM.routine.exercises.count)")
+                        .foregroundColor(.label_700)
+                    Text("|")
+                        .foregroundColor(.label_400)
+                    Text(editRoutineVM.workout.part)
+                        .foregroundColor(.label_700)
+                    Spacer()
+                }
+                .font(.body2())
+                
+                Spacer()
+                
+                HStack {
+                    Text(editRoutineVM.workout.name)
+                        .font(.title1())
+                        .foregroundColor(.label_900)
+                    Spacer()
+                }
+            }
+            .padding(.horizontal)
+        }
+        
+        var WorkoutImageAndTip: some View {
+            TabView(selection: $vm.tabSelection){
+                ZStack {
+                    AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    } placeholder: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .scaledToFit()
+                            .scaleEffect(CGSize(width: 1.0, height: 1.0))
+                            .foregroundColor(.gray_600)
+                    }
+                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
+                    .padding()
+                    
+                    HStack {
+                        Spacer()
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.label_500)
+                        Button {
+                            withAnimation {
+                                vm.tabSelection = 1
+                            }
+                        } label: {
+                            // TODO: 팁 사이즈 바꾸기 - 지금 오른쪽 라디우스 나옴
+                            RoundedRectangle(cornerRadius: 8.0)
+                                .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
+                                .foregroundColor(.fill_1)
+                                .overlay {
+                                    Text("팁")
+                                        .foregroundColor(.green_main)
+                                }
+                        }
+                    }
+                    .font(.button2())
+                }
+                .tag(0)
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 7.2)
+                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                        .foregroundColor(.gray_800)
+                        .overlay {
+                            VStack {
+                                HStack {
+                                    AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
+                                        image
+                                            .resizable()
+                                    } placeholder: {
+                                        Image(systemName: "arrow.triangle.2.circlepath")
+                                            .scaledToFit()
+                                            .scaleEffect(CGSize(width: 1.0, height: 1.0))
+                                            .foregroundColor(.gray_600)
+                                            .padding()
+                                    }
+                                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                    Spacer()
+                                }
+                                Spacer()
+                                
+                                Text(editRoutineVM.workout.tip)
+                                    .font(.body())
+                                    .foregroundColor(.label_900)
+                                Spacer()
+                                Spacer()
+                            }
+                            .padding()
+                        }
+                }
+                .tag(1)
+            }
+            .frame(height: UIScreen.getHeight(300))
+            .tabViewStyle(.page)
+        }
+        
+        var WorkoutSetButton: some View {
+            HStack {
+                RoundedRectangle(cornerRadius: 4)
+                    .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
+>>>>>>> 11198a1 (debounce, focuse, color ... ect)
                     .foregroundColor(.gray_700)
                     .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                     .overlay {
@@ -293,6 +477,26 @@ struct RecordingWorkoutView: View {
                                     editRoutineVM.workout.sets = $0
                                 }
                             }
+<<<<<<< HEAD
+=======
+                        }
+                        .font(.body())
+                    }
+                Spacer()
+            }
+            .padding()
+        }
+        
+        var WorkoutButton: some View {
+            RoundedRectangle(cornerRadius: 100)
+                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
+                .foregroundColor(.gray_600)
+                .overlay {
+                    HStack {
+                        NavigationLink {
+                            RecordingRoutineView()
+                                .environmentObject(editRoutineVM)
+>>>>>>> 11198a1 (debounce, focuse, color ... ect)
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
