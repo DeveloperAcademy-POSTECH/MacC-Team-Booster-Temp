@@ -122,7 +122,7 @@ struct SubscribeView: View {
                         .padding(.top, 20)
                     Spacer()
                 }
-                Text(introduce)
+                Text(vm.influencer.introduce)
                     .foregroundColor(.label_800)
                     .font(.body)
                     .padding(.vertical, 10)
@@ -181,8 +181,9 @@ struct SubscribeView: View {
             //                .padding(.top, 40)
             //            }
             //            else {
-            VStack(alignment: .leading){
-                ForEach(0..<award.count, id: \.self) { index in
+            VStack(alignment: .leading) {
+                // TODO: 포이치 조정
+                ForEach(0..<vm.influencer.awards.count, id: \.self) { index in
                     HStack {
                         VStack {
                             Text("•")
@@ -192,7 +193,7 @@ struct SubscribeView: View {
                         }
                         VStack(alignment: .leading){
                             HStack {
-                                Text(award[index])
+                                Text(vm.influencer.awards)
                                     .font(.body)
                                     .foregroundColor(.label_800)
                                 Spacer()
@@ -247,15 +248,15 @@ struct SubscribeView: View {
     }
     
     var topInfluencerDescription: some View {
-        ZStack(alignment: .bottomTrailing){
-            VStack{
+        ZStack(alignment: .bottomTrailing) {
+            VStack {
                 Spacer()
-                HStack{
-                    VStack(alignment: .leading, spacing: 16){
-                        Text("정회승의 Smart Routine")
+                HStack {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("\(vm.influencer.influencerName)의 \(vm.influencer.routineName)")
                             .foregroundColor(.label_900)
                             .font(.title1())
-                        Text("2022 Mr. 서울대🏆")
+                        Text(vm.influencer.title)
                             .foregroundColor(.label_600)
                             .font(.body2())
                             .padding(.bottom, 40)
@@ -276,10 +277,10 @@ struct SubscribeView: View {
                     .font(.headline1())
                     .padding(.top, 20)
                     .padding(.bottom, 5)
-                Text("키: 173cm")
+                Text("키: \(vm.influencer.bodySpec.height)cm")
                     .foregroundColor(.label_800)
                     .font(.body)
-                Text("몸무게: 80kg")
+                Text("몸무게: \(vm.influencer.bodySpec.weight)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
             }
@@ -296,13 +297,13 @@ struct SubscribeView: View {
                     .font(.headline1())
                     .padding(.top, 20)
                     .padding(.bottom, 5)
-                Text("Squat: 210kg")
+                Text("Squat: \(vm.influencer.bigThree.squat)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
-                Text("Deadlift: 280kg")
+                Text("Deadlift: \(vm.influencer.bigThree.deadLift)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
-                Text("Bench Press: 140kg")
+                Text("Bench Press: \(vm.influencer.bigThree.benchPress)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
             }
@@ -316,6 +317,7 @@ struct SubscribeView: View {
             Color.gray_900.ignoresSafeArea()
             HStack{
                 Spacer()
+                // TODO: 이미지
                 Image("Background1")
                     .resizable()
                     .scaledToFit()
