@@ -21,63 +21,14 @@ struct SearchView: View {
     @State private var showMailView = false
     @Binding var subscribed: Bool
     @Binding var tabSelection: Int
-    var body: some View {
-        //네비게이션 스택 2인 이상
-        //            ZStack {
-        //                Color.gray_900.ignoresSafeArea()
-        //                    VStack {
-        //                        ScrollView {
-        //                        TopImage()
-        //                        RecommendCardScroll
-        //                    }
-        //                        .padding(.bottom, 35)
-        //                    Spacer()
-        //                        .frame(height: UITabBarController().height)
-        //                }
-        //                .ignoresSafeArea()
-        //            }
-        
-        //둘러보기 1인용
-        ZStack {
-            Color.gray_900.ignoresSafeArea()
-            VStack {
-                NavigationTitle
-                NavigationLink {
-                    SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
-                } label: {
-                    SearchCard
-                }
-                
-                Button {
-                    showMailView.toggle()
-                } label: {
-                    InquiryCard
-                }
-                .disabled(!MailView.canSendMail)
-                .sheet(isPresented: $showMailView) {
-                    MailView(data: $mailData) { result in
-                        print(result)
-                    }
-                }
-                Spacer()
-                //                        .frame(height: UITabBarController().height)
-            }
-            .padding(.bottom, 35)
-            .onAppear {
-                vm.fetchInfluencer()
-            }
-            //            .ignoresSafeArea()
-        }
-    }
     
-    var NavigationTitle: some View {
-        HStack {
-            Text("둘러보기")
-                .font(.title2())
-                .foregroundColor(.label_900)
-            Spacer()
+    var body: some View {
+        ZStack {
+            
         }
-        .padding()
+        .onAppear {
+            vm.fetchInfluencer()
+        }
     }
     
     var SearchCard: some View {

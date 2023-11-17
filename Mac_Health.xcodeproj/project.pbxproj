@@ -81,6 +81,8 @@
 		F886927D2AFFF12E0043EE9A /* Ext+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F886927C2AFFF12E0043EE9A /* Ext+String.swift */; };
 		F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */; };
 		F891B5B12B07D9BD0085E070 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B02B07D9BD0085E070 /* SearchViewModel.swift */; };
+		F891B5B32B07E0130085E070 /* SingleInfluencerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B22B07E0130085E070 /* SingleInfluencerPreviewView.swift */; };
+		F891B5B52B07E0220085E070 /* MultiInfluencerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B42B07E0220085E070 /* MultiInfluencerPreviewView.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
@@ -190,6 +192,8 @@
 		F886927C2AFFF12E0043EE9A /* Ext+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+String.swift"; sourceTree = "<group>"; };
 		F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheetViewModel.swift; sourceTree = "<group>"; };
 		F891B5B02B07D9BD0085E070 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		F891B5B22B07E0130085E070 /* SingleInfluencerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerPreviewView.swift; sourceTree = "<group>"; };
+		F891B5B42B07E0220085E070 /* MultiInfluencerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiInfluencerPreviewView.swift; sourceTree = "<group>"; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
 		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
 		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
@@ -399,6 +403,8 @@
 			isa = PBXGroup;
 			children = (
 				D5B780352AE26B2100A8B76A /* SearchView.swift */,
+				F891B5B22B07E0130085E070 /* SingleInfluencerPreviewView.swift */,
+				F891B5B42B07E0220085E070 /* MultiInfluencerPreviewView.swift */,
 				D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */,
 			);
 			path = View;
@@ -760,6 +766,7 @@
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
 				F8FC2A4C2AFCA0A3006CEE17 /* GeneralAPIManger.swift in Sources */,
 				F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */,
+				F891B5B52B07E0220085E070 /* MultiInfluencerPreviewView.swift in Sources */,
 				F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */,
 				0DA327582AE1321600319BAB /* Mac_HealthApp.swift in Sources */,
 				F8DACB692B041C0400C3E95C /* EditRoutineView.swift in Sources */,
@@ -791,6 +798,7 @@
 				D58066582AFD3B4A003BB276 /* PauseStopwatchVM.swift in Sources */,
 				D5C5117E2B056378008B871E /* RecordingFinishView.swift in Sources */,
 				D571836A2B02084C00A11FFC /* MockUpWorkoutOngoingView.swift in Sources */,
+				F891B5B32B07E0130085E070 /* SingleInfluencerPreviewView.swift in Sources */,
 				D5D8F17B2AF399830032A788 /* MultiInfluencerRoutineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
