@@ -66,8 +66,9 @@ struct MockUpRecordExampleView: View {
         HStack {
             Image(systemName: image)
                 .foregroundColor(.label_700)
-                .font(.body2())
-                .frame(width: UIScreen.getWidth(20))
+                .font(.headline1())
+                .frame(width: UIScreen.getWidth(20), alignment: .center)
+                .padding(.trailing, 3)
             Text(text)
                 .foregroundColor(.label_900)
                 .font(.body())
