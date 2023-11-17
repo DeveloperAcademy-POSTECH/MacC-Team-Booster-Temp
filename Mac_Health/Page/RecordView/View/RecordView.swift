@@ -56,7 +56,7 @@ struct RecordView: View {
                                 //                                .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
                                 //                                .foregroundColor(.yellow_main)
                                 // TODO: 인플루언서 명
-                                Text("")
+                                Text(record.influencerName)
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
                                 Spacer()
@@ -71,8 +71,8 @@ struct RecordView: View {
                                     .font(.body2())
                                     .foregroundColor(.label_900)
                                 Spacer()
-                                // TODO: 운동 무게
-                                Text("5200g")
+                                // TODO: 총 운동 무게 - MORO
+                                Text("5200kg")
                                     .font(.body2())
                                     .foregroundColor(.label_900)
                             }
@@ -105,7 +105,7 @@ struct RecordView: View {
                             }
                             Spacer()
                             HStack {
-                                Text("등/가슴")
+                                Text("등/이두")
                                     .font(.body2())
                                     .foregroundColor(.label_900)
                                 Spacer()

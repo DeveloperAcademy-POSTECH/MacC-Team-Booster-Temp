@@ -122,10 +122,10 @@ struct RecordSpecificView: View {
     }
 }
 
-struct RecordSpecificView_Preview: PreviewProvider {
-    static var previews: some View {
-        NavigationStack{
-            RecordSpecificView(record: Records(date: "", time: "", part: "", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, exercises: []))
-        }
-    }
-}
+//struct RecordSpecificView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack{
+//            RecordSpecificView(record: Records(date: "", time: "", part: "", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, exercises: []))
+//        }
+//    }
+//}

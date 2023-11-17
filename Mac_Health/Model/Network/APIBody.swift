@@ -215,6 +215,7 @@ struct Records: Codable, Hashable {
     var burnedKCalories: Int
     var requiredMinutes: Int
     var exercises: [RecordedExercise]
+    var influencerName: String
 }
 
 /// GetUsersRecords

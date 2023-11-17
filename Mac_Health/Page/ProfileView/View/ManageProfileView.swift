@@ -10,6 +10,7 @@ import SwiftUI
 struct ManageProfileView: View {
     
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var vm: ProfileViewModel
     
     var body: some View {
         ZStack{
