@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: 운동 삭제 되어도, 기본 데이터는 남아있음
 class EditRoutineViewModel: ObservableObject {
     /// 운동 목록
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
@@ -22,12 +23,13 @@ class EditRoutineViewModel: ObservableObject {
     
     /// 선택한 운동의 삭제 얼럿 여부
     @Published var isDeleteWorkoutAlertShow = false
-
-    @Published var selectedExercise = 0
+    
+    @Published var selectedIndex = 0
     
     //현재 진행중인 운동
-    @Published var onGoingExercise = 0
+    @Published var currentWorkoutIndex = 0
     
+    /// 루틴의 운동
     @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     
     /// 운동 목록 조회
@@ -58,7 +60,7 @@ class EditRoutineViewModel: ObservableObject {
             switch $0 {
             case .success:
                 // TODO: 석세스 nil 처리
-                self.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+                self.fetchRoutine(routineId: routineId)
             case .failure(let error):
                 print(error.localizedDescription)
             }

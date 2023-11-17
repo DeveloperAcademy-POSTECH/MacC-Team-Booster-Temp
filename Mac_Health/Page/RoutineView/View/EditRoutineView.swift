@@ -34,13 +34,13 @@ struct EditRoutineView: View {
         }
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
-            DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedExercise].id)
+            DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
         }
-        .confirmationDialog(vm.routine.exercises.isEmpty ? "" : vm.routine.exercises[vm.selectedExercise].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.routine.exercises.isEmpty ? "" : vm.routine.exercises[vm.selectedIndex].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: routineId)
+            AlternateWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
                 .environmentObject(vm)
                 .onDisappear{
                     vm.fetchRoutine(routineId: routineId)
@@ -84,7 +84,7 @@ struct EditRoutineView: View {
     func WorkoutListCell(index: Int) -> some View {
         HStack {
             Button {
-                vm.selectedExercise = index
+                vm.selectedIndex = index
                 vm.isDetailedWorkoutSheetShow = true
             } label: {
                 HStack {
@@ -128,8 +128,7 @@ struct EditRoutineView: View {
             Spacer()
             
             Button {
-                vm.selectedExercise = index
-                vm.fetchWorkout(routineId: routineId, exerciseId: vm.routine.exercises[index].id)
+                vm.selectedIndex = index
                 vm.isEditWorkoutActionShow = true
             } label: {
                 Image(systemName: "ellipsis")
@@ -141,7 +140,7 @@ struct EditRoutineView: View {
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.first?.id ?? 1)
+            RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id)
                 .environmentObject(vm)
         } label: {
             FloatingButton(backgroundColor: .green_main) {

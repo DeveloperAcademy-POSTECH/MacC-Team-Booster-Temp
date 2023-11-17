@@ -11,6 +11,8 @@ enum WorkoutPart: String, CaseIterable {
     case 전체, 등, 가슴, 이두, 삼두, 하체, 후면사슬, 복근
 }
 
+// MARK: 1. 보여줄 데이터(월): 구독 시작 기준 3일 전 데이터부터 보여주기
+// MARK: 2. 운동 데이터 없는 월은 보여주지 않음
 /// 인플루언서 개인의 전체 루틴 뷰
 ///  - Parameters:
 ///   - influencerId: 조회할 인플루언서의 id

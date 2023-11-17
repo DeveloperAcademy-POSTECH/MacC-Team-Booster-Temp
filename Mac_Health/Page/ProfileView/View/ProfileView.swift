@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @StateObject var vm = ProfileViewModel()
     //로그인 상태값 모델로 가젹오기
     @Binding var loggedIn: Bool
     @Environment(\.dismiss) var dismiss

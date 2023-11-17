@@ -23,60 +23,63 @@ struct RecordingWorkoutView: View {
     @FocusState private var isFocused: Bool
     
     var body: some View {
-        ZStack {
-            Color.gray_900.ignoresSafeArea()
-            
-            VStack {
-                // TODO: 상단 여백 제거
-                ScrollView {
-                    WorkoutInfomation
-                    WorkoutImageAndTip
+        if vm.isFinish {
+            RecordingFinishView()
+        }
+        else {
+            ZStack {
+                Color.gray_900.ignoresSafeArea()
+                
+                VStack {
+                    // TODO: 상단 여백 제거
+                    ScrollView {
+                        WorkoutInfomation
+                        WorkoutImageAndTip
+                        Spacer()
+                        WorkoutSetButton
+                        WorkoutSetList
+                        RelatedContent
+                        EmptyFloatingButton
+                    }
+                }
+                
+                VStack {
                     Spacer()
-                    WorkoutSetButton
-                    WorkoutSetList
-                    RelatedContent
-                    EmptyFloatingButton
+                    isFocused ? nil : WorkoutButton
+                }
+                
+            }
+            .onAppear {
+                editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    BackButton
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    NavigationTitle
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    AlternativeButton
                 }
             }
-            
-            VStack {
-                Spacer()
-                isFocused ? nil : WorkoutButton
+            .navigationBarBackButtonHidden()
+            .confirmationDialog(editRoutineVM.workout.name, isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
+                AlternativeActionSheet
             }
-
-        }
-        .onAppear {
-            vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
-                editRoutineVM.workout = $0
+            .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
+                AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
+                    .environmentObject(editRoutineVM)
+                
             }
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                BackButton
+            .sheet(isPresented: $vm.isPauseSheetShow) {
+                PauseSheet(viewModel: vm)
+                    .onTapGesture {
+                        isFocused = false
+                    }
             }
-            
-            ToolbarItem(placement: .principal) {
-                NavigationTitle
-            }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                AlternativeButton
-            }
-        }
-        .navigationBarBackButtonHidden()
-        .confirmationDialog(editRoutineVM.workout.name, isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
-            AlternativeActionSheet
-        }
-        .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: routineId)
-                .environmentObject(editRoutineVM)
-            
-        }
-        .sheet(isPresented: $vm.isPauseSheetShow) {
-            PauseSheet(viewModel: vm)
-                .onTapGesture {
-                    isFocused = false
-                }
         }
     }
         
@@ -144,7 +147,7 @@ struct RecordingWorkoutView: View {
             VStack {
                 HStack {
                     // TODO: 운동 리스트
-                    Text("\(editRoutineVM.selectedExercise + 1) / \(editRoutineVM.routine.exercises.count)")
+                    Text("\(editRoutineVM.currentWorkoutIndex + 1) / \(editRoutineVM.routine.exercises.count)")
                         .foregroundColor(.label_700)
                     Text("|")
                         .foregroundColor(.label_400)
@@ -249,7 +252,7 @@ struct RecordingWorkoutView: View {
                     .overlay {
                         HStack {
                             Button {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId) {
+                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
                                     editRoutineVM.workout.sets = $0
                                 }
                             } label: {
@@ -267,7 +270,7 @@ struct RecordingWorkoutView: View {
                                 .foregroundColor(.label_700)
                             
                             Button {
-                                vm.increseSetCount(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId) {
+                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
                                     editRoutineVM.workout.sets = $0
                                 }
                             } label: {
@@ -292,7 +295,7 @@ struct RecordingWorkoutView: View {
             if !editRoutineVM.workout.sets.isEmpty {
                 ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                     // TODO: 무게 조정 api 호출
-                    WorkoutSetCard(index: index, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
+                    WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
                         .environmentObject(vm)
                         .overlay {
                             if index == vm.currentSet {
@@ -325,9 +328,25 @@ struct RecordingWorkoutView: View {
                         Spacer()
                         
                         Button {
-                            // TODO: 루틴 완료
                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                                // TODO: 운동 완료
+                                if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
+                                    vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
+                                        editRoutineVM.workout.sets[vm.currentSet].isDone = true
+
+                                        vm.finishWorkout(routineId: routineId)
+                                    }
+                                }
+                                else {
+                                    vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
+                                        editRoutineVM.workout.sets[vm.currentSet].isDone = true
+                                        
+                                        editRoutineVM.currentWorkoutIndex += 1
+                                        editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
+                                        if editRoutineVM.currentWorkoutIndex != editRoutineVM.routine.exercises.count {
+                                            vm.currentSet = 0
+                                        }
+                                    }
+                                }
                             }
                             else {
                                 vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
@@ -341,14 +360,30 @@ struct RecordingWorkoutView: View {
                             }
                         } label: {
                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                                RoundedRectangle(cornerRadius: 100)
-                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                    .foregroundColor(.red_main)
-                                    .overlay {
-                                        Text("운동 완료")
-                                            .font(.button1())
-                                            .foregroundColor(.label_900)
-                                    }
+                                if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
+                                    RoundedRectangle(cornerRadius: 100)
+                                        .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                        .foregroundColor(.red_main)
+                                        .overlay {
+                                            Text("운동 완료")
+                                                .font(.button1())
+                                                .foregroundColor(.label_900)
+                                        }
+                                }
+                                else {
+                                    RoundedRectangle(cornerRadius: 100)
+                                        .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                        .foregroundColor(.green_main)
+                                        .overlay {
+                                            HStack{
+                                                Text("다음 운동")
+                                                    .font(.button1())
+                                                Image(systemName: "chevron.right")
+                                                    .font(.button2())
+                                            }
+                                            .foregroundColor(.gray_900)
+                                        }
+                                }
                             }
                             else {
                                 RoundedRectangle(cornerRadius: 100)

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlternateWorkoutSheet: View {
     let routineId: Int
+    let exerciseId: Int
     @StateObject var vm = AlternativeWorkoutSheetViewModel()
     
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
@@ -25,6 +26,12 @@ struct AlternateWorkoutSheet: View {
                 AlternativeWorkoutList
                 FinishButton
             }
+        }
+        .onAppear {
+            vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+        }
+        .onDisappear {
+            editRoutineVM.fetchRoutine(routineId: routineId)
         }
         .presentationDetents([.height(UIScreen.getHeight(519))])
     }
@@ -53,7 +60,7 @@ struct AlternateWorkoutSheet: View {
             }
             
             HStack {
-                Text(editRoutineVM.workout.name)
+                Text(vm.workout.name)
                     .font(.body())
                     .foregroundColor(.label_700)
                 
@@ -65,11 +72,11 @@ struct AlternateWorkoutSheet: View {
     
     var AlternativeWorkoutList: some View {
         ScrollView {
-            ForEach(0..<editRoutineVM.workout.alternativeExercises.count, id: \.self) { index in
+            ForEach(0..<vm.workout.alternativeExercises.count, id: \.self) { index in
                 Button {
                     vm.selection = index
                 } label: {
-                    AlternativeWorkoutCard(alternativeWorkout: editRoutineVM.workout.alternativeExercises[index], isSelectedWorkout: vm.selection == index)
+                    AlternativeWorkoutCard(alternativeWorkout: vm.workout.alternativeExercises[index], isSelectedWorkout: vm.selection == index)
                 }
             }
         }
@@ -78,10 +85,7 @@ struct AlternateWorkoutSheet: View {
     var FinishButton: some View {
         Button {
             if vm.selection != -1 {
-                print(vm.selection)
-                vm.patchAlternate(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId, alternativeExerciseId: editRoutineVM.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
-                    editRoutineVM.workout = $0
-                    editRoutineVM.fetchRoutine(routineId: routineId)
+                vm.patchAlternate(routineId: routineId, exerciseId: vm.workout.exerciseId, alternativeExerciseId: vm.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
                     dismiss()
                 }
             }
@@ -98,7 +102,7 @@ struct AlternateWorkoutSheet: View {
 struct AlternativeWorkoutSheet_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AlternateWorkoutSheet(routineId: 1)
+            AlternateWorkoutSheet(routineId: 1, exerciseId: 1)
         }
     }
 }
