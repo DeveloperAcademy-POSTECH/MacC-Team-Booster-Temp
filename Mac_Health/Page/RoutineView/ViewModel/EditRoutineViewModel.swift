@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: 운동 삭제 되어도, 기본 데이터는 남아있음
 class EditRoutineViewModel: ObservableObject {
     /// 운동 목록
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
