@@ -30,9 +30,6 @@ struct AlternateWorkoutSheet: View {
         .onAppear {
             vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
         }
-        .onDisappear {
-            editRoutineVM.fetchRoutine(routineId: routineId)
-        }
         .presentationDetents([.height(UIScreen.getHeight(519))])
     }
     
@@ -86,8 +83,13 @@ struct AlternateWorkoutSheet: View {
         Button {
             if vm.selection != -1 {
                 vm.patchAlternate(routineId: routineId, exerciseId: vm.workout.exerciseId, alternativeExerciseId: vm.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
+                    editRoutineVM.workout = $0
+                    editRoutineVM.fetchRoutine(routineId: routineId)
                     dismiss()
                 }
+            }
+            else {
+                dismiss()
             }
         } label: {
             FloatingButton(backgroundColor: .green_main) {
