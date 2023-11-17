@@ -85,15 +85,15 @@ struct RecordView: View {
     //TODO: 로그인x or 구독 x
     var beforeLoginText: some View {
         VStack{
+            NavigationLink {
+                MockUpRecordExampleView
+            } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.fill_1)
                     .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
                     .overlay {
                         VStack {
                             HStack {
-                                Ellipse()
-                                    .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
-                                    .foregroundColor(.yellow_main)
                                 Text("정회승")
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
@@ -105,9 +105,9 @@ struct RecordView: View {
                             }
                             Spacer()
                             HStack {
-                                Text("등/이두")
+                                Text("어깨,가슴,삼두")
                                     .font(.body2())
-                                    .foregroundColor(.label_900)
+                                    .foregroundColor(.label_500)
                                 Spacer()
                                 
                                 Text("5200kg")
@@ -117,6 +117,7 @@ struct RecordView: View {
                         }
                         .padding()
                     }
+            }
 
             HStack{
                 Image(systemName: "info.circle")

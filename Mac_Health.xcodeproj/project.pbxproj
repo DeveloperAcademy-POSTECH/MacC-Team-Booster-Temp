@@ -31,6 +31,7 @@
 		0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327692AE13BE000319BAB /* Ext+Font.swift */; };
 		0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */; };
 		0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */; };
+		D51DFC422B07824D001B28EC /* MockUpRecordExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DFC412B07824D001B28EC /* MockUpRecordExampleView.swift */; };
 		D5436CA52AFB6B8000D82943 /* ManageProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */; };
 		D5436CA82AFB75B200D82943 /* ChangeNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */; };
 		D569C7892AF5152100FDADED /* SelectedRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569C7882AF5152100FDADED /* SelectedRoutineView.swift */; };
@@ -137,6 +138,7 @@
 		0DA327742AE13C3200319BAB /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIScreen.swift"; sourceTree = "<group>"; };
 		0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UITabBarController.swift"; sourceTree = "<group>"; };
+		D51DFC412B07824D001B28EC /* MockUpRecordExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpRecordExampleView.swift; sourceTree = "<group>"; };
 		D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfileView.swift; sourceTree = "<group>"; };
 		D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNicknameView.swift; sourceTree = "<group>"; };
 		D569C7882AF5152100FDADED /* SelectedRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineView.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				D571837F2B030AB200A11FFC /* MockUpPauseSheet.swift */,
 				D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */,
 				D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */,
+				D51DFC412B07824D001B28EC /* MockUpRecordExampleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -779,6 +782,7 @@
 				D569C7892AF5152100FDADED /* SelectedRoutineView.swift in Sources */,
 				D5D8F17B2AF399830032A788 /* MultiInfluencerRoutineView.swift in Sources */,
 				D569C7892AF5152100FDADED /* SelectedRoutineView.swift in Sources */,
+				D51DFC422B07824D001B28EC /* MockUpRecordExampleView.swift in Sources */,
 				D5D8F17B2AF399830032A788 /* MultiInfluencerRoutineView.swift in Sources */,
 				D58066582AFD3B4A003BB276 /* PauseStopwatchVM.swift in Sources */,
 				D5C5117E2B056378008B871E /* RecordingFinishView.swift in Sources */,
