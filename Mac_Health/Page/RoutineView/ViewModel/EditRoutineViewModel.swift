@@ -24,11 +24,12 @@ class EditRoutineViewModel: ObservableObject {
     /// 선택한 운동의 삭제 얼럿 여부
     @Published var isDeleteWorkoutAlertShow = false
 
-    @Published var selectedExercise = 0
+    @Published var selectedIndex = 0
     
     //현재 진행중인 운동
-    @Published var onGoingExercise = 0
+    @Published var currentRecordingWorkout = 0
     
+    /// 루틴의 운동
     @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     
     /// 운동 목록 조회

@@ -144,7 +144,7 @@ struct RecordingWorkoutView: View {
             VStack {
                 HStack {
                     // TODO: 운동 리스트
-                    Text("\(editRoutineVM.selectedExercise + 1) / \(editRoutineVM.routine.exercises.count)")
+                    Text("\(editRoutineVM.selectedIndex + 1) / \(editRoutineVM.routine.exercises.count)")
                         .foregroundColor(.label_700)
                     Text("|")
                         .foregroundColor(.label_400)

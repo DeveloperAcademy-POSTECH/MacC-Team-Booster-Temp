@@ -30,14 +30,14 @@ struct DetailedWorkoutSheet: View {
             }
         }
         .onAppear {
-            vm.fetchExercise(routineId: routineId, exerciseId: exerciseId)
+            vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
         }
         .presentationDetents([.height(UIScreen.getHeight(684))])
     }
     
     var NavigationTitle: some View {
         HStack {
-            Text("\(vm.exercise.name)")
+            Text("\(vm.workout.name)")
                 .font(.title1())
                 .foregroundColor(.label_900)
             
@@ -63,13 +63,13 @@ struct DetailedWorkoutSheet: View {
     var WorkoutCard: some View {
         VStack {
             HStack {
-                Text("\(vm.exercise.part)")
+                Text("\(vm.workout.part)")
                     .foregroundColor(.label_700)
                     .font(.body())
                 
                 Spacer()
             }
-            AsyncImage(url: URL(string: vm.exercise.exerciseImageUrl)) { image in
+            AsyncImage(url: URL(string: vm.workout.exerciseImageUrl)) { image in
                 image
                     .resizable()
                     .scaledToFit()
@@ -88,7 +88,7 @@ struct DetailedWorkoutSheet: View {
     var WorkoutTip: some View {
         VStack {
             HStack {
-                AsyncImage(url: URL(string: vm.exercise.faceImageUrl)) { image in
+                AsyncImage(url: URL(string: vm.workout.faceImageUrl)) { image in
                     image
                         .resizable()
                 } placeholder: {
@@ -102,7 +102,7 @@ struct DetailedWorkoutSheet: View {
                 Spacer()
             }
             .padding(.bottom)
-            Text("\(vm.exercise.tip)\n")
+            Text("\(vm.workout.tip)\n")
                 .multilineTextAlignment(.leading)
                 .lineSpacing(3)
                 .foregroundColor(.label_900)

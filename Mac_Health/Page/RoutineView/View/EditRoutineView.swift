@@ -34,9 +34,9 @@ struct EditRoutineView: View {
         }
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
-            DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedExercise].id)
+            DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
         }
-        .confirmationDialog(vm.routine.exercises.isEmpty ? "" : vm.routine.exercises[vm.selectedExercise].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.routine.exercises.isEmpty ? "" : vm.routine.exercises[vm.selectedIndex].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
@@ -84,7 +84,7 @@ struct EditRoutineView: View {
     func WorkoutListCell(index: Int) -> some View {
         HStack {
             Button {
-                vm.selectedExercise = index
+                vm.selectedIndex = index
                 vm.isDetailedWorkoutSheetShow = true
             } label: {
                 HStack {
@@ -128,7 +128,7 @@ struct EditRoutineView: View {
             Spacer()
             
             Button {
-                vm.selectedExercise = index
+                vm.selectedIndex = index
                 vm.fetchWorkout(routineId: routineId, exerciseId: vm.routine.exercises[index].id)
                 vm.isEditWorkoutActionShow = true
             } label: {
