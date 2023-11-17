@@ -22,9 +22,10 @@ struct SingleInfluencerRoutineView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             
+            InfluencerImage
+            
             VStack {
                 ZStack(alignment: .top) {
-                    InfluencerImage
                     NavigationTitle
                     InfluencerComment
                 }
@@ -55,12 +56,14 @@ struct SingleInfluencerRoutineView: View {
                 .resizable()
                 .scaledToFill()
                 .frame(width: UIScreen.getWidth(390))
-                .offset(x:20, y: 30)
         } placeholder: {
-            Image(systemName: "arrow.triangle.2.circlepath")
-                .resizable()
-                .scaledToFit()
-                .padding(50)
+            VStack(alignment: .center) {
+                            Image(systemName: "arrow.triangle.2.circlepath")
+                                .scaledToFit()
+                                .scaleEffect(CGSize(width: 3.0, height: 3.0))
+                                .padding(.top, 200)
+                            Spacer()
+                        }
         }
     }
     
@@ -84,6 +87,7 @@ struct SingleInfluencerRoutineView: View {
                     .foregroundColor(.label_500)
             }
         }
+        .padding(.bottom, 6)
     }
     
     var RoutineDescriptionCard: some View {
@@ -148,13 +152,13 @@ struct SingleInfluencerRoutineView: View {
                 }
                 else {
                     RoutineDescriptionCard
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 15)
                         .padding(.leading,10)
                     //운동 시작 버튼
                     
                     if routine.isDone {
                         RoundedRectangle(cornerRadius: 100)
-                            .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
+                            .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
                             .foregroundColor(.gray_600)
                             .overlay {
                                 HStack{
@@ -171,7 +175,7 @@ struct SingleInfluencerRoutineView: View {
                             EditRoutineView(routineId: routine.routineId)
                         } label: {
                             RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
+                                .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
                                 .foregroundColor(.green_main)
                                 .overlay {
                                     Text("운동 시작")
@@ -183,11 +187,13 @@ struct SingleInfluencerRoutineView: View {
                 }
             }
         }
-        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(320))
+        .padding(.horizontal, 10)
+        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
         .background {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
+        .padding(.bottom, 14)
     }
     
     var BackButton: some View {
