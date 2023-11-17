@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    
+    @StateObject var vm = SearchViewModel()
     @State private var mailData = ComposeMailData(subject: "비플 문의하기",
                                                   recipients: ["pmchung423@gmail.com"],
                                                   message: "비플 문의하기",
@@ -63,6 +63,9 @@ struct SearchView: View {
                 //                        .frame(height: UITabBarController().height)
             }
             .padding(.bottom, 35)
+            .onAppear {
+                vm.fetchInfluencer()
+            }
             //            .ignoresSafeArea()
         }
     }
