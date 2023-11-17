@@ -19,12 +19,12 @@ struct MockUpRecordExampleView: View {
                     RoutineDescriptionCard
                     Divider()
                         .padding(.vertical, 5)
-                    RoutineCell(workoutName: "사이드 레터럴 레이즈", totalWeight: 960, setInfo: [[1,12,20],[2,10,20],[3,10,20],[4,10,20]])
-                    RoutineCell(workoutName: "덤벨 숄더 프레스", totalWeight: 960, setInfo: [[1,40,20],[2,60,20],[3,60,20],[4,50,20]])
-                    RoutineCell(workoutName: "업 라이트 로우", totalWeight: 960, setInfo: [[1,20,10],[2,20,10],[3,20,10],[4,20,10]])
-                    RoutineCell(workoutName: "인클라인 벤치 프레스", totalWeight: 960, setInfo: [[1,60,10],[2,80,10],[3,100,10],[4,80,10]])
-                    RoutineCell(workoutName: "펙 덱 플라이", totalWeight: 960, setInfo: [[1,40,10],[2,45,10],[3,50,10],[4,40,10]])
-                    RoutineCell(workoutName: "케이블 트라이셉스 익스텐션 ", totalWeight: 960, setInfo: [[1,30,10],[2,35,10],[3,30,10],[4,30,10]])
+                    RoutineCell(workoutName: "사이드 레터럴 레이즈", totalWeight: 840, setInfo: [[1,12,20],[2,10,20],[3,10,20],[4,10,20]])
+                    RoutineCell(workoutName: "덤벨 숄더 프레스", totalWeight: 2100, setInfo: [[1,40,10],[2,60,10],[3,60,10],[4,50,10]])
+                    RoutineCell(workoutName: "업 라이트 로우", totalWeight: 800, setInfo: [[1,20,10],[2,20,10],[3,20,10],[4,20,10]])
+                    RoutineCell(workoutName: "인클라인 벤치 프레스", totalWeight: 3200, setInfo: [[1,60,10],[2,80,10],[3,100,10],[4,80,10]])
+                    RoutineCell(workoutName: "펙 덱 플라이", totalWeight: 1750, setInfo: [[1,40,10],[2,45,10],[3,50,10],[4,40,10]])
+                    RoutineCell(workoutName: "케이블 트라이셉스 익스텐션 ", totalWeight: 1250, setInfo: [[1,30,10],[2,35,10],[3,30,10],[4,30,10]])
                 }
             }
             .padding(.horizontal)
@@ -56,7 +56,7 @@ struct MockUpRecordExampleView: View {
             Description(image: "clock.fill", text: "52분12초")
             Description(image: "flame.circle.fill", text: "430kcal")
             // TODO: 총 무게
-            Description(image: "dumbbell.fill", text: "13400kg")
+            Description(image: "dumbbell.fill", text: "10040kg")
         }.padding(.bottom)
     }
     
@@ -109,10 +109,16 @@ struct MockUpRecordExampleView: View {
         }
         
         func makeSet(id: Int, kg: Int, rep: Int) -> some View {
-            HStack(spacing: 16) {
+            HStack(spacing: 1) {
                 Text("\(id)세트")
+                    .frame(width: 50, alignment: .trailing)
                 Text("\(kg)kg")
+                    .frame(width: 50, alignment: .trailing)
+                Image(systemName: "multiply")
+                    .frame(width: 20, alignment: .trailing)
+                    .foregroundColor(.label_400)
                 Text("\(rep)회")
+                    .frame(width: 36, alignment: .trailing)
             }
             .font(.body2())
             .foregroundColor(.label_700)
