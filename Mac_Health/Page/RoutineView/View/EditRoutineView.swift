@@ -40,7 +40,7 @@ struct EditRoutineView: View {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: routineId)
+            AlternateWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
                 .environmentObject(vm)
                 .onDisappear{
                     vm.fetchRoutine(routineId: routineId)
@@ -129,7 +129,6 @@ struct EditRoutineView: View {
             
             Button {
                 vm.selectedIndex = index
-                vm.fetchWorkout(routineId: routineId, exerciseId: vm.routine.exercises[index].id)
                 vm.isEditWorkoutActionShow = true
             } label: {
                 Image(systemName: "ellipsis")

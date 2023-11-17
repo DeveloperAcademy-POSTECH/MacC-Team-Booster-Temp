@@ -23,7 +23,7 @@ class EditRoutineViewModel: ObservableObject {
     
     /// 선택한 운동의 삭제 얼럿 여부
     @Published var isDeleteWorkoutAlertShow = false
-
+    
     @Published var selectedIndex = 0
     
     //현재 진행중인 운동
@@ -60,7 +60,7 @@ class EditRoutineViewModel: ObservableObject {
             switch $0 {
             case .success:
                 // TODO: 석세스 nil 처리
-                self.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+                self.fetchRoutine(routineId: routineId)
             case .failure(let error):
                 print(error.localizedDescription)
             }

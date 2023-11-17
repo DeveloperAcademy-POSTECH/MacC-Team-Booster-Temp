@@ -68,7 +68,7 @@ struct RecordingWorkoutView: View {
             AlternativeActionSheet
         }
         .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: routineId)
+            AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
                 .environmentObject(editRoutineVM)
             
         }
