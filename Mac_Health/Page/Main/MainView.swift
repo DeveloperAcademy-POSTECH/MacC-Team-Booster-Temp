@@ -25,6 +25,7 @@ struct MainView: View {
                 RoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
+                            .font(.subheadline)
                         Text("루틴")
                     }
                     .tag(0)

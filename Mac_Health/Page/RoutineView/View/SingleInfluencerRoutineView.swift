@@ -22,12 +22,11 @@ struct SingleInfluencerRoutineView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             
+            InfluencerImage
+            
             VStack {
-                ZStack(alignment: .top) {
-                    InfluencerImage
                     NavigationTitle
                     InfluencerComment
-                }
                 Spacer()
                 TodayCard()
             }
@@ -55,33 +54,42 @@ struct SingleInfluencerRoutineView: View {
                 .resizable()
                 .scaledToFill()
                 .frame(width: UIScreen.getWidth(390))
-                .offset(x:20, y: 30)
         } placeholder: {
-            Image(systemName: "arrow.triangle.2.circlepath")
-                .resizable()
-                .scaledToFit()
-                .padding(50)
+            VStack(alignment: .center) {
+                            Image(systemName: "arrow.triangle.2.circlepath")
+                                .scaledToFit()
+                                .scaleEffect(CGSize(width: 3.0, height: 3.0))
+                                .padding(.top, 200)
+                            Spacer()
+                        }
         }
     }
     
     var InfluencerComment: some View {
-        VStack {
-            Spacer()
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text(routine.comment)
-                        .font(.body)
-                        .foregroundColor(.label_800)
+        ZStack{
+            if routine.part == "휴식" {
+                
+            } else {
+                VStack {
+                    Spacer()
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading) {
+                            Text(routine.comment)
+                                .font(.body)
+                                .foregroundColor(.label_800)
+                        }
+                        .padding(20)
+                    }
+                    .frame(width: UIScreen.getWidth(350))
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                            .foregroundColor(.gray_700)
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 1.0)
+                            .foregroundColor(.label_500)
+                    }
                 }
-                .padding(20)
-            }
-            .frame(width: UIScreen.getWidth(350))
-            .background {
-                RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(.gray_700)
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(lineWidth: 1.0)
-                    .foregroundColor(.label_500)
+                .padding(.bottom, 6)
             }
         }
     }
@@ -129,11 +137,15 @@ struct SingleInfluencerRoutineView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
+                .padding(.top, 30)
+                
+                Spacer()
                 
                 if routine.part == "휴식" {
                     VStack {
+                        Spacer()
                         Image(systemName: "moon.stars.fill")
-                            .font(.system(size: 60))
+                            .font(.system(size: 38))
                             .foregroundColor(.label_500)
                             .padding(.bottom)
                         Text("휴식")
@@ -144,17 +156,15 @@ struct SingleInfluencerRoutineView: View {
                     // TODO: EmptyFloatingButton으로 변경
                     FloatingButton(backgroundColor: .clear) { }
                         .padding(.bottom)
-                        .padding(.bottom)
                 }
                 else {
                     RoutineDescriptionCard
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 15)
                         .padding(.leading,10)
                     //운동 시작 버튼
-                    
                     if routine.isDone {
                         RoundedRectangle(cornerRadius: 100)
-                            .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
+                            .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
                             .foregroundColor(.gray_600)
                             .overlay {
                                 HStack{
@@ -166,12 +176,13 @@ struct SingleInfluencerRoutineView: View {
                                         .font(.button1())
                                 }
                             }
+                            .padding(.bottom, 10)
                     } else {
                         NavigationLink {
                             EditRoutineView(routineId: routine.routineId)
                         } label: {
                             RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
+                                .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
                                 .foregroundColor(.green_main)
                                 .overlay {
                                     Text("운동 시작")
@@ -179,15 +190,19 @@ struct SingleInfluencerRoutineView: View {
                                         .font(.button1())
                                 }
                         }
+                        .padding(.bottom, 10)
                     }
+                    Spacer()
                 }
             }
         }
-        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(320))
+        .padding(.horizontal, 10)
+        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
         .background {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
+        .padding(.bottom, 1)
     }
     
     var BackButton: some View {
@@ -202,5 +217,11 @@ struct SingleInfluencerRoutineView: View {
 }
 
 #Preview {
-    SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", influencerProfileImageUrl: "", influencerId: 1, isDone: false)))
+    TabView{
+        SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", influencerProfileImageUrl: "", influencerId: 1, isDone: false)))
+            .tabItem {
+                Image(systemName: "dumbbell")
+                Text("루틴")
+            }
+    }
 }

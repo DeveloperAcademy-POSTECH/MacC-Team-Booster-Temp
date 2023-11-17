@@ -8,33 +8,49 @@
 import SwiftUI
 
 struct MockUpSearchView: View {
+    @State private var mailData = ComposeMailData(subject: "비플 문의하기",
+                                                  recipients: ["pmchung423@gmail.com"],
+                                                  message: "비플 문의하기",
+                                                  attachments: [
+                                                    //                                                                                                        AttachmentData(data: "Some text".data(using: .utf8)!,
+                                                    //                                                                                                                                   mimeType: "text/plain",
+                                                    //                                                                                                                                   fileName: "text.txt")
+                                                  ]
+    )
+    @State private var showMailView = false
     @Binding var tabSelection: Int
     var body: some View {
         
         //둘러보기 1인용
         ZStack {
             Color.gray_900.ignoresSafeArea()
-                VStack {
-                    NavigationTitle
-                    NavigationLink {
-                        MockUpSubscribeView(tabSelection: $tabSelection)
-                    } label: {
-                        SearchCard
+            VStack {
+                NavigationTitle
+                NavigationLink {
+                    MockUpSubscribeView(tabSelection: $tabSelection)
+                } label: {
+                    SearchCard
+                }
+                
+                Button {
+                    showMailView.toggle()
+                } label: {
+                    InquiryCard
+                }
+                .disabled(!MailView.canSendMail)
+                .sheet(isPresented: $showMailView) {
+                    MailView(data: $mailData) { result in
+                        print(result)
                     }
-
-                    Button {
-                        print("email modal")
-                    } label: {
-                        InquiryCard
-                    }
-                    Spacer()
-//                        .frame(height: UITabBarController().height)
+                }
+                Spacer()
+                //                        .frame(height: UITabBarController().height)
             }
-                .padding(.bottom, 35)
-//            .ignoresSafeArea()
+            .padding(.bottom, 35)
+            //            .ignoresSafeArea()
         }
     }
-
+    
     var NavigationTitle: some View {
         HStack {
             Text("둘러보기")
@@ -72,10 +88,10 @@ struct MockUpSearchView: View {
             .padding()
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
-//        .mask(
-//            RoundedRectangle(cornerRadius: 8.0)
-//                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
-//        )
+        //        .mask(
+        //            RoundedRectangle(cornerRadius: 8.0)
+        //                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
+        //        )
     }
     
     @ViewBuilder
@@ -100,29 +116,29 @@ struct MockUpSearchView: View {
             .padding(.top, 5)
     }
     
-    @ViewBuilder
-    var RecommendCardScroll: some View {
-            VStack(spacing: 20){
-                HStack {
-                    Text("전문가들의 일상 루틴")
-                        .foregroundColor(.label_900)
-                        .font(.title2())
-                        .padding(.leading, 20)
-                    Spacer()
-                }
-                VStack(spacing: 20){
-                    ForEach(1..<4, id: \.self) {idx in
-                        //전문가들의 일상 루틴에서 구독 뷰
-                        NavigationLink {
-                            MockUpSubscribeView(tabSelection: $tabSelection)
-                                .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
-                        } label: {
-                            InfluencerCard(cardBannerNum: idx)
-                        }
-                    }
-                }
-            }
-    }
+//    @ViewBuilder
+//    var RecommendCardScroll: some View {
+//        VStack(spacing: 20){
+//            HStack {
+//                Text("전문가들의 일상 루틴")
+//                    .foregroundColor(.label_900)
+//                    .font(.title2())
+//                    .padding(.leading, 20)
+//                Spacer()
+//            }
+//            VStack(spacing: 20){
+//                ForEach(1..<4, id: \.self) {idx in
+//                    //전문가들의 일상 루틴에서 구독 뷰
+//                    NavigationLink {
+//                        MockUpSubscribeView(tabSelection: $tabSelection)
+//                            .navigationBarTitle("정회승의 Smart Routine", displayMode: .inline)
+//                    } label: {
+//                        InfluencerCard(cardBannerNum: idx)
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 #Preview {

@@ -86,7 +86,7 @@ struct RecordView: View {
     var beforeLoginText: some View {
         VStack{
             NavigationLink {
-//                MockUpRecordExampleView
+                MockUpRecordExampleView()
             } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.fill_1)
@@ -110,7 +110,7 @@ struct RecordView: View {
                                     .foregroundColor(.label_500)
                                 Spacer()
                                 
-                                Text("5200kg")
+                                Text("10040kgkg")
                                     .font(.body2())
                                     .foregroundColor(.label_900)
                             }

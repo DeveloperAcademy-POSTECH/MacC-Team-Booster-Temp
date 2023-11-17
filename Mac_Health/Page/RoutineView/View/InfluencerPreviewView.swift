@@ -59,5 +59,11 @@ struct InfluencerPreviewView: View {
 }
 
 #Preview {
-    InfluencerPreviewView()
+    TabView{
+        InfluencerPreviewView()
+            .tabItem {
+                Image(systemName: "dumbbell")
+                Text("루틴")
+            }
+    }
 }

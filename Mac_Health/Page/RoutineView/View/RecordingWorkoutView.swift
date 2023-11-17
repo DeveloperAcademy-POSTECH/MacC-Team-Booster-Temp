@@ -350,6 +350,7 @@ struct RecordingWorkoutView: View {
                         Spacer()
                         
                         Button {
+                            // TODO: 운동 남아있을 때 완료 버튼 얼럿
                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
                                 if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
                                     vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in

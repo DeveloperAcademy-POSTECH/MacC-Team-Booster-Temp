@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MockUpRecordExampleView: View {
-    let record: Records
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -19,21 +18,23 @@ struct MockUpRecordExampleView: View {
                 VStack(alignment: .leading) {
                     RoutineDescriptionCard
                     Divider()
-                    RoutineCell()
-                    RoutineCell()
+                        .padding(.vertical, 5)
+                    RoutineCell(workoutName: "사이드 레터럴 레이즈", totalWeight: 840, setInfo: [[1,12,20],[2,10,20],[3,10,20],[4,10,20]])
+                    RoutineCell(workoutName: "덤벨 숄더 프레스", totalWeight: 2100, setInfo: [[1,40,10],[2,60,10],[3,60,10],[4,50,10]])
+                    RoutineCell(workoutName: "업 라이트 로우", totalWeight: 800, setInfo: [[1,20,10],[2,20,10],[3,20,10],[4,20,10]])
+                    RoutineCell(workoutName: "인클라인 벤치 프레스", totalWeight: 3200, setInfo: [[1,60,10],[2,80,10],[3,100,10],[4,80,10]])
+                    RoutineCell(workoutName: "펙 덱 플라이", totalWeight: 1750, setInfo: [[1,40,10],[2,45,10],[3,50,10],[4,40,10]])
+                    RoutineCell(workoutName: "케이블 트라이셉스 익스텐션 ", totalWeight: 1250, setInfo: [[1,30,10],[2,35,10],[3,30,10],[4,30,10]])
                 }
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.top)
         }
         // TODO: 타이틀 폰트 체크
-        .navigationBarTitle(record.date, displayMode: .inline)
+        .navigationBarTitle("운동 기록 예시", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton
-            }
-            ToolbarItem(placement: .topBarTrailing) {
-                //login 되야 활성화
-                EditButton
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -42,16 +43,22 @@ struct MockUpRecordExampleView: View {
     var RoutineDescriptionCard: some View {
         VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
             // TODO: 인플루언서 네임
-            Text("")
+            Text("정회승")
+                .font(.title2())
+                .foregroundColor(.label_900)
+                .padding(.bottom, 5)
             // TODO: 폰트
             Text("2023년 4월 23일 루틴")
-            Description(image: "figure.arms.open", text: record.part)
-            Description(image: "square.stack.fill", text: "\(record.numberOfExercise)개")
+                .font(.caption())
+                .foregroundColor(.label_700)
+                .padding(.bottom)
+            Description(image: "figure.arms.open", text: "어깨, 가슴, 삼두")
+            Description(image: "square.stack.fill", text: "6개")
             // TODO: 한 시간 넘어가면 어떻게 되는지 묻기
-            Description(image: "clock.fill", text: "50분")
-            Description(image: "flame.circle.fill", text: "\(record.burnedKCalories)kcal")
+            Description(image: "clock.fill", text: "52분12초")
+            Description(image: "flame.circle.fill", text: "430kcal")
             // TODO: 총 무게
-            Description(image: "dumbbell.fill", text: "13400kg")
+            Description(image: "dumbbell.fill", text: "10040kg")
         }.padding(.bottom)
     }
     
@@ -59,21 +66,12 @@ struct MockUpRecordExampleView: View {
         HStack {
             Image(systemName: image)
                 .foregroundColor(.label_700)
-                .font(.body2())
-                .frame(width: UIScreen.getWidth(30))
+                .font(.headline1())
+                .frame(width: UIScreen.getWidth(20), alignment: .center)
+                .padding(.trailing, 3)
             Text(text)
                 .foregroundColor(.label_900)
                 .font(.body())
-        }
-    }
-    
-    var EditButton: some View {
-        NavigationLink {
-            RecordEditView()
-        } label: {
-            Image(systemName: "pencil")
-                .foregroundColor(.label_700)
-                .font(.headline1())
         }
     }
     
@@ -88,33 +86,42 @@ struct MockUpRecordExampleView: View {
     }
     
     struct RoutineCell: View {
+        var workoutName: String
+        var totalWeight: Int
+        var setInfo: [[Int]]
         var body: some View {
             VStack {
                 HStack {
-                    Text("클로즈 그립 랫풀다운")
+                    Text(workoutName)
                     Spacer()
-                    Text("1450kg")
+                    Text("\(totalWeight)kg")
                 }
                 .font(.headline1())
                 .foregroundColor(.label_900)
                 .padding(.vertical)
                 HStack {
                     Spacer()
-                    VStack(alignment: .trailing, spacing: 6) {
-                        makeSet(id: 1, kg: 40, rep: 10)
-                        makeSet(id: 1, kg: 40, rep: 10)
-                        makeSet(id: 1, kg: 40, rep: 10)
-                        makeSet(id: 1, kg: 40, rep: 10)
+                    VStack(alignment: .trailing, spacing: 3) {
+                        makeSet(id: setInfo[0][0], kg: setInfo[0][1], rep: setInfo[0][2])
+                        makeSet(id: setInfo[1][0], kg: setInfo[1][1], rep: setInfo[2][2])
+                        makeSet(id: setInfo[2][0], kg: setInfo[2][1], rep: setInfo[2][2])
+                        makeSet(id: setInfo[3][0], kg: setInfo[3][1], rep: setInfo[3][2])
                     }
                 }
             }
         }
         
         func makeSet(id: Int, kg: Int, rep: Int) -> some View {
-            HStack(spacing: 16) {
+            HStack(spacing: 1) {
                 Text("\(id)세트")
+                    .frame(width: 50, alignment: .trailing)
                 Text("\(kg)kg")
+                    .frame(width: 50, alignment: .trailing)
+                Image(systemName: "multiply")
+                    .frame(width: 20, alignment: .trailing)
+                    .foregroundColor(.label_400)
                 Text("\(rep)회")
+                    .frame(width: 36, alignment: .trailing)
             }
             .font(.body2())
             .foregroundColor(.label_700)
@@ -122,6 +129,8 @@ struct MockUpRecordExampleView: View {
     }
 }
 
-//#Preview {
-//    MockUpRecordExampleView(record: <#Records#>)
-//}
+#Preview {
+    NavigationStack{
+        MockUpRecordExampleView()
+    }
+}

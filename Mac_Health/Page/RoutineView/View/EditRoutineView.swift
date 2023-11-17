@@ -68,6 +68,7 @@ struct EditRoutineView: View {
                 Text(vm.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
+                    .padding(.top)
                 
                 Spacer()
             }
@@ -75,6 +76,7 @@ struct EditRoutineView: View {
             ScrollView {
                 ForEach(0..<vm.routine.exercises.count, id: \.self) { index in
                     WorkoutListCell(index: index)
+                        .padding(.vertical, 5)
                 }
             }
         }
@@ -148,6 +150,7 @@ struct EditRoutineView: View {
                     .foregroundColor(.gray_900)
                     .font(.button1())
             }
+            .padding()
         }
     }
     
