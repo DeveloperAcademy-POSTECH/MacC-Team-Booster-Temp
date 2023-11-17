@@ -54,7 +54,7 @@ struct RecordingWorkoutView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    BackButton
+                    StopButton
                 }
                 
                 ToolbarItem(placement: .principal) {
@@ -79,6 +79,11 @@ struct RecordingWorkoutView: View {
                     .onTapGesture {
                         isFocused = false
                     }
+            }
+            .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
+                WorkoutStopAlert
+            } message: {
+                Text("운동기록은 삭제됩니다.")
             }
         }
     }
@@ -142,6 +147,17 @@ struct RecordingWorkoutView: View {
                 Text("취소")
             }
         }
+    
+    @ViewBuilder
+    var WorkoutStopAlert: some View {
+        Button("운동중단") {
+            // TODO: 운동 중단
+            dismiss()
+        }
+        Button("취소") {
+            
+        }
+    }
         
         var WorkoutInfomation: some View {
             VStack {
@@ -440,9 +456,9 @@ struct RecordingWorkoutView: View {
         }
         
         @ViewBuilder
-        var BackButton: some View {
+        var StopButton: some View {
             Button {
-                dismiss()
+                vm.isStopAlertShow = true
             } label: {
                 Image(systemName: "xmark")
                     .foregroundColor(.label_700)
