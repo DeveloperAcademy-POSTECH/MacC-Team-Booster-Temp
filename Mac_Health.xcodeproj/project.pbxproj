@@ -420,11 +420,11 @@
 		D571837C2B030A8F00A11FFC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */,
 				D57183672B01EE8500A11FFC /* MockUpStartView.swift */,
 				D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */,
 				D571836C2B020A6800A11FFC /* MockUpFinishView.swift */,
 				D571837F2B030AB200A11FFC /* MockUpPauseSheet.swift */,
-				D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */,
 				D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */,
 				D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */,
 			);

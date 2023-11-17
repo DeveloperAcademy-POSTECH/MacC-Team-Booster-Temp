@@ -22,6 +22,7 @@ struct ProfileView: View {
                                                   ]
     )
     @State private var showMailView = false
+    @StateObject var vm = ProfileViewModel()
     
     
     var body: some View {

@@ -18,18 +18,17 @@ import SwiftUI
 struct MockUpStartView: View {
     var todayText = "반가워요 득근해봅시다💪"
     @Binding var tabSelection: Int
-    var Influencer = "정회승"
     
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
+            //사진
+            Image("Influencer_main")
+                .resizable()
+                .scaledToFill()
+//                .frame(width: UIScreen.getWidth(390))
             VStack{
                 ZStack(alignment: .top) {
-                    //사진
-                    Image("Influencer1")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: UIScreen.getWidth(390))
                     //인플루언서의 오늘의 루틴
                     NavigationTitle
                     
@@ -39,10 +38,10 @@ struct MockUpStartView: View {
                 }
                 Spacer()
                 TodayCard()
+                Spacer()
+                    .frame(height: UITabBarController().height)
             }
-            .padding(.bottom)
-            Spacer()
-                .frame(height: UITabBarController().height)
+            .padding(.bottom, 25)
             
         }
         .navigationBarBackButtonHidden()
@@ -52,13 +51,13 @@ struct MockUpStartView: View {
     var NavigationTitle: some View {
         VStack {
             HStack {
-                Text("\(Influencer)의 \n오늘의 루틴")
+                Text("정회승의 \n오늘의 루틴")
                     .font(.title1())
                     .foregroundColor(.label_900)
                 Spacer()
             }
             .padding(.horizontal)
-            .padding(.top, 30)
+            .padding(.top, 100)
             HStack {
                 Text("둘러보기 중")
                     .font(.body2())
@@ -103,7 +102,7 @@ struct MockUpStartView: View {
             HStack(alignment: .top){
                 VStack(alignment: .leading){
                     Text(todayText)
-                        .font(.body)
+                        .font(.body2())
                         .foregroundColor(.label_800)
                 }
                 .padding(20)
@@ -112,13 +111,12 @@ struct MockUpStartView: View {
             .background{
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.gray_700)
-            }
-            .background{
                 RoundedRectangle(cornerRadius: 8)
-                ///label_500 적용 안됨
-                    .stroke(.white, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+                    .stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(.label_500)
             }
         }
+        .padding(.bottom, 6)
     }
     
     func TodayCard () -> some View {
@@ -129,28 +127,18 @@ struct MockUpStartView: View {
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()
-                    //                    NavigationLink {
-                    //                        ChangeRoutineView(routineVM: RoutineVM())
-                    //                            .navigationBarTitle("전체 루틴", displayMode: .inline)
-                    //                    } label: {
-                    //                        Image(systemName: "calendar")
-                    //                            .font(.title2())
-                    //                            .foregroundColor(.green_main)
-                    //                    }
-                    
-                    
                 }
                 .padding(.horizontal)
-                .padding(.bottom)
+                .padding(.bottom, 24)
                 RoutineDescriptionCard
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 15)
                     .padding(.leading,10)
                 //운동 시작 버튼
                 NavigationLink {
                     MockUpWorkoutOngoingView(tabSelection: $tabSelection)
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
-                        .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
+                        .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
                         .foregroundColor(.green_main)
                         .overlay { Text("운동 시작")
                                 .foregroundColor(.gray_900)
@@ -159,11 +147,13 @@ struct MockUpStartView: View {
                 }
             }
         }
-        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(320))
+        .padding(.horizontal, 10)
+        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
         .background{
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
+        .padding(.bottom, 14)
         
     }
     
@@ -180,6 +170,17 @@ struct MockUpStartView: View {
 
 #Preview {
     NavigationStack{
-        MockUpStartView(tabSelection: .constant(3))
+        TabView{
+            MockUpStartView(tabSelection: .constant(3))
+                .tabItem {
+                    Image(systemName: "dumbbell")
+                    Text("루틴")
+                }
+            MockUpStartView(tabSelection: .constant(3))
+                .tabItem {
+                    Image(systemName: "dumbbell")
+                    Text("루틴")
+                }
+        }
     }
 }
