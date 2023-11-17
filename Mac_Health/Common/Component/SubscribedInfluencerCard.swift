@@ -44,8 +44,8 @@ struct SubscribedInfluencerCard: View {
                     Spacer()
                     AsyncImage(url: URL(string: routine.influencerProfileImageUrl)) { image in
                         image
-                            .resizable()
-                            .scaledToFill()
+                            .scaledToFit()
+                            .scaleEffect(CGSize(width: 1.0, height: 1.0))
                             .frame(width: UIScreen.getWidth(156))
                     } placeholder: {
                         Image(systemName: "arrow.triangle.2.circlepath")

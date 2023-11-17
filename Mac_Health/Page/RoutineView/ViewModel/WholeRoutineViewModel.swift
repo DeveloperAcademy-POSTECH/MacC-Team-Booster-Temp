@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 class WholeRoutineViewModel: ObservableObject {
     /// 선택된 부위
@@ -14,12 +15,53 @@ class WholeRoutineViewModel: ObservableObject {
     /// 월 별 운동 목록
     @Published var routinesByMonth: [String : [Routine]] = [:]
     
+    ///최초 네트워킹으로 받은 전체 목록
+    @Published var wholeRoutines: [Routine] = []
+    @Published var emptyFlag = 0
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        selectionStream()
+        isRoutinesByMonthEmpty()
+    }
+    
+    func isRoutinesByMonthEmpty() {
+        $routinesByMonth.sink { [weak self] routines in
+            if routines.isEmpty {
+                self?.emptyFlag = 1
+            }
+            else {
+                self?.emptyFlag = 0
+            }
+        }
+        .store(in: &cancellables)
+    }
+    
+    func selectionStream() {
+        $selectedPart
+            .sink { selectionText in
+                if selectionText == "전체" {
+                    self.routinesByMonth = self.fetchByMonth(routines: self.wholeRoutines)
+                }
+                else {
+                    let selectedRoutines = self.wholeRoutines.filter { $0.part.components(separatedBy: ", ").contains(selectionText) }
+                    print(selectedRoutines)
+                    let selectedMonthlyRoutines = self.fetchByMonth(routines: selectedRoutines)
+                    self.routinesByMonth = selectedMonthlyRoutines
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    
     /// 전체 루틴 조회 함수
     func fetchWholeRoutine(influencerId: Int) {
         GeneralAPIManger.request(for: .GetUsersInfluencersRoutines(id: influencerId), type: [Routine].self) {
             switch $0 {
             case .success(let routine):
                 self.routinesByMonth = self.fetchByMonth(routines: routine)
+                self.wholeRoutines = routine
             case .failure(let error):
                 print(error.localizedDescription)
             }

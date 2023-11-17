@@ -99,8 +99,8 @@ struct EditRoutineView: View {
                                     .resizable()
                             } placeholder: {
                                 Image(systemName: "arrow.triangle.2.circlepath")
-                                    .resizable()
                                     .scaledToFit()
+                                    .scaleEffect(CGSize(width: 1.0, height: 1.0))
                                     .foregroundColor(.label_400)
                                     .padding()
                             }
@@ -162,25 +162,21 @@ struct EditRoutineView: View {
             Text("운동 대체")
         }
         
-        Button {
+        Button(role: .destructive) {
             vm.isDeleteWorkoutAlertShow = true
         } label: {
             Text("삭제")
         }
         
-        Button(role: .cancel) {
-            // TODO: .
-        } label: {
+        Button(role: .cancel) { }
+        label: {
             Text("취소")
         }
     }
     
     @ViewBuilder
     var DeleteAlert: some View {
-        Button("취소") {
-            // TODO: .
-        }
-        Button("삭제") {
+        Button("삭제", role: .destructive) {
             vm.deleteWorkout(routineId: routineId, exerciseId: vm.workout.exerciseId)
         }
     }

@@ -18,6 +18,7 @@ enum WorkoutPart: String, CaseIterable {
 ///   - influencerId: 조회할 인플루언서의 id
 struct WholeRoutineView: View {
     let influencerId: Int
+    
     @StateObject var vm = WholeRoutineViewModel()
     
     @Environment(\.dismiss) var dismiss: DismissAction
@@ -27,7 +28,12 @@ struct WholeRoutineView: View {
         // TODO: 배경
         VStack {
             SortingSlider
-            Workouts
+            switch vm.emptyFlag {
+            case 0: Workouts
+            case 1: EmptyWorkoutView
+            default:
+                Workouts
+            }
         }
         .navigationTitle("전체 운동일지")
         .navigationBarBackButtonHidden()
@@ -42,12 +48,23 @@ struct WholeRoutineView: View {
         }
     }
     
+    var EmptyWorkoutView: some View {
+        VStack {
+            Spacer()
+            Text("해당 부위의 운동이 아직 없어요")
+                .font(.headline1())
+                .foregroundColor(.label_900)
+            Spacer()
+        }
+    }
+    
     var SortingSlider: some View {
         ScrollView(.horizontal) {
             HStack(spacing: UIScreen.getWidth(6)) {
                 ForEach(WorkoutPart.allCases, id: \.self) { type in
                     Button {
                         vm.selectedPart = type.rawValue
+                        print(vm.selectedPart)
                     } label: {
                         if vm.selectedPart == type.rawValue  {
                             SelectedCapsule(text: type.rawValue)

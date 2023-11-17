@@ -27,8 +27,8 @@ struct AlternativeWorkoutCard: View {
                                     .scaledToFit()
                             } placeholder: {
                                 Image(systemName: "arrow.triangle.2.circlepath")
-                                    .resizable()
                                     .scaledToFit()
+                                    .scaleEffect(CGSize(width: 1.0, height: 1.0))
                                     .foregroundColor(.gray_600)
                             }
                         }

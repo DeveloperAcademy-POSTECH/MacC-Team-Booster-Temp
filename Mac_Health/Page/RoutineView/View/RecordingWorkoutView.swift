@@ -89,10 +89,6 @@ struct RecordingWorkoutView: View {
                 
             }
             .sheet(isPresented: $vm.isPauseSheetShow) {
-                PauseSheet(viewModel: vm)
-                    .onTapGesture {
-                        isFocused = false
-                    }
             }
             .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
                 WorkoutStopAlert
@@ -343,7 +339,7 @@ struct RecordingWorkoutView: View {
         if !editRoutineVM.workout.sets.isEmpty {
             ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                 // TODO: 무게 조정 api 호출
-                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
+                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index])
                     .environmentObject(vm)
                     .overlay {
                         if index == vm.currentSet {
