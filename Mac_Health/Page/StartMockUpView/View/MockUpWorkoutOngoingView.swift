@@ -31,26 +31,24 @@ struct MockUpWorkoutOngoingView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             
-            VStack {
-                ScrollView {
-                    Spacer()
-                    Spacer()
+            ScrollView {
+                VStack{
                     workoutInfomation
                     ImageTip(currentIndex: $currentIndex, workoutOngoingVM: MockUpWorkoutOngoingViewModel())
                     Spacer()
                     WorkoutSetButton
                     WorkoutSetList
-//                    RelatedContent
+                    //                    RelatedContent
                     EmptyFloatingButton
                 }
-            }
+                }
             
             VStack {
                 Spacer()
                 isFocused ? nil : WorkoutButton
             }
         }
-        
+        .navigationBarTitle("",displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
@@ -204,6 +202,7 @@ struct MockUpWorkoutOngoingView: View {
             }
         }
         .padding(.horizontal)
+        .padding(.top)
     }
     
     var WorkoutImage: some View {
@@ -310,8 +309,7 @@ struct MockUpWorkoutOngoingView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
-                .bold()
+                .padding(.trailing, 8)
             }
     }
     
@@ -384,7 +382,6 @@ struct ImageTip: View {
     
     var body: some View {
         TabView(selection: $currentIndex){
-            
             VStack {
                 ZStack{
                     WorkoutImage
@@ -399,36 +396,40 @@ struct ImageTip: View {
                     }
                 }
                 Spacer()
-                    .frame(height: UIScreen.getHeight(100))
+                    .frame(height: UIScreen.getHeight(50))
             }
             .tag(0)
-            
-            WorkoutTip
+            VStack{
+                WorkoutTip
+                Spacer()
+                    .frame(height: UIScreen.getHeight(50))
+            }
                 .tag(1)
             
         }
-        .frame(height: UIScreen.getHeight(220))
+        .frame(height: UIScreen.getHeight(270))
         .tabViewStyle(.page)
     }
     
     var WorkoutImage: some View {
         Image("tempWorkoutImage")
             .resizable()
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
+            .frame(height: UIScreen.getHeight(220))
                     .scaledToFit()
-            .foregroundColor(.gray_600)
     }
     
     var WorkoutTip: some View {
-        RoundedRectangle(cornerRadius: 7.2)
+        RoundedRectangle(cornerRadius: 8.0)
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
             .foregroundColor(.gray_800)
             .overlay {
                 VStack {
                     HStack {
-                        Text("\(workoutOngoingVM.workoutModel.influencerName)'s Tip")
-                            .font(.headline2())
-                            .foregroundColor(.label_700)
+                        Image("descriptionFace1")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                            Spacer()
                         Spacer()
                     }
                     Spacer()
@@ -441,6 +442,7 @@ struct ImageTip: View {
                 }
                 .padding()
             }
+            .padding(.top)
     }
     
     @ViewBuilder
@@ -450,23 +452,18 @@ struct ImageTip: View {
             Image(systemName: "chevron.backward")
                 .font(.button2())
                 .foregroundColor(.label_500)
-            RoundedRectangle(cornerRadius: 8.0)
-                .frame(width: UIScreen.getWidth(80), height: UIScreen.getHeight(68))
+            RoundedShape(corners: [.topLeft, .bottomLeft])
+                .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
                 .foregroundColor(.fill_1)
                 .overlay {
                     HStack {
                         Text("팁")
                             .font(.button2())
                             .foregroundColor(.green_main)
-                        Spacer()
                     }
                     .padding(.horizontal)
                 }
         }
-        .offset(x: UIScreen.getWidth(30))
-        //            .onTapGesture {
-        //                workoutOngoingVM.showWorkoutTip()
-        //            }
     }
 }
 
