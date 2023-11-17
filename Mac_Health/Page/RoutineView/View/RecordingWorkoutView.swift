@@ -46,9 +46,7 @@ struct RecordingWorkoutView: View {
 
         }
         .onAppear {
-            vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
-                editRoutineVM.workout = $0
-            }
+            editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -144,7 +142,7 @@ struct RecordingWorkoutView: View {
             VStack {
                 HStack {
                     // TODO: 운동 리스트
-                    Text("\(editRoutineVM.selectedIndex + 1) / \(editRoutineVM.routine.exercises.count)")
+                    Text("\(editRoutineVM.currentWorkoutIndex + 1) / \(editRoutineVM.routine.exercises.count)")
                         .foregroundColor(.label_700)
                     Text("|")
                         .foregroundColor(.label_400)
@@ -249,7 +247,7 @@ struct RecordingWorkoutView: View {
                     .overlay {
                         HStack {
                             Button {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId) {
+                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
                                     editRoutineVM.workout.sets = $0
                                 }
                             } label: {
@@ -267,7 +265,7 @@ struct RecordingWorkoutView: View {
                                 .foregroundColor(.label_700)
                             
                             Button {
-                                vm.increseSetCount(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId) {
+                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
                                     editRoutineVM.workout.sets = $0
                                 }
                             } label: {
@@ -325,9 +323,23 @@ struct RecordingWorkoutView: View {
                         Spacer()
                         
                         Button {
-                            // TODO: 루틴 완료
                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                                // TODO: 운동 완료
+                                if editRoutineVM.currentWorkoutIndex == editRoutineVM.routine.exercises.count {
+                                    // TODO: 루틴 완료
+                                }
+                                else {
+                                    vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
+                                        editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
+                                        if $0.weight != nil {
+                                            editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
+                                        }
+                                        editRoutineVM.workout.sets[vm.currentSet].isDone = $0.isDone
+                                        
+                                        editRoutineVM.currentWorkoutIndex += 1
+                                        editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
+                                        vm.currentSet = 0
+                                    }
+                                }
                             }
                             else {
                                 vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
@@ -341,14 +353,30 @@ struct RecordingWorkoutView: View {
                             }
                         } label: {
                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                                RoundedRectangle(cornerRadius: 100)
-                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                    .foregroundColor(.red_main)
-                                    .overlay {
-                                        Text("운동 완료")
-                                            .font(.button1())
-                                            .foregroundColor(.label_900)
-                                    }
+                                if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
+                                    RoundedRectangle(cornerRadius: 100)
+                                        .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                        .foregroundColor(.red_main)
+                                        .overlay {
+                                            Text("운동 완료")
+                                                .font(.button1())
+                                                .foregroundColor(.label_900)
+                                        }
+                                }
+                                else {
+                                    RoundedRectangle(cornerRadius: 100)
+                                        .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                        .foregroundColor(.green_main)
+                                        .overlay {
+                                            HStack{
+                                                Text("다음 운동")
+                                                    .font(.button1())
+                                                Image(systemName: "chevron.right")
+                                                    .font(.button2())
+                                            }
+                                            .foregroundColor(.gray_900)
+                                        }
+                                }
                             }
                             else {
                                 RoundedRectangle(cornerRadius: 100)

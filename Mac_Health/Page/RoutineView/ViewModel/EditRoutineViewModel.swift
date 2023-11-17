@@ -27,7 +27,7 @@ class EditRoutineViewModel: ObservableObject {
     @Published var selectedIndex = 0
     
     //현재 진행중인 운동
-    @Published var currentRecordingWorkout = 0
+    @Published var currentWorkoutIndex = 0
     
     /// 루틴의 운동
     @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
