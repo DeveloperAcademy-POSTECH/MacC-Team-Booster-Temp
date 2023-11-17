@@ -9,8 +9,6 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject var vm = SearchViewModel()
-    @Binding var subscribed: Bool
-    @Binding var tabSelection: Int
     
     var body: some View {
         ZStack {
@@ -27,8 +25,8 @@ struct SearchView: View {
     }
 }
 
-//struct SearchView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchView()
-//    }
-//}
+struct SearchView_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchView()
+    }
+}
