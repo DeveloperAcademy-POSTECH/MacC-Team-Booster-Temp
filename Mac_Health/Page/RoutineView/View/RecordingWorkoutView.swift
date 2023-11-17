@@ -156,6 +156,7 @@ struct RecordingWorkoutView: View {
                     Spacer()
                 }
                 .font(.body2())
+                .padding(.top)
                 
                 Spacer()
                 
@@ -195,7 +196,7 @@ struct RecordingWorkoutView: View {
                             }
                         } label: {
                             // TODO: 팁 사이즈 바꾸기 - 지금 오른쪽 라디우스 나옴
-                            RoundedRectangle(cornerRadius: 8.0)
+                            RoundedShape(corners: [.topLeft, .bottomLeft])
                                 .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
                                 .foregroundColor(.fill_1)
                                 .overlay {
@@ -446,5 +447,5 @@ struct RecordingWorkoutView: View {
 }
 
 #Preview {
-    RecordingWorkoutView(routineId: 2, exerciseId: 7)
+    RecordingWorkoutView(routineId: 0, exerciseId: 0)
 }
