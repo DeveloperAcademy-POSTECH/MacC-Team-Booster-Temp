@@ -16,18 +16,6 @@ class RecordingWorkoutViewModel: ObservableObject {
     /// 현재 진행 중인 운동 세트 인덱스
     @Published var currentSet = 0
     
-    /// 현재 진행 중인 운동의 상세 정보 시트 여부
-    @Published var isDetailedWorkoutSheetShow = false
-    
-    /// 현재 진행 중인 운동의 대체 또는 삭제 여부
-    @Published var isEditWorkoutActionShow = false
-    
-    /// 현재 진행 중인 운동의 대체 시트 여부
-    @Published var isAlternateWorkoutSheetShow = false
-    
-    /// 현재 진행 중인 운동의 삭제 얼럿 여부
-    @Published var isDeleteWorkoutAlertShow = false
-    
     /// 현재 진행 중인 운동의 중단 얼럿 여부
     @Published var isStopAlertShow = false
     
@@ -37,13 +25,14 @@ class RecordingWorkoutViewModel: ObservableObject {
     /// 운동이 남아있을 때 운동 완료 얼럿 여부
     @Published var isDiscontinuewAlertShow = false
     
+    /// 루틴 완료 여부
+    @Published var isFinish = false
+    
     //MARK: 선택한 운동: 선택한 운동 받아오기 - YONG
     @Published var selectedExercise = -1
     
     //팁 이미지 전환
     @Published var tabSelection = 0
-    
-    @Published var isFinish = false
     
     @Published var elapsedTime: TimeInterval = 0
     @Published var isRunning: Bool = false
