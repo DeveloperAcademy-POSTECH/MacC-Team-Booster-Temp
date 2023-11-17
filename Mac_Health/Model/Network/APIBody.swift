@@ -236,6 +236,20 @@ struct BigThree: Codable, Hashable {
     var deadLift: Int
 }
 
+struct InfluencerExercise: Codable, Hashable {
+    var name: String
+    var exerciseImageUrl: String
+    var numberOfSet: Int
+    var recommendReps: String
+    var tip: String
+}
+
+struct PreviewExercise: Codable, Hashable {
+    var date: String
+    var part: String
+    var exercises: [InfluencerExercise]
+}
+
 struct TestRoutine: Codable {
     var id: Int
     var numberOfExercise: Int
@@ -258,8 +272,10 @@ struct ResponseGetRoutines: Codable {
 // MARK: influencer-controller
 struct InfluencerPreview: Codable, Hashable {
     var influencerId: Int
-    var onePersonProfileImageUrl: String
-    var listImageUrl: String
+    // TODO: api 수정 후 옵셔널 제거
+    var onePersonProfileImageUrl: String?
+    // TODO: api 수정 후 옵셔널 제거
+    var listImageUrl: String?
     var name: String
     var routineName: String
     var title: String
@@ -275,11 +291,11 @@ struct ResponseGetInfluencersId: Codable {
     var influencerName: String
     var routineName: String
     var title: String
-    var introduce: String
     var awards: String
+    var introduce: String
     var bodySpec: BodySpec
     var bigThree: BigThree
-    var routine: [Exercise]
+    var routine: PreviewExercise
     var isSubscription: Bool
 }
 

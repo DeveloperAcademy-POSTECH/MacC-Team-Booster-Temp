@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct SubscribeView: View {
+    let influencerId: Int
     
-    //    @State var seeMore:Bool = false
-    @State var showTab = false
-    @State var scrollOffset: CGFloat = 0.00
-    @State var subscribingSheet = false
-    @Binding var tabSelection: Int
-    @Binding var subscribed: Bool
-    @State var loggedIn = true
+    @StateObject var vm = SubscribeViewModel()
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = """
@@ -39,7 +35,7 @@ struct SubscribeView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             ScrollView {
-                VStack{
+                VStack {
                     //구독 페이지 설명
                     IntroPage
                     //구독 버튼
@@ -58,19 +54,22 @@ struct SubscribeView: View {
                 .onPreferenceChange(ViewOffsetKey.self) { offset in
                     withAnimation {
                         if offset > UIScreen.getHeight(422) {
-                            showTab = true
+                            vm.showTab = true
                         } else  {
-                            showTab = false
+                            vm.showTab = false
                         }
                     }
-                    scrollOffset = offset
+                    vm.scrollOffset = offset
                 }
             }
             .coordinateSpace(name: "scroll")
             .overlay(
-                showTab ?
+                vm.showTab ?
                 createTab() : nil, alignment: Alignment.bottom
             )
+        }
+        .onAppear {
+            vm.fetchInfluencer(influencerId: influencerId)
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -123,7 +122,7 @@ struct SubscribeView: View {
                         .padding(.top, 20)
                     Spacer()
                 }
-                Text(introduce)
+                Text(vm.influencer.introduce)
                     .foregroundColor(.label_800)
                     .font(.body)
                     .padding(.vertical, 10)
@@ -182,8 +181,9 @@ struct SubscribeView: View {
             //                .padding(.top, 40)
             //            }
             //            else {
-            VStack(alignment: .leading){
-                ForEach(0..<award.count, id: \.self) { index in
+            VStack(alignment: .leading) {
+                // TODO: 포이치 조정
+                ForEach(0..<vm.influencer.awards.count, id: \.self) { index in
                     HStack {
                         VStack {
                             Text("•")
@@ -193,7 +193,7 @@ struct SubscribeView: View {
                         }
                         VStack(alignment: .leading){
                             HStack {
-                                Text(award[index])
+                                Text(vm.influencer.awards)
                                     .font(.body)
                                     .foregroundColor(.label_800)
                                 Spacer()
@@ -212,12 +212,12 @@ struct SubscribeView: View {
     
     @ViewBuilder
     var subscribeButton: some View {
-        if loggedIn {
+        if vm.loggedIn {
             Button {
-                self.subscribingSheet = true
-                self.subscribed.toggle()
+                vm.subscribingSheet = true
+                vm.influencer.isSubscription.toggle()
             } label: {
-                FloatingButton(backgroundColor: subscribed ? .gray_900 :.green_main) { subscribed ? Text("구독취소")
+                FloatingButton(backgroundColor: vm.influencer.isSubscription ? .gray_900 :.green_main) { vm.influencer.isSubscription ? Text("구독취소")
                         .foregroundColor(.red_main)
                         .font(.button1())
                     :
@@ -227,7 +227,7 @@ struct SubscribeView: View {
                 }
                 
             }
-            .alert(subscribed ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $subscribingSheet) {
+            .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.subscribingSheet) {
                 Button("확인") {
                     //TODO: 서버에 vm.routines.routines 변화
                 }
@@ -248,15 +248,15 @@ struct SubscribeView: View {
     }
     
     var topInfluencerDescription: some View {
-        ZStack(alignment: .bottomTrailing){
-            VStack{
+        ZStack(alignment: .bottomTrailing) {
+            VStack {
                 Spacer()
-                HStack{
-                    VStack(alignment: .leading, spacing: 16){
-                        Text("정회승의 Smart Routine")
+                HStack {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("\(vm.influencer.influencerName)의 \(vm.influencer.routineName)")
                             .foregroundColor(.label_900)
                             .font(.title1())
-                        Text("2022 Mr. 서울대🏆")
+                        Text(vm.influencer.title)
                             .foregroundColor(.label_600)
                             .font(.body2())
                             .padding(.bottom, 40)
@@ -277,10 +277,10 @@ struct SubscribeView: View {
                     .font(.headline1())
                     .padding(.top, 20)
                     .padding(.bottom, 5)
-                Text("키: 173cm")
+                Text("키: \(vm.influencer.bodySpec.height)cm")
                     .foregroundColor(.label_800)
                     .font(.body)
-                Text("몸무게: 80kg")
+                Text("몸무게: \(vm.influencer.bodySpec.weight)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
             }
@@ -297,13 +297,13 @@ struct SubscribeView: View {
                     .font(.headline1())
                     .padding(.top, 20)
                     .padding(.bottom, 5)
-                Text("Squat: 210kg")
+                Text("Squat: \(vm.influencer.bigThree.squat)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
-                Text("Deadlift: 280kg")
+                Text("Deadlift: \(vm.influencer.bigThree.deadLift)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
-                Text("Bench Press: 140kg")
+                Text("Bench Press: \(vm.influencer.bigThree.benchPress)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
             }
@@ -317,6 +317,7 @@ struct SubscribeView: View {
             Color.gray_900.ignoresSafeArea()
             HStack{
                 Spacer()
+                // TODO: 이미지
                 Image("Background1")
                     .resizable()
                     .scaledToFit()

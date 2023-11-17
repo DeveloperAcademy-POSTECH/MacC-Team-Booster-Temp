@@ -30,7 +30,7 @@ struct MainView: View {
                     }
                     .tag(0)
                 
-                SearchView(subscribed: $subscribed, tabSelection: $vm.tabSelection)
+                SearchView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("둘러보기")

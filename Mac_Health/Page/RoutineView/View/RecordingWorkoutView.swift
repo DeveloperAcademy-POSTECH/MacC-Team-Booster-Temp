@@ -18,7 +18,9 @@ struct RecordingWorkoutView: View {
     @StateObject var vm = RecordingWorkoutViewModel()
     //    @StateObject var stopwatch = StopwatchViewModel()
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    
     @Environment(\.dismiss) var dismiss
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         if vm.isFinish {
@@ -41,9 +43,23 @@ struct RecordingWorkoutView: View {
                     }
                 }
                 
+                VStack{
+                    Spacer()
+                    isFocused ? nil :
+                    LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                        .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                        .onTapGesture {
+                            // Handle taps on the LinearGradient if needed
+                            print("LinearGradient tapped!")
+                        }
+                        .allowsHitTesting(false)
+                }
+                .ignoresSafeArea()
+
+                
                 VStack {
                     Spacer()
-                    WorkoutButton
+                    isFocused ? nil : WorkoutButton
                 }
                 
             }
@@ -73,7 +89,6 @@ struct RecordingWorkoutView: View {
                 
             }
             .sheet(isPresented: $vm.isPauseSheetShow) {
-                PauseSheet(viewModel: vm)
             }
             .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
                 WorkoutStopAlert
@@ -82,7 +97,6 @@ struct RecordingWorkoutView: View {
             }
         }
     }
-<<<<<<< HEAD
     
     @ViewBuilder
     var NavigationTitle: some View {
@@ -95,199 +109,11 @@ struct RecordingWorkoutView: View {
                 .foregroundColor(.label_900)
                 .font(.headline1())
             // TODO: 운동 상태
-=======
-        
-        @ViewBuilder
-        var NavigationTitle: some View {
-            HStack {
-                Image(systemName: "flame.fill")
-                    .foregroundColor(.label_700)
-                    .font(.headline2())
-                // TODO: 운동 시간
-                Text(vm.timeFormatted())
-                    .foregroundColor(.label_900)
-                    .font(.headline1())
-                // TODO: 운동 상태
-                Button {
-                    vm.isStopAlertShow = true
-                    vm.stop()
-                } label: {
-                    Circle()
-                        .foregroundColor(.gray_700)
-                        .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
-                        .overlay {
-                            Image(systemName: "pause.fill")
-                                .resizable()
-                                .foregroundColor(.label_900)
-                                .frame(width: UIScreen.getWidth(11), height: UIScreen.getHeight(14))
-                        }
-                }
-            }
-        }
-    
-    @ViewBuilder
-    var WorkoutSetList: some View {
-        if !editRoutineVM.workout.sets.isEmpty {
-            ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
-                // TODO: 무게 조정 api 호출
-                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index])
-                    .environmentObject(vm)
-                    .overlay {
-                        if index == vm.currentSet {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(lineWidth: 1)
-                                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
-                                .foregroundColor(.green_main)
-                        }
-                    }
-            }
-        }
-    }
-        
-        var AlternativeButton: some View {
->>>>>>> 11198a1 (debounce, focuse, color ... ect)
             Button {
                 vm.isStopAlertShow = true
                 vm.stop()
             } label: {
-<<<<<<< HEAD
                 Circle()
-=======
-                Image(systemName: "ellipsis")
-                    .foregroundColor(.label_700)
-                    .font(.headline1())
-            }
-        }
-        
-        @ViewBuilder
-        var AlternativeActionSheet: some View {
-            Button {
-                editRoutineVM.isEditWorkoutActionShow = true
-            } label: {
-                Text("운동 대체")
-            }
-            
-            Button {
-                // TODO: .
-            } label: {
-                Text("삭제")
-            }
-            
-            
-            Button(role: .cancel) {
-                // TODO: .
-            } label: {
-                Text("취소")
-            }
-        }
-        
-        var WorkoutInfomation: some View {
-            VStack {
-                HStack {
-                    // TODO: 운동 리스트
-                    Text("\(editRoutineVM.currentWorkoutIndex + 1) / \(editRoutineVM.routine.exercises.count)")
-                        .foregroundColor(.label_700)
-                    Text("|")
-                        .foregroundColor(.label_400)
-                    Text(editRoutineVM.workout.part)
-                        .foregroundColor(.label_700)
-                    Spacer()
-                }
-                .font(.body2())
-                
-                Spacer()
-                
-                HStack {
-                    Text(editRoutineVM.workout.name)
-                        .font(.title1())
-                        .foregroundColor(.label_900)
-                    Spacer()
-                }
-            }
-            .padding(.horizontal)
-        }
-        
-        var WorkoutImageAndTip: some View {
-            TabView(selection: $vm.tabSelection){
-                ZStack {
-                    AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    } placeholder: {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .scaledToFit()
-                            .scaleEffect(CGSize(width: 1.0, height: 1.0))
-                            .foregroundColor(.gray_600)
-                    }
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
-                    .padding()
-                    
-                    HStack {
-                        Spacer()
-                        Image(systemName: "chevron.backward")
-                            .foregroundColor(.label_500)
-                        Button {
-                            withAnimation {
-                                vm.tabSelection = 1
-                            }
-                        } label: {
-                            // TODO: 팁 사이즈 바꾸기 - 지금 오른쪽 라디우스 나옴
-                            RoundedRectangle(cornerRadius: 8.0)
-                                .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
-                                .foregroundColor(.fill_1)
-                                .overlay {
-                                    Text("팁")
-                                        .foregroundColor(.green_main)
-                                }
-                        }
-                    }
-                    .font(.button2())
-                }
-                .tag(0)
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 7.2)
-                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-                        .foregroundColor(.gray_800)
-                        .overlay {
-                            VStack {
-                                HStack {
-                                    AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
-                                        image
-                                            .resizable()
-                                    } placeholder: {
-                                        Image(systemName: "arrow.triangle.2.circlepath")
-                                            .scaledToFit()
-                                            .scaleEffect(CGSize(width: 1.0, height: 1.0))
-                                            .foregroundColor(.gray_600)
-                                            .padding()
-                                    }
-                                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
-                                    Spacer()
-                                }
-                                Spacer()
-                                
-                                Text(editRoutineVM.workout.tip)
-                                    .font(.body())
-                                    .foregroundColor(.label_900)
-                                Spacer()
-                                Spacer()
-                            }
-                            .padding()
-                        }
-                }
-                .tag(1)
-            }
-            .frame(height: UIScreen.getHeight(300))
-            .tabViewStyle(.page)
-        }
-        
-        var WorkoutSetButton: some View {
-            HStack {
-                RoundedRectangle(cornerRadius: 4)
-                    .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
->>>>>>> 11198a1 (debounce, focuse, color ... ect)
                     .foregroundColor(.gray_700)
                     .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                     .overlay {
@@ -367,152 +193,145 @@ struct RecordingWorkoutView: View {
             }
         }
         .padding(.horizontal)
+        .padding(.top)
     }
     
     var WorkoutImageAndTip: some View {
         TabView(selection: $vm.tabSelection){
-            ZStack {
-                AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } placeholder: {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.gray_600)
-                }
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(230))
-                .padding()
-                
-                HStack {
-                    Spacer()
-                    Image(systemName: "chevron.backward")
-                        .foregroundColor(.label_500)
-                    Button {
-                        withAnimation {
-                            vm.tabSelection = 1
+                VStack{
+                    ZStack{
+                        AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            Image(systemName: "arrow.triangle.2.circlepath")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.gray_600)
                         }
-                    } label: {
-                        RoundedShape(corners: [.topLeft, .bottomLeft])
-                            .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
-                            .foregroundColor(.fill_1)
-                            .overlay {
-                                Text("팁")
-                                    .foregroundColor(.green_main)
+                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                        .padding(.horizontal)
+                        
+                        HStack {
+                            Spacer()
+                            Image(systemName: "chevron.backward")
+                                .foregroundColor(.label_500)
+                            Button {
+                                withAnimation {
+                                    vm.tabSelection = 1
+                                }
+                            } label: {
+                                RoundedShape(corners: [.topLeft, .bottomLeft])
+                                    .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
+                                    .foregroundColor(.fill_1)
+                                    .overlay {
+                                        Text("팁")
+                                            .foregroundColor(.green_main)
+                                    }
                             }
+                        }
                     }
+                    .font(.button2())
+                    Spacer()
+                        .frame(height: UIScreen.getHeight(50))
                 }
-                .font(.button2())
-            }
             .tag(0)
             
             ZStack {
-                RoundedRectangle(cornerRadius: 7.2)
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-                    .foregroundColor(.gray_800)
-                    .overlay {
-                        VStack {
-                            HStack {
-                                AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
-                                    image
-                                        .resizable()
-                                } placeholder: {
-                                    Image(systemName: "arrow.triangle.2.circlepath")
-                                        .resizable()
-                                        .foregroundColor(.gray_600)
-                                        .padding()
+                VStack{
+                    RoundedRectangle(cornerRadius: 7.2)
+                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                        .foregroundColor(.gray_800)
+                        .overlay {
+                            VStack {
+                                HStack {
+                                    AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
+                                        image
+                                            .resizable()
+                                    } placeholder: {
+                                        Image(systemName: "arrow.triangle.2.circlepath")
+                                            .resizable()
+                                            .foregroundColor(.gray_600)
+                                            .padding()
+                                    }
+                                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                    .padding(.horizontal, 5)
+                                    .padding(.top, 4)
+                                    Spacer()
                                 }
-                                .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                Spacer()
+                                
+                                Text(editRoutineVM.workout.tip)
+                                    .font(.body())
+                                    .foregroundColor(.label_900)
+                                    .padding(.horizontal, 1.9)
+                                    .lineSpacing(6.0)
+                                Spacer()
                                 Spacer()
                             }
-                            Spacer()
-                            
-                            Text(editRoutineVM.workout.tip)
-                                .font(.body())
-                                .foregroundColor(.label_900)
-                            Spacer()
-                            Spacer()
+                            .padding()
                         }
-                        .padding()
-                    }
+                    Spacer()
+                        .frame(height: UIScreen.getHeight(50))
+                }
             }
             .tag(1)
         }
-        .frame(height: UIScreen.getHeight(300))
+        .frame(height: UIScreen.getHeight(270))
         .tabViewStyle(.page)
     }
     
     var WorkoutSetButton: some View {
-        HStack {
-            RoundedRectangle(cornerRadius: 4)
-                .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
-                .foregroundColor(.gray_700)
-                .overlay {
-                    HStack {
-                        Button {
-                            if editRoutineVM.workout.sets.count > 1 {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                    editRoutineVM.workout.sets = $0
+            HStack {
+                RoundedRectangle(cornerRadius: 4)
+                    .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
+                    .foregroundColor(.gray_700)
+                    .overlay {
+                        HStack {
+                            Button {
+                                if editRoutineVM.workout.sets.count > 1 {
+                                    vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                        editRoutineVM.workout.sets = $0
+                                    }
                                 }
+                            } label: {
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                    .overlay {
+                                        Image(systemName: "minus")
+                                            .foregroundColor(.label_900)
+                                    }
                             }
-                        } label: {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
-                                .overlay {
-                                    Image(systemName: "minus")
-                                        .foregroundColor(.label_900)
+                            .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
+                            .disabled(editRoutineVM.workout.sets.count <= 1)
+                            
+                            Text("\(editRoutineVM.workout.sets.count)세트")
+                                .foregroundColor(.label_700)
+                            
+                            Button {
+                                if editRoutineVM.workout.sets.count < 10 {
+                                    vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                        editRoutineVM.workout.sets = $0
+                                    }
                                 }
-                        }
-                        .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
-                        .disabled(editRoutineVM.workout.sets.count <= 1)
-                        
-                        Text("\(editRoutineVM.workout.sets.count)세트")
-                            .foregroundColor(.label_700)
-                        
-                        Button {
-                            if editRoutineVM.workout.sets.count < 10 {
-                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                    editRoutineVM.workout.sets = $0
-                                }
+                            } label: {
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                    .overlay {
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.label_900)
+                                    }
                             }
-<<<<<<< HEAD
-=======
+                            .disabled(editRoutineVM.workout.sets.count >= 10)
                         }
                         .font(.body())
                     }
                 Spacer()
             }
             .padding()
-        }
-        
-        var WorkoutButton: some View {
-            RoundedRectangle(cornerRadius: 100)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
-                .foregroundColor(.gray_600)
-                .overlay {
-                    HStack {
-                        NavigationLink {
-                            RecordingRoutineView()
-                                .environmentObject(editRoutineVM)
->>>>>>> 11198a1 (debounce, focuse, color ... ect)
-                        } label: {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
-                                .overlay {
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.label_900)
-                                }
-                        }
-                        .disabled(editRoutineVM.workout.sets.count >= 10)
-                    }
-                    .font(.body())
-                }
-            Spacer()
-        }
-        .padding()
     }
     
     @ViewBuilder
@@ -520,7 +339,7 @@ struct RecordingWorkoutView: View {
         if !editRoutineVM.workout.sets.isEmpty {
             ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                 // TODO: 무게 조정 api 호출
-                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
+                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index])
                     .environmentObject(vm)
                     .overlay {
                         if index == vm.currentSet {
@@ -627,8 +446,7 @@ struct RecordingWorkoutView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
-                .bold()
+                .padding(.trailing, 8)
             }
     }
     

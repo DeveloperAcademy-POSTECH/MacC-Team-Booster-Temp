@@ -9,153 +9,24 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject var vm = SearchViewModel()
-    @State private var mailData = ComposeMailData(subject: "비플 문의하기",
-                                                  recipients: ["pmchung423@gmail.com"],
-                                                  message: "비플 문의하기",
-                                                  attachments: [
-                                                    //                                                    AttachmentData(data: "Some text".data(using: .utf8)!,
-                                                    //                                                                               mimeType: "text/plain",
-                                                    //                                                                               fileName: "text.txt")
-                                                  ]
-    )
-    @State private var showMailView = false
-    @Binding var subscribed: Bool
-    @Binding var tabSelection: Int
+    
     var body: some View {
-        //네비게이션 스택 2인 이상
-        //            ZStack {
-        //                Color.gray_900.ignoresSafeArea()
-        //                    VStack {
-        //                        ScrollView {
-        //                        TopImage()
-        //                        RecommendCardScroll
-        //                    }
-        //                        .padding(.bottom, 35)
-        //                    Spacer()
-        //                        .frame(height: UITabBarController().height)
-        //                }
-        //                .ignoresSafeArea()
-        //            }
-        
-        //둘러보기 1인용
         ZStack {
-            Color.gray_900.ignoresSafeArea()
-            VStack {
-                NavigationTitle
-                NavigationLink {
-                    SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
-                } label: {
-                    SearchCard
-                }
-                
-                Button {
-                    showMailView.toggle()
-                } label: {
-                    InquiryCard
-                }
-                .disabled(!MailView.canSendMail)
-                .sheet(isPresented: $showMailView) {
-                    MailView(data: $mailData) { result in
-                        print(result)
-                    }
-                }
-                Spacer()
-                //                        .frame(height: UITabBarController().height)
+            switch vm.influencer.previews.count {
+            case 1:
+                SingleInfluencerPreviewView(influencer: $vm.influencer.previews[0])
+            default:
+                EmptyView()
             }
-            .padding(.bottom, 35)
-            .onAppear {
-                vm.fetchInfluencer()
-            }
-            //            .ignoresSafeArea()
+        }
+        .onAppear {
+            vm.fetchInfluencer()
         }
     }
-    
-    var NavigationTitle: some View {
-        HStack {
-            Text("둘러보기")
-                .font(.title2())
-                .foregroundColor(.label_900)
-            Spacer()
-        }
-        .padding()
-    }
-    
-    var SearchCard: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 8.0)
-                .foregroundColor(.gray_700)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
-            Image("Influencer1")
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(.blue)
-            HStack {
-                VStack(alignment: .leading){
-                    Spacer()
-                    Text("정회승의 Smart Routine")
-                        .font(.title1())
-                        .foregroundColor(.label_900)
-                    Text("2022 Mr. 서울대🏆")
-                        .font(.body2())
-                        .foregroundColor(.label_600)
-                        .padding(.bottom, 12)
-                }
-                Spacer()
-            }
-            .padding()
-        }
-        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
-        //        .mask(
-        //            RoundedRectangle(cornerRadius: 8.0)
-        //                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
-        //        )
-    }
-    
-    @ViewBuilder
-    var InquiryCard: some View {
-        RoundedRectangle(cornerRadius: 8.0)
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getWidth(68))
-            .foregroundColor(.fill_3)
-            .overlay{
-                HStack{
-                    Text("나도 운동일지를 공유하고 싶다면?")
-                        .foregroundColor(.label_700)
-                        .font(.body2())
-                    Spacer()
-                    Text("문의하기")
-                        .foregroundColor(.label_700)
-                        .font(.button2())
-                }
-                .padding()
-            }
-    }
-    
-    //    @ViewBuilder
-    //    var RecommendCardScroll: some View {
-    //            VStack(spacing: 20){
-    //                HStack {
-    //                    Text("전문가들의 일상 루틴")
-    //                        .foregroundColor(.label_900)
-    //                        .font(.title2())
-    //                        .padding(.leading, 20)
-    //                    Spacer()
-    //                }
-    //                VStack(spacing: 20){
-    //                    ForEach(1..<4, id: \.self) {idx in
-    //                        //전문가들의 일상 루틴에서 구독 뷰
-    //                        NavigationLink {
-    //                            SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
-    //                        } label: {
-    //                            InfluencerCard(cardBannerNum: idx)
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //    }
 }
 
-//struct SearchView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchView()
-//    }
-//}
+struct SearchView_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchView()
+    }
+}
