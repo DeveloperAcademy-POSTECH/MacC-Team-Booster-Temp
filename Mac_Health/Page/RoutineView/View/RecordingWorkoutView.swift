@@ -252,8 +252,10 @@ struct RecordingWorkoutView: View {
                     .overlay {
                         HStack {
                             Button {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                    editRoutineVM.workout.sets = $0
+                                if editRoutineVM.workout.sets.count > 1 {
+                                    vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                        editRoutineVM.workout.sets = $0
+                                    }
                                 }
                             } label: {
                                 Rectangle()
@@ -265,13 +267,16 @@ struct RecordingWorkoutView: View {
                                     }
                             }
                             .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
+                            .disabled(editRoutineVM.workout.sets.count <= 1)
                             
                             Text("\(editRoutineVM.workout.sets.count)세트")
                                 .foregroundColor(.label_700)
                             
                             Button {
-                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                    editRoutineVM.workout.sets = $0
+                                if editRoutineVM.workout.sets.count < 10 {
+                                    vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                        editRoutineVM.workout.sets = $0
+                                    }
                                 }
                             } label: {
                                 Rectangle()
@@ -282,6 +287,7 @@ struct RecordingWorkoutView: View {
                                             .foregroundColor(.label_900)
                                     }
                             }
+                            .disabled(editRoutineVM.workout.sets.count >= 10)
                         }
                         .font(.body())
                     }
