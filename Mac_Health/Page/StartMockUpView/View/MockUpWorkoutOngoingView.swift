@@ -428,6 +428,8 @@ struct ImageTip: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                            .padding(.horizontal, 5)
+                            .padding(.top, 4)
                             Spacer()
                         Spacer()
                     }
@@ -436,6 +438,8 @@ struct ImageTip: View {
                     Text(workoutOngoingVM.workoutModel.workoutTip)
                         .font(.body())
                         .foregroundColor(.label_900)
+                        .padding(.horizontal, 1.9)
+                        .lineSpacing(6.0)
                     Spacer()
                     Spacer()
                 }
