@@ -43,6 +43,20 @@ struct RecordingWorkoutView: View {
                     }
                 }
                 
+                VStack{
+                    Spacer()
+                    isFocused ? nil :
+                    LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
+                        .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                        .onTapGesture {
+                            // Handle taps on the LinearGradient if needed
+                            print("LinearGradient tapped!")
+                        }
+                        .allowsHitTesting(false)
+                }
+                .ignoresSafeArea()
+
+                
                 VStack {
                     Spacer()
                     isFocused ? nil : WorkoutButton
@@ -273,55 +287,55 @@ struct RecordingWorkoutView: View {
     }
     
     var WorkoutSetButton: some View {
-        HStack {
-            RoundedRectangle(cornerRadius: 4)
-                .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
-                .foregroundColor(.gray_700)
-                .overlay {
-                    HStack {
-                        Button {
-                            if editRoutineVM.workout.sets.count > 1 {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                    editRoutineVM.workout.sets = $0
+            HStack {
+                RoundedRectangle(cornerRadius: 4)
+                    .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
+                    .foregroundColor(.gray_700)
+                    .overlay {
+                        HStack {
+                            Button {
+                                if editRoutineVM.workout.sets.count > 1 {
+                                    vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                        editRoutineVM.workout.sets = $0
+                                    }
                                 }
+                            } label: {
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                    .overlay {
+                                        Image(systemName: "minus")
+                                            .foregroundColor(.label_900)
+                                    }
                             }
-                        } label: {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
-                                .overlay {
-                                    Image(systemName: "minus")
-                                        .foregroundColor(.label_900)
+                            .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
+                            .disabled(editRoutineVM.workout.sets.count <= 1)
+                            
+                            Text("\(editRoutineVM.workout.sets.count)세트")
+                                .foregroundColor(.label_700)
+                            
+                            Button {
+                                if editRoutineVM.workout.sets.count < 10 {
+                                    vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                        editRoutineVM.workout.sets = $0
+                                    }
                                 }
-                        }
-                        .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
-                        .disabled(editRoutineVM.workout.sets.count <= 1)
-                        
-                        Text("\(editRoutineVM.workout.sets.count)세트")
-                            .foregroundColor(.label_700)
-                        
-                        Button {
-                            if editRoutineVM.workout.sets.count < 10 {
-                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                    editRoutineVM.workout.sets = $0
-                                }
+                            } label: {
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                    .overlay {
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.label_900)
+                                    }
                             }
-                        } label: {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
-                                .overlay {
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.label_900)
-                                }
+                            .disabled(editRoutineVM.workout.sets.count >= 10)
                         }
-                        .disabled(editRoutineVM.workout.sets.count >= 10)
+                        .font(.body())
                     }
-                    .font(.body())
-                }
-            Spacer()
-        }
-        .padding()
+                Spacer()
+            }
+            .padding()
     }
     
     @ViewBuilder
