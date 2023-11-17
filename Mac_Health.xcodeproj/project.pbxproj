@@ -84,6 +84,7 @@
 		F891B5B32B07E0130085E070 /* SingleInfluencerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B22B07E0130085E070 /* SingleInfluencerPreviewView.swift */; };
 		F891B5B52B07E0220085E070 /* MultiInfluencerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B42B07E0220085E070 /* MultiInfluencerPreviewView.swift */; };
 		F891B5B72B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B62B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift */; };
+		F891B5B92B07F01D0085E070 /* SubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B82B07F01D0085E070 /* SubscribeViewModel.swift */; };
 		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
 		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
@@ -196,6 +197,7 @@
 		F891B5B22B07E0130085E070 /* SingleInfluencerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerPreviewView.swift; sourceTree = "<group>"; };
 		F891B5B42B07E0220085E070 /* MultiInfluencerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiInfluencerPreviewView.swift; sourceTree = "<group>"; };
 		F891B5B62B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerPreviewViewModel.swift; sourceTree = "<group>"; };
+		F891B5B82B07F01D0085E070 /* SubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewModel.swift; sourceTree = "<group>"; };
 		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
 		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
 		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 			children = (
 				F891B5B02B07D9BD0085E070 /* SearchViewModel.swift */,
 				F891B5B62B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift */,
+				F891B5B82B07F01D0085E070 /* SubscribeViewModel.swift */,
 				D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */,
 			);
 			path = ViewModel;
@@ -778,6 +781,7 @@
 				F8DACB562B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift in Sources */,
 				F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */,
 				D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */,
+				F891B5B92B07F01D0085E070 /* SubscribeViewModel.swift in Sources */,
 				F877F0B22AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift in Sources */,
 				D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */,
 				F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */,
