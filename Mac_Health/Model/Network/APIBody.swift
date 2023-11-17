@@ -258,8 +258,10 @@ struct ResponseGetRoutines: Codable {
 // MARK: influencer-controller
 struct InfluencerPreview: Codable, Hashable {
     var influencerId: Int
-    var onePersonProfileImageUrl: String
-    var listImageUrl: String
+    // TODO: api 수정 후 옵셔널 제거
+    var onePersonProfileImageUrl: String?
+    // TODO: api 수정 후 옵셔널 제거
+    var listImageUrl: String?
     var name: String
     var routineName: String
     var title: String
