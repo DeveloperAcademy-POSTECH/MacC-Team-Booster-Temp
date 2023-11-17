@@ -101,7 +101,7 @@ struct MockUpRecordExampleView: View {
                 .padding(.vertical)
                 HStack {
                     Spacer()
-                    VStack(alignment: .trailing, spacing: 6) {
+                    VStack(alignment: .trailing, spacing: 3) {
                         makeSet(id: setInfo[0][0], kg: setInfo[0][1], rep: setInfo[0][2])
                         makeSet(id: setInfo[1][0], kg: setInfo[1][1], rep: setInfo[2][2])
                         makeSet(id: setInfo[2][0], kg: setInfo[2][1], rep: setInfo[2][2])
