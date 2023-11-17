@@ -16,11 +16,14 @@ class RecordViewModel: ObservableObject {
         fetchRecords()
     }
     
+    // TODO: 다중 데이터로 확인해보기
     func fetchRecords() {
         GeneralAPIManger.request(for: .GetUsersRecords, type: [Records].self) {
             switch $0 {
             case .success(let records):
-                print(records)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                self.selectedDate = dateFormatter.string(from: .now)
                 self.records.records = records
                 self.fetchRecodedDate()
             case .failure(let error):
