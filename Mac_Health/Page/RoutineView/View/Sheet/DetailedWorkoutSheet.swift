@@ -76,8 +76,8 @@ struct DetailedWorkoutSheet: View {
                     .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
             } placeholder: {
                 Image(systemName: "arrow.triangle.2.circlepath")
-                    .resizable()
                     .scaledToFit()
+                    .scaleEffect(CGSize(width: 1.0, height: 1.0))
                     .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                     .padding()
             }

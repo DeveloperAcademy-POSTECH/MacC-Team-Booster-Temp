@@ -21,9 +21,7 @@ struct SingleInfluencerRoutineView: View {
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
-            
             InfluencerImage
-            
             VStack {
                     NavigationTitle
                     InfluencerComment
@@ -56,12 +54,12 @@ struct SingleInfluencerRoutineView: View {
                 .frame(width: UIScreen.getWidth(390))
         } placeholder: {
             VStack(alignment: .center) {
-                            Image(systemName: "arrow.triangle.2.circlepath")
-                                .scaledToFit()
-                                .scaleEffect(CGSize(width: 3.0, height: 3.0))
-                                .padding(.top, 200)
-                            Spacer()
-                        }
+                Image(systemName: "arrow.triangle.2.circlepath")
+                    .scaledToFit()
+                    .scaleEffect(CGSize(width: 2.0, height: 2.0))
+                    .padding(.top, 200)
+                Spacer()
+            }
         }
     }
     
