@@ -46,7 +46,7 @@ struct MockUpWorkoutOngoingView: View {
             VStack{
                 Spacer()
                 isFocused ? nil :
-                LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
                     .frame(height: UIScreen.getHeight(150), alignment: .bottom)
                     .onTapGesture {
                         // Handle taps on the LinearGradient if needed
