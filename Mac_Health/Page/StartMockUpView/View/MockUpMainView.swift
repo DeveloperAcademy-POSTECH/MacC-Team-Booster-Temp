@@ -14,7 +14,6 @@ struct MockUpMainView: View {
     }
     @State private var path = NavigationPath()
     @State private var tabSelection = 1
-    @State var subscribed = false
     @State var loggedIn = false
     
     var body: some View {
@@ -26,7 +25,7 @@ struct MockUpMainView: View {
                     }
                     .tag(1)
                 
-                MockUpSearchView(tabSelection: $tabSelection, subscribed: $subscribed)
+                MockUpSearchView(tabSelection: $tabSelection)
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("둘러보기")
@@ -52,5 +51,7 @@ struct MockUpMainView: View {
 }
 
 #Preview {
-    MockUpMainView()
+    NavigationStack{
+        MockUpMainView()
+    }
 }

@@ -51,6 +51,7 @@ struct OnboardingView: View {
                             .foregroundColor(.label_700)
                     }
                     .padding(32)
+                    .padding(.bottom, 26)
                     Spacer()
                 }
                 /// 로그인 버튼
@@ -70,7 +71,8 @@ struct OnboardingView: View {
     
     var LoginButton: some View {
         FloatingButton(backgroundColor: .clear) {
-            SignInWithAppleButton(.signIn) { request in
+            SignInWithAppleButton(.signIn)
+            { request in
                 request.requestedScopes = [.email]
             } onCompletion: { results in
                 // TODO: 추후 vm 생성
@@ -90,9 +92,17 @@ struct OnboardingView: View {
                     print(error.localizedDescription)
                 }
             }
-            .cornerRadius(100)
+            .padding(8)
+            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
             .signInWithAppleButtonStyle(.white)
+            
         }
+        .background{
+            FloatingButton(backgroundColor: .white) {
+                
+            }
+        }
+        .padding(.bottom, 2)
     }
     
     var PreviewButton: some View {

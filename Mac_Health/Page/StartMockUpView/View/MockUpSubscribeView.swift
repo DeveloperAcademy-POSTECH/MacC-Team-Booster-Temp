@@ -14,7 +14,6 @@ struct MockUpSubscribeView: View {
     @State var subscribingSheet = false
     @State var loggedIn: Bool = true
     @Binding var tabSelection: Int
-    @Binding var subscribed: Bool
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = """
@@ -41,6 +40,8 @@ struct MockUpSubscribeView: View {
                 VStack{
                     //구독 페이지 설명
                     IntroPage
+                    //인플루언서 설명
+                    topInfluencerDescription
                     //구독 버튼
                     subscribeButton
                     //인플루언서 설명
@@ -88,15 +89,14 @@ struct MockUpSubscribeView: View {
                 ForEach(1...3, id: \.self) { idx in
                     //둘러보기에서 구독 뷰
                     ZStack{
-                        Image("RotateInfluencer\(idx)")
+                        Image("bannerImage")
                             .resizable()
                             .scaledToFit()
-                        LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
+                        LinearGradient(colors: [.clear, .clear, .clear, .clear, .clear, .gray_900.opacity(0.5), .gray_900], startPoint: .top, endPoint: .bottom)
                     }
                 }
             }
             .tabViewStyle(.page)
-            topInfluencerDescription
             
         }
     }
@@ -119,7 +119,7 @@ struct MockUpSubscribeView: View {
                     Text("인사말")
                         .foregroundColor(.label_900)
                         .font(.headline1())
-                        .padding(.top, 20)
+                        .padding(.top, 30)
                     Spacer()
                 }
                 Text(introduce)
@@ -129,8 +129,9 @@ struct MockUpSubscribeView: View {
                 Text("수상경력")
                     .foregroundColor(.label_900)
                     .font(.headline1())
-                    .padding(.top, 20)
+                    .padding(.top, 30)
             }
+            .padding(.top, 15)
             .padding(.leading)
             .frame(maxWidth: .infinity)
             //MARK: 잼이 지우지 말래요.
@@ -230,21 +231,21 @@ struct MockUpSubscribeView: View {
             VStack{
                 Spacer()
                 HStack{
-                    VStack(alignment: .leading, spacing: 16){
+                    VStack(alignment: .leading, spacing: 6){
                         Text("정회승의 Smart Routine")
                             .foregroundColor(.label_900)
                             .font(.title1())
                         Text("2022 Mr. 서울대🏆")
                             .foregroundColor(.label_600)
                             .font(.body2())
-                            .padding(.bottom, 40)
+                            .padding(.bottom, 20)
                     }
                     Spacer()
                 }
+                .padding(.vertical, 5)
                 .padding(.leading, 20)
             }
         }
-        .frame(height: UIScreen.getHeight(358))
     }
     
     var bodyInformation: some View {
@@ -265,6 +266,7 @@ struct MockUpSubscribeView: View {
          Spacer()
         }
         .padding(.horizontal)
+        .padding(.bottom, 10)
     }
     
     var strengthInformation: some View {
@@ -288,6 +290,7 @@ struct MockUpSubscribeView: View {
          Spacer()
         }
         .padding(.horizontal)
+        .padding(.bottom, 10)
     }
     
     var topBackground: some View {
@@ -306,7 +309,101 @@ struct MockUpSubscribeView: View {
     
 }
 
+struct RoutinePreview: View {
+    //날짜 변환
+    var date: String = "2023년 10월 15일"
+    
+    var body: some View {
+        ZStack{
+            Color.gray_900.ignoresSafeArea()
+            VStack {
+                HStack{
+                    VStack(alignment: .leading){
+                        Divider()
+                            .foregroundColor(.fill_1)
+                            .padding(.top)
+                        Text("운동일지 미리보기")
+                            .font(.title2)
+                            .foregroundColor(.label_900)
+                            .padding(.top, 30)
+                        HStack{
+                            Text(date)
+                                .font(.headline2())
+                                .foregroundColor(.label_700)
+                            Rectangle()
+                                .frame(width:1, height: 10)
+                                .foregroundColor(.label_400)
+                            Text("등/복근")
+                                .font(.headline2())
+                                .foregroundColor(.label_700)
+                            
+                        }
+                    }
+                    .padding(.top, 20)
+                    Spacer()
+                }
+                HStack{
+                    Text("등")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                        .padding(.vertical, 20)
+                    Spacer()
+                }
+                //운동 루틴
+                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "하이퍼 익스텐션", SetCount: "3세트", part: "등")
+                //첫 운동 팁 설명
+                //ZStack{
+                HStack(alignment: .top){
+                    Image("descriptionFace1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: UIScreen.getWidth(48))
+                        .padding(10)
+                    VStack(alignment: .leading){
+                        Text("운동 팁 예시")
+                            .font(.body2())
+                            .foregroundColor(.label_500)
+                            .padding(.bottom, 5)
+                        Text("운동 전 기립근의 부하를 줄여 줄 수 있는 하이퍼 익스텐션입니다. 등의 일직선 상에 위치 할 수 있도록 하시고, 고개를 과도하게 숙이거나 올리지 않도록 합니다. 스트레칭하듯 수행해 주세요.")
+                            .font(.body)
+                            .foregroundColor(.label_900)
+                    }
+                    .padding(.horizontal, 13)
+                    .padding(.vertical, 10)
+                }
+                .padding(10)
+                .background{
+                    RoundedRectangle(cornerRadius: 8)
+                        .foregroundColor(.gray_700)
+                }
+                .padding(.vertical, 10)
+                
+                //                }
+                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "덤벨 풀 오버", SetCount: "4세트", part: "등")
+                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "바벨 로우", SetCount: "4세트", part: "등")
+                    .padding(.bottom, 3)
+                HStack{
+                    Text("이두")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                        .padding(.vertical, 20)
+                    Spacer()
+                }
+                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "케이블 해머 컬", SetCount: "3세트", part: "이두")
+                
+            }
+            .padding(.bottom, 30)
+            VStack{
+                Spacer()
+                LinearGradient(colors: [.clear, .clear, .clear, .clear, .gray_900.opacity(0.5), .gray_900], startPoint: .top, endPoint: .bottom)
+            }
+        }
+        
+    }
+    
+}
 
-//#Preview {
-//    MockUpSubscribeView()
-//}
+
+#Preview {
+    MockUpSubscribeView(tabSelection: .constant(1))
+}
