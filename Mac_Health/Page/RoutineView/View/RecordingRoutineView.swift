@@ -10,13 +10,12 @@ import SwiftUI
 /// 운동 기록 중 운동 목록을 보기 위한 뷰
 struct RecordingRoutineView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var routineVM: RoutineViewModel
+    
+    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     
     var body: some View {
         VStack {
             WorkoutList
-            
-            //            WorkoutStartButton
         }
         .navigationTitle("운동 목록")
         .toolbar {
@@ -44,7 +43,7 @@ struct RecordingRoutineView: View {
     var EditButton: some View {
         NavigationLink {
             // TODO: 루틴 id 추가
-            EditRecordingRoutineView(routineId: 1)
+//            EditRecordingRoutineView(routineId: 1)
         } label: {
             Text("편집")
                 .font(.headline1())
