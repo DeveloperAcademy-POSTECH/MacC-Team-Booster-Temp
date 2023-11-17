@@ -225,15 +225,15 @@ struct ResponseGetUsersRecords: Codable {
 //:
 
 // MARK: test
-struct BodySpec: Codable {
+struct BodySpec: Codable, Hashable {
     var height: Int
     var weight: Int
 }
 
-struct BigThree: Codable {
+struct BigThree: Codable, Hashable {
     var squat: Int
     var benchPress: Int
-    var deadList: Int
+    var deadLift: Int
 }
 
 struct TestRoutine: Codable {
@@ -252,6 +252,35 @@ struct TestRoutine: Codable {
 /// GetRoutines
 struct ResponseGetRoutines: Codable {
     var routines: [TestRoutine]
+}
+//:
+
+// MARK: influencer-controller
+struct InfluencerPreview: Codable, Hashable {
+    var influencerId: Int
+    var onePersonProfileImageUrl: String
+    var listImageUrl: String
+    var name: String
+    var routineName: String
+    var title: String
+}
+
+/// GetInfluencers
+struct ResponseGetInfluencers: Codable, Hashable {
+    var previews: [InfluencerPreview]
+}
+
+/// GetInfluencersId
+struct ResponseGetInfluencersId: Codable {
+    var influencerName: String
+    var routineName: String
+    var title: String
+    var introduce: String
+    var awards: String
+    var bodySpec: BodySpec
+    var bigThree: BigThree
+    var routine: [Exercise]
+    var isSubscription: Bool
 }
 
 /// GetInfluencersRoutines
