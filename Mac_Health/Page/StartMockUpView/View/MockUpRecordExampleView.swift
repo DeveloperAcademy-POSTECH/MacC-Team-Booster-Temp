@@ -122,6 +122,6 @@ struct MockUpRecordExampleView: View {
     }
 }
 
-#Preview {
-    MockUpRecordExampleView(record: <#Records#>)
-}
+//#Preview {
+//    MockUpRecordExampleView(record: <#Records#>)
+//}
