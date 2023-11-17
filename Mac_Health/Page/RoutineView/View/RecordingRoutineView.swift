@@ -43,7 +43,8 @@ struct RecordingRoutineView: View {
     
     var EditButton: some View {
         NavigationLink {
-            EditRecordingRoutineView()
+            // TODO: 루틴 id 추가
+            EditRecordingRoutineView(routineId: 1)
         } label: {
             Text("편집")
                 .font(.headline1())
