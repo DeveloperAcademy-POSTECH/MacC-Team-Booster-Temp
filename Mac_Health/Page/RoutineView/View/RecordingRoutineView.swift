@@ -9,9 +9,11 @@ import SwiftUI
 
 /// 운동 기록 중 운동 목록을 보기 위한 뷰
 struct RecordingRoutineView: View {
-    @Environment(\.dismiss) var dismiss
-    
+    let routineId: Int
+        
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
@@ -42,8 +44,7 @@ struct RecordingRoutineView: View {
     
     var EditButton: some View {
         NavigationLink {
-            // TODO: 루틴 id 추가
-//            EditRecordingRoutineView(routineId: 1)
+            EditRecordingRoutineView(routineId: routineId)
         } label: {
             Text("편집")
                 .font(.headline1())

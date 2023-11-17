@@ -316,7 +316,7 @@ struct RecordingWorkoutView: View {
                 .overlay {
                     HStack {
                         NavigationLink {
-                            RecordingRoutineView()
+                            RecordingRoutineView(routineId: routineId)
                                 .environmentObject(editRoutineVM)
                         } label: {
                             Image(systemName: "list.bullet")
