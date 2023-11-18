@@ -128,6 +128,7 @@ struct ProfileView: View {
             }
             .padding(.bottom, 8)
             Divider()
+                .foregroundColor(.gray_700)
         }
         .padding(.top, 10)
         .padding()
@@ -156,6 +157,7 @@ struct ProfileView: View {
         //노션 페이지 마련
         VStack(alignment: .leading, spacing: 4){
             Divider()
+                .foregroundColor(.gray_700)
             Text("구독관리")
                 .font(.headline1())
                 .foregroundColor(.label_900)
@@ -168,6 +170,7 @@ struct ProfileView: View {
         //이메일 모달
         VStack(alignment: .leading, spacing: 4){
             Divider()
+                .foregroundColor(.gray_700)
             Text("문의하기")
                 .font(.headline1())
                 .foregroundColor(.label_900)
@@ -181,6 +184,7 @@ struct ProfileView: View {
         Link(destination: URL(string: "https://wiggly-basketball-0a4.notion.site/25e03fbff832400d9bfd8206cb688047" )!) {
             VStack(alignment: .leading, spacing: 4){
                 Divider()
+                    .foregroundColor(.gray_700)
                 Text("이용약관 및 개인정보처리방침")
                     .font(.headline1())
                     .foregroundColor(.label_900)

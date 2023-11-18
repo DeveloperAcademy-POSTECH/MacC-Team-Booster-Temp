@@ -18,10 +18,10 @@ struct ManageProfileView: View {
             VStack{
                 NicknameBanner(nickname: vm.nickname)
                 //TODO: email 받아왔는지 확인
-                if vm.email == "" {
-                } else {
-                    EmailBanner(email: vm.email)
-                }
+//                if vm.email == "" {
+//                } else {
+//                    EmailBanner(email: vm.email)
+//                }
                 SignOut(deletingAccount: vm.deletingAccount)
                 LogOut(loggingOutSheet: vm.loggingOutSheet)
                 Spacer()
@@ -37,38 +37,43 @@ struct ManageProfileView: View {
     }
     
     func NicknameBanner(nickname: String) -> some View {
-        VStack(alignment: .leading, spacing: 8){
-            HStack{
-                Text("닉네임")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                Spacer()
-                NavigationLink {
-                    ChangeNicknameView(vm: vm)
-                } label: {
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(width: 52, height: 32)
-                        .foregroundColor(.gray_700)
-                        .overlay{
-                            Text("변경")
-                                .foregroundColor(.label_900)
-                                .font(.button2())
-                        }
+        VStack{
+            VStack(alignment: .leading, spacing: 5){
+                HStack{
+                    Text("닉네임")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                    Spacer()
+                    NavigationLink {
+                        ChangeNicknameView(vm: vm)
+                    } label: {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 52, height: 32)
+                            .foregroundColor(.gray_700)
+                            .overlay{
+                                Text("변경")
+                                    .foregroundColor(.label_900)
+                                    .font(.button2())
+                            }
+                    }
+                }
+                
+                HStack{
+                    Text(nickname)
+                        .font(.body())
+                        .foregroundColor(.label_700)
                 }
             }
-            
-            HStack{
-                Text(nickname)
-                    .font(.body())
-                    .foregroundColor(.label_700)
-            }
+            .padding([.horizontal, .top])
+            .padding(.vertical)
+            Divider()
+                .foregroundColor(.gray_700)
+                .padding(.horizontal)
         }
-        .padding([.horizontal, .top])
     }
     
     func EmailBanner(email: String) -> some View {
-        VStack(alignment: .leading, spacing: 8){
-            Divider()
+        VStack(alignment: .leading, spacing: 5){
             HStack{
                 Text("이메일")
                     .font(.headline1())
@@ -83,6 +88,8 @@ struct ManageProfileView: View {
             }
             .padding(.bottom)
             Divider()
+                .padding(.horizontal)
+                .foregroundColor(.gray_700)
         }
         .padding()
     }
@@ -98,6 +105,7 @@ struct ManageProfileView: View {
                 Spacer()
             }
             .padding()
+            .padding(.top)
             
         }
         .alert(isPresented: $vm.deletingAccount) {
