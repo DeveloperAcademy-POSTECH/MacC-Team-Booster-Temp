@@ -74,7 +74,7 @@ struct RecordingRoutineView: View {
     }
     
     func WorkoutCell(index: Int) -> some View {
-        HStack {
+        HStack(spacing: 8){
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .foregroundColor(.fill_1)
@@ -83,10 +83,8 @@ struct RecordingRoutineView: View {
                         .resizable()
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 }
-            Spacer()
-            Spacer()
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     if editRoutineVM.routine.exercises[index].id == editRoutineVM.workout.exerciseId {
                         Image(systemName: "flame.fill")
@@ -98,17 +96,20 @@ struct RecordingRoutineView: View {
                         .foregroundColor(editRoutineVM.routine.exercises[index].id == editRoutineVM.workout.exerciseId ? .green_main : .label_900)
                     Spacer()
                 }
-                HStack {
+                HStack(spacing: 6) {
                     Text("\(editRoutineVM.routine.exercises[index].numberOfSet)세트")
+                        .font(.body2())
+                        .foregroundColor(.label_700)
                     Text("|")
+                        .font(.body2())
+                        .foregroundColor(.label_400)
+                        .scaleEffect(0.8)
                     Text("\(editRoutineVM.routine.exercises[index].recommendReps)회")
+                        .font(.body2())
+                        .foregroundColor(.label_700)
                 }
-                .font(.body2())
-                .foregroundColor(.label_700)
             }
-            
-            Spacer()
-            Spacer()
+            .padding(.horizontal)
             Spacer()
             
             if editRoutineVM.routine.exercises[index].isDone {

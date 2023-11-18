@@ -93,7 +93,7 @@ struct EditRoutineView: View {
                 vm.selectedIndex = index
                 vm.isDetailedWorkoutSheetShow = true
             } label: {
-                HStack {
+                HStack(spacing: 8){
                     RoundedRectangle(cornerRadius: 4)
                         .foregroundColor(.fill_1)
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
@@ -110,22 +110,24 @@ struct EditRoutineView: View {
                             }
                         }
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 3) {
                         Text(vm.routine.exercises[index].name)
                             .foregroundColor(.label_900)
                             .font(.headline1())
-                        HStack {
+                        HStack(spacing: 3){
                             Text("\(vm.routine.exercises[index].numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
                             Text("|")
                                 .foregroundColor(.label_400)
                                 .font(.body2())
+                                .scaleEffect(0.8)
                             Text("\(vm.routine.exercises[index].recommendReps)회")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
                         }
                     }
+                    padding()
                     
                     Spacer()
                 }

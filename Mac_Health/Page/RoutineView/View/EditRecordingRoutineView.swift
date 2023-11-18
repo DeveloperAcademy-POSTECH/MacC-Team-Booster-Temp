@@ -72,7 +72,7 @@ struct EditRecordingRoutineView: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .padding()
     }
     
     func WorkoutListCell(index: Int) -> some View {
@@ -128,8 +128,8 @@ struct EditRecordingRoutineView: View {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
             }
-            .padding()
         }
+        .padding(.vertical, 4)
     }
     
     var WorkoutStartButton: some View {
