@@ -161,7 +161,7 @@ class RecordingWorkoutViewModel: ObservableObject {
         let hours = Int(elapsedTime) / 3600
         let minutes = Int(elapsedTime) / 60
         let seconds = Int(elapsedTime) % 60
-        return String(format: "%02d:%02d:%02d",hours, minutes, seconds)
+        return String(format: "%01d:%02d:%02d",hours, minutes, seconds)
     }
     
 }

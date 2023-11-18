@@ -17,7 +17,7 @@ struct PauseSheet: View {
             Color.gray_800.ignoresSafeArea()
             
             VStack {
-                Text("운동 정지")
+                Text("운동 일시정지")
                     .font(.headline1())
                     .foregroundColor(.label_700)
                 Text(timeFormatted(pauseViewModel.elapsedTime))

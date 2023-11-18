@@ -22,7 +22,7 @@ struct RoutineInformationView: View {
                 VStack {
                     SpecificInformation
                 }
-                .padding(.vertical, 20)
+                .padding(.vertical, 10)
                 Divider()
                     .foregroundColor(.fill_1)
                     .padding(.horizontal, 20)
@@ -94,7 +94,7 @@ struct RoutineInformationView: View {
     var WorkoutRoutine: some View {
         ZStack {
             //운동 부위 갯수별 load
-            VStack(spacing: 16) {
+            VStack(spacing: 12) {
                 HStack {
                     Text(vm.routine.part)
                         .font(.headline1())

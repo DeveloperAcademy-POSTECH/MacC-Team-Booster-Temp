@@ -76,7 +76,7 @@ struct EditRoutineView: View {
             ScrollView {
                 ForEach(0..<vm.routine.exercises.count, id: \.self) { index in
                     WorkoutListCell(index: index)
-                        .padding(.vertical, 5)
+                        .padding(.vertical, 4)
                 }
             }
         }

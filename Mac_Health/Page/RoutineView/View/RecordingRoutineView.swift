@@ -53,6 +53,7 @@ struct RecordingRoutineView: View {
         }
     }
     
+    //TODO: 해당 운동 누르면 진행 중 운동에서 해당 운동으로 변경 - MORO
     var WorkoutList: some View {
         VStack {
             HStack {
@@ -69,7 +70,7 @@ struct RecordingRoutineView: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .padding()
     }
     
     func WorkoutCell(index: Int) -> some View {
@@ -118,6 +119,7 @@ struct RecordingRoutineView: View {
             }
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(64))
+        .padding(.vertical, 4)
     }
 }
 

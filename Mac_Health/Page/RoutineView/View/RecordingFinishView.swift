@@ -10,6 +10,7 @@ import SwiftUI
 struct RecordingFinishView: View {
     
     @State var tabSelection: Int = 3
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -74,7 +75,7 @@ struct RecordingFinishView: View {
                 }
                 
                 Button{
-                    
+                    dismiss()
                 } label: {
                     FloatingButton(backgroundColor: .gray_600) { Text("닫기")
                             .foregroundColor(.green_main)

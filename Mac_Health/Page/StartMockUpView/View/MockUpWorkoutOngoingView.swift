@@ -120,7 +120,7 @@ struct MockUpWorkoutOngoingView: View {
         HStack {
             Image(systemName: "flame.fill")
                 .foregroundColor(.label_700)
-                .font(.headline2())
+                .font(.footnote)
             Text(timeFormatted(viewModel.elapsedTime))
                 .font(.headline1())
                 .foregroundColor(.label_900)
@@ -131,7 +131,7 @@ struct MockUpWorkoutOngoingView: View {
                     Image(systemName: "pause.fill")
                         .resizable()
                         .foregroundColor(.label_900)
-                        .frame(width: UIScreen.getWidth(11), height: UIScreen.getHeight(14))
+                        .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(10))
                 }
                 .onTapGesture {
                     isPauseShow = true

@@ -89,6 +89,7 @@ struct RecordingWorkoutView: View {
                 
             }
             .sheet(isPresented: $vm.isPauseSheetShow) {
+                PauseSheet(viewModel: vm)
             }
             .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
                 WorkoutStopAlert
@@ -110,7 +111,7 @@ struct RecordingWorkoutView: View {
                 .font(.headline1())
             // TODO: 운동 상태
             Button {
-                vm.isStopAlertShow = true
+                vm.isPauseSheetShow = true
                 vm.stop()
             } label: {
                 Circle()
@@ -331,7 +332,8 @@ struct RecordingWorkoutView: View {
                     }
                 Spacer()
             }
-            .padding()
+            .padding(.bottom)
+            .padding(.horizontal)
     }
     
     @ViewBuilder
@@ -366,7 +368,7 @@ struct RecordingWorkoutView: View {
                         Image(systemName: "list.bullet")
                             .foregroundColor(.green_main)
                             .font(.title1())
-                            .padding(.leading, 40)
+                            .padding(.leading, 30)
                     }
                     
                     Spacer()
