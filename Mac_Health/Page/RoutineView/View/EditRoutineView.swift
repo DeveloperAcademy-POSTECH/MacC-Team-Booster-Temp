@@ -26,7 +26,7 @@ struct EditRoutineView: View {
         .onAppear {
             vm.fetchRoutine(routineId: routineId)
         }
-        .navigationTitle("운동 목룍 편집")
+        .navigationTitle("운동 목록 편집")
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
