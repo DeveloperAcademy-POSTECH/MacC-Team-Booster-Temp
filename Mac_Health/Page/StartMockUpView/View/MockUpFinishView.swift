@@ -116,7 +116,7 @@ struct MockUpFinishView: View {
         return if hours >= 1 {
             String(format: "%01d시간%02d분",hours, minutes)
         } else {
-            String(format: "%02d분", minutes)
+            String(format: "%01d분", minutes)
         }
     }
 }
