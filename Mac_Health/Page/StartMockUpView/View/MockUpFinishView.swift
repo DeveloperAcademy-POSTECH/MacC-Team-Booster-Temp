@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MockUpFinishView: View {
     
-    @ObservedObject var viewModel: MockUpStopwatchViewModel
-    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
+//    @ObservedObject var viewModel: MockUpStopwatchViewModel
+    @Binding var elapsedTime: TimeInterval
     @Binding var tabSelection: Int
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -42,7 +42,7 @@ struct MockUpFinishView: View {
                     .padding(.bottom, 30)
                 HStack(spacing: 40){
                     VStack(spacing: 3){
-                        Text("\(String(timeFormatted(viewModel.elapsedTime)))")
+                        Text("\(String(timeFormatted(elapsedTime)))")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("운동시간")
@@ -93,6 +93,9 @@ struct MockUpFinishView: View {
                 }
             }
         }
+        .onAppear{
+            print(elapsedTime)
+        }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
     }
@@ -113,11 +116,11 @@ struct MockUpFinishView: View {
         return if hours >= 1 {
             String(format: "%01d시간%02d분",hours, minutes)
         } else {
-            String(format: "%01d분", minutes)
+            String(format: "%02d분", minutes)
         }
     }
 }
 
 #Preview {
-    MockUpFinishView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(1))
+    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
 }

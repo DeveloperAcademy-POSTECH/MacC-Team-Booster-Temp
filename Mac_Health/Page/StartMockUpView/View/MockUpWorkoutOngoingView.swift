@@ -12,9 +12,6 @@ struct MockUpWorkoutOngoingView: View {
     @StateObject var viewModel = MockUpStopwatchViewModel()
     @FocusState private var isFocused: Bool
     @Binding var tabSelection: Int
-    
-    //    let currentWorkoutNumber: Int
-    //    @ObservedObject var routineVM: RoutineVM
     @StateObject var workoutOngoingVM = MockUpWorkoutOngoingViewModel()
     @State var isPauseShow = false
     //    @State var isFinishShow = false
@@ -48,10 +45,6 @@ struct MockUpWorkoutOngoingView: View {
                 isFocused ? nil :
                 LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
                     .frame(height: UIScreen.getHeight(150), alignment: .bottom)
-                    .onTapGesture {
-                        // Handle taps on the LinearGradient if needed
-                        print("LinearGradient tapped!")
-                    }
                     .allowsHitTesting(false)
             }
             .ignoresSafeArea()
@@ -93,7 +86,7 @@ struct MockUpWorkoutOngoingView: View {
             }
             NavigationLink("완료하기") {
                 // MARK: 완료하기
-                MockUpFinishView(viewModel: MockUpStopwatchViewModel(), tabSelection: $tabSelection)
+                MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
             }
         }
         .sheet(isPresented: $isPauseShow) {
@@ -104,6 +97,7 @@ struct MockUpWorkoutOngoingView: View {
         }
         .onDisappear{
             viewModel.Stop()
+            print(viewModel.elapsedTime)
         }
         .onTapGesture {
             isFocused = false
@@ -150,7 +144,7 @@ struct MockUpWorkoutOngoingView: View {
         let hours = Int(seconds) / 3600
         let minutes = Int(seconds) / 60
         let seconds = Int(seconds) % 60
-        return String(format: "%02d:%02d:%02d",hours, minutes, seconds)
+        return String(format: "%01d:%02d:%02d",hours, minutes, seconds)
     }
     
     @ViewBuilder
