@@ -47,6 +47,7 @@ struct WorkoutSetCard: View {
     
     @StateObject var debouncedStream = setChangeStream()
     @Binding var set: ExerciseSet
+    var isFocused: FocusState<Bool>.Binding
     
     var body: some View {
         HStack {
@@ -61,6 +62,7 @@ struct WorkoutSetCard: View {
                 .overlay {
                     //TODO: placeholder
                     TextField("자율", value: $debouncedStream.textInput, format: .number)
+                        .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_500)
                         .multilineTextAlignment(.trailing)
@@ -83,6 +85,7 @@ struct WorkoutSetCard: View {
                 .overlay {
                     //TODO: placeholder
                     TextField("자율", value: $debouncedStream.repInput, format: .number)
+                        .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_900)
                         .multilineTextAlignment(.trailing)

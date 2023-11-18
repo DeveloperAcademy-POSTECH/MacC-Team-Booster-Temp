@@ -110,7 +110,7 @@ struct RecordView: View {
                                     .foregroundColor(.label_500)
                                 Spacer()
                                 
-                                Text("10040kgkg")
+                                Text("10040kg")
                                     .font(.body2())
                                     .foregroundColor(.label_900)
                             }

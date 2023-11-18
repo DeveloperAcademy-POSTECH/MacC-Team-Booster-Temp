@@ -66,6 +66,9 @@ struct RecordingWorkoutView: View {
             .onAppear {
                 editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
             }
+            .onTapGesture {
+                isFocused = false
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     StopButton
@@ -341,7 +344,7 @@ struct RecordingWorkoutView: View {
         if !editRoutineVM.workout.sets.isEmpty {
             ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                 // TODO: 무게 조정 api 호출
-                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index])
+                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
                     .environmentObject(vm)
                     .overlay {
                         if index == vm.currentSet {
