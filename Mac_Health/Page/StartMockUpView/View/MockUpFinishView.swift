@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MockUpFinishView: View {
     
-    @StateObject var viewModel = MockUpStopwatchViewModel()
+    @ObservedObject var viewModel: MockUpStopwatchViewModel
     @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
     @Binding var tabSelection: Int
     @Environment(\.dismiss) var dismiss: DismissAction
@@ -18,12 +18,14 @@ struct MockUpFinishView: View {
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
-            VStack {
-                Rectangle()
-                    .frame(width: 276, height: 152)
-                Image(systemName: "person")
+            VStack (spacing: 0) {
+                Spacer()
+                    .frame(height: UIScreen.getHeight(100))
+                Image("finishIcon")
+                    .frame(width: UIScreen.getWidth(276), height: UIScreen.getHeight(152))
+                Image("finishInfluencer")
                     .resizable()
-                    .frame(width: 150, height: 128)
+                    .frame(width: 294, height: 128)
                 RoundedRectangle(cornerRadius: 8.0)
                     .frame(width: UIScreen.getWidth(294), height: UIScreen.getHeight(100))
                     .foregroundColor(.gray_700)
@@ -37,6 +39,7 @@ struct MockUpFinishView: View {
                                 .foregroundColor(.label_900)
                         }
                     }
+                    .padding(.bottom, 30)
                 HStack(spacing: 40){
                     VStack(spacing: 3){
                         Text("\(String(timeFormatted(viewModel.elapsedTime)))")
@@ -63,9 +66,8 @@ struct MockUpFinishView: View {
                             .foregroundColor(.label_700)
                     }
                 }
-                .padding()
                 Spacer()
-                    .frame(height: 100)
+                    .frame(height: 115)
                 Button{
                     dismiss()
                     self.tabSelection = 3
@@ -75,7 +77,7 @@ struct MockUpFinishView: View {
                             .foregroundColor(.gray_900)
                             .font(.button1())
                     }
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 12)
                     
                 }
                 
@@ -83,15 +85,11 @@ struct MockUpFinishView: View {
                     print("move to login view")
                     
                 } label: {
-                    FloatingButton(backgroundColor: .white) {
-                        HStack {
-                            Image(systemName: "apple.logo")
-                            Text("Apple로 로그인하고 함께하기")
-                        }
-                        .foregroundColor(.gray_900)
-                    .font(.button1())
-                }
-                
+                    FloatingButton(backgroundColor: .gray_600) {
+                            Text("로그인")
+                        .foregroundColor(.green_main)
+                        .font(.button1())
+                    }
                 }
             }
         }
@@ -121,5 +119,5 @@ struct MockUpFinishView: View {
 }
 
 #Preview {
-    MockUpFinishView(tabSelection: .constant(1))
+    MockUpFinishView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(1))
 }

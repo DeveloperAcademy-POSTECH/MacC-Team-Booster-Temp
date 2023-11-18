@@ -93,7 +93,7 @@ struct MockUpWorkoutOngoingView: View {
             }
             NavigationLink("완료하기") {
                 // MARK: 완료하기
-                MockUpFinishView(tabSelection: $tabSelection)
+                MockUpFinishView(viewModel: MockUpStopwatchViewModel(), tabSelection: $tabSelection)
             }
         }
         .sheet(isPresented: $isPauseShow) {
