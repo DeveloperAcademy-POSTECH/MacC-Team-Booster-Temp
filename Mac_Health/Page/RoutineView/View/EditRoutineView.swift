@@ -18,9 +18,9 @@ struct EditRoutineView: View {
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
-        VStack {
+        ZStack {
             WorkoutList
-            
+            gradient
             WorkoutStartButton
         }
         .onAppear {
@@ -78,9 +78,13 @@ struct EditRoutineView: View {
                     WorkoutListCell(index: index)
                         .padding(.vertical, 4)
                 }
+                FloatingButton(backgroundColor: .clear) { }
+                    .padding()
             }
+            
         }
         .padding(.horizontal)
+        
     }
     
     func WorkoutListCell(index: Int) -> some View {
@@ -140,17 +144,30 @@ struct EditRoutineView: View {
         }
     }
     
+    var gradient: some View{
+        VStack{
+            Spacer()
+            LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                .allowsHitTesting(false)
+        }
+        .ignoresSafeArea()
+    }
+    
     var WorkoutStartButton: some View {
-        NavigationLink {
-            RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id)
-                .environmentObject(vm)
-        } label: {
-            FloatingButton(backgroundColor: .green_main) {
-                Text("시작")
-                    .foregroundColor(.gray_900)
-                    .font(.button1())
+        VStack{
+            Spacer()
+            NavigationLink {
+                RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id)
+                    .environmentObject(vm)
+            } label: {
+                FloatingButton(backgroundColor: .green_main) {
+                    Text("시작")
+                        .foregroundColor(.gray_900)
+                        .font(.button1())
+                }
+                .padding()
             }
-            .padding()
         }
     }
     

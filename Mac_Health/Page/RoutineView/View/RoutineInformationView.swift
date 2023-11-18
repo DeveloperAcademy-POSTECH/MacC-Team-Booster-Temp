@@ -32,19 +32,10 @@ struct RoutineInformationView: View {
                 FloatingButton(backgroundColor: .clear) { }
                     .padding()
             }
-            VStack {
-                Spacer()
-                NavigationLink {
-                    EditRoutineView(routineId: routineId)
-                } label: {
-                    FloatingButton(backgroundColor: .green_main) {
-                        Text("운동 시작")
-                            .foregroundColor(.gray_900)
-                            .font(.button1())
-                    }
-                }
-                .padding()
-            }
+            
+            gradient
+            
+            startButton
         }
         .onAppear {
             vm.fetchRoutine(routineId: routineId)
@@ -109,6 +100,32 @@ struct RoutineInformationView: View {
                 }
             }
         }
+    }
+    
+    var startButton: some View{
+        VStack {
+            Spacer()
+            NavigationLink {
+                EditRoutineView(routineId: routineId)
+            } label: {
+                FloatingButton(backgroundColor: .green_main) {
+                    Text("운동 시작")
+                        .foregroundColor(.gray_900)
+                        .font(.button1())
+                }
+            }
+            .padding()
+        }
+    }
+    
+    var gradient: some View{
+        VStack{
+            Spacer()
+            LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                .allowsHitTesting(false)
+        }
+        .ignoresSafeArea()
     }
     
 }

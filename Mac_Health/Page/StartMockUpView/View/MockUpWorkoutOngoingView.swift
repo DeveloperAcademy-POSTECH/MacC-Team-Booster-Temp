@@ -111,7 +111,7 @@ struct MockUpWorkoutOngoingView: View {
         } label: {
             Image(systemName: "xmark")
                 .foregroundColor(.label_700)
-                .font(.headline1())
+                .font(.headline2())
         }
     }
     
