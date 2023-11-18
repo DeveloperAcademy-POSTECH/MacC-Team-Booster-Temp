@@ -47,12 +47,12 @@ struct ProfileView: View {
                 loggedIn ? AlertToggle(notiToggle: vm.notiToggle) : nil
                 versionInformaion
                 //로그인 전 unactive
-                loggedIn ?
-                NavigationLink {
-                    ManageSubscribeView()
-                } label: {
-                    subscribeManagement
-                } : nil
+//                loggedIn ?
+//                NavigationLink {
+//                    ManageSubscribeView()
+//                } label: {
+//                    subscribeManagement
+//                } : nil
                 
                 Button(action: {
                     showMailView.toggle()
@@ -99,14 +99,14 @@ struct ProfileView: View {
                     Spacer()
                     Text(loggedIn ? "프로필 관리" : "로그인 하러 가기")
                         .foregroundColor(loggedIn ? .label_700 : .green_main)
-                        .font(.body())
+                        .font(.system(size: 14, weight: .regular, design: .default))
                     Image(systemName: "chevron.right")
                         .foregroundColor(loggedIn ? .label_700 : .green_main)
-                        .font(.body2())
+                        .font(.system(size: 10, weight: .regular, design: .default))
                         .padding(.trailing, 20)
                 }
             }
-            .padding(.top, 20)
+            .padding(.top, 10)
     }
     
     func AlertToggle(notiToggle: Bool) -> some View {
@@ -126,18 +126,19 @@ struct ProfileView: View {
                     .font(.body())
                     .foregroundColor(.label_700)
             }
+            .padding(.bottom, 8)
             Divider()
         }
+        .padding(.top, 10)
         .padding()
     }
     
     var versionInformaion : some View {
-        VStack(alignment: .leading, spacing: 8){
+        VStack(alignment: .leading, spacing: 5){
             HStack{
                 Text("버전정보")
                     .font(.headline1())
                     .foregroundColor(.label_900)
-                    .padding(.top)
                 Spacer()
             }
             
@@ -153,7 +154,7 @@ struct ProfileView: View {
     
     var subscribeManagement : some View {
         //노션 페이지 마련
-        VStack(alignment: .leading, spacing: 8){
+        VStack(alignment: .leading, spacing: 4){
             Divider()
             Text("구독관리")
                 .font(.headline1())
@@ -165,7 +166,7 @@ struct ProfileView: View {
     
     var inquiry : some View {
         //이메일 모달
-        VStack(alignment: .leading, spacing: 8){
+        VStack(alignment: .leading, spacing: 4){
             Divider()
             Text("문의하기")
                 .font(.headline1())
@@ -178,7 +179,7 @@ struct ProfileView: View {
     var useInformation : some View {
         //노션 페이지 마련
         Link(destination: URL(string: "https://wiggly-basketball-0a4.notion.site/25e03fbff832400d9bfd8206cb688047" )!) {
-            VStack(alignment: .leading, spacing: 8){
+            VStack(alignment: .leading, spacing: 4){
                 Divider()
                 Text("이용약관 및 개인정보처리방침")
                     .font(.headline1())
