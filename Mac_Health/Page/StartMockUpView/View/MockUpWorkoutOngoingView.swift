@@ -102,6 +102,9 @@ struct MockUpWorkoutOngoingView: View {
         .onAppear{
             viewModel.Start()
         }
+        .onDisappear{
+            viewModel.Stop()
+        }
         .onTapGesture {
             isFocused = false
         }
