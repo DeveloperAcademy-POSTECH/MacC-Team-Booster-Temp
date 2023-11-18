@@ -356,7 +356,7 @@ struct RecordingWorkoutView: View {
     var WorkoutButton: some View {
         RoundedRectangle(cornerRadius: 100)
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
-            .foregroundColor(.gray_600)
+            .foregroundColor(.gray_700)
             .overlay {
                 HStack {
                     NavigationLink {
@@ -366,7 +366,7 @@ struct RecordingWorkoutView: View {
                         Image(systemName: "list.bullet")
                             .foregroundColor(.green_main)
                             .font(.title1())
-                            .padding(.leading)
+                            .padding(.leading, 40)
                     }
                     
                     Spacer()
