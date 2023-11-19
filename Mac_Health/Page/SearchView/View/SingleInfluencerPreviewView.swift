@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SingleInfluencerPreviewView: View {
     @Binding var influencer: InfluencerPreview
-    
+    @State private var showMailView = false
     @StateObject var vm = SingleInfluencerPreviewViewModel()
     
     var body: some View {
@@ -108,6 +108,7 @@ struct SingleInfluencerPreviewView: View {
                 }
                 .padding()
             }
+            .padding(.top, 5)
     }
     
     //    @ViewBuilder

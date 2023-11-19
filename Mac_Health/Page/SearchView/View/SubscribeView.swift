@@ -82,13 +82,13 @@ struct SubscribeView: View {
     
     @ViewBuilder
     var IntroPage: some View {
-        ZStack{
+        VStack{
 //            topBackground
             TabView {
                 ForEach(1...3, id: \.self) { idx in
                     //둘러보기에서 구독 뷰
                     ZStack{
-                        Image("RotateInfluencer\(idx)")
+                        Image("bannerImage")
                             .resizable()
                             .scaledToFit()
                         LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
@@ -96,8 +96,8 @@ struct SubscribeView: View {
                 }
             }
             .tabViewStyle(.page)
+            .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(358))
             topInfluencerDescription
-            
         }
     }
     
@@ -119,18 +119,20 @@ struct SubscribeView: View {
                     Text("인사말")
                         .foregroundColor(.label_900)
                         .font(.headline1())
-                        .padding(.top, 20)
+                        .padding(.top, 30)
                     Spacer()
                 }
                 Text(vm.influencer.introduce)
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
                     .padding(.vertical, 10)
+                    .lineSpacing(8.0)
                 Text("수상경력")
                     .foregroundColor(.label_900)
                     .font(.headline1())
-                    .padding(.top, 20)
+                    .padding(.top, 30)
             }
+            .padding(.top, 15)
             .padding(.leading)
             .frame(maxWidth: .infinity)
             //MARK: 잼이 지우지 말래요.
@@ -194,7 +196,7 @@ struct SubscribeView: View {
                         VStack(alignment: .leading){
                             HStack {
                                 Text(vm.influencer.awards)
-                                    .font(.body)
+                                    .font(.body())
                                     .foregroundColor(.label_800)
                                 Spacer()
                             }
@@ -212,12 +214,11 @@ struct SubscribeView: View {
     
     @ViewBuilder
     var subscribeButton: some View {
-        if vm.loggedIn {
             Button {
                 vm.subscribingSheet = true
                 vm.influencer.isSubscription.toggle()
             } label: {
-                FloatingButton(backgroundColor: vm.influencer.isSubscription ? .gray_900 :.green_main) { vm.influencer.isSubscription ? Text("구독취소")
+                FloatingButton(backgroundColor: vm.influencer.isSubscription ? .gray_600 :.green_main) { vm.influencer.isSubscription ? Text("구독취소")
                         .foregroundColor(.red_main)
                         .font(.button1())
                     :
@@ -232,13 +233,6 @@ struct SubscribeView: View {
                     //TODO: 서버에 vm.routines.routines 변화
                 }
             }
-        } else {
-            FloatingButton(backgroundColor: .gray_600) {Text("둘러보기 중")
-                    .foregroundColor(.label_400)
-                    .font(.button1())
-            }
-        }
-        
     }
     
     fileprivate func createTab() -> some View {
@@ -259,14 +253,14 @@ struct SubscribeView: View {
                         Text(vm.influencer.title)
                             .foregroundColor(.label_600)
                             .font(.body2())
-                            .padding(.bottom, 40)
+                            .padding(.bottom, 20)
                     }
                     Spacer()
                 }
+                .padding(.vertical, 5)
                 .padding(.leading, 20)
             }
         }
-        .frame(height: UIScreen.getHeight(358))
     }
     
     var bodyInformation: some View {
@@ -279,14 +273,15 @@ struct SubscribeView: View {
                     .padding(.bottom, 5)
                 Text("키: \(vm.influencer.bodySpec.height)cm")
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
                 Text("몸무게: \(vm.influencer.bodySpec.weight)kg")
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
             }
             Spacer()
         }
         .padding(.horizontal)
+        .padding(.bottom, 10)
     }
     
     var strengthInformation: some View {
@@ -310,6 +305,7 @@ struct SubscribeView: View {
             Spacer()
         }
         .padding(.horizontal)
+        .padding(.bottom, 10)
     }
     
 //    var topBackground: some View {

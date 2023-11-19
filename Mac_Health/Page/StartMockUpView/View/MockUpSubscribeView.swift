@@ -259,10 +259,10 @@ struct MockUpSubscribeView: View {
                     .padding(.bottom, 5)
                 Text("키: 173cm")
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
                 Text("몸무게: 80kg")
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
             }
          Spacer()
         }
