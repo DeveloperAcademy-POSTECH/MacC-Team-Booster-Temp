@@ -60,6 +60,7 @@ struct RecordEditView: View {
                         Text("1")
                             .foregroundColor(.label_900)
                             .padding(.trailing, 10)
+                            .padding(.trailing, 10)
                         
                         RoundedRectangle(cornerRadius: 4)
                             .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
@@ -69,7 +70,7 @@ struct RecordEditView: View {
                                     .keyboardType(.numberPad)
                                     .foregroundColor(.label_900)
                                     .multilineTextAlignment(.trailing)
-                                    .padding(.trailing)
+                                    .padding(.trailing, 10)
                             }
                         Text("kg")
                             .foregroundColor(.label_700)
@@ -83,7 +84,7 @@ struct RecordEditView: View {
                                     .keyboardType(.numberPad)
                                     .foregroundColor(.label_900)
                                     .multilineTextAlignment(.trailing)
-                                    .padding(.trailing)
+                                    .padding(.trailing, 10)
                             }
                         Text("회")
                             .foregroundColor(.label_700)
@@ -93,7 +94,7 @@ struct RecordEditView: View {
                 .padding(.bottom, 15)
             }
         }
-        .padding()
+        .padding([.horizontal, .bottom])
     }
     
     var SaveButton: some View {
