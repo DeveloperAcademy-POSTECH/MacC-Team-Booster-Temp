@@ -41,12 +41,12 @@ struct MockUpRecordExampleView: View {
     }
     
     var RoutineDescriptionCard: some View {
-        VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
+        VStack(alignment: .leading, spacing: UIScreen.getWidth(10)) {
             // TODO: 인플루언서 네임
             Text("정회승")
                 .font(.title2())
                 .foregroundColor(.label_900)
-                .padding(.bottom, 5)
+                .padding(.bottom, 10)
             // TODO: 폰트
             Text("2023년 4월 23일 루틴")
                 .font(.caption())
@@ -59,7 +59,7 @@ struct MockUpRecordExampleView: View {
             Description(image: "flame.circle.fill", text: "430kcal")
             // TODO: 총 무게
             Description(image: "dumbbell.fill", text: "10040kg")
-        }.padding(.bottom)
+        }.padding(.bottom, 15)
     }
     
     func Description(image: String, text: String) -> some View {
@@ -73,6 +73,8 @@ struct MockUpRecordExampleView: View {
                 .foregroundColor(.label_900)
                 .font(.body())
         }
+        .padding(.bottom, 5)
+
     }
     
     var BackButton: some View {
@@ -93,8 +95,12 @@ struct MockUpRecordExampleView: View {
             VStack {
                 HStack {
                     Text(workoutName)
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
                     Spacer()
                     Text("\(totalWeight)kg")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
                 }
                 .font(.headline1())
                 .foregroundColor(.label_900)
@@ -109,19 +115,21 @@ struct MockUpRecordExampleView: View {
                     }
                 }
             }
+            .padding(.trailing, 5)
+            .padding(.bottom)
         }
         
         func makeSet(id: Int, kg: Int, rep: Int) -> some View {
             HStack(spacing: 1) {
                 Text("\(id)세트")
-                    .frame(width: 50, alignment: .trailing)
+                    .frame(width: UIScreen.getWidth(50), alignment: .trailing)
                 Text("\(kg)kg")
-                    .frame(width: 50, alignment: .trailing)
+                    .frame(width: UIScreen.getWidth(40), alignment: .trailing)
                 Image(systemName: "multiply")
-                    .frame(width: 20, alignment: .trailing)
+                    .frame(width: UIScreen.getWidth(15), alignment: .trailing)
                     .foregroundColor(.label_400)
                 Text("\(rep)회")
-                    .frame(width: 36, alignment: .trailing)
+                    .frame(width: UIScreen.getWidth(30), alignment: .trailing)
             }
             .font(.body2())
             .foregroundColor(.label_700)

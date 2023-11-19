@@ -159,7 +159,7 @@ struct RecordView: View {
             }
             .padding(.horizontal, 25)
             .padding(.vertical, 5)
-            .font(.caption)
+            .font(.caption())
             .foregroundColor(.label_700)
         }
     }
