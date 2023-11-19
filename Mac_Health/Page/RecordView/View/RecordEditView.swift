@@ -15,22 +15,23 @@ struct RecordEditView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             
-            VStack {
-                workoutDetail
-                Spacer()
+            ScrollView {
+                ForEach(1...6, id: \.self) {_ in
+                    workoutDetail
+                }
             }
         }
         
         .navigationBarTitle("수정하기", displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    ExitButton
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    SaveButton
-                }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                ExitButton
             }
-            .navigationBarBackButtonHidden(true)
+            ToolbarItem(placement: .topBarTrailing) {
+                SaveButton
+            }
+        }
+        .navigationBarBackButtonHidden(true)
     }
     
     
@@ -51,43 +52,45 @@ struct RecordEditView: View {
                 }
             }
             .padding(.vertical)
-            
-            VStack(alignment: .trailing) {
-                HStack {
-                    Spacer()
-                    
-                    Text("1")
-                        .foregroundColor(.label_900)
-                        .padding(.trailing, 10)
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
-                        .foregroundColor(.gray_700)
-                        .overlay {
-                            TextField("자율", value: .constant(5), format: .number)
-                                .keyboardType(.numberPad)
-                                .foregroundColor(.label_900)
-                                .multilineTextAlignment(.trailing)
-                                .padding(.trailing)
-                        }
-                    Text("kg")
-                        .foregroundColor(.label_700)
-                        .padding(.trailing, 10)
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
-                        .foregroundColor(.gray_700)
-                        .overlay {
-                            TextField("", value: .constant(5), format: .number)
-                                .keyboardType(.numberPad)
-                                .foregroundColor(.label_900)
-                                .multilineTextAlignment(.trailing)
-                                .padding(.trailing)
-                        }
-                    Text("회")
-                        .foregroundColor(.label_700)
+            ForEach(1...4, id: \.self) {_ in
+                VStack(alignment: .trailing) {
+                    HStack {
+                        Spacer()
+                        
+                        Text("1")
+                            .foregroundColor(.label_900)
+                            .padding(.trailing, 10)
+                        
+                        RoundedRectangle(cornerRadius: 4)
+                            .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
+                            .foregroundColor(.gray_700)
+                            .overlay {
+                                TextField("자율", value: .constant(5), format: .number)
+                                    .keyboardType(.numberPad)
+                                    .foregroundColor(.label_900)
+                                    .multilineTextAlignment(.trailing)
+                                    .padding(.trailing)
+                            }
+                        Text("kg")
+                            .foregroundColor(.label_700)
+                            .padding(.trailing, 10)
+                        
+                        RoundedRectangle(cornerRadius: 4)
+                            .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
+                            .foregroundColor(.gray_700)
+                            .overlay {
+                                TextField("", value: .constant(5), format: .number)
+                                    .keyboardType(.numberPad)
+                                    .foregroundColor(.label_900)
+                                    .multilineTextAlignment(.trailing)
+                                    .padding(.trailing)
+                            }
+                        Text("회")
+                            .foregroundColor(.label_700)
+                    }
+                    .font(.body())
                 }
-                .font(.body())
+                .padding(.bottom, 15)
             }
         }
         .padding()
@@ -103,15 +106,15 @@ struct RecordEditView: View {
                 .font(.headline1())
         }
         .alert(isPresented: $isSaveAlertShow){
-            Alert(
-                title: Text("저장하시겠습니까?"),
-                message: Text(""),
-                primaryButton: .destructive(Text("확인"),
-                                        action: {
-                                            dismiss()
-                                }),
-                                secondaryButton: .cancel(Text("취소"))
-            )
+            let firstButton = Alert.Button.default(Text("취소").bold()) {
+                print("primary button pressed")
+            }
+            let secondButton = Alert.Button.default(Text("확인")) {
+                print("secondary button pressed")
+            }
+            return Alert(title: Text("저장하시겠습니까?"),
+                         //                         message: Text(""),
+                         primaryButton: firstButton, secondaryButton: secondButton)
         }
     }
     
@@ -125,15 +128,15 @@ struct RecordEditView: View {
                 .font(.headline1())
         }
         .alert(isPresented: $isUnsaveAlertShow){
-            Alert(
-                title: Text("저장하지 않고 나가시겠습니까?"),
-//                message: Text(""),
-                primaryButton: .destructive(Text("확인"),
-                                        action: {
-                                            dismiss()
-                                }),
-                                secondaryButton: .cancel(Text("취소"))
-            )
+            let firstButton = Alert.Button.default(Text("취소").bold()) {
+                print("primary button pressed")
+            }
+            let secondButton = Alert.Button.default(Text("확인")) {
+                print("secondary button pressed")
+            }
+            return Alert(title: Text("저장하지 않고 나가시겠습니까?"),
+                         //                         message: Text(""),
+                         primaryButton: firstButton, secondaryButton: secondButton)
         }
     }
 }
