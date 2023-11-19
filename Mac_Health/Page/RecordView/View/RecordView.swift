@@ -33,12 +33,12 @@ struct RecordView: View {
             Spacer()
         }
         .padding([.top, .horizontal])
-        .padding(.bottom, 5)
+        .padding(.vertical, 5)
     }
     
     var Calender: some View {
         CalendarView(selectedDate: $vm.selectedDate, recordedDate: $vm.recordedDate)
-            .frame(height: UIScreen.getHeight(340))
+            .frame(height: UIScreen.getHeight(335))
             .padding(.horizontal)
     }
     
@@ -62,15 +62,16 @@ struct RecordView: View {
                                     .foregroundColor(.label_900)
                                 Spacer()
                                 // TODO: 시간 파싱
-                                Text(record.time)
+                                Text("\(formatTime(record.time))")
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
+                                    .onAppear{print(record.time)}
                             }
                             Spacer()
                             HStack {
                                 Text(record.part)
                                     .font(.body2())
-                                    .foregroundColor(.label_900)
+                                    .foregroundColor(.label_500)
                                 Spacer()
                                 // TODO: 총 운동 무게 - MORO
                                 Text("5200kg")
@@ -83,6 +84,37 @@ struct RecordView: View {
             }
         }
     }
+    
+    func formatTime(_ timeString: String) -> String {
+        let timeComponents = timeString.components(separatedBy: ":")
+        
+        if timeComponents.count == 3,
+           let hours = Int(timeComponents[0]),
+           let minutes = Int(timeComponents[1]),
+           let seconds = Int(timeComponents[2]) {
+            
+            var formattedTime = ""
+            
+            if hours > 0 {
+                formattedTime += "\(hours)시간 "
+            }
+            
+            if minutes > 0 {
+                formattedTime += "\(minutes)분 "
+            }
+            
+            if seconds >= 0 {
+                formattedTime += "\(seconds)초"
+            }
+            
+            return formattedTime
+        }
+
+        return timeString
+    }
+        
+
+    
     //TODO: 로그인x or 구독 x
     var beforeLoginText: some View {
         VStack{
