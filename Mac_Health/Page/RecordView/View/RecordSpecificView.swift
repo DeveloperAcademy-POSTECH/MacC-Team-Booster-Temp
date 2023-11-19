@@ -19,8 +19,10 @@ struct RecordSpecificView: View {
                 VStack(alignment: .leading) {
                     RoutineDescriptionCard
                     Divider()
-                    RoutineCell()
-                    RoutineCell()
+                    ForEach(record.exercises, id: \.self){
+                        exercises in
+                        RoutineCell(exercises: exercises)
+                    }
                 }
             }
             .padding()
@@ -102,53 +104,58 @@ struct RecordSpecificView: View {
                 .font(.headline1())
         }
     }
+}
+
+struct RoutineCell: View {
+    var exercises: RecordedExercise
+    var body: some View {
+        VStack {
+            HStack {
+                Text(exercises.name)
+                    .font(.headline1())
+                    .foregroundColor(.label_900)
+                Spacer()
+                //TODO: 무게 총합
+                Text("10300")
+                    .font(.headline1())
+                    .foregroundColor(.label_900)
+            }
+            .font(.headline1())
+            .foregroundColor(.label_900)
+            .padding(.vertical)
+            HStack {
+                Spacer()
+                VStack(alignment: .trailing, spacing: 3) {
+                    //TODO: execises weight reps
+                    makeSet(id: 1, kg: 40, rep: 10)
+                    makeSet(id: 1, kg: 40, rep: 10)
+                    makeSet(id: 1, kg: 40, rep: 10)
+                }
+            }
+        }
+        .padding(.trailing, 5)
+        .padding(.bottom)
+        .onAppear{print(exercises.sets)}
+    }
     
-    struct RoutineCell: View {
-        var body: some View {
-            VStack {
-                HStack {
-                    Text("클로즈 그립 랫풀다운")
-                        .font(.headline1())
-                        .foregroundColor(.label_900)
-                    Spacer()
-                    Text("1450kg")
-                        .font(.headline1())
-                        .foregroundColor(.label_900)
-                }
-                .font(.headline1())
-                .foregroundColor(.label_900)
-                .padding(.vertical)
-                HStack {
-                    Spacer()
-                    VStack(alignment: .trailing, spacing: 3) {
-                        makeSet(id: 1, kg: 40, rep: 10)
-                        makeSet(id: 1, kg: 40, rep: 10)
-                        makeSet(id: 1, kg: 40, rep: 10)
-                        makeSet(id: 1, kg: 40, rep: 10)
-                    }
-                }
-            }
-            .padding(.trailing, 5)
-            .padding(.bottom)
+    func makeSet(id: Int, kg: Int, rep: Int) -> some View {
+        HStack(spacing: 1) {
+            Text("\(id)세트")
+                .frame(width: UIScreen.getWidth(50), alignment: .trailing)
+            Text("\(kg)kg")
+                .frame(width: UIScreen.getWidth(40), alignment: .trailing)
+            Image(systemName: "multiply")
+                .frame(width: UIScreen.getWidth(15), alignment: .trailing)
+                .foregroundColor(.label_400)
+            Text("\(rep)회")
+                .frame(width: UIScreen.getWidth(27), alignment: .trailing)
         }
-        
-        func makeSet(id: Int, kg: Int, rep: Int) -> some View {
-            HStack(spacing: 1) {
-                Text("\(id)세트")
-                    .frame(width: UIScreen.getWidth(50), alignment: .trailing)
-                Text("\(kg)kg")
-                    .frame(width: UIScreen.getWidth(40), alignment: .trailing)
-                Image(systemName: "multiply")
-                    .frame(width: UIScreen.getWidth(15), alignment: .trailing)
-                    .foregroundColor(.label_400)
-                Text("\(rep)회")
-                    .frame(width: UIScreen.getWidth(27), alignment: .trailing)
-            }
-            .font(.body2())
-            .foregroundColor(.label_700)
-        }
+        .font(.body2())
+        .foregroundColor(.label_700)
     }
 }
+
+
 
 //struct RecordSpecificView_Preview: PreviewProvider {
 //    static var previews: some View {
