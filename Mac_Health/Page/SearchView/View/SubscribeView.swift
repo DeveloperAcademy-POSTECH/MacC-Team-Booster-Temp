@@ -83,7 +83,7 @@ struct SubscribeView: View {
     @ViewBuilder
     var IntroPage: some View {
         ZStack{
-            topBackground
+//            topBackground
             TabView {
                 ForEach(1...3, id: \.self) { idx in
                     //둘러보기에서 구독 뷰
@@ -312,20 +312,20 @@ struct SubscribeView: View {
         .padding(.horizontal)
     }
     
-    var topBackground: some View {
-        ZStack(alignment: .bottomTrailing){
-            Color.gray_900.ignoresSafeArea()
-            HStack{
-                Spacer()
-                // TODO: 이미지
-                Image("Background1")
-                    .resizable()
-                    .scaledToFit()
-            }
-        }
-        .frame(height: UIScreen.getHeight(358))
-        
-    }
+//    var topBackground: some View {
+//        ZStack(alignment: .bottomTrailing){
+//            Color.gray_900.ignoresSafeArea()
+//            HStack{
+//                Spacer()
+//                // TODO: 이미지
+//                Image("Background1")
+//                    .resizable()
+//                    .scaledToFit()
+//            }
+//        }
+//        .frame(height: UIScreen.getHeight(358))
+//        
+//    }
     
 }
 
