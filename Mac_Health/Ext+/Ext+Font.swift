@@ -23,7 +23,7 @@ extension Font {
         return UIFont(name: Pretentard.semiBold, size: 13 * setFontSize())!
     }
     static func calendarDate() -> UIFont {
-        return UIFont(name: Pretentard.medium, size: 20 * setFontSize())!
+        return UIFont(name: Pretentard.regular, size: 20 * setFontSize())!
     }
     static func calendarTitle() -> UIFont {
         return UIFont(name: Pretentard.semiBold, size: 17 * setFontSize())!

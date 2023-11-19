@@ -127,7 +127,7 @@ struct EditRoutineView: View {
                                 .font(.body2())
                         }
                     }
-                    padding()
+                    .padding()
                     
                     Spacer()
                 }
