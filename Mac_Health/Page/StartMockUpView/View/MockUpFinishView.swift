@@ -20,12 +20,12 @@ struct MockUpFinishView: View {
             Color.gray_900.ignoresSafeArea()
             VStack (spacing: 0) {
                 Spacer()
-                    .frame(height: UIScreen.getHeight(100))
+                    .frame(height: UIScreen.getHeight(80))
                 Image("finishIcon")
                     .frame(width: UIScreen.getWidth(276), height: UIScreen.getHeight(152))
                 Image("finishInfluencer")
                     .resizable()
-                    .frame(width: 294, height: 128)
+                    .frame(width: UIScreen.getWidth(294), height: UIScreen.getHeight(128))
                 RoundedRectangle(cornerRadius: 8.0)
                     .frame(width: UIScreen.getWidth(294), height: UIScreen.getHeight(100))
                     .foregroundColor(.gray_700)
@@ -78,7 +78,6 @@ struct MockUpFinishView: View {
                             .font(.button1())
                     }
                     .padding(.bottom, 12)
-                    
                 }
                 
                 Button{
@@ -90,11 +89,9 @@ struct MockUpFinishView: View {
                         .foregroundColor(.green_main)
                         .font(.button1())
                     }
+                    .padding(.bottom)
                 }
             }
-        }
-        .onAppear{
-            print(elapsedTime)
         }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()

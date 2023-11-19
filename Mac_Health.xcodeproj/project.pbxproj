@@ -390,6 +390,7 @@
 				F8DACB722B0422D500C3E95C /* RecordingWorkoutViewModel.swift */,
 				F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */,
 				D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */,
+				F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */,
 				F8DACB632B04182900C3E95C /* Temp */,
 			);
 			path = ViewModel;
@@ -576,7 +577,6 @@
 				F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */,
 				F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */,
 				F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */,
-				F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */,
 				D58066532AFD3152003BB276 /* StopwatchVM.swift */,
 			);
 			path = Temp;

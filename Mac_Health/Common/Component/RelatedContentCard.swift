@@ -13,11 +13,11 @@ class YoutubeModel {
     var videoTitle:String = "team Booster"
 }
 
-struct YoutubeCardView: View {
-    var body: some View {
-        RelatedContentCard()
-    }
-}
+//struct YoutubeCardView: View {
+//    var body: some View {
+//        RelatedContentCard(videoID: <#String#>)
+//    }
+//}
 
 struct EmbedView : UIViewRepresentable{
     let videoID : String
@@ -27,7 +27,8 @@ struct EmbedView : UIViewRepresentable{
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        guard let youtubeURL = URL(string: "https://www.youtube.com/embed/\(videoID)") else { return }
+//        guard let youtubeURL = URL(string: "https://www.youtube.com/embed/\(videoID)") else { return }
+        guard let youtubeURL = URL(string: (videoID)) else { return }
         uiView.scrollView.isScrollEnabled = false
         uiView.load(URLRequest(url: youtubeURL))
     }
@@ -36,7 +37,8 @@ struct EmbedView : UIViewRepresentable{
 
 struct RelatedContentCard: View {
     //TODO: videoURL, videoID로 넘기기
-    var videoID = "Ian0sSuSn4I"
+//    var videoID = "Ian0sSuSn4I"
+    var videoID: String
     var body: some View{
         ZStack(alignment: .center){
             HStack{
@@ -68,7 +70,7 @@ struct RelatedContentCard_Previews: PreviewProvider {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            YoutubeCardView()
+//            YoutubeCardView()
         }
     }
 }

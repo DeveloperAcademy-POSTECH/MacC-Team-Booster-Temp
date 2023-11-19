@@ -26,7 +26,7 @@ class GeneralAPIManger {
                     }
                     else {
                         print(resp.statusCode)
-                        print(resp.response)
+//                        print(resp.response)
                         print(resp.data)
                         completion(.failure(.requestMapping("decode error")))
                     }

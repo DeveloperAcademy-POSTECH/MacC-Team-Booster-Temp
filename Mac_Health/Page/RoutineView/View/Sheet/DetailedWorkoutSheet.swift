@@ -32,7 +32,7 @@ struct DetailedWorkoutSheet: View {
         .onAppear {
             vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
         }
-        .presentationDetents([.height(UIScreen.getHeight(684))])
+        .presentationDetents([.height(UIScreen.getHeight(644))])
     }
     
     var NavigationTitle: some View {
@@ -61,7 +61,7 @@ struct DetailedWorkoutSheet: View {
     }
     
     var WorkoutCard: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Text("\(vm.workout.part)")
                     .foregroundColor(.label_700)
@@ -73,7 +73,7 @@ struct DetailedWorkoutSheet: View {
                 image
                     .resizable()
                     .scaledToFit()
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                    .frame(width: UIScreen.getWidth(320), height: UIScreen.getHeight(220))
             } placeholder: {
                 Image(systemName: "arrow.triangle.2.circlepath")
                     .scaledToFit()
@@ -101,14 +101,15 @@ struct DetailedWorkoutSheet: View {
                 
                 Spacer()
             }
-            .padding(.bottom)
+            .padding(.bottom, 10)
             Text("\(vm.workout.tip)\n")
                 .multilineTextAlignment(.leading)
-                .lineSpacing(3)
+                .lineSpacing(7)
                 .foregroundColor(.label_900)
                 .font(.headline1())
         }
         .padding(.horizontal)
+        .padding(.bottom)
     }
     
     var RelatedContent: some View {
@@ -120,11 +121,14 @@ struct DetailedWorkoutSheet: View {
                 
                 Spacer()
             }
+            .padding(.bottom, 13)
             
             ScrollView(.horizontal) {
                 HStack{
                     // TODO: 유튜브 링크 통해서 작업하기
-                    RelatedContentCard()
+                    ForEach(vm.workout.videoUrls, id: \.self){ videoUrl in
+                        RelatedContentCard(videoID: videoUrl)
+                    }
                 }
             }
         }

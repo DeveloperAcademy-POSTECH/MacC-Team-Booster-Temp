@@ -38,6 +38,8 @@ class RecordingWorkoutViewModel: ObservableObject {
     @Published var isRunning: Bool = false
     private var timer: Timer?
     
+    @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
+    
     
     /// 현재 진행 중인 운동 정보 조회 함수
     func fetchWorkout(routineId: Int, exerciseId: Int, completion: @escaping ((ResponseGetRoutinesExercises) -> ())) {

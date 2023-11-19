@@ -15,6 +15,7 @@ struct RecordingWorkoutView: View {
     let routineId: Int
     let exerciseId: Int
     
+
     @StateObject var vm = RecordingWorkoutViewModel()
     //    @StateObject var stopwatch = StopwatchViewModel()
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
@@ -64,6 +65,7 @@ struct RecordingWorkoutView: View {
                 
             }
             .onAppear {
+                //TODO: 관련 영상 호출 필요 - MORO
                 editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
             }
             .onTapGesture {
@@ -341,21 +343,24 @@ struct RecordingWorkoutView: View {
     
     @ViewBuilder
     var WorkoutSetList: some View {
-        if !editRoutineVM.workout.sets.isEmpty {
-            ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
-                // TODO: 무게 조정 api 호출
-                WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
-                    .environmentObject(vm)
-                    .overlay {
-                        if index == vm.currentSet {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(lineWidth: 1)
-                                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
-                                .foregroundColor(.green_main)
+        VStack{
+            if !editRoutineVM.workout.sets.isEmpty {
+                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
+                    // TODO: 무게 조정 api 호출
+                    WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
+                        .environmentObject(vm)
+                        .overlay {
+                            if index == vm.currentSet {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(lineWidth: 1)
+                                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(52))
+                                    .foregroundColor(.green_main)
+                            }
                         }
-                    }
+                }
             }
         }
+        .padding(.bottom, 30)
     }
     
     var WorkoutButton: some View {
@@ -466,7 +471,12 @@ struct RecordingWorkoutView: View {
             
             ScrollView(.horizontal) {
                 // TODO: 유튜브 카드 수정 후 고치기
-                RelatedContentCard()
+                HStack{
+                    // TODO: 유튜브 링크 통해서 작업하기
+                    ForEach(vm.workout.videoUrls, id: \.self){ videoUrl in
+                        RelatedContentCard(videoID: videoUrl)
+                    }
+                }
                 //                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
                 //                    HStack{
                 //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])

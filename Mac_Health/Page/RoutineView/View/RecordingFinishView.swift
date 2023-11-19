@@ -14,18 +14,20 @@ struct RecordingFinishView: View {
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
-            VStack {
-                Rectangle()
-                    .frame(width: 276, height: 152)
-                Image(systemName: "person")
+            VStack(spacing: 0) {
+                Spacer()
+                    .frame(height: UIScreen.getHeight(80))
+                Image("finishIcon")
+                    .frame(width: UIScreen.getWidth(276), height: UIScreen.getHeight(152))
+                Image("finishInfluencer")
                     .resizable()
-                    .frame(width: 150, height: 128)
+                    .frame(width: UIScreen.getWidth(294), height: UIScreen.getHeight(128))
                 RoundedRectangle(cornerRadius: 8.0)
                     .frame(width: UIScreen.getWidth(294), height: UIScreen.getHeight(100))
                     .foregroundColor(.gray_700)
                     .overlay{
                         VStack(spacing: 5){
-                            Text("23.11.08")
+                            Text(getNowDateTime())
                                 .font(.title1())
                                 .foregroundColor(.label_900)
                             Text("오늘도 고생 많으셨어요!")
@@ -33,6 +35,7 @@ struct RecordingFinishView: View {
                                 .foregroundColor(.label_900)
                         }
                     }
+                    .padding(.bottom, 30)
                 HStack(spacing: 40){
                     VStack(spacing: 3){
                         Text("45분")
@@ -59,9 +62,8 @@ struct RecordingFinishView: View {
                             .foregroundColor(.label_700)
                     }
                 }
-                .padding()
                 Spacer()
-                    .frame(height: 100)
+                    .frame(height: 115)
                 Button{
                     tabSelection = 3
                     print(self.tabSelection)
@@ -70,7 +72,7 @@ struct RecordingFinishView: View {
                             .foregroundColor(.gray_900)
                             .font(.button1())
                     }
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 12)
                     
                 }
                 
@@ -81,6 +83,7 @@ struct RecordingFinishView: View {
                             .foregroundColor(.green_main)
                             .font(.button1())
                 }
+                    .padding(.bottom)
                 
                 }
             }
@@ -88,6 +91,16 @@ struct RecordingFinishView: View {
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
 
+    }
+    
+    func getNowDateTime() -> String {
+        let nowDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier:  "ko")
+        
+        dateFormatter.dateFormat = "yy.MM.dd"
+        let date_String = dateFormatter.string(from: nowDate)
+        return date_String
     }
 }
 
