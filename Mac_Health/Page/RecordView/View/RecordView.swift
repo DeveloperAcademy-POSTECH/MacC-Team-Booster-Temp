@@ -32,12 +32,13 @@ struct RecordView: View {
                 .foregroundColor(.label_900)
             Spacer()
         }
-        .padding()
+        .padding([.top, .horizontal])
+        .padding(.bottom, 5)
     }
     
     var Calender: some View {
         CalendarView(selectedDate: $vm.selectedDate, recordedDate: $vm.recordedDate)
-            .frame(height: UIScreen.getHeight(362))
+            .frame(height: UIScreen.getHeight(340))
             .padding(.horizontal)
     }
     
@@ -118,7 +119,7 @@ struct RecordView: View {
                         .padding()
                     }
             }
-
+            
             HStack{
                 Image(systemName: "info.circle")
                 Text("운동기록 예시입니다")
