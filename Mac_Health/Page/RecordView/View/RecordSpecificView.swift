@@ -142,7 +142,7 @@ struct RecordSpecificView: View {
                     .frame(width: UIScreen.getWidth(15), alignment: .trailing)
                     .foregroundColor(.label_400)
                 Text("\(rep)회")
-                    .frame(width: UIScreen.getWidth(30), alignment: .trailing)
+                    .frame(width: UIScreen.getWidth(27), alignment: .trailing)
             }
             .font(.body2())
             .foregroundColor(.label_700)
