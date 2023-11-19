@@ -24,19 +24,36 @@ struct AlternateWorkoutSheet: View {
                 Spacer()
                 NavitationTitle
                 AlternativeWorkoutList
+            }
+            
+            VStack{
+                Spacer()
+                LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                    .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                    .onTapGesture {
+                        // Handle taps on the LinearGradient if needed
+                        print("LinearGradient tapped!")
+                    }
+                    .allowsHitTesting(false)
+            }
+            .ignoresSafeArea()
+            
+            VStack {
+                Spacer()
                 FinishButton
             }
+
         }
         .onAppear {
             vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
         }
-        .presentationDetents([.height(UIScreen.getHeight(519))])
+        .presentationDetents([.height(UIScreen.getHeight(479))])
     }
     
     var NavitationTitle: some View {
         VStack {
             HStack {
-                Text("운동 대체하기")
+                Text("운동 대체")
                     .font(.title1())
                     .foregroundColor(.label_900)
                 
@@ -98,6 +115,7 @@ struct AlternateWorkoutSheet: View {
                     .foregroundColor(.gray_900)
             }
         }
+        .padding(.bottom)
     }
 }
 

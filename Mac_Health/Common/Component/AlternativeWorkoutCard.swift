@@ -32,13 +32,14 @@ struct AlternativeWorkoutCard: View {
                                     .foregroundColor(.gray_600)
                             }
                         }
+                        .padding(.leading, 6)
+                        .padding(.trailing, 15)
                     
                     Text(alternativeWorkout.name)
                         .font(.headline1())
                         .foregroundColor(isSelectedWorkout ? .green_main : .label_900)
                     Spacer()
                 }
-                .padding(.horizontal)
                 
                 if isSelectedWorkout {
                     RoundedRectangle(cornerRadius: 8)

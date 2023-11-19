@@ -27,7 +27,7 @@ struct OnboardingView: View {
     
     var Onboarding: some View {
         ZStack {
-            Image("로그인배경")
+            Image("LoginImage")
                 .resizable()
                 .scaledToFill()
             

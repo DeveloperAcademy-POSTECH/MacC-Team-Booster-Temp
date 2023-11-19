@@ -108,10 +108,11 @@ struct RecordEditView: View {
         }
         .alert(isPresented: $isSaveAlertShow){
             let firstButton = Alert.Button.default(Text("취소").bold()) {
-                print("primary button pressed")
+//                print("primary button pressed")
             }
             let secondButton = Alert.Button.default(Text("확인")) {
-                print("secondary button pressed")
+//                print("secondary button pressed")
+                dismiss()
             }
             return Alert(title: Text("저장하시겠습니까?"),
                          //                         message: Text(""),
@@ -130,10 +131,11 @@ struct RecordEditView: View {
         }
         .alert(isPresented: $isUnsaveAlertShow){
             let firstButton = Alert.Button.default(Text("취소").bold()) {
-                print("primary button pressed")
+//                print("primary button pressed")
             }
             let secondButton = Alert.Button.default(Text("확인")) {
-                print("secondary button pressed")
+//                print("secondary button pressed")
+                dismiss()
             }
             return Alert(title: Text("저장하지 않고 나가시겠습니까?"),
                          //                         message: Text(""),
