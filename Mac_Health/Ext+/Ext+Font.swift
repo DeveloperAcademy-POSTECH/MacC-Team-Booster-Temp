@@ -44,7 +44,7 @@ extension Font {
         return Font.custom(Pretentard.regular, size: 16 * setFontSize()).weight(.regular)
     }
     static func body2() -> Font {
-        return Font.custom(Pretentard.regular, size: 14 * setFontSize()).weight(.semibold)
+        return Font.custom(Pretentard.regular, size: 14 * setFontSize()).weight(.regular)
     }
     static func button1() -> Font {
         return Font.custom(Pretentard.bold, size: 16 * setFontSize()).bold()
