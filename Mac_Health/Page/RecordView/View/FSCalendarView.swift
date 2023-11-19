@@ -23,7 +23,7 @@ class FSCalendarView: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     func configUI() {
 //        let calendar = FSCalendar()
-        calendar.appearance.headerDateFormat = "YYYY년 M월"
+        calendar.appearance.headerDateFormat = "M월 YYYY"
         calendar.appearance.headerMinimumDissolvedAlpha = 0.2
         calendar.scrollDirection = .horizontal
         calendar.allowsMultipleSelection = false
