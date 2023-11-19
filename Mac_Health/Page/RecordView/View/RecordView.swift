@@ -65,7 +65,6 @@ struct RecordView: View {
                                 Text("\(formatTime(record.time))")
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
-                                    .onAppear{print(record.time)}
                             }
                             Spacer()
                             HStack {
@@ -83,6 +82,7 @@ struct RecordView: View {
                     }
             }
         }
+        .padding(.bottom, 5)
     }
     
     func formatTime(_ timeString: String) -> String {
