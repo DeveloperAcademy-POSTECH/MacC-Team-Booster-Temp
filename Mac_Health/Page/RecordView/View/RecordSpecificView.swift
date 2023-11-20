@@ -51,11 +51,12 @@ struct RecordSpecificView: View {
     }
     
     var RoutineDescriptionCard: some View {
-        VStack(alignment: .leading, spacing: UIScreen.getWidth(10)) {
+        VStack(alignment: .leading, spacing: 8) {
             // TODO: 인플루언서 네임
             Text(record.influencerName)
                 .font(.title2())
                 .foregroundColor(.label_900)
+                .padding(.bottom, 10)
             // TODO: 폰트
             Text("2023년 4월 23일 루틴")
                 .font(.caption())
@@ -82,7 +83,7 @@ struct RecordSpecificView: View {
                 .foregroundColor(.label_900)
                 .font(.body())
         }
-        .padding(.bottom, 5)
+        .padding(.bottom, 7)
     }
     
     var EditButton: some View {

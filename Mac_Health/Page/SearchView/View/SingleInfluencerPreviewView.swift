@@ -56,19 +56,25 @@ struct SingleInfluencerPreviewView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.gray_700)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
+                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400)).overlay{
+                    HStack{
+                        Spacer()
+                        AsyncImage(url: URL(string: influencer.onePersonProfileImageUrl ?? "")) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            Image(systemName: "arrow.triangle.2.circlepath")
+                                .resizable()
+                                .scaledToFit()
+                                .padding(50)
+                        }
+                        
+                    }
+                }
             
             // TODO: api 작업 후 수정
-            AsyncImage(url: URL(string: influencer.onePersonProfileImageUrl ?? "")) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-            } placeholder: {
-                Image(systemName: "arrow.triangle.2.circlepath")
-                    .resizable()
-                    .scaledToFit()
-                    .padding(50)
-            }
+            
             
             HStack {
                 VStack(alignment: .leading) {
@@ -77,6 +83,7 @@ struct SingleInfluencerPreviewView: View {
                         .font(.title1())
                         .foregroundColor(.label_900)
                         .padding(.bottom, 3)
+                        .multilineTextAlignment(.leading)
                     Text(influencer.title)
                         .font(.body2())
                         .foregroundColor(.label_600)

@@ -107,14 +107,15 @@ struct RecordingWorkoutView: View {
     
     @ViewBuilder
     var NavigationTitle: some View {
-        HStack {
+        HStack (spacing: 0){
             Image(systemName: "flame.fill")
-                .foregroundColor(.label_700)
+                .foregroundColor(.green_main)
                 .font(.headline2())
             // TODO: 운동 시간
             Text(vm.timeFormatted())
                 .foregroundColor(.label_900)
                 .font(.headline1())
+                .padding(.horizontal, 10)
             // TODO: 운동 상태
             Button {
                 vm.isPauseSheetShow = true
@@ -125,9 +126,9 @@ struct RecordingWorkoutView: View {
                     .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                     .overlay {
                         Image(systemName: "pause.fill")
-                            .resizable()
+                            .font(.caption())
+                            .scaleEffect(0.8)
                             .foregroundColor(.label_900)
-                            .frame(width: UIScreen.getWidth(11), height: UIScreen.getHeight(14))
                     }
             }
         }
