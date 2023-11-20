@@ -58,7 +58,7 @@ struct MockUpFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-                        Text("4230kg")
+                        Text("9840kg")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("총 볼륨")
