@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 17.0, *)
 @main
 struct Mac_HealthApp: App {
     var body: some Scene {
