@@ -14,13 +14,13 @@ struct OnboardingView: View {
     
     var body: some View {
         if !isPass {
-            // 로그인 전
+            /// 로그인 전 화면
             NavigationStack {
                 Onboarding
             }
         }
         else {
-            // 로그인 성공 시
+            /// 로그인 성공 시 화면
             MainView()
         }
     }
@@ -46,6 +46,7 @@ struct OnboardingView: View {
                         .foregroundColor(.label_900)
                         .padding(.bottom, 10)
                         
+                        // TODO: BEFL 수정하기
                         Text("Be my Influencer, BEFL")
                             .font(.system(size: 20, weight: .light, design: .default))
                             .foregroundColor(.label_700)
@@ -63,9 +64,6 @@ struct OnboardingView: View {
                     .frame(height: UIScreen.getHeight(68))
             }
             
-        }
-        .onAppear {
-            isLogined()
         }
     }
     
@@ -97,10 +95,8 @@ struct OnboardingView: View {
             .signInWithAppleButtonStyle(.white)
             
         }
-        .background{
-            FloatingButton(backgroundColor: .white) {
-                
-            }
+        .background {
+            FloatingButton(backgroundColor: .white) { }
         }
         .padding(.bottom, 2)
     }
@@ -147,7 +143,6 @@ struct OnboardingView: View {
     
     /// 전달 받은 액세스 토큰 유저 디폴트 저장 함수
     func saveUser(accessToken: String, refreshToken: String) {
-        print(accessToken)
         UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
         UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
     }
@@ -158,7 +153,6 @@ struct OnboardingView: View {
             getReissue(refreshToken: refreshToken)
             return
         }
-        // TODO: 액세스 토큰 분기? - 필요한지 잘 모르겠음
     }
 }
 
