@@ -91,7 +91,7 @@ struct RecordSpecificView: View {
         } label: {
             Image(systemName: "pencil")
                 .foregroundColor(.label_700)
-                .font(.headline1())
+                .font(.headline2())
         }
     }
     
@@ -101,7 +101,7 @@ struct RecordSpecificView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
-                .font(.headline1())
+                .font(.headline2())
         }
     }
 }

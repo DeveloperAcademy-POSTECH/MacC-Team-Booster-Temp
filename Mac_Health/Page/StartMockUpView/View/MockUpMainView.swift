@@ -22,7 +22,7 @@ struct MockUpMainView: View {
                 MockUpStartView(tabSelection: $tabSelection)
                     .tabItem {
                         Image(systemName: "dumbbell")
-                        Text("루틴")
+                        Text("운동")
                     }
                     .tag(1)
                 

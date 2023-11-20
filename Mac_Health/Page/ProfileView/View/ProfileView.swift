@@ -45,6 +45,10 @@ struct ProfileView: View {
                 
                 //로그인 전 unactive
                 loggedIn ? AlertToggle(notiToggle: vm.notiToggle) : nil
+                loggedIn ?
+                Divider()
+                    .foregroundColor(.gray_700)
+                    .padding(.horizontal) : nil
                 versionInformaion
                 //로그인 전 unactive
 //                loggedIn ?
@@ -53,7 +57,9 @@ struct ProfileView: View {
 //                } label: {
 //                    subscribeManagement
 //                } : nil
-                
+                Divider()
+                    .foregroundColor(.gray_700)
+                    .padding(.horizontal, 20)
                 Button(action: {
                     showMailView.toggle()
                 }) {
@@ -66,6 +72,9 @@ struct ProfileView: View {
                     }
                 }
                 //로그인 전 unactive
+                Divider()
+                    .foregroundColor(.gray_700)
+                    .padding(.horizontal)
                 loggedIn ? useInformation : nil
                 Spacer()
             }
@@ -77,6 +86,7 @@ struct ProfileView: View {
             Text("프로필")
                 .font(.title2())
                 .foregroundColor(.label_900)
+                .padding(.leading, 3)
             Spacer()
         }
         .padding()
@@ -107,10 +117,11 @@ struct ProfileView: View {
                 }
             }
             .padding(.top, 10)
+            .padding(.bottom, 10)
     }
     
     func AlertToggle(notiToggle: Bool) -> some View {
-        VStack(alignment: .leading, spacing: 8){
+        VStack(alignment: .leading, spacing: 5){
             HStack{
                 Text("알림")
                     .font(.headline1())
@@ -126,12 +137,10 @@ struct ProfileView: View {
                     .font(.body())
                     .foregroundColor(.label_700)
             }
-            .padding(.bottom, 8)
-            Divider()
-                .foregroundColor(.gray_700)
+            .padding(.bottom)
         }
         .padding(.top, 10)
-        .padding(.horizontal, 25)
+        .padding(.horizontal)
     }
     
     var versionInformaion : some View {
@@ -147,57 +156,57 @@ struct ProfileView: View {
                 Text(vm.versionState)
                     .font(.body())
                     .foregroundColor(.label_700)
-                    .padding(.bottom)
             }
         }
-        .padding(.horizontal, 25)
-        .padding(.top)
+        .padding()
     }
     
-    var subscribeManagement : some View {
-        //노션 페이지 마련
-        VStack(alignment: .leading, spacing: 4){
-            Divider()
-                .foregroundColor(.gray_700)
-            Text("구독관리")
-                .font(.headline1())
-                .foregroundColor(.label_900)
-                .padding(.vertical)
-        }
-        .padding(.horizontal, 25)
-    }
+//    var subscribeManagement : some View {
+//        //노션 페이지 마련
+//        VStack(alignment: .leading, spacing: 4){
+//            Divider()
+//                .foregroundColor(.gray_700)
+//            Text("구독관리")
+//                .font(.headline1())
+//                .foregroundColor(.label_900)
+//                .padding(.vertical)
+//        }
+//        .padding(.horizontal)
+//    }
     
     var inquiry : some View {
         //이메일 모달
         VStack(alignment: .leading, spacing: 4){
-            Divider()
-                .foregroundColor(.gray_700)
-            Text("문의하기")
-                .font(.headline1())
-                .foregroundColor(.label_900)
+            HStack {
+                Text("문의하기")
+                    .font(.headline1())
+                    .foregroundColor(.label_900)
                 .padding(.vertical)
+                Spacer()
+            }
         }
-        .padding(.horizontal, 25)
+        .padding(.horizontal)
     }
     
     var useInformation : some View {
         //노션 페이지 마련
         Link(destination: URL(string: "https://wiggly-basketball-0a4.notion.site/25e03fbff832400d9bfd8206cb688047" )!) {
-            VStack(alignment: .leading, spacing: 4){
-                Divider()
-                    .foregroundColor(.gray_700)
-                Text("이용약관 및 개인정보처리방침")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                    .padding(.top)
+            VStack(alignment: .leading){
+                HStack{
+                    Text("이용약관 및 개인정보처리방침")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                        .padding(.top)
+                Spacer()
+                }
             }
-            .padding(.horizontal, 25)
+            .padding(.horizontal)
         }
     }
 }
 
-//#Preview {
-//    NavigationStack{
-//        ProfileView()
-//    }
-//}
+#Preview {
+    NavigationStack{
+        ProfileView(loggedIn: .constant(false))
+    }
+}

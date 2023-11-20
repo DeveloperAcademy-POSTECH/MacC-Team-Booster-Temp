@@ -79,7 +79,7 @@ struct ManageSubscribeView: View {
             dismiss()
         } label: {
             Image(systemName: "chevron.left")
-                .font(.headline1())
+                .font(.headline2())
                 .foregroundColor(.label_700)
         }
     }

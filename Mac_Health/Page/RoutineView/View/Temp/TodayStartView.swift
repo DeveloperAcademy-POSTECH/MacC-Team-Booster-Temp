@@ -43,7 +43,7 @@ struct TodayStartView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
-                .font(.body())
+                .font(.headline2())
         }
     }
     
@@ -140,38 +140,38 @@ struct TodayStartView: View {
                 .padding(.horizontal, 30)
                 .padding(.bottom, 70)
                 
-//                if routine.part == "휴식" {
-                    VStack {
-                        Image(systemName: "moon.stars.fill")
-                            .font(.system(size: 60))
-                            .foregroundColor(.label_500)
-                            .padding(.bottom)
-                        Text("휴식")
-                            .foregroundColor(.label_900)
-                            .font(.headline1())
-                    }
-                    
-                    EmptyFloatingButton
-//                }
-//                else {
-//                    RoutineDescriptionCard
-//                        .padding(.bottom, 10)
-//                        .padding(.leading,10)
-//                    //운동 시작 버튼
-//                    // TODO: 운동 완료시 disabledl
-//                    NavigationLink {
-//                        WorkoutListView(routineId: routine.routineId)
-//                    } label: {
-//                        RoundedRectangle(cornerRadius: 100)
-//                            .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
-//                            .foregroundColor(.green_main)
-//                            .overlay {
-//                                Text("운동 시작")
-//                                    .foregroundColor(.gray_900)
-//                                    .font(.button1())
-//                            }
-//                    }
-//                }
+                //                if routine.part == "휴식" {
+                VStack {
+                    Image(systemName: "moon.stars.fill")
+                        .font(.system(size: 60))
+                        .foregroundColor(.label_500)
+                        .padding(.bottom)
+                    Text("휴식")
+                        .foregroundColor(.label_900)
+                        .font(.headline1())
+                }
+                
+                EmptyFloatingButton
+                //                }
+                //                else {
+                //                    RoutineDescriptionCard
+                //                        .padding(.bottom, 10)
+                //                        .padding(.leading,10)
+                //                    //운동 시작 버튼
+                //                    // TODO: 운동 완료시 disabledl
+                //                    NavigationLink {
+                //                        WorkoutListView(routineId: routine.routineId)
+                //                    } label: {
+                //                        RoundedRectangle(cornerRadius: 100)
+                //                            .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(60))
+                //                            .foregroundColor(.green_main)
+                //                            .overlay {
+                //                                Text("운동 시작")
+                //                                    .foregroundColor(.gray_900)
+                //                                    .font(.button1())
+                //                            }
+                //                    }
+                //                }
             }
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(320))

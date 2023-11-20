@@ -65,7 +65,7 @@ struct RoutineInformationView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
-                .font(.headline1())
+                .font(.headline2())
         }
     }
     

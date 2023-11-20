@@ -106,8 +106,8 @@ struct MockUpSubscribeView: View {
             dismiss()
         } label: {
             Image(systemName: "chevron.left")
-                .foregroundColor(.label_900)
-                .font(.body())
+                .foregroundColor(.label_700)
+                .font(.headline2())
         }
     }
     
@@ -125,7 +125,7 @@ struct MockUpSubscribeView: View {
                 Text(introduce)
                     .foregroundColor(.label_800)
                     .font(.body())
-                    .padding(.vertical, 10)
+                    .padding(.top, 10)
                     .lineSpacing(8.0)
                 Text("수상경력")
                     .foregroundColor(.label_900)
@@ -205,7 +205,9 @@ struct MockUpSubscribeView: View {
                     .padding(.leading, 10)
                 }
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.top, 12)
+            .padding(.bottom, 5)
             //            }
         }
     }
@@ -259,7 +261,7 @@ struct MockUpSubscribeView: View {
                     .foregroundColor(.label_900)
                     .font(.headline1())
                     .padding(.top, 20)
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 12)
                 Text("키: 173cm")
                     .foregroundColor(.label_800)
                     .font(.body())
@@ -280,7 +282,7 @@ struct MockUpSubscribeView: View {
                     .foregroundColor(.label_900)
                     .font(.headline1())
                     .padding(.top, 20)
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 12)
                 Text("Squat: 210kg")
                     .foregroundColor(.label_800)
                     .font(.body)
@@ -313,18 +315,18 @@ struct RoutinePreview: View {
                             .foregroundColor(.fill_1)
                             .padding(.top)
                         Text("운동일지 미리보기")
-                            .font(.title2)
+                            .font(.title2())
                             .foregroundColor(.label_900)
                             .padding(.top, 30)
                         HStack{
                             Text(date)
-                                .font(.headline2())
+                                .font(.body2())
                                 .foregroundColor(.label_700)
                             Rectangle()
                                 .frame(width:1, height: 10)
                                 .foregroundColor(.label_400)
-                            Text("등/복근")
-                                .font(.headline2())
+                            Text("등, 이두")
+                                .font(.body2())
                                 .foregroundColor(.label_700)
                             
                         }
@@ -355,8 +357,9 @@ struct RoutinePreview: View {
                             .foregroundColor(.label_500)
                             .padding(.bottom, 5)
                         Text("운동 전 기립근의 부하를 줄여 줄 수 있는 하이퍼 익스텐션입니다. 등의 일직선 상에 위치 할 수 있도록 하시고, 고개를 과도하게 숙이거나 올리지 않도록 합니다. 스트레칭하듯 수행해 주세요.")
-                            .font(.body)
+                            .font(.body())
                             .foregroundColor(.label_900)
+                            .lineSpacing(5)
                     }
                     .padding(.horizontal, 13)
                     .padding(.vertical, 10)

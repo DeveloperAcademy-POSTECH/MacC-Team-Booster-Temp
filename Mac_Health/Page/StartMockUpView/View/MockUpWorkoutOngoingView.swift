@@ -119,21 +119,22 @@ struct MockUpWorkoutOngoingView: View {
     
     @ViewBuilder
     var NavigationTitle: some View {
-        HStack {
+        HStack (spacing: 0) {
             Image(systemName: "flame.fill")
-                .foregroundColor(.label_700)
+                .foregroundColor(.green_main)
                 .font(.footnote)
             Text(timeFormatted(viewModel.elapsedTime))
                 .font(.headline1())
                 .foregroundColor(.label_900)
+                .padding(.horizontal, 10)
             Circle()
                 .foregroundColor(.gray_700)
                 .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                 .overlay {
                     Image(systemName: "pause.fill")
-                        .resizable()
+                        .font(.caption())
+                        .scaleEffect(0.8)
                         .foregroundColor(.label_900)
-                        .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(10))
                 }
                 .onTapGesture {
                     isPauseShow = true
@@ -482,8 +483,8 @@ struct ImageTip: View {
     }
 }
 
-//#Preview {
-//    NavigationStack{
-//        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
-//    }
-//}
+#Preview {
+    NavigationStack{
+        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
+    }
+}

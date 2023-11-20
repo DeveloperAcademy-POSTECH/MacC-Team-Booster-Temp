@@ -47,7 +47,7 @@ struct WorkoutStatusEditView: View {
             dismiss()
         } label: {
             Image(systemName: "xmark")
-                .font(.headline1())
+                .font(.headline2())
                 .foregroundColor(.label_700)
         }
     }

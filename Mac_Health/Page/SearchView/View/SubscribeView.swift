@@ -107,7 +107,7 @@ struct SubscribeView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_900)
-                .font(.body())
+                .font(.headline2())
         }
     }
     
@@ -351,13 +351,13 @@ struct WorkoutExplain: View {
                     .foregroundColor(.label_900)
                 HStack{
                     Text(SetCount)
-                        .font(.headline2())
+                        .font(.body2())
                         .foregroundColor(.label_700)
                     Rectangle()
                         .frame(width:1, height: 10)
                         .foregroundColor(.label_400)
                     Text(part)
-                        .font(.headline2())
+                        .font(.body2())
                         .foregroundColor(.label_700)
                     
                 }

@@ -184,7 +184,7 @@ struct ChangeRoutineView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
-                .font(.body())
+                .font(.headline2())
         }
     }
 }

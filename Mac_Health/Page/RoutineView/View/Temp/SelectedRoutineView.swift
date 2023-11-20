@@ -108,7 +108,7 @@ struct SelectedRoutineView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_900)
-                .font(.body())
+                .font(.headline2())
         }
     }
 }

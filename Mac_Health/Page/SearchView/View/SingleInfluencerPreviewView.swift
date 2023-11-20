@@ -37,7 +37,7 @@ struct SingleInfluencerPreviewView: View {
                 Spacer()
                 //                        .frame(height: UITabBarController().height)
             }
-            .padding(.bottom, 35)
+//            .padding(.bottom, 35)
         }
     }
     
@@ -46,6 +46,7 @@ struct SingleInfluencerPreviewView: View {
             Text("둘러보기")
                 .font(.title2())
                 .foregroundColor(.label_900)
+                .padding(.leading, 3)
             Spacer()
         }
         .padding()
@@ -86,6 +87,7 @@ struct SingleInfluencerPreviewView: View {
             }
             .padding()
         }
+        .padding(.top)
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
         //        .mask(
         //            RoundedRectangle(cornerRadius: 8.0)

@@ -57,7 +57,7 @@ struct EditRoutineView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
-                .font(.headline1())
+                .font(.headline2())
         }
     }
     
@@ -68,7 +68,7 @@ struct EditRoutineView: View {
                 Text(vm.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
-                    .padding(.top)
+                    .padding([.horizontal, .top])
                 
                 Spacer()
             }
@@ -78,6 +78,7 @@ struct EditRoutineView: View {
                     WorkoutListCell(index: index)
                         .padding(.vertical, 4)
                 }
+                .padding(.horizontal)
                 FloatingButton(backgroundColor: .clear) { }
                     .padding()
             }

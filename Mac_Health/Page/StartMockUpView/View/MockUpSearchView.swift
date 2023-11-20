@@ -56,6 +56,7 @@ struct MockUpSearchView: View {
             Text("둘러보기")
                 .font(.title2())
                 .foregroundColor(.label_900)
+                .padding(.leading, 3)
             Spacer()
         }
         .padding()
@@ -67,10 +68,17 @@ struct MockUpSearchView: View {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.gray_700)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
-            Image("searchviewImage")
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(.blue)
+                .overlay{
+                    HStack{
+                        Spacer()
+                        Image("searchviewImage")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.blue)
+                        
+                    }
+                }
+            
             HStack {
                 VStack(alignment: .leading){
                     Spacer()
@@ -78,6 +86,7 @@ struct MockUpSearchView: View {
                         .font(.title1())
                         .foregroundColor(.label_900)
                         .padding(.bottom, 3)
+                        .multilineTextAlignment(.leading)
                     Text("2022 Mr. 서울대🏆")
                         .font(.body2())
                         .foregroundColor(.label_600)
