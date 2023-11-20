@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct RecordingFinishView: View {
-    
+    let routineId: Int
     @State var tabSelection: Int = 3
+    
+    @StateObject var vm = RecordingFinishViewModel()
+    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    
     @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -27,7 +32,7 @@ struct RecordingFinishView: View {
                     .foregroundColor(.gray_700)
                     .overlay{
                         VStack(spacing: 5){
-                            Text(getNowDateTime())
+                            Text(vm.nowDateFormatter())
                                 .font(.title1())
                                 .foregroundColor(.label_900)
                             Text("오늘도 고생 많으셨어요!")
@@ -54,7 +59,7 @@ struct RecordingFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-                        Text("6300kg")
+                        Text("\(vm.volume)kg")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("총 볼륨")
@@ -87,22 +92,14 @@ struct RecordingFinishView: View {
                 }
             }
         }
+        .onAppear {
+            vm.caculateWorkoutVolume(routineId: routineId)
+        }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
-
-    }
-    
-    func getNowDateTime() -> String {
-        let nowDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier:  "ko")
-        
-        dateFormatter.dateFormat = "yy.MM.dd"
-        let date_String = dateFormatter.string(from: nowDate)
-        return date_String
     }
 }
 
 #Preview {
-    RecordingFinishView()
+    RecordingFinishView(routineId: 1)
 }
