@@ -31,7 +31,7 @@ struct SingleInfluencerPreviewView: View {
                 .disabled(!MailView.canSendMail)
                 .sheet(isPresented: $vm.showMailView) {
                     MailView(data: $vm.mailData) { result in
-                        print(result)
+
                     }
                 }
                 Spacer()

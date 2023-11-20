@@ -20,7 +20,6 @@ class SubscribeViewModel: ObservableObject {
             switch $0 {
             case .success(let influencer):
                 self.influencer = influencer
-                print(self.influencer)
             case .failure(let error):
                 print(error.localizedDescription)
             }

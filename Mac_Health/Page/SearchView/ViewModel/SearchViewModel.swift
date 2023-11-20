@@ -16,7 +16,6 @@ class SearchViewModel: ObservableObject {
             case .success(let influencers):
                 // TODO: 데이터 붙이고 나서 다시 확인
                 self.influencer.previews = influencers
-                print(self.influencer)
             case .failure(let error):
                 print(error.localizedDescription)
             }

@@ -51,7 +51,6 @@ struct RecordingWorkoutView: View {
                         .frame(height: UIScreen.getHeight(150), alignment: .bottom)
                         .onTapGesture {
                             // Handle taps on the LinearGradient if needed
-                            print("LinearGradient tapped!")
                         }
                         .allowsHitTesting(false)
                 }

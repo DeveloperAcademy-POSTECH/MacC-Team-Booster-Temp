@@ -27,7 +27,6 @@ class WorkoutOngoingViewModel: ObservableObject {
             switch $0 {
             case .success(let routine):
                 self.routine = routine
-                print(self.routine)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -40,7 +39,6 @@ class WorkoutOngoingViewModel: ObservableObject {
             switch $0 {
             case .success(let set):
                 self.routine.sets = set
-                print(self.routine)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -53,7 +51,6 @@ class WorkoutOngoingViewModel: ObservableObject {
             switch $0 {
             case .success(let set):
                 self.routine.sets = set
-                print(self.routine)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -97,7 +94,6 @@ class WorkoutOngoingViewModel: ObservableObject {
                 self.routine.sets[0].weight = set.weight
                 self.routine.sets[0].reps = set.reps
                 self.routine.sets[0].isDone = set.isDone
-                print(self.routine)
             case .failure(let error):
                 print(error.localizedDescription)
             }

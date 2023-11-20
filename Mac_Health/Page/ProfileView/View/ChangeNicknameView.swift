@@ -82,7 +82,6 @@ struct ChangeNicknameView: View {
     
     var SaveButton: some View {
             Button {
-                print("save nickname")
                 vm.nickname = changingNickname
                 //TODO: name Patch 하기
                 dismiss()
@@ -95,7 +94,7 @@ struct ChangeNicknameView: View {
     
     var unactiveSaveButton: some View {
         Button {
-            print("need to change name")
+
         } label: {
             Text("완료")
                 .font(.headline1())
