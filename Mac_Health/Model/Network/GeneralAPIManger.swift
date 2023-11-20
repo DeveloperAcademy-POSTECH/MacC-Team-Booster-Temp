@@ -27,9 +27,6 @@ class GeneralAPIManger {
                     else {
                         completion(.failure(.requestMapping("decode error")))
                     }
-                    print(resp.statusCode)
-                    print(resp.response)
-                    print(resp.data)
                 }
                 else {
                     if 403 == resp.statusCode {
