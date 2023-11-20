@@ -34,6 +34,9 @@ class RecordingWorkoutViewModel: ObservableObject {
     //팁 이미지 전환
     @Published var tabSelection = 0
     
+    /// api 응답 받아야 탭 가능하게 전환 - 추후 콤바인 교체
+    @Published var isCanTappable = true
+    
     @Published var elapsedTime: TimeInterval = 0
     @Published var isRunning: Bool = false
     private var timer: Timer?
@@ -98,9 +101,12 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     /// 현재 세트 완료 함수
     func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
+        isCanTappable = false
+        
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
             case .success(let set):
+                self.isCanTappable = true
                 completion(set)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -115,9 +121,12 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     /// 운동 완료 함수
     func finishWorkout(routineId: Int) {
+        isCanTappable = false
+        
         GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
             switch $0 {
             case .success:
+                self.isCanTappable = true
                 self.isFinish = true
             case .failure(let error):
                 print(error.localizedDescription)
