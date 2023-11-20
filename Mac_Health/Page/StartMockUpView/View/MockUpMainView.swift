@@ -16,8 +16,11 @@ struct MockUpMainView: View {
     @State private var path = NavigationPath()
     @State private var tabSelection = 1
     @State var loggedIn = false
+    @StateObject private var navigationPath = MockUpNavigationManager()
+    @ObservedObject private var stopwatchViewModel = MockUpStopwatchViewModel()
     
     var body: some View {
+        NavigationStack(path: $navigationPath.navigatePath) {
             TabView(selection: $tabSelection) {
                 MockUpStartView(tabSelection: $tabSelection)
                     .tabItem {
@@ -41,13 +44,32 @@ struct MockUpMainView: View {
                     .tag(3)
                 
                 ProfileView(loggedIn: $loggedIn)
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("프로필")
-                }
-                .tag(4)
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("프로필")
+                    }
+                    .tag(4)
             }
             .tint(.label_900)
+            .navigationDestination(for: MockUpNavigation.self) { destination in
+                switch destination {
+                case .mockUpStartView:
+                    MockUpStartView(tabSelection: $tabSelection)
+                case .mockUpSearchView:
+                    MockUpSearchView(tabSelection: $tabSelection)
+                case .mockUpRecordView:
+                    RecordView(loggedIn: $loggedIn)
+                case .mockUpProfileView:
+                    ProfileView(loggedIn: $loggedIn)
+                case .mockUpWorkoutOngoingView:
+                    MockUpWorkoutOngoingView(tabSelection: $tabSelection)
+                case .mockUpFinishView:
+                    MockUpFinishView(elapsedTime: $stopwatchViewModel.elapsedTime, tabSelection: $tabSelection)
+                case .mockUpSubscribeView:
+                    MockUpSubscribeView(tabSelection: $tabSelection)
+                }
+            }
+        }
     }
 }
 
