@@ -14,7 +14,7 @@ struct EditRoutineView: View {
     let routineId: Int
     
     @StateObject var vm = EditRoutineViewModel()
-    
+    var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -161,7 +161,7 @@ struct EditRoutineView: View {
         VStack{
             Spacer()
             NavigationLink {
-                RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id)
+                RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: burnedKCalories)
                     .environmentObject(vm)
             } label: {
                 FloatingButton(backgroundColor: .green_main) {
@@ -202,6 +202,6 @@ struct EditRoutineView: View {
     }
 }
 
-#Preview {
-    EditRoutineView(routineId: 1)
-}
+//#Preview {
+//    EditRoutineView(routineId: 1)
+//}

@@ -13,7 +13,7 @@ struct EditRecordingRoutineView: View {
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     
     @Environment(\.dismiss) var dismiss: DismissAction
-    
+    var burnedKCalories: Int
     var body: some View {
         VStack {
             WorkoutList
@@ -134,7 +134,7 @@ struct EditRecordingRoutineView: View {
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            RecordingWorkoutView(routineId: routineId, exerciseId: editRoutineVM.routine.exercises.isEmpty ? 0 : editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
+            RecordingWorkoutView(routineId: routineId, exerciseId: editRoutineVM.routine.exercises.isEmpty ? 0 : editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id, burnedKCalories: burnedKCalories)
                 .environmentObject(editRoutineVM)
         } label: {
             FloatingButton(backgroundColor: .green_main) {
@@ -177,6 +177,6 @@ struct EditRecordingRoutineView: View {
     }
 }
 
-#Preview {
-    EditRecordingRoutineView(routineId: 1)
-}
+//#Preview {
+//    EditRecordingRoutineView(routineId: 1)
+//}

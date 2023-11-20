@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SelectedRoutineView: View {
     let routineId: Int
-    
+    var burnedKCalories: Int
     @StateObject var vm = SelectedRoutineViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -32,7 +32,7 @@ struct SelectedRoutineView: View {
             VStack {
                 Spacer()
                 NavigationLink {
-                    EditRoutineView(routineId: routineId)
+                    EditRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
                 } label: {
                     FloatingButton(backgroundColor: .green_main) {
                         Text("운동 시작")
@@ -113,8 +113,8 @@ struct SelectedRoutineView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        SelectedRoutineView(routineId: 1)
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        SelectedRoutineView(routineId: 1)
+//    }
+//}

@@ -342,7 +342,7 @@ struct RoutinePreview: View {
                     Spacer()
                 }
                 //운동 루틴
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "하이퍼 익스텐션", SetCount: "3세트", part: "등")
+                WorkoutExplain(ImageName: "hyperExtention", WorkoutName: "하이퍼 익스텐션", SetCount: "3세트", part: "등")
                 //첫 운동 팁 설명
                 //ZStack{
                 HStack(alignment: .top){
@@ -372,8 +372,8 @@ struct RoutinePreview: View {
                 .padding(.vertical, 10)
                 
                 //                }
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "덤벨 풀 오버", SetCount: "4세트", part: "등")
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "바벨 로우", SetCount: "4세트", part: "등")
+                WorkoutExplain(ImageName: "dumbellPullOver", WorkoutName: "덤벨 풀 오버", SetCount: "4세트", part: "등")
+                WorkoutExplain(ImageName: "barbellRow", WorkoutName: "바벨 로우", SetCount: "4세트", part: "등")
                     .padding(.bottom, 3)
                 HStack{
                     Text("이두")

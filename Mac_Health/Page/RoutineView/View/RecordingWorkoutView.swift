@@ -19,13 +19,13 @@ struct RecordingWorkoutView: View {
     @StateObject var vm = RecordingWorkoutViewModel()
     //    @StateObject var stopwatch = StopwatchViewModel()
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
-    
+    var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss
     @FocusState private var isFocused: Bool
     
     var body: some View {
         if vm.isFinish {
-            RecordingFinishView()
+            RecordingFinishView(elapsedTime: $vm.elapsedTime, vm: RecordingWorkoutViewModel(), burnedKCalories: burnedKCalories)
         }
         else {
             ZStack {
@@ -67,7 +67,11 @@ struct RecordingWorkoutView: View {
             }
             .onAppear {
                 //TODO: 관련 영상 호출 필요 - MORO
+                vm.start()
                 editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+            }
+            .onDisappear{
+                vm.stop()
             }
             .onTapGesture {
                 isFocused = false
@@ -372,7 +376,7 @@ struct RecordingWorkoutView: View {
             .overlay {
                 HStack {
                     NavigationLink {
-                        RecordingRoutineView(routineId: routineId)
+                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
                             .environmentObject(editRoutineVM)
                     } label: {
                         Image(systemName: "list.bullet")
@@ -506,6 +510,6 @@ struct RecordingWorkoutView: View {
     }
 }
 
-#Preview {
-    RecordingWorkoutView(routineId: 0, exerciseId: 0)
-}
+//#Preview {
+//    RecordingWorkoutView(routineId: 0, exerciseId: 0)
+//}

@@ -13,7 +13,7 @@ import SwiftUI
 struct RoutineInformationView: View {
     let routineId: Int
     @StateObject var vm = RoutineInformationViewModel()
-    
+    var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -107,7 +107,7 @@ struct RoutineInformationView: View {
         VStack {
             Spacer()
             NavigationLink {
-                EditRoutineView(routineId: routineId)
+                EditRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
             } label: {
                 FloatingButton(backgroundColor: .green_main) {
                     Text("운동 시작")
@@ -130,7 +130,7 @@ struct RoutineInformationView: View {
     }
     
 }
-
-#Preview {
-    RoutineInformationView(routineId: 1)
-}
+//
+//#Preview {
+//    RoutineInformationView(routineId: 1)
+//}

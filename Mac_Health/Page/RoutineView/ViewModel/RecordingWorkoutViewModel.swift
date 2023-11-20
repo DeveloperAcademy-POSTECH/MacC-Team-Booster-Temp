@@ -166,4 +166,24 @@ class RecordingWorkoutViewModel: ObservableObject {
         return String(format: "%01d:%02d:%02d",hours, minutes, seconds)
     }
     
+    func finishTimeFormatted(_ seconds: TimeInterval) -> String {
+        let hours = Int(seconds) / 3600
+        let minutes = Int(seconds) / 60
+        return if hours >= 1 {
+            String(format: "%01d시간%02d분",hours, minutes)
+        } else {
+            String(format: "%01d분", minutes)
+        }
+    }
+    
+    func getNowDateTime() -> String {
+        let nowDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier:  "ko")
+        
+        dateFormatter.dateFormat = "yy.MM.dd"
+        let date_String = dateFormatter.string(from: nowDate)
+        return date_String
+    }
+    
 }

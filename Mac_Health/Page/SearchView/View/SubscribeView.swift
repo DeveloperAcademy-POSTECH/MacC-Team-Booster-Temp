@@ -347,6 +347,11 @@ struct WorkoutExplain: View {
             Image(ImageName)
                 .resizable()
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                .background{
+                    RoundedRectangle(cornerRadius: 4)
+                        .foregroundColor(.fill_1)
+                        .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                }
             VStack(alignment: .leading){
                 Text(WorkoutName)
                     .font(.headline1())

@@ -15,7 +15,6 @@ import SwiftUI
 struct SingleInfluencerRoutineView: View {
     @Binding var routine: InfluencerRoutine
     @StateObject var vm = SingleInfluencerRoutineViewModel()
-    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -126,7 +125,7 @@ struct SingleInfluencerRoutineView: View {
                         .foregroundColor(.label_900)
                     Spacer()
                     NavigationLink {
-                        WholeRoutineView(influencerId: routine.influencerId)
+                        WholeRoutineView(influencerId: routine.influencerId, burnedKCalories: routine.burnedKCalories)
                     } label: {
                         Image(systemName: "calendar")
                             .font(.title2())
@@ -177,7 +176,7 @@ struct SingleInfluencerRoutineView: View {
                             .padding(.bottom, 10)
                     } else {
                         NavigationLink {
-                            EditRoutineView(routineId: routine.routineId)
+                            EditRoutineView(routineId: routine.routineId, burnedKCalories: routine.burnedKCalories)
                         } label: {
                             RoundedRectangle(cornerRadius: 100)
                                 .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))

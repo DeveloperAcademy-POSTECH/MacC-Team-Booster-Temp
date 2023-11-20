@@ -10,7 +10,7 @@ import SwiftUI
 /// 운동 기록 중 운동 목록을 보기 위한 뷰
 struct RecordingRoutineView: View {
     let routineId: Int
-        
+    var burnedKCalories: Int
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     
     @Environment(\.dismiss) var dismiss
@@ -44,7 +44,7 @@ struct RecordingRoutineView: View {
     
     var EditButton: some View {
         NavigationLink {
-            EditRecordingRoutineView(routineId: routineId)
+            EditRecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
                 .environmentObject(editRoutineVM)
         } label: {
             Text("편집")
@@ -124,6 +124,6 @@ struct RecordingRoutineView: View {
     }
 }
 
-#Preview {
-    RecordingRoutineView(routineId: 1)
-}
+//#Preview {
+//    RecordingRoutineView(routineId: 1)
+//}

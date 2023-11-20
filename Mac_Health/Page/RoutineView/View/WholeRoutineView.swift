@@ -20,6 +20,7 @@ struct WholeRoutineView: View {
     let influencerId: Int
     
     @StateObject var vm = WholeRoutineViewModel()
+    var burnedKCalories: Int
     
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -122,7 +123,7 @@ struct WholeRoutineView: View {
                     }
                     ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
                         NavigationLink {
-                            RoutineInformationView(routineId: some.routineId)
+                            RoutineInformationView(routineId: some.routineId, burnedKCalories: burnedKCalories)
                                 .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
                         } label: {
                             TodayWorkoutCell(routine: some)
@@ -175,8 +176,8 @@ struct WholeRoutineView: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        WholeRoutineView(influencerId: 0)
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        WholeRoutineView(influencerId: 0)
+//    }
+//}

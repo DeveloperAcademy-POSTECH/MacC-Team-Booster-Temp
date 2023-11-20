@@ -13,6 +13,7 @@ enum WorkoutType: String, CaseIterable {
 
 struct ChangeRoutineView: View {
     let influencerId: Int
+    var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss: DismissAction
     @StateObject var vm = ChangeRoutineViewModel()
     
@@ -89,7 +90,7 @@ struct ChangeRoutineView: View {
                     }
                     ForEach(vm.monthlyroutines[key]!, id: \.self) { some in
                         NavigationLink {
-                            SelectedRoutineView(routineId: some.routineId)
+                            SelectedRoutineView(routineId: some.routineId, burnedKCalories: burnedKCalories)
                                 .navigationBarTitle("\(vm.dateFormat(from: some.date))", displayMode: .inline)
                         } label: {
                             TodayWorkoutCell(routine: some)
@@ -189,8 +190,8 @@ struct ChangeRoutineView: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        ChangeRoutineView(influencerId: 1)
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        ChangeRoutineView(influencerId: 1)
+//    }
+//}
