@@ -473,7 +473,7 @@ struct RecordingWorkoutView: View {
                 // TODO: 유튜브 카드 수정 후 고치기
                 HStack{
                     // TODO: 유튜브 링크 통해서 작업하기
-                    ForEach(vm.workout.videoUrls, id: \.self){ videoUrl in
+                    ForEach(editRoutineVM.workout.videoUrls, id: \.self) { videoUrl in
                         RelatedContentCard(videoID: videoUrl)
                     }
                 }
