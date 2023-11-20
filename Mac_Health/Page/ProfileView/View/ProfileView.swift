@@ -131,7 +131,7 @@ struct ProfileView: View {
                 .foregroundColor(.gray_700)
         }
         .padding(.top, 10)
-        .padding()
+        .padding(.horizontal)
     }
     
     var versionInformaion : some View {
@@ -151,6 +151,7 @@ struct ProfileView: View {
             }
         }
         .padding(.horizontal)
+        .padding(.top)
     }
     
     var subscribeManagement : some View {

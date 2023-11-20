@@ -11,6 +11,7 @@ struct MockUpMainView: View {
     init() {
         UITabBar.appearance().backgroundColor = Color.tabbar_main
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
     }
     @State private var path = NavigationPath()
     @State private var tabSelection = 1
