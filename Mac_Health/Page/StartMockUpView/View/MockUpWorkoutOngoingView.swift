@@ -99,7 +99,6 @@ struct MockUpWorkoutOngoingView: View {
         }
         .onDisappear{
             viewModel.Stop()
-            print(viewModel.elapsedTime)
         }
         .onTapGesture {
             isFocused = false

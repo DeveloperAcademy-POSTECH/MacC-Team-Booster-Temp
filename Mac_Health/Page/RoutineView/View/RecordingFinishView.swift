@@ -66,7 +66,6 @@ struct RecordingFinishView: View {
                     .frame(height: 115)
                 Button{
                     tabSelection = 3
-                    print(self.tabSelection)
                 } label: {
                     FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
                             .foregroundColor(.gray_900)

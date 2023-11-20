@@ -12,7 +12,7 @@ class SubscribeViewModel: ObservableObject {
     //    @State var seeMore:Bool = false
     @Published var showTab = false
     @Published var scrollOffset: CGFloat = 0.00
-    @Published var subscribingSheet = false
+    @Published var isSubscriptionAlertShow = false
     @Published var loggedIn = true
     
     func fetchInfluencer(influencerId: Int) {
@@ -20,7 +20,30 @@ class SubscribeViewModel: ObservableObject {
             switch $0 {
             case .success(let influencer):
                 self.influencer = influencer
-                print(self.influencer)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func subscribeInfluecer(influencerId: Int) {
+        GeneralAPIManger.request(for: .PostInfluencersSubscribe(id: influencerId), type: PostInfluencersSubscribe.self) {
+            switch $0 {
+            case .success(let subscription):
+                self.influencer.isSubscription = subscription.isSubscription
+                self.isSubscriptionAlertShow = true
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func unSubscribeInfluecer(influencerId: Int) {
+        GeneralAPIManger.request(for: .PostInfluencersUnsubscribe(id: influencerId), type: PostInfluencersSubscribe.self) {
+            switch $0 {
+            case .success(let subscription):
+                self.influencer.isSubscription = subscription.isSubscription
+                self.isSubscriptionAlertShow = true
             case .failure(let error):
                 print(error.localizedDescription)
             }

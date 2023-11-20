@@ -15,7 +15,6 @@ class SelectedRoutineViewModel: ObservableObject {
             switch $0 {
             case .success(let routine):
                 self.routine = routine
-                print(self.routine)
             case .failure(let error):
                 print(error.localizedDescription)
             }

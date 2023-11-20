@@ -19,7 +19,6 @@ class ChangeRoutineViewModel: ObservableObject {
             case .success(let routine):
                 self.routines.routines = routine
                 self.fetchMonthlyRoutines(routines: routine.self)
-                print(self.routines)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -37,8 +36,6 @@ class ChangeRoutineViewModel: ObservableObject {
             }
             monthlyroutines.updateValue(updatedRutine, forKey: month)
         }
-        print("--------------------")
-        print(monthlyroutines)
     }
     
     func dateFormat(from date: String) -> String {

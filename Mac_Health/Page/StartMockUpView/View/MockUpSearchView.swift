@@ -40,7 +40,7 @@ struct MockUpSearchView: View {
                 .disabled(!MailView.canSendMail)
                 .sheet(isPresented: $showMailView) {
                     MailView(data: $mailData) { result in
-                        print(result)
+//                        result
                     }
                 }
                 Spacer()

@@ -63,7 +63,6 @@ struct WorkoutFinishView: View {
                     .frame(height: 100)
                 Button{
                     self.tabSelection = 3
-                    print(self.tabSelection)
                 } label: {
                     FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
                             .foregroundColor(.gray_900)

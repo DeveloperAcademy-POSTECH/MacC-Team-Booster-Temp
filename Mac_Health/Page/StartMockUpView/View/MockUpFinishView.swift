@@ -81,8 +81,7 @@ struct MockUpFinishView: View {
                 }
                 
                 Button{
-                    print("move to login view")
-                    
+//                    move to login view"
                 } label: {
                     FloatingButton(backgroundColor: .gray_600) {
                             Text("로그인")

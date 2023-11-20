@@ -46,7 +46,6 @@ class WholeRoutineViewModel: ObservableObject {
                 }
                 else {
                     let selectedRoutines = self.wholeRoutines.filter { $0.part.components(separatedBy: ", ").contains(selectionText) }
-                    print(selectedRoutines)
                     let selectedMonthlyRoutines = self.fetchByMonth(routines: selectedRoutines)
                     self.routinesByMonth = selectedMonthlyRoutines
                 }

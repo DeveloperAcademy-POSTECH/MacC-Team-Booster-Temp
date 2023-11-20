@@ -145,6 +145,11 @@ struct OnboardingView: View {
     func saveUser(accessToken: String, refreshToken: String) {
         UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
         UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
+        
+        #if DEBUG
+        print("accessToken: \(UserDefaults.standard.string(forKey: "accessToken"))")
+        print("refreshToken: \(UserDefaults.standard.string(forKey: "refreshToken"))")
+        #endif
     }
     
     /// 자동 로그인 검사 함수

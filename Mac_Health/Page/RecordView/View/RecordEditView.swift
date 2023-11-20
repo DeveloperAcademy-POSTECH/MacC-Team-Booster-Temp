@@ -99,7 +99,6 @@ struct RecordEditView: View {
     
     var SaveButton: some View {
         Button {
-            print("save")
             isSaveAlertShow = true
         } label: {
             Text("완료")

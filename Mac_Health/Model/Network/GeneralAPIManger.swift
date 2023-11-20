@@ -29,12 +29,14 @@ class GeneralAPIManger {
                     }
                 }
                 else {
+                    #if DEBUG
                     if 403 == resp.statusCode {
                         print("Authentication failed")
                     }
                     print(resp.statusCode)
                     print(resp.response)
                     print(resp.data)
+                    #endif
                     completion(.failure(.statusCode(resp)))
                 }
             case .failure(let error):
