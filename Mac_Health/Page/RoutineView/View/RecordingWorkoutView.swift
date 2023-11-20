@@ -25,7 +25,8 @@ struct RecordingWorkoutView: View {
     
     var body: some View {
         if vm.isFinish {
-            RecordingFinishView()
+            RecordingFinishView(routineId: routineId)
+                .environmentObject(editRoutineVM)
         }
         else {
             ZStack {

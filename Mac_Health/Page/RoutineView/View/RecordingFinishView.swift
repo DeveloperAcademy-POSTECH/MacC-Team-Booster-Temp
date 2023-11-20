@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct RecordingFinishView: View {
+    let routineId: Int
     @State var tabSelection: Int = 3
     
     @StateObject var vm = RecordingFinishViewModel()
+    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     
     @Environment(\.dismiss) var dismiss
     
@@ -57,7 +59,7 @@ struct RecordingFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-                        Text("6300kg")
+                        Text("\(vm.volume)kg")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("총 볼륨")
@@ -90,11 +92,14 @@ struct RecordingFinishView: View {
                 }
             }
         }
+        .onAppear {
+            vm.caculateWorkoutVolume(routineId: routineId)
+        }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
     }
 }
 
 #Preview {
-    RecordingFinishView()
+    RecordingFinishView(routineId: 1)
 }
