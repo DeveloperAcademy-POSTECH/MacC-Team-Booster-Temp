@@ -34,7 +34,23 @@ enum GeneralAPI {
     case GetReissue(refreshToken: String)
     //:
     
+    // MARK: influencer-controller
+    /// 인플루언서 구독 해제
+    case PostInfluencersUnsubscribe(id: Int)
+    /// 인플루언서 구독
+    case PostInfluencersSubscribe(id: Int)
+    /// 둘러보기 인플루언서들
+    case GetInfluencers
+    /// 둘러보기 상세
+    case GetInfluencersId(id: Int)
+    /// 테스트 용
+    case GetInfluencersRoutines(id: Int)
+    //:
+    
     // MARK: user-controller
+    /// TODO: api 용도 갱신 필요
+    case PostUsersMe(accessToken: String, refreshToken: String)
+    
     /// 닉네임 변경
     case PatchUsers(name: String)
     //:
@@ -76,15 +92,6 @@ enum GeneralAPI {
     /// 테스트 용
     case GetRoutines
     //:
-    
-    // MARK: influencer-controller
-    /// 둘러보기 인플루언서들
-    case GetInfluencers
-    /// 둘러보기 상세
-    case GetInfluencersId(id: Int)
-    /// 테스트 용
-    case GetInfluencersRoutines(id: Int)
-    //:
 }
 
 extension GeneralAPI: TargetType {
@@ -121,7 +128,21 @@ extension GeneralAPI: TargetType {
         case .GetReissue(refreshToken: let refreshToken):
             return "/\(refreshToken)/reissue"
             //:
+            // MARK: influencer-controller
+        case .PostInfluencersUnsubscribe(id: let id):
+            return "/influencers/\(id)/unsubscribe"
+        case .PostInfluencersSubscribe(id: let id):
+            return "/influencers/\(id)/subscribe"
+        case .GetInfluencers:
+            return "/influencers"
+        case .GetInfluencersId(let id):
+            return "/influencers/\(id)"
+        case .GetInfluencersRoutines(let id):
+            return "/influencers/\(id)/routines"
+            //:
             // MARK: user-controller
+        case .PostUsersMe:
+            return "/users/me"
         case .PatchUsers:
             return "/users"
             //:
@@ -153,14 +174,6 @@ extension GeneralAPI: TargetType {
         case .GetRoutines:
             return "/routines"
             //:
-            // MARK: influencer-controller
-        case .GetInfluencers:
-            return "/influencers"
-        case .GetInfluencersId(let id):
-            return "/influencers/\(id)"
-        case .GetInfluencersRoutines(let id):
-            return "/influencers/\(id)/routines"
-            //:
         }
     }
     
@@ -177,7 +190,15 @@ extension GeneralAPI: TargetType {
         case .PostLogin: return .post
         case .GetReissue: return .get
             //:
+            // MARK: influencer-controller
+        case .PostInfluencersUnsubscribe: return .post
+        case .PostInfluencersSubscribe: return .post
+        case .GetInfluencers: return .get
+        case .GetInfluencersId: return .get
+        case .GetInfluencersRoutines: return .get
+            //:
             // MARK: user-controller
+        case .PostUsersMe: return .post
         case .PatchUsers: return .patch
             //:
             // MARK: user-routine-controller
@@ -198,11 +219,6 @@ extension GeneralAPI: TargetType {
             // MARK: routine-controller
         case .GetRoutines: return .get
             //:
-            // MARK: influencer-controller
-        case .GetInfluencers: return .get
-        case .GetInfluencersId: return .get
-        case .GetInfluencersRoutines: return .get
-            //:
         }
     }
     
@@ -219,7 +235,15 @@ extension GeneralAPI: TargetType {
         case .PostLogin(identifier: let identifier, identityToken: let identityToken, authorizationCode: let authorizationCode): return .requestJSONEncodable(Credential(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode))
         case .GetReissue: return .requestPlain
             //:
+            // MARK: influencer-controller
+        case .PostInfluencersUnsubscribe: return .requestPlain
+        case .PostInfluencersSubscribe: return .requestPlain
+        case .GetInfluencers: return .requestPlain
+        case .GetInfluencersId: return .requestPlain
+        case .GetInfluencersRoutines: return .requestPlain
+            //:
             // MARK: user-controller
+        case .PostUsersMe(accessToken: let accessToken, refreshToken: let refreshToken): return .requestParameters(parameters: ["accessToken": accessToken, "refreshToken": refreshToken], encoding: URLEncoding.queryString)
         case .PatchUsers(name: let name): return .requestParameters(parameters: ["name": name], encoding: URLEncoding.queryString)
             //:
             // MARK: user-routine-controller
@@ -239,11 +263,6 @@ extension GeneralAPI: TargetType {
             //:
             // MARK: routine-controller
         case .GetRoutines: return .requestPlain
-            //:
-            // MARK: influencer-controller
-        case .GetInfluencers: return .requestPlain
-        case .GetInfluencersId: return .requestPlain
-        case .GetInfluencersRoutines: return .requestPlain
             //:
         }
     }
