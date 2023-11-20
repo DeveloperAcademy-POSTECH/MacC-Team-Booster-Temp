@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct SubscribeView: View {
+    let influencerId: Int
     
-    @State var seeMore:Bool = false
-    @State var showTab = false
-    @State var scrollOffset: CGFloat = 0.00
-    @State var subscribingSheet = false
-    @State var subscribed = true
-    @State var loggedIn = true
+    @StateObject var vm = SubscribeViewModel()
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = """
@@ -38,7 +35,7 @@ struct SubscribeView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             ScrollView {
-                VStack{
+                VStack {
                     //구독 페이지 설명
                     IntroPage
                     //구독 버튼
@@ -57,19 +54,22 @@ struct SubscribeView: View {
                 .onPreferenceChange(ViewOffsetKey.self) { offset in
                     withAnimation {
                         if offset > UIScreen.getHeight(422) {
-                            showTab = true
+                            vm.showTab = true
                         } else  {
-                            showTab = false
+                            vm.showTab = false
                         }
                     }
-                    scrollOffset = offset
+                    vm.scrollOffset = offset
                 }
             }
             .coordinateSpace(name: "scroll")
             .overlay(
-                showTab ?
+                vm.showTab ?
                 createTab() : nil, alignment: Alignment.bottom
             )
+        }
+        .onAppear {
+            vm.fetchInfluencer(influencerId: influencerId)
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -82,13 +82,13 @@ struct SubscribeView: View {
     
     @ViewBuilder
     var IntroPage: some View {
-        ZStack{
-            topBackground
+        VStack{
+//            topBackground
             TabView {
                 ForEach(1...3, id: \.self) { idx in
                     //둘러보기에서 구독 뷰
                     ZStack{
-                        Image("RotateInfluencer\(idx)")
+                        Image("bannerImage")
                             .resizable()
                             .scaledToFit()
                         LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
@@ -96,8 +96,8 @@ struct SubscribeView: View {
                 }
             }
             .tabViewStyle(.page)
+            .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(358))
             topInfluencerDescription
-            
         }
     }
     
@@ -119,142 +119,120 @@ struct SubscribeView: View {
                     Text("인사말")
                         .foregroundColor(.label_900)
                         .font(.headline1())
-                        .padding(.top, 20)
+                        .padding(.top, 30)
                     Spacer()
                 }
-                Text(introduce)
+                Text(vm.influencer.introduce)
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
                     .padding(.vertical, 10)
+                    .lineSpacing(8.0)
                 Text("수상경력")
                     .foregroundColor(.label_900)
                     .font(.headline1())
-                    .padding(.top, 20)
+                    .padding(.top, 30)
             }
+            .padding(.top, 15)
             .padding(.leading)
             .frame(maxWidth: .infinity)
             //MARK: 잼이 지우지 말래요.
-//            if seeMore == false {
-//                ZStack(alignment: .top){
-//                    VStack(alignment: .leading){
-//                        ForEach(0..<award.count, id: \.self) { index in
-//                            HStack{
-//                                VStack{
-//                                    Text("•")
-//                                        .font(.body)
-//                                        .foregroundColor(.label_800)
-//                                    Spacer()
-//                                }
-//                                VStack(alignment: .leading){
-//                                    HStack{
-//                                        Text(award[index])
-//                                            .font(.body)
-//                                            .foregroundColor(.label_800)
-//                                        Spacer()
-//                                    }
-//                                    Spacer()
-//                                }
-//                            }
-//                            .padding(.leading, 10)
-//                        }
-//                    }
-//                    .mask(alignment: .top){
-//                        Rectangle()
-//                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(130))
-//                    }
-//                    .padding()
-//                    LinearGradient(colors: [.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
-//                    Button {
-//                        seeMore = true
-//                    } label: {
-//                        VStack{
-//                            Spacer()
-//                                .frame(height: UIScreen.getHeight(170))
-//                            Text("더보기")
-//                                .font(.headline1())
-//                                .foregroundColor(Color.label_900)
-//                        }
-//                    }
-//                    
-//                }
-//                .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
-//                .padding(.top, 40)
-//            }
-//            else {
-                VStack(alignment: .leading){
-                    ForEach(0..<award.count, id: \.self) { index in
-                        HStack {
-                            VStack {
-                                Text("•")
-                                    .font(.body)
+            //            if seeMore == false {
+            //                ZStack(alignment: .top){
+            //                    VStack(alignment: .leading){
+            //                        ForEach(0..<award.count, id: \.self) { index in
+            //                            HStack{
+            //                                VStack{
+            //                                    Text("•")
+            //                                        .font(.body)
+            //                                        .foregroundColor(.label_800)
+            //                                    Spacer()
+            //                                }
+            //                                VStack(alignment: .leading){
+            //                                    HStack{
+            //                                        Text(award[index])
+            //                                            .font(.body)
+            //                                            .foregroundColor(.label_800)
+            //                                        Spacer()
+            //                                    }
+            //                                    Spacer()
+            //                                }
+            //                            }
+            //                            .padding(.leading, 10)
+            //                        }
+            //                    }
+            //                    .mask(alignment: .top){
+            //                        Rectangle()
+            //                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(130))
+            //                    }
+            //                    .padding()
+            //                    LinearGradient(colors: [.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
+            //                    Button {
+            //                        seeMore = true
+            //                    } label: {
+            //                        VStack{
+            //                            Spacer()
+            //                                .frame(height: UIScreen.getHeight(170))
+            //                            Text("더보기")
+            //                                .font(.headline1())
+            //                                .foregroundColor(Color.label_900)
+            //                        }
+            //                    }
+            //
+            //                }
+            //                .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
+            //                .padding(.top, 40)
+            //            }
+            //            else {
+            VStack(alignment: .leading) {
+                // TODO: 포이치 조정
+                ForEach(0..<vm.influencer.awards.count, id: \.self) { index in
+                    HStack {
+                        VStack {
+                            Text("•")
+                                .font(.body)
+                                .foregroundColor(.label_800)
+                            Spacer()
+                        }
+                        VStack(alignment: .leading){
+                            HStack {
+                                Text(vm.influencer.awards)
+                                    .font(.body())
                                     .foregroundColor(.label_800)
                                 Spacer()
                             }
-                            VStack(alignment: .leading){
-                                HStack {
-                                    Text(award[index])
-                                        .font(.body)
-                                        .foregroundColor(.label_800)
-                                    Spacer()
-                                }
-                                Spacer()
-                            }
+                            Spacer()
                         }
-                        .padding(.leading, 10)
                     }
+                    .padding(.leading, 10)
                 }
-                .padding()
-//            }
+            }
+            .padding()
+            //            }
         }
     }
     
     
     @ViewBuilder
     var subscribeButton: some View {
-       if loggedIn {
             Button {
-                self.subscribingSheet = true
-                self.subscribed.toggle()
+                vm.subscribingSheet = true
+                vm.influencer.isSubscription.toggle()
             } label: {
-                FloatingButton(backgroundColor: subscribed ? .green_main : .gray_900) { subscribed ? Text("구독")
-                        .foregroundColor(.gray_900)
+                FloatingButton(backgroundColor: vm.influencer.isSubscription ? .gray_600 :.green_main) { vm.influencer.isSubscription ? Text("구독취소")
+                        .foregroundColor(.red_main)
                         .font(.button1())
                     :
-                    Text("구독 취소")
-                        .foregroundColor(.red_main)
+                    Text("구독")
+                        .foregroundColor(.gray_900)
                         .font(.button1())
                 }
                 
             }
-            .alert(isPresented: $subscribingSheet) {
-                subscribed ?
-                Alert(
-                    title: Text("구독이 취소되었습니다."),
-                    message: Text(""),
-                    dismissButton: .destructive(Text("확인"),
-                                                action: {
-                                                    //구독 취소
-                                                    
-                                                })
-                ) :
-                Alert(
-                    title: Text("구독이 완료되었습니다."),
-                    message: Text(""),
-                    dismissButton: .destructive(Text("확인"),
-                                                action: {
-                                                    //구독 완료
-//                                                    self.tabSelection = 1
-//                                                    print(self.tabSelection)
-                                                })
-                )
+            .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.subscribingSheet) {
+                Button("확인") {
+                    //TODO: 서버에 vm.routines.routines 변화
+                }
             }
-        } else {
-            FloatingButton(backgroundColor: .gray_600) {Text("둘러보기 중")
-                    .foregroundColor(.label_400)
-                    .font(.button1())
-            }
-        }
-        
     }
     
     fileprivate func createTab() -> some View {
@@ -264,25 +242,26 @@ struct SubscribeView: View {
     }
     
     var topInfluencerDescription: some View {
-        ZStack(alignment: .bottomTrailing){
-            VStack{
+        ZStack(alignment: .bottomTrailing) {
+            VStack {
                 Spacer()
-                HStack{
-                    VStack(alignment: .leading, spacing: 16){
-                        Text("정회승의 Smart Routine")
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(vm.influencer.influencerName)의 \(vm.influencer.routineName)")
                             .foregroundColor(.label_900)
                             .font(.title1())
-                        Text("2022 Mr. 서울대🏆")
+                            .padding(.bottom, 3)
+                        Text(vm.influencer.title)
                             .foregroundColor(.label_600)
                             .font(.body2())
-                            .padding(.bottom, 40)
+                            .padding(.bottom, 20)
                     }
                     Spacer()
                 }
+                .padding(.vertical, 5)
                 .padding(.leading, 20)
             }
         }
-        .frame(height: UIScreen.getHeight(358))
     }
     
     var bodyInformation: some View {
@@ -293,16 +272,17 @@ struct SubscribeView: View {
                     .font(.headline1())
                     .padding(.top, 20)
                     .padding(.bottom, 5)
-                Text("키: 173cm")
+                Text("키: \(vm.influencer.bodySpec.height)cm")
                     .foregroundColor(.label_800)
-                    .font(.body)
-                Text("몸무게: 80kg")
+                    .font(.body())
+                Text("몸무게: \(vm.influencer.bodySpec.weight)kg")
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
             }
-         Spacer()
+            Spacer()
         }
         .padding(.horizontal)
+        .padding(.bottom, 10)
     }
     
     var strengthInformation: some View {
@@ -313,34 +293,36 @@ struct SubscribeView: View {
                     .font(.headline1())
                     .padding(.top, 20)
                     .padding(.bottom, 5)
-                Text("Squat: 210kg")
+                Text("Squat: \(vm.influencer.bigThree.squat)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
-                Text("Deadlift: 280kg")
+                Text("Deadlift: \(vm.influencer.bigThree.deadLift)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
-                Text("Bench Press: 140kg")
+                Text("Bench Press: \(vm.influencer.bigThree.benchPress)kg")
                     .foregroundColor(.label_800)
                     .font(.body)
             }
-         Spacer()
+            Spacer()
         }
         .padding(.horizontal)
+        .padding(.bottom, 10)
     }
     
-    var topBackground: some View {
-        ZStack(alignment: .bottomTrailing){
-            Color.gray_900.ignoresSafeArea()
-            HStack{
-                Spacer()
-                Image("Background1")
-                    .resizable()
-                    .scaledToFit()
-            }
-        }
-        .frame(height: UIScreen.getHeight(358))
-        
-    }
+//    var topBackground: some View {
+//        ZStack(alignment: .bottomTrailing){
+//            Color.gray_900.ignoresSafeArea()
+//            HStack{
+//                Spacer()
+//                // TODO: 이미지
+//                Image("Background1")
+//                    .resizable()
+//                    .scaledToFit()
+//            }
+//        }
+//        .frame(height: UIScreen.getHeight(358))
+//        
+//    }
     
 }
 
@@ -350,91 +332,6 @@ struct ViewOffsetKey: PreferenceKey {
     static func reduce(value: inout Value, nextValue: () -> Value) {
         value += nextValue()
     }
-}
-
-struct RoutinePreview: View {
-    //날짜 변환
-    var date: String = "2023년 10월 15일"
-    var firstPart = "등"
-    
-    var body: some View {
-        ZStack{
-            Color.gray_900.ignoresSafeArea()
-            VStack {
-                HStack{
-                    VStack(alignment: .leading){
-                        Divider()
-                            .foregroundColor(.fill_1)
-                            .padding(.top)
-                        Text("운동일지 미리보기")
-                            .font(.title2)
-                            .foregroundColor(.label_900)
-                            .padding(.top, 30)
-                        HStack{
-                            Text(date)
-                                .font(.headline2())
-                                .foregroundColor(.label_700)
-                            Rectangle()
-                                .frame(width:1, height: 10)
-                                .foregroundColor(.label_400)
-                            Text("등/복근")
-                                .font(.headline2())
-                                .foregroundColor(.label_700)
-                            
-                        }
-                    }
-                    .padding(.top, 20)
-                    Spacer()
-                }
-                HStack{
-                    Text(firstPart)
-                        .font(.headline1())
-                        .foregroundColor(.label_900)
-                        .padding(.vertical, 20)
-                    Spacer()
-                }
-                //운동 루틴
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "하이퍼 익스텐션", SetCount: "3세트", part: "등")
-                //첫 운동 팁 설명
-                //ZStack{
-                
-                //                }
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "덤벨 풀 오버", SetCount: "3세트", part: "등")
-                HStack(alignment: .top){
-                    Image("descriptionFace1")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: UIScreen.getWidth(48))
-                        .padding(10)
-                    VStack(alignment: .leading){
-                        Text("운동 팁 예시")
-                            .font(.body2())
-                            .foregroundColor(.label_500)
-                            .padding(.bottom, 5)
-                        Text("견갑의 가동 범위를 늘려 주기 좋은 풀 오버입니다. 골반을 지면 가까이 붙여주시고 팔꿈치는 하늘을 향하게 해주세요. 그리고 이두가 귀에 닿을 정도로 가까이해서 내려가주세요.")
-                            .font(.body)
-                            .foregroundColor(.label_900)
-                    }
-                    .padding(10)
-                }
-                .padding(10)
-                .background{
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(.gray_700)
-                }
-                .padding(.vertical, 20)
-                WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "바벨 로우(머신)", SetCount: "3세트", part: "등")
-                
-            }
-            .padding(.bottom, 30)
-            VStack{
-                Spacer()
-                LinearGradient(colors: [.clear, .clear, .clear, .clear, .gray_900.opacity(0.5), .gray_900], startPoint: .top, endPoint: .bottom)
-            }
-        }
-        
-    }
-    
 }
 
 struct WorkoutExplain: View {
@@ -472,8 +369,8 @@ struct WorkoutExplain: View {
     }
 }
 
-struct SubscribeView_Previews: PreviewProvider {
-    static var previews: some View {
-        SubscribeView()
-    }
-}
+//struct SubscribeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SubscribeView()
+//    }
+//}

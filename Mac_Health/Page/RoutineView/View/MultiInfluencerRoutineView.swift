@@ -21,8 +21,8 @@ struct MultiInfluencerRoutineView: View {
                     .scaledToFit()
                     .padding(.bottom, 20)
                 ScrollView {
-                    if !vm.routines.routines.isEmpty {
-                        ForEach(vm.routines.routines, id: \.self) { routine in
+                    if !vm.routines.routine.isEmpty {
+                        ForEach(vm.routines.routine, id: \.self) { routine in
                             NavigationLink {
                                 TodayStartView(routine: routine)
                             } label: {

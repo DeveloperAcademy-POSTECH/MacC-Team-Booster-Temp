@@ -44,8 +44,8 @@ struct SubscribedInfluencerCard: View {
                     Spacer()
                     AsyncImage(url: URL(string: routine.influencerProfileImageUrl)) { image in
                         image
-                            .resizable()
-                            .scaledToFill()
+                            .scaledToFit()
+                            .scaleEffect(CGSize(width: 1.0, height: 1.0))
                             .frame(width: UIScreen.getWidth(156))
                     } placeholder: {
                         Image(systemName: "arrow.triangle.2.circlepath")
@@ -64,6 +64,6 @@ struct SubscribedInfluencerCard: View {
 
 struct SubscribedInfluencerCard_Previews: PreviewProvider {
     static var previews: some View {
-        SubscribedInfluencerCard(routine: InfluencerRoutine(routineId: 1, part: "등, 이두", date: "2023-10-30", numberOfExercise: 6, burnedKCalories: 300, requiredMinutes: 300, comment: "오늘도 화이팅!", name: "정회승", routineName: "올라잇", influencerProfileImageUrl: "", influencerId: 5))
+        SubscribedInfluencerCard(routine: InfluencerRoutine(routineId: 1, part: "등, 이두", date: "2023-10-30", numberOfExercise: 6, burnedKCalories: 300, requiredMinutes: 300, comment: "오늘도 화이팅!", name: "정회승", routineName: "올라잇", influencerProfileImageUrl: "", influencerId: 5, isDone: false))
     }
 }

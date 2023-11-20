@@ -30,14 +30,14 @@ struct DetailedWorkoutSheet: View {
             }
         }
         .onAppear {
-            vm.fetchExercise(routineId: routineId, exerciseId: exerciseId)
+            vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
         }
-        .presentationDetents([.height(UIScreen.getHeight(684))])
+        .presentationDetents([.height(UIScreen.getHeight(644))])
     }
     
     var NavigationTitle: some View {
         HStack {
-            Text("\(vm.exercise.name)")
+            Text("\(vm.workout.name)")
                 .font(.title1())
                 .foregroundColor(.label_900)
             
@@ -61,23 +61,23 @@ struct DetailedWorkoutSheet: View {
     }
     
     var WorkoutCard: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
-                Text("\(vm.exercise.part)")
+                Text("\(vm.workout.part)")
                     .foregroundColor(.label_700)
                     .font(.body())
                 
                 Spacer()
             }
-            AsyncImage(url: URL(string: vm.exercise.exerciseImageUrl)) { image in
+            AsyncImage(url: URL(string: vm.workout.exerciseImageUrl)) { image in
                 image
                     .resizable()
                     .scaledToFit()
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                    .frame(width: UIScreen.getWidth(320), height: UIScreen.getHeight(220))
             } placeholder: {
                 Image(systemName: "arrow.triangle.2.circlepath")
-                    .resizable()
                     .scaledToFit()
+                    .scaleEffect(CGSize(width: 1.0, height: 1.0))
                     .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                     .padding()
             }
@@ -88,7 +88,7 @@ struct DetailedWorkoutSheet: View {
     var WorkoutTip: some View {
         VStack {
             HStack {
-                AsyncImage(url: URL(string: vm.exercise.faceImageUrl)) { image in
+                AsyncImage(url: URL(string: vm.workout.faceImageUrl)) { image in
                     image
                         .resizable()
                 } placeholder: {
@@ -101,14 +101,15 @@ struct DetailedWorkoutSheet: View {
                 
                 Spacer()
             }
-            .padding(.bottom)
-            Text("\(vm.exercise.tip)\n")
+            .padding(.bottom, 10)
+            Text("\(vm.workout.tip)\n")
                 .multilineTextAlignment(.leading)
-                .lineSpacing(3)
+                .lineSpacing(7)
                 .foregroundColor(.label_900)
                 .font(.headline1())
         }
         .padding(.horizontal)
+        .padding(.bottom)
     }
     
     var RelatedContent: some View {
@@ -120,11 +121,14 @@ struct DetailedWorkoutSheet: View {
                 
                 Spacer()
             }
+            .padding(.bottom, 13)
             
             ScrollView(.horizontal) {
                 HStack{
                     // TODO: 유튜브 링크 통해서 작업하기
-                    RelatedContentCard(videoNum: 0, contentURL: "")
+                    ForEach(vm.workout.videoUrls, id: \.self){ videoUrl in
+                        RelatedContentCard(videoID: videoUrl)
+                    }
                 }
             }
         }

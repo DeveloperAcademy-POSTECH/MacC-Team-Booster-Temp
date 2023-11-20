@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PauseSheet: View {
-    @ObservedObject var viewModel: StopwatchVM
+    @ObservedObject var viewModel: RecordingWorkoutViewModel
     @StateObject var pauseViewModel = PauseStopwatchVM()
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -17,7 +17,7 @@ struct PauseSheet: View {
             Color.gray_800.ignoresSafeArea()
             
             VStack {
-                Text("운동 정지")
+                Text("운동 일시정지")
                     .font(.headline1())
                     .foregroundColor(.label_700)
                 Text(timeFormatted(pauseViewModel.elapsedTime))
@@ -41,11 +41,11 @@ struct PauseSheet: View {
             }
         }
         .onAppear{
-            pauseViewModel.Start()
+            pauseViewModel.start()
         }
         .onDisappear{
             pauseViewModel.reset()
-            viewModel.Start()
+            viewModel.start()
         }
         .presentationDetents([.height(UIScreen.getHeight(378))])
     }
@@ -57,8 +57,8 @@ struct PauseSheet: View {
     }
 }
 
-struct PauseSheet_Preview: PreviewProvider {
-    static var previews: some View {
-        PauseSheet(viewModel: StopwatchVM())
-    }
-}
+//struct PauseSheet_Preview: PreviewProvider {
+//    static var previews: some View {
+//        PauseSheet(viewModel: StopwatchVM())
+//    }
+//}

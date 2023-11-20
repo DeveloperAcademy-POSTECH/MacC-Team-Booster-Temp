@@ -23,7 +23,7 @@ extension Font {
         return UIFont(name: Pretentard.semiBold, size: 13 * setFontSize())!
     }
     static func calendarDate() -> UIFont {
-        return UIFont(name: Pretentard.medium, size: 20 * setFontSize())!
+        return UIFont(name: Pretentard.regular, size: 20 * setFontSize())!
     }
     static func calendarTitle() -> UIFont {
         return UIFont(name: Pretentard.semiBold, size: 17 * setFontSize())!
@@ -44,7 +44,7 @@ extension Font {
         return Font.custom(Pretentard.regular, size: 16 * setFontSize()).weight(.regular)
     }
     static func body2() -> Font {
-        return Font.custom(Pretentard.semiBold, size: 14 * setFontSize()).weight(.semibold)
+        return Font.custom(Pretentard.regular, size: 14 * setFontSize()).weight(.regular)
     }
     static func button1() -> Font {
         return Font.custom(Pretentard.bold, size: 16 * setFontSize()).bold()
@@ -55,6 +55,7 @@ extension Font {
     static func largeTitle() -> Font {
         return Font.custom(Pretentard.semiBold, size: 36 * setFontSize()).weight(.semibold)
     }
+
     
     ///기기별 폰트 사이즈 대응
     static func setFontSize() -> Double {

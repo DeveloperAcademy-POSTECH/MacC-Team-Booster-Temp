@@ -23,13 +23,14 @@ class FSCalendarView: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     func configUI() {
 //        let calendar = FSCalendar()
-        calendar.appearance.headerDateFormat = "YYYY년 M월"
+        calendar.appearance.headerDateFormat = "M월 YYYY"
         calendar.appearance.headerMinimumDissolvedAlpha = 0.2
         calendar.scrollDirection = .horizontal
         calendar.allowsMultipleSelection = false
         calendar.clipsToBounds = true
 //        calendar.today = UIColor(Color.green_main)
         calendar.locale = Locale(identifier: "ko_KR")
+        calendar.firstWeekday = 2
         calendar.calendarWeekdayView.weekdayLabels[0].text = "일"
         calendar.calendarWeekdayView.weekdayLabels[1].text = "월"
         calendar.calendarWeekdayView.weekdayLabels[2].text = "화"
@@ -55,6 +56,7 @@ class FSCalendarView: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         calendar.appearance.todayColor = UIColor(Color.gray_900)
         calendar.appearance.todaySelectionColor = UIColor(Color.green_main)
         calendar.appearance.eventDefaultColor = UIColor(Color.green_main)
+        calendar.appearance.eventSelectionColor = UIColor(Color.green_main)
         
         calendar.translatesAutoresizingMaskIntoConstraints = false
         

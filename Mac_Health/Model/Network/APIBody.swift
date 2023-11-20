@@ -106,6 +106,7 @@ struct Exercise: Codable, Hashable {
     var exerciseImageUrl: String
     var numberOfSet: Int
     var recommendReps: String
+    var isDone: Bool
 }
 
 struct InfluencerRoutine: Codable, Hashable {
@@ -120,6 +121,7 @@ struct InfluencerRoutine: Codable, Hashable {
     var routineName: String
     var influencerProfileImageUrl: String
     var influencerId: Int
+    var isDone: Bool
 }
 
 struct Routine: Codable, Hashable {
@@ -141,7 +143,7 @@ struct ResponsePatchUsersRoutinesFinish: Codable {
 
 /// GetUsersRoutines
 struct ResponseGetUsersRoutines: Codable {
-    var routines: [InfluencerRoutine]
+    var routine: [InfluencerRoutine]
 }
 
 /// GetUsersRoutinesId
@@ -175,7 +177,7 @@ struct ResponsePatchUsersRoutinesExercisesSets: Codable {
 /// PatchUsersRoutinesExercisesSetsFinish
 struct ResponsePatchUsersRoutinesExercisesSetsFinish: Codable {
     var reps: Int
-    var weight: Int
+    var weight: Int?
     var isDone: Bool
 }
 
@@ -213,6 +215,7 @@ struct Records: Codable, Hashable {
     var burnedKCalories: Int
     var requiredMinutes: Int
     var exercises: [RecordedExercise]
+    var influencerName: String
 }
 
 /// GetUsersRecords
@@ -222,15 +225,29 @@ struct ResponseGetUsersRecords: Codable {
 //:
 
 // MARK: test
-struct BodySpec: Codable {
+struct BodySpec: Codable, Hashable {
     var height: Int
     var weight: Int
 }
 
-struct BigThree: Codable {
+struct BigThree: Codable, Hashable {
     var squat: Int
     var benchPress: Int
-    var deadList: Int
+    var deadLift: Int
+}
+
+struct InfluencerExercise: Codable, Hashable {
+    var name: String
+    var exerciseImageUrl: String
+    var numberOfSet: Int
+    var recommendReps: String
+    var tip: String
+}
+
+struct PreviewExercise: Codable, Hashable {
+    var date: String
+    var part: String
+    var exercises: [InfluencerExercise]
 }
 
 struct TestRoutine: Codable {
@@ -249,6 +266,37 @@ struct TestRoutine: Codable {
 /// GetRoutines
 struct ResponseGetRoutines: Codable {
     var routines: [TestRoutine]
+}
+//:
+
+// MARK: influencer-controller
+struct InfluencerPreview: Codable, Hashable {
+    var influencerId: Int
+    // TODO: api 수정 후 옵셔널 제거
+    var onePersonProfileImageUrl: String?
+    // TODO: api 수정 후 옵셔널 제거
+    var listImageUrl: String?
+    var name: String
+    var routineName: String
+    var title: String
+}
+
+/// GetInfluencers
+struct ResponseGetInfluencers: Codable, Hashable {
+    var previews: [InfluencerPreview]
+}
+
+/// GetInfluencersId
+struct ResponseGetInfluencersId: Codable {
+    var influencerName: String
+    var routineName: String
+    var title: String
+    var awards: String
+    var introduce: String
+    var bodySpec: BodySpec
+    var bigThree: BigThree
+    var routine: PreviewExercise
+    var isSubscription: Bool
 }
 
 /// GetInfluencersRoutines

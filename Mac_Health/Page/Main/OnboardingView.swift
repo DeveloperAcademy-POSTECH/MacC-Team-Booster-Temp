@@ -27,30 +27,42 @@ struct OnboardingView: View {
     
     var Onboarding: some View {
         ZStack {
-            Color.gray_900.ignoresSafeArea()
+            Image("LoginImage")
+                .resizable()
+                .scaledToFill()
             
             // TODO: 온보딩 추가 시 작업
             /// 온보딩
             VStack {
-                TabView {
-                    ForEach(1...3, id: \.self) { _ in
-                        HStack {
-                            Rectangle()
-                                .foregroundColor(.green_main)
-                        }
-                    }
-                    .frame(width:UIScreen.getWidth(390), height: UIScreen.getHeight(500))
-                    .tabViewStyle(.page)
-                }
+                Spacer()
                 
+                HStack {
+                    VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
+                            Text("몸좋은 사람들의")
+                            Text("운동일지 구독")
+                        }
+                        .font(.title1())
+                        .foregroundColor(.label_900)
+                        .padding(.bottom, 10)
+                        
+                        Text("Be my Influencer, BEFL")
+                            .font(.system(size: 20, weight: .light, design: .default))
+                            .foregroundColor(.label_700)
+                    }
+                    .padding(32)
+                    .padding(.bottom, 26)
+                    Spacer()
+                }
                 /// 로그인 버튼
                 LoginButton
                 
                 /// 둘러보기 버튼
                 PreviewButton
+                Spacer()
+                    .frame(height: UIScreen.getHeight(68))
             }
-            Spacer()
-                .frame(height: UIScreen.getHeight(20))
+            
         }
         .onAppear {
             isLogined()
@@ -59,7 +71,8 @@ struct OnboardingView: View {
     
     var LoginButton: some View {
         FloatingButton(backgroundColor: .clear) {
-            SignInWithAppleButton(.signIn) { request in
+            SignInWithAppleButton(.signIn)
+            { request in
                 request.requestedScopes = [.email]
             } onCompletion: { results in
                 // TODO: 추후 vm 생성
@@ -79,14 +92,24 @@ struct OnboardingView: View {
                     print(error.localizedDescription)
                 }
             }
-            .cornerRadius(100)
+            .padding(8)
+            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
             .signInWithAppleButtonStyle(.white)
+            
         }
+        .background{
+            FloatingButton(backgroundColor: .white) {
+                
+            }
+        }
+        .padding(.bottom, 2)
     }
     
     var PreviewButton: some View {
         NavigationLink {
-            MockUpStartView(tabSelection: .constant(1))
+            MockUpMainView()
+                .navigationBarBackButtonHidden()
+                .navigationBarTitleDisplayMode(.inline)
         } label: {
             FloatingButton(backgroundColor: .gray_600) {
                 Text("둘러보기")
@@ -124,6 +147,7 @@ struct OnboardingView: View {
     
     /// 전달 받은 액세스 토큰 유저 디폴트 저장 함수
     func saveUser(accessToken: String, refreshToken: String) {
+        print(accessToken)
         UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
         UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
     }

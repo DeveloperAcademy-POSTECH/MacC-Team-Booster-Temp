@@ -9,20 +9,23 @@ import SwiftUI
 
 struct MockUpFinishView: View {
     
-    @StateObject var viewModel = StopwatchVM()
-    @StateObject var workoutOngoingVM = WorkoutOngoingViewModel()
+//    @ObservedObject var viewModel: MockUpStopwatchViewModel
+    @Binding var elapsedTime: TimeInterval
     @Binding var tabSelection: Int
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
-            VStack {
-                Rectangle()
-                    .frame(width: 276, height: 152)
-                Image(systemName: "person")
+            VStack (spacing: 0) {
+                Spacer()
+                    .frame(height: UIScreen.getHeight(80))
+                Image("finishIcon")
+                    .frame(width: UIScreen.getWidth(276), height: UIScreen.getHeight(152))
+                Image("finishInfluencer")
                     .resizable()
-                    .frame(width: 150, height: 128)
+                    .frame(width: UIScreen.getWidth(294), height: UIScreen.getHeight(128))
                 RoundedRectangle(cornerRadius: 8.0)
                     .frame(width: UIScreen.getWidth(294), height: UIScreen.getHeight(100))
                     .foregroundColor(.gray_700)
@@ -36,9 +39,10 @@ struct MockUpFinishView: View {
                                 .foregroundColor(.label_900)
                         }
                     }
+                    .padding(.bottom, 30)
                 HStack(spacing: 40){
                     VStack(spacing: 3){
-                        Text("\(String(timeFormatted(viewModel.elapsedTime)))")
+                        Text("\(String(timeFormatted(elapsedTime)))")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("운동시간")
@@ -54,18 +58,18 @@ struct MockUpFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-//                        Text("\(String(Int(workoutOngoingVM.totalVolume())))kg")
-//                            .font(.title2())
-//                            .foregroundColor(.label_900)
+                        Text("4230kg")
+                            .font(.title2())
+                            .foregroundColor(.label_900)
                         Text("총 볼륨")
                             .font(.body2())
                             .foregroundColor(.label_700)
                     }
                 }
-                .padding()
                 Spacer()
-                    .frame(height: 100)
+                    .frame(height: 115)
                 Button{
+                    dismiss()
                     self.tabSelection = 3
                     print(self.tabSelection)
                 } label: {
@@ -73,23 +77,19 @@ struct MockUpFinishView: View {
                             .foregroundColor(.gray_900)
                             .font(.button1())
                     }
-                    .padding(.bottom, 5)
-                    
+                    .padding(.bottom, 12)
                 }
                 
                 Button{
                     print("move to login view")
                     
                 } label: {
-                    FloatingButton(backgroundColor: .white) {
-                        HStack {
-                            Image(systemName: "apple.logo")
-                            Text("Apple로 로그인하고 함께하기")
-                        }
-                        .foregroundColor(.gray_900)
-                    .font(.button1())
-                }
-                
+                    FloatingButton(backgroundColor: .gray_600) {
+                            Text("로그인")
+                        .foregroundColor(.green_main)
+                        .font(.button1())
+                    }
+                    .padding(.bottom)
                 }
             }
         }
@@ -119,5 +119,5 @@ struct MockUpFinishView: View {
 }
 
 #Preview {
-    MockUpFinishView(tabSelection: .constant(1))
+    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
 }

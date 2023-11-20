@@ -10,20 +10,20 @@ import SwiftUI
 struct ManageProfileView: View {
     
     @Environment(\.dismiss) var dismiss
-    @State private var deletingAccount = false
-    @State private var loggingOutSheet = false
-    @Binding var nickName: String
-    //need 이메일 가리는 logic
-    var email = "sam****@naver.com"
-
+    @ObservedObject var vm: ProfileViewModel
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             VStack{
-                NicknameBanner(nickName: nickName)
-                EmailBanner(email: email)
-                SignOut(deletingAccount: deletingAccount)
-                LogOut(loggingOutSheet: loggingOutSheet)
+                NicknameBanner(nickname: vm.nickname)
+                //TODO: email 받아왔는지 확인
+//                if vm.email == "" {
+//                } else {
+//                    EmailBanner(email: vm.email)
+//                }
+                SignOut(deletingAccount: vm.deletingAccount)
+                LogOut(loggingOutSheet: vm.loggingOutSheet)
                 Spacer()
             }
         }
@@ -36,39 +36,44 @@ struct ManageProfileView: View {
         .navigationBarBackButtonHidden()
     }
     
-    func NicknameBanner(nickName: String) -> some View {
-        VStack(alignment: .leading, spacing: 8){
-            HStack{
-                Text("닉네임")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                Spacer()
-                NavigationLink {
-                    ChangeNicknameView(nickname: $nickName)
-                } label: {
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(width: 52, height: 32)
-                        .foregroundColor(.gray_700)
-                        .overlay{
-                            Text("변경")
-                                .foregroundColor(.label_900)
-                                .font(.button2())
-                        }
+    func NicknameBanner(nickname: String) -> some View {
+        VStack{
+            VStack(alignment: .leading, spacing: 5){
+                HStack{
+                    Text("닉네임")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                    Spacer()
+                    NavigationLink {
+                        ChangeNicknameView(vm: vm)
+                    } label: {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 52, height: 32)
+                            .foregroundColor(.gray_700)
+                            .overlay{
+                                Text("변경")
+                                    .foregroundColor(.label_900)
+                                    .font(.button2())
+                            }
+                    }
+                }
+                
+                HStack{
+                    Text(nickname)
+                        .font(.body())
+                        .foregroundColor(.label_700)
                 }
             }
-            
-            HStack{
-                Text(nickName)
-                    .font(.body())
-                    .foregroundColor(.label_700)
-            }
-            }
-        .padding([.horizontal, .top])
+            .padding([.horizontal, .top])
+            .padding(.vertical)
+            Divider()
+                .foregroundColor(.gray_700)
+                .padding(.horizontal)
+        }
     }
     
     func EmailBanner(email: String) -> some View {
-        VStack(alignment: .leading, spacing: 8){
-            Divider()
+        VStack(alignment: .leading, spacing: 5){
             HStack{
                 Text("이메일")
                     .font(.headline1())
@@ -83,12 +88,16 @@ struct ManageProfileView: View {
             }
             .padding(.bottom)
             Divider()
-            }
+                .padding(.horizontal)
+                .foregroundColor(.gray_700)
+        }
         .padding()
     }
     
     func SignOut(deletingAccount: Bool) -> some View {
-        Button(action: {self.deletingAccount = true}, label: {
+        Button{
+            self.vm.deletingAccount = true
+        } label: {
             HStack{
                 Text("회원탈퇴")
                     .font(.body())
@@ -96,27 +105,24 @@ struct ManageProfileView: View {
                 Spacer()
             }
             .padding()
-
-        })
-        .alert(isPresented: $deletingAccount) {
-            Alert(
-                title: Text("탈퇴하시겠습니까?"),
-                message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
-                primaryButton: .destructive(Text("탈퇴"),
-                                        action: {
-
-                                }),
-                                secondaryButton: .destructive(Text("취소"),
-                                                              action: {
-
-                                                      })
-            )
+            .padding(.top)
+            
         }
-        .accentColor(.green_main)
+        .alert(isPresented: $vm.deletingAccount) {
+            let firstButton = Alert.Button.default(Text("취소").bold()) {
+                print("primary button pressed")
             }
+            let secondButton = Alert.Button.default(Text("탈퇴")) {
+                print("secondary button pressed")
+            }
+            return Alert(title: Text("탈퇴하시겠습니까"),
+                         message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
+                         primaryButton: firstButton, secondaryButton: secondButton)
+        }
+    }
     
     func LogOut(loggingOutSheet: Bool) -> some View {
-        Button(action: {self.loggingOutSheet = true}, label: {
+        Button(action: {self.vm.loggingOutSheet = true}, label: {
             HStack{
                 Text("로그아웃")
                     .font(.body())
@@ -124,20 +130,18 @@ struct ManageProfileView: View {
                 Spacer()
             }
             .padding()
-
+            
         })
-        .alert(isPresented: $loggingOutSheet) {
-            Alert(
-                title: Text("로그아웃하시겠습니까?"),
-//                message: Text(""),
-                primaryButton: .destructive(Text("로그아웃"),
-                                        action: {
-
-                                }),
-                                secondaryButton: .cancel(Text("취소"))
-            )
-        }
+        .alert("로그아웃하시겠습니까?", isPresented: $vm.loggingOutSheet) {
+            Button("취소") { }
+            Button{
+                
+            } label: {
+                Text("로그아웃")
+                    .bold()
             }
+        }
+    }
     
     var BackButton: some View {
         Button {
@@ -150,8 +154,8 @@ struct ManageProfileView: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        ManageProfileView(nickName: .constant("랜덤닉네임04"))
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        ManageProfileView(nickName: .constant("랜덤닉네임04"))
+//    }
+//}

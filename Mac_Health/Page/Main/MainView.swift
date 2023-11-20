@@ -10,6 +10,8 @@ import SwiftUI
 // TODO: 메인 뷰 모델 추가
 struct MainView: View {
     @StateObject var vm = MainViewModel()
+    @State var loggedIn = true
+    @State var subscribed = false
     
     init() {
         UITabBar.appearance().backgroundColor = Color.tabbar_main
@@ -23,6 +25,7 @@ struct MainView: View {
                 RoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
+                            .font(.subheadline)
                         Text("루틴")
                     }
                     .tag(0)
@@ -34,14 +37,14 @@ struct MainView: View {
                     }
                     .tag(1)
                 
-                RecordView()
+                RecordView(loggedIn: $loggedIn)
                     .tabItem {
                         Image(systemName: "list.clipboard.fill")
                         Text("기록")
                     }
                     .tag(2)
                 
-                ProfileView()
+                ProfileView(loggedIn: $loggedIn)
                     .tabItem {
                         Image(systemName: "person.fill")
                         Text("프로필")

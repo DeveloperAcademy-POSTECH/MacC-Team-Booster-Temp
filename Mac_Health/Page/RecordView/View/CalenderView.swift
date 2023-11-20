@@ -17,6 +17,9 @@ struct CalendarView: UIViewControllerRepresentable {
         let view = FSCalendarView()
         view.calendar.delegate = context.coordinator
         view.calendar.dataSource = context.coordinator
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        self.selectedDate = dateFormatter.string(from: .now)
         return view
     }
     
@@ -40,7 +43,6 @@ struct CalendarView: UIViewControllerRepresentable {
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            
             selectedDate = dateFormatter.string(from: date)
         }
         
@@ -68,11 +70,11 @@ struct CalendarView: UIViewControllerRepresentable {
         }
     }
 }
-
-struct cordView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack{
-            RecordView()
-        }
-    }
-}
+//
+//struct cordView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack{
+//            RecordView()
+//        }
+//    }
+//}

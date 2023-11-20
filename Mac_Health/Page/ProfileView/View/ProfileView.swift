@@ -8,39 +8,69 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State var nickName: String = "random04"
-    @State var notiToggle: Bool = true
-    @State var versionState: String = "1.0.0"
+    @StateObject var vm = ProfileViewModel()
     //로그인 상태값 모델로 가젹오기
-    @State var loggedIn: Bool = true
+    @Binding var loggedIn: Bool
+    @Environment(\.dismiss) var dismiss
+    @State private var mailData = ComposeMailData(subject: "비플 문의하기",
+                                                  recipients: ["pmchung423@gmail.com"],
+                                                  message: "비플 문의하기",
+                                                  attachments: [
+//                                                    AttachmentData(data: "Some text".data(using: .utf8)!,
+//                                                                               mimeType: "text/plain",
+//                                                                               fileName: "text.txt")
+                                                  ]
+    )
+    @State private var showMailView = false
+    
     
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             VStack{
                 NavigationTitle
-                NavigationLink {
-                    ManageProfileView(nickName: $nickName)
-                } label: {
-                    ProfileManage(nickName: nickName)
+                if loggedIn {
+                    NavigationLink {
+                        ManageProfileView(vm: vm)
+                    } label: {
+                        ProfileManage(nickname: vm.nickname)
+                    }
+                } else {
+                    Button{
+                        dismiss()
+                    } label: {
+                        ProfileManage(nickname: vm.nickname)
+                    }
                 }
+                
                 //로그인 전 unactive
-                loggedIn ? AlertToggle(notiToggle: notiToggle) : nil
+                loggedIn ? AlertToggle(notiToggle: vm.notiToggle) : nil
                 versionInformaion
                 //로그인 전 unactive
-                loggedIn ? 
-                NavigationLink {
-                    ManageSubscribeView()
-                } label: {
-                    subscribeManagement
-                } : nil
-                inquiry
+//                loggedIn ?
+//                NavigationLink {
+//                    ManageSubscribeView()
+//                } label: {
+//                    subscribeManagement
+//                } : nil
+                
+                Button(action: {
+                    showMailView.toggle()
+                }) {
+                    inquiry
+                }
+                .disabled(!MailView.canSendMail)
+                .sheet(isPresented: $showMailView) {
+                    MailView(data: $mailData) { result in
+                        print(result)
+                    }
+                }
                 //로그인 전 unactive
                 loggedIn ? useInformation : nil
                 Spacer()
-                }
             }
         }
+    }
     
     var NavigationTitle: some View {
         HStack {
@@ -52,14 +82,14 @@ struct ProfileView: View {
         .padding()
     }
     
-    func ProfileManage(nickName: String) -> some View {
+    func ProfileManage(nickname: String) -> some View {
         RoundedRectangle(cornerRadius: 8.0)
             .foregroundColor(.gray_700)
-            .frame(width: UIScreen.getWidth(360), height: UIScreen.getHeight(72))
+            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
             .overlay{
                 HStack(spacing:2){
                     //로그인 x -> nickName => "둘러보기", "프로필 관리" => "로그인 하러 가기"
-                    Text(loggedIn ? nickName : "둘러보기")
+                    Text(loggedIn ? nickname : "둘러보기")
                         .foregroundColor(.label_900)
                         .font(.body())
                         .padding(.leading, 20)
@@ -69,14 +99,14 @@ struct ProfileView: View {
                     Spacer()
                     Text(loggedIn ? "프로필 관리" : "로그인 하러 가기")
                         .foregroundColor(loggedIn ? .label_700 : .green_main)
-                        .font(.body())
+                        .font(.system(size: 14, weight: .regular, design: .default))
                     Image(systemName: "chevron.right")
                         .foregroundColor(loggedIn ? .label_700 : .green_main)
-                        .font(.body2())
+                        .font(.system(size: 10, weight: .regular, design: .default))
                         .padding(.trailing, 20)
                 }
             }
-            .padding(.top, 20)
+            .padding(.top, 10)
     }
     
     func AlertToggle(notiToggle: Bool) -> some View {
@@ -87,7 +117,7 @@ struct ProfileView: View {
                     .foregroundColor(.label_900)
                 Spacer()
                 
-                Toggle("", isOn: $notiToggle)
+                Toggle("", isOn: $vm.notiToggle)
                     .toggleStyle(SwitchToggleStyle(tint: Color.green_main))
             }
             
@@ -96,75 +126,78 @@ struct ProfileView: View {
                     .font(.body())
                     .foregroundColor(.label_700)
             }
+            .padding(.bottom, 8)
             Divider()
-            }
-        .padding()
+                .foregroundColor(.gray_700)
+        }
+        .padding(.top, 10)
+        .padding(.horizontal, 25)
     }
     
     var versionInformaion : some View {
-        VStack(alignment: .leading, spacing: 8){
+        VStack(alignment: .leading, spacing: 5){
             HStack{
                 Text("버전정보")
                     .font(.headline1())
                     .foregroundColor(.label_900)
-                    .padding(.top)
                 Spacer()
             }
             
             HStack{
-                Text(versionState)
+                Text(vm.versionState)
                     .font(.body())
                     .foregroundColor(.label_700)
                     .padding(.bottom)
             }
-            }
-        .padding(.horizontal)
+        }
+        .padding(.horizontal, 25)
+        .padding(.top)
     }
     
     var subscribeManagement : some View {
         //노션 페이지 마련
-        VStack(alignment: .leading, spacing: 8){
+        VStack(alignment: .leading, spacing: 4){
             Divider()
-                Text("구독관리")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                    .padding(.vertical)
-            }
-        .padding(.horizontal)
-
+                .foregroundColor(.gray_700)
+            Text("구독관리")
+                .font(.headline1())
+                .foregroundColor(.label_900)
+                .padding(.vertical)
+        }
+        .padding(.horizontal, 25)
     }
     
     var inquiry : some View {
         //이메일 모달
-        VStack(alignment: .leading, spacing: 8){
+        VStack(alignment: .leading, spacing: 4){
             Divider()
-                Text("문의하기")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                    .padding(.vertical)
-            }
-        .padding(.horizontal)
-
+                .foregroundColor(.gray_700)
+            Text("문의하기")
+                .font(.headline1())
+                .foregroundColor(.label_900)
+                .padding(.vertical)
+        }
+        .padding(.horizontal, 25)
     }
     
     var useInformation : some View {
         //노션 페이지 마련
-        VStack(alignment: .leading, spacing: 8){
-            Divider()
+        Link(destination: URL(string: "https://wiggly-basketball-0a4.notion.site/25e03fbff832400d9bfd8206cb688047" )!) {
+            VStack(alignment: .leading, spacing: 4){
+                Divider()
+                    .foregroundColor(.gray_700)
                 Text("이용약관 및 개인정보처리방침")
                     .font(.headline1())
                     .foregroundColor(.label_900)
                     .padding(.top)
             }
-        .padding(.horizontal)
-
-    }
-    
-    
-}
-
-#Preview {
-    NavigationStack{
-        ProfileView()
+            .padding(.horizontal, 25)
+        }
     }
 }
+
+//#Preview {
+//    NavigationStack{
+//        ProfileView()
+//    }
+//}

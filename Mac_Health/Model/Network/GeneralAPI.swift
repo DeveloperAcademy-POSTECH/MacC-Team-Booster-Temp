@@ -10,22 +10,26 @@ import Moya
 
 enum GeneralAPI {
     // MARK: user-exercise-controller
-    /// 세트 수 하나 증가 - WorkoutOngoingView
+    /// 세트 수 하나 증가
     case PostRoutinesExercisesSets(routineId: Int, exerciseId: Int)
     
-    /// 세트 수 하나 감소 - WorkoutOngoingView
+    /// 세트 수 하나 감소
     case DeleteRoutinesExercisesSets(routineId: Int, exerciseId: Int)
     
-    /// 운동 대체 - AlternativeWorkoutSheet
+    /// 운동 대체
     case PatchRoutinesExercisesAlternate(routineId: Int, exerciseId: Int, alternativeExerciseId: Int)
     
-    /// 루틴 정보 - WorkoutOngoingView
+    /// 루틴 정보
     case GetRoutinesExercises(routineId: Int, exerciseId: Int)
+    
+    /// 운동 삭제
+    case DeleteRoutinesExercises(routineId: Int, exerciseId: Int)
     //:
     
     // MARK: auth-controller
     /// 로그인
     case PostLogin(identifier: String, identityToken: String, authorizationCode: String)
+    
     /// 토큰 재발급
     case GetReissue(refreshToken: String)
     //:
@@ -36,45 +40,49 @@ enum GeneralAPI {
     //:
     
     // MARK: user-routine-controller
-    /// 운동 시간 업데이트 - WorkoutOngoingView
+    /// 운동 시간 업데이트
     case PatchUsersRoutines(routineId: Int, time: String)
     
-    /// 루틴 완료 - WorkoutOngoingView
+    /// 루틴 완료
     case PatchUsersRoutinesFinish(routineId: Int)
     
-    /// 전체 인플루언서 루틴 정보 - TodayRoutineMultiView
+    /// 전체 인플루언서 루틴 정보
     case GetUsersRoutines(date: String)
     
-    /// 개인 인플루언서 루틴 정보 - TodayStartView, SelectedRoutineView
+    /// 개인 인플루언서 루틴 정보
     case GetUsersRoutinesId(id: Int)
     
-    /// 개인 인플루언서 전체 루틴 정보 - ChangeRoutineView
+    /// 개인 인플루언서 전체 루틴 정보
     case GetUsersInfluencersRoutines(id: Int)
     //:
     
     // MARK: user-set-controller
-    /// 세트 조정 - WorkoutOngoingView
+    /// 세트 조정
     case PatchUsersRoutinesExercisesSets(routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int)
     
-    /// 세트 완료 - WorkoutOngoingView
+    /// 세트 완료
     case PatchUsersRoutinesExercisesSetsFinish(routineId: Int, exerciseId: Int, setId: Int)
     
-    /// 세트 취소(안 씀) - WorkoutOngoingView
+    /// 세트 취소(안 씀)
     case PatchUsersRoutinesExercisesSetsCancle(routineId: Int, exerciseId: Int, setId: Int)
     //:
     
     // MARK: user-record-controller
-    /// 운동 기록 - RecordView
+    /// 운동 기록
     case GetUsersRecords
     //:
     
     // MARK: routine-controller
-    /// 테스트 용 - GetUsersRoutines
+    /// 테스트 용
     case GetRoutines
     //:
     
-    // MARK: routine-controller
-    /// 테스트 용 - GetUsersInfluencersRoutines
+    // MARK: influencer-controller
+    /// 둘러보기 인플루언서들
+    case GetInfluencers
+    /// 둘러보기 상세
+    case GetInfluencersId(id: Int)
+    /// 테스트 용
     case GetInfluencersRoutines(id: Int)
     //:
 }
@@ -103,6 +111,8 @@ extension GeneralAPI: TargetType {
         case .PatchRoutinesExercisesAlternate(let routineId, let exerciseId, let alternativeExerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)/alternate/\(alternativeExerciseId)"
         case .GetRoutinesExercises(let routineId, let exerciseId):
+            return "/users/routines/\(routineId)/exercises/\(exerciseId)"
+        case .DeleteRoutinesExercises(let routineId, let exerciseId):
             return "/users/routines/\(routineId)/exercises/\(exerciseId)"
             //:
             // MARK: auth-controller
@@ -144,6 +154,10 @@ extension GeneralAPI: TargetType {
             return "/routines"
             //:
             // MARK: influencer-controller
+        case .GetInfluencers:
+            return "/influencers"
+        case .GetInfluencersId(let id):
+            return "/influencers/\(id)"
         case .GetInfluencersRoutines(let id):
             return "/influencers/\(id)/routines"
             //:
@@ -157,6 +171,7 @@ extension GeneralAPI: TargetType {
         case .DeleteRoutinesExercisesSets: return .delete
         case .PatchRoutinesExercisesAlternate: return .patch
         case .GetRoutinesExercises: return .get
+        case .DeleteRoutinesExercises: return .delete
             //:
             // MARK: auth-controller
         case .PostLogin: return .post
@@ -184,6 +199,8 @@ extension GeneralAPI: TargetType {
         case .GetRoutines: return .get
             //:
             // MARK: influencer-controller
+        case .GetInfluencers: return .get
+        case .GetInfluencersId: return .get
         case .GetInfluencersRoutines: return .get
             //:
         }
@@ -196,6 +213,7 @@ extension GeneralAPI: TargetType {
         case .DeleteRoutinesExercisesSets: return .requestPlain
         case .PatchRoutinesExercisesAlternate: return .requestPlain
         case .GetRoutinesExercises: return .requestPlain
+        case .DeleteRoutinesExercises: return .requestPlain
             //:
             // MARK: auth-controller
         case .PostLogin(identifier: let identifier, identityToken: let identityToken, authorizationCode: let authorizationCode): return .requestJSONEncodable(Credential(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode))
@@ -223,6 +241,8 @@ extension GeneralAPI: TargetType {
         case .GetRoutines: return .requestPlain
             //:
             // MARK: influencer-controller
+        case .GetInfluencers: return .requestPlain
+        case .GetInfluencersId: return .requestPlain
         case .GetInfluencersRoutines: return .requestPlain
             //:
         }

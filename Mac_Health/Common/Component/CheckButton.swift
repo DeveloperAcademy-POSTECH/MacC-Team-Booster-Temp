@@ -14,7 +14,7 @@ struct CheckButton: View {
             .foregroundColor(.green_10)
             .overlay {
                 Image(systemName: "checkmark")
-                    .bold()
+                    .font(.system(size: 14, weight: .semibold, design: .default))
                     .foregroundColor(.green_main)
             }
     }
