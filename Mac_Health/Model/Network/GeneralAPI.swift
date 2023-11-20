@@ -250,6 +250,8 @@ extension GeneralAPI: TargetType {
     
     var headers: [String: String]? {
         switch self {
+        case .PostLogin, .GetReissue:
+            return ["Content-Type": "application/json"]
         default:
             return ["Content-Type": "application/json", "\(authorization.0)": "\(authorization.1)"]
         }
