@@ -33,7 +33,7 @@ struct RecordView: View {
             Spacer()
         }
         .padding([.top, .horizontal])
-        .padding(.vertical, 5)
+        .padding(.bottom, 5)
     }
     
     var Calender: some View {

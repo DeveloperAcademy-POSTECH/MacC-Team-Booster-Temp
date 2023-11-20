@@ -27,6 +27,7 @@ struct MockUpRecordExampleView: View {
                     RoutineCell(workoutName: "케이블 트라이셉스 익스텐션 ", totalWeight: 1250, setInfo: [[1,30,10],[2,35,10],[3,30,10],[4,30,10]])
                 }
             }
+            .scrollIndicators(.hidden)
             .padding(.horizontal)
             .padding(.top)
         }

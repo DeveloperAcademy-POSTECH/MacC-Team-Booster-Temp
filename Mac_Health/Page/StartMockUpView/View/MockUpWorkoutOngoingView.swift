@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MockUpWorkoutOngoingView: View {
+    
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = MockUpStopwatchViewModel()
     @FocusState private var isFocused: Bool
@@ -23,6 +24,7 @@ struct MockUpWorkoutOngoingView: View {
     @State var existUnfinished: Bool = false
     
     let workoutName = "클로즈 그립 랫 풀 다운"
+
     
     var body: some View {
         ZStack {
@@ -480,8 +482,8 @@ struct ImageTip: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
+//    }
+//}

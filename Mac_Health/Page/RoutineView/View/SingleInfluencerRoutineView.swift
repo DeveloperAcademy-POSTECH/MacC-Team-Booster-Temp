@@ -73,7 +73,7 @@ struct SingleInfluencerRoutineView: View {
                     HStack(alignment: .top) {
                         VStack(alignment: .leading) {
                             Text(routine.comment)
-                                .font(.body)
+                                .font(.body2())
                                 .foregroundColor(.label_800)
                         }
                         .padding(20)

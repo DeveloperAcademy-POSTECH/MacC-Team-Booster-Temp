@@ -85,7 +85,7 @@ struct ProfileView: View {
     func ProfileManage(nickname: String) -> some View {
         RoundedRectangle(cornerRadius: 8.0)
             .foregroundColor(.gray_700)
-            .frame(width: UIScreen.getWidth(360), height: UIScreen.getHeight(72))
+            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
             .overlay{
                 HStack(spacing:2){
                     //로그인 x -> nickName => "둘러보기", "프로필 관리" => "로그인 하러 가기"
@@ -131,7 +131,7 @@ struct ProfileView: View {
                 .foregroundColor(.gray_700)
         }
         .padding(.top, 10)
-        .padding(.horizontal)
+        .padding(.horizontal, 25)
     }
     
     var versionInformaion : some View {
@@ -150,7 +150,7 @@ struct ProfileView: View {
                     .padding(.bottom)
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 25)
         .padding(.top)
     }
     
@@ -164,7 +164,7 @@ struct ProfileView: View {
                 .foregroundColor(.label_900)
                 .padding(.vertical)
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 25)
     }
     
     var inquiry : some View {
@@ -177,7 +177,7 @@ struct ProfileView: View {
                 .foregroundColor(.label_900)
                 .padding(.vertical)
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 25)
     }
     
     var useInformation : some View {
@@ -191,7 +191,7 @@ struct ProfileView: View {
                     .foregroundColor(.label_900)
                     .padding(.top)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 25)
         }
     }
 }

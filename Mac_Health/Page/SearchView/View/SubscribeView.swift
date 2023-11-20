@@ -246,10 +246,11 @@ struct SubscribeView: View {
             VStack {
                 Spacer()
                 HStack {
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading) {
                         Text("\(vm.influencer.influencerName)의 \(vm.influencer.routineName)")
                             .foregroundColor(.label_900)
                             .font(.title1())
+                            .padding(.bottom, 3)
                         Text(vm.influencer.title)
                             .foregroundColor(.label_600)
                             .font(.body2())

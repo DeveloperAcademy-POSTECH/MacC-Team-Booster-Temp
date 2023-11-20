@@ -18,6 +18,7 @@ struct RoutineInformationView: View {
     
     var body: some View {
         ZStack {
+            Color.gray_900.ignoresSafeArea()
             ScrollView {
                 VStack {
                     SpecificInformation

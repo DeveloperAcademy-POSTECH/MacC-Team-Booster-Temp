@@ -75,11 +75,13 @@ struct SingleInfluencerPreviewView: View {
                     Text("\(influencer.name)의 \(influencer.routineName)")
                         .font(.title1())
                         .foregroundColor(.label_900)
+                        .padding(.bottom, 3)
                     Text(influencer.title)
                         .font(.body2())
                         .foregroundColor(.label_600)
                         .padding(.bottom, 12)
                 }
+                .padding(.leading, 3)
                 Spacer()
             }
             .padding()

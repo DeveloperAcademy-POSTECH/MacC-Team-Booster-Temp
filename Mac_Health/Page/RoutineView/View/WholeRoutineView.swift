@@ -25,26 +25,28 @@ struct WholeRoutineView: View {
     
     // TODO: 컨벤션 맞춰 컴포넌트 명 변경
     var body: some View {
-        // TODO: 배경
-        VStack {
-            SortingSlider
-            switch vm.emptyFlag {
-            case 0: Workouts
-            case 1: EmptyWorkoutView
-            default:
-                Workouts
+        ZStack{
+            Color.gray_900.ignoresSafeArea()
+            VStack {
+                SortingSlider
+                switch vm.emptyFlag {
+                case 0: Workouts
+                case 1: EmptyWorkoutView
+                default:
+                    Workouts
+                }
             }
-        }
-        .navigationTitle("전체 운동일지")
-        .navigationBarBackButtonHidden()
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton
+            .navigationTitle("전체 운동일지")
+            .navigationBarBackButtonHidden()
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton
+                }
             }
-        }
-        .onAppear {
-            vm.fetchWholeRoutine(influencerId: influencerId)
+            .onAppear {
+                vm.fetchWholeRoutine(influencerId: influencerId)
+            }
         }
     }
     

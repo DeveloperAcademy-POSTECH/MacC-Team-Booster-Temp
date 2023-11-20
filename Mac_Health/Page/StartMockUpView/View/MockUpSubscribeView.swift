@@ -236,6 +236,7 @@ struct MockUpSubscribeView: View {
                         Text("정회승의 Smart Routine")
                             .foregroundColor(.label_900)
                             .font(.title1())
+                            .padding(.bottom, 3)
                         Text("2022 Mr. 서울대🏆")
                             .foregroundColor(.label_600)
                             .font(.body2())

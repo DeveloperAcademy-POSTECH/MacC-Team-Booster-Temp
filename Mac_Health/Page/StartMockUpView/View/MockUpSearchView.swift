@@ -83,10 +83,12 @@ struct MockUpSearchView: View {
                         .foregroundColor(.label_600)
                         .padding(.bottom, 12)
                 }
+                .padding(.leading, 3)
                 Spacer()
             }
             .padding()
         }
+        .padding(.top, 10)
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
         //        .mask(
         //            RoundedRectangle(cornerRadius: 8.0)
