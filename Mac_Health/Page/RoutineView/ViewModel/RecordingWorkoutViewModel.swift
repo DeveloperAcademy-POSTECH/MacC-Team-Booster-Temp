@@ -38,18 +38,6 @@ class RecordingWorkoutViewModel: ObservableObject {
     @Published var isRunning: Bool = false
     private var timer: Timer?
     
-    /// 현재 진행 중인 운동 정보 조회 함수
-    func fetchWorkout(routineId: Int, exerciseId: Int, completion: @escaping ((ResponseGetRoutinesExercises) -> ())) {
-        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
-            switch $0 {
-            case .success(let workout):
-                completion(workout)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     /// 운동 시간 일시 정지 함수
     func pauseWorkout() {
         
@@ -84,8 +72,20 @@ class RecordingWorkoutViewModel: ObservableObject {
         }
     }
     
-    /// 세트 무게 또는 횟수 편집 함수
-    func editSet(index: Int, routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
+    /// 세트 무게 편집 함수
+    func editWeight(index: Int, routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
+            switch $0 {
+            case .success(let set):
+                completion(set)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    /// 세트 횟수 편집 함수
+    func editReps(index: Int, routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
             switch $0 {
             case .success(let set):
