@@ -39,6 +39,7 @@ struct MockUpWorkoutOngoingView: View {
                     WorkoutSetList
                     //                    RelatedContent
                     EmptyFloatingButton
+                    EmptyFloatingButton
                 }
             }
             

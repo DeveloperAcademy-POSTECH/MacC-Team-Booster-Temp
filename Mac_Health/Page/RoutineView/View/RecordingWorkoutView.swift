@@ -41,6 +41,7 @@ struct RecordingWorkoutView: View {
                         WorkoutSetList
                         RelatedContent
                         EmptyFloatingButton
+                        EmptyFloatingButton
                     }
                 }
                 
@@ -485,7 +486,7 @@ struct RecordingWorkoutView: View {
                 //                }
             }
         }
-        .padding(.horizontal)
+        .padding()
     }
     
     var EmptyFloatingButton: some View {

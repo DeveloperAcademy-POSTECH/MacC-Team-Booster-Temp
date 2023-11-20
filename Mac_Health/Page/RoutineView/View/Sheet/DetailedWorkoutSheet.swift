@@ -106,7 +106,7 @@ struct DetailedWorkoutSheet: View {
                 .multilineTextAlignment(.leading)
                 .lineSpacing(7)
                 .foregroundColor(.label_900)
-                .font(.headline1())
+                .font(.body())
         }
         .padding(.horizontal)
         .padding(.bottom)
