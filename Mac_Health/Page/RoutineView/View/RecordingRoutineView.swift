@@ -53,7 +53,6 @@ struct RecordingRoutineView: View {
         }
     }
     
-    //TODO: 해당 운동 누르면 진행 중 운동에서 해당 운동으로 변경 - MORO
     var WorkoutList: some View {
         VStack {
             HStack {
@@ -66,7 +65,12 @@ struct RecordingRoutineView: View {
             
             ScrollView {
                 ForEach(0..<editRoutineVM.routine.exercises.count, id: \.self) { index in
-                    WorkoutCell(index: index)
+                    Button {
+                        editRoutineVM.currentWorkoutIndex = index
+                        editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[index].id)
+                    } label: {
+                        WorkoutCell(index: index)
+                    }
                 }
             }
         }
