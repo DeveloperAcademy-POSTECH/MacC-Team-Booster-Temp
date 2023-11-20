@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct RecordingFinishView: View {
-    
     @State var tabSelection: Int = 3
+    
+    @StateObject var vm = RecordingFinishViewModel()
+    
     @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -27,7 +30,7 @@ struct RecordingFinishView: View {
                     .foregroundColor(.gray_700)
                     .overlay{
                         VStack(spacing: 5){
-                            Text(getNowDateTime())
+                            Text(vm.nowDateFormatter())
                                 .font(.title1())
                                 .foregroundColor(.label_900)
                             Text("오늘도 고생 많으셨어요!")
@@ -89,17 +92,6 @@ struct RecordingFinishView: View {
         }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
-
-    }
-    
-    func getNowDateTime() -> String {
-        let nowDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier:  "ko")
-        
-        dateFormatter.dateFormat = "yy.MM.dd"
-        let date_String = dateFormatter.string(from: nowDate)
-        return date_String
     }
 }
 
