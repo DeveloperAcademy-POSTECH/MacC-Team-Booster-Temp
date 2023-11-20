@@ -38,6 +38,8 @@ struct InfluencerPreviewView: View {
             Text("인플루언서의 운동일지를\n구독하고 따라해보세요.")
                 .font(.title2())
                 .foregroundColor(.label_900)
+                .lineSpacing(8.0)
+                .multilineTextAlignment(.center)
                 .padding()
         }
     }
