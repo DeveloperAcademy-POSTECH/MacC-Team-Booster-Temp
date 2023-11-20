@@ -51,7 +51,7 @@ struct MockUpStartView: View {
     var NavigationTitle: some View {
         VStack {
             HStack {
-                Text("정회승의 \n오늘의 루틴")
+                Text("정회승\n오늘의 운동")
                     .font(.title1())
                     .foregroundColor(.label_900)
                 Spacer()

@@ -37,7 +37,7 @@ struct SingleInfluencerRoutineView: View {
     
     var NavigationTitle: some View {
         HStack {
-            Text("\(routine.name)의\n오늘의 루틴")
+            Text("\(routine.name)\n오늘의 운동")
                 .font(.title1())
                 .foregroundColor(.label_900)
             Spacer()
