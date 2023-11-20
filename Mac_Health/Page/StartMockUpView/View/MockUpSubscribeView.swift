@@ -136,90 +136,92 @@ struct MockUpSubscribeView: View {
             .padding(.leading)
             .frame(maxWidth: .infinity)
             //MARK: 잼이 지우지 말래요.
-//            if seeMore == false {
-//                ZStack(alignment: .top){
-//                    VStack(alignment: .leading){
-//                        ForEach(0..<award.count, id: \.self) { index in
-//                            HStack{
-//                                VStack{
-//                                    Text("•")
-//                                        .font(.body)
-//                                        .foregroundColor(.label_800)
-//                                    Spacer()
-//                                }
-//                                VStack(alignment: .leading){
-//                                    HStack{
-//                                        Text(award[index])
-//                                            .font(.body)
-//                                            .foregroundColor(.label_800)
-//                                        Spacer()
-//                                    }
-//                                    Spacer()
-//                                }
-//                            }
-//                            .padding(.leading, 10)
-//                        }
-//                    }
-//                    .mask(alignment: .top){
-//                        Rectangle()
-//                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(130))
-//                    }
-//                    .padding()
-//                    LinearGradient(colors: [.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
-//                    Button {
-//                        seeMore = true
-//                    } label: {
-//                        VStack{
-//                            Spacer()
-//                                .frame(height: UIScreen.getHeight(170))
-//                            Text("더보기")
-//                                .font(.headline1())
-//                                .foregroundColor(Color.label_900)
-//                        }
-//                    }
-//
-//                }
-//                .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
-//                .padding(.top, 40)
-//            }
-//            else {
-                VStack(alignment: .leading){
-                    ForEach(0..<award.count, id: \.self) { index in
-                        HStack {
-                            VStack {
-                                Text("•")
-                                    .font(.body)
+            //            if seeMore == false {
+            //                ZStack(alignment: .top){
+            //                    VStack(alignment: .leading){
+            //                        ForEach(0..<award.count, id: \.self) { index in
+            //                            HStack{
+            //                                VStack{
+            //                                    Text("•")
+            //                                        .font(.body)
+            //                                        .foregroundColor(.label_800)
+            //                                    Spacer()
+            //                                }
+            //                                VStack(alignment: .leading){
+            //                                    HStack{
+            //                                        Text(award[index])
+            //                                            .font(.body)
+            //                                            .foregroundColor(.label_800)
+            //                                        Spacer()
+            //                                    }
+            //                                    Spacer()
+            //                                }
+            //                            }
+            //                            .padding(.leading, 10)
+            //                        }
+            //                    }
+            //                    .mask(alignment: .top){
+            //                        Rectangle()
+            //                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(130))
+            //                    }
+            //                    .padding()
+            //                    LinearGradient(colors: [.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
+            //                    Button {
+            //                        seeMore = true
+            //                    } label: {
+            //                        VStack{
+            //                            Spacer()
+            //                                .frame(height: UIScreen.getHeight(170))
+            //                            Text("더보기")
+            //                                .font(.headline1())
+            //                                .foregroundColor(Color.label_900)
+            //                        }
+            //                    }
+            //
+            //                }
+            //                .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
+            //                .padding(.top, 40)
+            //            }
+            //            else {
+            VStack(alignment: .leading){
+                ForEach(0..<award.count, id: \.self) { index in
+                    HStack {
+                        VStack {
+                            Text("•")
+                                .font(.body)
+                                .foregroundColor(.label_800)
+                            Spacer()
+                        }
+                        VStack(alignment: .leading){
+                            HStack {
+                                Text(award[index])
+                                    .font(.body())
                                     .foregroundColor(.label_800)
                                 Spacer()
                             }
-                            VStack(alignment: .leading){
-                                HStack {
-                                    Text(award[index])
-                                        .font(.body())
-                                        .foregroundColor(.label_800)
-                                    Spacer()
-                                }
-                                Spacer()
-                            }
+                            Spacer()
                         }
-                        .padding(.leading, 10)
                     }
+                    .padding(.leading, 10)
                 }
-                .padding()
-//            }
+            }
+            .padding()
+            //            }
         }
     }
     
     
     @ViewBuilder
     var subscribeButton: some View {
-        FloatingButton(backgroundColor: .green_main) {Text("로그인하고 구독하기")
-                        .foregroundColor(.gray_900)
-                        .font(.button1())
-                }
-                
+        Button {
             
+        } label: {
+            FloatingButton(backgroundColor: .green_main) {Text("로그인하고 구독하기")
+                    .foregroundColor(.gray_900)
+                    .font(.button1())
+            }
         }
+    }
     
     fileprivate func createTab() -> some View {
         return subscribeButton
@@ -265,7 +267,7 @@ struct MockUpSubscribeView: View {
                     .foregroundColor(.label_800)
                     .font(.body())
             }
-         Spacer()
+            Spacer()
         }
         .padding(.horizontal)
         .padding(.bottom, 10)
@@ -289,7 +291,7 @@ struct MockUpSubscribeView: View {
                     .foregroundColor(.label_800)
                     .font(.body)
             }
-         Spacer()
+            Spacer()
         }
         .padding(.horizontal)
         .padding(.bottom, 10)

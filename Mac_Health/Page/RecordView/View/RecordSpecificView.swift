@@ -116,7 +116,7 @@ struct RoutineCell: View {
                     .foregroundColor(.label_900)
                 Spacer()
                 //TODO: 무게 총합
-                Text("10300")
+                Text("10300kg")
                     .font(.headline1())
                     .foregroundColor(.label_900)
             }
