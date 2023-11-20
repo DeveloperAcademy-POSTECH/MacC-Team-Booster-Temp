@@ -140,7 +140,7 @@ struct MockUpStartView: View {
                     RoundedRectangle(cornerRadius: 100)
                         .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
                         .foregroundColor(.green_main)
-                        .overlay { Text("운동 시작")
+                        .overlay { Text("체험 운동 시작")
                                 .foregroundColor(.gray_900)
                                 .font(.button1())
                         }

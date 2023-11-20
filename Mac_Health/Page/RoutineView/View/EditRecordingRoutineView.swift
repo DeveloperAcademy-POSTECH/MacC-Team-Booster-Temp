@@ -18,7 +18,7 @@ struct EditRecordingRoutineView: View {
         VStack {
             WorkoutList
             
-            WorkoutStartButton
+//            WorkoutStartButton
         }
         .navigationTitle("운동 루틴 편집")
         .toolbar {
