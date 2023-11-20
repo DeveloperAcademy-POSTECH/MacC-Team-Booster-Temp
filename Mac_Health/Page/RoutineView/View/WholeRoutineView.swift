@@ -18,9 +18,7 @@ enum WorkoutPart: String, CaseIterable {
 ///   - influencerId: 조회할 인플루언서의 id
 struct WholeRoutineView: View {
     let influencerId: Int
-    
     @StateObject var vm = WholeRoutineViewModel()
-    var burnedKCalories: Int
     
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -123,7 +121,7 @@ struct WholeRoutineView: View {
                     }
                     ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
                         NavigationLink {
-                            RoutineInformationView(routineId: some.routineId, burnedKCalories: burnedKCalories)
+                            RoutineInformationView(routineId: some.routineId)
                                 .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
                         } label: {
                             TodayWorkoutCell(routine: some)

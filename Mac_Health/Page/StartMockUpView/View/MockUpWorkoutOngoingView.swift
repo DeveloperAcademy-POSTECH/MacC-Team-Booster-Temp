@@ -73,19 +73,16 @@ struct MockUpWorkoutOngoingView: View {
         }
         .alert("운동을 중단하시겠습니까?", isPresented: $exitAlertShow) {
             Button("운동중단") {
-                // MARK: 취소
                 dismiss()
             }
             Button("취소") {
-                // MARK: 완료하기
-                //                routineVM.showWorkOutOnGoing.toggle()
+                
             }
         }
         //TODO: 운동 완료 후 창닫기 (수행하지 않지 않은 운동이 있을 때만)
         .alert("운동을 완료하시겠습니까?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
             Button("취소") {
                 // MARK: 취소
-                dismiss()
             }
             NavigationLink("완료하기") {
                 // MARK: 완료하기

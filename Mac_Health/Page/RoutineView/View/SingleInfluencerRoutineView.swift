@@ -125,7 +125,7 @@ struct SingleInfluencerRoutineView: View {
                         .foregroundColor(.label_900)
                     Spacer()
                     NavigationLink {
-                        WholeRoutineView(influencerId: routine.influencerId, burnedKCalories: routine.burnedKCalories)
+                        WholeRoutineView(influencerId: routine.influencerId)
                     } label: {
                         Image(systemName: "calendar")
                             .font(.title2())
@@ -176,7 +176,7 @@ struct SingleInfluencerRoutineView: View {
                             .padding(.bottom, 10)
                     } else {
                         NavigationLink {
-                            EditRoutineView(routineId: routine.routineId, burnedKCalories: routine.burnedKCalories)
+                            EditRoutineView(routineId: routine.routineId)
                         } label: {
                             RoundedRectangle(cornerRadius: 100)
                                 .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))

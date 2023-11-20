@@ -372,6 +372,7 @@
 				F8DACB742B04294500C3E95C /* RecordingRoutineView.swift */,
 				D5C5117B2B0562DC008B871E /* EditRecordingRoutineView.swift */,
 				D5C5117D2B056378008B871E /* RecordingFinishView.swift */,
+				D569C7882AF5152100FDADED /* SelectedRoutineView.swift */,
 				F8DACB622B0417E000C3E95C /* Temp */,
 				D569C7922AF945C200FDADED /* Sheet */,
 			);
@@ -559,7 +560,6 @@
 			children = (
 				D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */,
 				D5D8F17D2AF39EC80032A788 /* ChangeRoutineView.swift */,
-				D569C7882AF5152100FDADED /* SelectedRoutineView.swift */,
 				F843AFA02AF6737300EDA547 /* WorkoutListView.swift */,
 				F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */,
 				F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */,

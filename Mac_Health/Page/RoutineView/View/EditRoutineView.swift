@@ -11,10 +11,9 @@ import SwiftUI
 /// - Parameters:
 ///  - routineId: 수정할 루틴에 대한 id
 struct EditRoutineView: View {
-    let routineId: Int
     
+    let routineId: Int
     @StateObject var vm = EditRoutineViewModel()
-    var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -161,7 +160,7 @@ struct EditRoutineView: View {
         VStack{
             Spacer()
             NavigationLink {
-                RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: burnedKCalories)
+                RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: vm.routine.burnedKCalories)
                     .environmentObject(vm)
             } label: {
                 FloatingButton(backgroundColor: .green_main) {
