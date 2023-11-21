@@ -296,6 +296,8 @@ struct ResponseGetInfluencersId: Codable {
     var routineName: String
     var title: String
     var awards: String
+    var carouselImageUrls: [String]
+    var faceImageUrl: String
     var introduce: String
     var bodySpec: BodySpec
     var bigThree: BigThree

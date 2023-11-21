@@ -60,7 +60,7 @@ struct SingleInfluencerPreviewView: View {
                 .overlay {
                     HStack {
                         Spacer()
-                        AsyncImage(url: URL(string: influencer.singleExploreImageUrl)) { image in
+                        AsyncImage(url: URL(string: influencer.multiExploreImageUrl)) { image in
                             image
                                 .resizable()
                                 .scaledToFit()

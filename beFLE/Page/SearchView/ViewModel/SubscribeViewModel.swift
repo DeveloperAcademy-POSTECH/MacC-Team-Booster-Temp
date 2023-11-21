@@ -8,7 +8,7 @@
 import SwiftUI
 
 class SubscribeViewModel: ObservableObject {
-    @Published var influencer = ResponseGetInfluencersId(influencerName: "", routineName: "", title: "", awards: "", introduce: "", bodySpec: BodySpec(height: 0, weight: 0), bigThree: BigThree(squat: 0, benchPress: 0, deadLift: 0), routine: PreviewExercise(date: "", part: "", exercises: []), isSubscription: false)
+    @Published var influencer = ResponseGetInfluencersId(influencerName: "", routineName: "", title: "", awards: "", carouselImageUrls: [], faceImageUrl: "", introduce: "", bodySpec: BodySpec(height: 0, weight: 0), bigThree: BigThree(squat: 0, benchPress: 0, deadLift: 0), routine: PreviewExercise(date: "", part: "", exercises: []), isSubscription: false)
     //    @State var seeMore:Bool = false
     @Published var showTab = false
     @Published var scrollOffset: CGFloat = 0.00
