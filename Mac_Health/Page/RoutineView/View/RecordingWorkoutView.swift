@@ -33,8 +33,6 @@ struct RecordingWorkoutView: View {
                 Color.gray_900.ignoresSafeArea()
                 
                 ScrollViewReader { proxy in
-                    VStack {
-                        // TODO: 상단 여백 제거
                         ScrollView {
                             Spacer()
                                 .frame(height: 0)
@@ -50,7 +48,6 @@ struct RecordingWorkoutView: View {
                             EmptyFloatingButton
                         }
                         .scrollIndicators(.hidden)
-                    }
                     .overlay{
                         VStack{
                             Spacer()
@@ -87,12 +84,12 @@ struct RecordingWorkoutView: View {
                                         
                                         // MARK: 다음 세트, 운동, 운동 완료 버튼
                                         Button {
-                                            if editRoutineVM.workout.sets.count == 1{
+                                            if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
                                                 withAnimation {
                                                     proxy.scrollTo(refreshID, anchor: .bottom)
                                                 }
                                             }
-                                            if editRoutineVM.workout.sets.count >= 1 {
+                                            if vm.currentSet == 2 {
                                                 withAnimation {
                                                     proxy.scrollTo(topID, anchor: .bottom)
                                                 }
@@ -505,7 +502,7 @@ struct RecordingWorkoutView: View {
                 }
             }
         }
-        .padding(.bottom, 30)
+        .padding(.bottom, 70)
     }
     
     var WorkoutButton: some View {
@@ -639,7 +636,7 @@ struct RecordingWorkoutView: View {
                 //                }
             }
         }
-        .padding()
+        .padding([.horizontal, .bottom])
     }
     
     var EmptyFloatingButton: some View {

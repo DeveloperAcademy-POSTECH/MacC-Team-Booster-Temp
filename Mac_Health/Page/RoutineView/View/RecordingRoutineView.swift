@@ -12,7 +12,6 @@ struct RecordingRoutineView: View {
     let routineId: Int
     var burnedKCalories: Int
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
-    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -68,6 +67,10 @@ struct RecordingRoutineView: View {
                     Button {
                         editRoutineVM.currentWorkoutIndex = index
                         editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[index].id)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                            // 여기에 실행할 작업 추가
+                                            dismiss()
+                                        }
                     } label: {
                         WorkoutCell(index: index)
                     }
