@@ -51,8 +51,6 @@ class RecordViewModel: ObservableObject {
     }
     
     func timeFormat(from time: String) -> String {
-        var time = ""
-        
         let split = time.split(separator: ":")
         let hour = Int(split[0])!
         let miniute = Int(split[1])!
