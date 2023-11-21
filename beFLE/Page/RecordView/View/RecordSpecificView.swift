@@ -10,6 +10,8 @@ import SwiftUI
 struct RecordSpecificView: View {
     let record: Records
     
+    @StateObject var vm = RecordSpecificViewModel()
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -32,7 +34,7 @@ struct RecordSpecificView: View {
             print(record)
         }
         // TODO: 타이틀 폰트 체크
-        .navigationBarTitle(formatForDate(from: record.date), displayMode: .inline)
+        .navigationBarTitle(vm.dateFormat(from: record.date), displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton
@@ -43,15 +45,6 @@ struct RecordSpecificView: View {
 //            }
         }
         .navigationBarBackButtonHidden(true)
-    }
-    
-    func formatForDate(from date: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY년 MM월 dd일"
-        dateFormatter.timeZone = TimeZone(identifier: "ko-KR")
-        dateFormatter.locale = Locale(identifier: "ko-KR")
-        
-        return dateFormatter.string(from: date.toDate() ?? Date())
     }
     
     var RoutineDescriptionCard: some View {
@@ -68,7 +61,7 @@ struct RecordSpecificView: View {
                 .padding(.bottom, 10)
             Description(image: "figure.arms.open", text: record.part)
             Description(image: "square.stack.fill", text: "\(record.numberOfExercise)개")
-            Description(image: "clock.fill", text: "\(record.time)분")
+            Description(image: "clock.fill", text: "\(vm.timeFormat(from: record.time))")
             Description(image: "flame.circle.fill", text: "\(record.burnedKCalories)kcal")
             Description(image: "dumbbell.fill", text: "\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps } )}))kg")
         }.padding(.bottom, 15)
