@@ -19,10 +19,12 @@ struct RecordingWorkoutView: View {
     var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss
     @FocusState private var isFocused: Bool
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         if vm.isFinish {
             RecordingFinishView(routineId: routineId, elapsedTime: $vm.elapsedTime, recordViewModel: vm, burnedKCalories: burnedKCalories)
+                .environmentObject(appState)
         }
         else {
             ZStack {

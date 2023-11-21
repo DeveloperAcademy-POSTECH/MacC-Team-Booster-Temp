@@ -12,6 +12,7 @@ struct MainView: View {
     @StateObject var vm = MainViewModel()
     @State var loggedIn = true
     @State var subscribed = false
+    @EnvironmentObject var appState: AppState
     
     init() {
         UITabBar.appearance().backgroundColor = Color.tabbar_main

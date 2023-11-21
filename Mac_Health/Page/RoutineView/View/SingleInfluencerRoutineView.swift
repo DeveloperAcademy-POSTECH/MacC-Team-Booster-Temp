@@ -16,6 +16,7 @@ struct SingleInfluencerRoutineView: View {
     @Binding var routine: InfluencerRoutine
     @StateObject var vm = SingleInfluencerRoutineViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack {
@@ -126,6 +127,7 @@ struct SingleInfluencerRoutineView: View {
                     Spacer()
                     NavigationLink {
                         WholeRoutineView(influencerId: routine.influencerId)
+                            .environmentObject(appState)
                     } label: {
                         Image(systemName: "calendar")
                             .font(.title2())
@@ -177,6 +179,7 @@ struct SingleInfluencerRoutineView: View {
                     } else {
                         NavigationLink {
                             EditRoutineView(routineId: routine.routineId)
+                                .environmentObject(appState)
                         } label: {
                             RoundedRectangle(cornerRadius: 100)
                                 .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))

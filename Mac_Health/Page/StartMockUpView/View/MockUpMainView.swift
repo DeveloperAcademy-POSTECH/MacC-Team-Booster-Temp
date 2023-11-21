@@ -13,7 +13,6 @@ struct MockUpMainView: View {
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
     }
-    @State private var path = NavigationPath()
     @State private var tabSelection = 1
     @State var loggedIn = false
     @ObservedObject private var stopwatchViewModel = MockUpStopwatchViewModel()

@@ -14,6 +14,7 @@ struct RoutineInformationView: View {
     let routineId: Int
     @StateObject var vm = RoutineInformationViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack {
@@ -107,6 +108,7 @@ struct RoutineInformationView: View {
             Spacer()
             NavigationLink {
                 EditRoutineView(routineId: routineId)
+                    .environmentObject(appState)
             } label: {
                 FloatingButton(backgroundColor: .green_main) {
                     Text("운동 시작")

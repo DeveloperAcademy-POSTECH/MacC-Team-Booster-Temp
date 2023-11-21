@@ -12,6 +12,7 @@ struct EditRecordingRoutineView: View {
     
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     var burnedKCalories: Int
     var body: some View {
