@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0DA327532AE1321600319BAB"
-               BuildableName = "Mac_Health.app"
-               BlueprintName = "Mac_Health"
-               ReferencedContainer = "container:Mac_Health.xcodeproj">
+               BuildableName = "beFLE.app"
+               BlueprintName = "beFLE"
+               ReferencedContainer = "container:beFLE.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0DA327532AE1321600319BAB"
-            BuildableName = "Mac_Health.app"
-            BlueprintName = "Mac_Health"
-            ReferencedContainer = "container:Mac_Health.xcodeproj">
+            BuildableName = "beFLE.app"
+            BlueprintName = "beFLE"
+            ReferencedContainer = "container:beFLE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0DA327532AE1321600319BAB"
-            BuildableName = "Mac_Health.app"
-            BlueprintName = "Mac_Health"
-            ReferencedContainer = "container:Mac_Health.xcodeproj">
+            BuildableName = "beFLE.app"
+            BlueprintName = "beFLE"
+            ReferencedContainer = "container:beFLE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
