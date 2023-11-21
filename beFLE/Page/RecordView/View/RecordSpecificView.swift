@@ -33,10 +33,10 @@ struct RecordSpecificView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton
             }
-            ToolbarItem(placement: .topBarTrailing) {
-                //login 되야 활성화
-                EditButton
-            }
+//            ToolbarItem(placement: .topBarTrailing) {
+//                //login 되야 활성화
+//                EditButton
+//            }
         }
         .navigationBarBackButtonHidden(true)
     }
