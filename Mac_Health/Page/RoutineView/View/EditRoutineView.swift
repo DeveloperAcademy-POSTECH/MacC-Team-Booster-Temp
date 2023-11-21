@@ -64,7 +64,6 @@ struct EditRoutineView: View {
     var WorkoutList: some View {
         VStack {
             HStack {
-                // TODO: 부위 별로 수정
                 Text(vm.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())

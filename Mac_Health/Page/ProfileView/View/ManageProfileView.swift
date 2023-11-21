@@ -17,7 +17,6 @@ struct ManageProfileView: View {
             Color.gray_900.ignoresSafeArea()
             VStack{
                 NicknameBanner(nickname: vm.nickname)
-                //TODO: email 받아왔는지 확인
 //                if vm.email == "" {
 //                } else {
 //                    EmailBanner(email: vm.email)

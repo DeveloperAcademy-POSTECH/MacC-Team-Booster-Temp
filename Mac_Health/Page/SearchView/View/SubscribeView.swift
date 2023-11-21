@@ -184,7 +184,6 @@ struct SubscribeView: View {
             //            }
             //            else {
             VStack(alignment: .leading) {
-                // TODO: 포이치 조정
                 ForEach(0..<vm.influencer.awards.count, id: \.self) { index in
                     HStack {
                         VStack {
@@ -308,21 +307,6 @@ struct SubscribeView: View {
         .padding(.horizontal)
         .padding(.bottom, 10)
     }
-    
-//    var topBackground: some View {
-//        ZStack(alignment: .bottomTrailing){
-//            Color.gray_900.ignoresSafeArea()
-//            HStack{
-//                Spacer()
-//                // TODO: 이미지
-//                Image("Background1")
-//                    .resizable()
-//                    .scaledToFit()
-//            }
-//        }
-//        .frame(height: UIScreen.getHeight(358))
-//        
-//    }
     
 }
 

@@ -54,16 +54,11 @@ struct RecordView: View {
                     .overlay {
                         VStack {
                             HStack {
-                                //                            Ellipse()
-                                //                                .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
-                                //                                .foregroundColor(.yellow_main)
-                                // TODO: 인플루언서 명
                                 Text(record.influencerName)
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
                                 Spacer()
-                                // TODO: 시간 파싱
-                                Text("\(formatTime(record.time))")
+                                Text("\(vm.formatTime(record.time))")
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
                             }
@@ -73,8 +68,8 @@ struct RecordView: View {
                                     .font(.body2())
                                     .foregroundColor(.label_500)
                                 Spacer()
-                                // TODO: 총 운동 무게 - MORO
-                                Text("5200kg")
+                                // TODO: 총 운동 무게 - MORO - 데이터 들어오면 계산 맞는지 확인할게요 (시저)
+                                Text("\(vm.volume)kg")
                                     .font(.body2())
                                     .foregroundColor(.label_900)
                             }
@@ -82,41 +77,41 @@ struct RecordView: View {
                         .padding()
                     }
             }
+            .onChange(of: vm.selectedDate) { _ in
+                    vm.calculateTotalVolume()
+                }
         }
         .padding(.bottom, 5)
     }
     
-    func formatTime(_ timeString: String) -> String {
-        let timeComponents = timeString.components(separatedBy: ":")
-        
-        if timeComponents.count == 3,
-           let hours = Int(timeComponents[0]),
-           let minutes = Int(timeComponents[1]),
-           let seconds = Int(timeComponents[2]) {
-            
-            var formattedTime = ""
-            
-            if hours > 0 {
-                formattedTime += "\(hours)시간 "
-            }
-            
-            if minutes > 0 {
-                formattedTime += "\(minutes)분 "
-            }
-            
-            if seconds >= 0 {
-                formattedTime += "\(seconds)초"
-            }
-            
-            return formattedTime
-        }
-
-        return timeString
-    }
-        
-
+//    func formatTime(_ timeString: String) -> String {
+//        let timeComponents = timeString.components(separatedBy: ":")
+//        
+//        if timeComponents.count == 3,
+//           let hours = Int(timeComponents[0]),
+//           let minutes = Int(timeComponents[1]),
+//           let seconds = Int(timeComponents[2]) {
+//            
+//            var formattedTime = ""
+//            
+//            if hours > 0 {
+//                formattedTime += "\(hours)시간 "
+//            }
+//            
+//            if minutes > 0 {
+//                formattedTime += "\(minutes)분 "
+//            }
+//            
+//            if seconds >= 0 {
+//                formattedTime += "\(seconds)초"
+//            }
+//            
+//            return formattedTime
+//        }
+//        
+//        return timeString
+//    }
     
-    //TODO: 로그인x or 구독 x
     var beforeLoginText: some View {
         VStack{
             NavigationLink {

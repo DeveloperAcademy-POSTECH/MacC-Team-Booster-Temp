@@ -14,17 +14,17 @@ struct OnboardingView: View {
     @StateObject var appState = AppState()
     
     var body: some View {
-            if !isPass {
-                // 로그인 전
-                NavigationView() {
-                    Onboarding
-                }
-                }
-            else {
-                // 로그인 성공 시
-                MainView()
-                    .environmentObject(appState)
+        if !isPass {
+            // 로그인 전
+            NavigationView() {
+                Onboarding
             }
+        }
+        else {
+            // 로그인 성공 시
+            MainView()
+                .environmentObject(appState)
+        }
     }
     
     var Onboarding: some View {
@@ -33,7 +33,6 @@ struct OnboardingView: View {
                 .resizable()
                 .scaledToFill()
             
-            // TODO: 온보딩 추가 시 작업
             /// 온보딩
             VStack {
                 Spacer()
@@ -48,7 +47,6 @@ struct OnboardingView: View {
                         .foregroundColor(.label_900)
                         .padding(.bottom, 10)
                         
-                        // TODO: BEFL 수정하기
                         Text("Be my Influencer, BEFLE")
                             .font(.system(size: 20, weight: .light, design: .default))
                             .foregroundColor(.label_700)
@@ -75,7 +73,7 @@ struct OnboardingView: View {
             { request in
                 request.requestedScopes = [.email]
             } onCompletion: { results in
-                // TODO: 추후 vm 생성
+                // TODO: 추후 vm 생성 - MORO
                 switch results {
                 case .success(let result):
                     switch result.credential {
@@ -149,10 +147,10 @@ struct OnboardingView: View {
         UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
         UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
         
-        #if DEBUG
+#if DEBUG
         print("accessToken: \(UserDefaults.standard.string(forKey: "accessToken"))")
         print("refreshToken: \(UserDefaults.standard.string(forKey: "refreshToken"))")
-        #endif
+#endif
     }
     
     /// 자동 로그인 검사 함수

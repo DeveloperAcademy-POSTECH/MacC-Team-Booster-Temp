@@ -184,7 +184,6 @@ struct RecordingWorkoutView: View {
                 }
             }
             .onAppear {
-                //TODO: 관련 영상 호출 필요 - MORO
                 vm.start()
                 editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
             }
@@ -251,12 +250,12 @@ struct RecordingWorkoutView: View {
             Image(systemName: "flame.fill")
                 .foregroundColor(.green_main)
                 .font(.headline2())
-            // TODO: 운동 시간
+            
             Text(vm.timeFormatted())
                 .foregroundColor(.label_900)
                 .font(.headline1())
                 .padding(.horizontal, 10)
-            // TODO: 운동 상태
+            
             Button {
                 vm.isPauseSheetShow = true
                 vm.stop()
@@ -300,7 +299,7 @@ struct RecordingWorkoutView: View {
         
         
         Button(role: .cancel) {
-            // TODO: .
+            
         } label: {
             Text("취소")
         }
@@ -309,7 +308,6 @@ struct RecordingWorkoutView: View {
     @ViewBuilder
     var WorkoutStopAlert: some View {
         Button("운동중단") {
-            // TODO: 운동 중단
             dismiss()
         }
         Button("취소") {
@@ -320,7 +318,6 @@ struct RecordingWorkoutView: View {
     var WorkoutInfomation: some View {
         VStack {
             HStack {
-                // TODO: 운동 리스트
                 Text("\(editRoutineVM.currentWorkoutIndex + 1) / \(editRoutineVM.routine.exercises.count)")
                     .foregroundColor(.label_700)
                 Text("|")
@@ -621,9 +618,7 @@ struct RecordingWorkoutView: View {
             }
             
             ScrollView(.horizontal) {
-                // TODO: 유튜브 카드 수정 후 고치기
                 HStack{
-                    // TODO: 유튜브 링크 통해서 작업하기
                     ForEach(editRoutineVM.workout.videoUrls, id: \.self) { videoUrl in
                         RelatedContentCard(videoID: videoUrl)
                     }

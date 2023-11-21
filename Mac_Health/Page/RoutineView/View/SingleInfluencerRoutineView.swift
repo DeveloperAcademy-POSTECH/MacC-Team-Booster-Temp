@@ -153,7 +153,7 @@ struct SingleInfluencerRoutineView: View {
                     }
                     
                     // TODO: EmptyFloatingButton으로 변경
-                    FloatingButton(backgroundColor: .clear) { }
+                    EmptyFloatingButton
                         .padding(.bottom)
                 }
                 else {
@@ -203,6 +203,10 @@ struct SingleInfluencerRoutineView: View {
                 .foregroundColor(.gray_700)
         }
         .padding(.bottom, 1)
+    }
+    
+    var EmptyFloatingButton: some View {
+        FloatingButton(backgroundColor: .clear) { }
     }
     
     var BackButton: some View {

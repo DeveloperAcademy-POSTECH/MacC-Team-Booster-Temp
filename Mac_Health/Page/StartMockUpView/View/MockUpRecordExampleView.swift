@@ -43,21 +43,17 @@ struct MockUpRecordExampleView: View {
     
     var RoutineDescriptionCard: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // TODO: 인플루언서 네임
             Text("정회승")
                 .font(.title2())
                 .foregroundColor(.label_900)
-            // TODO: 폰트
             Text("2023년 4월 23일 루틴")
                 .font(.caption())
                 .foregroundColor(.label_700)
                 .padding(.bottom)
             Description(image: "figure.arms.open", text: "어깨, 가슴, 삼두")
             Description(image: "square.stack.fill", text: "6개")
-            // TODO: 한 시간 넘어가면 어떻게 되는지 묻기
             Description(image: "clock.fill", text: "52분12초")
             Description(image: "flame.circle.fill", text: "430kcal")
-            // TODO: 총 무게
             Description(image: "dumbbell.fill", text: "10040kg")
         }.padding(.bottom, 15)
     }

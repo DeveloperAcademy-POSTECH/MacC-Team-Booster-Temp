@@ -27,7 +27,6 @@ struct RecordSpecificView: View {
             }
             .padding()
         }
-        // TODO: 타이틀 폰트 체크
         .navigationBarTitle(formatForDate(from: record.date), displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -52,22 +51,18 @@ struct RecordSpecificView: View {
     
     var RoutineDescriptionCard: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // TODO: 인플루언서 네임
             Text(record.influencerName)
                 .font(.title2())
                 .foregroundColor(.label_900)
                 .padding(.bottom, 10)
-            // TODO: 폰트
             Text("2023년 4월 23일 루틴")
                 .font(.caption())
                 .foregroundColor(.label_700)
                 .padding(.bottom, 10)
             Description(image: "figure.arms.open", text: record.part)
             Description(image: "square.stack.fill", text: "\(record.numberOfExercise)개")
-            // TODO: 한 시간 넘어가면 어떻게 되는지 묻기
             Description(image: "clock.fill", text: "50분")
             Description(image: "flame.circle.fill", text: "\(record.burnedKCalories)kcal")
-            // TODO: 총 무게
             Description(image: "dumbbell.fill", text: "13400kg")
         }.padding(.bottom, 15)
     }

@@ -29,8 +29,7 @@ struct RoutineInformationView: View {
                     .padding(.horizontal, 20)
                 WorkoutRoutine
                 
-                // TODO: empty floating button 변경
-                FloatingButton(backgroundColor: .clear) { }
+                EmptyFloatingButton
                     .padding()
             }
             
@@ -48,6 +47,10 @@ struct RoutineInformationView: View {
                 BackButton
             }
         }
+    }
+    
+    var EmptyFloatingButton: some View {
+        FloatingButton(backgroundColor: .clear) { }
     }
     
     var SpecificInformation: some View {

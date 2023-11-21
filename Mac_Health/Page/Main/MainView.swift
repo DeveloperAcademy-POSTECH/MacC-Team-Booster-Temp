@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// TODO: 메인 뷰 모델 추가
 struct MainView: View {
     @StateObject var vm = MainViewModel()
     @State var loggedIn = true

@@ -36,7 +36,6 @@ struct EmbedView : UIViewRepresentable{
 }
 
 struct RelatedContentCard: View {
-    //TODO: videoURL, videoID로 넘기기
 //    var videoID = "Ian0sSuSn4I"
     var videoID: String
     var body: some View{
