@@ -119,7 +119,8 @@ struct InfluencerRoutine: Codable, Hashable {
     var comment: String
     var name: String
     var routineName: String
-    var influencerProfileImageUrl: String
+    var singleRoutineImageUrl: String
+    var multiRoutineImageUrl: String
     var influencerId: Int
     var isDone: Bool
 }
@@ -139,6 +140,7 @@ struct RequestPatchUsersRoutines: Codable {
 /// PatchUsersRoutinesFinish
 struct ResponsePatchUsersRoutinesFinish: Codable {
     var isDone: Bool
+    var routineCompleteImageUrl: String
 }
 
 /// GetUsersRoutines
@@ -272,10 +274,8 @@ struct ResponseGetRoutines: Codable {
 // MARK: influencer-controller
 struct InfluencerPreview: Codable, Hashable {
     var influencerId: Int
-    // TODO: api 수정 후 옵셔널 제거
-    var onePersonProfileImageUrl: String?
-    // TODO: api 수정 후 옵셔널 제거
-    var listImageUrl: String?
+    var singleExploreImageUrl: String
+    var multiExploreImageUrl: String
     var name: String
     var routineName: String
     var title: String
@@ -297,6 +297,8 @@ struct ResponseGetInfluencersId: Codable {
     var routineName: String
     var title: String
     var awards: String
+    var carouselImageUrls: [String]
+    var faceImageUrl: String
     var introduce: String
     var bodySpec: BodySpec
     var bigThree: BigThree

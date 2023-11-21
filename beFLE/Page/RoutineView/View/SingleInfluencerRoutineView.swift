@@ -46,11 +46,11 @@ struct SingleInfluencerRoutineView: View {
     }
     
     var InfluencerImage: some View {
-        AsyncImage(url: URL(string: routine.influencerProfileImageUrl)) { image in
+        AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
             image
                 .resizable()
-                .scaledToFill()
-                .frame(width: UIScreen.getWidth(390))
+                .scaledToFit()
+//                .frame(width: UIScreen.getWidth(390))
         } placeholder: {
             VStack(alignment: .center) {
                 Image(systemName: "arrow.triangle.2.circlepath")
@@ -215,7 +215,7 @@ struct SingleInfluencerRoutineView: View {
 
 #Preview {
     TabView{
-        SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", influencerProfileImageUrl: "", influencerId: 1, isDone: false)))
+        SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", singleRoutineImageUrl: "", multiRoutineImageUrl: "", influencerId: 1, isDone: false)))
             .tabItem {
                 Image(systemName: "dumbbell")
                 Text("루틴")
