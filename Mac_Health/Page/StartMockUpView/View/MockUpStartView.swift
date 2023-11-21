@@ -18,6 +18,7 @@ import SwiftUI
 struct MockUpStartView: View {
     var todayText = "반가워요 득근해봅시다💪"
     @Binding var tabSelection: Int
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack{
@@ -54,6 +55,7 @@ struct MockUpStartView: View {
                 Text("정회승\n오늘의 운동")
                     .font(.title1())
                     .foregroundColor(.label_900)
+                    .multilineTextAlignment(.leading)
                 Spacer()
             }
             .padding(.horizontal)
@@ -66,7 +68,6 @@ struct MockUpStartView: View {
                     .padding(.top, 1)
                 Spacer()
             }
-            
         }
     }
     
@@ -136,6 +137,7 @@ struct MockUpStartView: View {
                 //운동 시작 버튼
                 NavigationLink {
                     MockUpWorkoutOngoingView(tabSelection: $tabSelection)
+                        .environmentObject(appState)
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
@@ -168,19 +170,19 @@ struct MockUpStartView: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        TabView{
-            MockUpStartView(tabSelection: .constant(3))
-                .tabItem {
-                    Image(systemName: "dumbbell")
-                    Text("루틴")
-                }
-            MockUpStartView(tabSelection: .constant(3))
-                .tabItem {
-                    Image(systemName: "dumbbell")
-                    Text("루틴")
-                }
-        }
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        TabView{
+//            MockUpStartView(tabSelection: .constant(3))
+//                .tabItem {
+//                    Image(systemName: "dumbbell")
+//                    Text("루틴")
+//                }
+//            MockUpStartView(tabSelection: .constant(3))
+//                .tabItem {
+//                    Image(systemName: "dumbbell")
+//                    Text("루틴")
+//                }
+//        }
+//    }
+//}

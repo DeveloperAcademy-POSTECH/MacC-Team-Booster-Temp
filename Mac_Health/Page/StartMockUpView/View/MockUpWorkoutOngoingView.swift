@@ -23,7 +23,8 @@ struct MockUpWorkoutOngoingView: View {
     @State var exitAlertShow: Bool = false
     @State var existUnfinished: Bool = false
     @Namespace var topID
-
+    @State var showFinishView = false
+    @EnvironmentObject var appState: AppState
     
     let workoutName = "클로즈 그립 랫 풀 다운"
 
@@ -139,10 +140,15 @@ struct MockUpWorkoutOngoingView: View {
             Button("취소") {
                 // MARK: 취소
             }
-            NavigationLink("완료하기") {
+            Button("완료하기") {
                 // MARK: 완료하기
-                MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
+//                MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
+                showFinishView = true
             }
+        }
+        .fullScreenCover(isPresented: $showFinishView){
+            MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
+                .environmentObject(appState)
         }
         .sheet(isPresented: $isPauseShow) {
             MockUpPauseSheet(viewModel: viewModel)
@@ -535,9 +541,9 @@ struct ImageTip: View {
         }
     }
 }
-
-#Preview {
-    NavigationStack{
-        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
-    }
-}
+//
+//#Preview {
+//    NavigationStack{
+//        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
+//    }
+//}

@@ -35,7 +35,7 @@
 		D51DFC452B07D5B9001B28EC /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DFC442B07D5B9001B28EC /* RoundedShape.swift */; };
 		D5436CA52AFB6B8000D82943 /* ManageProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */; };
 		D5436CA82AFB75B200D82943 /* ChangeNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */; };
-		D5517E822B0C294C00F02995 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5517E812B0C294C00F02995 /* NavigationManager.swift */; };
+		D5517E842B0C751E00F02995 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5517E832B0C751E00F02995 /* AppState.swift */; };
 		D569C7892AF5152100FDADED /* SelectedRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569C7882AF5152100FDADED /* SelectedRoutineView.swift */; };
 		D569C78B2AF9440600FDADED /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569C78A2AF9440600FDADED /* RoutineViewModel.swift */; };
 		D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */; };
@@ -149,7 +149,7 @@
 		D51DFC442B07D5B9001B28EC /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfileView.swift; sourceTree = "<group>"; };
 		D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNicknameView.swift; sourceTree = "<group>"; };
-		D5517E812B0C294C00F02995 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		D5517E832B0C751E00F02995 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D569C7882AF5152100FDADED /* SelectedRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineView.swift; sourceTree = "<group>"; };
 		D569C78A2AF9440600FDADED /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
 		D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedInfluencerCard.swift; sourceTree = "<group>"; };
@@ -341,14 +341,6 @@
 			path = Page;
 			sourceTree = "<group>";
 		};
-		D5517E802B0C290700F02995 /* NavigationModel */ = {
-			isa = PBXGroup;
-			children = (
-				D5517E812B0C294C00F02995 /* NavigationManager.swift */,
-			);
-			path = NavigationModel;
-			sourceTree = "<group>";
-		};
 		D569C78C2AF9451D00FDADED /* RoutineView */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,10 +489,10 @@
 		F89B3BF22AE5142800CACBD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D5517E802B0C290700F02995 /* NavigationModel */,
 				0D4495C12AFA6AA600F25CD4 /* Network */,
 				F8BE83512AE68DDF0094A509 /* Workout */,
 				D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */,
+				D5517E832B0C751E00F02995 /* AppState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -779,6 +771,7 @@
 				F8DACB732B0422D500C3E95C /* RecordingWorkoutViewModel.swift in Sources */,
 				F82674CF2AF7F099002BFACD /* WorkoutStatusEditView.swift in Sources */,
 				D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */,
+				D5517E842B0C751E00F02995 /* AppState.swift in Sources */,
 				D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */,
 				F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */,
 				D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */,
@@ -801,7 +794,6 @@
 				D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */,
 				F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */,
 				D5436CA82AFB75B200D82943 /* ChangeNicknameView.swift in Sources */,
-				D5517E822B0C294C00F02995 /* NavigationManager.swift in Sources */,
 				D57183802B030AB200A11FFC /* MockUpPauseSheet.swift in Sources */,
 				D5D8F17E2AF39EC80032A788 /* ChangeRoutineView.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,

@@ -13,7 +13,7 @@ struct MockUpFinishView: View {
     @Binding var elapsedTime: TimeInterval
     @Binding var tabSelection: Int
     @Environment(\.dismiss) var dismiss: DismissAction
-    
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack{
@@ -69,9 +69,7 @@ struct MockUpFinishView: View {
                 Spacer()
                     .frame(height: 115)
                 Button{
-                    dismiss()
-                    self.tabSelection = 3
-                    print(self.tabSelection)
+                    appState.rootViewId = UUID()
                 } label: {
                     FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
                             .foregroundColor(.gray_900)
@@ -118,6 +116,6 @@ struct MockUpFinishView: View {
     }
 }
 
-#Preview {
-    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
-}
+//#Preview {
+//    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
+//}
