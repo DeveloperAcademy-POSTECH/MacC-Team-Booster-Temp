@@ -23,6 +23,6 @@ class RecordSpecificViewModel: ObservableObject {
         let miniute = Int(split[1])!
         let second = Int(split[2])!
         
-        return "\(hour)시간 \(miniute)분 \(second)"
+        return "\(hour)시간 \(miniute)분 \(second)초"
     }
 }
