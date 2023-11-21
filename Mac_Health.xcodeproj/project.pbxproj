@@ -60,7 +60,6 @@
 		D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */; };
 		D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */; };
 		D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */; };
-		D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7805F2AE51E5300A8B76A /* TopImage.swift */; };
 		D5C5117C2B0562DC008B871E /* EditRecordingRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C5117B2B0562DC008B871E /* EditRecordingRoutineView.swift */; };
 		D5C5117E2B056378008B871E /* RecordingFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C5117D2B056378008B871E /* RecordingFinishView.swift */; };
 		D5C511812B059ECC008B871E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C511802B059ECC008B871E /* ProfileViewModel.swift */; };
@@ -174,7 +173,6 @@
 		D5B780492AE3C12800A8B76A /* RecommendInfluencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendInfluencer.swift; sourceTree = "<group>"; };
 		D5B7804C2AE3CB9800A8B76A /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
 		D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRoutine.swift; sourceTree = "<group>"; };
-		D5B7805F2AE51E5300A8B76A /* TopImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImage.swift; sourceTree = "<group>"; };
 		D5C5117B2B0562DC008B871E /* EditRecordingRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordingRoutineView.swift; sourceTree = "<group>"; };
 		D5C5117D2B056378008B871E /* RecordingFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingFinishView.swift; sourceTree = "<group>"; };
 		D5C511802B059ECC008B871E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -507,7 +505,6 @@
 				F89B3BE82AE503B500CACBD9 /* CheckButton.swift */,
 				F89B3BEC2AE5064200CACBD9 /* AlternativeWorkoutCard.swift */,
 				D5B780422AE3962200A8B76A /* InfluencerCard.swift */,
-				D5B7805F2AE51E5300A8B76A /* TopImage.swift */,
 				0D5851572AE4F34400C8875A /* WorkoutCell.swift */,
 				D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */,
 				D51DFC442B07D5B9001B28EC /* RoundedShape.swift */,
@@ -751,7 +748,6 @@
 				F8DACB582B03FCB800C3E95C /* RoutineView.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */,
-				D5B780602AE51E5300A8B76A /* TopImage.swift in Sources */,
 				F8DACB6F2B0420B200C3E95C /* RoutineInformationViewModel.swift in Sources */,
 				F8DACB752B04294500C3E95C /* RecordingRoutineView.swift in Sources */,
 				D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */,
