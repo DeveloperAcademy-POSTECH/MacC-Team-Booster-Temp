@@ -66,7 +66,6 @@
 		F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */; };
 		F82674C52AF68F11002BFACD /* AlternateWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C42AF68F11002BFACD /* AlternateWorkoutSheet.swift */; };
 		F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C72AF7A7AD002BFACD /* PauseSheet.swift */; };
-		F82674CD2AF7DA9B002BFACD /* WorkoutStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */; };
 		F82674CF2AF7F099002BFACD /* WorkoutStatusEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */; };
 		F838A12C2AFB79E500688893 /* APIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838A12B2AFB79E500688893 /* APIBody.swift */; };
 		F877F0AC2AFBBA40009D49B4 /* MultiInfluencerRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0AB2AFBBA40009D49B4 /* MultiInfluencerRoutineViewModel.swift */; };
@@ -170,7 +169,6 @@
 		F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C42AF68F11002BFACD /* AlternateWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C72AF7A7AD002BFACD /* PauseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseSheet.swift; sourceTree = "<group>"; };
-		F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStatusView.swift; sourceTree = "<group>"; };
 		F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStatusEditView.swift; sourceTree = "<group>"; };
 		F838A12B2AFB79E500688893 /* APIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBody.swift; sourceTree = "<group>"; };
 		F877F0AB2AFBBA40009D49B4 /* MultiInfluencerRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiInfluencerRoutineViewModel.swift; sourceTree = "<group>"; };
@@ -537,7 +535,6 @@
 		F8DACB622B0417E000C3E95C /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */,
 				F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */,
 				D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */,
 			);
@@ -710,7 +707,6 @@
 				F838A12C2AFB79E500688893 /* APIBody.swift in Sources */,
 				F8DACB5D2B04010100C3E95C /* MainViewModel.swift in Sources */,
 				F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */,
-				F82674CD2AF7DA9B002BFACD /* WorkoutStatusView.swift in Sources */,
 				D584CD892AFB556C00AFA1FF /* ProfileView.swift in Sources */,
 				F8DACB582B03FCB800C3E95C /* RoutineView.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
