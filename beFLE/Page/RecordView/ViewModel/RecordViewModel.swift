@@ -37,4 +37,13 @@ class RecordViewModel: ObservableObject {
             $0.date
         }
     }
+    
+    func timeFormat(from time: String) -> String {
+        let split = time.split(separator: ":")
+        let hour = Int(split[0])!
+        let miniute = Int(split[1])!
+        let second = Int(split[2])!
+        
+        return "\(hour)시간 \(miniute)분 \(second)"
+    }
 }
