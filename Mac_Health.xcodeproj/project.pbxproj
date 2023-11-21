@@ -38,7 +38,6 @@
 		D569C7892AF5152100FDADED /* SelectedRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569C7882AF5152100FDADED /* SelectedRoutineView.swift */; };
 		D569C78B2AF9440600FDADED /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569C78A2AF9440600FDADED /* RoutineViewModel.swift */; };
 		D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */; };
-		D56A0C702AF2153A004D1747 /* TodayStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */; };
 		D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183672B01EE8500A11FFC /* MockUpStartView.swift */; };
 		D571836A2B02084C00A11FFC /* MockUpWorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */; };
 		D571836D2B020A6800A11FFC /* MockUpFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571836C2B020A6800A11FFC /* MockUpFinishView.swift */; };
@@ -73,7 +72,6 @@
 		F838A12C2AFB79E500688893 /* APIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838A12B2AFB79E500688893 /* APIBody.swift */; };
 		F843AFA12AF6737300EDA547 /* WorkoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843AFA02AF6737300EDA547 /* WorkoutListView.swift */; };
 		F877F0AC2AFBBA40009D49B4 /* MultiInfluencerRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0AB2AFBBA40009D49B4 /* MultiInfluencerRoutineViewModel.swift */; };
-		F877F0AE2AFBE9BD009D49B4 /* TodayStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */; };
 		F877F0B22AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */; };
 		F886927B2AFFF0710043EE9A /* Ext+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F886927A2AFFF0710043EE9A /* Ext+Date.swift */; };
 		F886927D2AFFF12E0043EE9A /* Ext+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F886927C2AFFF12E0043EE9A /* Ext+String.swift */; };
@@ -149,7 +147,6 @@
 		D569C7882AF5152100FDADED /* SelectedRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineView.swift; sourceTree = "<group>"; };
 		D569C78A2AF9440600FDADED /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
 		D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedInfluencerCard.swift; sourceTree = "<group>"; };
-		D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStartView.swift; sourceTree = "<group>"; };
 		D57183672B01EE8500A11FFC /* MockUpStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpStartView.swift; sourceTree = "<group>"; };
 		D57183692B02084C00A11FFC /* MockUpWorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingView.swift; sourceTree = "<group>"; };
 		D571836C2B020A6800A11FFC /* MockUpFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpFinishView.swift; sourceTree = "<group>"; };
@@ -185,7 +182,6 @@
 		F838A12B2AFB79E500688893 /* APIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBody.swift; sourceTree = "<group>"; };
 		F843AFA02AF6737300EDA547 /* WorkoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListView.swift; sourceTree = "<group>"; };
 		F877F0AB2AFBBA40009D49B4 /* MultiInfluencerRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiInfluencerRoutineViewModel.swift; sourceTree = "<group>"; };
-		F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStartViewModel.swift; sourceTree = "<group>"; };
 		F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineViewModel.swift; sourceTree = "<group>"; };
 		F886927A2AFFF0710043EE9A /* Ext+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Date.swift"; sourceTree = "<group>"; };
 		F886927C2AFFF12E0043EE9A /* Ext+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+String.swift"; sourceTree = "<group>"; };
@@ -553,7 +549,6 @@
 		F8DACB622B0417E000C3E95C /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				D56A0C6F2AF2153A004D1747 /* TodayStartView.swift */,
 				D569C7882AF5152100FDADED /* SelectedRoutineView.swift */,
 				F843AFA02AF6737300EDA547 /* WorkoutListView.swift */,
 				F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */,
@@ -568,7 +563,6 @@
 			isa = PBXGroup;
 			children = (
 				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */,
-				F877F0AD2AFBE9BD009D49B4 /* TodayStartViewModel.swift */,
 				F877F0B12AFBEC9F009D49B4 /* SelectedRoutineViewModel.swift */,
 				F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */,
 				D58066532AFD3152003BB276 /* StopwatchVM.swift */,
@@ -721,7 +715,6 @@
 				D5C511812B059ECC008B871E /* ProfileViewModel.swift in Sources */,
 				F82674C52AF68F11002BFACD /* AlternateWorkoutSheet.swift in Sources */,
 				F8A4BF672AFE618F00413213 /* WorkoutListViewModel.swift in Sources */,
-				D56A0C702AF2153A004D1747 /* TodayStartView.swift in Sources */,
 				D571836D2B020A6800A11FFC /* MockUpFinishView.swift in Sources */,
 				D57183902B03399300A11FFC /* MockUpWorkoutSetModel.swift in Sources */,
 				F891B5B12B07D9BD0085E070 /* SearchViewModel.swift in Sources */,
@@ -786,7 +779,6 @@
 				D57183802B030AB200A11FFC /* MockUpPauseSheet.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,
-				F877F0AE2AFBE9BD009D49B4 /* TodayStartViewModel.swift in Sources */,
 				D5C511832B061870008B871E /* SwiftUIMailView.swift in Sources */,
 				F8DACB612B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
