@@ -72,3 +72,4 @@ final class NavigationManager: ObservableObject {
         navigatePath.removeFirst(count)
     }
 }
+
