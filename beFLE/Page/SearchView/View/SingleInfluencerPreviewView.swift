@@ -56,8 +56,9 @@ struct SingleInfluencerPreviewView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.gray_700)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400)).overlay{
-                    HStack{
+                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
+                .overlay {
+                    HStack {
                         Spacer()
                         AsyncImage(url: URL(string: influencer.singleExploreImageUrl)) { image in
                             image

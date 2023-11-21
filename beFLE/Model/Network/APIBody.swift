@@ -119,7 +119,8 @@ struct InfluencerRoutine: Codable, Hashable {
     var comment: String
     var name: String
     var routineName: String
-    var influencerProfileImageUrl: String
+    var singleRoutineImageUrl: String
+    var multiRoutineImageUrl: String
     var influencerId: Int
     var isDone: Bool
 }
