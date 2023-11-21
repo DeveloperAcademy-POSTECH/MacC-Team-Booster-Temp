@@ -103,6 +103,7 @@ extension GeneralAPI: TargetType {
     
     var authorization: (String, String) {
         if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
+            print(accessToken)
             return ("Authorization", "Bearer \(accessToken)")
         }
         return ("Authorization", "")

@@ -18,7 +18,6 @@ enum WorkoutPart: String, CaseIterable {
 ///   - influencerId: 조회할 인플루언서의 id
 struct WholeRoutineView: View {
     let influencerId: Int
-    
     @StateObject var vm = WholeRoutineViewModel()
     
     @Environment(\.dismiss) var dismiss: DismissAction
@@ -174,8 +173,8 @@ struct WholeRoutineView: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        WholeRoutineView(influencerId: 0)
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        WholeRoutineView(influencerId: 0)
+//    }
+//}

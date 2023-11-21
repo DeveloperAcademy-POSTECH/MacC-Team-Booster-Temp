@@ -1,24 +1,26 @@
 //
-//  EditRecordingRoutineView.swift
+//  WorkoutListView.swift
 //  Mac_Health
 //
-//  Created by 정회승 on 11/16/23.
+//  Created by 송재훈 on 11/4/23.
 //
 
 import SwiftUI
 
-struct EditRecordingRoutineView: View {
+struct WorkoutListView: View {
     let routineId: Int
     
-    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    @StateObject var vm = WorkoutListViewModel()
+    @Environment(\.dismiss) var dismiss
     
-    @Environment(\.dismiss) var dismiss: DismissAction
-    var burnedKCalories: Int
     var body: some View {
         VStack {
             WorkoutList
             
-//            WorkoutStartButton
+            WorkoutStartButton
+        }
+        .onAppear {
+            vm.fetchRoutine(routineId: routineId)
         }
         .navigationTitle("운동 루틴 편집")
         .toolbar {
@@ -27,20 +29,16 @@ struct EditRecordingRoutineView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .sheet(isPresented: $editRoutineVM.isDetailedWorkoutSheetShow) {
-            DetailedWorkoutSheet(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.selectedIndex].id)
+        .sheet(isPresented: $vm.isDetailedWorkoutShow) {
+            DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedExercise].id)
         }
-        .confirmationDialog(editRoutineVM.routine.exercises.isEmpty ? "" : editRoutineVM.routine.exercises[editRoutineVM.selectedIndex].name , isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
+        .confirmationDialog(vm.selectedExercise == -1 ? "" : vm.routine.exercises[vm.selectedExercise].name , isPresented: $vm.isConfirmationDialogShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
-        .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.selectedIndex].id)
-                .environmentObject(editRoutineVM)
-                .onDisappear{
-                    editRoutineVM.fetchRoutine(routineId: routineId)
-                }
+        .sheet(isPresented: $vm.isAlternativeWorkoutSheetShow) {
+            // TODO: 대체 운동
         }
-        .alert("운동을 삭제하시겠습니까?", isPresented: $editRoutineVM.isDeleteWorkoutAlertShow) {
+        .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteAlertShow) {
             DeleteAlert
         }
     }
@@ -59,7 +57,7 @@ struct EditRecordingRoutineView: View {
         VStack {
             HStack {
                 // TODO: 부위 별로 수정
-                Text(editRoutineVM.routine.part)
+                Text(vm.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 
@@ -67,75 +65,76 @@ struct EditRecordingRoutineView: View {
             }
             
             ScrollView {
-                ForEach(0..<editRoutineVM.routine.exercises.count, id: \.self) { index in
+                ForEach(0..<vm.routine.exercises.count, id: \.self) { index in
                     WorkoutListCell(index: index)
                 }
             }
         }
-        .padding()
+        .padding(.horizontal)
     }
     
     func WorkoutListCell(index: Int) -> some View {
         HStack {
             Button {
-                editRoutineVM.selectedIndex = index
-                editRoutineVM.isDetailedWorkoutSheetShow = true
+                vm.selectedExercise = index
+                vm.isDetailedWorkoutShow = true
             } label: {
                 HStack {
                     RoundedRectangle(cornerRadius: 4)
                         .foregroundColor(.fill_1)
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                         .overlay {
-                            AsyncImage(url: URL(string: editRoutineVM.routine.exercises[index].exerciseImageUrl)) { image in
+                            AsyncImage(url: URL(string: vm.routine.exercises[index].exerciseImageUrl)) { image in
                                 image
                                     .resizable()
                             } placeholder: {
                                 Image(systemName: "arrow.triangle.2.circlepath")
-                                    .resizable()
                                     .scaledToFit()
+                                    .scaleEffect(CGSize(width: 1.0, height: 1.0))
                                     .foregroundColor(.label_400)
                                     .padding()
                             }
                         }
                     
                     VStack(alignment: .leading) {
-                        Text(editRoutineVM.routine.exercises[index].name)
+                        Text(vm.routine.exercises[index].name)
                             .foregroundColor(.label_900)
                             .font(.headline1())
                         HStack {
-                            Text("\(editRoutineVM.routine.exercises[index].numberOfSet)세트")
+                            Text("\(vm.routine.exercises[index].numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
-                            Text("|")
-                                .foregroundColor(.label_400)
-                                .font(.body2())
-                            Text("\(editRoutineVM.routine.exercises[index].recommendReps)회")
-                                .foregroundColor(.label_700)
-                                .font(.body2())
+                            //                    Text("|")
+                            //                        .foregroundColor(.label_400)
+                            //                        .font(.body2())
+                            // TODO: reps 추가
+                            //                    Text("10-15회")
+                            //                        .foregroundColor(.label_700)
+                            //                        .font(.body2())
                         }
                     }
                     
                     Spacer()
                 }
             }
-            
+    
             Spacer()
             
             Button {
-                editRoutineVM.selectedIndex = index
-                editRoutineVM.isEditWorkoutActionShow = true
+                vm.selectedExercise = index
+                vm.isConfirmationDialogShow = true
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
             }
+            .padding()
         }
-        .padding(.vertical, 4)
     }
     
     var WorkoutStartButton: some View {
         NavigationLink {
-            RecordingWorkoutView(routineId: routineId, exerciseId: editRoutineVM.routine.exercises.isEmpty ? 0 : editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id, burnedKCalories: burnedKCalories)
-                .environmentObject(editRoutineVM)
+            // TODO: 운동 1 / 10
+//            WorkoutOngoingView(routineId: routineId, exerciseId: )
         } label: {
             FloatingButton(backgroundColor: .green_main) {
                 Text("시작")
@@ -148,13 +147,13 @@ struct EditRecordingRoutineView: View {
     @ViewBuilder
     var AlternativeActionSheet: some View {
         Button {
-            editRoutineVM.isAlternateWorkoutSheetShow = true
+            // TODO: .
         } label: {
             Text("운동 대체")
         }
         
         Button {
-            editRoutineVM.isDeleteWorkoutAlertShow = true
+            vm.isDeleteAlertShow = true
         } label: {
             Text("삭제")
         }
@@ -172,11 +171,13 @@ struct EditRecordingRoutineView: View {
             // TODO: .
         }
         Button("삭제") {
-            editRoutineVM.deleteWorkout(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId)
+            // TODO: .
         }
     }
 }
 
-//#Preview {
-//    EditRecordingRoutineView(routineId: 1)
-//}
+struct WorkoutListView_Previews: PreviewProvider {
+    static var previews: some View {
+        WorkoutListView(routineId: 1)
+    }
+}

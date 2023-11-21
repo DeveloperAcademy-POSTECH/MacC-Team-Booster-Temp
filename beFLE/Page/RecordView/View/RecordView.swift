@@ -30,6 +30,7 @@ struct RecordView: View {
             Text("기록")
                 .font(.title2())
                 .foregroundColor(.label_900)
+                .padding(.leading, 3)
             Spacer()
         }
         .padding([.top, .horizontal])

@@ -10,10 +10,11 @@ import SwiftUI
 struct RecordingFinishView: View {
     let routineId: Int
     @State var tabSelection: Int = 3
-    
+    @Binding var elapsedTime: TimeInterval
+    @ObservedObject var recordViewModel: RecordingWorkoutViewModel
+    var burnedKCalories: Int
     @StateObject var vm = RecordingFinishViewModel()
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
-    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -43,7 +44,7 @@ struct RecordingFinishView: View {
                     .padding(.bottom, 30)
                 HStack(spacing: 40){
                     VStack(spacing: 3){
-                        Text("45분")
+                        Text(String(recordViewModel.finishTimeFormatted(elapsedTime)))
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("운동시간")
@@ -51,7 +52,7 @@ struct RecordingFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-                        Text("632kcal")
+                        Text("\(burnedKCalories)kcal")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("소모칼로리")
@@ -98,8 +99,10 @@ struct RecordingFinishView: View {
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
     }
+
 }
 
-#Preview {
-    RecordingFinishView(routineId: 1)
-}
+//#Preview {
+//    RecordingFinishView()
+//}
+

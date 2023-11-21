@@ -47,10 +47,10 @@ struct RelatedContentCard: View {
                         .cornerRadius(8.0)
             }
 //            .frame(width: UIScreen.getWidth(268), height: UIScreen.getHeight(160))
-            .overlay{
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.label_900 ,lineWidth: 2)
-            }
+//            .overlay{
+//                RoundedRectangle(cornerRadius: 8)
+//                    .stroke(Color.label_900 ,lineWidth: 2)
+//            }
             .background(Color.label_900)
             .cornerRadius(8)
             

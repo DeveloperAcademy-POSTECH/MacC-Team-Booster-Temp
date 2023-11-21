@@ -14,19 +14,15 @@ import SwiftUI
 struct RecordingWorkoutView: View {
     let routineId: Int
     let exerciseId: Int
-    
-
     @StateObject var vm = RecordingWorkoutViewModel()
-    //    @StateObject var stopwatch = StopwatchViewModel()
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
-    
+    var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss
     @FocusState private var isFocused: Bool
     
     var body: some View {
         if vm.isFinish {
-            RecordingFinishView(routineId: routineId)
-                .environmentObject(editRoutineVM)
+            RecordingFinishView(routineId: routineId, elapsedTime: $vm.elapsedTime, recordViewModel: vm, burnedKCalories: burnedKCalories)
         }
         else {
             ZStack {
@@ -41,6 +37,7 @@ struct RecordingWorkoutView: View {
                         WorkoutSetButton
                         WorkoutSetList
                         RelatedContent
+                        EmptyFloatingButton
                         EmptyFloatingButton
                     }
                 }
@@ -66,7 +63,11 @@ struct RecordingWorkoutView: View {
             }
             .onAppear {
                 //TODO: 관련 영상 호출 필요 - MORO
+                vm.start()
                 editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+            }
+            .onDisappear{
+                vm.stop()
             }
             .onTapGesture {
                 isFocused = false
@@ -119,14 +120,15 @@ struct RecordingWorkoutView: View {
     
     @ViewBuilder
     var NavigationTitle: some View {
-        HStack {
+        HStack (spacing: 0){
             Image(systemName: "flame.fill")
-                .foregroundColor(.label_700)
+                .foregroundColor(.green_main)
                 .font(.headline2())
             // TODO: 운동 시간
             Text(vm.timeFormatted())
                 .foregroundColor(.label_900)
                 .font(.headline1())
+                .padding(.horizontal, 10)
             // TODO: 운동 상태
             Button {
                 vm.isPauseSheetShow = true
@@ -137,9 +139,9 @@ struct RecordingWorkoutView: View {
                     .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                     .overlay {
                         Image(systemName: "pause.fill")
-                            .resizable()
+                            .font(.caption())
+                            .scaleEffect(0.8)
                             .foregroundColor(.label_900)
-                            .frame(width: UIScreen.getWidth(11), height: UIScreen.getHeight(14))
                     }
             }
         }
@@ -383,7 +385,7 @@ struct RecordingWorkoutView: View {
             .overlay {
                 HStack {
                     NavigationLink {
-                        RecordingRoutineView(routineId: routineId)
+                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
                             .environmentObject(editRoutineVM)
                     } label: {
                         Image(systemName: "list.bullet")
@@ -507,7 +509,7 @@ struct RecordingWorkoutView: View {
                 //                }
             }
         }
-        .padding(.horizontal)
+        .padding()
     }
     
     var EmptyFloatingButton: some View {
@@ -526,6 +528,6 @@ struct RecordingWorkoutView: View {
     }
 }
 
-#Preview {
-    RecordingWorkoutView(routineId: 0, exerciseId: 0)
-}
+//#Preview {
+//    RecordingWorkoutView(routineId: 0, exerciseId: 0)
+//}

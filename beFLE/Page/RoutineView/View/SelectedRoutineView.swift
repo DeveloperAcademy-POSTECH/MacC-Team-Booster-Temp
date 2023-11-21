@@ -1,28 +1,25 @@
 //
-//  RoutineInformationView.swift
+//  SelectedRoutineView.swift
 //  Mac_Health
 //
-//  Created by 송재훈 on 11/15/23.
+//  Created by 정회승 on 11/3/23.
 //
 
 import SwiftUI
 
-/// 루틴 정보를 확인하는 뷰
-/// - Parameters:
-///  - routineId: 정보를 확인할 루틴 id
-struct RoutineInformationView: View {
+struct SelectedRoutineView: View {
     let routineId: Int
-    @StateObject var vm = RoutineInformationViewModel()
+    var burnedKCalories: Int
+    @StateObject var vm = SelectedRoutineViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
         ZStack {
-            Color.gray_900.ignoresSafeArea()
             ScrollView {
                 VStack {
                     SpecificInformation
                 }
-                .padding(.vertical, 10)
+                .padding(.vertical, 20)
                 Divider()
                     .foregroundColor(.fill_1)
                     .padding(.horizontal, 20)
@@ -32,16 +29,24 @@ struct RoutineInformationView: View {
                 FloatingButton(backgroundColor: .clear) { }
                     .padding()
             }
-            
-            gradient
-            
-            startButton
+            VStack {
+                Spacer()
+                NavigationLink {
+                    EditRoutineView(routineId: routineId)
+                } label: {
+                    FloatingButton(backgroundColor: .green_main) {
+                        Text("운동 시작")
+                            .foregroundColor(.gray_900)
+                            .font(.button1())
+                    }
+                }
+                .padding()
+            }
         }
         .onAppear {
             vm.fetchRoutine(routineId: routineId)
         }
-        .navigationBarBackButtonHidden()
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton
@@ -55,16 +60,6 @@ struct RoutineInformationView: View {
             Information(systemName: "square.stack.fill", description: "\(vm.routine.numberOfExercise)개")
             Information(systemName: "clock.fill", description: "\(vm.routine.requiredMinutes)분")
             Information(systemName: "flame.circle.fill", description: "\(vm.routine.burnedKCalories)kcal")
-        }
-    }
-    
-    var BackButton: some View {
-        Button {
-            dismiss()
-        } label: {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.label_700)
-                .font(.headline2())
         }
     }
     
@@ -85,7 +80,7 @@ struct RoutineInformationView: View {
     var WorkoutRoutine: some View {
         ZStack {
             //운동 부위 갯수별 load
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 HStack {
                     Text(vm.routine.part)
                         .font(.headline1())
@@ -99,37 +94,27 @@ struct RoutineInformationView: View {
                     WorkoutCell(exercise: exercise)
                 }
             }
+            ///로그인의 유무에 따라서 있고 없고
+            //                LinearGradient(colors: [.gray_900, .clear], startPoint: .bottom, endPoint: .top)
         }
+        ///로그인의 유무에 따라서 있고 없고
+        //        }
+        //        .disabled(true)
     }
     
-    var startButton: some View{
-        VStack {
-            Spacer()
-            NavigationLink {
-                EditRoutineView(routineId: routineId)
-            } label: {
-                FloatingButton(backgroundColor: .green_main) {
-                    Text("운동 시작")
-                        .foregroundColor(.gray_900)
-                        .font(.button1())
-                }
-            }
-            .padding()
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_900)
+                .font(.headline2())
         }
     }
-    
-    var gradient: some View{
-        VStack{
-            Spacer()
-            LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
-                .frame(height: UIScreen.getHeight(150), alignment: .bottom)
-                .allowsHitTesting(false)
-        }
-        .ignoresSafeArea()
-    }
-    
 }
-//
+
 //#Preview {
-//    RoutineInformationView(routineId: 1)
+//    NavigationStack {
+//        SelectedRoutineView(routineId: 1)
+//    }
 //}

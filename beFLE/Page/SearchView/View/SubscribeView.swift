@@ -107,7 +107,7 @@ struct SubscribeView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_900)
-                .font(.body())
+                .font(.headline2())
         }
     }
     
@@ -125,7 +125,7 @@ struct SubscribeView: View {
                 Text(vm.influencer.introduce)
                     .foregroundColor(.label_800)
                     .font(.body())
-                    .padding(.vertical, 10)
+                    .padding(.top, 10)
                     .lineSpacing(8.0)
                 Text("수상경력")
                     .foregroundColor(.label_900)
@@ -206,7 +206,9 @@ struct SubscribeView: View {
                     .padding(.leading, 10)
                 }
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.top, 12)
+            .padding(.bottom, 5)
             //            }
         }
     }
@@ -269,7 +271,7 @@ struct SubscribeView: View {
                     .foregroundColor(.label_900)
                     .font(.headline1())
                     .padding(.top, 20)
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 12)
                 Text("키: \(vm.influencer.bodySpec.height)cm")
                     .foregroundColor(.label_800)
                     .font(.body())
@@ -290,16 +292,16 @@ struct SubscribeView: View {
                     .foregroundColor(.label_900)
                     .font(.headline1())
                     .padding(.top, 20)
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 12)
                 Text("Squat: \(vm.influencer.bigThree.squat)kg")
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
                 Text("Deadlift: \(vm.influencer.bigThree.deadLift)kg")
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
                 Text("Bench Press: \(vm.influencer.bigThree.benchPress)kg")
                     .foregroundColor(.label_800)
-                    .font(.body)
+                    .font(.body())
             }
             Spacer()
         }
@@ -343,19 +345,24 @@ struct WorkoutExplain: View {
             Image(ImageName)
                 .resizable()
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                .background{
+                    RoundedRectangle(cornerRadius: 4)
+                        .foregroundColor(.fill_1)
+                        .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                }
             VStack(alignment: .leading){
                 Text(WorkoutName)
                     .font(.headline1())
                     .foregroundColor(.label_900)
                 HStack{
                     Text(SetCount)
-                        .font(.headline2())
+                        .font(.body2())
                         .foregroundColor(.label_700)
                     Rectangle()
                         .frame(width:1, height: 10)
                         .foregroundColor(.label_400)
                     Text(part)
-                        .font(.headline2())
+                        .font(.body2())
                         .foregroundColor(.label_700)
                     
                 }
