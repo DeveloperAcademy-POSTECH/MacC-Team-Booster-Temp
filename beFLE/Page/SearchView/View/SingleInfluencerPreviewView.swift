@@ -59,7 +59,7 @@ struct SingleInfluencerPreviewView: View {
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400)).overlay{
                     HStack{
                         Spacer()
-                        AsyncImage(url: URL(string: influencer.onePersonProfileImageUrl ?? "")) { image in
+                        AsyncImage(url: URL(string: influencer.singleExploreImageUrl)) { image in
                             image
                                 .resizable()
                                 .scaledToFit()
@@ -147,5 +147,5 @@ struct SingleInfluencerPreviewView: View {
 }
 
 #Preview {
-    SingleInfluencerPreviewView(influencer: .constant(InfluencerPreview(influencerId: 1, name: "", routineName: "", title: "")))
+    SingleInfluencerPreviewView(influencer: .constant(InfluencerPreview(influencerId: 0, singleExploreImageUrl: "", multiExploreImageUrl: "", name: "", routineName: "", title: "")))
 }
