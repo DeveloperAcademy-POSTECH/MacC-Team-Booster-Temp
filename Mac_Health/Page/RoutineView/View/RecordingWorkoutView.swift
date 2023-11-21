@@ -102,6 +102,19 @@ struct RecordingWorkoutView: View {
             } message: {
                 Text("운동기록은 삭제됩니다.")
             }
+            .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
+                Button {
+                    vm.finishWorkout(routineId: routineId)
+                } label: {
+                    Text("운동완료")
+                }
+                
+                Button {
+                    
+                } label: {
+                    Text("확인")
+                }
+            }
         }
     }
     
@@ -385,12 +398,18 @@ struct RecordingWorkoutView: View {
                     
                     // MARK: 다음 세트, 운동, 운동 완료 버튼
                     Button {
-                        // TODO: 운동 남아있을 때 완료 버튼 얼럿
                         if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
                             if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
                                 vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
                                     editRoutineVM.workout.sets[vm.currentSet].isDone = true
                                     
+                                    for exercise in editRoutineVM.routine.exercises {
+                                        if exercise.isDone == false {
+                                            vm.isDiscontinuewAlertShow = true
+                                            return
+                                        }
+                                    }
+                                     
                                     vm.finishWorkout(routineId: routineId)
                                 }
                             }
