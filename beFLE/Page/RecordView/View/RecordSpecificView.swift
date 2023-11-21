@@ -9,6 +9,9 @@ import SwiftUI
 
 struct RecordSpecificView: View {
     let record: Records
+    
+    @StateObject var vm = RecordSpecificViewModel()
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -27,27 +30,21 @@ struct RecordSpecificView: View {
             }
             .padding()
         }
+        .onAppear {
+            print(record)
+        }
         // TODO: 타이틀 폰트 체크
-        .navigationBarTitle(formatForDate(from: record.date), displayMode: .inline)
+        .navigationBarTitle(vm.dateFormat(from: record.date), displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton
             }
-            ToolbarItem(placement: .topBarTrailing) {
-                //login 되야 활성화
-                EditButton
-            }
+//            ToolbarItem(placement: .topBarTrailing) {
+//                //login 되야 활성화
+//                EditButton
+//            }
         }
         .navigationBarBackButtonHidden(true)
-    }
-    
-    func formatForDate(from date: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY년 MM월 dd일"
-        dateFormatter.timeZone = TimeZone(identifier: "ko-KR")
-        dateFormatter.locale = Locale(identifier: "ko-KR")
-        
-        return dateFormatter.string(from: date.toDate() ?? Date())
     }
     
     var RoutineDescriptionCard: some View {
@@ -64,11 +61,9 @@ struct RecordSpecificView: View {
                 .padding(.bottom, 10)
             Description(image: "figure.arms.open", text: record.part)
             Description(image: "square.stack.fill", text: "\(record.numberOfExercise)개")
-            // TODO: 한 시간 넘어가면 어떻게 되는지 묻기
-            Description(image: "clock.fill", text: "50분")
+            Description(image: "clock.fill", text: "\(vm.timeFormat(from: record.time))")
             Description(image: "flame.circle.fill", text: "\(record.burnedKCalories)kcal")
-            // TODO: 총 무게
-            Description(image: "dumbbell.fill", text: "13400kg")
+            Description(image: "dumbbell.fill", text: "\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps } )}))kg")
         }.padding(.bottom, 15)
     }
     
@@ -116,8 +111,7 @@ struct RoutineCell: View {
                     .font(.headline1())
                     .foregroundColor(.label_900)
                 Spacer()
-                //TODO: 무게 총합
-                Text("10300kg")
+                Text("\(exercises.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps }))kg")
                     .font(.headline1())
                     .foregroundColor(.label_900)
             }
@@ -127,10 +121,9 @@ struct RoutineCell: View {
             HStack {
                 Spacer()
                 VStack(alignment: .trailing, spacing: 3) {
-                    //TODO: execises weight reps
-                    makeSet(id: 1, kg: 40, rep: 10)
-                    makeSet(id: 1, kg: 40, rep: 10)
-                    makeSet(id: 1, kg: 40, rep: 10)
+                    ForEach(0..<exercises.sets.count, id: \.self) { index in
+                        makeSet(id: index + 1, kg: exercises.sets[index].weight, rep: exercises.sets[index].reps)
+                    }
                 }
             }
         }
@@ -138,11 +131,11 @@ struct RoutineCell: View {
         .padding(.bottom)
     }
     
-    func makeSet(id: Int, kg: Int, rep: Int) -> some View {
+    func makeSet(id: Int, kg: Int? = nil, rep: Int) -> some View {
         HStack(spacing: 1) {
             Text("\(id)세트")
                 .frame(width: UIScreen.getWidth(50), alignment: .trailing)
-            Text("\(kg)kg")
+            Text("\(kg == nil ? "자율" : "\(kg!)kg")")
                 .frame(width: UIScreen.getWidth(40), alignment: .trailing)
             Image(systemName: "multiply")
                 .frame(width: UIScreen.getWidth(15), alignment: .trailing)
