@@ -344,7 +344,6 @@
 				F8DACB742B04294500C3E95C /* RecordingRoutineView.swift */,
 				D5C5117B2B0562DC008B871E /* EditRecordingRoutineView.swift */,
 				D5C5117D2B056378008B871E /* RecordingFinishView.swift */,
-				F8DACB622B0417E000C3E95C /* Temp */,
 				D569C7922AF945C200FDADED /* Sheet */,
 			);
 			path = View;
@@ -364,7 +363,6 @@
 				D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */,
 				F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */,
 				F8D7872D2B0BB12E00416700 /* RecordingFinishViewModel.swift */,
-				F8DACB632B04182900C3E95C /* Temp */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -524,20 +522,6 @@
 				F8DACB5C2B04010100C3E95C /* MainViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		F8DACB622B0417E000C3E95C /* Temp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Temp;
-			sourceTree = "<group>";
-		};
-		F8DACB632B04182900C3E95C /* Temp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Temp;
 			sourceTree = "<group>";
 		};
 		F8F3A13B2AFA34EF0068F885 /* RecordView */ = {
