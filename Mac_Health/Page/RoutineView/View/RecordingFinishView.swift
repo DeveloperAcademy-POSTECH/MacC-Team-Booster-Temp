@@ -18,6 +18,8 @@ struct RecordingFinishView: View {
     @EnvironmentObject var appState: AppState
     @Environment(\.dismiss) var dismiss
     
+    @EnvironmentObject var recordingWorkoutVM: RecordingWorkoutViewModel
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -25,7 +27,7 @@ struct RecordingFinishView: View {
                 Spacer()
                 VStack(spacing: 10){
                     VStack(spacing: 5){
-                        Text(vm.nowDateFormatter())
+                        Text("\(vm.nowDateFormatter()) 운동 완료")
                             .font(.title1())
                             .foregroundColor(.label_900)
                         Text("오늘도 고생 많으셨어요!")
@@ -72,17 +74,17 @@ struct RecordingFinishView: View {
                                             .foregroundColor(.label_700)
                                     }
                                 }
+                                .padding(.bottom, 30)
                             }
-                            .padding(.bottom, 30)
                         }
                     
                     Spacer()
                         .frame(height: 115)
                     Button{
+//                        recordingWorkoutVM.isFinish = false
                         DispatchQueue.main.async {
-                            tabSelection = 3
-                                appState.rootViewId = UUID()
-                            }
+                            appState.rootViewId = UUID()
+                        }
                     } label: {
                         FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
                                 .foregroundColor(.gray_900)
@@ -93,9 +95,10 @@ struct RecordingFinishView: View {
                     }
                     
                     Button{
+//                        recordingWorkoutVM.isFinish = false
                         DispatchQueue.main.async {
-                                appState.rootViewId = UUID()
-                            }
+                            appState.rootViewId = UUID()
+                        }
                     } label: {
                         FloatingButton(backgroundColor: .gray_600) { Text("닫기")
                                 .foregroundColor(.green_main)

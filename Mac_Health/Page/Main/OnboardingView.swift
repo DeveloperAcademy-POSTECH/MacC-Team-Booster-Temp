@@ -11,19 +11,20 @@ import AuthenticationServices
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
     @State var isPass = false
-    @ObservedObject var appState = AppState()
+    @StateObject var appState = AppState()
     
     var body: some View {
-        NavigationView() {
             if !isPass {
                 // 로그인 전
-                Onboarding
-            }
+                NavigationView() {
+                    Onboarding
+                }
+                }
             else {
                 // 로그인 성공 시
                 MainView()
+                    .environmentObject(appState)
             }
-        }
     }
     
     var Onboarding: some View {
@@ -48,7 +49,7 @@ struct OnboardingView: View {
                         .padding(.bottom, 10)
                         
                         // TODO: BEFL 수정하기
-                        Text("Be my Influencer, BEFL")
+                        Text("Be my Influencer, BEFLE")
                             .font(.system(size: 20, weight: .light, design: .default))
                             .foregroundColor(.label_700)
                     }
