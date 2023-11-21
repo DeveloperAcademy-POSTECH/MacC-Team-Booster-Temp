@@ -57,13 +57,11 @@ struct RecordView: View {
                                 //                            Ellipse()
                                 //                                .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
                                 //                                .foregroundColor(.yellow_main)
-                                // TODO: 인플루언서 명
                                 Text(record.influencerName)
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
                                 Spacer()
-                                // TODO: 시간 파싱
-                                Text("\(formatTime(record.time))")
+                                Text("\(vm.timeFormat(from: record.time))")
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
                             }
@@ -73,7 +71,6 @@ struct RecordView: View {
                                     .font(.body2())
                                     .foregroundColor(.label_500)
                                 Spacer()
-                                // TODO: 총 운동 무게 - MORO
                                 Text("5200kg")
                                     .font(.body2())
                                     .foregroundColor(.label_900)
@@ -85,36 +82,6 @@ struct RecordView: View {
         }
         .padding(.bottom, 5)
     }
-    
-    func formatTime(_ timeString: String) -> String {
-        let timeComponents = timeString.components(separatedBy: ":")
-        
-        if timeComponents.count == 3,
-           let hours = Int(timeComponents[0]),
-           let minutes = Int(timeComponents[1]),
-           let seconds = Int(timeComponents[2]) {
-            
-            var formattedTime = ""
-            
-            if hours > 0 {
-                formattedTime += "\(hours)시간 "
-            }
-            
-            if minutes > 0 {
-                formattedTime += "\(minutes)분 "
-            }
-            
-            if seconds >= 0 {
-                formattedTime += "\(seconds)초"
-            }
-            
-            return formattedTime
-        }
-
-        return timeString
-    }
-        
-
     
     //TODO: 로그인x or 구독 x
     var beforeLoginText: some View {
