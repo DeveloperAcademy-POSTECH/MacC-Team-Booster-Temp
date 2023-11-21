@@ -65,7 +65,6 @@ struct WholeRoutineView: View {
                 ForEach(WorkoutPart.allCases, id: \.self) { type in
                     Button {
                         vm.selectedPart = type.rawValue
-                        print(vm.selectedPart)
                     } label: {
                         if vm.selectedPart == type.rawValue  {
                             SelectedCapsule(text: type.rawValue)

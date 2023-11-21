@@ -24,7 +24,7 @@ struct MultiInfluencerRoutineView: View {
                     if !vm.routines.routine.isEmpty {
                         ForEach(vm.routines.routine, id: \.self) { routine in
                             NavigationLink {
-                                TodayStartView(routine: routine, burnedKCalories: routine.burnedKCalories)
+
                             } label: {
                                 SubscribedInfluencerCard(routine: routine)
                                     .padding(.bottom, 10)

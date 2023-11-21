@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct RecordingFinishView: View {
-    
+    let routineId: Int
     @State var tabSelection: Int = 3
     @Binding var elapsedTime: TimeInterval
-    @ObservedObject var vm: RecordingWorkoutViewModel
-    @Environment(\.dismiss) var dismiss
+    @ObservedObject var recordViewModel: RecordingWorkoutViewModel
     var burnedKCalories: Int
+    @StateObject var vm = RecordingFinishViewModel()
+    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
@@ -30,7 +33,7 @@ struct RecordingFinishView: View {
                     .foregroundColor(.gray_700)
                     .overlay{
                         VStack(spacing: 5){
-                            Text(getNowDateTime())
+                            Text(vm.nowDateFormatter())
                                 .font(.title1())
                                 .foregroundColor(.label_900)
                             Text("오늘도 고생 많으셨어요!")
@@ -41,7 +44,7 @@ struct RecordingFinishView: View {
                     .padding(.bottom, 30)
                 HStack(spacing: 40){
                     VStack(spacing: 3){
-                        Text(String(vm.finishTimeFormatted(elapsedTime)))
+                        Text(String(recordViewModel.finishTimeFormatted(elapsedTime)))
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("운동시간")
@@ -57,8 +60,7 @@ struct RecordingFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     VStack(spacing: 3){
-                        //TODO: 총 무게 계산
-                        Text("6300kg")
+                        Text("\(vm.volume)kg")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("총 볼륨")
@@ -70,7 +72,6 @@ struct RecordingFinishView: View {
                     .frame(height: 115)
                 Button{
                     tabSelection = 3
-                    print(self.tabSelection)
                 } label: {
                     FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
                             .foregroundColor(.gray_900)
@@ -92,19 +93,11 @@ struct RecordingFinishView: View {
                 }
             }
         }
+        .onAppear {
+            vm.caculateWorkoutVolume(routineId: routineId)
+        }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
-
-    }
-    
-    func getNowDateTime() -> String {
-        let nowDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier:  "ko")
-        
-        dateFormatter.dateFormat = "yy.MM.dd"
-        let date_String = dateFormatter.string(from: nowDate)
-        return date_String
     }
 
 }
@@ -112,3 +105,4 @@ struct RecordingFinishView: View {
 //#Preview {
 //    RecordingFinishView()
 //}
+

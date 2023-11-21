@@ -13,7 +13,7 @@ class GeneralAPIManger {
     /// - Parameters:
     ///     - for target: target API
     ///     - type: 디코딩 할 구조체 타입
-    ///     - compeletion: 디코딩 된 데이터 또는 에러를 반환 
+    ///     - compeletion: 디코딩 된 데이터 또는 에러를 반환
     static func request<T: Codable>(for target: GeneralAPI, type: T.Type, completion: @escaping ((Result<T, MoyaError>) -> ())) {
         let provider = MoyaProvider<GeneralAPI>()
         
@@ -25,16 +25,18 @@ class GeneralAPIManger {
                         completion(.success(decodedData))
                     }
                     else {
-                        print(resp.statusCode)
-//                        print(resp.response)
-                        print(resp.data)
                         completion(.failure(.requestMapping("decode error")))
                     }
                 }
                 else {
+                    #if DEBUG
                     if 403 == resp.statusCode {
                         print("Authentication failed")
                     }
+                    print(resp.statusCode)
+                    print(resp.response)
+                    print(resp.data)
+                    #endif
                     completion(.failure(.statusCode(resp)))
                 }
             case .failure(let error):

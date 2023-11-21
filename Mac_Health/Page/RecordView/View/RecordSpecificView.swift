@@ -136,7 +136,6 @@ struct RoutineCell: View {
         }
         .padding(.trailing, 5)
         .padding(.bottom)
-        .onAppear{print(exercises.sets)}
     }
     
     func makeSet(id: Int, kg: Int, rep: Int) -> some View {

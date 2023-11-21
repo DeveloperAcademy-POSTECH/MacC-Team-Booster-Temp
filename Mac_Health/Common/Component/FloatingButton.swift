@@ -72,7 +72,8 @@ struct FloatingButton_Previews: PreviewProvider {
                 FloatingButton(backgroundColor: .gray_600) {
                     HStack {
                         Button{
-                            print("list up")
+//                            list up
+                            
                         }label: {
                             Image(systemName: "list.bullet")
                                 .foregroundColor(.label_900)
@@ -81,7 +82,7 @@ struct FloatingButton_Previews: PreviewProvider {
                         .padding(.horizontal)
                         Spacer()
                         Button {
-                            print("pause")
+//                            pause
                         } label: {
                             Capsule()
                                 .foregroundColor(.green_main)
@@ -101,7 +102,7 @@ struct FloatingButton_Previews: PreviewProvider {
                 FloatingButton(backgroundColor: .gray_600) {
                     HStack {
                         Button{
-                            print("list up")
+//                            list up
                         }label: {
                             Image(systemName: "list.bullet")
                                 .foregroundColor(.label_900)
@@ -110,7 +111,7 @@ struct FloatingButton_Previews: PreviewProvider {
                         .padding(.horizontal)
                         Spacer()
                         Button {
-                            print("pause")
+//                            pause
                         } label: {
                             Capsule()
                                 .foregroundColor(.red_main)
@@ -142,13 +143,13 @@ struct FloatingButton_Previews: PreviewProvider {
                         .padding(.horizontal)
                         Spacer()
                         Button {
-                            print("pause")
+//                            pause
                         } label: {
                             Image(systemName: "pause.fill")
                                 .foregroundColor(.black)
                         }
                         Button {
-                            print("stop")
+//                            stop
                         } label: {
                             Image(systemName: "stop.fill")
                                 .foregroundColor(.black)

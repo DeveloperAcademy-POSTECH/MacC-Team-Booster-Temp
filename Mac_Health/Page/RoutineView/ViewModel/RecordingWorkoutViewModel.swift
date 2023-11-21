@@ -34,24 +34,12 @@ class RecordingWorkoutViewModel: ObservableObject {
     //팁 이미지 전환
     @Published var tabSelection = 0
     
+    /// api 응답 받아야 탭 가능하게 전환 - 추후 콤바인 교체
+    @Published var isCanTappable = true
+    
     @Published var elapsedTime: TimeInterval = 0
     @Published var isRunning: Bool = false
     private var timer: Timer?
-    
-    @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
-    
-    
-    /// 현재 진행 중인 운동 정보 조회 함수
-    func fetchWorkout(routineId: Int, exerciseId: Int, completion: @escaping ((ResponseGetRoutinesExercises) -> ())) {
-        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
-            switch $0 {
-            case .success(let workout):
-                completion(workout)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
     
     /// 운동 시간 일시 정지 함수
     func pauseWorkout() {
@@ -87,8 +75,20 @@ class RecordingWorkoutViewModel: ObservableObject {
         }
     }
     
-    /// 세트 무게 또는 횟수 편집 함수
-    func editSet(index: Int, routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
+    /// 세트 무게 편집 함수
+    func editWeight(index: Int, routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
+            switch $0 {
+            case .success(let set):
+                completion(set)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    /// 세트 횟수 편집 함수
+    func editReps(index: Int, routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
             switch $0 {
             case .success(let set):
@@ -101,9 +101,12 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     /// 현재 세트 완료 함수
     func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
+        isCanTappable = false
+        
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
             case .success(let set):
+                self.isCanTappable = true
                 completion(set)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -118,9 +121,12 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     /// 운동 완료 함수
     func finishWorkout(routineId: Int) {
+        isCanTappable = false
+        
         GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
             switch $0 {
             case .success:
+                self.isCanTappable = true
                 self.isFinish = true
             case .failure(let error):
                 print(error.localizedDescription)

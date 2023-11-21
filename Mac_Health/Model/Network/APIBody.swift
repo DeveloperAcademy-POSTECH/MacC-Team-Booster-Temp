@@ -281,6 +281,11 @@ struct InfluencerPreview: Codable, Hashable {
     var title: String
 }
 
+/// PostInfluencersSubscribe
+struct PostInfluencersSubscribe: Codable, Hashable {
+    var isSubscription: Bool
+}
+
 /// GetInfluencers
 struct ResponseGetInfluencers: Codable, Hashable {
     var previews: [InfluencerPreview]

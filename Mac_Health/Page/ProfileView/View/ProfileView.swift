@@ -68,7 +68,7 @@ struct ProfileView: View {
                 .disabled(!MailView.canSendMail)
                 .sheet(isPresented: $showMailView) {
                     MailView(data: $mailData) { result in
-                        print(result)
+
                     }
                 }
                 //로그인 전 unactive

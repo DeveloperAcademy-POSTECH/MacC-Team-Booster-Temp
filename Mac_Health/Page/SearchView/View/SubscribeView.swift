@@ -217,8 +217,7 @@ struct SubscribeView: View {
     @ViewBuilder
     var subscribeButton: some View {
             Button {
-                vm.subscribingSheet = true
-                vm.influencer.isSubscription.toggle()
+                vm.influencer.isSubscription ? vm.unSubscribeInfluecer(influencerId: influencerId) : vm.subscribeInfluecer(influencerId: influencerId)
             } label: {
                 FloatingButton(backgroundColor: vm.influencer.isSubscription ? .gray_600 :.green_main) { vm.influencer.isSubscription ? Text("구독취소")
                         .foregroundColor(.red_main)
@@ -228,9 +227,8 @@ struct SubscribeView: View {
                         .foregroundColor(.gray_900)
                         .font(.button1())
                 }
-                
             }
-            .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.subscribingSheet) {
+            .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.isSubscriptionAlertShow) {
                 Button("확인") {
                     //TODO: 서버에 vm.routines.routines 변화
                 }

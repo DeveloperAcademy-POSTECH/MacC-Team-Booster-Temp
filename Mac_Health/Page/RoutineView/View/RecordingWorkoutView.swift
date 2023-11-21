@@ -22,7 +22,7 @@ struct RecordingWorkoutView: View {
     
     var body: some View {
         if vm.isFinish {
-            RecordingFinishView(elapsedTime: $vm.elapsedTime, vm: RecordingWorkoutViewModel(), burnedKCalories: burnedKCalories)
+            RecordingFinishView(routineId: routineId, elapsedTime: $vm.elapsedTime, recordViewModel: vm, burnedKCalories: burnedKCalories)
         }
         else {
             ZStack {
@@ -49,7 +49,6 @@ struct RecordingWorkoutView: View {
                         .frame(height: UIScreen.getHeight(150), alignment: .bottom)
                         .onTapGesture {
                             // Handle taps on the LinearGradient if needed
-                            print("LinearGradient tapped!")
                         }
                         .allowsHitTesting(false)
                 }
@@ -384,6 +383,7 @@ struct RecordingWorkoutView: View {
                     
                     Spacer()
                     
+                    // MARK: 다음 세트, 운동, 운동 완료 버튼
                     Button {
                         // TODO: 운동 남아있을 때 완료 버튼 얼럿
                         if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
@@ -458,6 +458,8 @@ struct RecordingWorkoutView: View {
                                 }
                         }
                     }
+                    .disabled(!vm.isCanTappable)
+                    //: - 다음 버튼
                 }
                 .padding(.trailing, 8)
             }
@@ -476,7 +478,7 @@ struct RecordingWorkoutView: View {
                 // TODO: 유튜브 카드 수정 후 고치기
                 HStack{
                     // TODO: 유튜브 링크 통해서 작업하기
-                    ForEach(editRoutineVM.workout.videoUrls, id: \.self){ videoUrl in
+                    ForEach(editRoutineVM.workout.videoUrls, id: \.self) { videoUrl in
                         RelatedContentCard(videoID: videoUrl)
                     }
                 }
