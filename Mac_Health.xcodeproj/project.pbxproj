@@ -79,8 +79,6 @@
 		F891B5B52B07E0220085E070 /* MultiInfluencerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B42B07E0220085E070 /* MultiInfluencerPreviewView.swift */; };
 		F891B5B72B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B62B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift */; };
 		F891B5B92B07F01D0085E070 /* SubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B82B07F01D0085E070 /* SubscribeViewModel.swift */; };
-		F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */; };
-		F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
 		F89B3BE72AE502F000CACBD9 /* WorkoutSequenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE62AE502F000CACBD9 /* WorkoutSequenceCard.swift */; };
 		F89B3BE92AE503B500CACBD9 /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE82AE503B500CACBD9 /* CheckButton.swift */; };
@@ -187,8 +185,6 @@
 		F891B5B42B07E0220085E070 /* MultiInfluencerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiInfluencerPreviewView.swift; sourceTree = "<group>"; };
 		F891B5B62B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerPreviewViewModel.swift; sourceTree = "<group>"; };
 		F891B5B82B07F01D0085E070 /* SubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewModel.swift; sourceTree = "<group>"; };
-		F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingView.swift; sourceTree = "<group>"; };
-		F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
 		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
 		F89B3BE62AE502F000CACBD9 /* WorkoutSequenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSequenceCard.swift; sourceTree = "<group>"; };
 		F89B3BE82AE503B500CACBD9 /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
@@ -546,7 +542,6 @@
 			isa = PBXGroup;
 			children = (
 				F843AFA02AF6737300EDA547 /* WorkoutListView.swift */,
-				F89B3BD32AE251F600CACBD9 /* WorkoutOngoingView.swift */,
 				F82674CC2AF7DA9B002BFACD /* WorkoutStatusView.swift */,
 				F82674CE2AF7F099002BFACD /* WorkoutStatusEditView.swift */,
 				D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */,
@@ -557,7 +552,6 @@
 		F8DACB632B04182900C3E95C /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				F89B3BE12AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift */,
 				F8A4BF662AFE618F00413213 /* WorkoutListViewModel.swift */,
 				D58066532AFD3152003BB276 /* StopwatchVM.swift */,
 			);
@@ -752,7 +746,6 @@
 				F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */,
 				D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */,
 				F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */,
-				F89B3BE22AE2BDB700CACBD9 /* WorkoutOngoingViewModel.swift in Sources */,
 				F89B3BE72AE502F000CACBD9 /* WorkoutSequenceCard.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
 				F8FC2A4C2AFCA0A3006CEE17 /* GeneralAPIManger.swift in Sources */,
@@ -763,7 +756,6 @@
 				F8DACB692B041C0400C3E95C /* EditRoutineView.swift in Sources */,
 				F89B3BE92AE503B500CACBD9 /* CheckButton.swift in Sources */,
 				F8DACB562B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift in Sources */,
-				F89B3BD42AE251F600CACBD9 /* WorkoutOngoingView.swift in Sources */,
 				D5B780542AE4F8FD00A8B76A /* PreviewRoutine.swift in Sources */,
 				F891B5B92B07F01D0085E070 /* SubscribeViewModel.swift in Sources */,
 				D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */,
