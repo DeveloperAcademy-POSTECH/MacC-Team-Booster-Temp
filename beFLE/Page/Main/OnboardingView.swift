@@ -18,6 +18,9 @@ struct OnboardingView: View {
             if !isPass {
                 // 로그인 전
                 Onboarding
+                    .onAppear {
+                        validateUser()
+                    }
             }
             else {
                 // 로그인 성공 시
@@ -155,7 +158,7 @@ struct OnboardingView: View {
     }
     
     /// 자동 로그인 검사 함수
-    func isLogined(){
+    func validateUser(){
         if let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") {
             getReissue(refreshToken: refreshToken)
             return
