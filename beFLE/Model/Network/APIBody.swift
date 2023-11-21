@@ -140,6 +140,7 @@ struct RequestPatchUsersRoutines: Codable {
 /// PatchUsersRoutinesFinish
 struct ResponsePatchUsersRoutinesFinish: Codable {
     var isDone: Bool
+    var routineCompleteImageUrl: String
 }
 
 /// GetUsersRoutines
