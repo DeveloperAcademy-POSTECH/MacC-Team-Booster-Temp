@@ -11,10 +11,9 @@ import SwiftUI
 /// - Parameters:
 ///  - routineId: 수정할 루틴에 대한 id
 struct EditRoutineView: View {
+    
     let routineId: Int
-    
     @StateObject var vm = EditRoutineViewModel()
-    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -57,7 +56,7 @@ struct EditRoutineView: View {
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
-                .font(.headline1())
+                .font(.headline2())
         }
     }
     
@@ -68,7 +67,7 @@ struct EditRoutineView: View {
                 Text(vm.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
-                    .padding(.top)
+                    .padding([.horizontal, .top])
                 
                 Spacer()
             }
@@ -78,6 +77,7 @@ struct EditRoutineView: View {
                     WorkoutListCell(index: index)
                         .padding(.vertical, 4)
                 }
+                .padding(.horizontal)
                 FloatingButton(backgroundColor: .clear) { }
                     .padding()
             }
@@ -160,7 +160,7 @@ struct EditRoutineView: View {
         VStack{
             Spacer()
             NavigationLink {
-                RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id)
+                RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: vm.routine.burnedKCalories)
                     .environmentObject(vm)
             } label: {
                 FloatingButton(backgroundColor: .green_main) {
@@ -201,6 +201,6 @@ struct EditRoutineView: View {
     }
 }
 
-#Preview {
-    EditRoutineView(routineId: 1)
-}
+//#Preview {
+//    EditRoutineView(routineId: 1)
+//}

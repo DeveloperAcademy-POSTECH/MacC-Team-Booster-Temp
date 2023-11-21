@@ -11,17 +11,18 @@ import AuthenticationServices
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
     @State var isPass = false
+    @ObservedObject var appState = AppState()
     
     var body: some View {
-        if !isPass {
-            /// 로그인 전 화면
-            NavigationStack {
+        NavigationView() {
+            if !isPass {
+                // 로그인 전
                 Onboarding
             }
-        }
-        else {
-            /// 로그인 성공 시 화면
-            MainView()
+            else {
+                // 로그인 성공 시
+                MainView()
+            }
         }
     }
     
@@ -106,6 +107,7 @@ struct OnboardingView: View {
             MockUpMainView()
                 .navigationBarBackButtonHidden()
                 .navigationBarTitleDisplayMode(.inline)
+                .environmentObject(appState)
         } label: {
             FloatingButton(backgroundColor: .gray_600) {
                 Text("둘러보기")

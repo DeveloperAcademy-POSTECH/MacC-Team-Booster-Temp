@@ -22,6 +22,9 @@ struct MockUpWorkoutOngoingView: View {
     @State var isDeleteAlertShow: Bool = false
     @State var exitAlertShow: Bool = false
     @State var existUnfinished: Bool = false
+    @Namespace var topID
+    @State var showFinishView = false
+    @EnvironmentObject var appState: AppState
     
     let workoutName = "클로즈 그립 랫 풀 다운"
 
@@ -30,31 +33,85 @@ struct MockUpWorkoutOngoingView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             
-            ScrollView {
-                VStack{
-                    workoutInfomation
-                    ImageTip(currentIndex: $currentIndex, workoutOngoingVM: MockUpWorkoutOngoingViewModel())
-                    Spacer()
-                    WorkoutSetButton
-                    WorkoutSetList
-                    //                    RelatedContent
-                    EmptyFloatingButton
+            ScrollViewReader { proxy in
+                ScrollView {
+                    ZStack{
+                        VStack{
+                            workoutInfomation
+                            ImageTip(currentIndex: $currentIndex, workoutOngoingVM: MockUpWorkoutOngoingViewModel())
+                            Spacer()
+                            WorkoutSetButton
+                            WorkoutSetList
+                            //                    RelatedContent
+                            EmptyFloatingButton
+                                .padding(.bottom, 40)
+                                .id(topID)
+                        }
+                    }
+                }
+                .scrollIndicators(.hidden)
+                .overlay(alignment: .bottom) {
+                    VStack{
+                        Spacer()
+                        isFocused ? nil :
+                        LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                            .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                            .allowsHitTesting(false)
+                    }
+                    .ignoresSafeArea()
+                    
+                    VStack {
+                        Spacer()
+                        isFocused ? nil :             RoundedRectangle(cornerRadius: 100)
+                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
+                            .foregroundColor(.gray_700)
+                            .overlay {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Button {
+                                        if workoutOngoingVM.currentSet >= 1 {
+                                            withAnimation {
+                                                proxy.scrollTo(topID)
+                                            }
+                                        }
+                                        workoutOngoingVM.controlRepetition()
+                                    } label: {
+                                        if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
+                                            RoundedRectangle(cornerRadius: 100)
+                                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                                .foregroundColor(.red_main)
+                                                .overlay {
+                                                    Text("운동 완료")
+                                                        .font(.button1())
+                                                        .foregroundColor(.label_900)
+                                                }
+                                        }
+                                        else {
+                                            RoundedRectangle(cornerRadius: 100)
+                                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                                .foregroundColor(.green_main)
+                                                .overlay {
+                                                    HStack{
+                                                        Text("다음 세트")
+                                                            .font(.button1())
+                                                            .foregroundColor(.gray_900)
+                                                        Image(systemName: "chevron.right")
+                                                            .font(.button2())
+                                                            .foregroundColor(.gray_900)
+                                                    }
+                                                }
+                                        }
+                                    }
+                                }
+                                .padding(.trailing, 8)
+                            }
+
+                    }
                 }
             }
             
-            VStack{
-                Spacer()
-                isFocused ? nil :
-                LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
-                    .frame(height: UIScreen.getHeight(150), alignment: .bottom)
-                    .allowsHitTesting(false)
-            }
-            .ignoresSafeArea()
             
-            VStack {
-                Spacer()
-                isFocused ? nil : WorkoutButton
-            }
         }
         .navigationBarTitle("",displayMode: .inline)
         .toolbar {
@@ -72,24 +129,26 @@ struct MockUpWorkoutOngoingView: View {
         }
         .alert("운동을 중단하시겠습니까?", isPresented: $exitAlertShow) {
             Button("운동중단") {
-                // MARK: 취소
                 dismiss()
             }
             Button("취소") {
-                // MARK: 완료하기
-                //                routineVM.showWorkOutOnGoing.toggle()
+                
             }
         }
         //TODO: 운동 완료 후 창닫기 (수행하지 않지 않은 운동이 있을 때만)
         .alert("운동을 완료하시겠습니까?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
             Button("취소") {
                 // MARK: 취소
-                dismiss()
             }
-            NavigationLink("완료하기") {
+            Button("완료하기") {
                 // MARK: 완료하기
-                MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
+//                MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
+                showFinishView = true
             }
+        }
+        .fullScreenCover(isPresented: $showFinishView){
+            MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
+                .environmentObject(appState)
         }
         .sheet(isPresented: $isPauseShow) {
             MockUpPauseSheet(viewModel: viewModel)
@@ -118,21 +177,22 @@ struct MockUpWorkoutOngoingView: View {
     
     @ViewBuilder
     var NavigationTitle: some View {
-        HStack {
+        HStack (spacing: 0) {
             Image(systemName: "flame.fill")
-                .foregroundColor(.label_700)
+                .foregroundColor(.green_main)
                 .font(.footnote)
             Text(timeFormatted(viewModel.elapsedTime))
                 .font(.headline1())
                 .foregroundColor(.label_900)
+                .padding(.horizontal, 10)
             Circle()
                 .foregroundColor(.gray_700)
                 .frame(width: UIScreen.getWidth(28), height: UIScreen.getHeight(28))
                 .overlay {
                     Image(systemName: "pause.fill")
-                        .resizable()
+                        .font(.caption())
+                        .scaleEffect(0.8)
                         .foregroundColor(.label_900)
-                        .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(10))
                 }
                 .onTapGesture {
                     isPauseShow = true
@@ -281,6 +341,7 @@ struct MockUpWorkoutOngoingView: View {
         }
     }
     
+    @ViewBuilder
     var WorkoutButton: some View {
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
@@ -480,7 +541,7 @@ struct ImageTip: View {
         }
     }
 }
-
+//
 //#Preview {
 //    NavigationStack{
 //        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
