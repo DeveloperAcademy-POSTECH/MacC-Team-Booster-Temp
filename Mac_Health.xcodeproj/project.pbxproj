@@ -49,7 +49,6 @@
 		D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */; };
 		D57E93CC2B04A05F00D6D986 /* MockUpSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */; };
 		D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */; };
-		D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */; };
 		D58066542AFD3152003BB276 /* StopwatchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066532AFD3152003BB276 /* StopwatchVM.swift */; };
 		D58066582AFD3B4A003BB276 /* PauseStopwatchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */; };
 		D584CD892AFB556C00AFA1FF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584CD882AFB556C00AFA1FF /* ProfileView.swift */; };
@@ -150,7 +149,6 @@
 		D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSearchView.swift; sourceTree = "<group>"; };
 		D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSubscribeView.swift; sourceTree = "<group>"; };
 		D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscribeView.swift; sourceTree = "<group>"; };
-		D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFinishView.swift; sourceTree = "<group>"; };
 		D58066532AFD3152003BB276 /* StopwatchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchVM.swift; sourceTree = "<group>"; };
 		D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseStopwatchVM.swift; sourceTree = "<group>"; };
 		D584CD882AFB556C00AFA1FF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -533,7 +531,6 @@
 		F8DACB622B0417E000C3E95C /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				D580664D2AFD202C003BB276 /* WorkoutFinishView.swift */,
 			);
 			path = Temp;
 			sourceTree = "<group>";
@@ -729,7 +726,6 @@
 				D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */,
 				D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */,
 				F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */,
-				D580664E2AFD202C003BB276 /* WorkoutFinishView.swift in Sources */,
 				F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */,
 				F89B3BE72AE502F000CACBD9 /* WorkoutSequenceCard.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
