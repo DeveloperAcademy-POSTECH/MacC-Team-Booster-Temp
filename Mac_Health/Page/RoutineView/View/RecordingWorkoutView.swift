@@ -36,14 +36,16 @@ struct RecordingWorkoutView: View {
                     VStack {
                         // TODO: 상단 여백 제거
                         ScrollView {
-                            WorkoutInfomation
+                            Spacer()
+                                .frame(height: 0)
                                 .id(refreshID)
+                            WorkoutInfomation
                             WorkoutImageAndTip
                             Spacer()
                             WorkoutSetButton
                             WorkoutSetList
-                            RelatedContent
                                 .id(topID)
+                            RelatedContent
                             EmptyFloatingButton
                             EmptyFloatingButton
                         }
@@ -85,14 +87,14 @@ struct RecordingWorkoutView: View {
                                         
                                         // MARK: 다음 세트, 운동, 운동 완료 버튼
                                         Button {
-                                            if editRoutineVM.workout.sets.count >= 1 {
-                                                withAnimation {
-                                                    proxy.scrollTo(topID)
-                                                }
-                                            }
                                             if editRoutineVM.workout.sets.count == 1{
                                                 withAnimation {
-                                                    proxy.scrollTo(refreshID)
+                                                    proxy.scrollTo(refreshID, anchor: .bottom)
+                                                }
+                                            }
+                                            if editRoutineVM.workout.sets.count >= 1 {
+                                                withAnimation {
+                                                    proxy.scrollTo(topID, anchor: .bottom)
                                                 }
                                             }
                                             if vm.currentSet == editRoutineVM.workout.sets.count - 1 {

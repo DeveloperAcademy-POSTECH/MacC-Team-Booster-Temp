@@ -74,12 +74,12 @@ struct RecordingFinishView: View {
                                             .foregroundColor(.label_700)
                                     }
                                 }
-                                .padding(.bottom, 30)
                             }
+                            .padding(.bottom, 30)
                         }
                     
                     Spacer()
-                        .frame(height: 115)
+                        .frame(height: 80)
                     Button{
 //                        recordingWorkoutVM.isFinish = false
                         DispatchQueue.main.async {

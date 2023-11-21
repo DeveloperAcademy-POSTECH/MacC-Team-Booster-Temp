@@ -72,7 +72,7 @@ struct MockUpFinishView: View {
                     }
                 
                 Spacer()
-                    .frame(height: 115)
+                    .frame(height: 80)
                 Button{
                         tabSelection = 3
                     DispatchQueue.main.async {
