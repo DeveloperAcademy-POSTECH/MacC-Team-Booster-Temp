@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Mac_HealthApp: App {
+struct beFLEApp: App {
     var body: some Scene {
         WindowGroup {
             OnboardingView()
