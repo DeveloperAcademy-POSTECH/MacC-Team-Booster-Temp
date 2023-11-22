@@ -183,6 +183,7 @@ struct RecordingWorkoutView: View {
             }
             .onAppear {
                 vm.start()
+                vm.currentSet = 0
                 editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
             }
             .onDisappear{
