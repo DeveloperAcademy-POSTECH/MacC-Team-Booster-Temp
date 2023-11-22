@@ -15,7 +15,7 @@ class RoutineViewModel: ObservableObject {
         dateFormatter.dateFormat = "YYYY-MM-dd"
         
         #if DEBUG
-        let date = dateFormatter.string(from: Date())
+        let date = "2023-11-22"
         #else
         let date = dateFormatter.string(from: Date())
         #endif
