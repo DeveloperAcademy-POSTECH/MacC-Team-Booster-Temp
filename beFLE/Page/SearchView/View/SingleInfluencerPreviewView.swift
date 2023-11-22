@@ -1,6 +1,6 @@
 //
 //  SingleInfluencerPreviewView.swift
-//  Mac_Health
+//  beFLE
 //
 //  Created by 송재훈 on 11/18/23.
 //

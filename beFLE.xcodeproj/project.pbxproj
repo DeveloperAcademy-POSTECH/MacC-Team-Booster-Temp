@@ -78,13 +78,13 @@
 		F891B5B72B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B62B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift */; };
 		F891B5B92B07F01D0085E070 /* SubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891B5B82B07F01D0085E070 /* SubscribeViewModel.swift */; };
 		F89B3BE42AE2C33D00CACBD9 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */; };
-		F89B3BE72AE502F000CACBD9 /* WorkoutSequenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE62AE502F000CACBD9 /* WorkoutSequenceCard.swift */; };
 		F89B3BE92AE503B500CACBD9 /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BE82AE503B500CACBD9 /* CheckButton.swift */; };
 		F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEA2AE5045000CACBD9 /* EmptyCheckButton.swift */; };
 		F89B3BED2AE5064200CACBD9 /* AlternativeWorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEC2AE5064200CACBD9 /* AlternativeWorkoutCard.swift */; };
 		F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */; };
 		F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */; };
 		F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */; };
+		F8A4A58E2B0DF6CB00046C00 /* beFLE-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */; };
 		F8A6A8B32B0CF433006FF899 /* RecordSpecificViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6A8B22B0CF433006FF899 /* RecordSpecificViewModel.swift */; };
 		F8D7872E2B0BB12E00416700 /* RecordingFinishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D7872D2B0BB12E00416700 /* RecordingFinishViewModel.swift */; };
 		F8DACB562B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */; };
@@ -171,7 +171,7 @@
 		D5C5117D2B056378008B871E /* RecordingFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingFinishView.swift; sourceTree = "<group>"; };
 		D5C511802B059ECC008B871E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		D5C511822B061870008B871E /* SwiftUIMailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIMailView.swift; sourceTree = "<group>"; };
-		F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "beFLE-Info.plist"; sourceTree = SOURCE_ROOT; };
+		F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "beFLE-Info.plist"; path = "beFLE/beFLE-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C42AF68F11002BFACD /* AlternateWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C72AF7A7AD002BFACD /* PauseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseSheet.swift; sourceTree = "<group>"; };
@@ -185,7 +185,6 @@
 		F891B5B62B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerPreviewViewModel.swift; sourceTree = "<group>"; };
 		F891B5B82B07F01D0085E070 /* SubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewModel.swift; sourceTree = "<group>"; };
 		F89B3BE32AE2C33D00CACBD9 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
-		F89B3BE62AE502F000CACBD9 /* WorkoutSequenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSequenceCard.swift; sourceTree = "<group>"; };
 		F89B3BE82AE503B500CACBD9 /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
 		F89B3BEA2AE5045000CACBD9 /* EmptyCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCheckButton.swift; sourceTree = "<group>"; };
 		F89B3BEC2AE5064200CACBD9 /* AlternativeWorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeWorkoutCard.swift; sourceTree = "<group>"; };
@@ -529,7 +528,6 @@
 		F8BE834C2AE68D500094A509 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				F89B3BE62AE502F000CACBD9 /* WorkoutSequenceCard.swift */,
 				F8FD48DD2AE7F13C007DB402 /* FloatingButton.swift */,
 				F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */,
 				F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */,
@@ -702,6 +700,7 @@
 				F8EBA1D62B0DDB710097FFDC /* Assets.xcassets in Resources */,
 				0D5851532AE2EFAD00C8875A /* Pretendard-Bold.otf in Resources */,
 				0D5851512AE2EFA800C8875A /* Pretendard-Light.otf in Resources */,
+				F8A4A58E2B0DF6CB00046C00 /* beFLE-Info.plist in Resources */,
 				0D5851522AE2EFAA00C8875A /* Pretendard-ExtraBold.otf in Resources */,
 				0D58514C2AE2EF9D00C8875A /* Pretendard-Thin.otf in Resources */,
 				0DA3275F2AE1321700319BAB /* Preview Assets.xcassets in Resources */,
@@ -776,7 +775,6 @@
 				D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */,
 				F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */,
 				F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */,
-				F89B3BE72AE502F000CACBD9 /* WorkoutSequenceCard.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
 				F8FC2A4C2AFCA0A3006CEE17 /* GeneralAPIManger.swift in Sources */,
 				F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */,
@@ -943,7 +941,7 @@
 				DEVELOPMENT_TEAM = VA3J8597P8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "beFLE-Info.plist";
+				INFOPLIST_FILE = "beFLE/beFLE-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -978,7 +976,7 @@
 				DEVELOPMENT_TEAM = VA3J8597P8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "beFLE-Info.plist";
+				INFOPLIST_FILE = "beFLE/beFLE-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
