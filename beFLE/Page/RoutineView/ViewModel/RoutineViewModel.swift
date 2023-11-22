@@ -8,16 +8,11 @@
 import SwiftUI
 
 class RoutineViewModel: ObservableObject {
-    // TODO: 데이터 모델명 리네임
     @Published var todayRoutines = ResponseGetUsersRoutines(routine: [])
-    
-    init() {
-        self.fetchTodayRoutines()
-    }
     
     func fetchTodayRoutines() {
         #if DEBUG
-        let date = "2023-11-21"
+        let date = Date().toString()
         #else
         let date = Date().toString()
         #endif
