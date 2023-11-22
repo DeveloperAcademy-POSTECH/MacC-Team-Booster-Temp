@@ -12,7 +12,7 @@ import Combine
 final class setChangeStream: ObservableObject {
     var cancellables = Set<AnyCancellable>()
     @Published var weightInput = 0
-    @Published var debouncedText = 0
+    @Published var debouncedWeight = 0
     @Published var repInput = 0
     @Published var debouncedReps = 0
     
@@ -23,7 +23,7 @@ final class setChangeStream: ObservableObject {
         $weightInput
             .debounce(for: RunLoop.SchedulerTimeType.Stride(1), scheduler: RunLoop.main)
             .sink { [weak self] input in
-                self?.debouncedText = input
+                self?.debouncedWeight = input
             }
             .store(in: &cancellables)
         
@@ -65,7 +65,7 @@ struct WorkoutSetCard: View {
                         .foregroundColor(.label_900)
                         .multilineTextAlignment(.trailing)
                         .padding(.trailing, 10)
-                        .onChange(of: debouncedStream.debouncedText) { weight in
+                        .onChange(of: debouncedStream.debouncedWeight) { weight in
                             recordingWorkoutVM.editWeight(index: index - 1, routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: weight, reps: set.reps) {
                                     set.weight = $0.weight
                             }
