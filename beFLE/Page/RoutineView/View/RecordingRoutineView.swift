@@ -103,6 +103,7 @@ struct RecordingRoutineView: View {
                     Text(editRoutineVM.routine.exercises[index].name)
                         .font(.headline1())
                         .foregroundColor(editRoutineVM.routine.exercises[index].id == editRoutineVM.workout.exerciseId ? .green_main : .label_900)
+                        .multilineTextAlignment(.leading)
                     Spacer()
                 }
                 HStack(spacing: 6) {
