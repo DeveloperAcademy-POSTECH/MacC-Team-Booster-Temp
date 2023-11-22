@@ -80,6 +80,7 @@
 		F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */; };
 		F89B3BF12AE511C100CACBD9 /* WorkoutSetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */; };
 		F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */; };
+		F8A4A58E2B0DF6CB00046C00 /* beFLE-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */; };
 		F8A6A8B32B0CF433006FF899 /* RecordSpecificViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6A8B22B0CF433006FF899 /* RecordSpecificViewModel.swift */; };
 		F8D7872E2B0BB12E00416700 /* RecordingFinishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D7872D2B0BB12E00416700 /* RecordingFinishViewModel.swift */; };
 		F8DACB562B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */; };
@@ -161,7 +162,7 @@
 		D5C5117D2B056378008B871E /* RecordingFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingFinishView.swift; sourceTree = "<group>"; };
 		D5C511802B059ECC008B871E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		D5C511822B061870008B871E /* SwiftUIMailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIMailView.swift; sourceTree = "<group>"; };
-		F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "beFLE-Info.plist"; sourceTree = SOURCE_ROOT; };
+		F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "beFLE-Info.plist"; path = "beFLE/beFLE-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C42AF68F11002BFACD /* AlternateWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C72AF7A7AD002BFACD /* PauseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseSheet.swift; sourceTree = "<group>"; };
@@ -639,6 +640,7 @@
 				F8EBA1D62B0DDB710097FFDC /* Assets.xcassets in Resources */,
 				0D5851532AE2EFAD00C8875A /* Pretendard-Bold.otf in Resources */,
 				0D5851512AE2EFA800C8875A /* Pretendard-Light.otf in Resources */,
+				F8A4A58E2B0DF6CB00046C00 /* beFLE-Info.plist in Resources */,
 				0D5851522AE2EFAA00C8875A /* Pretendard-ExtraBold.otf in Resources */,
 				0D58514C2AE2EF9D00C8875A /* Pretendard-Thin.otf in Resources */,
 				0DA3275F2AE1321700319BAB /* Preview Assets.xcassets in Resources */,
@@ -875,7 +877,7 @@
 				DEVELOPMENT_TEAM = VA3J8597P8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "beFLE-Info.plist";
+				INFOPLIST_FILE = "beFLE/beFLE-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -910,7 +912,7 @@
 				DEVELOPMENT_TEAM = VA3J8597P8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "beFLE-Info.plist";
+				INFOPLIST_FILE = "beFLE/beFLE-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
