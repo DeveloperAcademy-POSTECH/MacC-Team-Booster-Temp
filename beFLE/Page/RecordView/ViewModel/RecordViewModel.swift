@@ -35,7 +35,7 @@ class RecordViewModel: ObservableObject {
     }
     
     func calculateTotalVolume() {
-        let selectedRecords = records.records.filter { $0.date == selectedDate }
+        let selectedRecords = records.records.filter { $0.finishDate == selectedDate }
         
         var totalVolume = 0
         
@@ -54,7 +54,7 @@ class RecordViewModel: ObservableObject {
     
     func fetchRecodedDate() {
         recordedDate = records.records.map {
-            $0.date
+            $0.finishDate
         }
     }
     
