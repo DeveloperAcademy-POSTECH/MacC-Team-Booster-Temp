@@ -13,6 +13,7 @@ struct OnboardingView: View {
     @State var isPass = false
     @State var isLoading: Bool = true
     @StateObject var appState = AppState()
+    @StateObject var profileViewModel = ProfileViewModel()
     
     var body: some View {
         ZStack{
@@ -99,6 +100,8 @@ struct OnboardingView: View {
                         let identifier = userCredential.user
                         let identityToken = String(data: userCredential.identityToken!, encoding: .utf8)
                         let authorizationCode = String(data: userCredential.authorizationCode!, encoding: .utf8)
+                        
+                        profileViewModel.nickname = profileViewModel.MakeName(taste: profileViewModel.tasteName, workout: profileViewModel.workoutName)
                         
                         postLogin(identifier: identifier, identityToken: identityToken!, authorizationCode: authorizationCode!)
                     default:

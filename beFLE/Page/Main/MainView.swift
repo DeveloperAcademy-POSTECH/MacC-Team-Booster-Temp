@@ -11,11 +11,13 @@ struct MainView: View {
     @StateObject var vm = MainViewModel.shared
     @State var subscribed = false
     @EnvironmentObject var appState: AppState
+    @ObservedObject var profileViewModel: ProfileViewModel
     
     init() {
         UITabBar.appearance().backgroundColor = Color.tabbar_main
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
+        self.profileViewModel = ProfileViewModel()
     }
     
     var body: some View {
@@ -42,7 +44,7 @@ struct MainView: View {
                     }
                     .tag(2)
                 
-                ProfileView()
+                ProfileView(vm: profileViewModel)
                     .tabItem {
                         Image(systemName: "person.fill")
                         Text("프로필")
