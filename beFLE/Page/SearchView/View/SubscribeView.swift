@@ -28,7 +28,7 @@ struct SubscribeView: View {
         "Npc 내츄럴 보디빌딩 오픈 4위",
         "Npc 내츄럴 클래식피지크 노비스 1위",
         "미스터 스누 22 연건 1위",
-        "미스터 스누 23 관악 2위",
+        "미스터 스누 23 관악 2위"
     ]
     
     var body: some View {
@@ -184,7 +184,7 @@ struct SubscribeView: View {
             //            }
             //            else {
             VStack(alignment: .leading) {
-                ForEach(0..<vm.influencer.awards.count, id: \.self) { index in
+                ForEach(0..<vm.seperateAward(input: vm.influencer.awards).count, id: \.self) { index in
                     HStack {
                         VStack {
                             Text("•")
@@ -194,7 +194,7 @@ struct SubscribeView: View {
                         }
                         VStack(alignment: .leading){
                             HStack {
-                                Text(vm.influencer.awards)
+                                Text(vm.seperateAward(input: vm.influencer.awards)[index])
                                     .font(.body())
                                     .foregroundColor(.label_800)
                                 Spacer()

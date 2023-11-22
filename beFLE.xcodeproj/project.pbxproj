@@ -411,8 +411,8 @@
 		D57183662B01EE5900A11FFC /* StartMockUpView */ = {
 			isa = PBXGroup;
 			children = (
-				D571837D2B030A9D00A11FFC /* ViewModel */,
 				D571837C2B030A8F00A11FFC /* View */,
+				D571837D2B030A9D00A11FFC /* ViewModel */,
 			);
 			path = StartMockUpView;
 			sourceTree = "<group>";
