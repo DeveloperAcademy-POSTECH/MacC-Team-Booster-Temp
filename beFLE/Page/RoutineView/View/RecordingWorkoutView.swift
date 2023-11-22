@@ -609,13 +609,14 @@ struct RecordingWorkoutView: View {
     }
     
     var RelatedContent: some View {
-        VStack {
+        VStack { editRoutineVM.workout.videoUrls.count >= 1 ?
             HStack {
                 Text("관련 영상")
                     .font(.title2())
                     .foregroundColor(.label_900)
                 Spacer()
             }
+            .padding(.bottom, 13) : nil
             
             ScrollView(.horizontal) {
                 HStack{
