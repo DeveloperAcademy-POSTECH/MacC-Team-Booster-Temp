@@ -110,6 +110,12 @@ struct WorkoutSetCard: View {
             debouncedStream.repInput = set.reps
             debouncedStream.weightInput = set.weight
         }
+        .onChange(of: set.weight) { newValue in
+            debouncedStream.weightInput = newValue
+        }
+        .onChange(of: set.reps) { newValue in
+            debouncedStream.repInput = newValue
+        }
         .font(.body())
         .padding(.horizontal)
         .padding(.horizontal, 10)

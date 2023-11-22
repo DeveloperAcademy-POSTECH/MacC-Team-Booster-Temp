@@ -482,7 +482,8 @@ struct RecordingWorkoutView: View {
     var WorkoutSetList: some View {
         VStack{
             if !editRoutineVM.workout.sets.isEmpty {
-                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
+//                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
+                ForEach(editRoutineVM.workout.sets.indices, id: \.self) { index in
                     // TODO: 무게 조정 api 호출
                     WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
                         .environmentObject(vm)
