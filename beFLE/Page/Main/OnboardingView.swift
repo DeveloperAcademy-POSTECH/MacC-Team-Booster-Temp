@@ -14,18 +14,19 @@ struct OnboardingView: View {
     @ObservedObject var appState = AppState()
     
     var body: some View {
-        NavigationView() {
-            if !isPass {
-                // 로그인 전
+        
+        if !isPass {
+            // 로그인 전
+            NavigationView() {
                 Onboarding
                     .onAppear {
                         validateUser()
                     }
             }
-            else {
-                // 로그인 성공 시
-                MainView()
-            }
+        }
+        else {
+            // 로그인 성공 시
+            MainView()
         }
     }
     

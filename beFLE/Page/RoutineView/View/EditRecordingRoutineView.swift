@@ -17,7 +17,17 @@ struct EditRecordingRoutineView: View {
     var body: some View {
         VStack {
             WorkoutList
-            
+            Button {
+                AppReset.shared.routineUUID = UUID()
+                AppReset.shared.tabSelection = 2
+            } label: {
+                Text("기록 탭으로")
+            }
+            Button {
+                AppReset.shared.routineUUID = UUID()
+            } label: {
+                Text("루틴 탭 루트로")
+            }
 //            WorkoutStartButton
         }
         .navigationTitle("운동 루틴 편집")
