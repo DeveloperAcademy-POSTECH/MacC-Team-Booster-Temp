@@ -353,7 +353,7 @@ struct RecordingWorkoutView: View {
                     HStack {
                         Spacer()
                         Image(systemName: "chevron.backward")
-                            .foregroundColor(.label_500)
+                            .foregroundColor(Color(hex: "696969"))
                         Button {
                             withAnimation {
                                 vm.tabSelection = 1
@@ -361,7 +361,7 @@ struct RecordingWorkoutView: View {
                         } label: {
                             RoundedShape(corners: [.topLeft, .bottomLeft])
                                 .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
-                                .foregroundColor(.fill_1)
+                                .foregroundColor(.gray_700)
                                 .overlay {
                                     Text("팁")
                                         .foregroundColor(.green_main)
@@ -381,14 +381,30 @@ struct RecordingWorkoutView: View {
                         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                         .foregroundColor(.gray_800)
                         .overlay {
-                            VStack {
-                                HStack {
-                                    AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
-                                        image
-                                            .resizable()
-                                    } placeholder: {
-                                        LottieView()
-                                            .padding(20)
+                            ScrollView{
+                                VStack {
+                                    HStack {
+                                        AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
+                                            image
+                                                .resizable()
+                                        } placeholder: {
+                                            LottieView()
+                                        }
+                                        .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                        .padding(.horizontal, 5)
+                                        .padding(.top, 4)
+                                        Spacer()
+                                    }
+                                    .padding(.bottom)
+                                    HStack{
+                                        Text(editRoutineVM.workout.tip)
+                                            .font(.body())
+                                            .foregroundColor(.label_900)
+                                            .padding(.horizontal, 1.9)
+                                            .lineSpacing(6.0)
+                                            .multilineTextAlignment(.leading)
+                                            .allowsTightening(true)
+                                        Spacer()
                                     }
                                     .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
                                     .padding(.horizontal, 5)
