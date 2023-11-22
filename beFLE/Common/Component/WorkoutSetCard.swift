@@ -11,7 +11,7 @@ import Combine
 
 final class setChangeStream: ObservableObject {
     var cancellables = Set<AnyCancellable>()
-    @Published var textInput = 0
+    @Published var weightInput = 0
     @Published var debouncedText = 0
     @Published var repInput = 0
     @Published var debouncedReps = 0
@@ -20,7 +20,7 @@ final class setChangeStream: ObservableObject {
         makeStream()
     }
     func makeStream() {
-        $textInput
+        $weightInput
             .debounce(for: RunLoop.SchedulerTimeType.Stride(1), scheduler: RunLoop.main)
             .sink { [weak self] input in
                 self?.debouncedText = input
@@ -59,7 +59,7 @@ struct WorkoutSetCard: View {
                 .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
                 .foregroundColor(.gray_700)
                 .overlay {
-                    TextField("자율", value: $debouncedStream.textInput, format: .number)
+                    TextField("자율", value: $debouncedStream.weightInput, format: .number)
                         .focused(isFocused)
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_900)
