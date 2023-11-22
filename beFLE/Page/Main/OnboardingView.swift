@@ -11,21 +11,22 @@ import AuthenticationServices
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
     @State var isPass = false
-    @ObservedObject var appState = AppState()
+    @StateObject var appState = AppState()
     
     var body: some View {
-        NavigationView() {
-            if !isPass {
-                // 로그인 전
+        if !isPass {
+            // 로그인 전
+            NavigationView() {
                 Onboarding
                     .onAppear {
                         validateUser()
                     }
             }
-            else {
-                // 로그인 성공 시
-                MainView()
-            }
+        }
+        else {
+            // 로그인 성공 시
+            MainView()
+                .environmentObject(appState)
         }
     }
     
@@ -35,7 +36,6 @@ struct OnboardingView: View {
                 .resizable()
                 .scaledToFill()
             
-            // TODO: 온보딩 추가 시 작업
             /// 온보딩
             VStack {
                 Spacer()
@@ -50,8 +50,7 @@ struct OnboardingView: View {
                         .foregroundColor(.label_900)
                         .padding(.bottom, 10)
                         
-                        // TODO: BEFL 수정하기
-                        Text("Be my Influencer, BEFL")
+                        Text("Be my Influencer, BEFLE")
                             .font(.system(size: 20, weight: .light, design: .default))
                             .foregroundColor(.label_700)
                     }
@@ -77,7 +76,7 @@ struct OnboardingView: View {
             { request in
                 request.requestedScopes = [.email]
             } onCompletion: { results in
-                // TODO: 추후 vm 생성
+                // TODO: 추후 vm 생성 - MORO
                 switch results {
                 case .success(let result):
                     switch result.credential {
@@ -151,10 +150,10 @@ struct OnboardingView: View {
         UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
         UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
         
-        #if DEBUG
+#if DEBUG
         print("accessToken: \(UserDefaults.standard.string(forKey: "accessToken"))")
         print("refreshToken: \(UserDefaults.standard.string(forKey: "refreshToken"))")
-        #endif
+#endif
     }
     
     /// 자동 로그인 검사 함수

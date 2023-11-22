@@ -135,7 +135,6 @@ struct MockUpWorkoutOngoingView: View {
                 
             }
         }
-        //TODO: 운동 완료 후 창닫기 (수행하지 않지 않은 운동이 있을 때만)
         .alert("운동을 완료하시겠습니까?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
             Button("취소") {
                 // MARK: 취소
@@ -211,14 +210,12 @@ struct MockUpWorkoutOngoingView: View {
     @ViewBuilder
     var AlternativeActionSheet: some View {
         Button {
-            // TODO: .
             isAlternativeWorkoutShow = true
         } label: {
             Text("운동 대체")
         }
         
         Button {
-            // TODO: .
             isDeleteAlertShow = true
         } label: {
             Text("삭제")
@@ -226,7 +223,6 @@ struct MockUpWorkoutOngoingView: View {
         
         
         Button(role: .cancel) {
-            // TODO: .
         } label: {
             Text("취소")
         }

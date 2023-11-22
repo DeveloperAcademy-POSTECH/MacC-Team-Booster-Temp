@@ -12,6 +12,7 @@ struct EditRecordingRoutineView: View {
     
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     
+    
     @Environment(\.dismiss) var dismiss: DismissAction
     var burnedKCalories: Int
     var body: some View {
@@ -58,7 +59,6 @@ struct EditRecordingRoutineView: View {
     var WorkoutList: some View {
         VStack {
             HStack {
-                // TODO: 부위 별로 수정
                 Text(editRoutineVM.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -160,7 +160,7 @@ struct EditRecordingRoutineView: View {
         }
         
         Button(role: .cancel) {
-            // TODO: .
+
         } label: {
             Text("취소")
         }
@@ -169,7 +169,7 @@ struct EditRecordingRoutineView: View {
     @ViewBuilder
     var DeleteAlert: some View {
         Button("취소") {
-            // TODO: .
+
         }
         Button("삭제") {
             editRoutineVM.deleteWorkout(routineId: routineId, exerciseId: editRoutineVM.workout.exerciseId)

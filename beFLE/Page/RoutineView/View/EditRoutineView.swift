@@ -15,6 +15,7 @@ struct EditRoutineView: View {
     let routineId: Int
     @StateObject var vm = EditRoutineViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack {
@@ -63,7 +64,6 @@ struct EditRoutineView: View {
     var WorkoutList: some View {
         VStack {
             HStack {
-                // TODO: 부위 별로 수정
                 Text(vm.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -162,6 +162,7 @@ struct EditRoutineView: View {
             NavigationLink {
                 RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: vm.routine.burnedKCalories)
                     .environmentObject(vm)
+                    .environmentObject(appState)
             } label: {
                 FloatingButton(backgroundColor: .green_main) {
                     Text("시작")

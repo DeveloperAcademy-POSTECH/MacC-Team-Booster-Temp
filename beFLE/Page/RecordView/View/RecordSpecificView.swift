@@ -30,10 +30,6 @@ struct RecordSpecificView: View {
             }
             .padding()
         }
-        .onAppear {
-            print(record)
-        }
-        // TODO: 타이틀 폰트 체크
         .navigationBarTitle(vm.dateFormat(from: record.date), displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -49,12 +45,10 @@ struct RecordSpecificView: View {
     
     var RoutineDescriptionCard: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // TODO: 인플루언서 네임
             Text(record.influencerName)
                 .font(.title2())
                 .foregroundColor(.label_900)
                 .padding(.bottom, 10)
-            // TODO: 폰트
             Text("2023년 4월 23일 루틴")
                 .font(.caption())
                 .foregroundColor(.label_700)

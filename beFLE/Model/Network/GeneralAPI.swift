@@ -48,7 +48,7 @@ enum GeneralAPI {
     //:
     
     // MARK: user-controller
-    /// TODO: api 용도 갱신 필요
+    // TODO: api 용도 갱신 필요
     case PostUsersMe(accessToken: String, refreshToken: String)
     
     /// 닉네임 변경

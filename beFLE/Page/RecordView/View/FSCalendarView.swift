@@ -8,7 +8,6 @@ import SwiftUI
 import UIKit
 import FSCalendar
 
-
 class FSCalendarView: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     var calendar = FSCalendar()
@@ -69,6 +68,4 @@ class FSCalendarView: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
-    
 }

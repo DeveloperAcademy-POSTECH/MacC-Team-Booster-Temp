@@ -19,6 +19,7 @@ enum WorkoutPart: String, CaseIterable {
 struct WholeRoutineView: View {
     let influencerId: Int
     @StateObject var vm = WholeRoutineViewModel()
+    @EnvironmentObject var appState: AppState
     
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -106,7 +107,7 @@ struct WholeRoutineView: View {
                     .font(.button2())
             }
     }
-    //TODO: 클릭한 부위로 sorting
+
     var Workouts: some View {
         ScrollView {
             ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
@@ -122,6 +123,7 @@ struct WholeRoutineView: View {
                         NavigationLink {
                             RoutineInformationView(routineId: some.routineId)
                                 .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
+                                .environmentObject(appState)
                         } label: {
                             TodayWorkoutCell(routine: some)
                                 .padding(.vertical, 8)
