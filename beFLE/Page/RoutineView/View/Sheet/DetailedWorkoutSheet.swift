@@ -88,6 +88,7 @@ struct DetailedWorkoutSheet: View {
                 AsyncImage(url: URL(string: vm.workout.faceImageUrl)) { image in
                     image
                         .resizable()
+                        .scaledToFit()
                 } placeholder: {
                     LottieView()
                         .padding(5)

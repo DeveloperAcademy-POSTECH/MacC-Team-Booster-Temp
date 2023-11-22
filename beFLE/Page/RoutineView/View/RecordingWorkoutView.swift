@@ -389,6 +389,7 @@ struct RecordingWorkoutView: View {
                                         AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
                                             image
                                                 .resizable()
+                                                .scaledToFit()
                                         } placeholder: {
                                             LottieView()
                                         }

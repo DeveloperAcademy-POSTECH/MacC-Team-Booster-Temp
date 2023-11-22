@@ -44,8 +44,8 @@ struct SubscribedInfluencerCard: View {
                     Spacer()
                     AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
                         image
+                            .resizable()
                             .scaledToFit()
-                            .scaleEffect(CGSize(width: 1.0, height: 1.0))
                             .frame(width: UIScreen.getWidth(156))
                     } placeholder: {
                         LottieView()
