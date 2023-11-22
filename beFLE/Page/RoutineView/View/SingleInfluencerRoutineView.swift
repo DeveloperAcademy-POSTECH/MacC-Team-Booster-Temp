@@ -49,7 +49,7 @@ struct SingleInfluencerRoutineView: View {
         AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
             image
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
 //                .frame(width: UIScreen.getWidth(390))
         } placeholder: {
             VStack(alignment: .center) {

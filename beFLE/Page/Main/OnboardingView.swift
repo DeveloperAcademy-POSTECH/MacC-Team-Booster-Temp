@@ -31,7 +31,7 @@ struct OnboardingView: View {
             }
             
             if isLoading {
-                LauchScreen()
+                LaunchScreen()
                     .transition(.opacity)
                     .zIndex(1)
                     .onAppear {

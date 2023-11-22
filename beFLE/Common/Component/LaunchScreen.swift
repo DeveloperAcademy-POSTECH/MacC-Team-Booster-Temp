@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LauchScreen: View {
+struct LaunchScreen: View {
     var body: some View {
         ZStack(alignment: .center){
             Color.gray_900.ignoresSafeArea()
@@ -24,5 +24,5 @@ struct LauchScreen: View {
 }
 
 #Preview {
-    LauchScreen()
+    LaunchScreen()
 }
