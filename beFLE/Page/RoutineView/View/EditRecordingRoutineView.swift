@@ -18,7 +18,6 @@ struct EditRecordingRoutineView: View {
     var body: some View {
         VStack {
             WorkoutList
-            
 //            WorkoutStartButton
         }
         .navigationTitle("운동 루틴 편집")

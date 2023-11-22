@@ -16,7 +16,7 @@ struct OnboardingView: View {
     var body: some View {
         if !isPass {
             // 로그인 전
-            NavigationView() {
+            NavigationStack() {
                 Onboarding
                     .onAppear {
                         validateUser()
@@ -26,7 +26,6 @@ struct OnboardingView: View {
         else {
             // 로그인 성공 시
             MainView()
-                .environmentObject(appState)
         }
     }
     

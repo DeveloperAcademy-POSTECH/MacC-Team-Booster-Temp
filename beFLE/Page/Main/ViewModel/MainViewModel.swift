@@ -8,7 +8,10 @@
 import SwiftUI
 
 class MainViewModel: ObservableObject {
+    static let shared = MainViewModel()
+    
     @Published var tabSelection = 0
+    @Published var navigationUUID = UUID()
     
     /// 루틴 탭 이동
     func changeToRoutineTab() {
@@ -28,5 +31,9 @@ class MainViewModel: ObservableObject {
     /// 프로필 탭 이동
     func changeToProfileTab() {
         tabSelection = 3
+    }
+    
+    func resetNavigationStack() {
+        navigationUUID = UUID()
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var vm = MainViewModel()
+    @StateObject var vm = MainViewModel.shared
     @State var loggedIn = true
     @State var subscribed = false
     @EnvironmentObject var appState: AppState
@@ -54,6 +54,7 @@ struct MainView: View {
             .environmentObject(vm)
             .tint(.label_900)
         }
+        .id(vm.navigationUUID)
     }
 }
 

@@ -9,13 +9,11 @@ import SwiftUI
 
 struct RecordingFinishView: View {
     let routineId: Int
-    @State var tabSelection: Int = 3
     @Binding var elapsedTime: TimeInterval
     @ObservedObject var recordViewModel: RecordingWorkoutViewModel
     var burnedKCalories: Int
     @StateObject var vm = RecordingFinishViewModel()
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
-    @EnvironmentObject var appState: AppState
     @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject var recordingWorkoutVM: RecordingWorkoutViewModel
@@ -80,13 +78,13 @@ struct RecordingFinishView: View {
                     
                     Spacer()
                         .frame(height: 80)
-                    Button{
-//                        recordingWorkoutVM.isFinish = false
-                        DispatchQueue.main.async {
-                            appState.rootViewId = UUID()
-                        }
+                    
+                    Button {
+                        MainViewModel.shared.changeToRecordTab()
+                        MainViewModel.shared.resetNavigationStack()
                     } label: {
-                        FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
+                        FloatingButton(backgroundColor: .green_main) {
+                            Text("기록 확인")
                                 .foregroundColor(.gray_900)
                                 .font(.button1())
                         }
@@ -94,18 +92,15 @@ struct RecordingFinishView: View {
                         
                     }
                     
-                    Button{
-//                        recordingWorkoutVM.isFinish = false
-                        DispatchQueue.main.async {
-                            appState.rootViewId = UUID()
-                        }
+                    Button {
+                        MainViewModel.shared.resetNavigationStack()
                     } label: {
-                        FloatingButton(backgroundColor: .gray_600) { Text("닫기")
+                        FloatingButton(backgroundColor: .gray_600) {
+                            Text("닫기")
                                 .foregroundColor(.green_main)
                                 .font(.button1())
                         }
                         .padding(.bottom, 30)
-                        
                     }
                 }
                 .padding(.bottom, 30)
@@ -117,7 +112,6 @@ struct RecordingFinishView: View {
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
     }
-    
 }
 
 //#Preview {

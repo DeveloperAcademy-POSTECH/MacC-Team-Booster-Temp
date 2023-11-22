@@ -19,35 +19,33 @@ struct RecordingWorkoutView: View {
     var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss
     @FocusState private var isFocused: Bool
-    @EnvironmentObject var appState: AppState
     @Namespace var topID
     @Namespace var refreshID
     
     var body: some View {
-//        if vm.isFinish {
-//            RecordingFinishView(routineId: routineId, elapsedTime: $vm.elapsedTime, recordViewModel: vm, burnedKCalories: burnedKCalories)
-//                .environmentObject(appState)
-//        }
-//        else {
+        if vm.isFinish {
+            RecordingFinishView(routineId: routineId, elapsedTime: $vm.elapsedTime, recordViewModel: vm, burnedKCalories: burnedKCalories)
+        }
+        else {
             ZStack {
                 Color.gray_900.ignoresSafeArea()
                 
                 ScrollViewReader { proxy in
-                        ScrollView {
-                            Spacer()
-                                .frame(height: 0)
-                                .id(refreshID)
-                            WorkoutInfomation
-                            WorkoutImageAndTip
-                            Spacer()
-                            WorkoutSetButton
-                            WorkoutSetList
-                                .id(topID)
-                            RelatedContent
-                            EmptyFloatingButton
-                            EmptyFloatingButton
-                        }
-                        .scrollIndicators(.hidden)
+                    ScrollView {
+                        Spacer()
+                            .frame(height: 0)
+                            .id(refreshID)
+                        WorkoutInfomation
+                        WorkoutImageAndTip
+                        Spacer()
+                        WorkoutSetButton
+                        WorkoutSetList
+                            .id(topID)
+                        RelatedContent
+                        EmptyFloatingButton
+                        EmptyFloatingButton
+                    }
+                    .scrollIndicators(.hidden)
                     .overlay{
                         VStack{
                             Spacer()
@@ -63,8 +61,8 @@ struct RecordingWorkoutView: View {
                         
                         VStack {
                             Spacer()
-                            isFocused ? nil : 
-//                            WorkoutButton
+                            isFocused ? nil :
+                            //                            WorkoutButton
                             RoundedRectangle(cornerRadius: 100)
                                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
                                 .foregroundColor(.gray_700)
@@ -105,7 +103,7 @@ struct RecordingWorkoutView: View {
                                                                 return
                                                             }
                                                         }
-                                                         
+                                                        
                                                         vm.finishWorkout(routineId: routineId)
                                                     }
                                                 }
@@ -179,7 +177,7 @@ struct RecordingWorkoutView: View {
                                     .padding(.trailing, 8)
                                 }
                         }
-
+                        
                     }
                 }
             }
@@ -218,11 +216,6 @@ struct RecordingWorkoutView: View {
             .sheet(isPresented: $vm.isPauseSheetShow) {
                 PauseSheet(viewModel: vm)
             }
-            .fullScreenCover(isPresented: $vm.isFinish, content: {
-                            RecordingFinishView(routineId: routineId, elapsedTime: $vm.elapsedTime, recordViewModel: vm, burnedKCalories: burnedKCalories)
-                                .environmentObject(appState)
-                                .environmentObject(vm)
-            })
             .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
                 WorkoutStopAlert
             } message: {
@@ -241,7 +234,7 @@ struct RecordingWorkoutView: View {
                     Text("확인")
                 }
             }
-//        }
+        }
     }
     
     @ViewBuilder
@@ -343,44 +336,44 @@ struct RecordingWorkoutView: View {
     
     var WorkoutImageAndTip: some View {
         TabView(selection: $vm.tabSelection){
-                VStack{
-                    ZStack{
-                        AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                        } placeholder: {
-                            Image(systemName: "arrow.triangle.2.circlepath")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(.gray_600)
-                        }
-                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-                        .padding(.horizontal)
-                        
-                        HStack {
-                            Spacer()
-                            Image(systemName: "chevron.backward")
-                                .foregroundColor(.label_500)
-                            Button {
-                                withAnimation {
-                                    vm.tabSelection = 1
-                                }
-                            } label: {
-                                RoundedShape(corners: [.topLeft, .bottomLeft])
-                                    .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
-                                    .foregroundColor(.fill_1)
-                                    .overlay {
-                                        Text("팁")
-                                            .foregroundColor(.green_main)
-                                    }
+            VStack{
+                ZStack{
+                    AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    } placeholder: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.gray_600)
+                    }
+                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Spacer()
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.label_500)
+                        Button {
+                            withAnimation {
+                                vm.tabSelection = 1
                             }
+                        } label: {
+                            RoundedShape(corners: [.topLeft, .bottomLeft])
+                                .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
+                                .foregroundColor(.fill_1)
+                                .overlay {
+                                    Text("팁")
+                                        .foregroundColor(.green_main)
+                                }
                         }
                     }
-                    .font(.button2())
-                    Spacer()
-                        .frame(height: UIScreen.getHeight(50))
                 }
+                .font(.button2())
+                Spacer()
+                    .frame(height: UIScreen.getHeight(50))
+            }
             .tag(0)
             
             ZStack {
@@ -428,56 +421,56 @@ struct RecordingWorkoutView: View {
     }
     
     var WorkoutSetButton: some View {
-            HStack {
-                RoundedRectangle(cornerRadius: 4)
-                    .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
-                    .foregroundColor(.gray_700)
-                    .overlay {
-                        HStack {
-                            Button {
-                                if editRoutineVM.workout.sets.count > 1 {
-                                    vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                        editRoutineVM.workout.sets = $0
-                                    }
+        HStack {
+            RoundedRectangle(cornerRadius: 4)
+                .frame(width: UIScreen.getWidth(106), height: UIScreen.getHeight(36))
+                .foregroundColor(.gray_700)
+                .overlay {
+                    HStack {
+                        Button {
+                            if editRoutineVM.workout.sets.count > 1 {
+                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                    editRoutineVM.workout.sets = $0
                                 }
-                            } label: {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
-                                    .overlay {
-                                        Image(systemName: "minus")
-                                            .foregroundColor(.label_900)
-                                    }
                             }
-                            .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
-                            .disabled(editRoutineVM.workout.sets.count <= 1)
-                            
-                            Text("\(editRoutineVM.workout.sets.count)세트")
-                                .foregroundColor(.label_700)
-                            
-                            Button {
-                                if editRoutineVM.workout.sets.count < 10 {
-                                    vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                        editRoutineVM.workout.sets = $0
-                                    }
+                        } label: {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                .overlay {
+                                    Image(systemName: "minus")
+                                        .foregroundColor(.label_900)
                                 }
-                            } label: {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
-                                    .overlay {
-                                        Image(systemName: "plus")
-                                            .foregroundColor(.label_900)
-                                    }
-                            }
-                            .disabled(editRoutineVM.workout.sets.count >= 10)
                         }
-                        .font(.body())
+                        .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
+                        .disabled(editRoutineVM.workout.sets.count <= 1)
+                        
+                        Text("\(editRoutineVM.workout.sets.count)세트")
+                            .foregroundColor(.label_700)
+                        
+                        Button {
+                            if editRoutineVM.workout.sets.count < 10 {
+                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                    editRoutineVM.workout.sets = $0
+                                }
+                            }
+                        } label: {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
+                                .overlay {
+                                    Image(systemName: "plus")
+                                        .foregroundColor(.label_900)
+                                }
+                        }
+                        .disabled(editRoutineVM.workout.sets.count >= 10)
                     }
-                Spacer()
-            }
-            .padding(.bottom)
-            .padding(.horizontal)
+                    .font(.body())
+                }
+            Spacer()
+        }
+        .padding(.bottom)
+        .padding(.horizontal)
     }
     
     @ViewBuilder
@@ -533,7 +526,7 @@ struct RecordingWorkoutView: View {
                                             return
                                         }
                                     }
-                                     
+                                    
                                     vm.finishWorkout(routineId: routineId)
                                 }
                             }

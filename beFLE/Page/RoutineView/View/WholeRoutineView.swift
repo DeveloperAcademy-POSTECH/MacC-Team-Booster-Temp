@@ -19,7 +19,6 @@ enum WorkoutPart: String, CaseIterable {
 struct WholeRoutineView: View {
     let influencerId: Int
     @StateObject var vm = WholeRoutineViewModel()
-    @EnvironmentObject var appState: AppState
     
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -123,7 +122,6 @@ struct WholeRoutineView: View {
                         NavigationLink {
                             RoutineInformationView(routineId: some.routineId)
                                 .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
-                                .environmentObject(appState)
                         } label: {
                             TodayWorkoutCell(routine: some)
                                 .padding(.vertical, 8)

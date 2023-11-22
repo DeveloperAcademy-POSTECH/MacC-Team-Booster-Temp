@@ -25,7 +25,6 @@
 		0D5851582AE4F34400C8875A /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5851572AE4F34400C8875A /* WorkoutCell.swift */; };
 		0DA327582AE1321600319BAB /* beFLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327572AE1321600319BAB /* beFLEApp.swift */; };
 		0DA3275A2AE1321600319BAB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327592AE1321600319BAB /* MainView.swift */; };
-		0DA3275C2AE1321700319BAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3275B2AE1321700319BAB /* Assets.xcassets */; };
 		0DA3275F2AE1321700319BAB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3275E2AE1321700319BAB /* Preview Assets.xcassets */; };
 		0DA327682AE1359B00319BAB /* Ext+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327672AE1359B00319BAB /* Ext+Color.swift */; };
 		0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327692AE13BE000319BAB /* Ext+Font.swift */; };
@@ -99,6 +98,7 @@
 		F8DACB732B0422D500C3E95C /* RecordingWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB722B0422D500C3E95C /* RecordingWorkoutViewModel.swift */; };
 		F8DACB752B04294500C3E95C /* RecordingRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB742B04294500C3E95C /* RecordingRoutineView.swift */; };
 		F8DFEAEC2AFA190F00BC721B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */; };
+		F8EBA1D62B0DDB710097FFDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3275B2AE1321700319BAB /* Assets.xcassets */; };
 		F8F3A1432AFA35210068F885 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13D2AFA35210068F885 /* FSCalendarView.swift */; };
 		F8F3A1442AFA35210068F885 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13E2AFA35210068F885 /* CalenderView.swift */; };
 		F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F3A13F2AFA35210068F885 /* RecordView.swift */; };
@@ -636,6 +636,7 @@
 			files = (
 				0D5851552AE2F03700C8875A /* Pretendard-SemiBold.otf in Resources */,
 				0D5851502AE2EFA700C8875A /* Pretendard-ExtraLight.otf in Resources */,
+				F8EBA1D62B0DDB710097FFDC /* Assets.xcassets in Resources */,
 				0D5851532AE2EFAD00C8875A /* Pretendard-Bold.otf in Resources */,
 				0D5851512AE2EFA800C8875A /* Pretendard-Light.otf in Resources */,
 				0D5851522AE2EFAA00C8875A /* Pretendard-ExtraBold.otf in Resources */,
@@ -643,7 +644,6 @@
 				0DA3275F2AE1321700319BAB /* Preview Assets.xcassets in Resources */,
 				0D5851542AE2EFAF00C8875A /* Pretendard-Black.otf in Resources */,
 				0D58514E2AE2EFA200C8875A /* Pretendard-Regular.otf in Resources */,
-				0DA3275C2AE1321700319BAB /* Assets.xcassets in Resources */,
 				0D58514F2AE2EFA400C8875A /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
