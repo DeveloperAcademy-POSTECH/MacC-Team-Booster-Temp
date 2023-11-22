@@ -53,10 +53,11 @@ struct SingleInfluencerRoutineView: View {
                 .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(720))
                 .clipped()
         } placeholder: {
-            VStack(alignment: .center) {
+            VStack() {
                 LottieView()
-                    .padding(40)
+                    .padding(65)
                 Spacer()
+                    .frame(height: UIScreen.getHeight(390))
             }
         }
     }
