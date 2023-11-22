@@ -18,7 +18,6 @@ struct EditRecordingRoutineView: View {
     var body: some View {
         VStack {
             WorkoutList
-//            WorkoutStartButton
         }
         .navigationTitle("운동 루틴 편집")
         .toolbar {
@@ -127,19 +126,6 @@ struct EditRecordingRoutineView: View {
             }
         }
         .padding(.vertical, 4)
-    }
-    
-    var WorkoutStartButton: some View {
-        NavigationLink {
-            RecordingWorkoutView(routineId: routineId, exerciseId: editRoutineVM.routine.exercises.isEmpty ? 0 : editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id, burnedKCalories: burnedKCalories)
-                .environmentObject(editRoutineVM)
-        } label: {
-            FloatingButton(backgroundColor: .green_main) {
-                Text("시작")
-                    .foregroundColor(.gray_900)
-                    .font(.button1())
-            }
-        }
     }
     
     @ViewBuilder
