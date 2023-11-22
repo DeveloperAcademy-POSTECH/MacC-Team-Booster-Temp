@@ -8,16 +8,23 @@
 import SwiftUI
 import AuthenticationServices
 
+class OnboardingViewModel: ObservableObject {
+    static let shared = OnboardingViewModel()
+    
+    @Published var isPass = false
+}
+
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
-    @State var isPass = false
+    @StateObject var vm = OnboardingViewModel.shared
+    
     @State var isLoading: Bool = true
     @StateObject var appState = AppState()
     @StateObject var profileViewModel = ProfileViewModel()
     
     var body: some View {
         ZStack{
-            if !isPass {
+            if !vm.isPass {
                 // 로그인 전
                 NavigationStack {
                     Onboarding
@@ -141,7 +148,7 @@ struct OnboardingView: View {
             switch $0 {
             case .success(let token):
                 saveUser(accessToken: token.accessToken, refreshToken: token.refreshToken)
-                self.isPass = true
+                vm.isPass = true
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -154,7 +161,7 @@ struct OnboardingView: View {
             switch $0 {
             case .success(let token):
                 saveUser(accessToken: token.accessToken, refreshToken: token.refreshToken)
-                self.isPass = true
+                vm.isPass = true
             case .failure(let error):
                 print(error.localizedDescription)
             }

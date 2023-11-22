@@ -112,7 +112,7 @@ struct ManageProfileView: View {
                 print("primary button pressed")
             }
             let secondButton = Alert.Button.default(Text("탈퇴")) {
-                print("secondary button pressed")
+                vm.withdrawAccount()
             }
             return Alert(title: Text("탈퇴하시겠습니까"),
                          message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
@@ -134,7 +134,7 @@ struct ManageProfileView: View {
         .alert("로그아웃하시겠습니까?", isPresented: $vm.loggingOutSheet) {
             Button("취소") { }
             Button{
-                
+                vm.logout()
             } label: {
                 Text("로그아웃")
                     .bold()
