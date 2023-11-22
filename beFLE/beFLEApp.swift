@@ -1,6 +1,6 @@
 //
-//  Mac_HealthApp.swift
-//  Mac_Health
+//  beFLEApp.swift
+//  beFLE
 //
 //  Created by 최진용 on 2023/10/19.
 //

@@ -1,6 +1,6 @@
 //
 //  RecordView.swift
-//  Mac_Health
+//  beFLE
 //
 //  Created by 송재훈 on 10/26/23.
 //

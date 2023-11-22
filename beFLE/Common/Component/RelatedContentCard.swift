@@ -1,6 +1,6 @@
 //
 //  RelatedContentCard.swift
-//  Mac_Health
+//  beFLE
 //
 //  Created by 송재훈 on 2023/10/22.
 //

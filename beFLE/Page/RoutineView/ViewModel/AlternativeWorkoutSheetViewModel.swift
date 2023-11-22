@@ -1,6 +1,6 @@
 //
 //  AlternativeWorkoutSheetViewModel.swift
-//  Mac_Health
+//  beFLE
 //
 //  Created by 송재훈 on 11/14/23.
 //
