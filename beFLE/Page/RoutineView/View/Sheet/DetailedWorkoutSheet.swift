@@ -100,6 +100,7 @@ struct DetailedWorkoutSheet: View {
             HStack{
                 Text("\(vm.workout.tip)\n")
                     .multilineTextAlignment(.leading)
+                    .allowsTightening(true)
                     .lineSpacing(7)
                     .foregroundColor(.label_900)
                     .font(.body())

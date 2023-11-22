@@ -406,6 +406,7 @@ struct MockUpWorkoutSetCard: View {
                         .keyboardType(.numberPad)
                         .foregroundColor(.label_500)
                         .multilineTextAlignment(.trailing)
+                    
                         .padding(.trailing)
                 }
             Text("kg")

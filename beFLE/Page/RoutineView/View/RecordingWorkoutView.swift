@@ -329,6 +329,7 @@ struct RecordingWorkoutView: View {
                     .font(.title1())
                     .foregroundColor(.label_900)
                     .multilineTextAlignment(.leading)
+                    .allowsTightening(true)
                 Spacer()
             }
         }
