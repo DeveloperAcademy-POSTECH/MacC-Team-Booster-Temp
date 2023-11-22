@@ -17,7 +17,8 @@ class RoutineViewModel: ObservableObject {
         #if DEBUG
         let date = "2023-11-22"
         #else
-        let date = dateFormatter.string(from: Date())
+        let date = "2023-11-22"
+//        let date = dateFormatter.string(from: Date())
         #endif
         
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {

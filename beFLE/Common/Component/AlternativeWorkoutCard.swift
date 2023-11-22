@@ -24,7 +24,7 @@ struct AlternativeWorkoutCard: View {
                             AsyncImage(url: URL(string: alternativeWorkout.exerciseImageUrl)) { image in
                                 image
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
                             } placeholder: {
                                 LottieView()
                                     .padding(5)
