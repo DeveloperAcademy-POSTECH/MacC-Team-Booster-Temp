@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @StateObject var vm = ProfileViewModel()
+    @ObservedObject var vm: ProfileViewModel
     @Environment(\.dismiss) var dismiss
     @State private var mailData = ComposeMailData(subject: "비플 문의하기",
                                                   recipients: ["pmchung423@gmail.com"],
@@ -195,8 +195,8 @@ var useInformation : some View {
 }
 }
 
-#Preview {
-    NavigationStack{
-        ProfileView()
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        ProfileView()
+//    }
+//}
