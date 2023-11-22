@@ -7,19 +7,9 @@
 
 import SwiftUI
 
-class AppReset: ObservableObject {
-    static let shared = AppReset()
-    
-    @Published var tabSelection = 0
-    @Published var routineUUID = UUID()
-    @Published var searchUUID = UUID()
-    @Published var recordUUID = UUID()
-    @Published var profileUUID = UUID()
-}
 // TODO: 메인 뷰 모델 추가
 struct MainView: View {
-    @StateObject var appReset = AppReset.shared
-    @StateObject var vm = MainViewModel()
+    @StateObject var vm = MainViewModel.shared
     @State var loggedIn = true
     @State var subscribed = false
     
@@ -31,7 +21,7 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            TabView(selection: $appReset.tabSelection) {
+            TabView(selection: $vm.tabSelection) {
                 RoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
@@ -64,7 +54,7 @@ struct MainView: View {
             .environmentObject(vm)
             .tint(.label_900)
         }
-        .id(appReset.routineUUID)
+        .id(vm.navigationUUID)
     }
 }
 

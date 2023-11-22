@@ -17,7 +17,7 @@ struct OnboardingView: View {
         
         if !isPass {
             // 로그인 전
-            NavigationView() {
+            NavigationStack() {
                 Onboarding
                     .onAppear {
                         validateUser()
