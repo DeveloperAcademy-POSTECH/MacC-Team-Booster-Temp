@@ -106,6 +106,10 @@ struct WorkoutSetCard: View {
                 EmptyCheckButton()
             }
         }
+        .onAppear {
+            debouncedStream.repInput = set.reps
+            debouncedStream.weightInput = set.weight
+        }
         .font(.body())
         .padding(.horizontal)
         .padding(.horizontal, 10)
