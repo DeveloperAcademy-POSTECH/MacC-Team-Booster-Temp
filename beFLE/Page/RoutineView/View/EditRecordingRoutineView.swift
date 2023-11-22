@@ -102,6 +102,7 @@ struct EditRecordingRoutineView: View {
                         Text(editRoutineVM.routine.exercises[index].name)
                             .foregroundColor(.label_900)
                             .font(.headline1())
+                            .multilineTextAlignment(.leading)
                         HStack {
                             Text("\(editRoutineVM.routine.exercises[index].numberOfSet)세트")
                                 .foregroundColor(.label_700)

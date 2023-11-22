@@ -114,6 +114,7 @@ struct EditRoutineView: View {
                         Text(vm.routine.exercises[index].name)
                             .foregroundColor(.label_900)
                             .font(.headline1())
+                            .multilineTextAlignment(.leading)
                         HStack(spacing: 3){
                             Text("\(vm.routine.exercises[index].numberOfSet)세트")
                                 .foregroundColor(.label_700)
