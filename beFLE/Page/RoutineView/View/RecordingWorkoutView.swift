@@ -401,13 +401,16 @@ struct RecordingWorkoutView: View {
                                         Spacer()
                                     }
                                     .padding(.bottom)
-                                    Text(editRoutineVM.workout.tip)
-                                        .font(.body())
-                                        .foregroundColor(.label_900)
-                                        .padding(.horizontal, 1.9)
-                                        .lineSpacing(6.0)
-                                        .multilineTextAlignment(.leading)
-                                        .allowsTightening(true)
+                                    HStack{
+                                        Text(editRoutineVM.workout.tip)
+                                            .font(.body())
+                                            .foregroundColor(.label_900)
+                                            .padding(.horizontal, 1.9)
+                                            .lineSpacing(6.0)
+                                            .multilineTextAlignment(.leading)
+                                            .allowsTightening(true)
+                                        Spacer()
+                                    }
                                         .frame(width: .infinity)
                                 }
                             }
