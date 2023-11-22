@@ -19,7 +19,6 @@ enum WorkoutPart: String, CaseIterable {
 struct WholeRoutineView: View {
     let influencerId: Int
     @StateObject var vm = WholeRoutineViewModel()
-    
     @Environment(\.dismiss) var dismiss: DismissAction
     
     // TODO: 컨벤션 맞춰 컴포넌트 명 변경

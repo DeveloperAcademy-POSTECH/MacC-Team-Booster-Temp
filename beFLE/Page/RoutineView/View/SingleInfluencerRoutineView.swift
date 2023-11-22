@@ -49,8 +49,9 @@ struct SingleInfluencerRoutineView: View {
         AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
             image
                 .resizable()
-                .scaledToFit()
-//                .frame(width: UIScreen.getWidth(390))
+                .scaledToFill()
+                .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(720))
+                .clipped()
         } placeholder: {
             VStack(alignment: .center) {
                 Image(systemName: "arrow.triangle.2.circlepath")

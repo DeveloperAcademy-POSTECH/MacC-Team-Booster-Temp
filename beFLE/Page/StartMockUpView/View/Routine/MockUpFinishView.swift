@@ -13,7 +13,6 @@ struct MockUpFinishView: View {
     @Binding var elapsedTime: TimeInterval
     @Binding var tabSelection: Int
     @Environment(\.dismiss) var dismiss: DismissAction
-    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack{
@@ -74,10 +73,7 @@ struct MockUpFinishView: View {
                 Spacer()
                     .frame(height: 115)
                 Button{
-                        tabSelection = 3
-                    DispatchQueue.main.async {
-                            appState.rootViewId = UUID()
-                        }
+                    //TODO: root 네비게이션으로 연결 대체
                 } label: {
                     FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
                             .foregroundColor(.gray_900)
@@ -87,12 +83,8 @@ struct MockUpFinishView: View {
                 }
                 
                 Button{
-                        tabSelection = 4
-
-                    DispatchQueue.main.async {
-                            appState.rootViewId = UUID()
-                        }
-                    print(tabSelection)
+                    //TODO: root 네비게이션으로 연결 대체
+                    dismiss()
                 } label: {
                     FloatingButton(backgroundColor: .gray_600) {
                         Text("로그인")
@@ -129,6 +121,6 @@ struct MockUpFinishView: View {
     }
 }
 
-//#Preview {
-//    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
-//}
+#Preview {
+    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
+}
