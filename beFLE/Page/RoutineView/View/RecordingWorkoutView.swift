@@ -355,7 +355,7 @@ struct RecordingWorkoutView: View {
                     HStack {
                         Spacer()
                         Image(systemName: "chevron.backward")
-                            .foregroundColor(.label_500)
+                            .foregroundColor(Color(hex: "696969"))
                         Button {
                             withAnimation {
                                 vm.tabSelection = 1
@@ -363,7 +363,7 @@ struct RecordingWorkoutView: View {
                         } label: {
                             RoundedShape(corners: [.topLeft, .bottomLeft])
                                 .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
-                                .foregroundColor(.fill_1)
+                                .foregroundColor(.gray_700)
                                 .overlay {
                                     Text("팁")
                                         .foregroundColor(.green_main)
@@ -379,7 +379,7 @@ struct RecordingWorkoutView: View {
             
             ZStack {
                 VStack{
-                    RoundedRectangle(cornerRadius: 7.2)
+                    RoundedRectangle(cornerRadius: 8)
                         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                         .foregroundColor(.gray_800)
                         .overlay {
