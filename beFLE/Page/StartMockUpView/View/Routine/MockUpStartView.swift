@@ -1,9 +1,9 @@
-////
-////  MockUpStartView.swift
-////  Mac_Health
-////
-////  Created by 정회승 on 11/13/23.
-////
+//
+//  MockUpStartView.swift
+//  Mac_Health
+//
+//  Created by 정회승 on 11/13/23.
+//
 //
 //import SwiftUI
 //

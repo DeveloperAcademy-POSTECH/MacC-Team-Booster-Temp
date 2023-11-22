@@ -129,6 +129,6 @@ struct MockUpFinishView: View {
     }
 }
 
-//#Preview {
-//    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
-//}
+#Preview {
+    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
+}
