@@ -134,7 +134,7 @@ struct ManageProfileView: View {
         .alert("로그아웃하시겠습니까?", isPresented: $vm.loggingOutSheet) {
             Button("취소") { }
             Button{
-                
+                vm.logout()
             } label: {
                 Text("로그아웃")
                     .bold()
