@@ -74,7 +74,7 @@ enum GeneralAPI {
     
     // MARK: user-set-controller
     /// 세트 조정
-    case PatchUsersRoutinesExercisesSets(routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int)
+    case PatchUsersRoutinesExercisesSets(routineId: Int, exerciseId: Int, setId: Int, weight: Int?, reps: Int)
     
     /// 세트 완료
     case PatchUsersRoutinesExercisesSetsFinish(routineId: Int, exerciseId: Int, setId: Int)
