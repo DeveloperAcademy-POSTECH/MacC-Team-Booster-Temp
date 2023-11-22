@@ -128,8 +128,8 @@ struct MockUpProfileView: View {
     }
 }
 
-#Preview {
-    NavigationStack{
-        ProfileView()
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        MockUpProfileView()
+//    }
+//}
