@@ -38,5 +38,20 @@ class ProfileViewModel: ObservableObject {
     func FetchName(name: String) {
         self.nickname = name
     }
+    
+    func withdrawAccount() {
+        guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
+        guard let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") else { return }
+        
+        // TODO: nil 리스폰스 처리
+        GeneralAPIManger.request(for: .PostUsersMe(accessToken: accessToken, refreshToken: refreshToken), type: ResponsePostLogin.self ) {
+            switch $0 {
+            case .success:
+                print("회원 탈퇴")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
