@@ -344,10 +344,8 @@ struct RecordingWorkoutView: View {
                             .resizable()
                             .scaledToFit()
                     } placeholder: {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.gray_600)
+                        LottieView()
+                            .padding(20)
                     }
                     .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                     .padding(.horizontal)
@@ -389,10 +387,8 @@ struct RecordingWorkoutView: View {
                                         image
                                             .resizable()
                                     } placeholder: {
-                                        Image(systemName: "arrow.triangle.2.circlepath")
-                                            .resizable()
-                                            .foregroundColor(.gray_600)
-                                            .padding()
+                                        LottieView()
+                                            .padding(20)
                                     }
                                     .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
                                     .padding(.horizontal, 5)

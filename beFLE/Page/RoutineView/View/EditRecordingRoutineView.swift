@@ -14,6 +14,7 @@ struct EditRecordingRoutineView: View {
     
     
     @Environment(\.dismiss) var dismiss: DismissAction
+    var burnedKCalories: Int
     var body: some View {
         VStack {
             WorkoutList
@@ -88,11 +89,8 @@ struct EditRecordingRoutineView: View {
                                 image
                                     .resizable()
                             } placeholder: {
-                                Image(systemName: "arrow.triangle.2.circlepath")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(.label_400)
-                                    .padding()
+                                LottieView()
+                                    .padding(5)
                             }
                         }
                     

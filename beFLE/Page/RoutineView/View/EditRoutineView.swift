@@ -101,11 +101,8 @@ struct EditRoutineView: View {
                                 image
                                     .resizable()
                             } placeholder: {
-                                Image(systemName: "arrow.triangle.2.circlepath")
-                                    .scaledToFit()
-                                    .scaleEffect(CGSize(width: 1.0, height: 1.0))
-                                    .foregroundColor(.label_400)
-                                    .padding()
+                                LottieView()
+                                    .padding(5)
                             }
                         }
                     

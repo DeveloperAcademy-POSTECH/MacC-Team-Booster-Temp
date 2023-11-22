@@ -43,7 +43,7 @@ struct RecordingRoutineView: View {
     
     var EditButton: some View {
         NavigationLink {
-            EditRecordingRoutineView(routineId: routineId)
+            EditRecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
                 .environmentObject(editRoutineVM)
         } label: {
             Text("편집")
@@ -86,6 +86,7 @@ struct RecordingRoutineView: View {
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .foregroundColor(.fill_1)
                 .overlay {
+                    //TODO:  대체 운동 이미지 로딩
                     Image("CloseGripLatPullDown")
                         .resizable()
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))

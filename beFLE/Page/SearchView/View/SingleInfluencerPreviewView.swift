@@ -61,14 +61,16 @@ struct SingleInfluencerPreviewView: View {
                     HStack {
                         Spacer()
                         AsyncImage(url: URL(string: influencer.multiExploreImageUrl)) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
+                           
+                            HStack {
+                                Spacer()
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                            }
                         } placeholder: {
-                            Image(systemName: "arrow.triangle.2.circlepath")
-                                .resizable()
-                                .scaledToFit()
-                                .padding(50)
+                            LottieView()
+                                .padding(40)
                         }
                         
                     }

@@ -21,10 +21,8 @@ struct WorkoutCell: View {
                             .resizable()
                             .scaledToFit()
                     } placeholder: {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .scaledToFit()
-                            .scaleEffect(CGSize(width: 1.0, height: 1.0))
-                            .foregroundColor(.label_400)
+                        LottieView()
+                            .padding(5)
                     }
                 }
             

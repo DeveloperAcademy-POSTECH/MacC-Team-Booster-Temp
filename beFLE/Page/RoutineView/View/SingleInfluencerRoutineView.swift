@@ -54,10 +54,8 @@ struct SingleInfluencerRoutineView: View {
                 .clipped()
         } placeholder: {
             VStack(alignment: .center) {
-                Image(systemName: "arrow.triangle.2.circlepath")
-                    .scaledToFit()
-                    .scaleEffect(CGSize(width: 2.0, height: 2.0))
-                    .padding(.top, 200)
+                LottieView()
+                    .padding(40)
                 Spacer()
             }
         }
