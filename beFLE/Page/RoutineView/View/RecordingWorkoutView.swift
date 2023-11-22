@@ -183,6 +183,7 @@ struct RecordingWorkoutView: View {
             }
             .onAppear {
                 vm.start()
+                vm.currentSet = 0
                 editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
             }
             .onDisappear{
@@ -377,7 +378,7 @@ struct RecordingWorkoutView: View {
             
             ZStack {
                 VStack{
-                    RoundedRectangle(cornerRadius: 7.2)
+                    RoundedRectangle(cornerRadius: 8)
                         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                         .foregroundColor(.gray_800)
                         .overlay {
@@ -406,21 +407,10 @@ struct RecordingWorkoutView: View {
                                             .allowsTightening(true)
                                         Spacer()
                                     }
-                                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
-                                    .padding(.horizontal, 5)
-                                    .padding(.top, 4)
-                                    Spacer()
+                                        .frame(width: .infinity)
                                 }
-                                Spacer()
-                                
-                                Text(editRoutineVM.workout.tip)
-                                    .font(.body())
-                                    .foregroundColor(.label_900)
-                                    .padding(.horizontal, 1.9)
-                                    .lineSpacing(6.0)
-                                Spacer()
-                                Spacer()
                             }
+                            .scrollIndicators(.hidden)
                             .padding()
                         }
                     Spacer()
