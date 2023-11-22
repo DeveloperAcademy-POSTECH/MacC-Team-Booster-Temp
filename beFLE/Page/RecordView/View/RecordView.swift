@@ -42,7 +42,7 @@ struct RecordView: View {
     }
     
     var RecordCell: some View {
-        ForEach(vm.records.records.filter { $0.date == vm.selectedDate }, id: \.self) { record in
+        ForEach(vm.records.records.filter { $0.finishDate == vm.selectedDate }, id: \.self) { record in
             NavigationLink {
                 RecordSpecificView(record: record)
             } label: {

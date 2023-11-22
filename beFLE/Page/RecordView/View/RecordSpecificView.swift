@@ -30,7 +30,7 @@ struct RecordSpecificView: View {
             }
             .padding()
         }
-        .navigationBarTitle(vm.dateFormat(from: record.date), displayMode: .inline)
+        .navigationBarTitle(vm.dateFormat(from: record.finishDate), displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton

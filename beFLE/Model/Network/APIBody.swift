@@ -210,7 +210,8 @@ struct RecordedExercise: Codable, Hashable {
 }
 
 struct Records: Codable, Hashable {
-    var date: String
+    var finishDate: String
+    var uploadDate: String
     var time: String
     var part: String
     var numberOfExercise: Int
