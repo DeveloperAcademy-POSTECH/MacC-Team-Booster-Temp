@@ -77,7 +77,7 @@ struct RecordingRoutineView: View {
                 }
             }
         }
-        .padding()
+        .padding([.top, .horizontal])
     }
     
     func WorkoutCell(index: Int) -> some View {

@@ -70,7 +70,7 @@ struct EditRecordingRoutineView: View {
                 }
             }
         }
-        .padding()
+        .padding([.top, .horizontal])
     }
     
     func WorkoutListCell(index: Int) -> some View {
