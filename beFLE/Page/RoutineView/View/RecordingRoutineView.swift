@@ -43,7 +43,7 @@ struct RecordingRoutineView: View {
     
     var EditButton: some View {
         NavigationLink {
-            EditRecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
+            EditRecordingRoutineView(routineId: routineId)
                 .environmentObject(editRoutineVM)
         } label: {
             Text("편집")
