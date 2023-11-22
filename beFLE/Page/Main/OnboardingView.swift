@@ -42,8 +42,6 @@ struct OnboardingView: View {
                     }
             }
         }
-        
-        
     }
     
     var Onboarding: some View {
