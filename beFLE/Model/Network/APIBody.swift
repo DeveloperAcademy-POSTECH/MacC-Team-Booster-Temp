@@ -166,13 +166,13 @@ struct ResponseGetUsersInfluencersRoutines: Codable {
 // MARK: user-set-conteroller
 /// PatchUsersRoutinesExercisesSets
 struct RequestPatchUsersRoutinesExercisesSets: Codable {
-    var weight: Int
+    var weight: Int? = nil
     var reps: Int
 }
 
 struct ResponsePatchUsersRoutinesExercisesSets: Codable {
     var reps: Int
-    var weight: Int
+    var weight: Int?
     var isDone: Bool
 }
 
