@@ -76,6 +76,7 @@ struct RecordingRoutineView: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
         }
         .padding([.top, .horizontal])
     }

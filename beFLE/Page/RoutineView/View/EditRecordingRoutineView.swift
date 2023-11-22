@@ -69,6 +69,7 @@ struct EditRecordingRoutineView: View {
                     WorkoutListCell(index: index)
                 }
             }
+            .scrollIndicators(.hidden)
         }
         .padding([.top, .horizontal])
     }
