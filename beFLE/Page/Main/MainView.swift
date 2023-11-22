@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var vm = MainViewModel.shared
-    @State var loggedIn = true
     @State var subscribed = false
     @EnvironmentObject var appState: AppState
     
@@ -36,7 +35,7 @@ struct MainView: View {
                     }
                     .tag(1)
                 
-                RecordView(loggedIn: $loggedIn)
+                RecordView()
                     .tabItem {
                         Image(systemName: "list.clipboard.fill")
                         Text("기록")

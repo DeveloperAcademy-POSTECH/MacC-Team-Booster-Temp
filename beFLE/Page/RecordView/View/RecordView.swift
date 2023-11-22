@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RecordView: View {
     @StateObject var vm = RecordViewModel()
-    @Binding var loggedIn: Bool
     
     var body: some View {
         ZStack {
@@ -19,7 +18,6 @@ struct RecordView: View {
                 NavigationTitle
                 Calender
                 RecordCell
-                loggedIn ? nil : beforeLoginText
                 Spacer()
             }
         }
@@ -81,54 +79,6 @@ struct RecordView: View {
                 }
         }
         .padding(.bottom, 5)
-    }
-    
-    var beforeLoginText: some View {
-        VStack{
-            NavigationLink {
-                MockUpRecordExampleView()
-            } label: {
-                RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(.fill_1)
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
-                    .overlay {
-                        VStack {
-                            HStack {
-                                Text("정회승")
-                                    .font(.headline2())
-                                    .foregroundColor(.label_900)
-                                Spacer()
-                                
-                                Text("52분 12초")
-                                    .font(.headline2())
-                                    .foregroundColor(.label_900)
-                            }
-                            Spacer()
-                            HStack {
-                                Text("어깨,가슴,삼두")
-                                    .font(.body2())
-                                    .foregroundColor(.label_500)
-                                Spacer()
-                                
-                                Text("10040kg")
-                                    .font(.body2())
-                                    .foregroundColor(.label_900)
-                            }
-                        }
-                        .padding()
-                    }
-            }
-            
-            HStack{
-                Image(systemName: "info.circle")
-                Text("운동기록 예시입니다")
-                Spacer()
-            }
-            .padding(.horizontal, 25)
-            .padding(.vertical, 5)
-            .font(.caption())
-            .foregroundColor(.label_700)
-        }
     }
 }
 

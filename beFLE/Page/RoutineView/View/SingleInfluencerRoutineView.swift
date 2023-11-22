@@ -50,7 +50,8 @@ struct SingleInfluencerRoutineView: View {
             image
                 .resizable()
                 .scaledToFill()
-//                .frame(width: UIScreen.getWidth(390))
+                .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(720))
+                .clipped()
         } placeholder: {
             VStack(alignment: .center) {
                 Image(systemName: "arrow.triangle.2.circlepath")
