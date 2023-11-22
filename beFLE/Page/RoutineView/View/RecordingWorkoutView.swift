@@ -356,7 +356,7 @@ struct RecordingWorkoutView: View {
                     HStack {
                         Spacer()
                         Image(systemName: "chevron.backward")
-                            .foregroundColor(.label_500)
+                            .foregroundColor(Color(hex: "696969"))
                         Button {
                             withAnimation {
                                 vm.tabSelection = 1
@@ -364,7 +364,7 @@ struct RecordingWorkoutView: View {
                         } label: {
                             RoundedShape(corners: [.topLeft, .bottomLeft])
                                 .frame(width: UIScreen.getWidth(43), height: UIScreen.getHeight(68))
-                                .foregroundColor(.fill_1)
+                                .foregroundColor(.gray_700)
                                 .overlay {
                                     Text("팁")
                                         .foregroundColor(.green_main)
@@ -380,36 +380,42 @@ struct RecordingWorkoutView: View {
             
             ZStack {
                 VStack{
-                    RoundedRectangle(cornerRadius: 7.2)
+                    RoundedRectangle(cornerRadius: 8)
                         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                         .foregroundColor(.gray_800)
                         .overlay {
-                            VStack {
-                                HStack {
-                                    AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
-                                        image
-                                            .resizable()
-                                    } placeholder: {
-                                        Image(systemName: "arrow.triangle.2.circlepath")
-                                            .resizable()
-                                            .foregroundColor(.gray_600)
-                                            .padding()
+                            ScrollView{
+                                VStack {
+                                    HStack {
+                                        AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
+                                            image
+                                                .resizable()
+                                        } placeholder: {
+                                            Image(systemName: "arrow.triangle.2.circlepath")
+                                                .resizable()
+                                                .foregroundColor(.gray_600)
+                                                .padding()
+                                        }
+                                        .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                        .padding(.horizontal, 5)
+                                        .padding(.top, 4)
+                                        Spacer()
                                     }
-                                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
-                                    .padding(.horizontal, 5)
-                                    .padding(.top, 4)
-                                    Spacer()
+                                    .padding(.bottom)
+                                    HStack{
+                                        Text(editRoutineVM.workout.tip)
+                                            .font(.body())
+                                            .foregroundColor(.label_900)
+                                            .padding(.horizontal, 1.9)
+                                            .lineSpacing(6.0)
+                                            .multilineTextAlignment(.leading)
+                                            .allowsTightening(true)
+                                        Spacer()
+                                    }
+                                        .frame(width: .infinity)
                                 }
-                                Spacer()
-                                
-                                Text(editRoutineVM.workout.tip)
-                                    .font(.body())
-                                    .foregroundColor(.label_900)
-                                    .padding(.horizontal, 1.9)
-                                    .lineSpacing(6.0)
-                                Spacer()
-                                Spacer()
                             }
+                            .scrollIndicators(.hidden)
                             .padding()
                         }
                     Spacer()
