@@ -87,7 +87,7 @@ struct EditRecordingRoutineView: View {
                             AsyncImage(url: URL(string: editRoutineVM.routine.exercises[index].exerciseImageUrl)) { image in
                                 image
                                     .resizable()
-                                    .scaledToFill()
+                                    .scaledToFit()
                             } placeholder: {
                                 LottieView()
                                     .padding(5)
@@ -162,5 +162,5 @@ struct EditRecordingRoutineView: View {
 }
 
 //#Preview {
-//    EditRecordingRoutineView(routineId: 1)
+//    EditRecordingRoutineView(routineId: 1, burnedKCalories: 30)
 //}

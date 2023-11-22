@@ -49,14 +49,15 @@ struct SingleInfluencerRoutineView: View {
         AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
             image
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
                 .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(720))
                 .clipped()
         } placeholder: {
             VStack(alignment: .center) {
                 LottieView()
-                    .padding(40)
+                    .padding(50)
                 Spacer()
+                    .frame(height: UIScreen.getHeight(300))
             }
         }
     }

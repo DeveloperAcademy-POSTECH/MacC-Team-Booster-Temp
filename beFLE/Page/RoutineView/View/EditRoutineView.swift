@@ -100,7 +100,7 @@ struct EditRoutineView: View {
                             AsyncImage(url: URL(string: vm.routine.exercises[index].exerciseImageUrl)) { image in
                                 image
                                     .resizable()
-                                    .scaledToFill()
+                                    .scaledToFit()
                             } placeholder: {
                                 LottieView()
                                     .padding(5)

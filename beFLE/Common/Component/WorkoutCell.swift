@@ -19,7 +19,7 @@ struct WorkoutCell: View {
                     AsyncImage(url: URL(string: exercise.exerciseImageUrl)) { image in
                         image
                             .resizable()
-                            .scaledToFill()
+                            .scaledToFit()
                     } placeholder: {
                         LottieView()
                             .padding(5)

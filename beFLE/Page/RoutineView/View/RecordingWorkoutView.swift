@@ -111,6 +111,10 @@ struct RecordingWorkoutView: View {
                                                     vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
                                                         editRoutineVM.workout.sets[vm.currentSet].isDone = true
                                                         
+                                                        withAnimation {
+                                                            vm.tabSelection = 0
+                                                        }
+                                                        
                                                         editRoutineVM.currentWorkoutIndex += 1
                                                         editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
                                                         if editRoutineVM.currentWorkoutIndex != editRoutineVM.routine.exercises.count {
@@ -121,6 +125,7 @@ struct RecordingWorkoutView: View {
                                             }
                                             else {
                                                 vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
+
                                                     editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
                                                     if $0.weight != nil {
                                                         editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
@@ -343,7 +348,7 @@ struct RecordingWorkoutView: View {
                     AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
                         image
                             .resizable()
-                            .scaledToFill()
+                            .scaledToFit()
                     } placeholder: {
                         LottieView()
                             .padding(20)
@@ -388,7 +393,7 @@ struct RecordingWorkoutView: View {
                                         AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
                                             image
                                                 .resizable()
-                                                .scaledToFill()
+                                                .scaledToFit()
                                         } placeholder: {
                                             LottieView()
                                         }

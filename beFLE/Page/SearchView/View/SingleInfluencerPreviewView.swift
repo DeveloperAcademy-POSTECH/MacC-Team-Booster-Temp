@@ -66,7 +66,7 @@ struct SingleInfluencerPreviewView: View {
                                 Spacer()
                                 image
                                     .resizable()
-                                    .scaledToFill()
+                                    .scaledToFit()
                             }
                         } placeholder: {
                             LottieView()
