@@ -19,6 +19,8 @@ struct MockUpSearchView: View {
     )
     @State private var showMailView = false
     @Binding var tabSelection: Int
+    @EnvironmentObject var appState: AppState
+    
     var body: some View {
         
         //둘러보기 1인용

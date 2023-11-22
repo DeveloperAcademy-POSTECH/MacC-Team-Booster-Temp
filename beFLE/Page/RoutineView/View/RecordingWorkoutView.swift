@@ -327,6 +327,7 @@ struct RecordingWorkoutView: View {
                 Text(editRoutineVM.workout.name)
                     .font(.title1())
                     .foregroundColor(.label_900)
+                    .multilineTextAlignment(.leading)
                 Spacer()
             }
         }

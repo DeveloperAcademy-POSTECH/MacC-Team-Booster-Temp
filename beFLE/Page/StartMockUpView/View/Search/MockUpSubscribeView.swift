@@ -12,7 +12,6 @@ struct MockUpSubscribeView: View {
     @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
     @State var subscribingSheet = false
-    @State var loggedIn: Bool = true
     @Binding var tabSelection: Int
     @Environment(\.dismiss) var dismiss: DismissAction
     
@@ -216,7 +215,7 @@ struct MockUpSubscribeView: View {
     @ViewBuilder
     var subscribeButton: some View {
         Button {
-            dismiss()
+            
         } label: {
             FloatingButton(backgroundColor: .green_main) {Text("로그인하고 구독하기")
                     .foregroundColor(.gray_900)

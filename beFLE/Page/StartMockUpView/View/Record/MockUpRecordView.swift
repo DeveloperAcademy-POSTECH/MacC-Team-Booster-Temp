@@ -1,13 +1,13 @@
 //
-//  RecordView.swift
+//  MockUpRecordView.swift
 //  beFLE
 //
-//  Created by 송재훈 on 10/26/23.
+//  Created by 정회승 on 11/22/23.
 //
 
 import SwiftUI
 
-struct RecordView: View {
+struct MockUpRecordView: View {
     @StateObject var vm = RecordViewModel()
     
     var body: some View {
@@ -18,6 +18,7 @@ struct RecordView: View {
                 NavigationTitle
                 Calender
                 RecordCell
+                beforeLoginText
                 Spacer()
             }
         }
@@ -36,7 +37,7 @@ struct RecordView: View {
     }
     
     var Calender: some View {
-        CalendarView(selectedDate: $vm.selectedDate, recordedDate: $vm.recordedDate)
+        MockUpCalendarView(selectedDate: $vm.selectedDate, recordedDate: $vm.recordedDate)
             .frame(height: UIScreen.getHeight(335))
             .padding(.horizontal)
     }
@@ -80,13 +81,52 @@ struct RecordView: View {
         }
         .padding(.bottom, 5)
     }
+    
+    var beforeLoginText: some View {
+        VStack{
+            NavigationLink {
+                MockUpRecordExampleView()
+            } label: {
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.fill_1)
+                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
+                    .overlay {
+                        VStack {
+                            HStack {
+                                Text("정회승")
+                                    .font(.headline2())
+                                    .foregroundColor(.label_900)
+                                Spacer()
+                                
+                                Text("52분 12초")
+                                    .font(.headline2())
+                                    .foregroundColor(.label_900)
+                            }
+                            Spacer()
+                            HStack {
+                                Text("어깨,가슴,삼두")
+                                    .font(.body2())
+                                    .foregroundColor(.label_500)
+                                Spacer()
+                                
+                                Text("10040kg")
+                                    .font(.body2())
+                                    .foregroundColor(.label_900)
+                            }
+                        }
+                        .padding()
+                    }
+            }
+            
+            HStack{
+                Image(systemName: "info.circle")
+                Text("운동기록 예시입니다")
+                Spacer()
+            }
+            .padding(.horizontal, 25)
+            .padding(.vertical, 5)
+            .font(.caption())
+            .foregroundColor(.label_700)
+        }
+    }
 }
-
-
-//struct RecordView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack {
-//            RecordView()
-//        }
-//    }
-//}

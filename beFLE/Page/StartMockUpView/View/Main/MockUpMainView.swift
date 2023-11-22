@@ -14,9 +14,7 @@ struct MockUpMainView: View {
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
     }
     @State private var tabSelection = 1
-    @State var loggedIn = false
     @ObservedObject private var stopwatchViewModel = MockUpStopwatchViewModel()
-    @EnvironmentObject var appState: AppState
     
     var body: some View {
         TabView(selection: $tabSelection) {
@@ -35,14 +33,14 @@ struct MockUpMainView: View {
                 }
                 .tag(2)
             
-            RecordView(loggedIn: $loggedIn)
+            MockUpRecordView()
                 .tabItem {
                     Image(systemName: "list.clipboard.fill")
                     Text("기록")
                 }
                 .tag(3)
             
-            ProfileView(loggedIn: $loggedIn)
+            MockUpProfileView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("프로필")

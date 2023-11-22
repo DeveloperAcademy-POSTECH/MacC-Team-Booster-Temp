@@ -11,22 +11,38 @@ import AuthenticationServices
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
     @State var isPass = false
+    @State var isLoading: Bool = true
     @StateObject var appState = AppState()
     
     var body: some View {
-        if !isPass {
-            // 로그인 전
-            NavigationStack() {
-                Onboarding
+        ZStack{
+            if !isPass {
+                // 로그인 전
+                NavigationStack {
+                    Onboarding
+                        .onAppear {
+                            validateUser()
+                        }
+                }
+            }
+            else {
+                // 로그인 성공 시
+                MainView()
+            }
+            
+            if isLoading {
+                LaunchScreen()
+                    .transition(.opacity)
+                    .zIndex(1)
                     .onAppear {
-                        validateUser()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                            withAnimation { isLoading.toggle() }
+                        })
                     }
             }
         }
-        else {
-            // 로그인 성공 시
-            MainView()
-        }
+        
+        
     }
     
     var Onboarding: some View {

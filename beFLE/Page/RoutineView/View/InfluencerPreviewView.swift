@@ -17,7 +17,7 @@ struct InfluencerPreviewView: View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             VStack {
-//                appTitle
+                appTitle
                 Spacer()
                 subscribeText
                 aroundTab
