@@ -11,10 +11,13 @@ class RoutineViewModel: ObservableObject {
     @Published var todayRoutines = ResponseGetUsersRoutines(routine: [])
     
     func fetchTodayRoutines() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        
         #if DEBUG
-        let date = Date().toString()
+        let date = dateFormatter.string(from: Date())
         #else
-        let date = Date().toString()
+        let date = dateFormatter.string(from: Date())
         #endif
         
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
