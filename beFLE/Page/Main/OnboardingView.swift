@@ -18,7 +18,7 @@ struct OnboardingView: View {
         ZStack{
             if !isPass {
                 // 로그인 전
-                NavigationStack() {
+                NavigationStack {
                     Onboarding
                         .onAppear {
                             validateUser()

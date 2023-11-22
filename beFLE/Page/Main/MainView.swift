@@ -25,7 +25,6 @@ struct MainView: View {
                 RoutineView()
                     .tabItem {
                         Image(systemName: "dumbbell")
-                            .font(.subheadline)
                         Text("운동")
                     }
                     .tag(0)
@@ -44,7 +43,7 @@ struct MainView: View {
                     }
                     .tag(2)
                 
-                ProfileView(loggedIn: $loggedIn)
+                ProfileView()
                     .tabItem {
                         Image(systemName: "person.fill")
                         Text("프로필")

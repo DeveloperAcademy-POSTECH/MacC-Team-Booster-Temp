@@ -130,6 +130,6 @@ struct MockUpProfileView: View {
 
 #Preview {
     NavigationStack{
-        ProfileView(loggedIn: .constant(false))
+        ProfileView()
     }
 }

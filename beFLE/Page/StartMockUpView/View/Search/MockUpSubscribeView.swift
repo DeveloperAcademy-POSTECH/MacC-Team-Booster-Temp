@@ -215,7 +215,7 @@ struct MockUpSubscribeView: View {
     @ViewBuilder
     var subscribeButton: some View {
         Button {
-            dismiss()
+            
         } label: {
             FloatingButton(backgroundColor: .green_main) {Text("로그인하고 구독하기")
                     .foregroundColor(.gray_900)

@@ -18,7 +18,6 @@ import SwiftUI
 struct MockUpStartView: View {
     var todayText = "반가워요 득근해봅시다💪"
     @Binding var tabSelection: Int
-    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack{
@@ -137,7 +136,6 @@ struct MockUpStartView: View {
                 //운동 시작 버튼
                 NavigationLink {
                     MockUpWorkoutOngoingView(tabSelection: $tabSelection)
-                        .environmentObject(appState)
                 } label: {
                     RoundedRectangle(cornerRadius: 100)
                         .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))

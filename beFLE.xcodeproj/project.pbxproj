@@ -445,7 +445,6 @@
 				D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */,
 				D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */,
 				D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */,
-				D5C511822B061870008B871E /* SwiftUIMailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -542,6 +541,7 @@
 				D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */,
 				D51DFC442B07D5B9001B28EC /* RoundedShape.swift */,
 				D5A964552B0E0F4A00536A64 /* LaunchScreen.swift */,
+				D5C511822B061870008B871E /* SwiftUIMailView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";

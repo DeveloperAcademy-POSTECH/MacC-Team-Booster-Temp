@@ -15,7 +15,6 @@ struct MockUpMainView: View {
     }
     @State private var tabSelection = 1
     @ObservedObject private var stopwatchViewModel = MockUpStopwatchViewModel()
-    @EnvironmentObject var appState: AppState
     
     var body: some View {
         TabView(selection: $tabSelection) {
