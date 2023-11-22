@@ -112,7 +112,7 @@ struct ManageProfileView: View {
                 print("primary button pressed")
             }
             let secondButton = Alert.Button.default(Text("탈퇴")) {
-                print("secondary button pressed")
+                vm.withdrawAccount()
             }
             return Alert(title: Text("탈퇴하시겠습니까"),
                          message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
