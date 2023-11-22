@@ -104,7 +104,7 @@ struct RecordingFinishView: View {
                                 .foregroundColor(.green_main)
                                 .font(.button1())
                         }
-                        .padding(.bottom)
+                        .padding(.bottom, 30)
                         
                     }
                 }

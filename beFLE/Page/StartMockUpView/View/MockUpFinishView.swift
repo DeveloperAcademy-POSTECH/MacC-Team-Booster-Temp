@@ -72,7 +72,7 @@ struct MockUpFinishView: View {
                     }
                 
                 Spacer()
-                    .frame(height: 80)
+                    .frame(height: 115)
                 Button{
                         tabSelection = 3
                     DispatchQueue.main.async {
@@ -99,7 +99,7 @@ struct MockUpFinishView: View {
                             .foregroundColor(.green_main)
                             .font(.button1())
                     }
-                    .padding(.bottom)
+                    .padding(.bottom, 30)
                 }
             }
             .padding(.bottom, 30)
