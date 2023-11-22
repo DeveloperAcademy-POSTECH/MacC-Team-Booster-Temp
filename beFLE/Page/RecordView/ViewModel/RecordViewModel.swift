@@ -10,8 +10,8 @@ import SwiftUI
 class RecordViewModel: ObservableObject {
     @Published var records = ResponseGetUsersRecords(records: [])
     @Published var selectedDate = ""
-    @Published var recordedDate = [String]()
     @Published var volume = 0
+    @Published var recordedDate = [String]()
     
     init() {
         fetchRecords()
@@ -32,6 +32,24 @@ class RecordViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func calculateTotalVolume() {
+        let selectedRecords = records.records.filter { $0.date == selectedDate }
+        
+        var totalVolume = 0
+        
+        for record in selectedRecords {
+            for exercise in record.exercises {
+                for set in exercise.sets {
+                    if let weight = set.weight {
+                        totalVolume += weight * set.reps
+                    }
+                }
+            }
+        }
+        
+        volume = totalVolume
     }
     
     func fetchRecodedDate() {

@@ -54,8 +54,6 @@ struct WorkoutSetCard: View {
             Text("\(index)")
                 .foregroundColor(.label_900)
             Spacer()
-            
-            // TODO: 시저 - 텍스트필드 선택 시 플로팅 버튼 사라짐 - DONE
             // TODO: 모로 textfield 클릭시 nil 처리
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))

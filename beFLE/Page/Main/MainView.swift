@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-// TODO: 메인 뷰 모델 추가
 struct MainView: View {
     @StateObject var vm = MainViewModel.shared
     @State var loggedIn = true
     @State var subscribed = false
+    @EnvironmentObject var appState: AppState
     
     init() {
         UITabBar.appearance().backgroundColor = Color.tabbar_main

@@ -32,6 +32,7 @@ struct WorkoutCell: View {
                 Text(exercise.name)
                     .foregroundColor(.label_900)
                     .font(.headline1())
+                    .multilineTextAlignment(.leading)
                 HStack(spacing: 3){
                     Text("\(exercise.numberOfSet)세트")
                         .foregroundColor(.label_700)

@@ -21,7 +21,6 @@ struct RecordEditView: View {
                 }
             }
         }
-        
         .navigationBarTitle("수정하기", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

@@ -106,7 +106,7 @@ struct WholeRoutineView: View {
                     .font(.button2())
             }
     }
-    //TODO: 클릭한 부위로 sorting
+
     var Workouts: some View {
         ScrollView {
             ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in

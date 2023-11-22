@@ -102,18 +102,23 @@ struct DetailedWorkoutSheet: View {
                 Spacer()
             }
             .padding(.bottom, 10)
-            Text("\(vm.workout.tip)\n")
-                .multilineTextAlignment(.leading)
-                .lineSpacing(7)
-                .foregroundColor(.label_900)
-                .font(.body())
+            HStack{
+                Text("\(vm.workout.tip)\n")
+                    .multilineTextAlignment(.leading)
+                    .lineSpacing(7)
+                    .foregroundColor(.label_900)
+                    .font(.body())
+                Spacer()
+            }
         }
-        .padding(.horizontal)
+        .frame(width: .infinity)
+        .padding(.horizontal, 30)
         .padding(.bottom)
     }
     
     var RelatedContent: some View {
         VStack {
+            vm.workout.videoUrls.count >= 1 ?
             HStack {
                 Text("관련 영상")
                     .font(.title2())
@@ -121,11 +126,10 @@ struct DetailedWorkoutSheet: View {
                 
                 Spacer()
             }
-            .padding(.bottom, 13)
+            .padding(.bottom, 13) : nil
             
             ScrollView(.horizontal) {
                 HStack{
-                    // TODO: 유튜브 링크 통해서 작업하기
                     ForEach(vm.workout.videoUrls, id: \.self){ videoUrl in
                         RelatedContentCard(videoID: videoUrl)
                     }

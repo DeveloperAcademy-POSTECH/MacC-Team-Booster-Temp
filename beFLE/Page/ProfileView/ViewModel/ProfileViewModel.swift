@@ -27,8 +27,8 @@ class ProfileViewModel: ObservableObject {
     
     //랜덤 이름 만들기
     func MakeName(taste: [String], workout: [String]) -> String {
-        let rnd1 = Int.random(in: 0...45)
-        let rnd2 = Int.random(in: 0...50)
+        let rnd1 = Int.random(in: 0...44)
+        let rnd2 = Int.random(in: 0...49)
         let rndName = taste[rnd1] + " " + workout[rnd2]
         return rndName
     }

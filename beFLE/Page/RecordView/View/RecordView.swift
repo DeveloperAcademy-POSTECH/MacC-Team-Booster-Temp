@@ -54,9 +54,6 @@ struct RecordView: View {
                     .overlay {
                         VStack {
                             HStack {
-                                //                            Ellipse()
-                                //                                .frame(width: UIScreen.getWidth(8), height: UIScreen.getHeight(8))
-                                //                                .foregroundColor(.yellow_main)
                                 Text(record.influencerName)
                                     .font(.headline2())
                                     .foregroundColor(.label_900)
@@ -79,11 +76,13 @@ struct RecordView: View {
                         .padding()
                     }
             }
+            .onChange(of: vm.selectedDate) { _ in
+                    vm.calculateTotalVolume()
+                }
         }
         .padding(.bottom, 5)
     }
     
-    //TODO: 로그인x or 구독 x
     var beforeLoginText: some View {
         VStack{
             NavigationLink {

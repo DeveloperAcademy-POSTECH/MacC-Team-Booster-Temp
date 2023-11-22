@@ -187,7 +187,7 @@ class RecordingWorkoutViewModel: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier:  "ko")
         
-        dateFormatter.dateFormat = "yy.MM.dd"
+        dateFormatter.dateFormat = "MM월 dd일"
         let date_String = dateFormatter.string(from: nowDate)
         return date_String
     }
