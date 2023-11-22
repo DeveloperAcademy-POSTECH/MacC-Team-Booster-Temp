@@ -76,20 +76,24 @@ struct RecordingRoutineView: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
         }
-        .padding()
+        .padding([.top, .horizontal])
     }
     
     func WorkoutCell(index: Int) -> some View {
         HStack(spacing: 8){
             RoundedRectangle(cornerRadius: 4)
-                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .foregroundColor(.fill_1)
+                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .overlay {
-                    //TODO:  대체 운동 이미지 로딩
-                    Image("CloseGripLatPullDown")
-                        .resizable()
-                        .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                    AsyncImage(url: URL(string: editRoutineVM.routine.exercises[index].exerciseImageUrl)) { image in
+                        image
+                            .resizable()
+                    } placeholder: {
+                        LottieView()
+                            .padding(5)
+                    }
                 }
             
             VStack(alignment: .leading, spacing: 8) {
@@ -102,6 +106,8 @@ struct RecordingRoutineView: View {
                     Text(editRoutineVM.routine.exercises[index].name)
                         .font(.headline1())
                         .foregroundColor(editRoutineVM.routine.exercises[index].id == editRoutineVM.workout.exerciseId ? .green_main : .label_900)
+                        .multilineTextAlignment(.leading)
+                        .allowsTightening(true)
                     Spacer()
                 }
                 HStack(spacing: 6) {

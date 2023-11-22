@@ -36,14 +36,12 @@ struct OnboardingView: View {
                     .transition(.opacity)
                     .zIndex(1)
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
                             withAnimation { isLoading.toggle() }
                         })
                     }
             }
         }
-        
-        
     }
     
     var Onboarding: some View {
