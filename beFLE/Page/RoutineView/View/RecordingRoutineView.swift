@@ -84,13 +84,16 @@ struct RecordingRoutineView: View {
     func WorkoutCell(index: Int) -> some View {
         HStack(spacing: 8){
             RoundedRectangle(cornerRadius: 4)
-                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .foregroundColor(.fill_1)
+                .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .overlay {
-                    //TODO:  대체 운동 이미지 로딩
-                    Image("CloseGripLatPullDown")
-                        .resizable()
-                        .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
+                    AsyncImage(url: URL(string: editRoutineVM.routine.exercises[index].exerciseImageUrl)) { image in
+                        image
+                            .resizable()
+                    } placeholder: {
+                        LottieView()
+                            .padding(5)
+                    }
                 }
             
             VStack(alignment: .leading, spacing: 8) {
