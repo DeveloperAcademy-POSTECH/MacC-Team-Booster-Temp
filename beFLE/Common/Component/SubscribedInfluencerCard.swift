@@ -48,10 +48,8 @@ struct SubscribedInfluencerCard: View {
                             .scaleEffect(CGSize(width: 1.0, height: 1.0))
                             .frame(width: UIScreen.getWidth(156))
                     } placeholder: {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .resizable()
-                            .scaledToFit()
-                            .padding(50)
+                        LottieView()
+                            .padding(40)
                     }
                 }
             }

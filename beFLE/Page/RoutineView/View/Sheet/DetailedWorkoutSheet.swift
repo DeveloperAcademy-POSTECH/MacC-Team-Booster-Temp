@@ -75,11 +75,8 @@ struct DetailedWorkoutSheet: View {
                     .scaledToFit()
                     .frame(width: UIScreen.getWidth(320), height: UIScreen.getHeight(220))
             } placeholder: {
-                Image(systemName: "arrow.triangle.2.circlepath")
-                    .scaledToFit()
-                    .scaleEffect(CGSize(width: 1.0, height: 1.0))
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-                    .padding()
+                LottieView()
+                    .padding(10)
             }
         }
         .padding(.horizontal)
@@ -92,10 +89,8 @@ struct DetailedWorkoutSheet: View {
                     image
                         .resizable()
                 } placeholder: {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                        .resizable()
-                        .foregroundColor(.gray_600)
-                        .padding()
+                    LottieView()
+                        .padding(5)
                 }
                 .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
                 

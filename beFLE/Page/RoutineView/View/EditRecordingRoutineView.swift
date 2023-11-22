@@ -89,11 +89,8 @@ struct EditRecordingRoutineView: View {
                                 image
                                     .resizable()
                             } placeholder: {
-                                Image(systemName: "arrow.triangle.2.circlepath")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(.label_400)
-                                    .padding()
+                                LottieView()
+                                    .padding(5)
                             }
                         }
                     

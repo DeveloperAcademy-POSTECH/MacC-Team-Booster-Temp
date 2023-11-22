@@ -30,6 +30,8 @@
 		0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327692AE13BE000319BAB /* Ext+Font.swift */; };
 		0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */; };
 		0DC02D682AE6B99B00258920 /* Ext+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */; };
+		D5076C3F2B0E643100011EE1 /* BefleLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = D5076C3E2B0E643100011EE1 /* BefleLottie.json */; };
+		D5076C412B0E645000011EE1 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5076C402B0E645000011EE1 /* LottieView.swift */; };
 		D51DFC422B07824D001B28EC /* MockUpRecordExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DFC412B07824D001B28EC /* MockUpRecordExampleView.swift */; };
 		D51DFC452B07D5B9001B28EC /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DFC442B07D5B9001B28EC /* RoundedShape.swift */; };
 		D5436CA52AFB6B8000D82943 /* ManageProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */; };
@@ -136,6 +138,8 @@
 		0DA327742AE13C3200319BAB /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIScreen.swift"; sourceTree = "<group>"; };
 		0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UITabBarController.swift"; sourceTree = "<group>"; };
+		D5076C3E2B0E643100011EE1 /* BefleLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BefleLottie.json; sourceTree = "<group>"; };
+		D5076C402B0E645000011EE1 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		D51DFC412B07824D001B28EC /* MockUpRecordExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpRecordExampleView.swift; sourceTree = "<group>"; };
 		D51DFC442B07D5B9001B28EC /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfileView.swift; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 			children = (
 				F8DFEAC32AF8FD8E00BC721B /* beFLE.entitlements */,
 				F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */,
+				D5076C3E2B0E643100011EE1 /* BefleLottie.json */,
 				0DA327572AE1321600319BAB /* beFLEApp.swift */,
 				0DA3275D2AE1321700319BAB /* Preview Content */,
 				0DA327652AE1356D00319BAB /* Ext+ */,
@@ -542,6 +547,7 @@
 				D51DFC442B07D5B9001B28EC /* RoundedShape.swift */,
 				D5A964552B0E0F4A00536A64 /* LaunchScreen.swift */,
 				D5C511822B061870008B871E /* SwiftUIMailView.swift */,
+				D5076C402B0E645000011EE1 /* LottieView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -711,6 +717,7 @@
 				0D5851542AE2EFAF00C8875A /* Pretendard-Black.otf in Resources */,
 				0D58514E2AE2EFA200C8875A /* Pretendard-Regular.otf in Resources */,
 				0D58514F2AE2EFA400C8875A /* Pretendard-Medium.otf in Resources */,
+				D5076C3F2B0E643100011EE1 /* BefleLottie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +809,7 @@
 				F8DACB612B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
+				D5076C412B0E645000011EE1 /* LottieView.swift in Sources */,
 				F8DFEAEC2AFA190F00BC721B /* OnboardingView.swift in Sources */,
 				F8DACB672B0418DE00C3E95C /* WholeRoutineViewModel.swift in Sources */,
 				D51DFC422B07824D001B28EC /* MockUpRecordExampleView.swift in Sources */,
