@@ -11,31 +11,34 @@ import Combine
 
 final class setChangeStream: ObservableObject {
     var cancellables = Set<AnyCancellable>()
-    @Published var weightInput = 0
+    @Published var weightInput: Int?
     @Published var debouncedWeight = 0
-    @Published var repInput = 0
+    @Published var repInput: Int?
     @Published var debouncedReps = 0
     
     init() {
         makeStream()
     }
+    
     func makeStream() {
         $weightInput
             .debounce(for: RunLoop.SchedulerTimeType.Stride(1), scheduler: RunLoop.main)
             .sink { [weak self] input in
-                self?.debouncedWeight = input
+                if let input = input {
+                    self?.debouncedWeight = input
+                }
             }
             .store(in: &cancellables)
         
         $repInput
             .debounce(for: RunLoop.SchedulerTimeType.Stride(1), scheduler: RunLoop.main)
             .sink { [weak self] input in
-                self?.debouncedReps = input
+                if let input = input {
+                    self?.debouncedReps = input
+                }
             }
             .store(in: &cancellables)
     }
-    
-    
 }
 
 struct WorkoutSetCard: View {
