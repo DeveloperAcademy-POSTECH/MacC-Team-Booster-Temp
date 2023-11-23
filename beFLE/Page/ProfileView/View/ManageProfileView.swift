@@ -87,7 +87,7 @@ extension ManageProfileView {
 extension ManageProfileView {
     var Withdraw: some View {
         Button {
-            vm.isWithdrawAlertShow = true
+            vm.showWithdrawAlert()
         } label: {
             HStack{
                 Text("회원탈퇴")
@@ -97,36 +97,46 @@ extension ManageProfileView {
             }
             .padding()
             .padding(.top)
-            
         }
-        .alert(isPresented: $vm.isWithdrawAlertShow) {
-            let firstButton = Alert.Button.default(Text("취소").bold()) {
+        .alert("탈퇴하시겠습니까", isPresented: $vm.isWithdrawAlertShow) {
+            Button {
                 
+            } label: {
+                Text("취소")
+                    .bold()
             }
-            let secondButton = Alert.Button.default(Text("탈퇴")) {
+            
+            Button {
                 vm.withdrawAccount()
                 vm.logout()
+            } label: {
+                Text("탈퇴")
             }
-            return Alert(title: Text("탈퇴하시겠습니까"),
-                         message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
-                         primaryButton: firstButton, secondaryButton: secondButton)
+        } message: {
+            Text("탈퇴 시 운동 기록이 모두 삭제됩니다.")
         }
     }
     
     var Logout: some View {
-        Button(action: {vm.isLogoutAlertShow = true}, label: {
-            HStack{
+        Button {
+            vm.showLogoutAlert()
+        } label: {
+            HStack { 
                 Text("로그아웃")
                     .font(.body())
                     .foregroundColor(.label_700)
                 Spacer()
             }
             .padding()
-            
-        })
+        }
         .alert("로그아웃하시겠습니까?", isPresented: $vm.isLogoutAlertShow) {
-            Button("취소") { }
-            Button{
+            Button {
+                
+            } label: {
+                Text("취소")
+            }
+            
+            Button {
                 vm.logout()
             } label: {
                 Text("로그아웃")
