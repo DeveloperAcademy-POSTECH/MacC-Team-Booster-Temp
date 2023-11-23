@@ -17,37 +17,10 @@ class ProfileViewModel: ObservableObject {
     
     @Published var deletingAccount = false
     @Published var loggingOutSheet = false
-    
-    func withdrawAccount() {
-        guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
-        guard let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") else { return }
-        
-        // TODO: nil 리스폰스 처리
-        GeneralAPIManger.request(for: .PostUsersMe(accessToken: accessToken, refreshToken: refreshToken), type: ResponsePostLogin.self ) {
-            switch $0 {
-            case .success:
-                LaunchViewModel.shared.appState = .launch
-                print("회원 탈퇴")
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func logout() {
-        guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
-        guard let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") else { return }
-        
-        UserDefaults.standard.removeObject(forKey: "accessToken")
-        UserDefaults.standard.removeObject(forKey: "refreshToken")
-        
-        LaunchViewModel.shared.appState = .launch
-    }
 }
 
 /// 닉네임 관련
 extension ProfileViewModel {
-    
     /// 닉네임 로드 함수
     func fetchNickname() {
         if let nickname = UserDefaults.standard.string(forKey: "nickname") {
@@ -66,6 +39,37 @@ extension ProfileViewModel {
         let nickname = "\(tasteName.randomElement()!) \(workoutName.randomElement()!)"
         
         UserDefaults.standard.setValue(nickname, forKey: "nickname")
+    }
+}
+
+/// 계정 관련
+extension ProfileViewModel {
+    /// 회원 탈퇴 함수
+    func withdrawAccount() {
+        guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
+        guard let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") else { return }
+        
+        // TODO: nil 리스폰스 처리
+        GeneralAPIManger.request(for: .PostUsersMe(accessToken: accessToken, refreshToken: refreshToken), type: ResponsePostLogin.self ) {
+            switch $0 {
+            case .success:
+                LaunchViewModel.shared.appState = .launch
+                print("회원 탈퇴")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    /// 로그아웃 함수
+    func logout() {
+        guard UserDefaults.standard.string(forKey: "accessToken") != nil else { return }
+        guard UserDefaults.standard.string(forKey: "refreshToken") != nil else { return }
+        
+        UserDefaults.standard.removeObject(forKey: "accessToken")
+        UserDefaults.standard.removeObject(forKey: "refreshToken")
+        
+        LaunchViewModel.shared.appState = .launch
     }
 }
 
