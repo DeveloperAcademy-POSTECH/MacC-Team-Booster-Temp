@@ -90,6 +90,7 @@
 		F8A4A58E2B0DF6CB00046C00 /* beFLE-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */; };
 		F8A4A5912B0E60D800046C00 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F8A4A5902B0E60D800046C00 /* Lottie */; };
 		F8A4A62C2B0F63D500046C00 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A4A62B2B0F63D500046C00 /* LaunchView.swift */; };
+		F8A4A62E2B0F643200046C00 /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A4A62D2B0F643200046C00 /* LaunchViewModel.swift */; };
 		F8A6A8B32B0CF433006FF899 /* RecordSpecificViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6A8B22B0CF433006FF899 /* RecordSpecificViewModel.swift */; };
 		F8D7872E2B0BB12E00416700 /* RecordingFinishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D7872D2B0BB12E00416700 /* RecordingFinishViewModel.swift */; };
 		F8DACB562B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */; };
@@ -200,6 +201,7 @@
 		F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetCard.swift; sourceTree = "<group>"; };
 		F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		F8A4A62B2B0F63D500046C00 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		F8A4A62D2B0F643200046C00 /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
 		F8A6A8B22B0CF433006FF899 /* RecordSpecificViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSpecificViewModel.swift; sourceTree = "<group>"; };
 		F8D7872D2B0BB12E00416700 /* RecordingFinishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingFinishViewModel.swift; sourceTree = "<group>"; };
 		F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeWorkoutSheetViewModel.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 		F8DACB5B2B0400E700C3E95C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F8A4A62D2B0F643200046C00 /* LaunchViewModel.swift */,
 				F8DACB5C2B04010100C3E95C /* MainViewModel.swift */,
 			);
 			path = ViewModel;
@@ -789,6 +792,7 @@
 				F8F3A1442AFA35210068F885 /* CalendarView.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
 				F8DACB732B0422D500C3E95C /* RecordingWorkoutViewModel.swift in Sources */,
+				F8A4A62E2B0F643200046C00 /* LaunchViewModel.swift in Sources */,
 				D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */,
 				D5517E842B0C751E00F02995 /* AppState.swift in Sources */,
 				D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */,
