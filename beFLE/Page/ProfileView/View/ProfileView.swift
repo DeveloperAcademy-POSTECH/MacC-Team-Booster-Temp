@@ -62,6 +62,9 @@ struct ProfileView: View {
                 useInformation
                 Spacer()
             }
+            .onAppear {
+                vm.fetchNickname()
+            }
         }
     }
     
