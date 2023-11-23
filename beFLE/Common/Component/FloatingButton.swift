@@ -21,7 +21,7 @@ struct FloatingButton<Content: View>: View {
     }
 }
 
-enum ButtonType {
+enum ButtonSize {
     case semiSmall
     case small
     case semiMedium
@@ -30,12 +30,12 @@ enum ButtonType {
 }
 
 struct Floating<Content: View>: View {
-    let type: ButtonType
+    let size: ButtonSize
     var color: Color? = .clear
     @ViewBuilder let content: Content
     
     var body: some View {
-        switch type {
+        switch size {
         case .semiSmall:
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
@@ -79,11 +79,11 @@ struct FloatingButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             /// 색 생략시 empty
-            Floating(type: .large) {}
+            Floating(size: .large) {}
                 .border(.pink)
             
             /// large 플로팅 버튼 안의 버튼
-            Floating(type: .semiSmall, color: .green_main) {
+            Floating(size: .semiSmall, color: .green_main) {
                 HStack {
                     Text("다음 세트")
                         .font(.button1())
@@ -93,25 +93,26 @@ struct FloatingButton_Previews: PreviewProvider {
                 .foregroundColor(.gray_900)
             }
             
-            Floating(type: .small, color: .green_main) {
+            Floating(size: .small, color: .green_main) {
                 Text("둘러보기")
                     .font(.button1())
                     .foregroundColor(.gray_900)
             }
             
-            Floating(type: .semiMedium, color: .green_main) {
+            Floating(size: .semiMedium, color: .green_main) {
                 Text("운동 시작")
                     .foregroundColor(.gray_900)
                     .font(.button1())
             }
             
-            Floating(type: .medium, color: .gray_600) {
+            /// 일반적으로 쓰이는 플로팅 버튼
+            Floating(size: .medium, color: .gray_600) {
                 Text("운동 시작")
                     .foregroundColor(.red_main)
                     .font(.button1())
             }
             
-            Floating(type: .large, color: .fill_1) {
+            Floating(size: .large, color: .fill_1) {
                 HStack {
                     Image(systemName: "list.bullet")
                         .foregroundColor(.green_main)
@@ -120,7 +121,7 @@ struct FloatingButton_Previews: PreviewProvider {
                     
                     Spacer()
                     
-                    Floating(type: .semiSmall, color: .green_main) {
+                    Floating(size: .semiSmall, color: .green_main) {
                         HStack {
                             Text("다음 세트")
                                 .font(.button1())
