@@ -23,7 +23,7 @@ struct SingleInfluencerRoutineView: View {
                 NavigationTitle
                 InfluencerComment
                 Spacer()
-                TodayCard()
+                TodayCard
             }
             .padding(.bottom)
             Spacer()
@@ -132,7 +132,7 @@ extension SingleInfluencerRoutineView {
         }
     }
     
-    func TodayCard() -> some View {
+    var TodayCard: some View {
         ZStack {
             VStack(alignment: .center) {
                 HStack {
