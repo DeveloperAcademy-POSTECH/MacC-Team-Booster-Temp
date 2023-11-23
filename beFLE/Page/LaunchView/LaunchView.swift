@@ -18,9 +18,9 @@ struct LaunchView: View {
         case .onboarding:
             Onboarding
         case .preview:
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text("preview")
         case .login:
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text("login")
         }
     }
 }

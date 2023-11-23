@@ -96,7 +96,7 @@ extension OnboardingView {
     /// 둘러보기 버튼
     var PreviewButton: some View {
         Button {
-            // TODO: 목업 
+            LaunchViewModel.shared.appState = .preview
         } label: {
             FloatingButton(backgroundColor: .gray_600) {
                 Text("둘러보기")
