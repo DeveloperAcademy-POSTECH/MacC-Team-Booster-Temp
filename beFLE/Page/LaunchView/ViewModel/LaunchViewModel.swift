@@ -8,11 +8,11 @@
 import SwiftUI
 
 class LaunchViewModel: ObservableObject {
-    
+    @Published var appState: AppState = .launch
 }
 
 extension LaunchViewModel {
-    enum appState {
+    enum AppState {
         case launch
         case onboarding
         case login
