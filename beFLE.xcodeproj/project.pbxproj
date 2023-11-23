@@ -51,7 +51,6 @@
 		D57E93C82B04A02E00D6D986 /* MockUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */; };
 		D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */; };
 		D57E93CC2B04A05F00D6D986 /* MockUpSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */; };
-		D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */; };
 		D58066582AFD3B4A003BB276 /* PauseStopwatchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */; };
 		D584CD892AFB556C00AFA1FF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584CD882AFB556C00AFA1FF /* ProfileView.swift */; };
 		D5A9645F2B0E17FE00536A64 /* MockUpRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A9645E2B0E17FE00536A64 /* MockUpRecordView.swift */; };
@@ -162,7 +161,6 @@
 		D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpMainView.swift; sourceTree = "<group>"; };
 		D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSearchView.swift; sourceTree = "<group>"; };
 		D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSubscribeView.swift; sourceTree = "<group>"; };
-		D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscribeView.swift; sourceTree = "<group>"; };
 		D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseStopwatchVM.swift; sourceTree = "<group>"; };
 		D584CD882AFB556C00AFA1FF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D5A9645E2B0E17FE00536A64 /* MockUpRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpRecordView.swift; sourceTree = "<group>"; };
@@ -456,7 +454,6 @@
 				D584CD882AFB556C00AFA1FF /* ProfileView.swift */,
 				D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */,
 				D5436CA72AFB75B200D82943 /* ChangeNicknameView.swift */,
-				D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -791,7 +788,6 @@
 				F8A4A62E2B0F643200046C00 /* LaunchViewModel.swift in Sources */,
 				D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */,
 				D5517E842B0C751E00F02995 /* AppState.swift in Sources */,
-				D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */,
 				F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */,
 				F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
