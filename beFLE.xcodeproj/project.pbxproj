@@ -66,7 +66,7 @@
 		D5C5117C2B0562DC008B871E /* EditRecordingRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C5117B2B0562DC008B871E /* EditRecordingRoutineView.swift */; };
 		D5C5117E2B056378008B871E /* RecordingFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C5117D2B056378008B871E /* RecordingFinishView.swift */; };
 		D5C511812B059ECC008B871E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C511802B059ECC008B871E /* ProfileViewModel.swift */; };
-		D5C511832B061870008B871E /* SwiftUIMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C511822B061870008B871E /* SwiftUIMailView.swift */; };
+		D5C511832B061870008B871E /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C511822B061870008B871E /* MailView.swift */; };
 		F82674C32AF67EF5002BFACD /* DetailedWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */; };
 		F82674C52AF68F11002BFACD /* AlternateWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C42AF68F11002BFACD /* AlternateWorkoutSheet.swift */; };
 		F82674C82AF7A7AD002BFACD /* PauseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82674C72AF7A7AD002BFACD /* PauseSheet.swift */; };
@@ -177,7 +177,7 @@
 		D5C5117B2B0562DC008B871E /* EditRecordingRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordingRoutineView.swift; sourceTree = "<group>"; };
 		D5C5117D2B056378008B871E /* RecordingFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingFinishView.swift; sourceTree = "<group>"; };
 		D5C511802B059ECC008B871E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		D5C511822B061870008B871E /* SwiftUIMailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIMailView.swift; sourceTree = "<group>"; };
+		D5C511822B061870008B871E /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "beFLE-Info.plist"; path = "beFLE/beFLE-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F82674C22AF67EF5002BFACD /* DetailedWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheet.swift; sourceTree = "<group>"; };
 		F82674C42AF68F11002BFACD /* AlternateWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateWorkoutSheet.swift; sourceTree = "<group>"; };
@@ -551,7 +551,7 @@
 				0D5851572AE4F34400C8875A /* WorkoutCell.swift */,
 				D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */,
 				D51DFC442B07D5B9001B28EC /* RoundedShape.swift */,
-				D5C511822B061870008B871E /* SwiftUIMailView.swift */,
+				D5C511822B061870008B871E /* MailView.swift */,
 				D5076C402B0E645000011EE1 /* LottieView.swift */,
 			);
 			path = Component;
@@ -813,7 +813,7 @@
 				D57183802B030AB200A11FFC /* MockUpPauseSheet.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,
-				D5C511832B061870008B871E /* SwiftUIMailView.swift in Sources */,
+				D5C511832B061870008B871E /* MailView.swift in Sources */,
 				F8DACB612B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
