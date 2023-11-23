@@ -322,7 +322,7 @@
 		0DA327752AE13F5200319BAB /* Page */ = {
 			isa = PBXGroup;
 			children = (
-				D569C78F2AF9456900FDADED /* Main */,
+				D569C78F2AF9456900FDADED /* LaunchView */,
 				D57183662B01EE5900A11FFC /* StartMockUpView */,
 				D569C78C2AF9451D00FDADED /* RoutineView */,
 				F8BE835B2AE68F1B0094A509 /* SearchView */,
@@ -341,7 +341,7 @@
 			path = RoutineView;
 			sourceTree = "<group>";
 		};
-		D569C78F2AF9456900FDADED /* Main */ = {
+		D569C78F2AF9456900FDADED /* LaunchView */ = {
 			isa = PBXGroup;
 			children = (
 				F8A4A62B2B0F63D500046C00 /* LaunchView.swift */,
@@ -349,7 +349,7 @@
 				F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */,
 				F8DACB5B2B0400E700C3E95C /* ViewModel */,
 			);
-			path = Main;
+			path = LaunchView;
 			sourceTree = "<group>";
 		};
 		D569C7902AF9459900FDADED /* View */ = {
