@@ -11,14 +11,6 @@ jobs:
     runs-on: macos-13
 
     steps:
-      - name: Link to 16.4 Simulators
-        run: |
-          echo "Creating Runtimes folder if needed..."
-          sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
-          echo "Creating symlink of the iOS 16.4 runtime..."
-          sudo ln -s /Applications/Xcode_14.3.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 16.4.simruntime
-          xcrun simctl create "iPhone 13" "com.apple.CoreSimulator.SimDeviceType.iPhone-13" "com.apple.CoreSimulator.SimRuntime.iOS-16-4"
-        
       - name: "Displays Xcode current version"
         run: sudo xcode-select -p
         
