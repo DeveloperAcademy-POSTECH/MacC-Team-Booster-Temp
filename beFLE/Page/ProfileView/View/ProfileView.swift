@@ -20,11 +20,10 @@ struct ProfileView: View {
     )
     @State private var showMailView = false
     
-    
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
-            VStack{
+            VStack {
                 NavigationTitle
                 NavigationLink {
                     ManageProfileView(vm: vm)
@@ -68,17 +67,6 @@ struct ProfileView: View {
                 Spacer()
             }
         }
-    }
-    
-    var NavigationTitle: some View {
-        HStack {
-            Text("프로필")
-                .font(.title2())
-                .foregroundColor(.label_900)
-                .padding(.leading, 3)
-            Spacer()
-        }
-        .padding()
     }
     
     func ProfileManage(nickname: String) -> some View {
@@ -191,6 +179,20 @@ struct ProfileView: View {
             }
             .padding(.horizontal)
         }
+    }
+}
+
+/// 네비게이션 타이틀
+extension ProfileView {
+    var NavigationTitle: some View {
+        HStack {
+            Text("프로필")
+                .font(.title2())
+                .foregroundColor(.label_900)
+                .padding(.leading, 3)
+            Spacer()
+        }
+        .padding()
     }
 }
 
