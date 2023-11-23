@@ -320,8 +320,8 @@
 		0DA327752AE13F5200319BAB /* Page */ = {
 			isa = PBXGroup;
 			children = (
-				D57183662B01EE5900A11FFC /* StartMockUpView */,
 				D569C78F2AF9456900FDADED /* Main */,
+				D57183662B01EE5900A11FFC /* StartMockUpView */,
 				D569C78C2AF9451D00FDADED /* RoutineView */,
 				F8BE835B2AE68F1B0094A509 /* SearchView */,
 				F8F3A13B2AFA34EF0068F885 /* RecordView */,
