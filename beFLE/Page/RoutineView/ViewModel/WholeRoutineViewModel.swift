@@ -68,22 +68,19 @@ class WholeRoutineViewModel: ObservableObject {
     }
     
     /// 루틴 월 별 분류 함수
-    func fetchByMonth(routines: [Routine]) -> [String : [Routine]] {
-        var routinesByMonth: [String : [Routine]] = [:]
-        
+    func fetchByMonth(routines: [Routine]) -> [String: [Routine]] {
+        var routinesByMonth: [String: [Routine]] = [:]
+
         for routine in routines {
             let month = routine.date.components(separatedBy: "-")[1]
-            var updatedRoutine: [Routine] = []
-            
-            if let parsedRoutine = routinesByMonth[month] {
-                updatedRoutine.append(contentsOf: parsedRoutine)
+
+            if var routinesInMonth = routinesByMonth[month] {
+                routinesInMonth.append(routine)
+                routinesByMonth[month] = routinesInMonth.sorted(by: { $0.date > $1.date })
             } else {
-                updatedRoutine.append(routine)
+                routinesByMonth[month] = [routine]
             }
-            
-            routinesByMonth.updateValue(updatedRoutine, forKey: month)
         }
-        
         return routinesByMonth
     }
     

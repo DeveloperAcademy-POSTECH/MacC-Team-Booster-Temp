@@ -42,7 +42,7 @@ extension OnboardingView {
                     .foregroundColor(.label_900)
                     .padding(.bottom, 10)
                 
-                Text("Be my Influencer, BEFLE")
+                Text("Be my Influencer, beFLE")
                 // TODO: 폰트 처리
                     .font(.system(size: 20, weight: .light, design: .default))
                     .foregroundColor(.label_700)
