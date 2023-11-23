@@ -13,6 +13,7 @@ struct RecordingRoutineView: View {
     var burnedKCalories: Int
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var recordViewModel: RecordingWorkoutViewModel
     
     var body: some View {
         VStack {
@@ -29,6 +30,12 @@ struct RecordingRoutineView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .onAppear{
+            recordViewModel.start()
+        }
+        .onDisappear{
+            recordViewModel.stop()
+        }
     }
     
     var BackButton: some View {
