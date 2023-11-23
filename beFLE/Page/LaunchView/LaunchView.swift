@@ -17,7 +17,7 @@ struct LaunchView: View {
     var body: some View {
         switch vm.appState {
         case .launch:
-            LaunchScreen
+            Launch
         case .onboarding:
             Onboarding
         case .preview:
@@ -30,7 +30,7 @@ struct LaunchView: View {
 
 /// 로그인 검사를 하는 동안 보이는 화면
 extension LaunchView {
-    var LaunchScreen: some View {
+    var Launch: some View {
         ZStack(alignment: .center) {
             Color.gray_900.ignoresSafeArea()
             
