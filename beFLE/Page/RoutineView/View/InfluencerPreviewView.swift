@@ -48,14 +48,11 @@ struct InfluencerPreviewView: View {
         Button {
             mainVM.changeToSearchTab()
         } label: {
-            RoundedRectangle(cornerRadius: 100)
-                .frame(width: UIScreen.getWidth(180), height: UIScreen.getHeight(60))
-                .foregroundColor(.green_main)
-                .overlay {
-                    Text("둘러보기")
-                        .font(.button1())
-                        .foregroundColor(.gray_900)
-                }
+            Floating(size: .semiSmall, color: .green_main) {
+                Text("둘러보기")
+                    .font(.button1())
+                    .foregroundColor(.gray_900)
+            }
         }
     }
 }

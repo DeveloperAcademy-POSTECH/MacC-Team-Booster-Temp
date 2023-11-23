@@ -26,17 +26,14 @@ struct PauseSheet: View {
                 Button {
                     dismiss()
                 } label: {
-                    RoundedRectangle(cornerRadius: 100)
-                        .foregroundColor(.green_main)
-                        .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                        .overlay {
-                            HStack {
-                                Text("다시 시작")
-                                Image(systemName: "play.fill")
-                            }
-                            .font(.button1())
-                            .foregroundColor(.gray_900)
+                    Floating(size: .semiSmall, color: .green_main) {
+                        HStack {
+                            Text("다시 시작")
+                            Image(systemName: "play.fill")
                         }
+                        .font(.button1())
+                        .foregroundColor(.gray_900)
+                    }
                 }
             }
         }

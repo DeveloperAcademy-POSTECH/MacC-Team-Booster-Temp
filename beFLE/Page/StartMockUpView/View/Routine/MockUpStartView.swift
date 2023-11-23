@@ -137,13 +137,11 @@ struct MockUpStartView: View {
                 NavigationLink {
                     MockUpWorkoutOngoingView(showTest: $showTest)
                 } label: {
-                    RoundedRectangle(cornerRadius: 100)
-                        .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
-                        .foregroundColor(.green_main)
-                        .overlay { Text("체험 운동 시작")
-                                .foregroundColor(.gray_900)
-                                .font(.button1())
-                        }
+                    Floating(size: .semiMedium, color: .green_main) {
+                        Text("체험 운동 시작")
+                            .foregroundColor(.gray_900)
+                            .font(.button1())
+                    }
                 }
             }
         }

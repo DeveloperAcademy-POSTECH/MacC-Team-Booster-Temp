@@ -116,10 +116,8 @@ struct MockUpWorkoutOngoingView: View {
     func workoutButton(proxy: ScrollViewProxy) -> some View {
         VStack {
             Spacer()
-        RoundedRectangle(cornerRadius: 100)
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
-            .foregroundColor(.gray_700)
-            .overlay {
+            
+            Floating(size: .large, color: .gray_700) {
                 HStack {
                     Spacer()
                     
@@ -132,35 +130,29 @@ struct MockUpWorkoutOngoingView: View {
                         workoutOngoingVM.controlRepetition()
                     } label: {
                         if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
-                            RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                .foregroundColor(.red_main)
-                                .overlay {
-                                    Text("운동 완료")
-                                        .font(.button1())
-                                        .foregroundColor(.label_900)
-                                }
+                            Floating(size: .small, color: .red_main) {
+                                Text("운동 완료")
+                                    .font(.button1())
+                                    .foregroundColor(.label_900)
+                            }
                         }
                         else {
-                            RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                .foregroundColor(.green_main)
-                                .overlay {
-                                    HStack{
-                                        Text("다음 세트")
-                                            .font(.button1())
-                                            .foregroundColor(.gray_900)
-                                        Image(systemName: "chevron.right")
-                                            .font(.button2())
-                                            .foregroundColor(.gray_900)
-                                    }
+                            Floating(size: .small, color: .green_main) {
+                                HStack{
+                                    Text("다음 세트")
+                                        .font(.button1())
+                                        .foregroundColor(.gray_900)
+                                    Image(systemName: "chevron.right")
+                                        .font(.button2())
+                                        .foregroundColor(.gray_900)
                                 }
+                            }
                         }
                     }
                 }
                 .padding(.trailing, 8)
             }
-    }
+        }
     }
     
     
