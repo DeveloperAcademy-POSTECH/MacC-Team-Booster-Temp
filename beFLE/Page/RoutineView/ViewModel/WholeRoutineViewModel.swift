@@ -81,7 +81,6 @@ class WholeRoutineViewModel: ObservableObject {
                 routinesByMonth[month] = [routine]
             }
         }
-
         return routinesByMonth
     }
     
