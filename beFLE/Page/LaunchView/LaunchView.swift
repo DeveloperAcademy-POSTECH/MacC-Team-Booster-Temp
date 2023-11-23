@@ -34,6 +34,9 @@ extension LaunchView {
                 .scaledToFit()
                 .frame(width: UIScreen.getWidth(100), height: UIScreen.getHeight(100))
         }
+        .onAppear {
+            vm.loginByUserDefaults()
+        }
     }
 }
 
