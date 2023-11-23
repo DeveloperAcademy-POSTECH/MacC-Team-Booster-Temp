@@ -54,7 +54,6 @@
 		D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */; };
 		D58066582AFD3B4A003BB276 /* PauseStopwatchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */; };
 		D584CD892AFB556C00AFA1FF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584CD882AFB556C00AFA1FF /* ProfileView.swift */; };
-		D5A964562B0E0F4A00536A64 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A964552B0E0F4A00536A64 /* LaunchScreen.swift */; };
 		D5A9645F2B0E17FE00536A64 /* MockUpRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A9645E2B0E17FE00536A64 /* MockUpRecordView.swift */; };
 		D5A964652B0E191700536A64 /* MockUpCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A964642B0E191700536A64 /* MockUpCalendarView.swift */; };
 		D5A964672B0E197C00536A64 /* MockUpFSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A964662B0E197C00536A64 /* MockUpFSCalendarView.swift */; };
@@ -89,6 +88,8 @@
 		F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */; };
 		F8A4A58E2B0DF6CB00046C00 /* beFLE-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80BF2A72AE6A07D00EA4E07 /* beFLE-Info.plist */; };
 		F8A4A5912B0E60D800046C00 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F8A4A5902B0E60D800046C00 /* Lottie */; };
+		F8A4A62C2B0F63D500046C00 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A4A62B2B0F63D500046C00 /* LaunchView.swift */; };
+		F8A4A62E2B0F643200046C00 /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A4A62D2B0F643200046C00 /* LaunchViewModel.swift */; };
 		F8A6A8B32B0CF433006FF899 /* RecordSpecificViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6A8B22B0CF433006FF899 /* RecordSpecificViewModel.swift */; };
 		F8D7872E2B0BB12E00416700 /* RecordingFinishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D7872D2B0BB12E00416700 /* RecordingFinishViewModel.swift */; };
 		F8DACB562B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */; };
@@ -164,7 +165,6 @@
 		D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscribeView.swift; sourceTree = "<group>"; };
 		D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseStopwatchVM.swift; sourceTree = "<group>"; };
 		D584CD882AFB556C00AFA1FF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		D5A964552B0E0F4A00536A64 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		D5A9645E2B0E17FE00536A64 /* MockUpRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpRecordView.swift; sourceTree = "<group>"; };
 		D5A964642B0E191700536A64 /* MockUpCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpCalendarView.swift; sourceTree = "<group>"; };
 		D5A964662B0E197C00536A64 /* MockUpFSCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpFSCalendarView.swift; sourceTree = "<group>"; };
@@ -198,6 +198,8 @@
 		F89B3BEE2AE50D1600CACBD9 /* RelatedContentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedContentCard.swift; sourceTree = "<group>"; };
 		F89B3BF02AE511C100CACBD9 /* WorkoutSetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetCard.swift; sourceTree = "<group>"; };
 		F89B3BF32AE516A900CACBD9 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		F8A4A62B2B0F63D500046C00 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		F8A4A62D2B0F643200046C00 /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
 		F8A6A8B22B0CF433006FF899 /* RecordSpecificViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSpecificViewModel.swift; sourceTree = "<group>"; };
 		F8D7872D2B0BB12E00416700 /* RecordingFinishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingFinishViewModel.swift; sourceTree = "<group>"; };
 		F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeWorkoutSheetViewModel.swift; sourceTree = "<group>"; };
@@ -320,8 +322,8 @@
 		0DA327752AE13F5200319BAB /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				D569C78F2AF9456900FDADED /* LaunchView */,
 				D57183662B01EE5900A11FFC /* StartMockUpView */,
-				D569C78F2AF9456900FDADED /* Main */,
 				D569C78C2AF9451D00FDADED /* RoutineView */,
 				F8BE835B2AE68F1B0094A509 /* SearchView */,
 				F8F3A13B2AFA34EF0068F885 /* RecordView */,
@@ -339,14 +341,15 @@
 			path = RoutineView;
 			sourceTree = "<group>";
 		};
-		D569C78F2AF9456900FDADED /* Main */ = {
+		D569C78F2AF9456900FDADED /* LaunchView */ = {
 			isa = PBXGroup;
 			children = (
+				F8A4A62B2B0F63D500046C00 /* LaunchView.swift */,
 				0DA327592AE1321600319BAB /* MainView.swift */,
 				F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */,
 				F8DACB5B2B0400E700C3E95C /* ViewModel */,
 			);
-			path = Main;
+			path = LaunchView;
 			sourceTree = "<group>";
 		};
 		D569C7902AF9459900FDADED /* View */ = {
@@ -548,7 +551,6 @@
 				0D5851572AE4F34400C8875A /* WorkoutCell.swift */,
 				D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */,
 				D51DFC442B07D5B9001B28EC /* RoundedShape.swift */,
-				D5A964552B0E0F4A00536A64 /* LaunchScreen.swift */,
 				D5C511822B061870008B871E /* SwiftUIMailView.swift */,
 				D5076C402B0E645000011EE1 /* LottieView.swift */,
 			);
@@ -592,6 +594,7 @@
 		F8DACB5B2B0400E700C3E95C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F8A4A62D2B0F643200046C00 /* LaunchViewModel.swift */,
 				F8DACB5C2B04010100C3E95C /* MainViewModel.swift */,
 			);
 			path = ViewModel;
@@ -734,6 +737,7 @@
 				D5C5117C2B0562DC008B871E /* EditRecordingRoutineView.swift in Sources */,
 				F89B3BEB2AE5045000CACBD9 /* EmptyCheckButton.swift in Sources */,
 				F89B3BF42AE516A900CACBD9 /* WorkoutModel.swift in Sources */,
+				F8A4A62C2B0F63D500046C00 /* LaunchView.swift in Sources */,
 				D57E93C82B04A02E00D6D986 /* MockUpMainView.swift in Sources */,
 				F891B5B72B07E8750085E070 /* SingleInfluencerPreviewViewModel.swift in Sources */,
 				F8DACB6D2B04207B00C3E95C /* RoutineInformationView.swift in Sources */,
@@ -766,7 +770,6 @@
 				F8DACB582B03FCB800C3E95C /* RoutineView.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */,
-				D5A964562B0E0F4A00536A64 /* LaunchScreen.swift in Sources */,
 				F8DACB6F2B0420B200C3E95C /* RoutineInformationViewModel.swift in Sources */,
 				F8DACB752B04294500C3E95C /* RecordingRoutineView.swift in Sources */,
 				D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */,
@@ -785,6 +788,7 @@
 				F8F3A1442AFA35210068F885 /* CalendarView.swift in Sources */,
 				0DA327772AE1470C00319BAB /* Ext+UIScreen.swift in Sources */,
 				F8DACB732B0422D500C3E95C /* RecordingWorkoutViewModel.swift in Sources */,
+				F8A4A62E2B0F643200046C00 /* LaunchViewModel.swift in Sources */,
 				D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */,
 				D5517E842B0C751E00F02995 /* AppState.swift in Sources */,
 				D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */,

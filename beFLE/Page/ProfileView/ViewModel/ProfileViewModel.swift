@@ -47,7 +47,7 @@ class ProfileViewModel: ObservableObject {
         GeneralAPIManger.request(for: .PostUsersMe(accessToken: accessToken, refreshToken: refreshToken), type: ResponsePostLogin.self ) {
             switch $0 {
             case .success:
-                OnboardingViewModel.shared.isPass = false
+                LaunchViewModel.shared.appState = .launch
                 print("회원 탈퇴")
             case .failure(let error):
                 print(error.localizedDescription)
@@ -62,7 +62,7 @@ class ProfileViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "accessToken")
         UserDefaults.standard.removeObject(forKey: "refreshToken")
         
-        OnboardingViewModel.shared.isPass = false
+        LaunchViewModel.shared.appState = .launch
     }
 }
 

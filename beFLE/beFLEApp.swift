@@ -11,8 +11,7 @@ import SwiftUI
 struct beFLEApp: App {
     var body: some Scene {
         WindowGroup {
-            OnboardingView()
-//            MainView()
+            LaunchView()
         }
     }
 }
