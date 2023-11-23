@@ -20,8 +20,8 @@ struct SingleInfluencerRoutineView: View {
             Color.gray_900.ignoresSafeArea()
             InfluencerImage
             VStack {
-                    NavigationTitle
-                    InfluencerComment
+                NavigationTitle
+                InfluencerComment
                 Spacer()
                 TodayCard()
             }
@@ -29,9 +29,15 @@ struct SingleInfluencerRoutineView: View {
             Spacer()
                 .frame(height: UITabBarController().height)
         }
-        
     }
     
+    var EmptyFloatingButton: some View {
+        FloatingButton(backgroundColor: .clear) { }
+    }
+}
+
+/// 네비게이션 타이틀
+extension SingleInfluencerRoutineView {
     var NavigationTitle: some View {
         HStack {
             Text("\(routine.name)\n오늘의 운동")
@@ -43,6 +49,19 @@ struct SingleInfluencerRoutineView: View {
         .padding(.top, 30)
     }
     
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_900)
+                .font(.body())
+        }
+    }
+}
+
+/// 인플루언서 정보 관련
+extension SingleInfluencerRoutineView {
     var InfluencerImage: some View {
         AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
             image
@@ -61,9 +80,9 @@ struct SingleInfluencerRoutineView: View {
     }
     
     var InfluencerComment: some View {
-        ZStack{
+        ZStack {
             if routine.part == "휴식" {
-                
+                // TODO: 휴식일 때 나타낼 뷰
             } else {
                 VStack {
                     Spacer()
@@ -88,7 +107,10 @@ struct SingleInfluencerRoutineView: View {
             }
         }
     }
-    
+}
+
+/// 오늘의 루틴 관련
+extension SingleInfluencerRoutineView {
     var RoutineDescriptionCard: some View {
         HStack {
             VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
@@ -199,24 +221,10 @@ struct SingleInfluencerRoutineView: View {
         }
         .padding(.bottom, 1)
     }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
-    }
-    
-    var BackButton: some View {
-        Button {
-            dismiss()
-        } label: {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.label_900)
-                .font(.body())
-        }
-    }
 }
 
 #Preview {
-    TabView{
+    TabView {
         SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", singleRoutineImageUrl: "", multiRoutineImageUrl: "", influencerId: 1, isDone: false)))
             .tabItem {
                 Image(systemName: "dumbbell")
