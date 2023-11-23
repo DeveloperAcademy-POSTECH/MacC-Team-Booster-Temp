@@ -110,7 +110,7 @@ extension ProfileView {
     /// 문의하기
     var Inquiry: some View {
         Button {
-            vm.toggleMailSheetShow()
+            vm.showMailSheet()
         } label: {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {

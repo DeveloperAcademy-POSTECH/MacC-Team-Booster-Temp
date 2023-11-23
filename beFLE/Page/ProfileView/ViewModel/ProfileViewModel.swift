@@ -18,8 +18,16 @@ class ProfileViewModel: ObservableObject {
 
 /// 토글 관련
 extension ProfileViewModel {
-    func toggleMailSheetShow() {
-        isMailSheetShow.toggle()
+    func showMailSheet() {
+        isMailSheetShow = true
+    }
+    
+    func showWithdrawAlert() {
+        isWithdrawAlertShow = true
+    }
+    
+    func showLogoutAlert() {
+        isLogoutAlertShow = true
     }
 }
 

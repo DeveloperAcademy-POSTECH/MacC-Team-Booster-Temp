@@ -19,8 +19,6 @@ struct ManageProfileView: View {
                 Nickname
                 Withdraw
                 Logout
-                SignOut(deletingAccount: vm.deletingAccount)
-                LogOut(loggingOutSheet: vm.loggingOutSheet)
                 Spacer()
             }
         }
