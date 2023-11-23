@@ -409,7 +409,7 @@ struct RecordingWorkoutView: View {
                                             .allowsTightening(true)
                                         Spacer()
                                     }
-                                        .frame(width: .infinity)
+                                        .frame(maxWidth: .infinity)
                                 }
                             }
                             .scrollIndicators(.hidden)
