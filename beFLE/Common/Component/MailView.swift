@@ -1,5 +1,5 @@
 //
-//  SwiftUIMailView.swift
+//  MailView.swift
 //  beFLE
 //
 //  Created by 정회승 on 11/16/23.
