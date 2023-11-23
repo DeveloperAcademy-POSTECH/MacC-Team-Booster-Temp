@@ -17,10 +17,6 @@ struct ManageProfileView: View {
             Color.gray_900.ignoresSafeArea()
             VStack{
                 NicknameBanner(nickname: vm.nickname)
-//                if vm.email == "" {
-//                } else {
-//                    EmailBanner(email: vm.email)
-//                }
                 SignOut(deletingAccount: vm.deletingAccount)
                 LogOut(loggingOutSheet: vm.loggingOutSheet)
                 Spacer()
@@ -142,7 +138,10 @@ struct ManageProfileView: View {
             }
         }
     }
-    
+}
+
+// 네비게이션 타이틀
+extension ManageProfileView {
     var BackButton: some View {
         Button {
             dismiss()
