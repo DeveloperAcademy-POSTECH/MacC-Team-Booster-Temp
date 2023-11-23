@@ -10,11 +10,6 @@ import AuthenticationServices
 
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
-    @State var isPass = false
-    @State var showTest = false
-    @State var isLoading: Bool = true
-    @StateObject var profileViewModel = ProfileViewModel()
-    
     var body: some View {
         ZStack {
             OnboardingImage
@@ -101,7 +96,7 @@ extension OnboardingView {
     /// 둘러보기 버튼
     var PreviewButton: some View {
         Button {
-            showTest = true
+            // TODO: 목업 
         } label: {
             FloatingButton(backgroundColor: .gray_600) {
                 Text("둘러보기")
