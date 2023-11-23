@@ -11,6 +11,9 @@ import SwiftUI
 struct LaunchView: View {
     @StateObject var vm = LaunchViewModel.shared
     
+    // TODO: 시저 - showTest 및 연관 함수 제거
+    @State var showTest = false
+    
     var body: some View {
         switch vm.appState {
         case .launch:
@@ -18,7 +21,7 @@ struct LaunchView: View {
         case .onboarding:
             Onboarding
         case .preview:
-            Text("preview")
+            Preview
         case .login:
             Text("login")
         }
@@ -46,6 +49,13 @@ extension LaunchView {
 extension LaunchView {
     var Onboarding: some View {
         OnboardingView()
+    }
+}
+
+/// 둘러보기일 때 보이는 화면
+extension LaunchView {
+    var Preview: some View {
+        MockUpMainView(showTest: $showTest)
     }
 }
 
