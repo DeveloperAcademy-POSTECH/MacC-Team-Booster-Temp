@@ -25,7 +25,7 @@ struct MockUpWorkoutOngoingView: View {
     @Namespace var topID
     @State var showFinishView = false
     let workoutName = "클로즈 그립 랫 풀 다운"
-
+    
     
     var body: some View {
         ZStack {
@@ -40,7 +40,6 @@ struct MockUpWorkoutOngoingView: View {
                             Spacer()
                             WorkoutSetButton
                             WorkoutSetList
-                            //                    RelatedContent
                             EmptyFloatingButton
                                 .padding(.bottom, 40)
                                 .id(topID)
@@ -49,67 +48,10 @@ struct MockUpWorkoutOngoingView: View {
                 }
                 .scrollIndicators(.hidden)
                 .overlay(alignment: .bottom) {
-                    VStack{
-                        Spacer()
-                        isFocused ? nil :
-                        LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
-                            .frame(height: UIScreen.getHeight(150), alignment: .bottom)
-                            .allowsHitTesting(false)
-                    }
-                    .ignoresSafeArea()
-                    
-                    VStack {
-                        Spacer()
-                        isFocused ? nil :             RoundedRectangle(cornerRadius: 100)
-                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
-                            .foregroundColor(.gray_700)
-                            .overlay {
-                                HStack {
-                                    Spacer()
-                                    
-                                    Button {
-                                        if workoutOngoingVM.currentSet >= 1 {
-                                            withAnimation {
-                                                proxy.scrollTo(topID)
-                                            }
-                                        }
-                                        workoutOngoingVM.controlRepetition()
-                                    } label: {
-                                        if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
-                                            RoundedRectangle(cornerRadius: 100)
-                                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                                .foregroundColor(.red_main)
-                                                .overlay {
-                                                    Text("운동 완료")
-                                                        .font(.button1())
-                                                        .foregroundColor(.label_900)
-                                                }
-                                        }
-                                        else {
-                                            RoundedRectangle(cornerRadius: 100)
-                                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                                .foregroundColor(.green_main)
-                                                .overlay {
-                                                    HStack{
-                                                        Text("다음 세트")
-                                                            .font(.button1())
-                                                            .foregroundColor(.gray_900)
-                                                        Image(systemName: "chevron.right")
-                                                            .font(.button2())
-                                                            .foregroundColor(.gray_900)
-                                                    }
-                                                }
-                                        }
-                                    }
-                                }
-                                .padding(.trailing, 8)
-                            }
-
-                    }
+                    bottomGradientView(proxy: proxy)
+                    workoutButton(proxy: proxy)
                 }
             }
-            
-            
         }
         .navigationBarTitle("",displayMode: .inline)
         .toolbar {
@@ -139,7 +81,7 @@ struct MockUpWorkoutOngoingView: View {
             }
             Button("완료하기") {
                 // MARK: 완료하기
-//                MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
+                //                MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
                 showFinishView = true
             }
         }
@@ -158,6 +100,67 @@ struct MockUpWorkoutOngoingView: View {
         .onTapGesture {
             isFocused = false
         }
+    }
+    
+    func bottomGradientView(proxy: ScrollViewProxy) -> some View {
+        VStack {
+            Spacer()
+            isFocused ? nil :
+            LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                .allowsHitTesting(false)
+        }
+        .ignoresSafeArea()
+    }
+    
+    func workoutButton(proxy: ScrollViewProxy) -> some View {
+        VStack {
+            Spacer()
+        RoundedRectangle(cornerRadius: 100)
+            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
+            .foregroundColor(.gray_700)
+            .overlay {
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        if workoutOngoingVM.currentSet >= 1 {
+                            withAnimation {
+                                proxy.scrollTo(topID)
+                            }
+                        }
+                        workoutOngoingVM.controlRepetition()
+                    } label: {
+                        if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
+                            RoundedRectangle(cornerRadius: 100)
+                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                .foregroundColor(.red_main)
+                                .overlay {
+                                    Text("운동 완료")
+                                        .font(.button1())
+                                        .foregroundColor(.label_900)
+                                }
+                        }
+                        else {
+                            RoundedRectangle(cornerRadius: 100)
+                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                                .foregroundColor(.green_main)
+                                .overlay {
+                                    HStack{
+                                        Text("다음 세트")
+                                            .font(.button1())
+                                            .foregroundColor(.gray_900)
+                                        Image(systemName: "chevron.right")
+                                            .font(.button2())
+                                            .foregroundColor(.gray_900)
+                                    }
+                                }
+                        }
+                    }
+                }
+                .padding(.trailing, 8)
+            }
+    }
     }
     
     
@@ -246,22 +249,6 @@ struct MockUpWorkoutOngoingView: View {
                     .font(.title1())
                     .foregroundColor(.label_900)
                 
-                //                Button {
-                //                    workoutOngoingVM.showAlternativeWorkout()
-                //                } label: {
-                //                    RoundedRectangle(cornerRadius: 4)
-                //                        .frame(width: UIScreen.getWidth(52), height: UIScreen.getHeight(28))
-                //                        .foregroundColor(.gray_700)
-                //                        .overlay {
-                //                            HStack(spacing: 4) {
-                //                                Image(systemName: "arrow.2.squarepath")
-                //                                Text("대체")
-                //                            }
-                //                            .font(.caption())
-                //                            .foregroundColor(.label_700)
-                //                        }
-                //                }
-                
                 Spacer()
             }
         }
@@ -316,8 +303,7 @@ struct MockUpWorkoutOngoingView: View {
                 }
             Spacer()
         }
-        .padding(.horizontal)
-        .padding(.vertical)
+        .padding()
     }
     
     var WorkoutSetList: some View {
@@ -333,51 +319,6 @@ struct MockUpWorkoutOngoingView: View {
                 }
         }
     }
-    
-    @ViewBuilder
-    var WorkoutButton: some View {
-            RoundedRectangle(cornerRadius: 100)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
-                .foregroundColor(.gray_700)
-                .overlay {
-                    HStack {
-                        Spacer()
-                        
-                        Button {
-                            workoutOngoingVM.controlRepetition()
-                        } label: {
-                            if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
-                                RoundedRectangle(cornerRadius: 100)
-                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                    .foregroundColor(.red_main)
-                                    .overlay {
-                                        Text("운동 완료")
-                                            .font(.button1())
-                                            .foregroundColor(.label_900)
-                                    }
-                            }
-                            else {
-                                RoundedRectangle(cornerRadius: 100)
-                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-                                    .foregroundColor(.green_main)
-                                    .overlay {
-                                        HStack{
-                                            Text("다음 세트")
-                                                .font(.button1())
-                                                .foregroundColor(.gray_900)
-                                            Image(systemName: "chevron.right")
-                                                .font(.button2())
-                                                .foregroundColor(.gray_900)
-                                        }
-                                    }
-                            }
-                        }
-                    }
-                    .padding(.trailing, 8)
-                }
-    }
-    
-    
     
     var EmptyFloatingButton: some View {
         FloatingButton(backgroundColor: .clear) { }

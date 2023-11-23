@@ -50,7 +50,7 @@ struct SingleInfluencerRoutineView: View {
             image
                 .resizable()
                 .scaledToFill()
-                .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(720))
+                .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(700))
                 .clipped()
         } placeholder: {
             VStack() {
