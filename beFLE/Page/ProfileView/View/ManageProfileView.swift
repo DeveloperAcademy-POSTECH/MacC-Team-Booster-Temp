@@ -154,9 +154,3 @@ extension ManageProfileView {
         }
     }
 }
-
-//#Preview {
-//    NavigationStack{
-//        ManageProfileView(nickName: .constant("랜덤닉네임04"))
-//    }
-//}
