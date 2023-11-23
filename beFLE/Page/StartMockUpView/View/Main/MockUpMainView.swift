@@ -22,7 +22,7 @@ struct MockUpMainView: View {
         NavigationStack {
             TabView(selection: $vm.tabSelection) {
                 
-                MockUpStartView()
+                MockUpStartView(showTest: $showTest)
                     .tabItem {
                         Image(systemName: "dumbbell")
                         Text("운동")

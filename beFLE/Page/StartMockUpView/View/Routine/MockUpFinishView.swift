@@ -11,6 +11,7 @@ struct MockUpFinishView: View {
     
     //    @ObservedObject var viewModel: MockUpStopwatchViewModel
     @Binding var elapsedTime: TimeInterval
+    @Binding var showTest: Bool
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -84,8 +85,7 @@ struct MockUpFinishView: View {
                 
                 Button{
                     //TODO: root 네비게이션으로 연결 대체
-                    MockUpMainViewModel.shared.changeToProfileTab()
-                    MockUpMainViewModel.shared.resetNavigationStack()
+                    showTest.toggle()
                 } label: {
                     FloatingButton(backgroundColor: .gray_600) {
                         Text("로그인")

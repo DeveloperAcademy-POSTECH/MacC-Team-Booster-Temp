@@ -21,6 +21,7 @@ struct MockUpWorkoutOngoingView: View {
     @State var isDeleteAlertShow: Bool = false
     @State var exitAlertShow: Bool = false
     @State var existUnfinished: Bool = false
+    @Binding var showTest: Bool
     @Namespace var topID
     @State var showFinishView = false
     let workoutName = "클로즈 그립 랫 풀 다운"
@@ -143,7 +144,7 @@ struct MockUpWorkoutOngoingView: View {
             }
         }
         .fullScreenCover(isPresented: $showFinishView){
-            MockUpFinishView(elapsedTime: $viewModel.elapsedTime)
+            MockUpFinishView(elapsedTime: $viewModel.elapsedTime, showTest: $showTest)
         }
         .sheet(isPresented: $isPauseShow) {
             MockUpPauseSheet(viewModel: viewModel)
