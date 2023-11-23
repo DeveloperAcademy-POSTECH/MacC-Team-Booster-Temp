@@ -8,6 +8,8 @@
 import SwiftUI
 
 class LaunchViewModel: ObservableObject {
+    static let shared = LaunchViewModel()
+    
     @Published var appState: AppState = .launch
 }
 
