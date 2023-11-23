@@ -79,6 +79,7 @@ struct WholeRoutineView: View {
             .padding(.top, 5)
 
         }
+        .scrollIndicators(.hidden)
     }
     
     @ViewBuilder
