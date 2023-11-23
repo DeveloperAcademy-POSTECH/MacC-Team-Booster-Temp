@@ -55,19 +55,6 @@ extension ManageProfileView {
                         .font(.headline1())
                         .foregroundColor(.label_900)
                     Spacer()
-                    NavigationLink {
-                        ChangeNicknameView()
-                            .environmentObject(vm)
-                    } label: {
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: UIScreen.getWidth(52), height: UIScreen.getHeight(32))
-                            .foregroundColor(.gray_700)
-                            .overlay {
-                                Text("변경")
-                                    .foregroundColor(.label_900)
-                                    .font(.button2())
-                            }
-                    }
                 }
                 HStack {
                     Text(vm.nickname)
