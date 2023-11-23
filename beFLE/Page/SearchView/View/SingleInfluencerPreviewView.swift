@@ -60,13 +60,13 @@ struct SingleInfluencerPreviewView: View {
                 .overlay {
                     HStack {
                         Spacer()
-                        AsyncImage(url: URL(string: influencer.multiExploreImageUrl)) { image in
+                        AsyncImage(url: URL(string: influencer.singleExploreImageUrl)) { image in
                            
                             HStack {
                                 Spacer()
                                 image
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
                             }
                         } placeholder: {
                             LottieView()

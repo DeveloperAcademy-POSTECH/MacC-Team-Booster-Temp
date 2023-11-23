@@ -95,19 +95,20 @@ struct EditRecordingRoutineView: View {
                             }
                         }
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text(editRoutineVM.routine.exercises[index].name)
                             .foregroundColor(.label_900)
                             .font(.headline1())
                             .multilineTextAlignment(.leading)
                             .allowsTightening(true)
-                        HStack {
+                        HStack (spacing: 6) {
                             Text("\(editRoutineVM.routine.exercises[index].numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
                             Text("|")
                                 .foregroundColor(.label_400)
                                 .font(.body2())
+                                .scaleEffect(0.8)
                             Text("\(editRoutineVM.routine.exercises[index].recommendReps)회")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
