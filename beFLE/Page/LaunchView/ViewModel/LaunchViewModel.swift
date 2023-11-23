@@ -28,6 +28,9 @@ extension LaunchViewModel {
             reissueToken(refreshToken: refreshToken)
             return
         }
+        else {
+            appState = .onboarding
+        }
     }
     
     /// 애플 로그인 성공 시 액세스 토큰 요청 함수
@@ -36,6 +39,7 @@ extension LaunchViewModel {
             switch $0 {
             case .success(let token):
                 self.saveToken(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                self.appState = .login
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -48,6 +52,7 @@ extension LaunchViewModel {
             switch $0 {
             case .success(let token):
                 self.saveToken(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                self.appState = .login
             case .failure(let error):
                 print(error.localizedDescription)
             }
