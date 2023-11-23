@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// 앱이 처음 시작되었을 때 보이는 화면
 struct LaunchView: View {
     @StateObject var vm = LaunchViewModel.shared
     
@@ -22,6 +23,7 @@ struct LaunchView: View {
     }
 }
 
+/// 로그인 검사를 하는 동안 보이는 화면
 extension LaunchView {
     var LaunchScreen: some View {
         ZStack(alignment: .center) {
