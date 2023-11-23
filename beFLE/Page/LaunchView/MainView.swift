@@ -9,8 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var vm = MainViewModel.shared
-    @State var subscribed = false
-    @ObservedObject var profileViewModel: ProfileViewModel
+    
+    init() {
+        UITabBar.appearance().backgroundColor = Color.tabbar_main
+        UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
+    }
     
     var body: some View {
         NavigationStack {
@@ -20,20 +24,9 @@ struct MainView: View {
                 RecordTab
                 ProfileTab
             }
-            .environmentObject(vm)
             .tint(.label_900)
         }
         .id(vm.navigationUUID)
-    }
-}
-
-/// 이니셜라이저
-extension MainView {
-    init() {
-        UITabBar.appearance().backgroundColor = Color.tabbar_main
-        UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
-        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
-        self.profileViewModel = ProfileViewModel()
     }
 }
 
@@ -67,7 +60,7 @@ extension MainView {
     }
     
     var ProfileTab: some View {
-        ProfileView(vm: profileViewModel)
+        ProfileView(vm: ProfileViewModel())
             .tabItem {
                 Image(systemName: "person.fill")
                 Text("프로필")
