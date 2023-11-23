@@ -71,7 +71,7 @@ struct OnboardingView: View {
                         .foregroundColor(.label_900)
                         .padding(.bottom, 10)
                         
-                        Text("Be my Influencer, beFLE")
+                        Text("Be my Influencer, BEFLE")
                             .font(.system(size: 20, weight: .light, design: .default))
                             .foregroundColor(.label_700)
                     }
