@@ -23,7 +23,7 @@ struct LaunchView: View {
         case .preview:
             Preview
         case .login:
-            Text("login")
+            Login
         }
     }
 }
@@ -56,6 +56,13 @@ extension LaunchView {
 extension LaunchView {
     var Preview: some View {
         MockUpMainView(showTest: $showTest)
+    }
+}
+
+/// 로그인 상태일 때 보이는 화면
+extension LaunchView {
+    var Login: some View {
+        MainView()
     }
 }
 
