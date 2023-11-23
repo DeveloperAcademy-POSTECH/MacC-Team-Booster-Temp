@@ -13,11 +13,24 @@ struct LaunchView: View {
     var body: some View {
         switch vm.appState {
         case .launch:
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            LaunchScreen
         case .onboarding:
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         case .login:
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        }
+    }
+}
+
+extension LaunchView {
+    var LaunchScreen: some View {
+        ZStack(alignment: .center) {
+            Color.gray_900.ignoresSafeArea()
+            
+            Image("launchScreenImage")
+                .resizable()
+                .scaledToFit()
+                .frame(width: UIScreen.getWidth(100), height: UIScreen.getHeight(100))
         }
     }
 }
