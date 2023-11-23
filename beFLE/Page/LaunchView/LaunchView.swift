@@ -16,7 +16,7 @@ struct LaunchView: View {
         case .launch:
             LaunchScreen
         case .onboarding:
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Onboarding
         case .login:
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         }
@@ -37,6 +37,13 @@ extension LaunchView {
         .onAppear {
             vm.loginByUserDefaults()
         }
+    }
+}
+
+/// 로그인 상태가 아닐 때 보이는 화면
+extension LaunchView {
+    var Onboarding: some View {
+        OnboardingView()
     }
 }
 
