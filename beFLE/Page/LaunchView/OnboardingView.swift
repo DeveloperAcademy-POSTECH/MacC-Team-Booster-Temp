@@ -8,32 +8,26 @@
 import SwiftUI
 import AuthenticationServices
 
-class OnboardingViewModel: ObservableObject {
-    static let shared = OnboardingViewModel()
-    @Published var isPass = false
-    @Published var showTest = false
-}
-
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
-    @StateObject var vm = OnboardingViewModel.shared
-    
+    @State var isPass = false
+    @State var showTest = false
     @State var isLoading: Bool = true
     @StateObject var profileViewModel = ProfileViewModel()
     
     var body: some View {
         ZStack{
-            if !vm.isPass {
+            if !isPass {
                 // 로그인 전
                 Onboarding
                     .onAppear {
                         validateUser()
                     }
             }
-            if vm.showTest {
-                MockUpMainView(showTest: $vm.showTest)
+            if showTest {
+                MockUpMainView(showTest: $showTest)
             }
-            if vm.isPass{
+            if isPass{
                 // 로그인 성공 시
                 MainView()
             }
@@ -129,7 +123,7 @@ struct OnboardingView: View {
     
     var PreviewButton: some View {
         Button {
-            vm.showTest = true
+            showTest = true
         } label: {
             FloatingButton(backgroundColor: .gray_600) {
                 Text("둘러보기")
@@ -145,7 +139,7 @@ struct OnboardingView: View {
             switch $0 {
             case .success(let token):
                 saveUser(accessToken: token.accessToken, refreshToken: token.refreshToken)
-                vm.isPass = true
+                isPass = true
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -158,7 +152,7 @@ struct OnboardingView: View {
             switch $0 {
             case .success(let token):
                 saveUser(accessToken: token.accessToken, refreshToken: token.refreshToken)
-                vm.isPass = true
+                isPass = true
             case .failure(let error):
                 print(error.localizedDescription)
             }
