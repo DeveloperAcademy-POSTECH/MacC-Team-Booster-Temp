@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum WorkoutPart: String, CaseIterable {
-    case 전체, 등, 가슴, 이두, 삼두, 하체, 후면사슬, 복근
+    case 전체, 등, 가슴, 이두, 삼두, 하체, 복근
 }
 
 // MARK: 1. 보여줄 데이터(월): 구독 시작 기준 3일 전 데이터부터 보여주기

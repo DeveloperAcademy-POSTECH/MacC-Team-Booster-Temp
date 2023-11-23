@@ -500,6 +500,9 @@ struct RecordingWorkoutView: View {
         }
         .padding(.bottom, 70)
     }
+
+    
+//    func WorkoutButton()
     
     //    var WorkoutButton: some View {
     //        RoundedRectangle(cornerRadius: 100)
