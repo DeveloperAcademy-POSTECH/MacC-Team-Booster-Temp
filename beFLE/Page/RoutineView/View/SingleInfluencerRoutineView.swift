@@ -31,7 +31,6 @@ struct SingleInfluencerRoutineView: View {
             Spacer()
                 .frame(height: UITabBarController().height)
         }
-        
     }
     
     var NavigationTitle: some View {
