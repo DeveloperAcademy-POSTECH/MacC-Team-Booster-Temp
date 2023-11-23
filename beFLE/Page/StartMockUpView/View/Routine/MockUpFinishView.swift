@@ -11,7 +11,6 @@ struct MockUpFinishView: View {
     
     //    @ObservedObject var viewModel: MockUpStopwatchViewModel
     @Binding var elapsedTime: TimeInterval
-    @Binding var tabSelection: Int
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -73,7 +72,8 @@ struct MockUpFinishView: View {
                 Spacer()
                     .frame(height: 115)
                 Button{
-                    //TODO: root 네비게이션으로 연결 대체
+                    MockUpMainViewModel.shared.changeToRecordTab()
+                    MockUpMainViewModel.shared.resetNavigationStack()
                 } label: {
                     FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
                             .foregroundColor(.gray_900)
@@ -84,7 +84,8 @@ struct MockUpFinishView: View {
                 
                 Button{
                     //TODO: root 네비게이션으로 연결 대체
-                    dismiss()
+                    MockUpMainViewModel.shared.changeToProfileTab()
+                    MockUpMainViewModel.shared.resetNavigationStack()
                 } label: {
                     FloatingButton(backgroundColor: .gray_600) {
                         Text("로그인")
@@ -121,6 +122,6 @@ struct MockUpFinishView: View {
     }
 }
 
-#Preview {
-    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
-}
+//#Preview {
+//    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
+//}

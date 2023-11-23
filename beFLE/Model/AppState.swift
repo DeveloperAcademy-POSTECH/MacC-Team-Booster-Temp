@@ -1,12 +1,12 @@
+////
+////  AppState.swift
+////  beFLE
+////
+////  Created by 정회승 on 11/21/23.
+////
 //
-//  AppState.swift
-//  beFLE
+//import Foundation
 //
-//  Created by 정회승 on 11/21/23.
-//
-
-import Foundation
-
-class AppState : ObservableObject {
-    @Published var rootViewId = UUID()
-}
+//class AppState : ObservableObject {
+//    @Published var rootViewId = UUID()
+//}

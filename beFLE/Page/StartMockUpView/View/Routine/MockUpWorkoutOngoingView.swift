@@ -12,7 +12,6 @@ struct MockUpWorkoutOngoingView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = MockUpStopwatchViewModel()
     @FocusState private var isFocused: Bool
-    @Binding var tabSelection: Int
     @StateObject var workoutOngoingVM = MockUpWorkoutOngoingViewModel()
     @State var isPauseShow = false
     //    @State var isFinishShow = false
@@ -24,7 +23,6 @@ struct MockUpWorkoutOngoingView: View {
     @State var existUnfinished: Bool = false
     @Namespace var topID
     @State var showFinishView = false
-    
     let workoutName = "클로즈 그립 랫 풀 다운"
 
     
@@ -145,7 +143,7 @@ struct MockUpWorkoutOngoingView: View {
             }
         }
         .fullScreenCover(isPresented: $showFinishView){
-            MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
+            MockUpFinishView(elapsedTime: $viewModel.elapsedTime)
         }
         .sheet(isPresented: $isPauseShow) {
             MockUpPauseSheet(viewModel: viewModel)

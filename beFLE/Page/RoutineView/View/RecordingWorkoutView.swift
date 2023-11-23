@@ -32,22 +32,22 @@ struct RecordingWorkoutView: View {
                 
                 ScrollViewReader { proxy in
                     ZStack {
-                    ScrollView {
-                        Spacer()
-                            .frame(height: 0)
-                            .id(refreshID)
-                        WorkoutInfomation
-                        WorkoutImageAndTip
-                        Spacer()
-                        WorkoutSetButton
-                        WorkoutSetList
-                            .id(topID)
-                        RelatedContent
-                        EmptyFloatingButton
-                        EmptyFloatingButton
-                    }
-                    .scrollIndicators(.hidden)
-
+                        ScrollView {
+                            Spacer()
+                                .frame(height: 0)
+                                .id(refreshID)
+                            WorkoutInfomation
+                            WorkoutImageAndTip
+                            Spacer()
+                            WorkoutSetButton
+                            WorkoutSetList
+                                .id(topID)
+                            RelatedContent
+                            EmptyFloatingButton
+                            EmptyFloatingButton
+                        }
+                        .scrollIndicators(.hidden)
+                        
                         VStack{
                             Spacer()
                             isFocused ? nil :
@@ -178,8 +178,8 @@ struct RecordingWorkoutView: View {
                                     .padding(.trailing, 8)
                                 }
                         }
+                    }
                 }
-            }
             }
             .onAppear {
                 vm.start()
@@ -409,7 +409,7 @@ struct RecordingWorkoutView: View {
                                             .allowsTightening(true)
                                         Spacer()
                                     }
-                                        .frame(maxWidth: .infinity)
+                                    .frame(maxWidth: .infinity)
                                 }
                             }
                             .scrollIndicators(.hidden)
@@ -482,7 +482,7 @@ struct RecordingWorkoutView: View {
     var WorkoutSetList: some View {
         VStack{
             if !editRoutineVM.workout.sets.isEmpty {
-//                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
+                //                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                 ForEach(editRoutineVM.workout.sets.indices, id: \.self) { index in
                     // TODO: 무게 조정 api 호출
                     WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
@@ -501,111 +501,111 @@ struct RecordingWorkoutView: View {
         .padding(.bottom, 70)
     }
     
-//    var WorkoutButton: some View {
-//        RoundedRectangle(cornerRadius: 100)
-//            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
-//            .foregroundColor(.gray_700)
-//            .overlay {
-//                HStack {
-//                    NavigationLink {
-//                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
-//                            .environmentObject(editRoutineVM)
-//                    } label: {
-//                        Image(systemName: "list.bullet")
-//                            .foregroundColor(.green_main)
-//                            .font(.title1())
-//                            .padding(.leading, 30)
-//                    }
-//                    
-//                    Spacer()
-//                    
-//                    // MARK: 다음 세트, 운동, 운동 완료 버튼
-//                    Button {
-//                        if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-//                            if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
-//                                vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
-//                                    editRoutineVM.workout.sets[vm.currentSet].isDone = true
-//                                    
-//                                    for exercise in editRoutineVM.routine.exercises {
-//                                        if exercise.isDone == false {
-//                                            vm.isDiscontinuewAlertShow = true
-//                                            return
-//                                        }
-//                                    }
-//                                    
-//                                    vm.finishWorkout(routineId: routineId)
-//                                }
-//                            }
-//                            else {
-//                                vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
-//                                    editRoutineVM.workout.sets[vm.currentSet].isDone = true
-//                                    
-//                                    editRoutineVM.currentWorkoutIndex += 1
-//                                    editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
-//                                    if editRoutineVM.currentWorkoutIndex != editRoutineVM.routine.exercises.count {
-//                                        vm.currentSet = 0
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        else {
-//                            vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
-//                                editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
-//                                if $0.weight != nil {
-//                                    editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
-//                                }
-//                                editRoutineVM.workout.sets[vm.currentSet].isDone = $0.isDone
-//                                vm.currentSet += 1
-//                            }
-//                        }
-//                    } label: {
-//                        if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-//                            if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
-//                                RoundedRectangle(cornerRadius: 100)
-//                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-//                                    .foregroundColor(.red_main)
-//                                    .overlay {
-//                                        Text("운동 완료")
-//                                            .font(.button1())
-//                                            .foregroundColor(.label_900)
-//                                    }
-//                            }
-//                            else {
-//                                RoundedRectangle(cornerRadius: 100)
-//                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-//                                    .foregroundColor(.green_main)
-//                                    .overlay {
-//                                        HStack{
-//                                            Text("다음 운동")
-//                                                .font(.button1())
-//                                            Image(systemName: "chevron.right")
-//                                                .font(.button2())
-//                                        }
-//                                        .foregroundColor(.gray_900)
-//                                    }
-//                            }
-//                        }
-//                        else {
-//                            RoundedRectangle(cornerRadius: 100)
-//                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
-//                                .foregroundColor(.green_main)
-//                                .overlay {
-//                                    HStack{
-//                                        Text("다음 세트")
-//                                            .font(.button1())
-//                                        Image(systemName: "chevron.right")
-//                                            .font(.button2())
-//                                    }
-//                                    .foregroundColor(.gray_900)
-//                                }
-//                        }
-//                    }
-//                    .disabled(!vm.isCanTappable)
-//                    //: - 다음 버튼
-//                }
-//                .padding(.trailing, 8)
-//            }
-//    }
+    //    var WorkoutButton: some View {
+    //        RoundedRectangle(cornerRadius: 100)
+    //            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
+    //            .foregroundColor(.gray_700)
+    //            .overlay {
+    //                HStack {
+    //                    NavigationLink {
+    //                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
+    //                            .environmentObject(editRoutineVM)
+    //                    } label: {
+    //                        Image(systemName: "list.bullet")
+    //                            .foregroundColor(.green_main)
+    //                            .font(.title1())
+    //                            .padding(.leading, 30)
+    //                    }
+    //
+    //                    Spacer()
+    //
+    //                    // MARK: 다음 세트, 운동, 운동 완료 버튼
+    //                    Button {
+    //                        if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
+    //                            if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
+    //                                vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
+    //                                    editRoutineVM.workout.sets[vm.currentSet].isDone = true
+    //
+    //                                    for exercise in editRoutineVM.routine.exercises {
+    //                                        if exercise.isDone == false {
+    //                                            vm.isDiscontinuewAlertShow = true
+    //                                            return
+    //                                        }
+    //                                    }
+    //
+    //                                    vm.finishWorkout(routineId: routineId)
+    //                                }
+    //                            }
+    //                            else {
+    //                                vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
+    //                                    editRoutineVM.workout.sets[vm.currentSet].isDone = true
+    //
+    //                                    editRoutineVM.currentWorkoutIndex += 1
+    //                                    editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
+    //                                    if editRoutineVM.currentWorkoutIndex != editRoutineVM.routine.exercises.count {
+    //                                        vm.currentSet = 0
+    //                                    }
+    //                                }
+    //                            }
+    //                        }
+    //                        else {
+    //                            vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
+    //                                editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
+    //                                if $0.weight != nil {
+    //                                    editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
+    //                                }
+    //                                editRoutineVM.workout.sets[vm.currentSet].isDone = $0.isDone
+    //                                vm.currentSet += 1
+    //                            }
+    //                        }
+    //                    } label: {
+    //                        if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
+    //                            if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
+    //                                RoundedRectangle(cornerRadius: 100)
+    //                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+    //                                    .foregroundColor(.red_main)
+    //                                    .overlay {
+    //                                        Text("운동 완료")
+    //                                            .font(.button1())
+    //                                            .foregroundColor(.label_900)
+    //                                    }
+    //                            }
+    //                            else {
+    //                                RoundedRectangle(cornerRadius: 100)
+    //                                    .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+    //                                    .foregroundColor(.green_main)
+    //                                    .overlay {
+    //                                        HStack{
+    //                                            Text("다음 운동")
+    //                                                .font(.button1())
+    //                                            Image(systemName: "chevron.right")
+    //                                                .font(.button2())
+    //                                        }
+    //                                        .foregroundColor(.gray_900)
+    //                                    }
+    //                            }
+    //                        }
+    //                        else {
+    //                            RoundedRectangle(cornerRadius: 100)
+    //                                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+    //                                .foregroundColor(.green_main)
+    //                                .overlay {
+    //                                    HStack{
+    //                                        Text("다음 세트")
+    //                                            .font(.button1())
+    //                                        Image(systemName: "chevron.right")
+    //                                            .font(.button2())
+    //                                    }
+    //                                    .foregroundColor(.gray_900)
+    //                                }
+    //                        }
+    //                    }
+    //                    .disabled(!vm.isCanTappable)
+    //                    //: - 다음 버튼
+    //                }
+    //                .padding(.trailing, 8)
+    //            }
+    //    }
     
     var RelatedContent: some View {
         VStack { editRoutineVM.workout.videoUrls.count >= 1 ?

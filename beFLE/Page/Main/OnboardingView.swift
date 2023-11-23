@@ -10,8 +10,8 @@ import AuthenticationServices
 
 class OnboardingViewModel: ObservableObject {
     static let shared = OnboardingViewModel()
-    
     @Published var isPass = false
+    @Published var showTest = false
 }
 
 /// 앱 시작 시 처음 보이는 화면
@@ -19,21 +19,21 @@ struct OnboardingView: View {
     @StateObject var vm = OnboardingViewModel.shared
     
     @State var isLoading: Bool = true
-    @StateObject var appState = AppState()
     @StateObject var profileViewModel = ProfileViewModel()
     
     var body: some View {
         ZStack{
             if !vm.isPass {
                 // 로그인 전
-                NavigationStack {
-                    Onboarding
-                        .onAppear {
-                            validateUser()
-                        }
-                }
+                Onboarding
+                    .onAppear {
+                        validateUser()
+                    }
             }
-            else {
+            if vm.showTest {
+                MockUpMainView(showTest: $vm.showTest)
+            }
+            if vm.isPass{
                 // 로그인 성공 시
                 MainView()
             }
@@ -128,11 +128,8 @@ struct OnboardingView: View {
     }
     
     var PreviewButton: some View {
-        NavigationLink {
-            MockUpMainView()
-                .navigationBarBackButtonHidden()
-                .navigationBarTitleDisplayMode(.inline)
-                .environmentObject(appState)
+        Button {
+            vm.showTest = true
         } label: {
             FloatingButton(backgroundColor: .gray_600) {
                 Text("둘러보기")
