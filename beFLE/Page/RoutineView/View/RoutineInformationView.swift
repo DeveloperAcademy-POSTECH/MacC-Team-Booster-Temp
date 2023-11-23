@@ -28,7 +28,7 @@ struct RoutineInformationView: View {
                     .padding(.horizontal, 20)
                 WorkoutRoutine
                 
-                EmptyFloatingButton
+                FloatingButton(size: .medium) {}
                     .padding()
             }
             
@@ -46,10 +46,6 @@ struct RoutineInformationView: View {
                 BackButton
             }
         }
-    }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
     }
     
     var SpecificInformation: some View {
@@ -111,7 +107,7 @@ struct RoutineInformationView: View {
             NavigationLink {
                 EditRoutineView(routineId: routineId)
             } label: {
-                FloatingButton(backgroundColor: .green_main) {
+                FloatingButton(size: .medium, color: .green_main) {
                     Text("운동 시작")
                         .foregroundColor(.gray_900)
                         .font(.button1())

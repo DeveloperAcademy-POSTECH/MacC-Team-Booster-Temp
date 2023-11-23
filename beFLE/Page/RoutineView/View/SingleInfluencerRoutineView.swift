@@ -30,10 +30,6 @@ struct SingleInfluencerRoutineView: View {
                 .frame(height: UITabBarController().height)
         }
     }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
-    }
 }
 
 /// 네비게이션 타이틀
@@ -170,9 +166,7 @@ extension SingleInfluencerRoutineView {
                             .font(.headline1())
                     }
                     
-                    // TODO: EmptyFloatingButton으로 변경
-                    EmptyFloatingButton
-                        .padding(.bottom)
+                    FloatingButton(size: .medium) {}
                 }
                 else {
                     RoutineDescriptionCard
@@ -180,32 +174,26 @@ extension SingleInfluencerRoutineView {
                         .padding(.leading,10)
                     //운동 시작 버튼
                     if routine.isDone {
-                        RoundedRectangle(cornerRadius: 100)
-                            .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
-                            .foregroundColor(.gray_600)
-                            .overlay {
-                                HStack{
-                                    Image(systemName: "flame.fill")
-                                        .foregroundColor(.label_400)
-                                        .font(.button1())
-                                    Text("오늘 운동 완료")
-                                        .foregroundColor(.label_400)
-                                        .font(.button1())
-                                }
+                        FloatingButton(size: .semiMedium, color: .gray_600) {
+                            HStack {
+                                Image(systemName: "flame.fill")
+                                    .foregroundColor(.label_400)
+                                    .font(.button1())
+                                Text("오늘 운동 완료")
+                                    .foregroundColor(.label_400)
+                                    .font(.button1())
                             }
+                        }
                             .padding(.bottom, 10)
                     } else {
                         NavigationLink {
                             EditRoutineView(routineId: routine.routineId)
                         } label: {
-                            RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
-                                .foregroundColor(.green_main)
-                                .overlay {
-                                    Text("운동 시작")
-                                        .foregroundColor(.gray_900)
-                                        .font(.button1())
-                                }
+                            FloatingButton(size: .semiMedium, color: .green_main) {
+                                Text("운동 시작")
+                                    .foregroundColor(.gray_900)
+                                    .font(.button1())
+                            }
                         }
                         .padding(.bottom, 10)
                     }
