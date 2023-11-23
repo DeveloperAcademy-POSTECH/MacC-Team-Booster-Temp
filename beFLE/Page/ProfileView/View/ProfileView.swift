@@ -55,7 +55,8 @@ extension ProfileView {
 extension ProfileView {
     var ProfileCard: some View {
         NavigationLink {
-            ManageProfileView(vm: vm)
+            ManageProfileView()
+                .environmentObject(vm)
         } label: {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.gray_700)
