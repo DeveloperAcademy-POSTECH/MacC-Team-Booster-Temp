@@ -9,16 +9,6 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var vm = ProfileViewModel()
-    @State private var mailData = ComposeMailData(subject: "비플 문의하기",
-                                                  recipients: ["pmchung423@gmail.com"],
-                                                  message: "비플 문의하기",
-                                                  attachments: [
-                                                    //                                                    AttachmentData(data: "Some text".data(using: .utf8)!,
-                                                    //                                                                               mimeType: "text/plain",
-                                                    //                                                                               fileName: "text.txt")
-                                                  ]
-    )
-    @State private var showMailView = false
     
     var body: some View {
         ZStack {
@@ -26,86 +16,23 @@ struct ProfileView: View {
             VStack {
                 NavigationTitle
                 ProfileCard
-                
                 Divider()
                     .foregroundColor(.gray_700)
                     .padding(.horizontal)
-                
-                versionInformaion
-                
+                VersionInformaion
                 Divider()
                     .foregroundColor(.gray_700)
                     .padding(.horizontal, 20)
-                
-                Button(action: {
-                    showMailView.toggle()
-                }) {
-                    inquiry
-                }
-                .disabled(!MailView.canSendMail)
-                .sheet(isPresented: $showMailView) {
-                    MailView(data: $mailData) { result in
-                        
-                    }
-                }
-                //로그인 전 unactive
+                Inquiry
                 Divider()
                     .foregroundColor(.gray_700)
                     .padding(.horizontal)
-                useInformation
+                Terms
                 Spacer()
             }
             .onAppear {
                 vm.fetchNickname()
             }
-        }
-    }
-    
-    var versionInformaion : some View {
-        VStack(alignment: .leading, spacing: 5){
-            HStack{
-                Text("버전정보")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                Spacer()
-            }
-            
-            HStack{
-                Text(vm.versionState)
-                    .font(.body())
-                    .foregroundColor(.label_700)
-            }
-        }
-        .padding()
-    }
-    
-    var inquiry : some View {
-        //이메일 모달
-        VStack(alignment: .leading, spacing: 4){
-            HStack {
-                Text("문의하기")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                    .padding(.vertical)
-                Spacer()
-            }
-        }
-        .padding(.horizontal)
-    }
-    
-    var useInformation : some View {
-        //노션 페이지 마련
-        Link(destination: URL(string: "https://wiggly-basketball-0a4.notion.site/25e03fbff832400d9bfd8206cb688047" )!) {
-            VStack(alignment: .leading){
-                HStack{
-                    Text("이용약관 및 개인정보처리방침")
-                        .font(.headline1())
-                        .foregroundColor(.label_900)
-                        .padding(.top)
-                    Spacer()
-                }
-            }
-            .padding(.horizontal)
         }
     }
 }
@@ -158,8 +85,66 @@ extension ProfileView {
     }
 }
 
+/// 정보 제공 관련
 extension ProfileView {
+    /// 앱 버전
+    var VersionInformaion: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack {
+                Text("버전정보")
+                    .font(.headline1())
+                    .foregroundColor(.label_900)
+                Spacer()
+            }
+            
+            HStack {
+                Text(vm.version)
+                    .font(.body())
+                    .foregroundColor(.label_700)
+            }
+        }
+        .padding()
+    }
     
+    /// 문의하기
+    var Inquiry: some View {
+        Button {
+            vm.toggleMailSheetShow()
+        } label: {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text("문의하기")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                        .padding(.vertical)
+                    Spacer()
+                }
+            }
+            .padding(.horizontal)
+        }
+        .disabled(!MailView.canSendMail)
+        .sheet(isPresented: $vm.isMailSheetShow) {
+            MailView(data: $vm.mailData) { result in
+                print(result)
+            }
+        }
+    }
+    
+    /// 이용약관 및 개인정보 처리방침
+    var Terms: some View {
+        Link(destination: URL(string: "https://wiggly-basketball-0a4.notion.site/25e03fbff832400d9bfd8206cb688047")!) {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("이용약관 및 개인정보처리방침")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                        .padding(.top)
+                    Spacer()
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
 }
 
 #Preview {

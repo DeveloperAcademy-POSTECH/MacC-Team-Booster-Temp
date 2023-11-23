@@ -8,15 +8,20 @@
 import SwiftUI
 
 class ProfileViewModel: ObservableObject {
+    var version = "1.0.0"
+    @Published var mailData = ComposeMailData(subject: "비플 문의하기", recipients: ["pmchung423@gmail.com"], message: "비플 문의하기", attachments: [])
     @Published var nickname = ""
-    
-    @Published var notiToggle: Bool = true
-    @Published var versionState: String = "1.0.0"
-    
-    @Published var email = "king81597@naver.com"
+    @Published var isMailSheetShow = false
     
     @Published var deletingAccount = false
     @Published var loggingOutSheet = false
+}
+
+/// 토글 관련
+extension ProfileViewModel {
+    func toggleMailSheetShow() {
+        isMailSheetShow.toggle()
+    }
 }
 
 /// 닉네임 관련
