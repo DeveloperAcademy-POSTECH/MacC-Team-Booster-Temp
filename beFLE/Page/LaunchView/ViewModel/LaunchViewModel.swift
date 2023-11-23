@@ -19,6 +19,7 @@ extension LaunchViewModel {
     enum AppState {
         case launch
         case onboarding
+        case preview
         case login
     }
     
