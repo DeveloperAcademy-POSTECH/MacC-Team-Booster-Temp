@@ -17,6 +17,8 @@ struct ManageProfileView: View {
             Color.gray_900.ignoresSafeArea()
             VStack {
                 Nickname
+                Withdraw
+                Logout
                 SignOut(deletingAccount: vm.deletingAccount)
                 LogOut(loggingOutSheet: vm.loggingOutSheet)
                 Spacer()
@@ -29,56 +31,6 @@ struct ManageProfileView: View {
             }
         }
         .navigationBarBackButtonHidden()
-    }
-    
-    func SignOut(deletingAccount: Bool) -> some View {
-        Button{
-            self.vm.deletingAccount = true
-        } label: {
-            HStack{
-                Text("회원탈퇴")
-                    .font(.body())
-                    .foregroundColor(.label_700)
-                Spacer()
-            }
-            .padding()
-            .padding(.top)
-            
-        }
-        .alert(isPresented: $vm.deletingAccount) {
-            let firstButton = Alert.Button.default(Text("취소").bold()) {
-                
-            }
-            let secondButton = Alert.Button.default(Text("탈퇴")) {
-                vm.withdrawAccount()
-                vm.logout()
-            }
-            return Alert(title: Text("탈퇴하시겠습니까"),
-                         message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
-                         primaryButton: firstButton, secondaryButton: secondButton)
-        }
-    }
-    
-    func LogOut(loggingOutSheet: Bool) -> some View {
-        Button(action: {self.vm.loggingOutSheet = true}, label: {
-            HStack{
-                Text("로그아웃")
-                    .font(.body())
-                    .foregroundColor(.label_700)
-                Spacer()
-            }
-            .padding()
-            
-        })
-        .alert("로그아웃하시겠습니까?", isPresented: $vm.loggingOutSheet) {
-            Button("취소") { }
-            Button{
-                vm.logout()
-            } label: {
-                Text("로그아웃")
-                    .bold()
-            }
-        }
     }
 }
 
@@ -133,6 +85,55 @@ extension ManageProfileView {
     }
 }
 
+/// 계정 관련
 extension ManageProfileView {
+    var Withdraw: some View {
+        Button {
+            vm.isWithdrawAlertShow = true
+        } label: {
+            HStack{
+                Text("회원탈퇴")
+                    .font(.body())
+                    .foregroundColor(.label_700)
+                Spacer()
+            }
+            .padding()
+            .padding(.top)
+            
+        }
+        .alert(isPresented: $vm.isWithdrawAlertShow) {
+            let firstButton = Alert.Button.default(Text("취소").bold()) {
+                
+            }
+            let secondButton = Alert.Button.default(Text("탈퇴")) {
+                vm.withdrawAccount()
+                vm.logout()
+            }
+            return Alert(title: Text("탈퇴하시겠습니까"),
+                         message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),
+                         primaryButton: firstButton, secondaryButton: secondButton)
+        }
+    }
     
+    var Logout: some View {
+        Button(action: {vm.isLogoutAlertShow = true}, label: {
+            HStack{
+                Text("로그아웃")
+                    .font(.body())
+                    .foregroundColor(.label_700)
+                Spacer()
+            }
+            .padding()
+            
+        })
+        .alert("로그아웃하시겠습니까?", isPresented: $vm.isLogoutAlertShow) {
+            Button("취소") { }
+            Button{
+                vm.logout()
+            } label: {
+                Text("로그아웃")
+                    .bold()
+            }
+        }
+    }
 }

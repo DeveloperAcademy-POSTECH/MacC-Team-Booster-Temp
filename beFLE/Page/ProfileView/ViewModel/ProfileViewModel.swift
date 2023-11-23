@@ -12,9 +12,8 @@ class ProfileViewModel: ObservableObject {
     @Published var mailData = ComposeMailData(subject: "비플 문의하기", recipients: ["pmchung423@gmail.com"], message: "비플 문의하기", attachments: [])
     @Published var nickname = ""
     @Published var isMailSheetShow = false
-    
-    @Published var deletingAccount = false
-    @Published var loggingOutSheet = false
+    @Published var isWithdrawAlertShow = false
+    @Published var isLogoutAlertShow = false
 }
 
 /// 토글 관련
