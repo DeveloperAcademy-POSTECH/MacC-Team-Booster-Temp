@@ -60,7 +60,7 @@ extension MainView {
     }
     
     var ProfileTab: some View {
-        ProfileView(vm: ProfileViewModel())
+        ProfileView()
             .tabItem {
                 Image(systemName: "person.fill")
                 Text("프로필")
