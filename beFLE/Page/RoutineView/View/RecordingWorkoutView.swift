@@ -385,7 +385,6 @@ struct RecordingWorkoutView: View {
                 .allowsHitTesting(false)
         }
         .ignoresSafeArea()
-
     }
     
     func workoutButton(proxy: ScrollViewProxy) -> some View {
@@ -432,14 +431,12 @@ struct RecordingWorkoutView: View {
                                                 return
                                             }
                                         }
-                                        
                                         vm.finishWorkout(routineId: routineId)
                                     }
                                 }
                                 else {
                                     vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
                                         editRoutineVM.workout.sets[vm.currentSet].isDone = true
-                                        
                                         editRoutineVM.currentWorkoutIndex += 1
                                         editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
                                         if editRoutineVM.currentWorkoutIndex != editRoutineVM.routine.exercises.count {
@@ -524,12 +521,6 @@ struct RecordingWorkoutView: View {
                         RelatedContentCard(videoID: videoUrl)
                     }
                 }
-                //                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
-                //                    HStack{
-                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                //                    }
-                //                }
             }
         }
         .padding([.horizontal, .bottom])

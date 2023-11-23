@@ -102,7 +102,7 @@ class RecordingWorkoutViewModel: ObservableObject {
     /// 현재 세트 완료 함수
     func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
         isCanTappable = false
-        
+
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
             case .success(let set):
@@ -167,14 +167,14 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     func timeFormatted() -> String {
         let hours = Int(elapsedTime) / 3600
-        let minutes = Int(elapsedTime) / 60
+        let minutes = Int(elapsedTime) / 60 % 60
         let seconds = Int(elapsedTime) % 60
         return String(format: "%01d:%02d:%02d",hours, minutes, seconds)
     }
     
     func finishTimeFormatted(_ seconds: TimeInterval) -> String {
         let hours = Int(seconds) / 3600
-        let minutes = Int(seconds) / 60
+        let minutes = Int(seconds) / 60 % 60
         return if hours >= 1 {
             String(format: "%01d시간%02d분",hours, minutes)
         } else {

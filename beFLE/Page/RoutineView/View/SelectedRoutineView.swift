@@ -83,7 +83,6 @@ struct SelectedRoutineView: View {
     
     var WorkoutRoutine: some View {
         ZStack {
-            //운동 부위 갯수별 load
             VStack(spacing: 16) {
                 HStack {
                     Text(vm.routine.part)
@@ -98,12 +97,7 @@ struct SelectedRoutineView: View {
                     WorkoutCell(exercise: exercise)
                 }
             }
-            ///로그인의 유무에 따라서 있고 없고
-            //                LinearGradient(colors: [.gray_900, .clear], startPoint: .bottom, endPoint: .top)
         }
-        ///로그인의 유무에 따라서 있고 없고
-        //        }
-        //        .disabled(true)
     }
     
     var BackButton: some View {
