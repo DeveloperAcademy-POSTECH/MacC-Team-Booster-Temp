@@ -48,7 +48,7 @@ struct InfluencerPreviewView: View {
         Button {
             mainVM.changeToSearchTab()
         } label: {
-            Floating(size: .semiSmall, color: .green_main) {
+            FloatingButton(size: .semiSmall, color: .green_main) {
                 Text("둘러보기")
                     .font(.button1())
                     .foregroundColor(.gray_900)

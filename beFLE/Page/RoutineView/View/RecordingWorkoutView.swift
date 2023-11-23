@@ -43,8 +43,8 @@ struct RecordingWorkoutView: View {
                             WorkoutSetList
                                 .id(topID)
                             RelatedContent
-                            Floating(size: .medium) {}
-                            Floating(size: .medium) {}
+                            FloatingButton(size: .medium) {}
+                            FloatingButton(size: .medium) {}
                         }
                         .scrollIndicators(.hidden)
                         
@@ -392,7 +392,7 @@ struct RecordingWorkoutView: View {
         VStack {
             Spacer()
             isFocused ? nil :
-            Floating(size: .large, color: .gray_700) {
+            FloatingButton(size: .large, color: .gray_700) {
                 HStack {
                     NavigationLink {
                         RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories, recordViewModel: vm)
@@ -458,14 +458,14 @@ struct RecordingWorkoutView: View {
                     } label: {
                         if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
                             if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
-                                Floating(size: .small, color: .red_main) {
+                                FloatingButton(size: .small, color: .red_main) {
                                     Text("운동 완료")
                                         .font(.button1())
                                         .foregroundColor(.label_900)
                                 }
                             }
                             else {
-                                Floating(size: .small, color: .green_main) {
+                                FloatingButton(size: .small, color: .green_main) {
                                     HStack {
                                         Text("다음 운동")
                                             .font(.button1())
@@ -477,7 +477,7 @@ struct RecordingWorkoutView: View {
                             }
                         }
                         else {
-                            Floating(size: .small, color: .green_main) {
+                            FloatingButton(size: .small, color: .green_main) {
                                 HStack {
                                     Text("다음 세트")
                                         .font(.button1())

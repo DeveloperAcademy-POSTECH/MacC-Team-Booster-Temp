@@ -108,7 +108,7 @@ struct AlternateWorkoutSheet: View {
                 dismiss()
             }
         } label: {
-            Floating(size: .medium, color: .green_main) {
+            FloatingButton(size: .medium, color: .green_main) {
                 Text("완료")
                     .font(.button1())
                     .foregroundColor(.gray_900)

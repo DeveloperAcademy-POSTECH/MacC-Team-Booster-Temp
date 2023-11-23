@@ -40,7 +40,7 @@ struct MockUpWorkoutOngoingView: View {
                             Spacer()
                             WorkoutSetButton
                             WorkoutSetList
-                            Floating(size: .medium) {}
+                            FloatingButton(size: .medium) {}
                                 .padding(.bottom, 40)
                                 .id(topID)
                         }
@@ -117,7 +117,7 @@ struct MockUpWorkoutOngoingView: View {
         VStack {
             Spacer()
             
-            Floating(size: .large, color: .gray_700) {
+            FloatingButton(size: .large, color: .gray_700) {
                 HStack {
                     Spacer()
                     
@@ -130,14 +130,14 @@ struct MockUpWorkoutOngoingView: View {
                         workoutOngoingVM.controlRepetition()
                     } label: {
                         if workoutOngoingVM.workoutSet.count == workoutOngoingVM.currentSet {
-                            Floating(size: .small, color: .red_main) {
+                            FloatingButton(size: .small, color: .red_main) {
                                 Text("운동 완료")
                                     .font(.button1())
                                     .foregroundColor(.label_900)
                             }
                         }
                         else {
-                            Floating(size: .small, color: .green_main) {
+                            FloatingButton(size: .small, color: .green_main) {
                                 HStack{
                                     Text("다음 세트")
                                         .font(.button1())

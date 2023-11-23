@@ -26,7 +26,7 @@ struct PauseSheet: View {
                 Button {
                     dismiss()
                 } label: {
-                    Floating(size: .semiSmall, color: .green_main) {
+                    FloatingButton(size: .semiSmall, color: .green_main) {
                         HStack {
                             Text("다시 시작")
                             Image(systemName: "play.fill")

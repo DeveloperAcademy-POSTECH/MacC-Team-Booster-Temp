@@ -218,7 +218,7 @@ struct SubscribeView: View {
             Button {
                 vm.influencer.isSubscription ? vm.unSubscribeInfluecer(influencerId: influencerId) : vm.subscribeInfluecer(influencerId: influencerId)
             } label: {
-                Floating(size: .medium, color: vm.influencer.isSubscription ? .gray_600 : .green_main) {
+                FloatingButton(size: .medium, color: vm.influencer.isSubscription ? .gray_600 : .green_main) {
                     vm.influencer.isSubscription ?
                     Text("구독취소")
                         .foregroundColor(.red_main)

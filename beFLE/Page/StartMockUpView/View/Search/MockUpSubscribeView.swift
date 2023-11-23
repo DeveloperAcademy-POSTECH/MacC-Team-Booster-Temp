@@ -217,7 +217,7 @@ struct MockUpSubscribeView: View {
         Button {
             showTest.toggle()
         } label: {
-            Floating(size: .medium, color: .green_main) {
+            FloatingButton(size: .medium, color: .green_main) {
                 Text("로그인하고 구독하기")
                     .foregroundColor(.gray_900)
                     .font(.button1())

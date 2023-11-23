@@ -166,7 +166,7 @@ extension SingleInfluencerRoutineView {
                             .font(.headline1())
                     }
                     
-                    Floating(size: .medium) {}
+                    FloatingButton(size: .medium) {}
                 }
                 else {
                     RoutineDescriptionCard
@@ -174,7 +174,7 @@ extension SingleInfluencerRoutineView {
                         .padding(.leading,10)
                     //운동 시작 버튼
                     if routine.isDone {
-                        Floating(size: .semiMedium, color: .gray_600) {
+                        FloatingButton(size: .semiMedium, color: .gray_600) {
                             HStack {
                                 Image(systemName: "flame.fill")
                                     .foregroundColor(.label_400)
@@ -189,7 +189,7 @@ extension SingleInfluencerRoutineView {
                         NavigationLink {
                             EditRoutineView(routineId: routine.routineId)
                         } label: {
-                            Floating(size: .semiMedium, color: .green_main) {
+                            FloatingButton(size: .semiMedium, color: .green_main) {
                                 Text("운동 시작")
                                     .foregroundColor(.gray_900)
                                     .font(.button1())

@@ -82,7 +82,7 @@ struct RecordingFinishView: View {
                         MainViewModel.shared.changeToRecordTab()
                         MainViewModel.shared.resetNavigationStack()
                     } label: {
-                        Floating(size: .medium, color: .green_main) {
+                        FloatingButton(size: .medium, color: .green_main) {
                             Text("기록 확인")
                                 .foregroundColor(.gray_900)
                                 .font(.button1())
@@ -93,7 +93,7 @@ struct RecordingFinishView: View {
                     Button {
                         MainViewModel.shared.resetNavigationStack()
                     } label: {
-                        Floating(size: .medium, color: .gray_600) {
+                        FloatingButton(size: .medium, color: .gray_600) {
                             Text("닫기")
                                 .foregroundColor(.green_main)
                                 .font(.button1())

@@ -137,7 +137,7 @@ struct MockUpStartView: View {
                 NavigationLink {
                     MockUpWorkoutOngoingView(showTest: $showTest)
                 } label: {
-                    Floating(size: .semiMedium, color: .green_main) {
+                    FloatingButton(size: .semiMedium, color: .green_main) {
                         Text("체험 운동 시작")
                             .foregroundColor(.gray_900)
                             .font(.button1())

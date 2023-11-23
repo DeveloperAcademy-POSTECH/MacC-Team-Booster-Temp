@@ -58,7 +58,7 @@ extension OnboardingView {
 extension OnboardingView {
     /// 로그인 버튼
     var LoginButton: some View {
-        Floating(size: .medium) {
+        FloatingButton(size: .medium) {
             SignInWithAppleButton(.signIn)
             { request in
                 request.requestedScopes = [.email]
@@ -93,7 +93,7 @@ extension OnboardingView {
         Button {
             LaunchViewModel.shared.appState = .preview
         } label: {
-            Floating(size: .medium, color: .gray_600) {
+            FloatingButton(size: .medium, color: .gray_600) {
                 Text("둘러보기")
                     .foregroundColor(.green_main)
                     .font(.button1())
