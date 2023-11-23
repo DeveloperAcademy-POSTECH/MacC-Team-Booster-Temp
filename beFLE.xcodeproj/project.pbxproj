@@ -47,6 +47,7 @@
 		D57183842B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */; };
 		D57183862B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */; };
 		D57183902B03399300A11FFC /* MockUpWorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */; };
+		D571CF842B0F28E000A2DCD3 /* MockUpMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571CF832B0F28E000A2DCD3 /* MockUpMainViewModel.swift */; };
 		D57E93C82B04A02E00D6D986 /* MockUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */; };
 		D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */; };
 		D57E93CC2B04A05F00D6D986 /* MockUpSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */; };
@@ -156,6 +157,7 @@
 		D57183832B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpPauseStopwatchViewModel.swift; sourceTree = "<group>"; };
 		D57183852B030B1400A11FFC /* MockUpWorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
 		D571838F2B03399300A11FFC /* MockUpWorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpWorkoutSetModel.swift; sourceTree = "<group>"; };
+		D571CF832B0F28E000A2DCD3 /* MockUpMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpMainViewModel.swift; sourceTree = "<group>"; };
 		D57E93C72B04A02E00D6D986 /* MockUpMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpMainView.swift; sourceTree = "<group>"; };
 		D57E93C92B04A04200D6D986 /* MockUpSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSearchView.swift; sourceTree = "<group>"; };
 		D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSubscribeView.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 		D571837D2B030A9D00A11FFC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D571CF832B0F28E000A2DCD3 /* MockUpMainViewModel.swift */,
 				D5A964602B0E184700536A64 /* Routine */,
 			);
 			path = ViewModel;
@@ -753,6 +756,7 @@
 				F8DACB652B0418B700C3E95C /* WholeRoutineView.swift in Sources */,
 				F886927D2AFFF12E0043EE9A /* Ext+String.swift in Sources */,
 				F886927B2AFFF0710043EE9A /* Ext+Date.swift in Sources */,
+				D571CF842B0F28E000A2DCD3 /* MockUpMainViewModel.swift in Sources */,
 				D57183842B030AE600A11FFC /* MockUpPauseStopwatchViewModel.swift in Sources */,
 				0DA3276A2AE13BE000319BAB /* Ext+Font.swift in Sources */,
 				F838A12C2AFB79E500688893 /* APIBody.swift in Sources */,

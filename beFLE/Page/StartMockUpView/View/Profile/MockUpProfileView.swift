@@ -21,6 +21,7 @@ struct MockUpProfileView: View {
     )
     @State private var showMailView = false
     var versionState = "1.0.0"
+    @Binding var showTest: Bool
     
     var body: some View {
         ZStack{
@@ -28,7 +29,7 @@ struct MockUpProfileView: View {
             VStack{
                 NavigationTitle
                 Button{
-                    dismiss()
+                    showTest.toggle()
                 } label: {
                     ProfileManage()
                 }

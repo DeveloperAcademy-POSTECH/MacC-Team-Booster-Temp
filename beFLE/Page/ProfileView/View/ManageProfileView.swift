@@ -109,10 +109,11 @@ struct ManageProfileView: View {
         }
         .alert(isPresented: $vm.deletingAccount) {
             let firstButton = Alert.Button.default(Text("취소").bold()) {
-                print("primary button pressed")
+                
             }
             let secondButton = Alert.Button.default(Text("탈퇴")) {
                 vm.withdrawAccount()
+                vm.logout()
             }
             return Alert(title: Text("탈퇴하시겠습니까"),
                          message: Text("탈퇴 시 운동 기록이 모두 삭제됩니다."),

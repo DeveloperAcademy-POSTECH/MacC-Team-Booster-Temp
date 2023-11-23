@@ -18,8 +18,7 @@ struct MockUpSearchView: View {
                                                   ]
     )
     @State private var showMailView = false
-    @Binding var tabSelection: Int
-    @EnvironmentObject var appState: AppState
+    @Binding var showTest: Bool
     
     var body: some View {
         
@@ -29,7 +28,7 @@ struct MockUpSearchView: View {
             VStack {
                 NavigationTitle
                 NavigationLink {
-                    MockUpSubscribeView(tabSelection: $tabSelection)
+                    MockUpSubscribeView(showTest: $showTest)
                 } label: {
                     SearchCard
                 }
@@ -75,8 +74,7 @@ struct MockUpSearchView: View {
                         Spacer()
                         Image("searchviewImage")
                             .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.blue)
+                            .scaledToFill()
                         
                     }
                 }
@@ -154,6 +152,6 @@ struct MockUpSearchView: View {
 //    }
 }
 
-#Preview {
-    MockUpSearchView(tabSelection: .constant(1))
-}
+//#Preview {
+//    MockUpSearchView()
+//}

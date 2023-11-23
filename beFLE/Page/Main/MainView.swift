@@ -10,7 +10,6 @@ import SwiftUI
 struct MainView: View {
     @StateObject var vm = MainViewModel.shared
     @State var subscribed = false
-    @EnvironmentObject var appState: AppState
     @ObservedObject var profileViewModel: ProfileViewModel
     
     init() {
