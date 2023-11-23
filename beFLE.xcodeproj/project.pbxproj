@@ -54,7 +54,6 @@
 		D580664C2AFCF0C0003BB276 /* ManageSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */; };
 		D58066582AFD3B4A003BB276 /* PauseStopwatchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */; };
 		D584CD892AFB556C00AFA1FF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584CD882AFB556C00AFA1FF /* ProfileView.swift */; };
-		D5A964562B0E0F4A00536A64 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A964552B0E0F4A00536A64 /* LaunchScreen.swift */; };
 		D5A9645F2B0E17FE00536A64 /* MockUpRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A9645E2B0E17FE00536A64 /* MockUpRecordView.swift */; };
 		D5A964652B0E191700536A64 /* MockUpCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A964642B0E191700536A64 /* MockUpCalendarView.swift */; };
 		D5A964672B0E197C00536A64 /* MockUpFSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A964662B0E197C00536A64 /* MockUpFSCalendarView.swift */; };
@@ -166,7 +165,6 @@
 		D580664B2AFCF0C0003BB276 /* ManageSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscribeView.swift; sourceTree = "<group>"; };
 		D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseStopwatchVM.swift; sourceTree = "<group>"; };
 		D584CD882AFB556C00AFA1FF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		D5A964552B0E0F4A00536A64 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		D5A9645E2B0E17FE00536A64 /* MockUpRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpRecordView.swift; sourceTree = "<group>"; };
 		D5A964642B0E191700536A64 /* MockUpCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpCalendarView.swift; sourceTree = "<group>"; };
 		D5A964662B0E197C00536A64 /* MockUpFSCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpFSCalendarView.swift; sourceTree = "<group>"; };
@@ -553,7 +551,6 @@
 				0D5851572AE4F34400C8875A /* WorkoutCell.swift */,
 				D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */,
 				D51DFC442B07D5B9001B28EC /* RoundedShape.swift */,
-				D5A964552B0E0F4A00536A64 /* LaunchScreen.swift */,
 				D5C511822B061870008B871E /* SwiftUIMailView.swift */,
 				D5076C402B0E645000011EE1 /* LottieView.swift */,
 			);
@@ -773,7 +770,6 @@
 				F8DACB582B03FCB800C3E95C /* RoutineView.swift in Sources */,
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */,
-				D5A964562B0E0F4A00536A64 /* LaunchScreen.swift in Sources */,
 				F8DACB6F2B0420B200C3E95C /* RoutineInformationViewModel.swift in Sources */,
 				F8DACB752B04294500C3E95C /* RecordingRoutineView.swift in Sources */,
 				D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */,
