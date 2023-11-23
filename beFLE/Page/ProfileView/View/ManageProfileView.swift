@@ -13,10 +13,10 @@ struct ManageProfileView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
-            VStack{
-                NicknameBanner(nickname: vm.nickname)
+            VStack {
+                Nickname
                 SignOut(deletingAccount: vm.deletingAccount)
                 LogOut(loggingOutSheet: vm.loggingOutSheet)
                 Spacer()
@@ -29,42 +29,6 @@ struct ManageProfileView: View {
             }
         }
         .navigationBarBackButtonHidden()
-    }
-    
-    func NicknameBanner(nickname: String) -> some View {
-        VStack{
-            VStack(alignment: .leading, spacing: 5){
-                HStack{
-                    Text("닉네임")
-                        .font(.headline1())
-                        .foregroundColor(.label_900)
-                    Spacer()
-                    NavigationLink {
-                        ChangeNicknameView(vm: vm)
-                    } label: {
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 52, height: 32)
-                            .foregroundColor(.gray_700)
-                            .overlay{
-                                Text("변경")
-                                    .foregroundColor(.label_900)
-                                    .font(.button2())
-                            }
-                    }
-                }
-                
-                HStack{
-                    Text(nickname)
-                        .font(.body())
-                        .foregroundColor(.label_700)
-                }
-            }
-            .padding([.horizontal, .top])
-            .padding(.vertical)
-            Divider()
-                .foregroundColor(.gray_700)
-                .padding(.horizontal)
-        }
     }
     
     func EmailBanner(email: String) -> some View {
@@ -140,7 +104,7 @@ struct ManageProfileView: View {
     }
 }
 
-// 네비게이션 타이틀
+/// 네비게이션 타이틀
 extension ManageProfileView {
     var BackButton: some View {
         Button {
@@ -149,6 +113,44 @@ extension ManageProfileView {
             Image(systemName: "chevron.left")
                 .font(.headline2())
                 .foregroundColor(.label_700)
+        }
+    }
+}
+
+/// 닉네임 관련
+extension ManageProfileView {
+    var Nickname: some View {
+        VStack {
+            VStack(alignment: .leading, spacing: 5) {
+                HStack {
+                    Text("닉네임")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                    Spacer()
+                    NavigationLink {
+                        ChangeNicknameView(vm: vm)
+                    } label: {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: UIScreen.getWidth(52), height: UIScreen.getHeight(32))
+                            .foregroundColor(.gray_700)
+                            .overlay {
+                                Text("변경")
+                                    .foregroundColor(.label_900)
+                                    .font(.button2())
+                            }
+                    }
+                }
+                HStack {
+                    Text(vm.nickname)
+                        .font(.body())
+                        .foregroundColor(.label_700)
+                }
+            }
+            .padding([.horizontal, .top])
+            .padding(.vertical)
+            Divider()
+                .foregroundColor(.gray_700)
+                .padding(.horizontal)
         }
     }
 }
