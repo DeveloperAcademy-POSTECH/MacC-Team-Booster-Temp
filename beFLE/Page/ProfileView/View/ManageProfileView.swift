@@ -56,7 +56,8 @@ extension ManageProfileView {
                         .foregroundColor(.label_900)
                     Spacer()
                     NavigationLink {
-                        ChangeNicknameView(vm: vm)
+                        ChangeNicknameView()
+                            .environmentObject(vm)
                     } label: {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: UIScreen.getWidth(52), height: UIScreen.getHeight(32))

@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ChangeNicknameView: View {
+    @EnvironmentObject var vm: ProfileViewModel
     
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var vm: ProfileViewModel
+    
     @State var changingNickname: String = ""
     @State private var isSaveActive = false
     @State private var characterCount = 0
