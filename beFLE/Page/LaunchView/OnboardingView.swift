@@ -58,8 +58,7 @@ extension OnboardingView {
 extension OnboardingView {
     /// 로그인 버튼
     var LoginButton: some View {
-        // TODO: 버튼 변경
-        FloatingButton(backgroundColor: .clear) {
+        FloatingButton(size: .medium) {
             SignInWithAppleButton(.signIn)
             { request in
                 request.requestedScopes = [.email]
@@ -83,14 +82,10 @@ extension OnboardingView {
                     print(error.localizedDescription)
                 }
             }
-            .padding(8)
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
             .signInWithAppleButtonStyle(.white)
+            .clipShape(.rect(cornerRadius: 100))
+            .font(.largeTitle)
         }
-        .background {
-            FloatingButton(backgroundColor: .white) { }
-        }
-        .padding(.bottom, 2)
     }
     
     /// 둘러보기 버튼
@@ -98,7 +93,7 @@ extension OnboardingView {
         Button {
             LaunchViewModel.shared.appState = .preview
         } label: {
-            FloatingButton(backgroundColor: .gray_600) {
+            FloatingButton(size: .medium, color: .gray_600) {
                 Text("둘러보기")
                     .foregroundColor(.green_main)
                     .font(.button1())

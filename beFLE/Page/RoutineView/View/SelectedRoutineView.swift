@@ -25,8 +25,7 @@ struct SelectedRoutineView: View {
                     .padding(.horizontal, 20)
                 WorkoutRoutine
                 
-                // TODO: empty floating button 변경
-                EmptyFloatingButton
+                Floating(size: .medium)
                     .padding()
             }
             VStack {
@@ -34,7 +33,7 @@ struct SelectedRoutineView: View {
                 NavigationLink {
                     EditRoutineView(routineId: routineId)
                 } label: {
-                    FloatingButton(backgroundColor: .green_main) {
+                    Floating(size: .medium, color: .green_main) {
                         Text("운동 시작")
                             .foregroundColor(.gray_900)
                             .font(.button1())
@@ -61,10 +60,6 @@ struct SelectedRoutineView: View {
             Information(systemName: "clock.fill", description: "\(vm.routine.requiredMinutes)분")
             Information(systemName: "flame.circle.fill", description: "\(vm.routine.burnedKCalories)kcal")
         }
-    }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
     }
     
     func Information(systemName: String, description: String) -> some View {

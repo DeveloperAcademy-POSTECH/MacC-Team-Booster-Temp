@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-// MARK: 1. 데이터가 올라와 있지 않을 때: 무조건 올라와있음
-// TODO: 서버에서 isDone 추가 시 그에 따른 갱신 작업
 /// 인플루언서 단일 구독 뷰
 ///  - Parameters:
 ///   - routine: 인플루언서의 오늘 운동 목록
@@ -22,18 +20,20 @@ struct SingleInfluencerRoutineView: View {
             Color.gray_900.ignoresSafeArea()
             InfluencerImage
             VStack {
-                    NavigationTitle
-                    InfluencerComment
+                NavigationTitle
+                InfluencerComment
                 Spacer()
-                TodayCard()
+                TodayCard
             }
             .padding(.bottom)
             Spacer()
                 .frame(height: UITabBarController().height)
         }
-        
     }
-    
+}
+
+/// 네비게이션 타이틀
+extension SingleInfluencerRoutineView {
     var NavigationTitle: some View {
         HStack {
             Text("\(routine.name)\n오늘의 운동")
@@ -45,6 +45,19 @@ struct SingleInfluencerRoutineView: View {
         .padding(.top, 30)
     }
     
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_900)
+                .font(.body())
+        }
+    }
+}
+
+/// 인플루언서 정보 관련
+extension SingleInfluencerRoutineView {
     var InfluencerImage: some View {
         AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
             image
@@ -63,9 +76,9 @@ struct SingleInfluencerRoutineView: View {
     }
     
     var InfluencerComment: some View {
-        ZStack{
+        ZStack {
             if routine.part == "휴식" {
-                
+                // TODO: 휴식일 때 나타낼 뷰
             } else {
                 VStack {
                     Spacer()
@@ -90,7 +103,10 @@ struct SingleInfluencerRoutineView: View {
             }
         }
     }
-    
+}
+
+/// 오늘의 루틴 관련
+extension SingleInfluencerRoutineView {
     var RoutineDescriptionCard: some View {
         HStack {
             VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
@@ -116,7 +132,7 @@ struct SingleInfluencerRoutineView: View {
         }
     }
     
-    func TodayCard() -> some View {
+    var TodayCard: some View {
         ZStack {
             VStack(alignment: .center) {
                 HStack {
@@ -150,9 +166,7 @@ struct SingleInfluencerRoutineView: View {
                             .font(.headline1())
                     }
                     
-                    // TODO: EmptyFloatingButton으로 변경
-                    EmptyFloatingButton
-                        .padding(.bottom)
+                    FloatingButton(size: .medium) {}
                 }
                 else {
                     RoutineDescriptionCard
@@ -160,32 +174,26 @@ struct SingleInfluencerRoutineView: View {
                         .padding(.leading,10)
                     //운동 시작 버튼
                     if routine.isDone {
-                        RoundedRectangle(cornerRadius: 100)
-                            .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
-                            .foregroundColor(.gray_600)
-                            .overlay {
-                                HStack{
-                                    Image(systemName: "flame.fill")
-                                        .foregroundColor(.label_400)
-                                        .font(.button1())
-                                    Text("오늘 운동 완료")
-                                        .foregroundColor(.label_400)
-                                        .font(.button1())
-                                }
+                        FloatingButton(size: .semiMedium, color: .gray_600) {
+                            HStack {
+                                Image(systemName: "flame.fill")
+                                    .foregroundColor(.label_400)
+                                    .font(.button1())
+                                Text("오늘 운동 완료")
+                                    .foregroundColor(.label_400)
+                                    .font(.button1())
                             }
+                        }
                             .padding(.bottom, 10)
                     } else {
                         NavigationLink {
                             EditRoutineView(routineId: routine.routineId)
                         } label: {
-                            RoundedRectangle(cornerRadius: 100)
-                                .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
-                                .foregroundColor(.green_main)
-                                .overlay {
-                                    Text("운동 시작")
-                                        .foregroundColor(.gray_900)
-                                        .font(.button1())
-                                }
+                            FloatingButton(size: .semiMedium, color: .green_main) {
+                                Text("운동 시작")
+                                    .foregroundColor(.gray_900)
+                                    .font(.button1())
+                            }
                         }
                         .padding(.bottom, 10)
                     }
@@ -201,24 +209,10 @@ struct SingleInfluencerRoutineView: View {
         }
         .padding(.bottom, 1)
     }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
-    }
-    
-    var BackButton: some View {
-        Button {
-            dismiss()
-        } label: {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.label_900)
-                .font(.body())
-        }
-    }
 }
 
 #Preview {
-    TabView{
+    TabView {
         SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", singleRoutineImageUrl: "", multiRoutineImageUrl: "", influencerId: 1, isDone: false)))
             .tabItem {
                 Image(systemName: "dumbbell")

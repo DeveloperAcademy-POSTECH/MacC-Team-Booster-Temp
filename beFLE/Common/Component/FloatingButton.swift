@@ -7,156 +7,115 @@
 
 import SwiftUI
 
+enum ButtonSize {
+    case semiSmall
+    case small
+    case semiMedium
+    case medium
+    case large
+}
+
 struct FloatingButton<Content: View>: View {
-    let backgroundColor: Color
+    let size: ButtonSize
+    var color: Color? = .clear
     @ViewBuilder let content: Content
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 100)
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
-            .foregroundColor(backgroundColor)
-            .overlay {
-                content
-            }
+        switch size {
+        case .semiSmall:
+            RoundedRectangle(cornerRadius: 100)
+                .frame(width: UIScreen.getWidth(132), height: UIScreen.getHeight(60))
+                .foregroundColor(color)
+                .overlay {
+                    content
+                }
+        case .small:
+            RoundedRectangle(cornerRadius: 100)
+                .frame(width: UIScreen.getWidth(180), height: UIScreen.getHeight(60))
+                .foregroundColor(color)
+                .overlay {
+                    content
+                }
+        case .semiMedium:
+            RoundedRectangle(cornerRadius: 100)
+                .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
+                .foregroundColor(color)
+                .overlay {
+                    content
+                }
+        case .medium:
+            RoundedRectangle(cornerRadius: 100)
+                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
+                .foregroundColor(color)
+                .overlay {
+                    content
+                }
+        case .large:
+            RoundedRectangle(cornerRadius: 100)
+                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
+                .foregroundColor(color)
+                .overlay {
+                    content
+                }
+        }
     }
 }
 
 struct FloatingButton_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-            VStack{
-                
-                //루틴 둘러보기
-                FloatingButton(backgroundColor: .green_main) { 
-                    Text("루틴 둘러보기")
+        VStack {
+            /// 색 생략시 empty
+            FloatingButton(size: .large) {}
+                .border(.pink)
+            
+            /// large 플로팅 버튼 안의 버튼
+            FloatingButton(size: .semiSmall, color: .green_main) {
+                HStack {
+                    Text("다음 세트")
+                        .font(.button1())
+                    Image(systemName: "chevron.right")
+                        .font(.button2())
+                }
+                .foregroundColor(.gray_900)
+            }
+            
+            FloatingButton(size: .small, color: .green_main) {
+                Text("둘러보기")
+                    .font(.button1())
+                    .foregroundColor(.gray_900)
+            }
+            
+            FloatingButton(size: .semiMedium, color: .green_main) {
+                Text("운동 시작")
+                    .foregroundColor(.gray_900)
+                    .font(.button1())
+            }
+            
+            /// 일반적으로 쓰이는 플로팅 버튼
+            FloatingButton(size: .medium, color: .gray_600) {
+                Text("운동 시작")
+                    .foregroundColor(.red_main)
+                    .font(.button1())
+            }
+            
+            FloatingButton(size: .large, color: .fill_1) {
+                HStack {
+                    Image(systemName: "list.bullet")
+                        .foregroundColor(.green_main)
+                        .font(.title1())
+                        .padding(.leading, 30)
+                    
+                    Spacer()
+                    
+                    FloatingButton(size: .semiSmall, color: .green_main) {
+                        HStack {
+                            Text("다음 세트")
+                                .font(.button1())
+                            Image(systemName: "chevron.right")
+                                .font(.button2())
+                        }
                         .foregroundColor(.gray_900)
-                        .font(.button1())
-                }
-                
-                //green 둘러보기
-                FloatingButton(backgroundColor: .gray_600) { 
-                    Text("둘러보기")
-                        .foregroundColor(.green_main)
-                        .font(.button1())
-                }
-                
-                //오늘 운동 완료
-                FloatingButton(backgroundColor: .gray_600) { Text("오늘 운동 완료")
-                        .foregroundColor(.green_main)
-                        .font(.button1())
-                }
-                
-                FloatingButton(backgroundColor: .white) {
-                    HStack{
-                        Image(systemName: "apple.logo")
-                        Text("Apple로 로그인")
-                            .foregroundColor(.black)
-    //                        .font()
                     }
-                }
-                
-                //red 운동 완료하기
-                FloatingButton(backgroundColor: .gray_600) {
-                    HStack {
-                        Image(systemName: "flame.fill")
-                            .foregroundColor(.label_400)
-                            .font(.button1())
-                        Text("운동 완료하기")
-                            .foregroundColor(.label_400)
-                            .font(.button1())
-                    }
-                }
-                
-                //세트완료 플로팅 버튼
-                FloatingButton(backgroundColor: .gray_600) {
-                    HStack {
-                        Button{
-//                            list up
-                            
-                        }label: {
-                            Image(systemName: "list.bullet")
-                                .foregroundColor(.label_900)
-                                .font(.title2)
-                        }
-                        .padding(.horizontal)
-                        Spacer()
-                        Button {
-//                            pause
-                        } label: {
-                            Capsule()
-                                .foregroundColor(.green_main)
-                                .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
-                                .overlay{
-                                    Text("세트 완료")
-                                        .foregroundColor(.gray_900)
-                                        .font(.button1())
-                                }
-                        }
-                    }
-                    .padding(.leading, 15)
-                    .padding(.trailing, 6)
-                }
-                
-                //운동완료 플로팅 버튼
-                FloatingButton(backgroundColor: .gray_600) {
-                    HStack {
-                        Button{
-//                            list up
-                        }label: {
-                            Image(systemName: "list.bullet")
-                                .foregroundColor(.label_900)
-                                .font(.title2)
-                        }
-                        .padding(.horizontal)
-                        Spacer()
-                        Button {
-//                            pause
-                        } label: {
-                            Capsule()
-                                .foregroundColor(.red_main)
-                                .frame(width: UIScreen.getWidth(120), height: UIScreen.getHeight(48))
-                                .overlay{
-                                    Text("운동 완료")
-                                        .foregroundColor(.label_900)
-                                        .font(.button1())
-                                }
-                        }
-                    }
-                    .padding(.leading, 15)
-                    .padding(.trailing, 6)
-                }
-                
-                //운동 종류 타이머
-                FloatingButton(backgroundColor: .green_main) {
-                    HStack {
-                        VStack(alignment: .leading){
-                            Text("클로즈 그립 랫 풀 다운")
-                                .foregroundColor(.gray_900)
-                                .font(.headline2())
-                            //타이머
-                            Text("00:00:15")
-                                .font(.headline2())
-                                .foregroundColor(.black)
-                                .opacity(0.4)
-                        }
-                        .padding(.horizontal)
-                        Spacer()
-                        Button {
-//                            pause
-                        } label: {
-                            Image(systemName: "pause.fill")
-                                .foregroundColor(.black)
-                        }
-                        Button {
-//                            stop
-                        } label: {
-                            Image(systemName: "stop.fill")
-                                .foregroundColor(.black)
-                        }
-                        .padding(.horizontal, 15)
-                    }
-                    .padding(.horizontal)
                 }
             }
         }

@@ -76,7 +76,8 @@ struct MockUpFinishView: View {
                     MockUpMainViewModel.shared.changeToRecordTab()
                     MockUpMainViewModel.shared.resetNavigationStack()
                 } label: {
-                    FloatingButton(backgroundColor: .green_main) { Text("기록 확인")
+                    FloatingButton(size: .medium, color: .green_main) {
+                        Text("기록 확인")
                             .foregroundColor(.gray_900)
                             .font(.button1())
                     }
@@ -87,7 +88,7 @@ struct MockUpFinishView: View {
                     //TODO: root 네비게이션으로 연결 대체
                     showTest.toggle()
                 } label: {
-                    FloatingButton(backgroundColor: .gray_600) {
+                    FloatingButton(size: .medium, color: .gray_600) {
                         Text("로그인")
                             .foregroundColor(.green_main)
                             .font(.button1())
