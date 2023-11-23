@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct LaunchViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+class LaunchViewModel: ObservableObject {
+    
 }
 
-#Preview {
-    LaunchViewModel()
+extension LaunchViewModel {
+    enum appState {
+        case launch
+        case onboarding
+        case login
+    }
 }
