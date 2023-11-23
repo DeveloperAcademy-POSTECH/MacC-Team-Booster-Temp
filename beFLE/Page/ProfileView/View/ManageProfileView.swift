@@ -31,28 +31,6 @@ struct ManageProfileView: View {
         .navigationBarBackButtonHidden()
     }
     
-    func EmailBanner(email: String) -> some View {
-        VStack(alignment: .leading, spacing: 5){
-            HStack{
-                Text("이메일")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                    .padding(.top)
-            }
-            
-            HStack{
-                Text(email)
-                    .font(.body())
-                    .foregroundColor(.label_700)
-            }
-            .padding(.bottom)
-            Divider()
-                .padding(.horizontal)
-                .foregroundColor(.gray_700)
-        }
-        .padding()
-    }
-    
     func SignOut(deletingAccount: Bool) -> some View {
         Button{
             self.vm.deletingAccount = true
@@ -153,4 +131,8 @@ extension ManageProfileView {
                 .padding(.horizontal)
         }
     }
+}
+
+extension ManageProfileView {
+    
 }
