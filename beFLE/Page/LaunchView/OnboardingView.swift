@@ -16,82 +16,59 @@ struct OnboardingView: View {
     @StateObject var profileViewModel = ProfileViewModel()
     
     var body: some View {
-        ZStack{
-            if !isPass {
-                // 로그인 전
-                Onboarding
-                    .onAppear {
-                        validateUser()
-                    }
-            }
-            if showTest {
-                MockUpMainView(showTest: $showTest)
-            }
-            if isPass{
-                // 로그인 성공 시
-                MainView()
-            }
-            
-//            if isLoading {
-//                LaunchScreen()
-//                    .transition(.opacity)
-//                    .zIndex(1)
-//                    .onAppear {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
-//                            withAnimation { isLoading.toggle() }
-//                        })
-//                    }
-//            }
-        }
-    }
-    
-    var Onboarding: some View {
         ZStack {
-            Image("LoginImage")
-                .resizable()
-                .scaledToFill()
-            
-            /// 온보딩
+            OnboardingImage
             VStack {
                 Spacer()
-                
-                HStack {
-                    VStack(alignment: .leading){
-                        VStack(alignment: .leading) {
-                            Text("몸좋은 사람들의")
-                            Text("운동일지 구독")
-                        }
-                        .font(.title1())
-                        .foregroundColor(.label_900)
-                        .padding(.bottom, 10)
-                        
-                        Text("Be my Influencer, BEFLE")
-                            .font(.system(size: 20, weight: .light, design: .default))
-                            .foregroundColor(.label_700)
-                    }
-                    .padding(32)
-                    .padding(.bottom, 26)
-                    Spacer()
-                }
-                /// 로그인 버튼
+                Banner
                 LoginButton
-                
-                /// 둘러보기 버튼
                 PreviewButton
-                Spacer()
-                    .frame(height: UIScreen.getHeight(68))
+                Spacer().frame(height: UIScreen.getHeight(68))
             }
-            
         }
     }
+}
+
+/// 화면 구성 컴포넌트
+extension OnboardingView {
+    /// 배경 이미지
+    var OnboardingImage: some View {
+        Image("LoginImage")
+            .resizable()
+            .scaledToFill()
+    }
     
+    /// 배너 텍스트
+    var Banner: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("몸 좋은 사람들의\n운동일지 구독")
+                    .font(.title1())
+                    .foregroundColor(.label_900)
+                    .padding(.bottom, 10)
+                
+                Text("Be my Influencer, BEFLE")
+                // TODO: 폰트 처리
+                    .font(.system(size: 20, weight: .light, design: .default))
+                    .foregroundColor(.label_700)
+            }
+            .padding(32)
+            .padding(.bottom, 26)
+            Spacer()
+        }
+    }
+}
+
+/// 버튼
+extension OnboardingView {
+    /// 로그인 버튼
     var LoginButton: some View {
+        // TODO: 버튼 변경
         FloatingButton(backgroundColor: .clear) {
             SignInWithAppleButton(.signIn)
             { request in
                 request.requestedScopes = [.email]
             } onCompletion: { results in
-                // TODO: 추후 vm 생성 - MORO
                 switch results {
                 case .success(let result):
                     switch result.credential {
@@ -100,9 +77,10 @@ struct OnboardingView: View {
                         let identityToken = String(data: userCredential.identityToken!, encoding: .utf8)
                         let authorizationCode = String(data: userCredential.authorizationCode!, encoding: .utf8)
                         
-                        profileViewModel.nickname = profileViewModel.MakeName(taste: profileViewModel.tasteName, workout: profileViewModel.workoutName)
+                        // TODO: 닉네임 부여 함수
+                        //                        profileViewModel.nickname = profileViewModel.MakeName(taste: profileViewModel.tasteName, workout: profileViewModel.workoutName)
                         
-                        postLogin(identifier: identifier, identityToken: identityToken!, authorizationCode: authorizationCode!)
+                        LaunchViewModel.shared.loginByAppleLogin(identifier: identifier, identityToken: identityToken!, authorizationCode: authorizationCode!)
                     default:
                         break
                     }
@@ -113,7 +91,6 @@ struct OnboardingView: View {
             .padding(8)
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
             .signInWithAppleButtonStyle(.white)
-            
         }
         .background {
             FloatingButton(backgroundColor: .white) { }
@@ -121,6 +98,7 @@ struct OnboardingView: View {
         .padding(.bottom, 2)
     }
     
+    /// 둘러보기 버튼
     var PreviewButton: some View {
         Button {
             showTest = true
@@ -130,51 +108,6 @@ struct OnboardingView: View {
                     .foregroundColor(.green_main)
                     .font(.button1())
             }
-        }
-    }
-    
-    /// 애플 로그인 성공 시 서버에 액세스 토큰 요청 함수
-    func postLogin(identifier: String, identityToken: String, authorizationCode: String) {
-        GeneralAPIManger.request(for: .PostLogin(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode), type: Token.self) {
-            switch $0 {
-            case .success(let token):
-                saveUser(accessToken: token.accessToken, refreshToken: token.refreshToken)
-                isPass = true
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    /// 자동 로그인 용 토큰 재발급 함수
-    func getReissue(refreshToken: String) {
-        GeneralAPIManger.request(for: .GetReissue(refreshToken: refreshToken), type: Token.self) {
-            switch $0 {
-            case .success(let token):
-                saveUser(accessToken: token.accessToken, refreshToken: token.refreshToken)
-                isPass = true
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    /// 전달 받은 액세스 토큰 유저 디폴트 저장 함수
-    func saveUser(accessToken: String, refreshToken: String) {
-        UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
-        UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
-        
-#if DEBUG
-        print("accessToken: \(UserDefaults.standard.string(forKey: "accessToken"))")
-        print("refreshToken: \(UserDefaults.standard.string(forKey: "refreshToken"))")
-#endif
-    }
-    
-    /// 자동 로그인 검사 함수
-    func validateUser(){
-        if let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") {
-            getReissue(refreshToken: refreshToken)
-            return
         }
     }
 }
