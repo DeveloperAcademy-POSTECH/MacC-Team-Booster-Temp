@@ -15,7 +15,6 @@ struct RecordingFinishView: View {
     @StateObject var vm = RecordingFinishViewModel()
     @EnvironmentObject var editRoutineVM: EditRoutineViewModel
     @Environment(\.dismiss) var dismiss
-    
     @EnvironmentObject var recordingWorkoutVM: RecordingWorkoutViewModel
     
     var body: some View {
