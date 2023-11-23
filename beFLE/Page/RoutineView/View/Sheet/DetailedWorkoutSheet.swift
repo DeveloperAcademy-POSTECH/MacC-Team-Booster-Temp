@@ -108,7 +108,7 @@ struct DetailedWorkoutSheet: View {
                 Spacer()
             }
         }
-        .frame(width: .infinity)
+        .frame(maxWidth: .infinity)
         .padding(.horizontal, 30)
         .padding(.bottom)
     }
