@@ -30,10 +30,6 @@ struct SingleInfluencerRoutineView: View {
                 .frame(height: UITabBarController().height)
         }
     }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
-    }
 }
 
 /// 네비게이션 타이틀
@@ -170,9 +166,7 @@ extension SingleInfluencerRoutineView {
                             .font(.headline1())
                     }
                     
-                    // TODO: EmptyFloatingButton으로 변경
-                    EmptyFloatingButton
-                        .padding(.bottom)
+                    Floating(size: .medium) {}
                 }
                 else {
                     RoutineDescriptionCard

@@ -40,7 +40,7 @@ struct MockUpWorkoutOngoingView: View {
                             Spacer()
                             WorkoutSetButton
                             WorkoutSetList
-                            EmptyFloatingButton
+                            Floating(size: .medium) {}
                                 .padding(.bottom, 40)
                                 .id(topID)
                         }
@@ -319,12 +319,6 @@ struct MockUpWorkoutOngoingView: View {
                 }
         }
     }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
-    }
-    
-    
 }
 
 struct MockUpWorkoutSetCard: View {

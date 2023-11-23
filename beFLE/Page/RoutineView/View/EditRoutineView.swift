@@ -77,7 +77,7 @@ struct EditRoutineView: View {
                         .padding(.vertical, 4)
                 }
                 .padding(.horizontal)
-                FloatingButton(backgroundColor: .clear) { }
+                Floating(size: .medium) {}
                     .padding()
             }
             
@@ -162,7 +162,7 @@ struct EditRoutineView: View {
                 RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: vm.routine.burnedKCalories)
                     .environmentObject(vm)
             } label: {
-                FloatingButton(backgroundColor: .green_main) {
+                Floating(size: .medium, color: .green_main) {
                     Text("시작")
                         .foregroundColor(.gray_900)
                         .font(.button1())

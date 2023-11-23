@@ -43,8 +43,8 @@ struct RecordingWorkoutView: View {
                             WorkoutSetList
                                 .id(topID)
                             RelatedContent
-                            EmptyFloatingButton
-                            EmptyFloatingButton
+                            Floating(size: .medium) {}
+                            Floating(size: .medium) {}
                         }
                         .scrollIndicators(.hidden)
                         
@@ -533,10 +533,6 @@ struct RecordingWorkoutView: View {
             }
         }
         .padding([.horizontal, .bottom])
-    }
-    
-    var EmptyFloatingButton: some View {
-        FloatingButton(backgroundColor: .clear) { }
     }
     
     @ViewBuilder

@@ -93,7 +93,7 @@ extension OnboardingView {
         Button {
             LaunchViewModel.shared.appState = .preview
         } label: {
-            FloatingButton(backgroundColor: .gray_600) {
+            Floating(size: .medium, color: .gray_600) {
                 Text("둘러보기")
                     .foregroundColor(.green_main)
                     .font(.button1())
