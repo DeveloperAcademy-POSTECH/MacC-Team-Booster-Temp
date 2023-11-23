@@ -12,38 +12,13 @@ struct MainView: View {
     @State var subscribed = false
     @ObservedObject var profileViewModel: ProfileViewModel
     
-  
-    
     var body: some View {
         NavigationStack {
             TabView(selection: $vm.tabSelection) {
-                RoutineView()
-                    .tabItem {
-                        Image(systemName: "dumbbell")
-                        Text("운동")
-                    }
-                    .tag(0)
-                
-                SearchView()
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
-                        Text("둘러보기")
-                    }
-                    .tag(1)
-                
-                RecordView()
-                    .tabItem {
-                        Image(systemName: "list.clipboard.fill")
-                        Text("기록")
-                    }
-                    .tag(2)
-                
-                ProfileView(vm: profileViewModel)
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text("프로필")
-                    }
-                    .tag(3)
+                RoutineTab
+                SearchTab
+                RecordTab
+                ProfileTab
             }
             .environmentObject(vm)
             .tint(.label_900)
@@ -59,6 +34,45 @@ extension MainView {
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.label_600)
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color.green_main)
         self.profileViewModel = ProfileViewModel()
+    }
+}
+
+/// 탭 구성 요소
+extension MainView {
+    var RoutineTab: some View {
+        RoutineView()
+            .tabItem {
+                Image(systemName: "dumbbell")
+                Text("운동")
+            }
+            .tag(0)
+    }
+    
+    var SearchTab: some View {
+        SearchView()
+            .tabItem {
+                Image(systemName: "magnifyingglass")
+                Text("둘러보기")
+            }
+            .tag(1)
+    }
+    
+    var RecordTab: some View {
+        RecordView()
+            .tabItem {
+                Image(systemName: "list.clipboard.fill")
+                Text("기록")
+            }
+            .tag(2)
+    }
+    
+    var ProfileTab: some View {
+        ProfileView(vm: profileViewModel)
+            .tabItem {
+                Image(systemName: "person.fill")
+                Text("프로필")
+            }
+            .tag(3)
     }
 }
 
