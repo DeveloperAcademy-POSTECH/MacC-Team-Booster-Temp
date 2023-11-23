@@ -27,23 +27,16 @@ struct ProfileView: View {
                 NavigationTitle
                 ProfileCard
                 
-                //로그인 전 unactive
-                AlertToggle(notiToggle: vm.notiToggle)
-                
                 Divider()
                     .foregroundColor(.gray_700)
                     .padding(.horizontal)
+                
                 versionInformaion
-                //로그인 전 unactive
-                //                loggedIn ?
-                //                NavigationLink {
-                //                    ManageSubscribeView()
-                //                } label: {
-                //                    subscribeManagement
-                //                } : nil
+                
                 Divider()
                     .foregroundColor(.gray_700)
                     .padding(.horizontal, 20)
+                
                 Button(action: {
                     showMailView.toggle()
                 }) {
@@ -68,29 +61,6 @@ struct ProfileView: View {
         }
     }
     
-    func AlertToggle(notiToggle: Bool) -> some View {
-        VStack(alignment: .leading, spacing: 5){
-            HStack{
-                Text("알림")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                Spacer()
-                
-                Toggle("", isOn: $vm.notiToggle)
-                    .toggleStyle(SwitchToggleStyle(tint: Color.green_main))
-            }
-            
-            HStack{
-                Text("운동 일지 업데이트 알림")
-                    .font(.body())
-                    .foregroundColor(.label_700)
-            }
-            .padding(.bottom)
-        }
-        .padding(.top, 10)
-        .padding(.horizontal)
-    }
-    
     var versionInformaion : some View {
         VStack(alignment: .leading, spacing: 5){
             HStack{
@@ -108,19 +78,6 @@ struct ProfileView: View {
         }
         .padding()
     }
-    
-    //    var subscribeManagement : some View {
-    //        //노션 페이지 마련
-    //        VStack(alignment: .leading, spacing: 4){
-    //            Divider()
-    //                .foregroundColor(.gray_700)
-    //            Text("구독관리")
-    //                .font(.headline1())
-    //                .foregroundColor(.label_900)
-    //                .padding(.vertical)
-    //        }
-    //        .padding(.horizontal)
-    //    }
     
     var inquiry : some View {
         //이메일 모달
@@ -199,6 +156,10 @@ extension ProfileView {
                 .padding(.bottom, 10)
         }
     }
+}
+
+extension ProfileView {
+    
 }
 
 #Preview {
