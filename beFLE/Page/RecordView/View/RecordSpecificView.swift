@@ -27,8 +27,8 @@ struct RecordSpecificView: View {
                         RoutineCell(exercises: exercises)
                     }
                 }
+                .padding()
             }
-            .padding()
         }
         .navigationBarTitle(vm.dateFormat(from: record.finishDate), displayMode: .inline)
         .toolbar {
