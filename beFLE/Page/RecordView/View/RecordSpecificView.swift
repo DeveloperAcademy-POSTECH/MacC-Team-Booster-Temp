@@ -140,6 +140,7 @@ struct RoutineCell: View {
         }
         .font(.body2())
         .foregroundColor(.label_700)
+        .frame(minWidth: UIScreen.getWidth(135), alignment: .leading)
     }
 }
 
