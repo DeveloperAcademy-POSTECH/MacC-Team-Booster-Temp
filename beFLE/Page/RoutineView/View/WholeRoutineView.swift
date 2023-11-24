@@ -77,7 +77,7 @@ struct WholeRoutineView: View {
             }
             .padding()
             .padding(.top, 5)
-
+            
         }
         .scrollIndicators(.hidden)
     }
@@ -106,7 +106,7 @@ struct WholeRoutineView: View {
                     .font(.button2())
             }
     }
-
+    
     var Workouts: some View {
         ScrollView {
             ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
@@ -119,12 +119,19 @@ struct WholeRoutineView: View {
                         Spacer()
                     }
                     ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
-                        NavigationLink {
-                            RoutineInformationView(routineId: some.routineId)
-                                .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
-                        } label: {
+                        if some.part != "휴식" {
+                            NavigationLink {
+                                RoutineInformationView(routineId: some.routineId)
+                                    .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
+                            } label: {
+                                TodayWorkoutCell(routine: some)
+                                    .padding(.vertical, 8)
+                            }
+                        } else {
+                            // Display a non-interactive view for routines with part "휴식"
                             TodayWorkoutCell(routine: some)
                                 .padding(.vertical, 8)
+                                .foregroundColor(.gray) // You can adjust the appearance as needed
                         }
                     }
                 }
