@@ -33,7 +33,8 @@ struct RecordingFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     .frame(height: UIScreen.getHeight(80))
-                    .padding(.bottom, 30)
+
+                    Spacer()
                     
                     Image("finishImage")
                         .resizable()
@@ -78,7 +79,6 @@ struct RecordingFinishView: View {
                         }
                     
                     Spacer()
-                        .frame(height: 30)
                     
                     Button {
                         MainViewModel.shared.changeToRecordTab()
