@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct MockUpFinishView: View {
-    
-    //    @ObservedObject var viewModel: MockUpStopwatchViewModel
     @Binding var elapsedTime: TimeInterval
     @Binding var showTest: Bool
     @Environment(\.dismiss) var dismiss: DismissAction

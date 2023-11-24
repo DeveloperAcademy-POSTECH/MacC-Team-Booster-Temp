@@ -102,7 +102,8 @@ struct MockUpSubscribeView: View {
     
     var BackButton: some View {
         Button {
-            dismiss()
+            MockUpMainViewModel.shared.changeToRecordTab()
+            MockUpMainViewModel.shared.resetNavigationStack()
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
