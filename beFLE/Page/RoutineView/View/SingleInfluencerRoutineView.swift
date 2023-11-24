@@ -59,18 +59,20 @@ extension SingleInfluencerRoutineView {
 /// 인플루언서 정보 관련
 extension SingleInfluencerRoutineView {
     var InfluencerImage: some View {
-        AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
-            image
-                .resizable()
-                .scaledToFill()
-                .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(700))
-                .clipped()
-        } placeholder: {
-            VStack() {
-                LottieView()
-                    .padding(65)
-                Spacer()
-                    .frame(height: UIScreen.getHeight(390))
+        GeometryReader { geo in
+            AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .clipped()
+            } placeholder: {
+                VStack() {
+                    LottieView()
+                        .padding(65)
+                    Spacer()
+                        .frame(height: UIScreen.getHeight(390))
+                }
             }
         }
     }
@@ -184,7 +186,7 @@ extension SingleInfluencerRoutineView {
                                     .font(.button1())
                             }
                         }
-                            .padding(.bottom, 10)
+                        .padding(.bottom, 10)
                     } else {
                         NavigationLink {
                             EditRoutineView(routineId: routine.routineId)

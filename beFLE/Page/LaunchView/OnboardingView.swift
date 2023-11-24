@@ -21,6 +21,7 @@ struct OnboardingView: View {
                 Spacer().frame(height: UIScreen.getHeight(68))
             }
         }
+        .ignoresSafeArea()
     }
 }
 

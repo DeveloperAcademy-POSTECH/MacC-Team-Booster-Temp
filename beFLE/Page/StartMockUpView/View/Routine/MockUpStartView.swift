@@ -23,21 +23,15 @@ struct MockUpStartView: View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
             //사진
-            Image("Influencer_main")
-                .resizable()
-                .scaledToFill()
-//                .frame(width: UIScreen.getWidth(390))
+            InfluencerImage
             VStack{
                 ZStack(alignment: .top) {
-                    //인플루언서의 오늘의 루틴
                     NavigationTitle
-                    
-                    //오늘의 상태 텍스트
                     TodayText
-                    
+                    Spacer()
+                    TodayCard()
                 }
-                Spacer()
-                TodayCard()
+                .padding(.bottom)
                 Spacer()
                     .frame(height: UITabBarController().height)
             }
@@ -46,6 +40,16 @@ struct MockUpStartView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    var InfluencerImage: some View {
+        GeometryReader { geo in
+            Image("Influencer_main")
+                .resizable()
+                .scaledToFill()
+                .frame(width: geo.size.width, height: geo.size.height)
+                .clipped()
+        }
     }
     
     var NavigationTitle: some View {
