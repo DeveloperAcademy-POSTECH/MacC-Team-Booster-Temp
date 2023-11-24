@@ -11,7 +11,6 @@ struct MockUpFinishView: View {
     
     //    @ObservedObject var viewModel: MockUpStopwatchViewModel
     @Binding var elapsedTime: TimeInterval
-    @Binding var showTest: Bool
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -19,6 +18,8 @@ struct MockUpFinishView: View {
             Color.gray_900.ignoresSafeArea()
             VStack (spacing: 0) {
                 Spacer()
+                Spacer()
+                
                 VStack(spacing: 10){
                     Text("\(getNowDateTime()) 운동 완료")
                         .font(.title1())
@@ -27,14 +28,17 @@ struct MockUpFinishView: View {
                         .font(.body())
                         .foregroundColor(.label_700)
                 }
-                .padding(.bottom, 40)
                 .frame(height: UIScreen.getHeight(80))
+                
+                Spacer()
+                
                 Image("finishImage")
                     .resizable()
-                    .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(318))
+                    .scaledToFit()
+                    .frame(width: UIScreen.getWidth(318))
                     .background{
                         RoundedRectangle(cornerRadius: 8.0)
-                            .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(318))
+                            .frame(width: UIScreen.getWidth(318))
                             .foregroundColor(.gray_700)
                     }
                     .overlay{
@@ -71,7 +75,8 @@ struct MockUpFinishView: View {
                     }
                 
                 Spacer()
-                    .frame(height: 115)
+                Spacer()
+                
                 Button{
                     MockUpMainViewModel.shared.changeToRecordTab()
                     MockUpMainViewModel.shared.resetNavigationStack()
@@ -86,7 +91,7 @@ struct MockUpFinishView: View {
                 
                 Button{
                     //TODO: root 네비게이션으로 연결 대체
-                    showTest.toggle()
+                    LaunchViewModel.shared.previewLogin()
                 } label: {
                     FloatingButton(size: .medium, color: .gray_600) {
                         Text("로그인")

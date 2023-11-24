@@ -17,35 +17,33 @@ import SwiftUI
 
 struct MockUpStartView: View {
     var todayText = "반가워요 득근해봅시다💪"
-    @Binding var showTest: Bool
     
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
-            //사진
-            Image("Influencer_main")
-                .resizable()
-                .scaledToFill()
-//                .frame(width: UIScreen.getWidth(390))
+            InfluencerImage
             VStack{
-                ZStack(alignment: .top) {
-                    //인플루언서의 오늘의 루틴
-                    NavigationTitle
-                    
-                    //오늘의 상태 텍스트
-                    TodayText
-                    
-                }
+                NavigationTitle
+                TodayText
                 Spacer()
-                TodayCard()
-                Spacer()
-                    .frame(height: UITabBarController().height)
+                TodayCard
             }
-            .padding(.bottom, 25)
-            
+            .padding(.bottom)
+            Spacer()
+                .frame(height: UITabBarController().height)
         }
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    var InfluencerImage: some View {
+        GeometryReader { geo in
+            Image("Influencer_main")
+                .resizable()
+                .scaledToFill()
+                .frame(width: geo.size.width, height: geo.size.height)
+                .clipped()
+        }
     }
     
     var NavigationTitle: some View {
@@ -58,7 +56,7 @@ struct MockUpStartView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .padding(.top, 100)
+            .padding(.top)
             HStack {
                 Text("둘러보기 중")
                     .font(.body2())
@@ -119,7 +117,7 @@ struct MockUpStartView: View {
         .padding(.bottom, 6)
     }
     
-    func TodayCard () -> some View {
+    var TodayCard: some View {
         ZStack{
             VStack(alignment: .center){
                 HStack{
@@ -129,30 +127,29 @@ struct MockUpStartView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .padding(.bottom, 24)
+                .padding(.vertical, 24)
                 RoutineDescriptionCard
                     .padding(.bottom, 15)
                     .padding(.leading,10)
                 //운동 시작 버튼
                 NavigationLink {
-                    MockUpWorkoutOngoingView(showTest: $showTest)
+                    MockUpWorkoutOngoingView()
                 } label: {
                     FloatingButton(size: .semiMedium, color: .green_main) {
                         Text("체험 운동 시작")
                             .foregroundColor(.gray_900)
                             .font(.button1())
                     }
+                    .padding(.bottom, 14)
                 }
             }
         }
         .padding(.horizontal, 10)
-        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
+        .frame(width: UIScreen.getWidth(350))
         .background{
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
-        .padding(.bottom, 14)
-        
     }
     
     func getNowDateTime() -> String {
@@ -169,12 +166,12 @@ struct MockUpStartView: View {
 //#Preview {
 //    NavigationStack{
 //        TabView{
-//            MockUpStartView(tabSelection: .constant(3))
+//            MockUpStartView(showTest: .constant(true)
 //                .tabItem {
 //                    Image(systemName: "dumbbell")
 //                    Text("루틴")
 //                }
-//            MockUpStartView(tabSelection: .constant(3))
+//            MockUpStartView()
 //                .tabItem {
 //                    Image(systemName: "dumbbell")
 //                    Text("루틴")

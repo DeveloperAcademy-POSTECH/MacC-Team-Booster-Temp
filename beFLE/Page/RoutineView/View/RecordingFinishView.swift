@@ -20,9 +20,9 @@ struct RecordingFinishView: View {
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
-            VStack(spacing: 0) {
-                Spacer()
                 VStack(spacing: 10){
+                    Spacer()
+                    Spacer()
                     VStack(spacing: 5){
                         Text("\(vm.nowDateFormatter()) 운동 완료")
                             .font(.title1())
@@ -32,14 +32,16 @@ struct RecordingFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     .frame(height: UIScreen.getHeight(80))
-                    .padding(.bottom, 40)
+
+                    Spacer()
                     
                     Image("finishImage")
                         .resizable()
-                        .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(318))
+                        .scaledToFit()
+                        .frame(width: UIScreen.getWidth(318))
                         .background{
                             RoundedRectangle(cornerRadius: 8.0)
-                                .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(318))
+                                .frame(width: UIScreen.getWidth(318))
                                 .foregroundColor(.gray_700)
                         }
                         .overlay{
@@ -76,7 +78,7 @@ struct RecordingFinishView: View {
                         }
                     
                     Spacer()
-                        .frame(height: 80)
+                    Spacer()
                     
                     Button {
                         MainViewModel.shared.changeToRecordTab()
@@ -102,7 +104,6 @@ struct RecordingFinishView: View {
                     }
                 }
                 .padding(.bottom, 30)
-            }
         }
         .onAppear {
             vm.caculateWorkoutVolume(routineId: routineId)

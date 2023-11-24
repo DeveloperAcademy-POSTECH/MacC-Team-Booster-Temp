@@ -21,6 +21,7 @@ struct OnboardingView: View {
                 Spacer().frame(height: UIScreen.getHeight(68))
             }
         }
+        .ignoresSafeArea()
     }
 }
 
@@ -28,9 +29,13 @@ struct OnboardingView: View {
 extension OnboardingView {
     /// 배경 이미지
     var OnboardingImage: some View {
-        Image("LoginImage")
-            .resizable()
-            .scaledToFill()
+        GeometryReader { geo in
+            Image("LoginImage")
+                .resizable()
+                .scaledToFill()
+                .frame(width: geo.size.width, height: geo.size.height)
+                .clipped()
+        }
     }
     
     /// 배너 텍스트
@@ -91,7 +96,7 @@ extension OnboardingView {
     /// 둘러보기 버튼
     var PreviewButton: some View {
         Button {
-            LaunchViewModel.shared.appState = .preview
+            LaunchViewModel.shared.previewLogin()
         } label: {
             FloatingButton(size: .medium, color: .gray_600) {
                 Text("둘러보기")

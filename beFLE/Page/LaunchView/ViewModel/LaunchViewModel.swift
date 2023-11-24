@@ -9,7 +9,7 @@ import SwiftUI
 
 class LaunchViewModel: ObservableObject {
     static let shared = LaunchViewModel()
-    
+    @Published var showPreview = false
     @Published var appState: AppState = .launch
 }
 
@@ -23,6 +23,15 @@ extension LaunchViewModel {
         case login
     }
     
+    func previewLogin() {
+        showPreview.toggle()
+        if showPreview == true {
+            appState = .preview
+        }
+        else {
+            appState = .onboarding
+        }
+    }
     /// 자동 로그인 검사 함수
     func loginByUserDefaults(){
         if let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") {
