@@ -36,17 +36,12 @@ struct MockUpSubscribeView: View {
             Color.gray_900.ignoresSafeArea()
             ScrollView {
                 VStack{
-                    //구독 페이지 설명
                     IntroPage
-                    //인플루언서 설명
                     topInfluencerDescription
-                    //구독 버튼
                     subscribeButton
-                    //인플루언서 설명
                     introInfluencer
                     bodyInformation
                     strengthInformation
-                    //루틴 미리보기
                     RoutinePreview()
                         .padding(.horizontal)
                 }
