@@ -20,9 +20,8 @@ struct RecordingFinishView: View {
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
-            VStack(spacing: 0) {
-                Spacer()
                 VStack(spacing: 10){
+                    Spacer()
                     Spacer()
                     VStack(spacing: 5){
                         Text("\(vm.nowDateFormatter()) 운동 완료")
@@ -104,7 +103,6 @@ struct RecordingFinishView: View {
                     }
                 }
                 .padding(.bottom, 30)
-            }
         }
         .onAppear {
             vm.caculateWorkoutVolume(routineId: routineId)

@@ -18,6 +18,8 @@ struct MockUpFinishView: View {
             Color.gray_900.ignoresSafeArea()
             VStack (spacing: 0) {
                 Spacer()
+                Spacer()
+                
                 VStack(spacing: 10){
                     Text("\(getNowDateTime()) 운동 완료")
                         .font(.title1())
@@ -26,8 +28,10 @@ struct MockUpFinishView: View {
                         .font(.body())
                         .foregroundColor(.label_700)
                 }
-                .padding(.bottom, 40)
                 .frame(height: UIScreen.getHeight(80))
+                
+                Spacer()
+                
                 Image("finishImage")
                     .resizable()
                     .frame(width: UIScreen.getWidth(318))
@@ -70,7 +74,7 @@ struct MockUpFinishView: View {
                     }
                 
                 Spacer()
-                    .frame(height: 115)
+                
                 Button{
                     MockUpMainViewModel.shared.changeToRecordTab()
                     MockUpMainViewModel.shared.resetNavigationStack()
