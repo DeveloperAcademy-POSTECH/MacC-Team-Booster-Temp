@@ -75,6 +75,7 @@ struct RecordSpecificView: View {
         .padding(.bottom, 7)
     }
     
+    //추후 추가 예정
     var EditButton: some View {
         NavigationLink {
             RecordEditView()
@@ -128,17 +129,18 @@ struct RoutineCell: View {
     func makeSet(id: Int, kg: Int? = nil, rep: Int) -> some View {
         HStack(spacing: 1) {
             Text("\(id)세트")
-                .frame(width: UIScreen.getWidth(50), alignment: .trailing)
+                .frame(minWidth: UIScreen.getWidth(50), alignment: .trailing)
             Text("\(kg == nil ? "자율" : "\(kg!)kg")")
-                .frame(width: UIScreen.getWidth(40), alignment: .trailing)
+                .frame(minWidth: UIScreen.getWidth(40), alignment: .trailing)
             Image(systemName: "multiply")
-                .frame(width: UIScreen.getWidth(15), alignment: .trailing)
+                .frame(minWidth: UIScreen.getWidth(15), alignment: .trailing)
                 .foregroundColor(.label_400)
             Text("\(rep)회")
-                .frame(width: UIScreen.getWidth(27), alignment: .trailing)
+                .frame(minWidth: UIScreen.getWidth(30), alignment: .trailing)
         }
         .font(.body2())
         .foregroundColor(.label_700)
+        .frame(minWidth: UIScreen.getWidth(135), alignment: .leading)
     }
 }
 
