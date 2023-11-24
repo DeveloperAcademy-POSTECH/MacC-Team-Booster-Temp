@@ -34,6 +34,7 @@ struct MockUpFinishView: View {
                 
                 Image("finishImage")
                     .resizable()
+                    .scaledToFit()
                     .frame(width: UIScreen.getWidth(318))
                     .background{
                         RoundedRectangle(cornerRadius: 8.0)
