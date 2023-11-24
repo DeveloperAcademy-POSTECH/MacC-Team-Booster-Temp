@@ -28,9 +28,13 @@ struct OnboardingView: View {
 extension OnboardingView {
     /// 배경 이미지
     var OnboardingImage: some View {
-        Image("LoginImage")
-            .resizable()
-            .scaledToFill()
+        GeometryReader { geo in
+            Image("LoginImage")
+                .resizable()
+                .scaledToFill()
+                .frame(width: geo.size.width, height: geo.size.height)
+                .clipped()
+        }
     }
     
     /// 배너 텍스트
