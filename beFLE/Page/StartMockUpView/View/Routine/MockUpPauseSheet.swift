@@ -39,6 +39,7 @@ struct MockUpPauseSheet: View {
         }
         .onAppear{
             pauseViewModel.Start()
+            pauseViewModel.elapsedTime = pauseViewModel.elapsedTime + pauseViewModel.bgTimer()
         }
         .onDisappear{
             pauseViewModel.reset()

@@ -92,6 +92,7 @@ struct MockUpWorkoutOngoingView: View {
         }
         .onAppear{
             viewModel.Start()
+            viewModel.elapsedTime = viewModel.elapsedTime + viewModel.bgTimer()
         }
         .onDisappear{
             viewModel.Stop()

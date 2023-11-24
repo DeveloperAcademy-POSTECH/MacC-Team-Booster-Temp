@@ -39,6 +39,7 @@ struct PauseSheet: View {
         }
         .onAppear{
             pauseViewModel.start()
+            pauseViewModel.elapsedTime = pauseViewModel.elapsedTime + pauseViewModel.bgTimer()
         }
         .onDisappear{
             pauseViewModel.reset()

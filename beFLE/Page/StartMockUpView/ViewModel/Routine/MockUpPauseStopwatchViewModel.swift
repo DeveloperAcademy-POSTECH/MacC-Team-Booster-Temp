@@ -11,6 +11,7 @@ class MockUpPauseStopwatchViewModel: ObservableObject {
     @Published var elapsedTime: TimeInterval = 0
     @Published var isRunning: Bool = false
     private var timer: Timer?
+    @Published private var startTime = Date.now
     
     func Start() {
         isRunning = true
@@ -44,4 +45,13 @@ class MockUpPauseStopwatchViewModel: ObservableObject {
             timer?.invalidate()
             timer = nil
         }
+    
+    func bgTimer() -> TimeInterval {
+        let curTime = Date.now
+        let diffTime = startTime.distance(to: curTime)
+        let result = Double(diffTime.formatted())!
+        elapsedTime = result + elapsedTime
+        
+        return elapsedTime
+    }
 }
