@@ -22,21 +22,16 @@ struct MockUpStartView: View {
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
-            //사진
             InfluencerImage
             VStack{
-                ZStack(alignment: .top) {
-                    NavigationTitle
-                    TodayText
-                    Spacer()
-                    TodayCard()
-                }
-                .padding(.bottom)
+                NavigationTitle
+                TodayText
                 Spacer()
-                    .frame(height: UITabBarController().height)
+                TodayCard
             }
-            .padding(.bottom, 25)
-            
+            .padding(.bottom)
+            Spacer()
+                .frame(height: UITabBarController().height)
         }
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
@@ -62,7 +57,7 @@ struct MockUpStartView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .padding(.top, 100)
+            .padding(.top)
             HStack {
                 Text("둘러보기 중")
                     .font(.body2())
@@ -123,7 +118,7 @@ struct MockUpStartView: View {
         .padding(.bottom, 6)
     }
     
-    func TodayCard () -> some View {
+    var TodayCard: some View {
         ZStack{
             VStack(alignment: .center){
                 HStack{
@@ -133,7 +128,7 @@ struct MockUpStartView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .padding(.bottom, 24)
+                .padding(.vertical, 24)
                 RoutineDescriptionCard
                     .padding(.bottom, 15)
                     .padding(.leading,10)
@@ -146,17 +141,16 @@ struct MockUpStartView: View {
                             .foregroundColor(.gray_900)
                             .font(.button1())
                     }
+                    .padding(.bottom, 14)
                 }
             }
         }
         .padding(.horizontal, 10)
-        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
+        .frame(width: UIScreen.getWidth(350))
         .background{
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
-        .padding(.bottom, 14)
-        
     }
     
     func getNowDateTime() -> String {
@@ -173,12 +167,12 @@ struct MockUpStartView: View {
 //#Preview {
 //    NavigationStack{
 //        TabView{
-//            MockUpStartView(tabSelection: .constant(3))
+//            MockUpStartView(showTest: .constant(true)
 //                .tabItem {
 //                    Image(systemName: "dumbbell")
 //                    Text("루틴")
 //                }
-//            MockUpStartView(tabSelection: .constant(3))
+//            MockUpStartView()
 //                .tabItem {
 //                    Image(systemName: "dumbbell")
 //                    Text("루틴")
