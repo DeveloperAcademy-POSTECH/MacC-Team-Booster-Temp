@@ -28,7 +28,7 @@ class RecordingWorkoutViewModel: ObservableObject {
     /// 루틴 완료 여부
     @Published var isFinish = false
     
-    //MARK: 선택한 운동: 선택한 운동 받아오기 - YONG
+    //선택한 운동
     @Published var selectedExercise = -1
     
     //팁 이미지 전환
