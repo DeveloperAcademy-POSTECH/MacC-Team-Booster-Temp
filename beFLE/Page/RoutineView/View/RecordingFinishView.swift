@@ -36,10 +36,10 @@ struct RecordingFinishView: View {
                     
                     Image("finishImage")
                         .resizable()
-                        .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(318))
+                        .frame(width: UIScreen.getWidth(318))
                         .background{
                             RoundedRectangle(cornerRadius: 8.0)
-                                .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(318))
+                                .frame(width: UIScreen.getWidth(318))
                                 .foregroundColor(.gray_700)
                         }
                         .overlay{
