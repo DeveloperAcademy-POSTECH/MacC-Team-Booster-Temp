@@ -23,6 +23,7 @@ struct RecordingFinishView: View {
             VStack(spacing: 0) {
                 Spacer()
                 VStack(spacing: 10){
+                    Spacer()
                     VStack(spacing: 5){
                         Text("\(vm.nowDateFormatter()) 운동 완료")
                             .font(.title1())
@@ -32,10 +33,11 @@ struct RecordingFinishView: View {
                             .foregroundColor(.label_700)
                     }
                     .frame(height: UIScreen.getHeight(80))
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 30)
                     
                     Image("finishImage")
                         .resizable()
+                        .scaledToFit()
                         .frame(width: UIScreen.getWidth(318))
                         .background{
                             RoundedRectangle(cornerRadius: 8.0)
@@ -76,7 +78,7 @@ struct RecordingFinishView: View {
                         }
                     
                     Spacer()
-                        .frame(height: 80)
+                        .frame(height: 30)
                     
                     Button {
                         MainViewModel.shared.changeToRecordTab()
