@@ -57,7 +57,6 @@ struct MockUpWorkoutOngoingView: View {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
             }
-            
             ToolbarItem(placement: .principal) {
                 NavigationTitle
             }
