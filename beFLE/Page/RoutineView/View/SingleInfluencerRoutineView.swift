@@ -79,30 +79,26 @@ extension SingleInfluencerRoutineView {
     
     var InfluencerComment: some View {
         ZStack {
-            if routine.part == "휴식" {
-                // TODO: 휴식일 때 나타낼 뷰
-            } else {
-                VStack {
-                    Spacer()
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading) {
-                            Text(routine.comment)
-                                .font(.body2())
-                                .foregroundColor(.label_800)
-                        }
-                        .padding(20)
+            VStack {
+                Spacer()
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading) {
+                        Text(routine.comment)
+                            .font(.body2())
+                            .foregroundColor(.label_800)
                     }
-                    .frame(width: UIScreen.getWidth(350))
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
-                            .foregroundColor(.gray_700)
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(lineWidth: 1.0)
-                            .foregroundColor(.label_500)
-                    }
+                    .padding(20)
                 }
-                .padding(.bottom, 6)
+                .frame(width: UIScreen.getWidth(350))
+                .background {
+                    RoundedRectangle(cornerRadius: 8)
+                        .foregroundColor(.gray_700)
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(lineWidth: 1.0)
+                        .foregroundColor(.label_500)
+                }
             }
+            .padding(.bottom, 6)
         }
     }
 }
@@ -156,6 +152,7 @@ extension SingleInfluencerRoutineView {
                 
                 Spacer()
                 
+                // TODO: 휴식일 때 패딩 값
                 if routine.part == "휴식" {
                     VStack {
                         Spacer()
@@ -214,11 +211,13 @@ extension SingleInfluencerRoutineView {
 }
 
 #Preview {
-    TabView {
-        SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "등", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", singleRoutineImageUrl: "", multiRoutineImageUrl: "", influencerId: 1, isDone: false)))
-            .tabItem {
-                Image(systemName: "dumbbell")
-                Text("루틴")
-            }
+    NavigationStack {
+        TabView {
+            SingleInfluencerRoutineView(routine: .constant(InfluencerRoutine(routineId: 0, part: "휴식", date: "10월 24일", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, comment: "", name: "", routineName: "", singleRoutineImageUrl: "", multiRoutineImageUrl: "", influencerId: 1, isDone: false)))
+                .tabItem {
+                    Image(systemName: "dumbbell")
+                    Text("루틴")
+                }
+        }
     }
 }
