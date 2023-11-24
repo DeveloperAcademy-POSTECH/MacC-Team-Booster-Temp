@@ -12,47 +12,12 @@ class WholeRoutineViewModel: ObservableObject {
     /// 선택된 부위
     @Published var selectedPart = "전체"
     
-    /// 월 별 운동 목록
-    @Published var routinesByMonth: [String : [Routine]] = [:]
+    /// 월 별 운동 목록 [월: [루틴]]
+    @Published var routinesByMonth: [String: [Routine]] = [:]
     
     ///최초 네트워킹으로 받은 전체 목록
     @Published var wholeRoutines: [Routine] = []
     @Published var emptyFlag = 0
-    
-    var cancellables = Set<AnyCancellable>()
-    
-    init() {
-        selectionStream()
-        isRoutinesByMonthEmpty()
-    }
-    
-    func isRoutinesByMonthEmpty() {
-        $routinesByMonth.sink { [weak self] routines in
-            if routines.isEmpty {
-                self?.emptyFlag = 1
-            }
-            else {
-                self?.emptyFlag = 0
-            }
-        }
-        .store(in: &cancellables)
-    }
-    
-    func selectionStream() {
-        $selectedPart
-            .sink { selectionText in
-                if selectionText == "전체" {
-                    self.routinesByMonth = self.fetchByMonth(routines: self.wholeRoutines)
-                }
-                else {
-                    let selectedRoutines = self.wholeRoutines.filter { $0.part.components(separatedBy: ", ").contains(selectionText) }
-                    let selectedMonthlyRoutines = self.fetchByMonth(routines: selectedRoutines)
-                    self.routinesByMonth = selectedMonthlyRoutines
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
     
     /// 전체 루틴 조회 함수
     func fetchWholeRoutine(influencerId: Int) {
@@ -67,28 +32,45 @@ class WholeRoutineViewModel: ObservableObject {
         }
     }
     
-    /// 루틴 월 별 분류 함수
+    func fetchBySelect() {
+        routinesByMonth = fetchByMonth(routines: wholeRoutines)
+    }
+    
+    /// 파트 별 루틴 월 별 분류 함수
     func fetchByMonth(routines: [Routine]) -> [String: [Routine]] {
         var routinesByMonth: [String: [Routine]] = [:]
-
-        for routine in routines {
-            let month = routine.date.components(separatedBy: "-")[1]
-
-            if var routinesInMonth = routinesByMonth[month] {
-                routinesInMonth.append(routine)
-                routinesByMonth[month] = routinesInMonth
-            } else {
-                routinesByMonth[month] = [routine]
+        
+        if selectedPart == "전체" {
+            for routine in routines {
+                let month = routine.date.components(separatedBy: "-")[1]
+                
+                if routinesByMonth[month] != nil {
+                    routinesByMonth[month]?.append(routine)
+                }
+                else {
+                    routinesByMonth.updateValue([routine], forKey: month)
+                }
             }
         }
-
-        let sortedMonths = routinesByMonth.keys.sorted(by: >)
-
-        var sortedRoutinesByMonth: [String: [Routine]] = [:]
-        for month in sortedMonths {
-            sortedRoutinesByMonth[month] = routinesByMonth[month]?.sorted(by: { $0.date > $1.date })
+        else {
+            for routine in routines {
+                if routine.part.contains(selectedPart) {
+                    let month = routine.date.components(separatedBy: "-")[1]
+                    
+                    if routinesByMonth[month] != nil {
+                        routinesByMonth[month]?.append(routine)
+                    }
+                    else {
+                        routinesByMonth.updateValue([routine], forKey: month)
+                    }
+                }
+            }
         }
-        return sortedRoutinesByMonth
+        
+        print(routinesByMonth)
+        print(routinesByMonth.sorted(by: { Int($0.key)! > Int($1.key)! }))
+        
+        return routinesByMonth
     }
     
     /// "2023-10-24"를 "10월 24일"로 전환해주는 함수

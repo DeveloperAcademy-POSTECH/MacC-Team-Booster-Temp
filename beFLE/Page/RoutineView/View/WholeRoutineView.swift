@@ -11,8 +11,6 @@ enum WorkoutPart: String, CaseIterable {
     case 전체, 등, 가슴, 이두, 삼두, 하체, 복근
 }
 
-// MARK: 1. 보여줄 데이터(월): 구독 시작 기준 3일 전 데이터부터 보여주기
-// MARK: 2. 운동 데이터 없는 월은 보여주지 않음
 /// 인플루언서 개인의 전체 루틴 뷰
 ///  - Parameters:
 ///   - influencerId: 조회할 인플루언서의 id
@@ -21,16 +19,15 @@ struct WholeRoutineView: View {
     @StateObject var vm = WholeRoutineViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
     
-    // TODO: 컨벤션 맞춰 컴포넌트 명 변경
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
             VStack {
                 SortingSlider
-                switch vm.emptyFlag {
-                case 0: Workouts
-                case 1: EmptyWorkoutView
-                default:
+                switch vm.routinesByMonth.isEmpty {
+                case true:
+                    EmptyWorkoutView
+                case false:
                     Workouts
                 }
             }
@@ -47,23 +44,30 @@ struct WholeRoutineView: View {
             }
         }
     }
-    
-    var EmptyWorkoutView: some View {
-        VStack {
-            Spacer()
-            Text("해당 부위의 운동이 아직 없어요")
+}
+
+/// 네비게이션 타이틀
+extension WholeRoutineView {
+    var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.label_700)
                 .font(.headline1())
-                .foregroundColor(.label_900)
-            Spacer()
         }
     }
-    
+}
+
+/// 부위 분류
+extension WholeRoutineView {
     var SortingSlider: some View {
         ScrollView(.horizontal) {
             HStack(spacing: UIScreen.getWidth(6)) {
                 ForEach(WorkoutPart.allCases, id: \.self) { type in
                     Button {
                         vm.selectedPart = type.rawValue
+                        vm.fetchBySelect()
                     } label: {
                         if vm.selectedPart == type.rawValue  {
                             SelectedCapsule(text: type.rawValue)
@@ -109,16 +113,17 @@ struct WholeRoutineView: View {
     
     var Workouts: some View {
         ScrollView {
-            ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
+            ForEach(Array(vm.routinesByMonth.sorted(by: { Int($0.key)! > Int($1.key)! })), id: \.key) { routine in
                 VStack {
                     HStack {
-                        Text("\(key)월")
+                        Text("\(routine.key)월")
                             .foregroundColor(.label_900)
                             .font(.headline1())
                             .padding(.leading, 5)
                         Spacer()
                     }
-                    ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
+                    
+                    ForEach(routine.value.sorted(by: { $0.date > $1.date}), id: \.self) { some in
                         if some.part != "휴식" {
                             NavigationLink {
                                 RoutineInformationView(routineId: some.routineId)
@@ -138,6 +143,19 @@ struct WholeRoutineView: View {
             }
         }
         .padding(.horizontal)
+    }
+}
+
+/// 운동 목록
+extension WholeRoutineView {
+    var EmptyWorkoutView: some View {
+        VStack {
+            Spacer()
+            Text("해당 부위의 운동이 아직 없어요")
+                .font(.headline1())
+                .foregroundColor(.label_900)
+            Spacer()
+        }
     }
     
     func TodayWorkoutCell(routine: Routine) -> some View {
@@ -168,20 +186,10 @@ struct WholeRoutineView: View {
             }
         }
     }
-    
-    var BackButton: some View {
-        Button {
-            dismiss()
-        } label: {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.label_700)
-                .font(.headline1())
-        }
-    }
 }
 
-//#Preview {
-//    NavigationStack{
-//        WholeRoutineView(influencerId: 0)
-//    }
-//}
+#Preview {
+    NavigationStack{
+        WholeRoutineView(influencerId: 1)
+    }
+}
