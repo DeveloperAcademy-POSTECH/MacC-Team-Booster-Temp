@@ -74,10 +74,9 @@ class WholeRoutineViewModel: ObservableObject {
         for routine in routines {
             let month = routine.date.components(separatedBy: "-")[1]
 
-            // Check if the month key exists in the dictionary
             if var routinesInMonth = routinesByMonth[month] {
                 routinesInMonth.append(routine)
-                routinesByMonth[month] = routinesInMonth
+                routinesByMonth[month] = routinesInMonth.sorted(by: { $0.date > $1.date })
             } else {
                 routinesByMonth[month] = [routine]
             }
