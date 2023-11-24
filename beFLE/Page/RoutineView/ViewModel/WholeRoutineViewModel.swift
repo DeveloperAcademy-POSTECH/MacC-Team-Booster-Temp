@@ -76,12 +76,19 @@ class WholeRoutineViewModel: ObservableObject {
 
             if var routinesInMonth = routinesByMonth[month] {
                 routinesInMonth.append(routine)
-                routinesByMonth[month] = routinesInMonth.sorted(by: { $0.date > $1.date })
+                routinesByMonth[month] = routinesInMonth
             } else {
                 routinesByMonth[month] = [routine]
             }
         }
-        return routinesByMonth
+
+        let sortedMonths = routinesByMonth.keys.sorted(by: >)
+
+        var sortedRoutinesByMonth: [String: [Routine]] = [:]
+        for month in sortedMonths {
+            sortedRoutinesByMonth[month] = routinesByMonth[month]?.sorted(by: { $0.date > $1.date })
+        }
+        return sortedRoutinesByMonth
     }
     
     /// "2023-10-24"를 "10월 24일"로 전환해주는 함수
