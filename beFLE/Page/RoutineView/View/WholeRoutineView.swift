@@ -24,10 +24,10 @@ struct WholeRoutineView: View {
             Color.gray_900.ignoresSafeArea()
             VStack {
                 SortingSlider
-                switch vm.emptyFlag {
-                case 0: Workouts
-                case 1: EmptyWorkoutView
-                default:
+                switch vm.routinesByMonth.isEmpty {
+                case true:
+                    EmptyWorkoutView
+                case false:
                     Workouts
                 }
             }
@@ -67,6 +67,7 @@ extension WholeRoutineView {
                 ForEach(WorkoutPart.allCases, id: \.self) { type in
                     Button {
                         vm.selectedPart = type.rawValue
+                        vm.fetchBySelect()
                     } label: {
                         if vm.selectedPart == type.rawValue  {
                             SelectedCapsule(text: type.rawValue)
@@ -112,16 +113,17 @@ extension WholeRoutineView {
     
     var Workouts: some View {
         ScrollView {
-            ForEach(Array(vm.routinesByMonth.keys), id: \.self) { key in
+            ForEach(Array(vm.routinesByMonth.sorted(by: { Int($0.key)! > Int($1.key)! })), id: \.key) { routine in
                 VStack {
                     HStack {
-                        Text("\(key)월")
+                        Text("\(routine.key)월")
                             .foregroundColor(.label_900)
                             .font(.headline1())
                             .padding(.leading, 5)
                         Spacer()
                     }
-                    ForEach(vm.routinesByMonth[key]!, id: \.self) { some in
+                    
+                    ForEach(routine.value.sorted(by: { $0.date > $1.date}), id: \.self) { some in
                         if some.part != "휴식" {
                             NavigationLink {
                                 RoutineInformationView(routineId: some.routineId)
