@@ -204,7 +204,7 @@ extension SingleInfluencerRoutineView {
             }
         }
         .padding(.horizontal, 10)
-        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(325))
+        .frame(width: UIScreen.getWidth(350))
         .background {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
