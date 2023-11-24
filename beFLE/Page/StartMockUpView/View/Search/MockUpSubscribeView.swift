@@ -12,7 +12,6 @@ struct MockUpSubscribeView: View {
     @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
     @State var subscribingSheet = false
-    @Binding var showTest: Bool
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var introduce = """
@@ -102,8 +101,7 @@ struct MockUpSubscribeView: View {
     
     var BackButton: some View {
         Button {
-            MockUpMainViewModel.shared.changeToRecordTab()
-            MockUpMainViewModel.shared.resetNavigationStack()
+            dismiss()
         } label: {
             Image(systemName: "chevron.left")
                 .foregroundColor(.label_700)
@@ -216,7 +214,7 @@ struct MockUpSubscribeView: View {
     @ViewBuilder
     var subscribeButton: some View {
         Button {
-            showTest.toggle()
+            LaunchViewModel.shared.previewLogin()
         } label: {
             FloatingButton(size: .medium, color: .green_main) {
                 Text("로그인하고 구독하기")

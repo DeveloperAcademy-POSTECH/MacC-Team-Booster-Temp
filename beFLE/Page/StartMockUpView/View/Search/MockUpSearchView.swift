@@ -18,7 +18,6 @@ struct MockUpSearchView: View {
                                                   ]
     )
     @State private var showMailView = false
-    @Binding var showTest: Bool
     
     var body: some View {
         
@@ -28,7 +27,7 @@ struct MockUpSearchView: View {
             VStack {
                 NavigationTitle
                 NavigationLink {
-                    MockUpSubscribeView(showTest: $showTest)
+                    MockUpSubscribeView()
                 } label: {
                     SearchCard
                 }

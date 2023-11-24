@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MockUpFinishView: View {
+    
+    //    @ObservedObject var viewModel: MockUpStopwatchViewModel
     @Binding var elapsedTime: TimeInterval
-    @Binding var showTest: Bool
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -84,7 +85,7 @@ struct MockUpFinishView: View {
                 
                 Button{
                     //TODO: root 네비게이션으로 연결 대체
-                    showTest.toggle()
+                    LaunchViewModel.shared.previewLogin()
                 } label: {
                     FloatingButton(size: .medium, color: .gray_600) {
                         Text("로그인")
