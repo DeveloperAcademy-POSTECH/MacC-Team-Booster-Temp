@@ -27,6 +27,7 @@ struct RecordSpecificView: View {
                         RoutineCell(exercises: exercises)
                     }
                 }
+                .scrollIndicators(.hidden)
             }
             .padding()
         }
