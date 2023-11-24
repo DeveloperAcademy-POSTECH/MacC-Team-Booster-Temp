@@ -78,6 +78,7 @@ struct RecordingFinishView: View {
                         }
                     
                     Spacer()
+                    Spacer()
                     
                     Button {
                         MainViewModel.shared.changeToRecordTab()

@@ -75,6 +75,7 @@ struct MockUpFinishView: View {
                     }
                 
                 Spacer()
+                Spacer()
                 
                 Button{
                     MockUpMainViewModel.shared.changeToRecordTab()
