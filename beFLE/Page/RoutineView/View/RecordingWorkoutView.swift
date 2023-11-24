@@ -55,6 +55,7 @@ struct RecordingWorkoutView: View {
             }
             .onAppear {
                 vm.start()
+                vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
                 vm.currentSet = 0
                 editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
             }

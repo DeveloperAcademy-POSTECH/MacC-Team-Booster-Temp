@@ -39,6 +39,7 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     @Published var elapsedTime: TimeInterval = 0
     @Published var isRunning: Bool = false
+    @Published private var startTime = Date.now
     private var timer: Timer?
     
     /// 운동 시간 일시 정지 함수
@@ -163,6 +164,15 @@ class RecordingWorkoutViewModel: ObservableObject {
             timer?.invalidate()
             timer = nil
         }
+    }
+    
+    func bgTimer() -> TimeInterval {
+        let curTime = Date.now
+        let diffTime = startTime.distance(to: curTime)
+        let result = Double(diffTime.formatted())!
+        elapsedTime = result + elapsedTime
+        
+        return elapsedTime
     }
     
     func timeFormatted() -> String {
