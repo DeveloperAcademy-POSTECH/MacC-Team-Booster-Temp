@@ -101,7 +101,7 @@ extension OnboardingView {
             FloatingButton(size: .medium, color: .gray_600) {
                 Text("둘러보기")
                     .foregroundColor(.green_main)
-                    .font(.button1())
+                    .font(.title1())
             }
         }
     }

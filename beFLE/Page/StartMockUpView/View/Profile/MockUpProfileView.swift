@@ -25,29 +25,18 @@ struct MockUpProfileView: View {
     var body: some View {
         ZStack{
             Color.gray_900.ignoresSafeArea()
-            VStack{
+            VStack {
                 NavigationTitle
-                Button{
-                    LaunchViewModel.shared.previewLogin()
-                } label: {
-                    ProfileManage()
-                }
                 versionInformaion
-                
                 Divider()
                     .foregroundColor(.gray_700)
                     .padding(.horizontal, 20)
-                Button(action: {
-                    showMailView.toggle()
-                }) {
-                    inquiry
-                }
-                .disabled(!MailView.canSendMail)
-                .sheet(isPresented: $showMailView) {
-                    MailView(data: $mailData) { result in
+                inquiry
+                    .disabled(!MailView.canSendMail)
+                    .sheet(isPresented: $showMailView) {
+                        MailView(data: $mailData) { result in
+                        }
                     }
-                }
-                //로그인 전 unactive
                 Divider()
                     .foregroundColor(.gray_700)
                     .padding(.horizontal)
@@ -68,43 +57,47 @@ struct MockUpProfileView: View {
     }
     
     func ProfileManage() -> some View {
-        RoundedRectangle(cornerRadius: 8.0)
-            .foregroundColor(.gray_700)
-            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
-            .overlay{
-                HStack(spacing:2){
-                    //로그인 x -> nickName => "둘러보기", "프로필 관리" => "로그인 하러 가기"
-                    Text("둘러보기")
-                        .foregroundColor(.label_900)
-                        .font(.body())
-                        .padding(.leading, 20)
-                    Text("님")
-                        .foregroundColor(.label_700)
-                        .font(.body())
-                    Spacer()
-                    Text("로그인 하러 가기")
-                        .foregroundColor(.green_main)
-                        .font(.system(size: 14, weight: .regular, design: .default))
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.green_main)
-                        .font(.system(size: 10, weight: .regular, design: .default))
-                        .padding(.trailing, 20)
+        
+        Button{
+            LaunchViewModel.shared.previewLogin()
+        } label: {
+            RoundedRectangle(cornerRadius: 8.0)
+                .foregroundColor(.gray_700)
+                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
+                .overlay{
+                    HStack (spacing:2){
+                        Text("둘러보기")
+                            .foregroundColor(.label_900)
+                            .font(.body())
+                            .padding(.leading, 20)
+                        Text("님")
+                            .foregroundColor(.label_700)
+                            .font(.body())
+                        Spacer()
+                        Text("로그인 하러 가기")
+                            .foregroundColor(.green_main)
+                            .font(.system(size: 14, weight: .regular, design: .default))
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.green_main)
+                            .font(.system(size: 10, weight: .regular, design: .default))
+                            .padding(.trailing, 20)
+                    }
                 }
-            }
-            .padding(.top, 10)
-            .padding(.bottom, 10)
+                .padding(.top, 10)
+                .padding(.bottom, 10)
+            
+        }
     }
     
     var versionInformaion : some View {
-        VStack(alignment: .leading, spacing: 5){
-            HStack{
+        VStack (alignment: .leading, spacing: 5){
+            HStack {
                 Text("버전정보")
                     .font(.headline1())
                     .foregroundColor(.label_900)
                 Spacer()
             }
-            
-            HStack{
+            HStack {
                 Text(versionState)
                     .font(.body())
                     .foregroundColor(.label_700)
@@ -114,17 +107,21 @@ struct MockUpProfileView: View {
     }
     
     var inquiry : some View {
-        //이메일 모달
-        VStack(alignment: .leading, spacing: 4){
-            HStack {
-                Text("문의하기")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                    .padding(.vertical)
-                Spacer()
+        
+        Button (action: {
+            showMailView.toggle()
+        }) {
+            VStack (alignment: .leading, spacing: 4){
+                HStack {
+                    Text("문의하기")
+                        .font(.headline1())
+                        .foregroundColor(.label_900)
+                        .padding(.vertical)
+                    Spacer()
+                }
             }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 }
 

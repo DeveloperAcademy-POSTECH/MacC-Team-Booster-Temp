@@ -16,26 +16,7 @@ struct MockUpPauseSheet: View {
         ZStack {
             Color.gray_800.ignoresSafeArea()
             
-            VStack {
-                Text("운동 정지")
-                    .font(.headline1())
-                    .foregroundColor(.label_700)
-                Text(timeFormatted(pauseViewModel.elapsedTime))
-                    .font(.largeTitle())
-                    .foregroundColor(.label_900)
-                Button {
-                    dismiss()
-                } label: {
-                    FloatingButton(size: .semiSmall, color: .green_main) {
-                        HStack {
-                            Text("다시 시작")
-                            Image(systemName: "play.fill")
-                        }
-                        .font(.button1())
-                        .foregroundColor(.gray_900)
-                    }
-                }
-            }
+            pauseButton
         }
         .onAppear{
             pauseViewModel.Start()
@@ -46,6 +27,29 @@ struct MockUpPauseSheet: View {
             viewModel.Start()
         }
         .presentationDetents([.height(UIScreen.getHeight(378))])
+    }
+    
+    var pauseButton: some View {
+        VStack {
+            Text("운동 정지")
+                .font(.headline1())
+                .foregroundColor(.label_700)
+            Text(timeFormatted(pauseViewModel.elapsedTime))
+                .font(.largeTitle())
+                .foregroundColor(.label_900)
+            Button {
+                dismiss()
+            } label: {
+                FloatingButton(size: .semiSmall, color: .green_main) {
+                    HStack {
+                        Text("다시 시작")
+                        Image(systemName: "play.fill")
+                    }
+                    .font(.button1())
+                    .foregroundColor(.gray_900)
+                }
+            }
+        }
     }
     
     private func timeFormatted(_ seconds: TimeInterval) -> String {

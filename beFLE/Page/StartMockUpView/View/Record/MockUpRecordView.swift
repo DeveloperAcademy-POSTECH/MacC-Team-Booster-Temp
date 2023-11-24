@@ -76,8 +76,8 @@ struct MockUpRecordView: View {
                     }
             }
             .onChange(of: vm.selectedDate) { _ in
-                    vm.calculateTotalVolume()
-                }
+                vm.calculateTotalVolume()
+            }
         }
         .padding(.bottom, 5)
     }
