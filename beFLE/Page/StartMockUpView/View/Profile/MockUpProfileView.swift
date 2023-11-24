@@ -27,6 +27,7 @@ struct MockUpProfileView: View {
             Color.gray_900.ignoresSafeArea()
             VStack {
                 NavigationTitle
+                ProfileManage()
                 versionInformaion
                 Divider()
                     .foregroundColor(.gray_700)
