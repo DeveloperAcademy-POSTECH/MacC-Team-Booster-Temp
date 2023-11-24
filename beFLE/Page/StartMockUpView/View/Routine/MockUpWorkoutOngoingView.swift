@@ -115,7 +115,7 @@ struct MockUpWorkoutOngoingView: View {
     func workoutButton(proxy: ScrollViewProxy) -> some View {
         VStack {
             Spacer()
-            
+            isFocused ? nil :
             FloatingButton(size: .large, color: .gray_700) {
                 HStack {
                     Spacer()
@@ -297,6 +297,7 @@ struct MockUpWorkoutOngoingView: View {
         .padding()
     }
     
+    @ViewBuilder
     var WorkoutSetList: some View {
         ForEach($workoutOngoingVM.workoutSet) { $workoutSet in
             MockUpWorkoutSetCard(workoutSet: $workoutSet, isFocused: $isFocused)
