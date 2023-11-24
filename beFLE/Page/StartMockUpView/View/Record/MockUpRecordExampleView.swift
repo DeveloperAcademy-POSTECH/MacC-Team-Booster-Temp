@@ -70,7 +70,7 @@ struct MockUpRecordExampleView: View {
                 .font(.body())
         }
         .padding(.bottom, 7)
-        
+
     }
     
     var BackButton: some View {
