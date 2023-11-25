@@ -69,6 +69,9 @@ extension RecordingWorkoutViewModel {
             GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
                 switch $0 {
                 case .success(let sets):
+                    if self.currentSet >= sets.count {
+                        self.currentSet -= 1
+                    }
                     self.exercise.sets = sets
                     self.isCanTappable = true
                 case .failure(let error):
