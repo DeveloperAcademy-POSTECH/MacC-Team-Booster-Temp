@@ -13,37 +13,43 @@ class WorkoutViewModel: ObservableObject {
     @Published var exerciseId = 0
     
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
-    @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
+    @Published var exercises: [ResponseGetRoutinesExercises] = []
     
     
     func fetchRoutineId(routineId: Int) {
         self.routineId = routineId
-        fetchRoutine()
+        fetchRoutine() {
+            self.fetchExercises()
+        }
     }
     
     func fetchExerciseId(exerciseId: Int) {
         self.exerciseId = exerciseId
-        fetchWorkout()
     }
     
-    func fetchRoutine() {
+    func fetchRoutine(completion: @escaping (() -> ())) {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
                 self.routine = routine
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    func fetchWorkout() {
-        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
-            switch $0 {
-            case .success(let workout):
-                self.workout = workout
-            case .failure(let error):
-                print(error.localizedDescription)
+    func fetchExercises() {
+        exercises = []
+        
+        for exercise in routine.exercises {
+            GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exercise.id), type: ResponseGetRoutinesExercises.self) {
+                switch $0 {
+                case .success(let workout):
+                    self.exercises.append(workout)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
