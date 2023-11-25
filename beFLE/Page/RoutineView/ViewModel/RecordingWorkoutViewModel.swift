@@ -140,12 +140,12 @@ extension RecordingWorkoutViewModel {
 
 /// 세트 컨트롤
 extension RecordingWorkoutViewModel {
-    func didNextButtonTapped() {
+    func didNextButtonTapped(routineId: Int, exerciseId: Int, setId: Int) {
         isCanTappable = false
         
         switch nextButtonStatus {
         case .nextSet:
-            break
+            nextSet(routineId: routineId, exerciseId: exerciseId, setId: setId)
         case .nextWorkout:
             break
         case .finishWorkout:
@@ -153,8 +153,17 @@ extension RecordingWorkoutViewModel {
         }
     }
     
-    func nextSet() {
-        
+    func nextSet(routineId: Int, exerciseId: Int, setId: Int) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
+            switch $0 {
+            case .success:
+                self.isCanTappable = true
+                self.exercise.sets[self.currentSet].isDone = true
+                self.didNextButtonStatusChange()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /// 현재 세트 완료 함수
@@ -169,6 +178,21 @@ extension RecordingWorkoutViewModel {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func didNextButtonStatusChange() {
+        switch nextButtonStatus {
+        case .nextSet:
+            currentSet += 1
+            
+            if currentSet >= exercise.sets.count - 1 {
+                nextButtonStatus = .nextWorkout
+            }
+        case .nextWorkout:
+            break
+        case .finishWorkout:
+            break
         }
     }
 }

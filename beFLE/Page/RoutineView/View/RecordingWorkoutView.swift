@@ -451,7 +451,7 @@ extension RecordingWorkoutView {
                                 }
                             }
                             
-                            vm.didNextButtonTapped()
+                            vm.didNextButtonTapped(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId)
                         } label: {
                             NextButton
                         }
