@@ -190,7 +190,7 @@ extension RecordingWorkoutView {
             Text("운동완료")
         }
         Button {
-            
+            // TODO: 레코딩 루틴 뷰
         } label: {
             Text("확인")
         }
