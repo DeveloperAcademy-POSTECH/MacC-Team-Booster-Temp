@@ -162,14 +162,11 @@ extension RecordingWorkoutView {
         } label: {
             Text("운동 대체")
         }
-        
         Button {
             vm.isDeleteWorkoutAlertShow = true
         } label: {
             Text("삭제")
         }
-        
-        
         Button(role: .cancel) {
             
         } label: {
@@ -184,7 +181,6 @@ extension RecordingWorkoutView {
         } label: {
             Text("운동완료")
         }
-        
         Button {
             
         } label: {
@@ -224,9 +220,9 @@ extension RecordingWorkoutView {
     }
     
     var WorkoutImageAndTip: some View {
-        TabView(selection: $vm.tabSelection){
-            VStack{
-                ZStack{
+        TabView(selection: $vm.tabSelection) {
+            VStack {
+                ZStack {
                     AsyncImage(url: URL(string: workoutVM.exercise.exerciseImageUrl)) { image in
                         image
                             .resizable()
@@ -264,12 +260,12 @@ extension RecordingWorkoutView {
             .tag(0)
             
             ZStack {
-                VStack{
+                VStack {
                     RoundedRectangle(cornerRadius: 8)
                         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                         .foregroundColor(.gray_800)
                         .overlay {
-                            ScrollView{
+                            ScrollView {
                                 VStack {
                                     HStack {
                                         AsyncImage(url: URL(string: workoutVM.exercise.faceImageUrl)) { image in
@@ -322,7 +318,7 @@ extension RecordingWorkoutView {
             .padding(.bottom, 13) : nil
             
             ScrollView(.horizontal) {
-                HStack{
+                HStack {
                     ForEach(workoutVM.exercise.videoUrls, id: \.self) { videoUrl in
                         RelatedContentCard(videoID: videoUrl)
                     }
@@ -421,7 +417,7 @@ extension RecordingWorkoutView {
 /// 운동 컨트롤 버튼
 extension RecordingWorkoutView {
     func bottomGradientView(proxy: ScrollViewProxy) -> some View {
-        VStack{
+        VStack {
             Spacer()
             isFocused ? nil :
             LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
@@ -432,7 +428,6 @@ extension RecordingWorkoutView {
                 .allowsHitTesting(false)
         }
         .ignoresSafeArea()
-        
     }
     
     func workoutButton(proxy: ScrollViewProxy) -> some View {
