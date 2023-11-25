@@ -71,6 +71,7 @@
 		F838A12C2AFB79E500688893 /* APIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838A12B2AFB79E500688893 /* APIBody.swift */; };
 		F880668A2B11BDD300AE3345 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88066892B11BDD300AE3345 /* WorkoutView.swift */; };
 		F880668C2B11BE6200AE3345 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880668B2B11BE6200AE3345 /* WorkoutViewModel.swift */; };
+		F880668E2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880668D2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift */; };
 		F886927B2AFFF0710043EE9A /* Ext+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F886927A2AFFF0710043EE9A /* Ext+Date.swift */; };
 		F886927D2AFFF12E0043EE9A /* Ext+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F886927C2AFFF12E0043EE9A /* Ext+String.swift */; };
 		F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */; };
@@ -182,6 +183,7 @@
 		F838A12B2AFB79E500688893 /* APIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBody.swift; sourceTree = "<group>"; };
 		F88066892B11BDD300AE3345 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		F880668B2B11BE6200AE3345 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
+		F880668D2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordingRoutineViewModel.swift; sourceTree = "<group>"; };
 		F886927A2AFFF0710043EE9A /* Ext+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Date.swift"; sourceTree = "<group>"; };
 		F886927C2AFFF12E0043EE9A /* Ext+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+String.swift"; sourceTree = "<group>"; };
 		F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkoutSheetViewModel.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				F880668B2B11BE6200AE3345 /* WorkoutViewModel.swift */,
 				F8DACB6A2B041C6800C3E95C /* EditRoutineViewModel.swift */,
 				F8DACB722B0422D500C3E95C /* RecordingWorkoutViewModel.swift */,
+				F880668D2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift */,
 				F8DACB552B02830100C3E95C /* AlternativeWorkoutSheetViewModel.swift */,
 				D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */,
 				F886927E2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift */,
@@ -771,6 +774,7 @@
 				D5B7804A2AE3C12800A8B76A /* RecommendInfluencer.swift in Sources */,
 				F8F3A1452AFA35210068F885 /* RecordView.swift in Sources */,
 				F8DACB6F2B0420B200C3E95C /* RoutineInformationViewModel.swift in Sources */,
+				F880668E2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift in Sources */,
 				F8DACB752B04294500C3E95C /* RecordingRoutineView.swift in Sources */,
 				D57E93CA2B04A04200D6D986 /* MockUpSearchView.swift in Sources */,
 				0D5851582AE4F34400C8875A /* WorkoutCell.swift in Sources */,
