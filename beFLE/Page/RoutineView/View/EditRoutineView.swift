@@ -25,30 +25,17 @@ struct EditRoutineView: View {
             vm.fetchRoutine(routineId: workoutViewModel.routineId)
         }
         .navigationTitle("운동 목록 편집")
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
             }
         }
-        .navigationBarBackButtonHidden()
-        .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
-            DetailedWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
-        }
-        .confirmationDialog(vm.routine.exercises.isEmpty ? "" : vm.routine.exercises[vm.selectedIndex].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
-            AlternativeActionSheet
-        }
-        .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
-                .environmentObject(vm)
-                .onDisappear{
-                    vm.fetchRoutine(routineId: workoutViewModel.routineId)
-                }
-        }
-        .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
-            DeleteAlert
-        }
     }
-    
+}
+
+/// 네비게이션 타이틀
+extension EditRoutineView {
     var BackButton: some View {
         Button {
             dismiss()
@@ -58,7 +45,10 @@ struct EditRoutineView: View {
                 .font(.headline2())
         }
     }
-    
+}
+
+/// 운동 목록
+extension EditRoutineView {
     var WorkoutList: some View {
         VStack {
             HStack {
@@ -82,7 +72,6 @@ struct EditRoutineView: View {
             
         }
         .padding(.horizontal)
-        
     }
     
     func WorkoutListCell(index: Int) -> some View {
@@ -91,7 +80,7 @@ struct EditRoutineView: View {
                 vm.selectedIndex = index
                 vm.isDetailedWorkoutSheetShow = true
             } label: {
-                HStack(spacing: 8){
+                HStack(spacing: 8) {
                     RoundedRectangle(cornerRadius: 4)
                         .foregroundColor(.fill_1)
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
@@ -130,6 +119,9 @@ struct EditRoutineView: View {
                     Spacer()
                 }
             }
+            .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
+                DetailedWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
+            }
             
             Spacer()
             
@@ -141,11 +133,14 @@ struct EditRoutineView: View {
                     .foregroundColor(.label_700)
             }
             .padding()
+            .confirmationDialog(vm.routine.exercises.isEmpty ? "" : vm.routine.exercises[vm.selectedIndex].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
+                AlternativeActionSheet
+            }
         }
     }
     
-    var gradient: some View{
-        VStack{
+    var gradient: some View {
+        VStack {
             Spacer()
             LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
                 .frame(height: UIScreen.getHeight(150), alignment: .bottom)
@@ -155,7 +150,7 @@ struct EditRoutineView: View {
     }
     
     var WorkoutStartButton: some View {
-        VStack{
+        VStack {
             Spacer()
             NavigationLink {
                 RecordingWorkoutView(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: vm.routine.burnedKCalories)
@@ -170,7 +165,10 @@ struct EditRoutineView: View {
             }
         }
     }
-    
+}
+
+/// 시트, 얼럿, 액션
+extension EditRoutineView {
     @ViewBuilder
     var AlternativeActionSheet: some View {
         Button {
@@ -178,15 +176,26 @@ struct EditRoutineView: View {
         } label: {
             Text("운동 대체")
         }
+        .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
+            AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
+                .environmentObject(vm)
+                .onDisappear {
+                    vm.fetchRoutine(routineId: workoutViewModel.routineId)
+                }
+        }
         
         Button(role: .destructive) {
             vm.isDeleteWorkoutAlertShow = true
         } label: {
             Text("삭제")
         }
+        .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
+            DeleteAlert
+        }
         
-        Button(role: .cancel) { }
-        label: {
+        Button(role: .cancel) {
+            
+        } label: {
             Text("취소")
         }
     }
