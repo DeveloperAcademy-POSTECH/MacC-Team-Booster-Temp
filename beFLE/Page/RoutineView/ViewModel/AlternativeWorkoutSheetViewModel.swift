@@ -23,11 +23,11 @@ class AlternativeWorkoutSheetViewModel: ObservableObject {
         }
     }
     
-    func patchAlternate(routineId: Int, exerciseId: Int, alternativeExerciseId: Int, completion: @escaping ((ResponseGetRoutinesExercises) ->())) {
+    func patchAlternate(routineId: Int, exerciseId: Int, alternativeExerciseId: Int, completion: @escaping (() -> ())) {
         GeneralAPIManger.request(for: .PatchRoutinesExercisesAlternate(routineId: routineId, exerciseId: exerciseId, alternativeExerciseId: alternativeExerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
-            case .success(let workout):
-                completion(workout)
+            case .success:
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }

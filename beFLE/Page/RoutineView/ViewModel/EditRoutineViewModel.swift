@@ -14,9 +14,11 @@ class EditRoutineViewModel: ObservableObject {
     
     /// 선택한 운동의 상세 정보 시트 여부
     @Published var isDetailedWorkoutSheetShow = false
+    @Published var selectedExerciseId = 0
     
     /// 선택한 운동의 대체 또는 삭제 여부
     @Published var isEditWorkoutActionShow = false
+    @Published var editWorkoutName = ""
     
     /// 선택한 운동의 대체 시트 여부
     @Published var isAlternateWorkoutSheetShow = false

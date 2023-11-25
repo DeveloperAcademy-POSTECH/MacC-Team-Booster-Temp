@@ -27,7 +27,7 @@ struct EditRecordingRoutineView: View {
         }
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $editRoutineVM.isDetailedWorkoutSheetShow) {
-            DetailedWorkoutSheet(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.selectedIndex].id)
+//            DetailedWorkoutSheet(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.selectedIndex].id)
         }
         .confirmationDialog(editRoutineVM.routine.exercises.isEmpty ? "" : editRoutineVM.routine.exercises[editRoutineVM.selectedIndex].name , isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
             AlternativeActionSheet
