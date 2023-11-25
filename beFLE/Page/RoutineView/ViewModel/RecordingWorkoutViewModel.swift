@@ -26,13 +26,10 @@ class RecordingWorkoutViewModel: ObservableObject {
     /// 운동이 남아있을 때 운동 완료 얼럿 여부
     @Published var isDiscontinuewAlertShow = false
     
-    /// 루틴 완료 여부
-    @Published var isFinish = false
-    
-    //선택한 운동
+    /// 선택한 운동
     @Published var selectedExercise = -1
     
-    //팁 이미지 전환
+    /// 팁 이미지 전환
     @Published var tabSelection = 0
     
     /// api 응답 받아야 탭 가능하게 전환 - 추후 콤바인 교체
@@ -46,21 +43,6 @@ class RecordingWorkoutViewModel: ObservableObject {
     @Published var isRunning: Bool = false
     @Published private var startTime = Date.now
     private var timer: Timer?
-    
-    /// 운동 완료 함수
-    func finishWorkout(routineId: Int) {
-        isCanTappable = false
-        
-        GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
-            switch $0 {
-            case .success:
-                self.isCanTappable = true
-                self.isFinish = true
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
 }
 
 /// 운동 패치
@@ -140,17 +122,8 @@ extension RecordingWorkoutViewModel {
 
 /// 세트 컨트롤
 extension RecordingWorkoutViewModel {
-//        switch nextButtonStatus {
-//        case .nextSet:
-//            nextSet(routineId: routineId, exerciseId: exercise.exerciseId, setId: exercise.sets[currentSet].setId)
-//        case .nextWorkout:
-//            nextWorkout(routineId: routineId, exerciseId: exercise.exerciseId, setId: exercise.sets[currentSet].setId) {
-//                currentWorkoutIndex.wrappedValue += 1
-//            }
-//        case .finishWorkout:
-//            break
-//        }
-    func nextSet(routineId: Int, exerciseId: Int, setId: Int) {
+    /// 다음 세트 함수
+    func nextSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
         isCanTappable = false
         
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
@@ -160,15 +133,14 @@ extension RecordingWorkoutViewModel {
                 self.exercise.sets[self.currentSet].isDone = true
                 
                 self.currentSet += 1
-                if self.currentSet >= self.exercise.sets.count - 1 {
-                    self.nextButtonStatus = .nextWorkout
-                }
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
+    /// 다음 운동 함수
     func nextWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
@@ -176,6 +148,23 @@ extension RecordingWorkoutViewModel {
                 self.isCanTappable = true
                 self.exercise.sets[self.currentSet].isDone = true
                 self.currentSet = 0
+                completion()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    /// 루틴 완료 함수
+    func finishWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
+        isCanTappable = false
+        
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
+            switch $0 {
+            case .success:
+                self.exercise.sets[self.currentSet].isDone = true
+                self.isCanTappable = true
+                
                 completion()
             case .failure(let error):
                 print(error.localizedDescription)

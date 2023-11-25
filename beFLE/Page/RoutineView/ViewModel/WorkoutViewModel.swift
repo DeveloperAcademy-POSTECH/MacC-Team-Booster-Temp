@@ -12,6 +12,7 @@ class WorkoutViewModel: ObservableObject {
     @Published var routineId = 0
     @Published var exerciseId = 0
     @Published var currentWorkoutIndex = 0
+    @Published var routineCompleteImageUrl = ""
     
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
@@ -67,6 +68,18 @@ class WorkoutViewModel: ObservableObject {
             case .success:
                 self.fetchRoutine()
                 break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func finishWorkout() {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
+            switch $0 {
+            case .success(let response):
+                self.routineCompleteImageUrl = response.routineCompleteImageUrl
+                self.workoutViewStatus = .recordingFinishView
             case .failure(let error):
                 print(error.localizedDescription)
             }

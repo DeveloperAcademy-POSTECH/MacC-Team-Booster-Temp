@@ -182,7 +182,9 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var DiscontinueAlert: some View {
         Button {
-            vm.finishWorkout(routineId: workoutVM.routineId)
+            vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+                
+            }
         } label: {
             Text("운동완료")
         }
@@ -453,14 +455,25 @@ extension RecordingWorkoutView {
                             
                             switch vm.nextButtonStatus {
                             case .nextSet:
-                                vm.nextSet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId)
+                                vm.nextSet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+                                    if vm.currentSet >= vm.exercise.sets.count - 1 {
+                                        if workoutVM.currentWorkoutIndex >= workoutVM.exercises.count - 1 {
+                                            vm.nextButtonStatus = .finishWorkout
+                                        }
+                                        else {
+                                            vm.nextButtonStatus = .nextWorkout
+                                        }
+                                    }
+                                }
                             case .nextWorkout:
                                 vm.nextWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
                                     vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exercises[workoutVM.currentWorkoutIndex + 1])
                                     workoutVM.fetchNextWorkout()
                                 }
                             case .finishWorkout:
-                                break
+                                vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+                                    workoutVM.finishWorkout()
+                                }
                             }
                         } label: {
                             NextButton
