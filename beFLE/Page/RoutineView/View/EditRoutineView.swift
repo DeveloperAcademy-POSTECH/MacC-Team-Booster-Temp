@@ -135,6 +135,15 @@ extension EditRoutineView {
             .confirmationDialog(vm.editWorkoutName, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
                 AlternativeActionSheet
             }
+            .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
+                AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.selectedExerciseId)
+                    .onDisappear {
+                        workoutViewModel.fetchRoutine()
+                    }
+            }
+            .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
+                DeleteAlert
+            }
         }
     }
     
@@ -175,21 +184,11 @@ extension EditRoutineView {
         } label: {
             Text("운동 대체")
         }
-        .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.selectedExerciseId)
-                .environmentObject(vm)
-                .onDisappear {
-                    workoutViewModel.fetchRoutine()
-                }
-        }
         
         Button(role: .destructive) {
             vm.isDeleteWorkoutAlertShow = true
         } label: {
             Text("삭제")
-        }
-        .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
-            DeleteAlert
         }
         
         Button(role: .cancel) {

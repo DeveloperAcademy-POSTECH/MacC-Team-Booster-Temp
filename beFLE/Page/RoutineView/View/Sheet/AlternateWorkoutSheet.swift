@@ -12,8 +12,6 @@ struct AlternateWorkoutSheet: View {
     let exerciseId: Int
     @StateObject var vm = AlternativeWorkoutSheetViewModel()
     
-    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
-    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -85,11 +83,11 @@ struct AlternateWorkoutSheet: View {
     
     var AlternativeWorkoutList: some View {
         ScrollView {
-            ForEach(0..<vm.workout.alternativeExercises.count, id: \.self) { index in
+            ForEach(Array(vm.workout.alternativeExercises.enumerated()), id: \.element) { pair in
                 Button {
-                    vm.selection = index
+                    vm.selection = pair.offset
                 } label: {
-                    AlternativeWorkoutCard(alternativeWorkout: vm.workout.alternativeExercises[index], isSelectedWorkout: vm.selection == index)
+                    AlternativeWorkoutCard(alternativeWorkout: pair.element, isSelectedWorkout: vm.selection == pair.offset)
                 }
             }
         }
@@ -98,11 +96,9 @@ struct AlternateWorkoutSheet: View {
     var FinishButton: some View {
         Button {
             if vm.selection != -1 {
-//                vm.patchAlternate(routineId: routineId, exerciseId: vm.workout.exerciseId, alternativeExerciseId: vm.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
-//                    editRoutineVM.workout = $0
-//                    editRoutineVM.fetchRoutine(routineId: routineId)
-//                    dismiss()
-//                }
+                vm.patchAlternate(routineId: routineId, exerciseId: exerciseId, alternativeExerciseId: vm.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
+                    dismiss()
+                }
             }
             else {
                 dismiss()
