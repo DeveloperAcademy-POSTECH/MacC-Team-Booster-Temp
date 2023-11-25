@@ -17,45 +17,30 @@ struct AlternateWorkoutSheet: View {
     var body: some View {
         ZStack {
             Color.gray_800.ignoresSafeArea()
-            
             VStack {
                 Spacer()
                 NavitationTitle
                 AlternativeWorkoutList
             }
-            
-            VStack{
-                Spacer()
-                LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
-                    .frame(height: UIScreen.getHeight(150), alignment: .bottom)
-                    .onTapGesture {
-                        // Handle taps on the LinearGradient if needed
-                    }
-                    .allowsHitTesting(false)
-            }
-            .ignoresSafeArea()
-            
-            VStack {
-                Spacer()
-                FinishButton
-            }
-
+            Gradient
+            FinishButton
         }
         .onAppear {
             vm.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
         }
         .presentationDetents([.height(UIScreen.getHeight(479))])
     }
-    
+}
+
+/// 네비게이션 타이틀
+extension AlternateWorkoutSheet {
     var NavitationTitle: some View {
         VStack {
             HStack {
                 Text("운동 대체")
                     .font(.title1())
                     .foregroundColor(.label_900)
-                
                 Spacer()
-                
                 Button {
                     dismiss()
                 } label: {
@@ -69,18 +54,35 @@ struct AlternateWorkoutSheet: View {
                         }
                 }
             }
-            
             HStack {
                 Text(vm.workout.name)
                     .font(.body())
                     .foregroundColor(.label_700)
-                
                 Spacer()
             }
         }
         .padding()
     }
-    
+}
+
+/// 그라디언트
+extension AlternateWorkoutSheet {
+    var Gradient: some View {
+        VStack {
+            Spacer()
+            LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                .onTapGesture {
+                    // Handle taps on the LinearGradient if needed
+                }
+                .allowsHitTesting(false)
+        }
+        .ignoresSafeArea()
+    }
+}
+
+/// 대체 운동 리스트
+extension AlternateWorkoutSheet {
     var AlternativeWorkoutList: some View {
         ScrollView {
             ForEach(Array(vm.workout.alternativeExercises.enumerated()), id: \.element) { pair in
@@ -92,25 +94,31 @@ struct AlternateWorkoutSheet: View {
             }
         }
     }
-    
+}
+
+/// 버튼
+extension AlternateWorkoutSheet {
     var FinishButton: some View {
-        Button {
-            if vm.selection != -1 {
-                vm.patchAlternate(routineId: routineId, exerciseId: exerciseId, alternativeExerciseId: vm.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
+        VStack {
+            Spacer()
+            Button {
+                if vm.selection != -1 {
+                    vm.patchAlternate(routineId: routineId, exerciseId: exerciseId, alternativeExerciseId: vm.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
+                        dismiss()
+                    }
+                }
+                else {
                     dismiss()
                 }
+            } label: {
+                FloatingButton(size: .medium, color: .green_main) {
+                    Text("완료")
+                        .font(.button1())
+                        .foregroundColor(.gray_900)
+                }
             }
-            else {
-                dismiss()
-            }
-        } label: {
-            FloatingButton(size: .medium, color: .green_main) {
-                Text("완료")
-                    .font(.button1())
-                    .foregroundColor(.gray_900)
-            }
+            .padding(.bottom)
         }
-        .padding(.bottom)
     }
 }
 
