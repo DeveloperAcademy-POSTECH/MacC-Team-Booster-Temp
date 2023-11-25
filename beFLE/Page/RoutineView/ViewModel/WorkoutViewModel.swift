@@ -66,10 +66,14 @@ class WorkoutViewModel: ObservableObject {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success:
-                self.fetchRoutine()
                 break
             case .failure(let error):
-                print(error.localizedDescription)
+                if error.response?.statusCode == 200 {
+                    self.fetchRoutine()
+                }
+                else {
+                    print(error.localizedDescription)
+                }
             }
         }
     }
