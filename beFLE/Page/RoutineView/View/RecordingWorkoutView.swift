@@ -316,12 +316,16 @@ struct RecordingWorkoutView: View {
                                 .foregroundColor(.clear)
                                 .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
                                 .overlay {
-                                    Image(systemName: "minus")
-                                        .foregroundColor(.label_900)
+                                    if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
+                                        
+                                    } else {
+                                        Image(systemName: "minus")
+                                            .foregroundColor(.label_900)
+                                    }
                                 }
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
-                        .disabled(editRoutineVM.workout.sets.count <= 1)
+                        .disabled(editRoutineVM.workout.sets.count <= 1 || vm.currentSet == editRoutineVM.workout.sets.count - 1)
                         
                         Text("\(editRoutineVM.workout.sets.count)세트")
                             .foregroundColor(.label_700)
@@ -430,7 +434,6 @@ struct RecordingWorkoutView: View {
                                             return
                                         }
                                     }
-                                    
                                     vm.finishWorkout(routineId: routineId)
                                 }
                             }
