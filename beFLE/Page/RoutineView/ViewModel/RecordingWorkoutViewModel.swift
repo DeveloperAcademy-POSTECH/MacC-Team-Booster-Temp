@@ -10,7 +10,7 @@ import SwiftUI
 class RecordingWorkoutViewModel: ObservableObject {
     @Published var nextButtonStatus: NextButtonStatus = .nextSet
     /// 현재 진행 중인 운동
-    
+    @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     /// 현재 진행 중인 운동 시간
     @Published var workoutTime = ""
     
@@ -56,6 +56,20 @@ class RecordingWorkoutViewModel: ObservableObject {
             case .success:
                 self.isCanTappable = true
                 self.isFinish = true
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
+
+/// 운동 패치
+extension RecordingWorkoutViewModel {
+    func fetchExercise(routineId: Int, exerciseId: Int) {
+        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
+            switch $0 {
+            case .success(let exercise):
+                self.exercise = exercise
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -117,8 +131,22 @@ extension RecordingWorkoutViewModel {
 /// 세트 컨트롤
 extension RecordingWorkoutViewModel {
     func didNextButtonTapped() {
-//        switch next
+        isCanTappable = false
+        
+        switch nextButtonStatus {
+        case .nextSet:
+            break
+        case .nextWorkout:
+            break
+        case .finishWorkout:
+            break
+        }
     }
+    
+    func nextSet() {
+        
+    }
+    
     /// 현재 세트 완료 함수
     func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
         isCanTappable = false
