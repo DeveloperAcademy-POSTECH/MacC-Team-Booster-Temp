@@ -8,12 +8,7 @@
 import SwiftUI
 
 /// 운동 시작 했을 때 기록하기 위한 뷰
-/// - Parameters:
-///  - routineId: 정보를 조회할 루틴의 id
-///  - exerciseId: 정보를 조회할 루틴의 운동 id
 struct RecordingWorkoutView: View {
-    let routineId: Int
-    let exerciseId: Int
     @StateObject var vm = RecordingWorkoutViewModel()
     @EnvironmentObject var workoutVM: WorkoutViewModel
     @Environment(\.dismiss) var dismiss
@@ -73,7 +68,7 @@ struct RecordingWorkoutView: View {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
+            AlternateWorkoutSheet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
         }
         .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
             DiscontinueAlert
@@ -173,7 +168,7 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var DiscontinueAlert: some View {
         Button {
-            vm.finishWorkout(routineId: routineId)
+            vm.finishWorkout(routineId: workoutVM.routineId)
         } label: {
             Text("운동완료")
         }
@@ -339,7 +334,7 @@ extension RecordingWorkoutView {
                     HStack {
                         Button {
                             if workoutVM.exercise.sets.count > 1 {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId) {
                                     workoutVM.exercise.sets = $0
                                 }
                             }
@@ -360,7 +355,7 @@ extension RecordingWorkoutView {
                         
                         Button {
                             if workoutVM.exercise.sets.count < 10 {
-                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                                vm.increseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId) {
                                     workoutVM.exercise.sets = $0
                                 }
                             }
@@ -390,7 +385,7 @@ extension RecordingWorkoutView {
                 //                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                 ForEach(workoutVM.exercise.sets.indices, id: \.self) { index in
                     // TODO: 무게 조정 api 호출
-                    WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $workoutVM.exercise.sets[index], isFocused: vm.$isFocused)
+                    WorkoutSetCard(index: index + 1, routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, set: $workoutVM.exercise.sets[index], isFocused: vm.$isFocused)
                         .environmentObject(vm)
                         .overlay {
                             if index == vm.currentSet {

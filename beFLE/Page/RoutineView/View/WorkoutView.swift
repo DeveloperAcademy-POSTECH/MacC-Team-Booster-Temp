@@ -59,7 +59,7 @@ extension WorkoutView {
 /// 운동 기록 뷰
 extension WorkoutView {
     var RecordingWorkout: some View {
-        RecordingWorkoutView(routineId: 1, exerciseId: 1)
+        RecordingWorkoutView()
     }
 }
 
