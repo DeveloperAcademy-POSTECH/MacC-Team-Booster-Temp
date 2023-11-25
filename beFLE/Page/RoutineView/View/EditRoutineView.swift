@@ -160,17 +160,16 @@ extension EditRoutineView {
     var WorkoutStartButton: some View {
         VStack {
             Spacer()
-            NavigationLink {
-                RecordingWorkoutView(routineId: workoutVM.routineId, exerciseId: workoutVM.routine.exercises.isEmpty ? 0 : workoutVM.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: workoutVM.routine.burnedKCalories)
-                    .environmentObject(vm)
+            Button {
+                workoutVM.changeViewStatus(.recordingWorkoutView)
             } label: {
                 FloatingButton(size: .medium, color: .green_main) {
                     Text("시작")
                         .foregroundColor(.gray_900)
                         .font(.button1())
                 }
-                .padding()
             }
+            .padding()
         }
     }
 }

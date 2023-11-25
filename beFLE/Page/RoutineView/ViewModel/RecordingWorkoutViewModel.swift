@@ -36,7 +36,9 @@ class RecordingWorkoutViewModel: ObservableObject {
     
     /// api 응답 받아야 탭 가능하게 전환 - 추후 콤바인 교체
     @Published var isCanTappable = true
-    
+    @Published var isAlternateWorkoutSheetShow = true
+    @Published var isEditWorkoutActionShow = true
+    @Published var isDeleteWorkoutAlertShow = true
     @Published var elapsedTime: TimeInterval = 0
     @Published var isRunning: Bool = false
     @Published private var startTime = Date.now
