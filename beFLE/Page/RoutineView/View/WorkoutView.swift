@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum WorkoutViewStatus {
+    case emptyView
     case editRoutineView
     case recordingWorkoutView
     case recordingRoutineView
@@ -21,18 +22,36 @@ struct WorkoutView: View {
     @StateObject var vm = WorkoutViewModel()
     
     var body: some View {
-        switch vm.workoutViewStatus {
-        case .editRoutineView:
-            EditRoutineView(routineId: routineId)
-        case .recordingWorkoutView:
-            RecordingWorkoutView(routineId: routineId, exerciseId: 1, burnedKCalories: 1)
-        case .recordingRoutineView:
-            RecordingRoutineView(routineId: routineId, burnedKCalories: 1, recordViewModel: RecordingWorkoutViewModel())
-        case .editRecordingRoutineView:
-            EditRecordingRoutineView(routineId: routineId, burnedKCalories: 1)
-        case .recordingFinishView:
-            RecordingFinishView(routineId: routineId, elapsedTime: .constant(1), recordViewModel: RecordingWorkoutViewModel(), burnedKCalories: 1)
+        ZStack {
+            switch vm.workoutViewStatus {
+            case .emptyView:
+                Empty
+            case .editRoutineView:
+                EditRoutineView(routineId: vm.routineId)
+            case .recordingWorkoutView:
+                RecordingWorkoutView(routineId: routineId, exerciseId: 1, burnedKCalories: 1)
+            case .recordingRoutineView:
+                RecordingRoutineView(routineId: routineId, burnedKCalories: 1, recordViewModel: RecordingWorkoutViewModel())
+            case .editRecordingRoutineView:
+                EditRecordingRoutineView(routineId: routineId, burnedKCalories: 1)
+            case .recordingFinishView:
+                RecordingFinishView(routineId: routineId, elapsedTime: .constant(1), recordViewModel: RecordingWorkoutViewModel(), burnedKCalories: 1)
+            }
         }
+    }
+}
+
+
+/// 초기 뷰
+extension WorkoutView {
+    @ViewBuilder
+    var Empty: some View {
+        LottieView()
+            .navigationBarBackButtonHidden()
+            .onAppear {
+                vm.fetchRoutineId(routineId: routineId)
+                vm.changeViewStatus(.editRoutineView)
+            }
     }
 }
 
