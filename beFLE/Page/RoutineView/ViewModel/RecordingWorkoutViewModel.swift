@@ -46,16 +46,24 @@ class RecordingWorkoutViewModel: ObservableObject {
     @Published private var startTime = Date.now
     private var timer: Timer?
     
-    /// 운동 시간 일시 정지 함수
-    func pauseWorkout() {
+    /// 운동 완료 함수
+    func finishWorkout(routineId: Int) {
+        isCanTappable = false
         
+        GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
+            switch $0 {
+            case .success:
+                self.isCanTappable = true
+                self.isFinish = true
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
-    
-    /// 운동 팁 조회 함수
-    func showTip() {
-        
-    }
-    
+}
+
+/// 운동 세트 증감
+extension RecordingWorkoutViewModel {
     /// 운동 세트 감소 함수
     func decreaseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (([ExerciseSet]) -> ())) {
         GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
@@ -103,7 +111,10 @@ class RecordingWorkoutViewModel: ObservableObject {
             }
         }
     }
-    
+}
+
+/// 세트 컨트롤
+extension RecordingWorkoutViewModel {
     /// 현재 세트 완료 함수
     func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
         isCanTappable = false
@@ -118,32 +129,10 @@ class RecordingWorkoutViewModel: ObservableObject {
             }
         }
     }
-    
-    /// 다음 운동 이동 네비게이션 용 함수
-    func nextWorkout() {
-        
-    }
-    
-    /// 운동 완료 함수
-    func finishWorkout(routineId: Int) {
-        isCanTappable = false
-        
-        GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
-            switch $0 {
-            case .success:
-                self.isCanTappable = true
-                self.isFinish = true
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    /// 현재 운동 목록 네비게이션 용 함수
-    func viewRoutine() {
-        
-    }
-    
+}
+
+/// 스탑워치
+extension RecordingWorkoutViewModel {
     func start() {
         isRunning = true
         
@@ -185,7 +174,10 @@ class RecordingWorkoutViewModel: ObservableObject {
         let seconds = Int(elapsedTime) % 60
         return String(format: "%01d:%02d:%02d",hours, minutes, seconds)
     }
-    
+}
+
+/// 포매터
+extension RecordingWorkoutViewModel {
     func finishTimeFormatted(_ seconds: TimeInterval) -> String {
         let hours = Int(seconds) / 3600
         let minutes = Int(seconds) / 60
@@ -205,5 +197,4 @@ class RecordingWorkoutViewModel: ObservableObject {
         let date_String = dateFormatter.string(from: nowDate)
         return date_String
     }
-    
 }
