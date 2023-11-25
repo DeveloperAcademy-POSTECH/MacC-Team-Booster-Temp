@@ -31,7 +31,7 @@ struct WorkoutView: View {
             case .recordingWorkoutView:
                 RecordingWorkout
             case .recordingRoutineView:
-                RecordingRoutineView(routineId: routineId, burnedKCalories: 1, recordViewModel: RecordingWorkoutViewModel())
+                RecordingRoutineView()
             case .editRecordingRoutineView:
                 EditRecordingRoutineView(routineId: routineId, burnedKCalories: 1)
             case .recordingFinishView:
