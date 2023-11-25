@@ -55,7 +55,7 @@ struct RecordingWorkoutView: View {
             vm.currentSet = 0
             editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
         }
-        .onDisappear{
+        .onDisappear {
             vm.stop()
         }
         .onTapGesture {
@@ -81,15 +81,6 @@ struct RecordingWorkoutView: View {
         .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
             AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
                 .environmentObject(editRoutineVM)
-            
-        }
-        .sheet(isPresented: $vm.isPauseSheetShow) {
-            PauseSheet(viewModel: vm)
-        }
-        .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
-            WorkoutStopAlert
-        } message: {
-            Text("운동기록은 삭제됩니다.")
         }
         .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
             Button {
@@ -105,10 +96,13 @@ struct RecordingWorkoutView: View {
             }
         }
     }
-    
+}
+
+/// 네비게이션 타이틀 및 얼럿, 액션, 시트
+extension RecordingWorkoutView {
     @ViewBuilder
     var NavigationTitle: some View {
-        HStack (spacing: 0){
+        HStack (spacing: 0) {
             Image(systemName: "flame.fill")
                 .foregroundColor(.green_main)
                 .font(.headline2())
@@ -132,6 +126,35 @@ struct RecordingWorkoutView: View {
                             .foregroundColor(.label_900)
                     }
             }
+        }
+        .sheet(isPresented: $vm.isPauseSheetShow) {
+            PauseSheet(viewModel: vm)
+        }
+        .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
+            WorkoutStopAlert
+        } message: {
+            Text("운동기록은 삭제됩니다.")
+        }
+    }
+    
+    @ViewBuilder
+    var StopButton: some View {
+        Button {
+            vm.isStopAlertShow = true
+        } label: {
+            Image(systemName: "xmark")
+                .foregroundColor(.label_700)
+                .font(.headline1())
+        }
+    }
+    
+    @ViewBuilder
+    var WorkoutStopAlert: some View {
+        Button("운동중단") {
+            dismiss()
+        }
+        Button("취소") {
+            
         }
     }
     
@@ -166,17 +189,10 @@ struct RecordingWorkoutView: View {
             Text("취소")
         }
     }
-    
-    @ViewBuilder
-    var WorkoutStopAlert: some View {
-        Button("운동중단") {
-            dismiss()
-        }
-        Button("취소") {
-            
-        }
-    }
-    
+}
+
+/// 운동 정보 관련
+extension RecordingWorkoutView {
     var WorkoutInfomation: some View {
         VStack {
             HStack {
@@ -293,6 +309,36 @@ struct RecordingWorkoutView: View {
         .tabViewStyle(.page)
     }
     
+    var RelatedContent: some View {
+        VStack { editRoutineVM.workout.videoUrls.count >= 1 ?
+            HStack {
+                Text("관련 영상")
+                    .font(.title2())
+                    .foregroundColor(.label_900)
+                Spacer()
+            }
+            .padding(.bottom, 13) : nil
+            
+            ScrollView(.horizontal) {
+                HStack{
+                    ForEach(editRoutineVM.workout.videoUrls, id: \.self) { videoUrl in
+                        RelatedContentCard(videoID: videoUrl)
+                    }
+                }
+                //                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
+                //                    HStack{
+                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
+                //                    }
+                //                }
+            }
+        }
+        .padding([.horizontal, .bottom])
+    }
+}
+
+/// 운동 세트 관련
+extension RecordingWorkoutView {
     var WorkoutSetButton: some View {
         HStack {
             RoundedRectangle(cornerRadius: 4)
@@ -368,7 +414,10 @@ struct RecordingWorkoutView: View {
         }
         .padding(.bottom, 70)
     }
-    
+}
+
+/// 운동 컨트롤 버튼
+extension RecordingWorkoutView {
     func bottomGradientView(proxy: ScrollViewProxy) -> some View {
         VStack{
             Spacer()
@@ -489,44 +538,6 @@ struct RecordingWorkoutView: View {
                 }
                 .padding(.trailing, 8)
             }
-        }
-    }
-    
-    var RelatedContent: some View {
-        VStack { editRoutineVM.workout.videoUrls.count >= 1 ?
-            HStack {
-                Text("관련 영상")
-                    .font(.title2())
-                    .foregroundColor(.label_900)
-                Spacer()
-            }
-            .padding(.bottom, 13) : nil
-            
-            ScrollView(.horizontal) {
-                HStack{
-                    ForEach(editRoutineVM.workout.videoUrls, id: \.self) { videoUrl in
-                        RelatedContentCard(videoID: videoUrl)
-                    }
-                }
-                //                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
-                //                    HStack{
-                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                //                    }
-                //                }
-            }
-        }
-        .padding([.horizontal, .bottom])
-    }
-    
-    @ViewBuilder
-    var StopButton: some View {
-        Button {
-            vm.isStopAlertShow = true
-        } label: {
-            Image(systemName: "xmark")
-                .foregroundColor(.label_700)
-                .font(.headline1())
         }
     }
 }
