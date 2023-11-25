@@ -16,7 +16,6 @@ struct RecordingWorkoutView: View {
     let exerciseId: Int
     @StateObject var vm = RecordingWorkoutViewModel()
     @EnvironmentObject var workoutVM: WorkoutViewModel
-    var burnedKCalories: Int
     @Environment(\.dismiss) var dismiss
     @FocusState private var isFocused: Bool
     @Namespace var topID
@@ -81,17 +80,7 @@ struct RecordingWorkoutView: View {
             AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
         }
         .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
-            Button {
-                vm.finishWorkout(routineId: routineId)
-            } label: {
-                Text("운동완료")
-            }
-            
-            Button {
-                
-            } label: {
-                Text("확인")
-            }
+            DiscontinueAlert
         }
     }
 }
@@ -185,6 +174,21 @@ extension RecordingWorkoutView {
             
         } label: {
             Text("취소")
+        }
+    }
+    
+    @ViewBuilder
+    var DiscontinueAlert: some View {
+        Button {
+            vm.finishWorkout(routineId: routineId)
+        } label: {
+            Text("운동완료")
+        }
+        
+        Button {
+            
+        } label: {
+            Text("확인")
         }
     }
 }
@@ -438,7 +442,7 @@ extension RecordingWorkoutView {
             FloatingButton(size: .large, color: .gray_700) {
                 HStack {
                     NavigationLink {
-                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories, recordViewModel: vm)
+//                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories, recordViewModel: vm)
                     } label: {
                         Image(systemName: "list.bullet")
                             .foregroundColor(.green_main)
