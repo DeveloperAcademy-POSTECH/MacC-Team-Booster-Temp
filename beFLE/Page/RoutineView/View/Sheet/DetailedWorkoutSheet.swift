@@ -36,7 +36,10 @@ struct DetailedWorkoutSheet: View {
             vm.fetchexercise(routineId: routineId, exerciseId: exerciseId)
         }
     }
-    
+}
+
+/// 네비게이션 타이틀
+extension DetailedWorkoutSheet {
     var NavigationTitle: some View {
         HStack {
             Text("\(vm.exercise.name)")
@@ -61,7 +64,10 @@ struct DetailedWorkoutSheet: View {
         .padding(.horizontal)
         .padding(.top)
     }
-    
+}
+
+/// 운동 상세 정보
+extension DetailedWorkoutSheet {
     var WorkoutCard: some View {
         VStack(spacing: 0) {
             HStack {
