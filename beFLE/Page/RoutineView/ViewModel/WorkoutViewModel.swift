@@ -45,6 +45,11 @@ class WorkoutViewModel: ObservableObject {
         }
     }
     
+    func fetchNextWorkout() {
+        fetchExerciseId(exerciseId: exercises[currentWorkoutIndex])
+        currentWorkoutIndex += 1
+    }
+    
     func fetchExercise() {
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {

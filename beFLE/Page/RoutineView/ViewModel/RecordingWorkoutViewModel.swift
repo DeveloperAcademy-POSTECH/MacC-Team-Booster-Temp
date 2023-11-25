@@ -140,59 +140,46 @@ extension RecordingWorkoutViewModel {
 
 /// 세트 컨트롤
 extension RecordingWorkoutViewModel {
-    func didNextButtonTapped(routineId: Int, exerciseId: Int, setId: Int) {
+//        switch nextButtonStatus {
+//        case .nextSet:
+//            nextSet(routineId: routineId, exerciseId: exercise.exerciseId, setId: exercise.sets[currentSet].setId)
+//        case .nextWorkout:
+//            nextWorkout(routineId: routineId, exerciseId: exercise.exerciseId, setId: exercise.sets[currentSet].setId) {
+//                currentWorkoutIndex.wrappedValue += 1
+//            }
+//        case .finishWorkout:
+//            break
+//        }
+    func nextSet(routineId: Int, exerciseId: Int, setId: Int) {
         isCanTappable = false
         
-        switch nextButtonStatus {
-        case .nextSet:
-            nextSet(routineId: routineId, exerciseId: exerciseId, setId: setId)
-        case .nextWorkout:
-            break
-        case .finishWorkout:
-            break
-        }
-    }
-    
-    func nextSet(routineId: Int, exerciseId: Int, setId: Int) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
             case .success:
                 self.isCanTappable = true
                 self.exercise.sets[self.currentSet].isDone = true
-                self.didNextButtonStatusChange()
+                
+                self.currentSet += 1
+                if self.currentSet >= self.exercise.sets.count - 1 {
+                    self.nextButtonStatus = .nextWorkout
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    /// 현재 세트 완료 함수
-    func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
-        isCanTappable = false
-        
+    func nextWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
-            case .success(let set):
+            case .success:
                 self.isCanTappable = true
-                completion(set)
+                self.exercise.sets[self.currentSet].isDone = true
+                self.currentSet = 0
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
-        }
-    }
-    
-    func didNextButtonStatusChange() {
-        switch nextButtonStatus {
-        case .nextSet:
-            currentSet += 1
-            
-            if currentSet >= exercise.sets.count - 1 {
-                nextButtonStatus = .nextWorkout
-            }
-        case .nextWorkout:
-            break
-        case .finishWorkout:
-            break
         }
     }
 }

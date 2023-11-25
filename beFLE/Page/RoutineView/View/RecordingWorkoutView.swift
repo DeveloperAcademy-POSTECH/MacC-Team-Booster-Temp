@@ -451,7 +451,17 @@ extension RecordingWorkoutView {
                                 }
                             }
                             
-                            vm.didNextButtonTapped(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId)
+                            switch vm.nextButtonStatus {
+                            case .nextSet:
+                                vm.nextSet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId)
+                            case .nextWorkout:
+                                vm.nextWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+                                    vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exercises[workoutVM.currentWorkoutIndex + 1])
+                                    workoutVM.fetchNextWorkout()
+                                }
+                            case .finishWorkout:
+                                break
+                            }
                         } label: {
                             NextButton
                         }
