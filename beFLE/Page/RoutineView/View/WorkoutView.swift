@@ -27,7 +27,7 @@ struct WorkoutView: View {
             case .emptyView:
                 Empty
             case .editRoutineView:
-                EditRoutineView(routineId: vm.routineId)
+                EditRoutineView()
             case .recordingWorkoutView:
                 RecordingWorkoutView(routineId: routineId, exerciseId: 1, burnedKCalories: 1)
             case .recordingRoutineView:
@@ -38,6 +38,7 @@ struct WorkoutView: View {
                 RecordingFinishView(routineId: routineId, elapsedTime: .constant(1), recordViewModel: RecordingWorkoutViewModel(), burnedKCalories: 1)
             }
         }
+        .environmentObject(vm)
     }
 }
 

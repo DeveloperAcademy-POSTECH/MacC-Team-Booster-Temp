@@ -11,9 +11,8 @@ import SwiftUI
 /// - Parameters:
 ///  - routineId: 수정할 루틴에 대한 id
 struct EditRoutineView: View {
-    
-    let routineId: Int
     @StateObject var vm = EditRoutineViewModel()
+    @EnvironmentObject var workoutViewModel: WorkoutViewModel
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -23,7 +22,7 @@ struct EditRoutineView: View {
             WorkoutStartButton
         }
         .onAppear {
-            vm.fetchRoutine(routineId: routineId)
+            vm.fetchRoutine(routineId: workoutViewModel.routineId)
         }
         .navigationTitle("운동 목록 편집")
         .toolbar {
@@ -33,16 +32,16 @@ struct EditRoutineView: View {
         }
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
-            DetailedWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
+            DetailedWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
         }
         .confirmationDialog(vm.routine.exercises.isEmpty ? "" : vm.routine.exercises[vm.selectedIndex].name , isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
+            AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
                 .environmentObject(vm)
                 .onDisappear{
-                    vm.fetchRoutine(routineId: routineId)
+                    vm.fetchRoutine(routineId: workoutViewModel.routineId)
                 }
         }
         .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
@@ -159,7 +158,7 @@ struct EditRoutineView: View {
         VStack{
             Spacer()
             NavigationLink {
-                RecordingWorkoutView(routineId: routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: vm.routine.burnedKCalories)
+                RecordingWorkoutView(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises.isEmpty ? 0 : vm.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: vm.routine.burnedKCalories)
                     .environmentObject(vm)
             } label: {
                 FloatingButton(size: .medium, color: .green_main) {
@@ -195,7 +194,7 @@ struct EditRoutineView: View {
     @ViewBuilder
     var DeleteAlert: some View {
         Button("삭제", role: .destructive) {
-            vm.deleteWorkout(routineId: routineId, exerciseId: vm.workout.exerciseId)
+            vm.deleteWorkout(routineId: workoutViewModel.routineId, exerciseId: vm.workout.exerciseId)
         }
     }
 }
