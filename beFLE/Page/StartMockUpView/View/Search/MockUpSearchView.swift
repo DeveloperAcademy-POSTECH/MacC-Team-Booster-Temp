@@ -98,7 +98,6 @@ struct MockUpSearchView: View {
     
     @ViewBuilder
     var InquiryCard: some View {
-        
         Button {
             showMailView.toggle()
         } label: {

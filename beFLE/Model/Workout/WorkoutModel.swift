@@ -12,7 +12,7 @@ struct WorkoutModel {
     var influencerName: String
     var workoutName: String
     var workoutSet: Int
-    var workoutKgs: [Int]
+    var workoutKgs: [Int?]
     var workoutReps: [Int]
     var alternativeWorkout: [String]
     var relatedContentURL: [String]
