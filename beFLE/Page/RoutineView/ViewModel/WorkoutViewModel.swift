@@ -18,18 +18,21 @@ class WorkoutViewModel: ObservableObject {
     
     func fetchRoutineId(routineId: Int) {
         self.routineId = routineId
-        fetchExercises()
+        fetchRoutine() {
+            self.fetchExercises()
+        }
     }
     
     func fetchExerciseId(exerciseId: Int) {
         self.exerciseId = exerciseId
     }
     
-    func fetchRoutine() {
+    func fetchRoutine(completion: @escaping (() -> ())) {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
                 self.routine = routine
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -37,20 +40,18 @@ class WorkoutViewModel: ObservableObject {
     }
     
     func fetchExercises() {
-        var exercises: [ResponseGetRoutinesExercises] = []
+        exercises = []
         
         for exercise in routine.exercises {
             GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exercise.id), type: ResponseGetRoutinesExercises.self) {
                 switch $0 {
                 case .success(let workout):
-                    exercises.append(workout)
+                    self.exercises.append(workout)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
             }
         }
-        
-        self.exercises = exercises
     }
     
     func deleteWorkout(routineId: Int, exerciseId: Int)  {
