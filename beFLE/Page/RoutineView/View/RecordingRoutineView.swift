@@ -43,8 +43,8 @@ extension RecordingRoutineView {
     }
     
     var EditButton: some View {
-        NavigationLink {
-//            EditRecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
+        Button {
+            workoutVM.changeViewStatus(.editRecordingRoutineView)
         } label: {
             Text("편집")
                 .font(.headline1())
