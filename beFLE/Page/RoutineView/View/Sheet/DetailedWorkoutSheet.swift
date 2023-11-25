@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct DetailedWorkoutSheet: View {
-    let exercise: ResponseGetRoutinesExercises
+    let routineId: Int
+    let exerciseId: Int
+    
+    @StateObject var vm = DetailedWorkoutSheetViewModel()
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -28,11 +32,14 @@ struct DetailedWorkoutSheet: View {
             }
         }
         .presentationDetents([.height(UIScreen.getHeight(644))])
+        .onAppear {
+            vm.fetchexercise(routineId: routineId, exerciseId: exerciseId)
+        }
     }
     
     var NavigationTitle: some View {
         HStack {
-            Text("\(exercise.name)")
+            Text("\(vm.exercise.name)")
                 .font(.title1())
                 .foregroundColor(.label_900)
             
@@ -58,13 +65,13 @@ struct DetailedWorkoutSheet: View {
     var WorkoutCard: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("\(exercise.part)")
+                Text("\(vm.exercise.part)")
                     .foregroundColor(.label_700)
                     .font(.body())
                 
                 Spacer()
             }
-            AsyncImage(url: URL(string: exercise.exerciseImageUrl)) { image in
+            AsyncImage(url: URL(string: vm.exercise.exerciseImageUrl)) { image in
                 image
                     .resizable()
                     .scaledToFit()
@@ -80,7 +87,7 @@ struct DetailedWorkoutSheet: View {
     var WorkoutTip: some View {
         VStack {
             HStack {
-                AsyncImage(url: URL(string: exercise.faceImageUrl)) { image in
+                AsyncImage(url: URL(string: vm.exercise.faceImageUrl)) { image in
                     image
                         .resizable()
                         .scaledToFit()
@@ -94,7 +101,7 @@ struct DetailedWorkoutSheet: View {
             }
             .padding(.bottom, 10)
             HStack {
-                Text("\(exercise.tip)\n")
+                Text("\(vm.exercise.tip)\n")
                     .multilineTextAlignment(.leading)
                     .allowsTightening(true)
                     .lineSpacing(7)
@@ -110,7 +117,7 @@ struct DetailedWorkoutSheet: View {
     
     var RelatedContent: some View {
         VStack {
-            if !exercise.videoUrls.isEmpty {
+            if !vm.exercise.videoUrls.isEmpty {
                 HStack {
                     Text("관련 영상")
                         .font(.title2())
@@ -121,8 +128,8 @@ struct DetailedWorkoutSheet: View {
                 .padding(.bottom, 13)
                 
                 ScrollView(.horizontal) {
-                    HStack{
-                        ForEach(exercise.videoUrls, id: \.self) { videoUrl in
+                    HStack {
+                        ForEach(vm.exercise.videoUrls, id: \.self) { videoUrl in
                             RelatedContentCard(videoID: videoUrl)
                         }
                     }
@@ -135,6 +142,6 @@ struct DetailedWorkoutSheet: View {
 
 struct DetailedWorkoutSheet_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedWorkoutSheet(exercise: ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 1, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: ""))
+        DetailedWorkoutSheet(routineId: 1, exerciseId: 2)
     }
 }

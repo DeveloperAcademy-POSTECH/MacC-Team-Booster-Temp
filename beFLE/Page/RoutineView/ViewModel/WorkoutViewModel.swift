@@ -14,6 +14,7 @@ class WorkoutViewModel: ObservableObject {
     
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     @Published var exercise: ResponseGetRoutinesExercises?
+    @Published var exercises: [Int] = []
     
     
     func fetchRoutineId(routineId: Int) {
@@ -31,6 +32,12 @@ class WorkoutViewModel: ObservableObject {
             switch $0 {
             case .success(let routine):
                 self.routine = routine
+                
+                var exercises: [Int] = []
+                for exercise in routine.exercises {
+                    exercises.append(exercise.id)
+                }
+                self.exercises = exercises
             case .failure(let error):
                 print(error.localizedDescription)
             }

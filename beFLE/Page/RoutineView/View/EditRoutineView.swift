@@ -71,11 +71,12 @@ extension EditRoutineView {
         .padding(.horizontal)
     }
     
+    @ViewBuilder
     func WorkoutListCell(_ index: Int, _ exercise: Exercise) -> some View {
         HStack {
             Button {
-                workoutViewModel.fetchExerciseId(exerciseId: exercise.id)
                 vm.isDetailedWorkoutSheetShow = true
+                vm.selectedExerciseId = exercise.id
             } label: {
                 HStack(spacing: 8) {
                     RoundedRectangle(cornerRadius: 4)
@@ -117,22 +118,21 @@ extension EditRoutineView {
                 }
             }
             .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
-                if workoutViewModel.exercise != nil {
-                    DetailedWorkoutSheet(exercise: workoutViewModel.exercise!)
-                }
+                DetailedWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.selectedExerciseId)
             }
             
             Spacer()
             
             Button {
-                vm.selectedIndex = index
                 vm.isEditWorkoutActionShow = true
+                vm.editWorkoutName = exercise.name
+                vm.selectedExerciseId = exercise.id
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
             }
             .padding()
-            .confirmationDialog(exercise.name, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
+            .confirmationDialog(vm.editWorkoutName, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
                 AlternativeActionSheet
             }
         }
@@ -176,7 +176,7 @@ extension EditRoutineView {
             Text("운동 대체")
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-            AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
+            AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.selectedExerciseId)
                 .environmentObject(vm)
                 .onDisappear {
                     workoutViewModel.fetchRoutine()
