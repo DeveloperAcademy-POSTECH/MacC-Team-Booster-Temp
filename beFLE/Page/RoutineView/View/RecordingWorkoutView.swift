@@ -39,7 +39,6 @@ struct RecordingWorkoutView: View {
                             .id(topID)
                         RelatedContent
                         FloatingButton(size: .medium) {}
-                        FloatingButton(size: .medium) {}
                     }
                     .scrollIndicators(.hidden)
                     
@@ -307,31 +306,28 @@ extension RecordingWorkoutView {
         .tabViewStyle(.page)
     }
     
+    @ViewBuilder
     var RelatedContent: some View {
-        VStack { workoutVM.exercise.videoUrls.count >= 1 ?
-            HStack {
-                Text("관련 영상")
-                    .font(.title2())
-                    .foregroundColor(.label_900)
-                Spacer()
-            }
-            .padding(.bottom, 13) : nil
-            
-            ScrollView(.horizontal) {
+        if !workoutVM.exercise.videoUrls.isEmpty {
+            VStack {
                 HStack {
-                    ForEach(workoutVM.exercise.videoUrls, id: \.self) { videoUrl in
-                        RelatedContentCard(videoID: videoUrl)
+                    Text("관련 영상")
+                        .font(.title2())
+                        .foregroundColor(.label_900)
+                    Spacer()
+                }
+                .padding(.bottom, 13)
+                
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(workoutVM.exercise.videoUrls, id: \.self) { videoUrl in
+                            RelatedContentCard(videoID: videoUrl)
+                        }
                     }
                 }
-                //                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
-                //                    HStack{
-                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                //                    }
-                //                }
             }
+            .padding([.horizontal, .bottom])
         }
-        .padding([.horizontal, .bottom])
     }
 }
 
@@ -419,10 +415,11 @@ extension RecordingWorkoutView {
     func bottomGradientView(proxy: ScrollViewProxy) -> some View {
         VStack {
             Spacer()
-            isFocused ? nil :
-            LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
-                .frame(height: UIScreen.getHeight(150), alignment: .bottom)
-                .allowsHitTesting(false)
+            if !isFocused {
+                LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                    .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                    .allowsHitTesting(false)
+            }
         }
         .ignoresSafeArea()
     }
@@ -430,64 +427,65 @@ extension RecordingWorkoutView {
     func workoutButton(proxy: ScrollViewProxy) -> some View {
         VStack {
             Spacer()
-            isFocused ? nil :
-            FloatingButton(size: .large, color: .gray_700) {
-                HStack {
-                    NavigationLink {
-//                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories, recordViewModel: vm)
-                    } label: {
-                        Image(systemName: "list.bullet")
-                            .foregroundColor(.green_main)
-                            .font(.title1())
-                            .padding(.leading, 30)
-                    }
-                    
-                    Spacer()
-                    
-                    // MARK: 다음 세트, 운동, 운동 완료 버튼
-                    Button {
-                        if vm.currentSet == workoutVM.exercise.sets.count - 1 {
-                            withAnimation {
-                                proxy.scrollTo(refreshID, anchor: .bottom)
-                            }
-                        }
-                        if vm.currentSet == 2 {
-                            withAnimation {
-                                proxy.scrollTo(topID, anchor: .bottom)
-                            }
+            if !isFocused {
+                FloatingButton(size: .large, color: .gray_700) {
+                    HStack {
+                        NavigationLink {
+                            //                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories, recordViewModel: vm)
+                        } label: {
+                            Image(systemName: "list.bullet")
+                                .foregroundColor(.green_main)
+                                .font(.title1())
+                                .padding(.leading, 30)
                         }
                         
-                    } label: {
-                        FloatingButton(size: .small, color: .red_main) {
-                            Text("운동 완료")
-                                .font(.button1())
-                                .foregroundColor(.label_900)
+                        Spacer()
+                        
+                        // MARK: 다음 세트, 운동, 운동 완료 버튼
+                        Button {
+                            if vm.currentSet == workoutVM.exercise.sets.count - 1 {
+                                withAnimation {
+                                    proxy.scrollTo(refreshID, anchor: .bottom)
+                                }
+                            }
+                            if vm.currentSet == 2 {
+                                withAnimation {
+                                    proxy.scrollTo(topID, anchor: .bottom)
+                                }
+                            }
+                            
+                        } label: {
+                            FloatingButton(size: .small, color: .red_main) {
+                                Text("운동 완료")
+                                    .font(.button1())
+                                    .foregroundColor(.label_900)
+                            }
+                            //                                FloatingButton(size: .small, color: .green_main) {
+                            //                                    HStack {
+                            //                                        Text("다음 운동")
+                            //                                            .font(.button1())
+                            //                                        Image(systemName: "chevron.right")
+                            //                                            .font(.button2())
+                            //                                    }
+                            //                                    .foregroundColor(.gray_900)
+                            //                                }
+                            //
+                            //
+                            //                            FloatingButton(size: .small, color: .green_main) {
+                            //                                HStack {
+                            //                                    Text("다음 세트")
+                            //                                        .font(.button1())
+                            //                                    Image(systemName: "chevron.right")
+                            //                                        .font(.button2())
+                            //                                }
+                            //                                .foregroundColor(.gray_900)
+                            //                            }
                         }
-//                                FloatingButton(size: .small, color: .green_main) {
-//                                    HStack {
-//                                        Text("다음 운동")
-//                                            .font(.button1())
-//                                        Image(systemName: "chevron.right")
-//                                            .font(.button2())
-//                                    }
-//                                    .foregroundColor(.gray_900)
-//                                }
-//                            
-//                        
-//                            FloatingButton(size: .small, color: .green_main) {
-//                                HStack {
-//                                    Text("다음 세트")
-//                                        .font(.button1())
-//                                    Image(systemName: "chevron.right")
-//                                        .font(.button2())
-//                                }
-//                                .foregroundColor(.gray_900)
-//                            }
+                        .disabled(!vm.isCanTappable)
+                        //: - 다음 버튼
                     }
-                    .disabled(!vm.isCanTappable)
-                    //: - 다음 버튼
+                    .padding(.trailing, 8)
                 }
-                .padding(.trailing, 8)
             }
         }
     }
