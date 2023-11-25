@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct WorkoutViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    WorkoutViewModel()
+class WorkoutViewModel: ObservableObject {
+    
 }
