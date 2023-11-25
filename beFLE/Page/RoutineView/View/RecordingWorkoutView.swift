@@ -24,15 +24,12 @@ struct RecordingWorkoutView: View {
             ScrollViewReader { proxy in
                 ZStack {
                     ScrollView {
-                        Spacer()
-                            .frame(height: 0)
-                            .id(refreshID)
+                        TopSpace
                         WorkoutInfomation
                         WorkoutImageAndTip
                         Spacer()
                         WorkoutSetButton
                         WorkoutSetList
-                            .id(topID)
                         RelatedContent
                         FloatingButton(size: .medium) {}
                     }
@@ -82,6 +79,12 @@ struct RecordingWorkoutView: View {
 
 /// 네비게이션 타이틀 및 얼럿, 액션, 시트
 extension RecordingWorkoutView {
+    var TopSpace: some View {
+        Spacer()
+            .frame(height: 0)
+            .id(refreshID)
+    }
+    
     @ViewBuilder
     var NavigationTitle: some View {
         HStack (spacing: 0) {
@@ -384,7 +387,7 @@ extension RecordingWorkoutView {
     
     @ViewBuilder
     var WorkoutSetList: some View {
-        VStack{
+        VStack {
             if !workoutVM.exercise.sets.isEmpty {
                 //                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                 ForEach(workoutVM.exercise.sets.indices, id: \.self) { index in
@@ -403,6 +406,7 @@ extension RecordingWorkoutView {
             }
         }
         .padding(.bottom, 70)
+        .id(topID)
     }
 }
 
