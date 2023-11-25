@@ -79,7 +79,6 @@ class WorkoutViewModel: ObservableObject {
             switch $0 {
             case .success(let response):
                 self.routineCompleteImageUrl = response.routineCompleteImageUrl
-                self.workoutViewStatus = .recordingFinishView
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -108,6 +107,7 @@ class WorkoutViewModel: ObservableObject {
         case .editRecordingRoutineView:
             completion()
         case .recordingFinishView:
+            finishWorkout()
             completion()
         }
     }

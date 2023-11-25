@@ -429,7 +429,8 @@ extension RecordingWorkoutView {
             if !isFocused {
                 FloatingButton(size: .large, color: .gray_700) {
                     HStack {
-                        NavigationLink {
+                        Button {
+                            workoutVM.changeViewStatus(.recordingRoutineView)
                             //                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories, recordViewModel: vm)
                         } label: {
                             Image(systemName: "list.bullet")
@@ -442,12 +443,12 @@ extension RecordingWorkoutView {
                         
                         // MARK: 다음 세트, 운동, 운동 완료 버튼
                         Button {
-                            if vm.currentSet == vm.exercise.sets.count - 1 {
+                            if vm.currentSet >= vm.exercise.sets.count - 1 {
                                 withAnimation {
                                     proxy.scrollTo(refreshID, anchor: .bottom)
                                 }
                             }
-                            if vm.currentSet == 2 {
+                            else if vm.currentSet == 2 {
                                 withAnimation {
                                     proxy.scrollTo(topID, anchor: .bottom)
                                 }
@@ -472,7 +473,7 @@ extension RecordingWorkoutView {
                                 }
                             case .finishWorkout:
                                 vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-                                    workoutVM.finishWorkout()
+                                    workoutVM.changeViewStatus(.recordingFinishView)
                                 }
                             }
                         } label: {
