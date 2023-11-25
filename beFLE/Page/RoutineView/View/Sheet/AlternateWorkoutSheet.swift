@@ -98,11 +98,11 @@ struct AlternateWorkoutSheet: View {
     var FinishButton: some View {
         Button {
             if vm.selection != -1 {
-                vm.patchAlternate(routineId: routineId, exerciseId: vm.workout.exerciseId, alternativeExerciseId: vm.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
-                    editRoutineVM.workout = $0
-                    editRoutineVM.fetchRoutine(routineId: routineId)
-                    dismiss()
-                }
+//                vm.patchAlternate(routineId: routineId, exerciseId: vm.workout.exerciseId, alternativeExerciseId: vm.workout.alternativeExercises[vm.selection].alternativeExerciseId) {
+//                    editRoutineVM.workout = $0
+//                    editRoutineVM.fetchRoutine(routineId: routineId)
+//                    dismiss()
+//                }
             }
             else {
                 dismiss()
