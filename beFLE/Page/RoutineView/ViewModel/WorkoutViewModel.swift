@@ -8,5 +8,5 @@
 import SwiftUI
 
 class WorkoutViewModel: ObservableObject {
-    
+    @Published var workoutViewStatus: WorkoutViewStatus = .editRoutineView
 }
