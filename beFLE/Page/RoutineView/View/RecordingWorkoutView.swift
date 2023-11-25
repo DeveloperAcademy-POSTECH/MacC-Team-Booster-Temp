@@ -182,8 +182,9 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var DiscontinueAlert: some View {
         Button {
-            vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-                
+            vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
+                vm.stop()
+                workoutVM.changeViewStatus(.recordingFinishView)
             }
         } label: {
             Text("운동완료")
@@ -431,7 +432,6 @@ extension RecordingWorkoutView {
                     HStack {
                         Button {
                             workoutVM.changeViewStatus(.recordingRoutineView)
-                            //                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories, recordViewModel: vm)
                         } label: {
                             Image(systemName: "list.bullet")
                                 .foregroundColor(.green_main)
@@ -472,8 +472,14 @@ extension RecordingWorkoutView {
                                     workoutVM.fetchNextWorkout()
                                 }
                             case .finishWorkout:
-                                vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-                                    workoutVM.changeViewStatus(.recordingFinishView)
+                                if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
+                                    vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
+                                        vm.stop()
+                                        workoutVM.changeViewStatus(.recordingFinishView)
+                                    }
+                                }
+                                else {
+                                    vm.isDiscontinuewAlertShow = true
                                 }
                             }
                         } label: {

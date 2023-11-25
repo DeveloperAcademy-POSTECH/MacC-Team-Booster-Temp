@@ -47,8 +47,8 @@ class WorkoutViewModel: ObservableObject {
     }
     
     func fetchNextWorkout() {
-        fetchExerciseId(exerciseId: exercises[currentWorkoutIndex])
         currentWorkoutIndex += 1
+        fetchRoutine()
     }
     
     func fetchExercise() {
