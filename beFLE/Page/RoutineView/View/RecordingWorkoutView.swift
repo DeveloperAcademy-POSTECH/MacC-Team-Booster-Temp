@@ -23,90 +23,85 @@ struct RecordingWorkoutView: View {
     @Namespace var refreshID
     
     var body: some View {
-        if vm.isFinish {
-            RecordingFinishView(routineId: routineId, elapsedTime: $vm.elapsedTime, recordViewModel: vm, burnedKCalories: burnedKCalories)
-        }
-        else {
-            ZStack {
-                Color.gray_900.ignoresSafeArea()
-                
-                ScrollViewReader { proxy in
-                    ZStack {
-                        ScrollView {
-                            Spacer()
-                                .frame(height: 0)
-                                .id(refreshID)
-                            WorkoutInfomation
-                            WorkoutImageAndTip
-                            Spacer()
-                            WorkoutSetButton
-                            WorkoutSetList
-                                .id(topID)
-                            RelatedContent
-                            FloatingButton(size: .medium) {}
-                            FloatingButton(size: .medium) {}
-                        }
-                        .scrollIndicators(.hidden)
-                        
-                        bottomGradientView(proxy: proxy)
-                        workoutButton(proxy: proxy)
+        ZStack {
+            Color.gray_900.ignoresSafeArea()
+            
+            ScrollViewReader { proxy in
+                ZStack {
+                    ScrollView {
+                        Spacer()
+                            .frame(height: 0)
+                            .id(refreshID)
+                        WorkoutInfomation
+                        WorkoutImageAndTip
+                        Spacer()
+                        WorkoutSetButton
+                        WorkoutSetList
+                            .id(topID)
+                        RelatedContent
+                        FloatingButton(size: .medium) {}
+                        FloatingButton(size: .medium) {}
                     }
-                }
-            }
-            .onAppear {
-                vm.start()
-                vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
-                vm.currentSet = 0
-                editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
-            }
-            .onDisappear{
-                vm.stop()
-            }
-            .onTapGesture {
-                isFocused = false
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    StopButton
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    NavigationTitle
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    ActionSheet
-                }
-            }
-            .navigationBarBackButtonHidden()
-            .confirmationDialog(editRoutineVM.workout.name, isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
-                AlternativeActionSheet
-            }
-            .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
-                AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
-                    .environmentObject(editRoutineVM)
-                
-            }
-            .sheet(isPresented: $vm.isPauseSheetShow) {
-                PauseSheet(viewModel: vm)
-            }
-            .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
-                WorkoutStopAlert
-            } message: {
-                Text("운동기록은 삭제됩니다.")
-            }
-            .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
-                Button {
-                    vm.finishWorkout(routineId: routineId)
-                } label: {
-                    Text("운동완료")
-                }
-                
-                Button {
+                    .scrollIndicators(.hidden)
                     
-                } label: {
-                    Text("확인")
+                    bottomGradientView(proxy: proxy)
+                    workoutButton(proxy: proxy)
                 }
+            }
+        }
+        .onAppear {
+            vm.start()
+            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
+            vm.currentSet = 0
+            editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
+        }
+        .onDisappear{
+            vm.stop()
+        }
+        .onTapGesture {
+            isFocused = false
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                StopButton
+            }
+            
+            ToolbarItem(placement: .principal) {
+                NavigationTitle
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                ActionSheet
+            }
+        }
+        .navigationBarBackButtonHidden()
+        .confirmationDialog(editRoutineVM.workout.name, isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
+            AlternativeActionSheet
+        }
+        .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
+            AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
+                .environmentObject(editRoutineVM)
+            
+        }
+        .sheet(isPresented: $vm.isPauseSheetShow) {
+            PauseSheet(viewModel: vm)
+        }
+        .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
+            WorkoutStopAlert
+        } message: {
+            Text("운동기록은 삭제됩니다.")
+        }
+        .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
+            Button {
+                vm.finishWorkout(routineId: routineId)
+            } label: {
+                Text("운동완료")
+            }
+            
+            Button {
+                
+            } label: {
+                Text("확인")
             }
         }
     }
@@ -386,7 +381,7 @@ struct RecordingWorkoutView: View {
                 .allowsHitTesting(false)
         }
         .ignoresSafeArea()
-
+        
     }
     
     func workoutButton(proxy: ScrollViewProxy) -> some View {
