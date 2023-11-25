@@ -475,7 +475,7 @@ extension RecordingWorkoutView {
     
     @ViewBuilder
     var NextButton: some View {
-        switch vm.nextButtonState {
+        switch vm.nextButtonStatus {
         case .nextSet:
             FloatingButton(size: .small, color: .green_main) {
                 HStack {

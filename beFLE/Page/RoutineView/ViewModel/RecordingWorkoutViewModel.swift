@@ -8,7 +8,7 @@
 import SwiftUI
 
 class RecordingWorkoutViewModel: ObservableObject {
-    @Published var nextButtonState: NextButtonStatus = .nextSet
+    @Published var nextButtonStatus: NextButtonStatus = .nextSet
     /// 현재 진행 중인 운동
     
     /// 현재 진행 중인 운동 시간
@@ -117,7 +117,7 @@ extension RecordingWorkoutViewModel {
 /// 세트 컨트롤
 extension RecordingWorkoutViewModel {
     func didNextButtonTapped() {
-        
+//        switch next
     }
     /// 현재 세트 완료 함수
     func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
