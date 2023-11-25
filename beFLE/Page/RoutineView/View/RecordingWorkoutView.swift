@@ -468,7 +468,7 @@ extension RecordingWorkoutView {
     var NextButton: some View {
         switch vm.nextButtonStatus {
         case .nextSet:
-            FloatingButton(size: .small, color: .green_main) {
+            FloatingButton(size: .semiSmall, color: .green_main) {
                 HStack {
                     Text("다음 세트")
                         .font(.button1())
@@ -478,7 +478,7 @@ extension RecordingWorkoutView {
                 .foregroundColor(.gray_900)
             }
         case .nextWorkout:
-            FloatingButton(size: .small, color: .green_main) {
+            FloatingButton(size: .semiSmall, color: .green_main) {
                 HStack {
                     Text("다음 운동")
                         .font(.button1())
@@ -488,7 +488,7 @@ extension RecordingWorkoutView {
                 .foregroundColor(.gray_900)
             }
         case .finishWorkout:
-            FloatingButton(size: .small, color: .red_main) {
+            FloatingButton(size: .semiSmall, color: .red_main) {
                 Text("운동 완료")
                     .font(.button1())
                     .foregroundColor(.label_900)
