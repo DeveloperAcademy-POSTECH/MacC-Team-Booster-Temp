@@ -116,6 +116,9 @@ extension RecordingWorkoutViewModel {
 
 /// 세트 컨트롤
 extension RecordingWorkoutViewModel {
+    func didNextButtonTapped() {
+        
+    }
     /// 현재 세트 완료 함수
     func finishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSetsFinish) -> ())) {
         isCanTappable = false

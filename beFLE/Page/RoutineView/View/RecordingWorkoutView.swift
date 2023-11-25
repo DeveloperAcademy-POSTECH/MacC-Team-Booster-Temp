@@ -460,6 +460,7 @@ extension RecordingWorkoutView {
                                 }
                             }
                             
+                            vm.didNextButtonTapped()
                         } label: {
                             NextButton
                         }
