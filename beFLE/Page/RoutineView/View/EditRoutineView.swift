@@ -12,7 +12,7 @@ import SwiftUI
 ///  - routineId: 수정할 루틴에 대한 id
 struct EditRoutineView: View {
     @StateObject var vm = EditRoutineViewModel()
-    @EnvironmentObject var workoutViewModel: WorkoutViewModel
+    @EnvironmentObject var workoutVM: WorkoutViewModel
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -49,7 +49,7 @@ extension EditRoutineView {
     var WorkoutList: some View {
         VStack {
             HStack {
-                Text(workoutViewModel.routine.part)
+                Text(workoutVM.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                     .padding([.horizontal, .top])
@@ -58,7 +58,7 @@ extension EditRoutineView {
             }
             
             ScrollView {
-                ForEach(Array(workoutViewModel.routine.exercises.enumerated()), id: \.element) { pair in
+                ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
                         .padding(.vertical, 4)
                 }
@@ -118,7 +118,7 @@ extension EditRoutineView {
                 }
             }
             .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
-                DetailedWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.selectedExerciseId)
+                DetailedWorkoutSheet(routineId: workoutVM.routineId, exerciseId: vm.selectedExerciseId)
             }
             
             Spacer()
@@ -136,9 +136,9 @@ extension EditRoutineView {
                 AlternativeActionSheet
             }
             .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
-                AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.selectedExerciseId)
+                AlternateWorkoutSheet(routineId: workoutVM.routineId, exerciseId: vm.selectedExerciseId)
                     .onDisappear {
-                        workoutViewModel.fetchRoutine()
+                        workoutVM.fetchRoutine()
                     }
             }
             .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
@@ -161,7 +161,7 @@ extension EditRoutineView {
         VStack {
             Spacer()
             NavigationLink {
-                RecordingWorkoutView(routineId: workoutViewModel.routineId, exerciseId: workoutViewModel.routine.exercises.isEmpty ? 0 : workoutViewModel.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: workoutViewModel.routine.burnedKCalories)
+                RecordingWorkoutView(routineId: workoutVM.routineId, exerciseId: workoutVM.routine.exercises.isEmpty ? 0 : workoutVM.routine.exercises[vm.currentWorkoutIndex].id, burnedKCalories: workoutVM.routine.burnedKCalories)
                     .environmentObject(vm)
             } label: {
                 FloatingButton(size: .medium, color: .green_main) {
@@ -201,7 +201,7 @@ extension EditRoutineView {
     @ViewBuilder
     var DeleteAlert: some View {
         Button("삭제", role: .destructive) {
-            vm.deleteWorkout(routineId: workoutViewModel.routineId, exerciseId: vm.workout.exerciseId)
+            vm.deleteWorkout(routineId: workoutVM.routineId, exerciseId: vm.workout.exerciseId)
         }
     }
 }
