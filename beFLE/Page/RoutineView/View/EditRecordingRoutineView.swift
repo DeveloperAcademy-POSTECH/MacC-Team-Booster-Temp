@@ -43,7 +43,10 @@ struct EditRecordingRoutineView: View {
             DeleteAlert
         }
     }
-    
+}
+
+/// 네비게이션 타이틀
+extension EditRecordingRoutineView {
     var BackButton: some View {
         Button {
             dismiss()
@@ -53,7 +56,10 @@ struct EditRecordingRoutineView: View {
                 .font(.headline2())
         }
     }
-    
+}
+
+/// 운동 정보
+extension EditRecordingRoutineView {
     var WorkoutList: some View {
         VStack {
             HStack {
@@ -131,7 +137,10 @@ struct EditRecordingRoutineView: View {
         }
         .padding(.vertical, 4)
     }
-    
+}
+
+/// 얼럿, 액션
+extension EditRecordingRoutineView {
     @ViewBuilder
     var AlternativeActionSheet: some View {
         Button {
