@@ -17,9 +17,6 @@ struct RecordingWorkoutView: View {
     @StateObject var vm = RecordingWorkoutViewModel()
     @EnvironmentObject var workoutVM: WorkoutViewModel
     @Environment(\.dismiss) var dismiss
-    @FocusState private var isFocused: Bool
-    @Namespace var topID
-    @Namespace var refreshID
     
     var body: some View {
         ZStack {
@@ -30,13 +27,13 @@ struct RecordingWorkoutView: View {
                     ScrollView {
                         Spacer()
                             .frame(height: 0)
-                            .id(refreshID)
+                            .id(vm.refreshID)
                         WorkoutInfomation
                         WorkoutImageAndTip
                         Spacer()
                         WorkoutSetButton
                         WorkoutSetList
-                            .id(topID)
+                            .id(vm.topID)
                         RelatedContent
                         FloatingButton(size: .medium) {}
                     }
@@ -56,7 +53,7 @@ struct RecordingWorkoutView: View {
             vm.stop()
         }
         .onTapGesture {
-            isFocused = false
+            vm.isFocused = false
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -393,7 +390,7 @@ extension RecordingWorkoutView {
                 //                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                 ForEach(workoutVM.exercise.sets.indices, id: \.self) { index in
                     // TODO: 무게 조정 api 호출
-                    WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $workoutVM.exercise.sets[index], isFocused: $isFocused)
+                    WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $workoutVM.exercise.sets[index], isFocused: vm.$isFocused)
                         .environmentObject(vm)
                         .overlay {
                             if index == vm.currentSet {
@@ -415,7 +412,7 @@ extension RecordingWorkoutView {
     func bottomGradientView(proxy: ScrollViewProxy) -> some View {
         VStack {
             Spacer()
-            if !isFocused {
+            if !vm.isFocused {
                 LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
                     .frame(height: UIScreen.getHeight(150), alignment: .bottom)
                     .allowsHitTesting(false)
@@ -427,7 +424,7 @@ extension RecordingWorkoutView {
     func workoutButton(proxy: ScrollViewProxy) -> some View {
         VStack {
             Spacer()
-            if !isFocused {
+            if !vm.isFocused {
                 FloatingButton(size: .large, color: .gray_700) {
                     HStack {
                         NavigationLink {
@@ -445,12 +442,12 @@ extension RecordingWorkoutView {
                         Button {
                             if vm.currentSet == workoutVM.exercise.sets.count - 1 {
                                 withAnimation {
-                                    proxy.scrollTo(refreshID, anchor: .bottom)
+                                    proxy.scrollTo(vm.refreshID, anchor: .bottom)
                                 }
                             }
                             if vm.currentSet == 2 {
                                 withAnimation {
-                                    proxy.scrollTo(topID, anchor: .bottom)
+                                    proxy.scrollTo(vm.topID, anchor: .bottom)
                                 }
                             }
                             
