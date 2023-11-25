@@ -50,6 +50,7 @@ extension WorkoutView {
         LottieView()
             .navigationBarBackButtonHidden()
             .onAppear {
+                vm.fetchRoutineId(routineId: routineId)
                 vm.changeViewStatus(.editRoutineView)
             }
     }
