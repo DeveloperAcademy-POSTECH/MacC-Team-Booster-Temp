@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum NextButtonStatus {
+    case nextSet
+    case nextWorkout
+    case finishWorkout
+}
+
 /// 운동 시작 했을 때 기록하기 위한 뷰
 struct RecordingWorkoutView: View {
     @FocusState var isFocused: Bool
@@ -455,37 +461,45 @@ extension RecordingWorkoutView {
                             }
                             
                         } label: {
-                            FloatingButton(size: .small, color: .red_main) {
-                                Text("운동 완료")
-                                    .font(.button1())
-                                    .foregroundColor(.label_900)
-                            }
-                            //                                FloatingButton(size: .small, color: .green_main) {
-                            //                                    HStack {
-                            //                                        Text("다음 운동")
-                            //                                            .font(.button1())
-                            //                                        Image(systemName: "chevron.right")
-                            //                                            .font(.button2())
-                            //                                    }
-                            //                                    .foregroundColor(.gray_900)
-                            //                                }
-                            //
-                            //
-                            //                            FloatingButton(size: .small, color: .green_main) {
-                            //                                HStack {
-                            //                                    Text("다음 세트")
-                            //                                        .font(.button1())
-                            //                                    Image(systemName: "chevron.right")
-                            //                                        .font(.button2())
-                            //                                }
-                            //                                .foregroundColor(.gray_900)
-                            //                            }
+                            NextButton
                         }
                         .disabled(!vm.isCanTappable)
                         //: - 다음 버튼
                     }
                     .padding(.trailing, 8)
                 }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    var NextButton: some View {
+        switch vm.nextButtonState {
+        case .nextSet:
+            FloatingButton(size: .small, color: .green_main) {
+                HStack {
+                    Text("다음 세트")
+                        .font(.button1())
+                    Image(systemName: "chevron.right")
+                        .font(.button2())
+                }
+                .foregroundColor(.gray_900)
+            }
+        case .nextWorkout:
+            FloatingButton(size: .small, color: .green_main) {
+                HStack {
+                    Text("다음 운동")
+                        .font(.button1())
+                    Image(systemName: "chevron.right")
+                        .font(.button2())
+                }
+                .foregroundColor(.gray_900)
+            }
+        case .finishWorkout:
+            FloatingButton(size: .small, color: .red_main) {
+                Text("운동 완료")
+                    .font(.button1())
+                    .foregroundColor(.label_900)
             }
         }
     }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 class RecordingWorkoutViewModel: ObservableObject {
+    @Published var nextButtonState: NextButtonStatus = .nextSet
     /// 현재 진행 중인 운동
     
     /// 현재 진행 중인 운동 시간
