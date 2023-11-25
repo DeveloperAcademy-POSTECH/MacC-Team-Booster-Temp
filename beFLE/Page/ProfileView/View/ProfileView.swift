@@ -16,9 +16,9 @@ struct ProfileView: View {
             VStack {
                 NavigationTitle
                 ProfileCard
-                Divider()
-                    .foregroundColor(.gray_700)
-                    .padding(.horizontal)
+                //                Divider()
+                //                    .foregroundColor(.gray_700)
+                //                    .padding(.horizontal)
                 VersionInformaion
                 Divider()
                     .foregroundColor(.gray_700)
@@ -58,31 +58,29 @@ extension ProfileView {
             ManageProfileView()
                 .environmentObject(vm)
         } label: {
-            RoundedRectangle(cornerRadius: 8.0)
-                .foregroundColor(.gray_700)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
-                .overlay {
-                    HStack(spacing:2) {
-                        Text(vm.nickname)
-                            .foregroundColor(.label_900)
-                            .font(.body())
-                            .padding(.leading, 20)
-                        Text("님")
-                            .foregroundColor(.label_700)
-                            .font(.body())
-                        Spacer()
-                        Text("프로필 관리")
-                            .foregroundColor(.label_700)
-                            .font(.system(size: 14, weight: .regular, design: .default))
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.label_700)
-                            .font(.system(size: 10, weight: .regular, design: .default))
-                            .padding(.trailing, 20)
-                    }
-                }
-                .padding(.top, 10)
-                .padding(.bottom, 10)
+            HStack(spacing:2) {
+                Text(vm.nickname)
+                    .foregroundColor(.label_900)
+                    .font(.body())
+                    .padding(.leading, 20)
+                Text("님")
+                    .foregroundColor(.label_700)
+                    .font(.body())
+                Spacer()
+                Text("프로필 관리")
+                    .foregroundColor(.label_700)
+                    .font(.system(size: 14, weight: .regular, design: .default))
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.label_700)
+                    .font(.system(size: 10, weight: .regular, design: .default))
+                    .padding(.trailing, 20)
+            }
+            .frame(height: UIScreen.getHeight(72))
+            .background(Color.gray_700)
+            .cornerRadius(8.0)
         }
+        .padding(.horizontal)
+        .padding(.vertical, 10)
     }
 }
 
