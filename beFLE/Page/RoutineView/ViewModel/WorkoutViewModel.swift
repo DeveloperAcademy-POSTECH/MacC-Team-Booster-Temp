@@ -13,43 +13,37 @@ class WorkoutViewModel: ObservableObject {
     @Published var exerciseId = 0
     
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
-    @Published var exercises: [ResponseGetRoutinesExercises] = []
+    @Published var exercise: ResponseGetRoutinesExercises?
     
     
     func fetchRoutineId(routineId: Int) {
         self.routineId = routineId
-        fetchRoutine() {
-            self.fetchExercises()
-        }
+        fetchRoutine()
     }
     
     func fetchExerciseId(exerciseId: Int) {
         self.exerciseId = exerciseId
+        fetchExercise()
     }
     
-    func fetchRoutine(completion: @escaping (() -> ())) {
+    func fetchRoutine() {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
                 self.routine = routine
-                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    func fetchExercises() {
-        exercises = []
-        
-        for exercise in routine.exercises {
-            GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exercise.id), type: ResponseGetRoutinesExercises.self) {
-                switch $0 {
-                case .success(let workout):
-                    self.exercises.append(workout)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+    func fetchExercise() {
+        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
+            switch $0 {
+            case .success(let exercise):
+                self.exercise = exercise
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }

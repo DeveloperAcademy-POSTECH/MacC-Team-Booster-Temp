@@ -61,9 +61,6 @@ extension EditRoutineView {
                 ForEach(Array(workoutViewModel.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
                         .padding(.vertical, 4)
-                        .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
-                            DetailedWorkoutSheet(exercise: workoutViewModel.exercises.filter { $0.exerciseId == pair.element.id}.first ?? workoutViewModel.exercises[pair.offset])
-                        }
                 }
                 .padding(.horizontal)
                 FloatingButton(size: .medium) {}
@@ -77,6 +74,7 @@ extension EditRoutineView {
     func WorkoutListCell(_ index: Int, _ exercise: Exercise) -> some View {
         HStack {
             Button {
+                workoutViewModel.fetchExerciseId(exerciseId: exercise.id)
                 vm.isDetailedWorkoutSheetShow = true
             } label: {
                 HStack(spacing: 8) {
@@ -116,6 +114,11 @@ extension EditRoutineView {
                     .padding()
                     
                     Spacer()
+                }
+            }
+            .sheet(isPresented: $vm.isDetailedWorkoutSheetShow) {
+                if workoutViewModel.exercise != nil {
+                    DetailedWorkoutSheet(exercise: workoutViewModel.exercise!)
                 }
             }
             
@@ -176,9 +179,7 @@ extension EditRoutineView {
             AlternateWorkoutSheet(routineId: workoutViewModel.routineId, exerciseId: vm.routine.exercises[vm.selectedIndex].id)
                 .environmentObject(vm)
                 .onDisappear {
-                    workoutViewModel.fetchRoutine() {
-                        workoutViewModel.fetchExercises()
-                    }
+                    workoutViewModel.fetchRoutine()
                 }
         }
         

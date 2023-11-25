@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DetailedWorkoutSheet: View {
     let exercise: ResponseGetRoutinesExercises
-    //    @StateObject var vm = DetailedWorkoutSheetViewModel()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -111,20 +110,21 @@ struct DetailedWorkoutSheet: View {
     
     var RelatedContent: some View {
         VStack {
-            exercise.videoUrls.count >= 1 ?
-            HStack {
-                Text("관련 영상")
-                    .font(.title2())
-                    .foregroundColor(.label_900)
+            if !exercise.videoUrls.isEmpty {
+                HStack {
+                    Text("관련 영상")
+                        .font(.title2())
+                        .foregroundColor(.label_900)
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 13)
                 
-                Spacer()
-            }
-            .padding(.bottom, 13) : nil
-            
-            ScrollView(.horizontal) {
-                HStack{
-                    ForEach(exercise.videoUrls, id: \.self) { videoUrl in
-                        RelatedContentCard(videoID: videoUrl)
+                ScrollView(.horizontal) {
+                    HStack{
+                        ForEach(exercise.videoUrls, id: \.self) { videoUrl in
+                            RelatedContentCard(videoID: videoUrl)
+                        }
                     }
                 }
             }
