@@ -29,7 +29,7 @@ struct WorkoutView: View {
             case .editRoutineView:
                 EditRoutineView()
             case .recordingWorkoutView:
-                RecordingWorkoutView(routineId: routineId, exerciseId: 1, burnedKCalories: 1)
+                RecordingWorkout
             case .recordingRoutineView:
                 RecordingRoutineView(routineId: routineId, burnedKCalories: 1, recordViewModel: RecordingWorkoutViewModel())
             case .editRecordingRoutineView:
@@ -53,6 +53,13 @@ extension WorkoutView {
                 vm.fetchRoutineId(routineId: routineId)
                 vm.changeViewStatus(.editRoutineView)
             }
+    }
+}
+
+/// 운동 기록 뷰
+extension WorkoutView {
+    var RecordingWorkout: some View {
+        RecordingWorkoutView()
     }
 }
 
