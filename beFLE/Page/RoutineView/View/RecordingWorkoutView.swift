@@ -347,11 +347,7 @@ extension RecordingWorkoutView {
                 .overlay {
                     HStack {
                         Button {
-                            if vm.exercise.sets.count > 1 {
-                                vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId) {
-                                    vm.exercise.sets = $0
-                                }
-                            }
+                            vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
@@ -362,17 +358,12 @@ extension RecordingWorkoutView {
                                 }
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
-                        .disabled(vm.exercise.sets.count <= 1)
                         
                         Text("\(vm.exercise.sets.count)세트")
                             .foregroundColor(.label_700)
                         
                         Button {
-                            if vm.exercise.sets.count < 10 {
-                                vm.increseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId) {
-                                    vm.exercise.sets = $0
-                                }
-                            }
+                            vm.increseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
@@ -382,7 +373,6 @@ extension RecordingWorkoutView {
                                         .foregroundColor(.label_900)
                                 }
                         }
-                        .disabled(vm.exercise.sets.count >= 10)
                     }
                     .font(.body())
                 }

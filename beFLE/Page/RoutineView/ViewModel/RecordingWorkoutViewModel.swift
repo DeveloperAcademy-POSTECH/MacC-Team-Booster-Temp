@@ -80,25 +80,35 @@ extension RecordingWorkoutViewModel {
 /// 운동 세트 증감
 extension RecordingWorkoutViewModel {
     /// 운동 세트 감소 함수
-    func decreaseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (([ExerciseSet]) -> ())) {
-        GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
-            switch $0 {
-            case .success(let sets):
-                completion(sets)
-            case .failure(let error):
-                print(error.localizedDescription)
+    func decreaseSetCount(routineId: Int, exerciseId: Int) {
+        if exercise.sets.count > 1 {
+            isCanTappable = false
+            
+            GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
+                switch $0 {
+                case .success(let sets):
+                    self.exercise.sets = sets
+                    self.isCanTappable = true
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
     
     /// 운동 세트 증가 함수
-    func increseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (([ExerciseSet]) -> ())) {
-        GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
-            switch $0 {
-            case .success(let sets):
-                completion(sets)
-            case .failure(let error):
-                print(error.localizedDescription)
+    func increseSetCount(routineId: Int, exerciseId: Int) {
+        if exercise.sets.count < 9 {
+            isCanTappable = false
+            
+            GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
+                switch $0 {
+                case .success(let sets):
+                    self.exercise.sets = sets
+                    self.isCanTappable = true
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
