@@ -8,10 +8,6 @@
 import SwiftUI
 
 class RecordingWorkoutViewModel: ObservableObject {
-    @FocusState var isFocused: Bool
-    @Namespace var topID
-    @Namespace var refreshID
-    
     /// 현재 진행 중인 운동
     
     /// 현재 진행 중인 운동 시간
