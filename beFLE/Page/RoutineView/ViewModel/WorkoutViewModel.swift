@@ -70,16 +70,14 @@ extension WorkoutViewModel {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
-                if let routine = routine {
-                    self.routine = routine
-                    
-                    var exercises: [Int] = []
-                    for exercise in routine.exercises {
-                        exercises.append(exercise.id)
-                    }
-                    self.exercises = exercises
-                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                self.routine = routine
+                
+                var exercises: [Int] = []
+                for exercise in routine.exercises {
+                    exercises.append(exercise.id)
                 }
+                self.exercises = exercises
+                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -95,9 +93,7 @@ extension WorkoutViewModel {
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success(let exercise):
-                if let exercise = exercise {
-                    self.exercise = exercise
-                }
+                self.exercise = exercise
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -119,9 +115,7 @@ extension WorkoutViewModel {
         GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
             switch $0 {
             case .success(let response):
-                if let response = response {
-                    self.routineCompleteImageUrl = response.routineCompleteImageUrl
-                }
+                self.routineCompleteImageUrl = response.routineCompleteImageUrl
             case .failure(let error):
                 print(error.localizedDescription)
             }

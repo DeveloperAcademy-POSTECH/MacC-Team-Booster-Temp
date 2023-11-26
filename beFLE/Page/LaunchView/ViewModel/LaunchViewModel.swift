@@ -48,10 +48,8 @@ extension LaunchViewModel {
         GeneralAPIManger.request(for: .PostLogin(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode), type: Token.self) {
             switch $0 {
             case .success(let token):
-                if let token = token {
-                    self.saveToken(accessToken: token.accessToken, refreshToken: token.refreshToken)
-                    self.appState = .login
-                }
+                self.saveToken(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                self.appState = .login
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -63,10 +61,8 @@ extension LaunchViewModel {
         GeneralAPIManger.request(for: .GetReissue(refreshToken: refreshToken), type: Token.self) {
             switch $0 {
             case .success(let token):
-                if let token = token {
-                    self.saveToken(accessToken: token.accessToken, refreshToken: token.refreshToken)
-                    self.appState = .login
-                }
+                self.saveToken(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                self.appState = .login
             case .failure(let error):
                 print(error.localizedDescription)
             }

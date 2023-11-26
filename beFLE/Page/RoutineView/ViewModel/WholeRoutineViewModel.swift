@@ -24,10 +24,8 @@ class WholeRoutineViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersInfluencersRoutines(id: influencerId), type: [Routine].self) {
             switch $0 {
             case .success(let routine):
-                if let routine = routine {
-                    self.routinesByMonth = self.fetchByMonth(routines: routine)
-                    self.wholeRoutines = routine
-                }
+                self.routinesByMonth = self.fetchByMonth(routines: routine)
+                self.wholeRoutines = routine
             case .failure(let error):
                 print(error.localizedDescription)
             }

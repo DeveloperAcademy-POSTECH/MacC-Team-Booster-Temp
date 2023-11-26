@@ -14,9 +14,7 @@ class SearchViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetInfluencers, type: [InfluencerPreview].self) {
             switch $0 {
             case .success(let influencers):
-                if let influencers = influencers {
-                    self.influencer.previews = influencers
-                }
+                self.influencer.previews = influencers
             case .failure(let error):
                 print(error.localizedDescription)
             }

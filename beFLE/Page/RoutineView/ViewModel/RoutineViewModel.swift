@@ -23,9 +23,7 @@ class RoutineViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
             switch $0 {
             case .success(let routines):
-                if let routines = routines {
-                    self.todayRoutines.routine = routines
-                }
+                self.todayRoutines.routine = routines
             case .failure(let error):
                 print(error.localizedDescription)
             }

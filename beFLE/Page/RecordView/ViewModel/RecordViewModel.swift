@@ -22,14 +22,12 @@ class RecordViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersRecords, type: [Records].self) {
             switch $0 {
             case .success(let records):
-                if let records = records {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
-                    self.selectedDate = dateFormatter.string(from: .now)
-                    self.records.records = records
-                    self.fetchRecodedDate()
-                    self.caculateVolume()
-                }
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                self.selectedDate = dateFormatter.string(from: .now)
+                self.records.records = records
+                self.fetchRecodedDate()
+                self.caculateVolume()
             case .failure(let error):
                 print(error.localizedDescription)
             }
