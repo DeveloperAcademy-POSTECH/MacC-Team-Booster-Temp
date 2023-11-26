@@ -24,8 +24,10 @@ class WholeRoutineViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersInfluencersRoutines(id: influencerId), type: [Routine].self) {
             switch $0 {
             case .success(let routine):
-                self.routinesByMonth = self.fetchByMonth(routines: routine)
-                self.wholeRoutines = routine
+                if let routine = routine {
+                    self.routinesByMonth = self.fetchByMonth(routines: routine)
+                    self.wholeRoutines = routine
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -66,9 +68,6 @@ class WholeRoutineViewModel: ObservableObject {
                 }
             }
         }
-        
-        print(routinesByMonth)
-        print(routinesByMonth.sorted(by: { Int($0.key)! > Int($1.key)! }))
         
         return routinesByMonth
     }

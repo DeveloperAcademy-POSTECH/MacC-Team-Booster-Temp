@@ -14,7 +14,9 @@ class DetailedWorkoutSheetViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success(let exercise):
-                self.exercise = exercise
+                if let exercise = exercise {
+                    self.exercise = exercise
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }

@@ -20,9 +20,11 @@ class RecordingFinishViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
-                _ = routine.exercises.map { exercise in
-                    self.fetchWorkout(routineId: routineId, exerciseId: exercise.id) {
-                        self.volume += $0
+                if let routine = routine {
+                    _ = routine.exercises.map { exercise in
+                        self.fetchWorkout(routineId: routineId, exerciseId: exercise.id) {
+                            self.volume += $0
+                        }
                     }
                 }
             case .failure(let error):
@@ -37,12 +39,14 @@ class RecordingFinishViewModel: ObservableObject {
             switch $0 {
             case .success(let workout):
                 var volume = 0
-                _ = workout.sets.map {
-                    if let weight = $0.weight {
-                        volume += $0.reps * weight
+                if let workout = workout {
+                    _ = workout.sets.map {
+                        if let weight = $0.weight {
+                            volume += $0.reps * weight
+                        }
                     }
+                    completion(volume)
                 }
-                completion(volume)
             case .failure(let error):
                 print(error.localizedDescription)
             }

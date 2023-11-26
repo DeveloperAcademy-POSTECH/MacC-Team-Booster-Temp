@@ -14,7 +14,7 @@ class GeneralAPIManger {
     ///     - for target: target API
     ///     - type: 디코딩 할 구조체 타입
     ///     - compeletion: 디코딩 된 데이터 또는 에러를 반환
-    static func request<T: Codable>(for target: GeneralAPI, type: T.Type? = nil, completion: @escaping ((Result<T, MoyaError>) -> ())) {
+    static func request<T: Codable>(for target: GeneralAPI, type: T.Type?, completion: @escaping ((Result<T?, MoyaError>) -> ())) {
         let provider = MoyaProvider<GeneralAPI>()
         
         provider.request(target) { result in
@@ -26,7 +26,7 @@ class GeneralAPIManger {
                             completion(.success(decodedData))
                         }
                         else {
-                            completion(.failure(.requestMapping("decode error")))
+                            completion(.success(nil))
                         }
                     }
                     else {

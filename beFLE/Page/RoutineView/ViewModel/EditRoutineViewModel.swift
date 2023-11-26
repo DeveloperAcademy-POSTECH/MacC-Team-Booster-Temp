@@ -39,7 +39,9 @@ class EditRoutineViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
-                self.routine = routine
+                if let routine = routine {
+                    self.routine = routine
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -50,7 +52,9 @@ class EditRoutineViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success(let workout):
-                self.workout = workout
+                if let workout = workout {
+                    self.workout = workout
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }

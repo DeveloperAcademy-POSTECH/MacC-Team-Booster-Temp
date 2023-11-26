@@ -16,7 +16,9 @@ class RoutineInformationViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
-                self.routine = routine
+                if let routine = routine {
+                    self.routine = routine
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }

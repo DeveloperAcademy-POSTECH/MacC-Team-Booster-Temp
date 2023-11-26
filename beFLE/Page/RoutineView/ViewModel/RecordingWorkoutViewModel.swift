@@ -48,14 +48,13 @@ class RecordingWorkoutViewModel: ObservableObject {
 /// 운동 패치
 extension RecordingWorkoutViewModel {
     func fetchExercise(routineId: Int, exerciseId: Int) {
-        print(routineId, exerciseId)
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success(let exercise):
-                print(exercise)
-                self.exercise = exercise
+                if let exercise = exercise {
+                    self.exercise = exercise
+                }
             case .failure(let error):
-                print("error")
                 print(error.localizedDescription)
             }
         }
@@ -72,11 +71,13 @@ extension RecordingWorkoutViewModel {
             GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
                 switch $0 {
                 case .success(let sets):
-                    if self.currentSet >= sets.count {
-                        self.currentSet -= 1
+                    if let sets = sets {
+                        if self.currentSet >= sets.count {
+                            self.currentSet -= 1
+                        }
+                        self.exercise.sets = sets
+                        self.isCanTappable = true
                     }
-                    self.exercise.sets = sets
-                    self.isCanTappable = true
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -92,8 +93,10 @@ extension RecordingWorkoutViewModel {
             GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
                 switch $0 {
                 case .success(let sets):
-                    self.exercise.sets = sets
-                    self.isCanTappable = true
+                    if let sets = sets {
+                        self.exercise.sets = sets
+                        self.isCanTappable = true
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -106,7 +109,9 @@ extension RecordingWorkoutViewModel {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
             switch $0 {
             case .success(let set):
-                completion(set)
+                if let set = set {
+                    completion(set)
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -118,7 +123,9 @@ extension RecordingWorkoutViewModel {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps), type: ResponsePatchUsersRoutinesExercisesSets.self) {
             switch $0 {
             case .success(let set):
-                completion(set)
+                if let set = set {
+                    completion(set)
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
