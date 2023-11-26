@@ -389,7 +389,6 @@ extension RecordingWorkoutView {
     var WorkoutSetList: some View {
         VStack {
             if !vm.exercise.sets.isEmpty {
-                //                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
                 ForEach(vm.exercise.sets.indices, id: \.self) { index in
                     // TODO: 무게 조정 api 호출
                     WorkoutSetCard(index: index + 1, routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, set: $vm.exercise.sets[index], isFocused: $isFocused)
