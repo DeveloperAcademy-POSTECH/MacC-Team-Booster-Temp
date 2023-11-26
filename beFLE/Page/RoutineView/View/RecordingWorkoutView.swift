@@ -53,7 +53,7 @@ struct RecordingWorkoutView: View {
             vm.currentSet = 0
         }
         .onDisappear {
-//            vm.stop()
+            workoutVM.timerStop()
         }
         .onTapGesture {
             isFocused = false
@@ -106,7 +106,7 @@ extension RecordingWorkoutView {
             
             Button {
                 vm.isPauseSheetShow = true
-                vm.stop()
+                workoutVM.timerStop()
             } label: {
                 Circle()
                     .foregroundColor(.gray_700)
@@ -183,7 +183,7 @@ extension RecordingWorkoutView {
     var DiscontinueAlert: some View {
         Button {
             vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
-                vm.stop()
+                workoutVM.timerStop()
                 workoutVM.changeViewStatus(.recordingFinishView)
             }
         } label: {
@@ -472,7 +472,7 @@ extension RecordingWorkoutView {
                             case .finishWorkout:
                                 if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
                                     vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
-                                        vm.stop()
+                                        workoutVM.timerStop()
                                         workoutVM.changeViewStatus(.recordingFinishView)
                                     }
                                 }
