@@ -247,7 +247,7 @@ extension GeneralAPI: TargetType {
         case .PatchUsers(name: let name): return .requestParameters(parameters: ["name": name], encoding: URLEncoding.queryString)
             //:
             // MARK: user-routine-controller
-        case .PatchUsersRoutines(_, time: let time): return .requestParameters(parameters: ["time": time], encoding: URLEncoding.queryString)
+        case .PatchUsersRoutines(_, time: let time): return .requestJSONEncodable(RequestPatchUsersRoutines(time: time))
         case .PatchUsersRoutinesFinish: return .requestPlain
         case .GetUsersRoutines(date: let date): return .requestParameters(parameters: ["date": date], encoding: URLEncoding.queryString)
         case .GetUsersRoutinesId: return .requestPlain

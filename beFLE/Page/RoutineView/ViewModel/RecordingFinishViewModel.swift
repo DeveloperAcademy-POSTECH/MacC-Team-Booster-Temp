@@ -10,6 +10,11 @@ import SwiftUI
 class RecordingFinishViewModel: ObservableObject {
     @Published var volume = 0
     
+    func caculateWorkoutTime(elapsedTime: TimeInterval) -> String {
+        let minutes = Int(elapsedTime) / 60
+        
+        return "\(minutes)분"
+    }
     
     func caculateWorkoutVolume(routineId: Int) {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
