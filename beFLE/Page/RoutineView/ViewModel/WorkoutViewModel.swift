@@ -131,7 +131,15 @@ extension WorkoutViewModel {
 /// 타이머 관련
 extension WorkoutViewModel {
     func updateWorkoutTime() {
-        GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatted()), type: ResponsePatchUsersRoutinesFinish.self) {
+        let hours = Int(elapsedTime) / 3600
+        let minutes = Int(elapsedTime) / 60
+        let seconds = Int(elapsedTime) % 60
+        
+        let time = DateComponents(hour: hours, minute: minutes, second: seconds)
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm:ss"
+        
+        GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatter.string(from: Calendar.current.date(from: time)!)), type: ResponsePatchUsersRoutinesFinish.self) {
             switch $0 {
             case .success:
                 break
