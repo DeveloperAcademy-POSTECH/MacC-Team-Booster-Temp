@@ -164,7 +164,8 @@ extension RecordingWorkoutViewModel {
     /// 루틴 완료 함수
     func finishWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
         isCanTappable = false
-        
+        print(currentSet)
+        print(setId)
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
             switch $0 {
             case .success:
