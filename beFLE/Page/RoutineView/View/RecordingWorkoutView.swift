@@ -48,12 +48,12 @@ struct RecordingWorkoutView: View {
         }
         .onAppear {
             vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
-            vm.start()
-            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
+            workoutVM.timerStart()
+//            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
             vm.currentSet = 0
         }
         .onDisappear {
-            vm.stop()
+//            vm.stop()
         }
         .onTapGesture {
             isFocused = false
@@ -99,7 +99,7 @@ extension RecordingWorkoutView {
                 .foregroundColor(.green_main)
                 .font(.headline2())
             
-            Text(vm.timeFormatted())
+            Text(workoutVM.elapsedTime.description)
                 .foregroundColor(.label_900)
                 .font(.headline1())
                 .padding(.horizontal, 10)

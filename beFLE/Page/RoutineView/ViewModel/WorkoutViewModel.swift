@@ -131,16 +131,18 @@ extension WorkoutViewModel {
 /// 타이머 관련
 extension WorkoutViewModel {
     func timerStart() {
-        isRunning = true
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            if self.isRunning {
-                self.elapsedTime += 1
-                print(self.elapsedTime)
-            }
-            else {
-                timer.invalidate()
-                self.timer = nil
+        if !isRunning {
+            isRunning = true
+            
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                if self.isRunning {
+                    self.elapsedTime += 1
+                    print(self.elapsedTime)
+                }
+                else {
+                    timer.invalidate()
+                    self.timer = nil
+                }
             }
         }
     }
