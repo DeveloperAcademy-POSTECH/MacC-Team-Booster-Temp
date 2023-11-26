@@ -62,7 +62,7 @@ extension RecordingWorkoutViewModel {
 /// 운동 세트 증감
 extension RecordingWorkoutViewModel {
     /// 운동 세트 감소 함수
-    func decreaseSetCount(routineId: Int, exerciseId: Int) {
+    func decreaseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (() -> ()) ) {
         if exercise.sets.count > 1 {
             isCanTappable = false
             
@@ -74,6 +74,7 @@ extension RecordingWorkoutViewModel {
                     }
                     self.exercise.sets = sets
                     self.isCanTappable = true
+                    completion()
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -89,6 +90,7 @@ extension RecordingWorkoutViewModel {
             GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
                 switch $0 {
                 case .success(let sets):
+                    self.nextButtonStatus = .nextSet
                     self.exercise.sets = sets
                     self.isCanTappable = true
                 case .failure(let error):

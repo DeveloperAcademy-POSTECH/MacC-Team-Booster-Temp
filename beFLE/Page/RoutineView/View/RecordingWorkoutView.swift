@@ -354,7 +354,18 @@ extension RecordingWorkoutView {
                 .overlay {
                     HStack {
                         Button {
-                            vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
+                            vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId) {
+                                if vm.nextButtonStatus == .nextSet {
+                                    if vm.currentSet >= vm.exercise.sets.count - 1 {
+                                        if workoutVM.currentWorkoutIndex >= workoutVM.exercises.count - 1 {
+                                            vm.nextButtonStatus = .finishWorkout
+                                        }
+                                        else {
+                                            vm.nextButtonStatus = .nextWorkout
+                                        }
+                                    }
+                                }
+                            }
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
