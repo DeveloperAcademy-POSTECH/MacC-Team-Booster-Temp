@@ -34,11 +34,34 @@ class GeneralAPIManger {
                     }
                 }
                 else {
-                    #if DEBUG
+#if DEBUG
                     if 403 == resp.statusCode {
                         print("Authentication failed")
                     }
-                    #endif
+#endif
+                    completion(.failure(.statusCode(resp)))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    static func request(for target: GeneralAPI, completion: @escaping ((Result<Int, MoyaError>) -> ())) {
+        let provider = MoyaProvider<GeneralAPI>()
+        
+        provider.request(target) { result in
+            switch result {
+            case .success(let resp):
+                if (200..<300).contains(resp.statusCode) {
+                    completion(.success(resp.statusCode))
+                }
+                else {
+#if DEBUG
+                    if 403 == resp.statusCode {
+                        print("Authentication failed")
+                    }
+#endif
                     completion(.failure(.statusCode(resp)))
                 }
             case .failure(let error):

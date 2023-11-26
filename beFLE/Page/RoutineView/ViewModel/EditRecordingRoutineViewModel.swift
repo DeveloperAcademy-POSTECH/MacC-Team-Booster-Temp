@@ -42,10 +42,9 @@ class EditRecordingRoutineViewModel: ObservableObject {
     }
     
     func deleteWorkout(routineId: Int, exerciseId: Int) {
-        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
+        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
-                // TODO: 석세스 nil 처리
                 self.fetchRoutine(routineId: routineId)
             case .failure(let error):
                 print(error.localizedDescription)
