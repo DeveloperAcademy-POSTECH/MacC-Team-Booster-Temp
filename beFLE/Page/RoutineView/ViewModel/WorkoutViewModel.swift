@@ -18,6 +18,44 @@ class WorkoutViewModel: ObservableObject {
     @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     @Published var exercises: [Int] = []
     
+    @Published var isRunning = false
+    @Published var elapsedTime: TimeInterval = 0
+    @Published private var startTime = Date.now
+    private var timer: Timer?
+}
+
+/// 뷰 상태 전환
+extension WorkoutViewModel {
+    func changeViewStatus(_ workoutViewStatus: WorkoutViewStatus) {
+        didChangeViewStatus(workoutViewStatus) {
+            self.workoutViewStatus = workoutViewStatus
+        }
+    }
+    
+    func didChangeViewStatus(_ workoutViewStatus: WorkoutViewStatus, completion: @escaping (() -> ())) {
+        switch workoutViewStatus {
+        case .emptyView:
+            fetchRoutineId(routineId: routineId)
+            completion()
+        case .editRoutineView:
+            completion()
+        case .recordingWorkoutView:
+            if !exercises.isEmpty {
+                completion()
+            }
+        case .recordingRoutineView:
+            completion()
+        case .editRecordingRoutineView:
+            completion()
+        case .recordingFinishView:
+            finishWorkout()
+            completion()
+        }
+    }
+}
+
+/// 운동 데이터 관련
+extension WorkoutViewModel {
     func fetchRoutineId(routineId: Int) {
         self.routineId = routineId
         fetchRoutine()
@@ -88,31 +126,55 @@ class WorkoutViewModel: ObservableObject {
             }
         }
     }
-    
-    func changeViewStatus(_ workoutViewStatus: WorkoutViewStatus) {
-        didChangeViewStatus(workoutViewStatus) {
-            self.workoutViewStatus = workoutViewStatus
+}
+
+/// 타이머 관련
+extension WorkoutViewModel {
+    func updateWorkoutTime() {
+        GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatted()), type: ResponsePatchUsersRoutinesFinish.self) {
+            switch $0 {
+            case .success:
+                break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
     
-    func didChangeViewStatus(_ workoutViewStatus: WorkoutViewStatus, completion: @escaping (() -> ())) {
-        switch workoutViewStatus {
-        case .emptyView:
-            fetchRoutineId(routineId: routineId)
-            completion()
-        case .editRoutineView:
-            completion()
-        case .recordingWorkoutView:
-            if !exercises.isEmpty {
-                completion()
+    func timerStart() {
+        if !isRunning {
+            isRunning = true
+            
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                if self.isRunning {
+                    self.elapsedTime += 1
+                    print(self.elapsedTime)
+                }
+                else {
+                    timer.invalidate()
+                    self.timer = nil
+                }
             }
-        case .recordingRoutineView:
-            completion()
-        case .editRecordingRoutineView:
-            completion()
-        case .recordingFinishView:
-            finishWorkout()
-            completion()
         }
+    }
+    
+    func timerStop() {
+        isRunning = false
+    }
+    
+    func bgTimer() -> TimeInterval {
+        let curTime = Date.now
+        let diffTime = startTime.distance(to: curTime)
+        let result = Double(diffTime.formatted())!
+        elapsedTime = result + elapsedTime
+        
+        return elapsedTime
+    }
+    
+    func timeFormatted() -> String {
+        let hours = Int(elapsedTime) / 3600
+        let minutes = Int(elapsedTime) / 60
+        let seconds = Int(elapsedTime) % 60
+        return String(format: "%01d:%02d:%02d",hours, minutes, seconds)
     }
 }

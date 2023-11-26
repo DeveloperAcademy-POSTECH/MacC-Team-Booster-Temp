@@ -48,12 +48,12 @@ struct RecordingWorkoutView: View {
         }
         .onAppear {
             vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
-            vm.start()
-            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
+            workoutVM.timerStart()
+//            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
             vm.currentSet = 0
         }
         .onDisappear {
-            vm.stop()
+            workoutVM.timerStop()
         }
         .onTapGesture {
             isFocused = false
@@ -99,14 +99,14 @@ extension RecordingWorkoutView {
                 .foregroundColor(.green_main)
                 .font(.headline2())
             
-            Text(vm.timeFormatted())
+            Text(workoutVM.timeFormatted())
                 .foregroundColor(.label_900)
                 .font(.headline1())
                 .padding(.horizontal, 10)
             
             Button {
                 vm.isPauseSheetShow = true
-                vm.stop()
+                workoutVM.timerStop()
             } label: {
                 Circle()
                     .foregroundColor(.gray_700)
@@ -120,7 +120,7 @@ extension RecordingWorkoutView {
             }
         }
         .sheet(isPresented: $vm.isPauseSheetShow) {
-            PauseSheet(viewModel: vm)
+            PauseSheet()
         }
         .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
             WorkoutStopAlert
@@ -183,7 +183,8 @@ extension RecordingWorkoutView {
     var DiscontinueAlert: some View {
         Button {
             vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
-                vm.stop()
+                workoutVM.timerStop()
+                workoutVM.updateWorkoutTime()
                 workoutVM.changeViewStatus(.recordingFinishView)
             }
         } label: {
@@ -472,7 +473,8 @@ extension RecordingWorkoutView {
                             case .finishWorkout:
                                 if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
                                     vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
-                                        vm.stop()
+                                        workoutVM.timerStop()
+                                        workoutVM.updateWorkoutTime()
                                         workoutVM.changeViewStatus(.recordingFinishView)
                                     }
                                 }

@@ -14,38 +14,33 @@ class PauseStopwatchVM: ObservableObject {
     private var timer: Timer?
     
     
-    func start() {
-        isRunning = true
-        
-        if isRunning {
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-                self?.elapsedTime += 1
+    func timerStart() {
+        if !isRunning {
+            isRunning = true
+            
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                if self.isRunning {
+                    self.elapsedTime += 1
+                    print(self.elapsedTime)
+                }
+                else {
+                    timer.invalidate()
+                    self.timer = nil
+                }
             }
-        } else {
-            timer?.invalidate()
-            timer = nil
         }
     }
     
-    func stop() {
+    func timerStop() {
         isRunning = false
-        
-        if isRunning {
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-                self?.elapsedTime += 1
-            }
-        } else {
-            timer?.invalidate()
-            timer = nil
-        }
     }
     
     func reset() {
-            elapsedTime = 0
-            isRunning = false
-            timer?.invalidate()
-            timer = nil
-        }
+        elapsedTime = 0
+        isRunning = false
+        timer?.invalidate()
+        timer = nil
+    }
     
     func bgTimer() -> TimeInterval {
         let curTime = Date.now
