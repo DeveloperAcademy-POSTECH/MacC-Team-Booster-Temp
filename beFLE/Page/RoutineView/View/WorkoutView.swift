@@ -52,6 +52,7 @@ extension WorkoutView {
             .onAppear {
                 vm.fetchRoutineId(routineId: routineId)
                 vm.changeViewStatus(.editRoutineView)
+                vm.timerStart()
             }
     }
 }

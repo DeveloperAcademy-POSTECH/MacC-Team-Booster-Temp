@@ -17,6 +17,11 @@ class WorkoutViewModel: ObservableObject {
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     @Published var exercises: [Int] = []
+    
+    @Published var isRunning = false
+    @Published var elapsedTime: TimeInterval = 0
+    @Published private var startTime = Date.now
+    private var timer: Timer?
 }
 
 /// 뷰 상태 전환
@@ -125,5 +130,38 @@ extension WorkoutViewModel {
 
 /// 타이머 관련
 extension WorkoutViewModel {
+    func timerStart() {
+        isRunning = true
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            if self.isRunning {
+                self.elapsedTime += 1
+                print(self.elapsedTime)
+            }
+            else {
+                timer.invalidate()
+                self.timer = nil
+            }
+        }
+    }
     
+    func timerStop() {
+        isRunning = false
+    }
+    
+    func bgTimer() -> TimeInterval {
+        let curTime = Date.now
+        let diffTime = startTime.distance(to: curTime)
+        let result = Double(diffTime.formatted())!
+        elapsedTime = result + elapsedTime
+        
+        return elapsedTime
+    }
+    
+    func timeFormatted() -> String {
+        let hours = Int(elapsedTime) / 3600
+        let minutes = Int(elapsedTime) / 60
+        let seconds = Int(elapsedTime) % 60
+        return String(format: "%01d:%02d:%02d",hours, minutes, seconds)
+    }
 }
