@@ -78,7 +78,7 @@ extension EditRecordingRoutineView {
                         .foregroundColor(.fill_1)
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                         .overlay {
-                            AsyncImage(url: URL(string: exercise.exerciseImageUrl)) { image in
+                            AsyncImage(url: URL(string: exercise.exerciseImageUrl ?? "")) { image in
                                 image
                                     .resizable()
                                     .scaledToFit()

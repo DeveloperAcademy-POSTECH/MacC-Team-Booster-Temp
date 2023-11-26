@@ -104,7 +104,8 @@ struct ResponsePatchUsers: Codable {
 struct Exercise: Codable, Hashable {
     var id: Int
     var name: String
-    var exerciseImageUrl: String
+    // TODO: 임시 옵셔널 처리
+    var exerciseImageUrl: String?
     var numberOfSet: Int
     var recommendReps: String
     var isDone: Bool
