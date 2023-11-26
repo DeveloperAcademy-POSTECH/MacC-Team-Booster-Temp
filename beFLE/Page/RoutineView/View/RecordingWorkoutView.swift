@@ -356,8 +356,12 @@ extension RecordingWorkoutView {
                                 .foregroundColor(.clear)
                                 .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
                                 .overlay {
-                                    Image(systemName: "minus")
-                                        .foregroundColor(.label_900)
+                                    if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
+                                        
+                                    } else {
+                                        Image(systemName: "minus")
+                                            .foregroundColor(.label_900)
+                                    }
                                 }
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
@@ -437,7 +441,6 @@ extension RecordingWorkoutView {
                                 .font(.title1())
                                 .padding(.leading, 30)
                         }
-                        
                         Spacer()
                         
                         // MARK: 다음 세트, 운동, 운동 완료 버튼
