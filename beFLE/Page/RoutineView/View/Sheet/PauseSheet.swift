@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PauseSheet: View {
-    @ObservedObject var viewModel: RecordingWorkoutViewModel
-    @StateObject var pauseViewModel = PauseStopwatchVM()
+    @EnvironmentObject var workoutVM: WorkoutViewModel
+    @StateObject var vm = PauseStopwatchVM()
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -20,7 +20,7 @@ struct PauseSheet: View {
                 Text("운동 일시정지")
                     .font(.headline1())
                     .foregroundColor(.label_700)
-                Text(timeFormatted(pauseViewModel.elapsedTime))
+                Text(timeFormatted(vm.elapsedTime))
                     .font(.largeTitle())
                     .foregroundColor(.label_900)
                 Button {
@@ -37,13 +37,13 @@ struct PauseSheet: View {
                 }
             }
         }
-        .onAppear{
-            pauseViewModel.start()
-            pauseViewModel.elapsedTime = pauseViewModel.elapsedTime + pauseViewModel.bgTimer()
+        .onAppear {
+            vm.timerStart()
+            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
         }
-        .onDisappear{
-            pauseViewModel.reset()
-            viewModel.start()
+        .onDisappear {
+            vm.reset()
+            workoutVM.timerStart()
         }
         .presentationDetents([.height(UIScreen.getHeight(378))])
     }

@@ -120,7 +120,7 @@ extension RecordingWorkoutView {
             }
         }
         .sheet(isPresented: $vm.isPauseSheetShow) {
-            PauseSheet(viewModel: vm)
+            PauseSheet()
         }
         .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
             WorkoutStopAlert
