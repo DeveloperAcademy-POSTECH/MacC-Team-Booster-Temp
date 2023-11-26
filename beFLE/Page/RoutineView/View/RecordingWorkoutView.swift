@@ -99,7 +99,7 @@ extension RecordingWorkoutView {
                 .foregroundColor(.green_main)
                 .font(.headline2())
             
-            Text(workoutVM.elapsedTime.description)
+            Text(workoutVM.timeFormatted())
                 .foregroundColor(.label_900)
                 .font(.headline1())
                 .padding(.horizontal, 10)
