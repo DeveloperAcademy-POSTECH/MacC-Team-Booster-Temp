@@ -17,7 +17,40 @@ class WorkoutViewModel: ObservableObject {
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
     @Published var exercises: [Int] = []
+}
+
+/// 뷰 상태 전환
+extension WorkoutViewModel {
+    func changeViewStatus(_ workoutViewStatus: WorkoutViewStatus) {
+        didChangeViewStatus(workoutViewStatus) {
+            self.workoutViewStatus = workoutViewStatus
+        }
+    }
     
+    func didChangeViewStatus(_ workoutViewStatus: WorkoutViewStatus, completion: @escaping (() -> ())) {
+        switch workoutViewStatus {
+        case .emptyView:
+            fetchRoutineId(routineId: routineId)
+            completion()
+        case .editRoutineView:
+            completion()
+        case .recordingWorkoutView:
+            if !exercises.isEmpty {
+                completion()
+            }
+        case .recordingRoutineView:
+            completion()
+        case .editRecordingRoutineView:
+            completion()
+        case .recordingFinishView:
+            finishWorkout()
+            completion()
+        }
+    }
+}
+
+/// 운동 데이터 관련
+extension WorkoutViewModel {
     func fetchRoutineId(routineId: Int) {
         self.routineId = routineId
         fetchRoutine()
@@ -88,31 +121,9 @@ class WorkoutViewModel: ObservableObject {
             }
         }
     }
+}
+
+/// 타이머 관련
+extension WorkoutViewModel {
     
-    func changeViewStatus(_ workoutViewStatus: WorkoutViewStatus) {
-        didChangeViewStatus(workoutViewStatus) {
-            self.workoutViewStatus = workoutViewStatus
-        }
-    }
-    
-    func didChangeViewStatus(_ workoutViewStatus: WorkoutViewStatus, completion: @escaping (() -> ())) {
-        switch workoutViewStatus {
-        case .emptyView:
-            fetchRoutineId(routineId: routineId)
-            completion()
-        case .editRoutineView:
-            completion()
-        case .recordingWorkoutView:
-            if !exercises.isEmpty {
-                completion()
-            }
-        case .recordingRoutineView:
-            completion()
-        case .editRecordingRoutineView:
-            completion()
-        case .recordingFinishView:
-            finishWorkout()
-            completion()
-        }
-    }
 }
