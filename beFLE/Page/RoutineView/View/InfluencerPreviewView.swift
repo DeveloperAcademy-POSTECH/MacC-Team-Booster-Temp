@@ -11,8 +11,6 @@ import SwiftUI
 ///  - Parameters:
 ///   - maivVM: 탭 전환 함수 호출을 위한 메인 뷰 모델
 struct InfluencerPreviewView: View {
-    @EnvironmentObject var mainVM: MainViewModel
-    
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
@@ -46,7 +44,7 @@ struct InfluencerPreviewView: View {
     
     var aroundTab: some View {
         Button {
-            mainVM.changeToSearchTab()
+            MainViewModel.shared.changeToSearchTab()
         } label: {
             FloatingButton(size: .semiSmall, color: .green_main) {
                 Text("둘러보기")
