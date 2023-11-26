@@ -8,14 +8,9 @@
 import SwiftUI
 
 struct RecordingFinishView: View {
-    let routineId: Int
-    @Binding var elapsedTime: TimeInterval
-    @ObservedObject var recordViewModel: RecordingWorkoutViewModel
-    var burnedKCalories: Int
     @StateObject var vm = RecordingFinishViewModel()
-    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    @EnvironmentObject var workoutVM: WorkoutViewModel
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var recordingWorkoutVM: RecordingWorkoutViewModel
     
     var body: some View {
         ZStack{
@@ -49,7 +44,8 @@ struct RecordingFinishView: View {
                                 Spacer()
                                 HStack(spacing: 40){
                                     VStack(spacing: 3){
-                                        Text(String(recordViewModel.finishTimeFormatted(elapsedTime)))
+                                        // TODO: 운동 시간
+                                        Text("00:00:00")
                                             .font(.title2())
                                             .foregroundColor(.label_900)
                                         Text("운동시간")
@@ -57,7 +53,8 @@ struct RecordingFinishView: View {
                                             .foregroundColor(.label_700)
                                     }
                                     VStack(spacing: 3){
-                                        Text("\(burnedKCalories)kcal")
+                                        // TODO: 칼로리 계산
+                                        Text("0kcal")
                                             .font(.title2())
                                             .foregroundColor(.label_900)
                                         Text("소모칼로리")
@@ -106,7 +103,7 @@ struct RecordingFinishView: View {
                 .padding(.bottom, 30)
         }
         .onAppear {
-            vm.caculateWorkoutVolume(routineId: routineId)
+            vm.caculateWorkoutVolume(routineId: workoutVM.routineId)
         }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
