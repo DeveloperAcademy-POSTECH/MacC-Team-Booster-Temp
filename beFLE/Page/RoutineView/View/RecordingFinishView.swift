@@ -65,7 +65,7 @@ extension RecordingFinishView {
                     HStack(spacing: 40) {
                         VStack(spacing: 3) {
                             // TODO: 운동 시간
-                            Text("00:00:00")
+                            Text("\(vm.caculateWorkoutTime(elapsedTime: workoutVM.elapsedTime))")
                                 .font(.title2())
                                 .foregroundColor(.label_900)
                             Text("운동시간")
