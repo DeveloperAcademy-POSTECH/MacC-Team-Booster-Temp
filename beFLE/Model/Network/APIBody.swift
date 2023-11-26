@@ -18,7 +18,7 @@ struct ExerciseSet: Codable, Hashable {
 struct AlternativeExercise: Codable, Hashable {
     var alternativeExerciseId: Int
     var name: String
-    var exerciseImageUrl: String
+    var exerciseImageUrl: String?
 }
 
 /// PostRoutinesExercisesSets

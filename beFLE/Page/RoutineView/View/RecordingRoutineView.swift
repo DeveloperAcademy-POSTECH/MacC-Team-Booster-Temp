@@ -9,11 +9,8 @@ import SwiftUI
 
 /// 운동 기록 중 운동 목록을 보기 위한 뷰
 struct RecordingRoutineView: View {
-    let routineId: Int
-    var burnedKCalories: Int
-    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
+    @EnvironmentObject var workoutVM: WorkoutViewModel
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var recordViewModel: RecordingWorkoutViewModel
     
     var body: some View {
         VStack {
@@ -30,17 +27,14 @@ struct RecordingRoutineView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .onAppear{
-            recordViewModel.start()
-        }
-        .onDisappear{
-            recordViewModel.stop()
-        }
     }
-    
+}
+
+/// 네비게이션 타이틀
+extension RecordingRoutineView {
     var BackButton: some View {
         Button {
-            dismiss()
+            workoutVM.changeViewStatus(.recordingWorkoutView)
         } label: {
             Image(systemName: "chevron.left")
                 .font(.headline2())
@@ -49,20 +43,22 @@ struct RecordingRoutineView: View {
     }
     
     var EditButton: some View {
-        NavigationLink {
-            EditRecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories)
-                .environmentObject(editRoutineVM)
+        Button {
+            workoutVM.changeViewStatus(.editRecordingRoutineView)
         } label: {
             Text("편집")
                 .font(.headline1())
                 .foregroundColor(.green_main)
         }
     }
-    
+}
+
+/// 운동 정보
+extension RecordingRoutineView {
     var WorkoutList: some View {
         VStack {
             HStack {
-                Text(editRoutineVM.routine.part)
+                Text(workoutVM.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
                 
@@ -70,16 +66,12 @@ struct RecordingRoutineView: View {
             }
             
             ScrollView {
-                ForEach(0..<editRoutineVM.routine.exercises.count, id: \.self) { index in
+                ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     Button {
-                        editRoutineVM.currentWorkoutIndex = index
-                        editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[index].id)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                            // 여기에 실행할 작업 추가
-                                            dismiss()
-                                        }
+                        workoutVM.currentWorkoutIndex = pair.offset
+                        workoutVM.fetchExerciseId(exerciseId: pair.element.id)
                     } label: {
-                        WorkoutCell(index: index)
+                        WorkoutCell(index: pair.offset)
                     }
                 }
             }
@@ -94,7 +86,7 @@ struct RecordingRoutineView: View {
                 .foregroundColor(.fill_1)
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .overlay {
-                    AsyncImage(url: URL(string: editRoutineVM.routine.exercises[index].exerciseImageUrl)) { image in
+                    AsyncImage(url: URL(string: workoutVM.routine.exercises[index].exerciseImageUrl)) { image in
                         image
                             .resizable()
                             .scaledToFit()
@@ -106,27 +98,27 @@ struct RecordingRoutineView: View {
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    if editRoutineVM.routine.exercises[index].id == editRoutineVM.workout.exerciseId {
+                    if workoutVM.routine.exercises[index].id == workoutVM.exercise.exerciseId {
                         Image(systemName: "flame.fill")
                             .font(.headline1())
                             .foregroundColor(.green_main)
                     }
-                    Text(editRoutineVM.routine.exercises[index].name)
+                    Text(workoutVM.routine.exercises[index].name)
                         .font(.headline1())
-                        .foregroundColor(editRoutineVM.routine.exercises[index].id == editRoutineVM.workout.exerciseId ? .green_main : .label_900)
+                        .foregroundColor(workoutVM.routine.exercises[index].id == workoutVM.exercise.exerciseId ? .green_main : .label_900)
                         .multilineTextAlignment(.leading)
                         .allowsTightening(true)
                     Spacer()
                 }
                 HStack(spacing: 6) {
-                    Text("\(editRoutineVM.routine.exercises[index].numberOfSet)세트")
+                    Text("\(workoutVM.routine.exercises[index].numberOfSet)세트")
                         .font(.body2())
                         .foregroundColor(.label_700)
                     Text("|")
                         .font(.body2())
                         .foregroundColor(.label_400)
                         .scaleEffect(0.8)
-                    Text("\(editRoutineVM.routine.exercises[index].recommendReps)회")
+                    Text("\(workoutVM.routine.exercises[index].recommendReps)회")
                         .font(.body2())
                         .foregroundColor(.label_700)
                 }
@@ -134,7 +126,7 @@ struct RecordingRoutineView: View {
             .padding(.horizontal)
             Spacer()
             
-            if editRoutineVM.routine.exercises[index].isDone {
+            if workoutVM.routine.exercises[index].isDone {
                 CheckButton()
             }
             else {

@@ -7,113 +7,94 @@
 
 import SwiftUI
 
+enum NextButtonStatus {
+    case nextSet
+    case nextWorkout
+    case finishWorkout
+}
+
 /// 운동 시작 했을 때 기록하기 위한 뷰
-/// - Parameters:
-///  - routineId: 정보를 조회할 루틴의 id
-///  - exerciseId: 정보를 조회할 루틴의 운동 id
 struct RecordingWorkoutView: View {
-    let routineId: Int
-    let exerciseId: Int
-    @StateObject var vm = RecordingWorkoutViewModel()
-    @EnvironmentObject var editRoutineVM: EditRoutineViewModel
-    var burnedKCalories: Int
-    @Environment(\.dismiss) var dismiss
-    @FocusState private var isFocused: Bool
+    @FocusState var isFocused: Bool
     @Namespace var topID
     @Namespace var refreshID
     
+    @StateObject var vm = RecordingWorkoutViewModel()
+    @EnvironmentObject var workoutVM: WorkoutViewModel
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        if vm.isFinish {
-            RecordingFinishView(routineId: routineId, elapsedTime: $vm.elapsedTime, recordViewModel: vm, burnedKCalories: burnedKCalories)
-        }
-        else {
-            ZStack {
-                Color.gray_900.ignoresSafeArea()
-                
-                ScrollViewReader { proxy in
-                    ZStack {
-                        ScrollView {
-                            Spacer()
-                                .frame(height: 0)
-                                .id(refreshID)
-                            WorkoutInfomation
-                            WorkoutImageAndTip
-                            Spacer()
-                            WorkoutSetButton
-                            WorkoutSetList
-                                .id(topID)
-                            RelatedContent
-                            FloatingButton(size: .medium) {}
-                            FloatingButton(size: .medium) {}
-                        }
-                        .scrollIndicators(.hidden)
-                        
-                        bottomGradientView(proxy: proxy)
-                        workoutButton(proxy: proxy)
+        ZStack {
+            Color.gray_900.ignoresSafeArea()
+            
+            ScrollViewReader { proxy in
+                ZStack {
+                    ScrollView {
+                        TopSpace
+                        WorkoutInfomation
+                        WorkoutImageAndTip
+                        Spacer()
+                        WorkoutSetButton
+                        WorkoutSetList
+                        RelatedContent
+                        FloatingButton(size: .medium) {}
                     }
-                }
-            }
-            .onAppear {
-                vm.start()
-                vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
-                vm.currentSet = 0
-                editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: exerciseId)
-            }
-            .onDisappear{
-                vm.stop()
-            }
-            .onTapGesture {
-                isFocused = false
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    StopButton
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    NavigationTitle
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    ActionSheet
-                }
-            }
-            .navigationBarBackButtonHidden()
-            .confirmationDialog(editRoutineVM.workout.name, isPresented: $editRoutineVM.isEditWorkoutActionShow, titleVisibility: .visible) {
-                AlternativeActionSheet
-            }
-            .sheet(isPresented: $editRoutineVM.isAlternateWorkoutSheetShow) {
-                AlternateWorkoutSheet(routineId: routineId, exerciseId: exerciseId)
-                    .environmentObject(editRoutineVM)
-                
-            }
-            .sheet(isPresented: $vm.isPauseSheetShow) {
-                PauseSheet(viewModel: vm)
-            }
-            .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
-                WorkoutStopAlert
-            } message: {
-                Text("운동기록은 삭제됩니다.")
-            }
-            .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
-                Button {
-                    vm.finishWorkout(routineId: routineId)
-                } label: {
-                    Text("운동완료")
-                }
-                
-                Button {
+                    .scrollIndicators(.hidden)
                     
-                } label: {
-                    Text("확인")
+                    bottomGradientView(proxy: proxy)
+                    workoutButton(proxy: proxy)
                 }
             }
         }
+        .onAppear {
+            vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
+            vm.start()
+            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
+            vm.currentSet = 0
+        }
+        .onDisappear {
+            vm.stop()
+        }
+        .onTapGesture {
+            isFocused = false
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                StopButton
+            }
+            
+            ToolbarItem(placement: .principal) {
+                NavigationTitle
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                ActionSheet
+            }
+        }
+        .navigationBarBackButtonHidden()
+        .confirmationDialog(vm.exercise.name, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
+            AlternativeActionSheet
+        }
+        .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
+            AlternateWorkoutSheet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
+        }
+        .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
+            DiscontinueAlert
+        }
+    }
+}
+
+/// 네비게이션 타이틀 및 얼럿, 액션, 시트
+extension RecordingWorkoutView {
+    var TopSpace: some View {
+        Spacer()
+            .frame(height: 0)
+            .id(refreshID)
     }
     
     @ViewBuilder
     var NavigationTitle: some View {
-        HStack (spacing: 0){
+        HStack (spacing: 0) {
             Image(systemName: "flame.fill")
                 .foregroundColor(.green_main)
                 .font(.headline2())
@@ -138,37 +119,24 @@ struct RecordingWorkoutView: View {
                     }
             }
         }
-    }
-    
-    var ActionSheet: some View {
-        Button {
-            editRoutineVM.isEditWorkoutActionShow = true
-        } label: {
-            Image(systemName: "ellipsis")
-                .foregroundColor(.label_700)
-                .font(.headline1())
+        .sheet(isPresented: $vm.isPauseSheetShow) {
+            PauseSheet(viewModel: vm)
+        }
+        .alert("운동을 중단하시겠습니까?", isPresented: $vm.isStopAlertShow) {
+            WorkoutStopAlert
+        } message: {
+            Text("운동기록은 삭제됩니다.")
         }
     }
     
     @ViewBuilder
-    var AlternativeActionSheet: some View {
+    var StopButton: some View {
         Button {
-            editRoutineVM.isAlternateWorkoutSheetShow = true
+            vm.isStopAlertShow = true
         } label: {
-            Text("운동 대체")
-        }
-        
-        Button {
-            editRoutineVM.isDeleteWorkoutAlertShow = true
-        } label: {
-            Text("삭제")
-        }
-        
-        
-        Button(role: .cancel) {
-            
-        } label: {
-            Text("취소")
+            Image(systemName: "xmark")
+                .foregroundColor(.label_700)
+                .font(.headline1())
         }
     }
     
@@ -182,14 +150,63 @@ struct RecordingWorkoutView: View {
         }
     }
     
+    var ActionSheet: some View {
+        Button {
+            vm.isEditWorkoutActionShow = true
+        } label: {
+            Image(systemName: "ellipsis")
+                .foregroundColor(.label_700)
+                .font(.headline1())
+        }
+    }
+    
+    @ViewBuilder
+    var AlternativeActionSheet: some View {
+        Button {
+            vm.isAlternateWorkoutSheetShow = true
+        } label: {
+            Text("운동 대체")
+        }
+        Button {
+            vm.isDeleteWorkoutAlertShow = true
+        } label: {
+            Text("삭제")
+        }
+        Button(role: .cancel) {
+            
+        } label: {
+            Text("취소")
+        }
+    }
+    
+    @ViewBuilder
+    var DiscontinueAlert: some View {
+        Button {
+            vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
+                vm.stop()
+                workoutVM.changeViewStatus(.recordingFinishView)
+            }
+        } label: {
+            Text("운동완료")
+        }
+        Button {
+            workoutVM.changeViewStatus(.recordingRoutineView)
+        } label: {
+            Text("확인")
+        }
+    }
+}
+
+/// 운동 정보 관련
+extension RecordingWorkoutView {
     var WorkoutInfomation: some View {
         VStack {
             HStack {
-                Text("\(editRoutineVM.currentWorkoutIndex + 1) / \(editRoutineVM.routine.exercises.count)")
+                Text("\(workoutVM.currentWorkoutIndex + 1) / \(workoutVM.exercises.count)")
                     .foregroundColor(.label_700)
                 Text("|")
                     .foregroundColor(.label_400)
-                Text(editRoutineVM.workout.part)
+                Text(vm.exercise.part)
                     .foregroundColor(.label_700)
                 Spacer()
             }
@@ -198,7 +215,7 @@ struct RecordingWorkoutView: View {
             Spacer()
             
             HStack {
-                Text(editRoutineVM.workout.name)
+                Text(vm.exercise.name)
                     .font(.title1())
                     .foregroundColor(.label_900)
                     .multilineTextAlignment(.leading)
@@ -211,10 +228,10 @@ struct RecordingWorkoutView: View {
     }
     
     var WorkoutImageAndTip: some View {
-        TabView(selection: $vm.tabSelection){
-            VStack{
-                ZStack{
-                    AsyncImage(url: URL(string: editRoutineVM.workout.exerciseImageUrl)) { image in
+        TabView(selection: $vm.tabSelection) {
+            VStack {
+                ZStack {
+                    AsyncImage(url: URL(string: vm.exercise.exerciseImageUrl)) { image in
                         image
                             .resizable()
                             .scaledToFit()
@@ -251,15 +268,15 @@ struct RecordingWorkoutView: View {
             .tag(0)
             
             ZStack {
-                VStack{
+                VStack {
                     RoundedRectangle(cornerRadius: 8)
                         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                         .foregroundColor(.gray_800)
                         .overlay {
-                            ScrollView{
+                            ScrollView {
                                 VStack {
                                     HStack {
-                                        AsyncImage(url: URL(string: editRoutineVM.workout.faceImageUrl)) { image in
+                                        AsyncImage(url: URL(string: vm.exercise.faceImageUrl)) { image in
                                             image
                                                 .resizable()
                                                 .scaledToFit()
@@ -273,7 +290,7 @@ struct RecordingWorkoutView: View {
                                     }
                                     .padding(.bottom)
                                     HStack{
-                                        Text(editRoutineVM.workout.tip)
+                                        Text(vm.exercise.tip)
                                             .font(.body())
                                             .foregroundColor(.label_900)
                                             .padding(.horizontal, 1.9)
@@ -298,6 +315,33 @@ struct RecordingWorkoutView: View {
         .tabViewStyle(.page)
     }
     
+    @ViewBuilder
+    var RelatedContent: some View {
+        if !vm.exercise.videoUrls.isEmpty {
+            VStack {
+                HStack {
+                    Text("관련 영상")
+                        .font(.title2())
+                        .foregroundColor(.label_900)
+                    Spacer()
+                }
+                .padding(.bottom, 13)
+                
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(vm.exercise.videoUrls, id: \.self) { videoUrl in
+                            RelatedContentCard(videoID: videoUrl)
+                        }
+                    }
+                }
+            }
+            .padding([.horizontal, .bottom])
+        }
+    }
+}
+
+/// 운동 세트 관련
+extension RecordingWorkoutView {
     var WorkoutSetButton: some View {
         HStack {
             RoundedRectangle(cornerRadius: 4)
@@ -306,36 +350,23 @@ struct RecordingWorkoutView: View {
                 .overlay {
                     HStack {
                         Button {
-                            if editRoutineVM.workout.sets.count > 1 {
-                                vm.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                    editRoutineVM.workout.sets = $0
-                                }
-                            }
+                            vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
                                 .overlay {
-                                    if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                                        
-                                    } else {
-                                        Image(systemName: "minus")
-                                            .foregroundColor(.label_900)
-                                    }
+                                    Image(systemName: "minus")
+                                        .foregroundColor(.label_900)
                                 }
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
-                        .disabled(editRoutineVM.workout.sets.count <= 1 || vm.currentSet == editRoutineVM.workout.sets.count - 1)
                         
-                        Text("\(editRoutineVM.workout.sets.count)세트")
+                        Text("\(vm.exercise.sets.count)세트")
                             .foregroundColor(.label_700)
                         
                         Button {
-                            if editRoutineVM.workout.sets.count < 10 {
-                                vm.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                                    editRoutineVM.workout.sets = $0
-                                }
-                            }
+                            vm.increseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
@@ -345,7 +376,6 @@ struct RecordingWorkoutView: View {
                                         .foregroundColor(.label_900)
                                 }
                         }
-                        .disabled(editRoutineVM.workout.sets.count >= 10)
                     }
                     .font(.body())
                 }
@@ -357,12 +387,11 @@ struct RecordingWorkoutView: View {
     
     @ViewBuilder
     var WorkoutSetList: some View {
-        VStack{
-            if !editRoutineVM.workout.sets.isEmpty {
-                //                ForEach(0..<editRoutineVM.workout.sets.count, id: \.self) { index in
-                ForEach(editRoutineVM.workout.sets.indices, id: \.self) { index in
+        VStack {
+            if !vm.exercise.sets.isEmpty {
+                ForEach(vm.exercise.sets.indices, id: \.self) { index in
                     // TODO: 무게 조정 api 호출
-                    WorkoutSetCard(index: index + 1, routineId: routineId, exerciseId: exerciseId, set: $editRoutineVM.workout.sets[index], isFocused: $isFocused)
+                    WorkoutSetCard(index: index + 1, routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, set: $vm.exercise.sets[index], isFocused: $isFocused)
                         .environmentObject(vm)
                         .overlay {
                             if index == vm.currentSet {
@@ -376,165 +405,122 @@ struct RecordingWorkoutView: View {
             }
         }
         .padding(.bottom, 70)
+        .id(topID)
     }
-    
+}
+
+/// 운동 컨트롤 버튼
+extension RecordingWorkoutView {
     func bottomGradientView(proxy: ScrollViewProxy) -> some View {
-        VStack{
+        VStack {
             Spacer()
-            isFocused ? nil :
-            LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
-                .frame(height: UIScreen.getHeight(150), alignment: .bottom)
-                .onTapGesture {
-                    // Handle taps on the LinearGradient if needed
-                }
-                .allowsHitTesting(false)
+            if !isFocused {
+                LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
+                    .frame(height: UIScreen.getHeight(150), alignment: .bottom)
+                    .allowsHitTesting(false)
+            }
         }
         .ignoresSafeArea()
-
     }
     
     func workoutButton(proxy: ScrollViewProxy) -> some View {
         VStack {
             Spacer()
-            isFocused ? nil :
-            FloatingButton(size: .large, color: .gray_700) {
-                HStack {
-                    NavigationLink {
-                        RecordingRoutineView(routineId: routineId, burnedKCalories: burnedKCalories, recordViewModel: vm)
-                            .environmentObject(editRoutineVM)
-                    } label: {
-                        Image(systemName: "list.bullet")
-                            .foregroundColor(.green_main)
-                            .font(.title1())
-                            .padding(.leading, 30)
-                    }
-                    
-                    Spacer()
-                    
-                    // MARK: 다음 세트, 운동, 운동 완료 버튼
-                    Button {
-                        if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                            withAnimation {
-                                proxy.scrollTo(refreshID, anchor: .bottom)
-                            }
+            if !isFocused {
+                FloatingButton(size: .large, color: .gray_700) {
+                    HStack {
+                        Button {
+                            workoutVM.changeViewStatus(.recordingRoutineView)
+                        } label: {
+                            Image(systemName: "list.bullet")
+                                .foregroundColor(.green_main)
+                                .font(.title1())
+                                .padding(.leading, 30)
                         }
-                        if vm.currentSet == 2 {
-                            withAnimation {
-                                proxy.scrollTo(topID, anchor: .bottom)
+                        Spacer()
+                        
+                        // MARK: 다음 세트, 운동, 운동 완료 버튼
+                        Button {
+                            if vm.currentSet >= vm.exercise.sets.count - 1 {
+                                withAnimation {
+                                    proxy.scrollTo(refreshID, anchor: .bottom)
+                                }
                             }
-                        }
-                        if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                            if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
-                                vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
-                                    editRoutineVM.workout.sets[vm.currentSet].isDone = true
-                                    
-                                    for exercise in editRoutineVM.routine.exercises {
-                                        if exercise.isDone == false {
-                                            vm.isDiscontinuewAlertShow = true
-                                            return
+                            else if vm.currentSet == 2 {
+                                withAnimation {
+                                    proxy.scrollTo(topID, anchor: .bottom)
+                                }
+                            }
+                            
+                            switch vm.nextButtonStatus {
+                            case .nextSet:
+                                vm.nextSet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+                                    if vm.currentSet >= vm.exercise.sets.count - 1 {
+                                        if workoutVM.currentWorkoutIndex >= workoutVM.exercises.count - 1 {
+                                            vm.nextButtonStatus = .finishWorkout
+                                        }
+                                        else {
+                                            vm.nextButtonStatus = .nextWorkout
                                         }
                                     }
-                                    vm.finishWorkout(routineId: routineId)
                                 }
-                            }
-                            else {
-                                vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) { _ in
-                                    editRoutineVM.workout.sets[vm.currentSet].isDone = true
-                                    
-                                    editRoutineVM.currentWorkoutIndex += 1
-                                    editRoutineVM.fetchWorkout(routineId: routineId, exerciseId: editRoutineVM.routine.exercises[editRoutineVM.currentWorkoutIndex].id)
-                                    if editRoutineVM.currentWorkoutIndex != editRoutineVM.routine.exercises.count {
-                                        vm.currentSet = 0
+                            case .nextWorkout:
+                                vm.nextWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+                                    vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exercises[workoutVM.currentWorkoutIndex + 1])
+                                    workoutVM.fetchNextWorkout()
+                                }
+                            case .finishWorkout:
+                                if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
+                                    vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
+                                        vm.stop()
+                                        workoutVM.changeViewStatus(.recordingFinishView)
                                     }
                                 }
-                            }
-                        }
-                        else {
-                            vm.finishSet(routineId: routineId, exerciseId: exerciseId, setId: editRoutineVM.workout.sets[vm.currentSet].setId) {
-                                editRoutineVM.workout.sets[vm.currentSet].reps = $0.reps
-                                if $0.weight != nil {
-                                    editRoutineVM.workout.sets[vm.currentSet].weight = $0.weight
-                                }
-                                editRoutineVM.workout.sets[vm.currentSet].isDone = $0.isDone
-                                vm.currentSet += 1
-                            }
-                        }
-                    } label: {
-                        if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                            if editRoutineVM.currentWorkoutIndex + 1 == editRoutineVM.routine.exercises.count {
-                                FloatingButton(size: .small, color: .red_main) {
-                                    Text("운동 완료")
-                                        .font(.button1())
-                                        .foregroundColor(.label_900)
+                                else {
+                                    vm.isDiscontinuewAlertShow = true
                                 }
                             }
-                            else {
-                                FloatingButton(size: .small, color: .green_main) {
-                                    HStack {
-                                        Text("다음 운동")
-                                            .font(.button1())
-                                        Image(systemName: "chevron.right")
-                                            .font(.button2())
-                                    }
-                                    .foregroundColor(.gray_900)
-                                }
-                            }
+                        } label: {
+                            NextButton
                         }
-                        else {
-                            FloatingButton(size: .small, color: .green_main) {
-                                HStack {
-                                    Text("다음 세트")
-                                        .font(.button1())
-                                    Image(systemName: "chevron.right")
-                                        .font(.button2())
-                                }
-                                .foregroundColor(.gray_900)
-                            }
-                        }
+                        .disabled(!vm.isCanTappable)
+                        //: - 다음 버튼
                     }
-                    .disabled(!vm.isCanTappable)
-                    //: - 다음 버튼
+                    .padding(.trailing, 8)
                 }
-                .padding(.trailing, 8)
             }
         }
-    }
-    
-    var RelatedContent: some View {
-        VStack { editRoutineVM.workout.videoUrls.count >= 1 ?
-            HStack {
-                Text("관련 영상")
-                    .font(.title2())
-                    .foregroundColor(.label_900)
-                Spacer()
-            }
-            .padding(.bottom, 13) : nil
-            
-            ScrollView(.horizontal) {
-                HStack{
-                    ForEach(editRoutineVM.workout.videoUrls, id: \.self) { videoUrl in
-                        RelatedContentCard(videoID: videoUrl)
-                    }
-                }
-                //                ForEach(workoutOngoingVM.workoutModel.relatedContentURL.indices) { index in
-                //                    HStack{
-                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                //                        RelatedContentCard(videoNum: 1, contentURL: workoutOngoingVM.workoutModel.relatedContentURL[index])
-                //                    }
-                //                }
-            }
-        }
-        .padding([.horizontal, .bottom])
     }
     
     @ViewBuilder
-    var StopButton: some View {
-        Button {
-            vm.isStopAlertShow = true
-        } label: {
-            Image(systemName: "xmark")
-                .foregroundColor(.label_700)
-                .font(.headline1())
+    var NextButton: some View {
+        switch vm.nextButtonStatus {
+        case .nextSet:
+            FloatingButton(size: .semiSmall, color: .green_main) {
+                HStack {
+                    Text("다음 세트")
+                        .font(.button1())
+                    Image(systemName: "chevron.right")
+                        .font(.button2())
+                }
+                .foregroundColor(.gray_900)
+            }
+        case .nextWorkout:
+            FloatingButton(size: .semiSmall, color: .green_main) {
+                HStack {
+                    Text("다음 운동")
+                        .font(.button1())
+                    Image(systemName: "chevron.right")
+                        .font(.button2())
+                }
+                .foregroundColor(.gray_900)
+            }
+        case .finishWorkout:
+            FloatingButton(size: .semiSmall, color: .red_main) {
+                Text("운동 완료")
+                    .font(.button1())
+                    .foregroundColor(.label_900)
+            }
         }
     }
 }

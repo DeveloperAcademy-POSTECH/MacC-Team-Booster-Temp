@@ -21,7 +21,6 @@ struct RoutineView: View {
             }
         }
         .onAppear {
-            print("asdas")
             vm.fetchTodayRoutines()
         }
     }

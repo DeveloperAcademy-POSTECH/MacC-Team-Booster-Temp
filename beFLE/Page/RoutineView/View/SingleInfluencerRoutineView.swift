@@ -186,7 +186,7 @@ extension SingleInfluencerRoutineView {
                         .padding(.bottom, 10)
                     } else {
                         NavigationLink {
-                            EditRoutineView(routineId: routine.routineId)
+                            WorkoutView(routineId: routine.routineId)
                         } label: {
                             FloatingButton(size: .semiMedium, color: .green_main) {
                                 Text("운동 시작")
