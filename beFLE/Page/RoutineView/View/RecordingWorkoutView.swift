@@ -356,12 +356,8 @@ extension RecordingWorkoutView {
                                 .foregroundColor(.clear)
                                 .frame(width: UIScreen.getWidth(18), height: UIScreen.getHeight(18))
                                 .overlay {
-                                    if vm.currentSet == editRoutineVM.workout.sets.count - 1 {
-                                        
-                                    } else {
-                                        Image(systemName: "minus")
-                                            .foregroundColor(.label_900)
-                                    }
+                                    Image(systemName: "minus")
+                                        .foregroundColor(.label_900)
                                 }
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))

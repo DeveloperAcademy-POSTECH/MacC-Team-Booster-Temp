@@ -343,8 +343,8 @@
 		D569C78F2AF9456900FDADED /* LaunchView */ = {
 			isa = PBXGroup;
 			children = (
-				F8A4A62B2B0F63D500046C00 /* LaunchView.swift */,
 				0DA327592AE1321600319BAB /* MainView.swift */,
+				F8A4A62B2B0F63D500046C00 /* LaunchView.swift */,
 				F8DFEAEB2AFA190F00BC721B /* OnboardingView.swift */,
 				F8DACB5B2B0400E700C3E95C /* ViewModel */,
 			);

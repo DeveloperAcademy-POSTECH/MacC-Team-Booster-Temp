@@ -21,7 +21,7 @@ struct AlternativeWorkoutCard: View {
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                         .foregroundColor(.fill_1)
                         .overlay {
-                            AsyncImage(url: URL(string: alternativeWorkout.exerciseImageUrl)) { image in
+                            AsyncImage(url: URL(string: alternativeWorkout.exerciseImageUrl ?? "")) { image in
                                 image
                                     .resizable()
                                     .scaledToFit()
