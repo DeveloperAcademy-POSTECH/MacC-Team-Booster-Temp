@@ -105,11 +105,9 @@ extension WorkoutViewModel {
     }
     
     func deleteWorkout(exerciseId: Int)  {
-        print("try")
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
-                print("success")
                 self.fetchRoutine()
             case .failure(let error):
                 print(error.localizedDescription)
