@@ -130,6 +130,17 @@ extension WorkoutViewModel {
 
 /// 타이머 관련
 extension WorkoutViewModel {
+    func updateWorkoutTime() {
+        GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatted()), type: ResponsePatchUsersRoutinesFinish.self) {
+            switch $0 {
+            case .success:
+                break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func timerStart() {
         if !isRunning {
             isRunning = true

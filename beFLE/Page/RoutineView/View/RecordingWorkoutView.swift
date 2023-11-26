@@ -184,6 +184,7 @@ extension RecordingWorkoutView {
         Button {
             vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
                 workoutVM.timerStop()
+                workoutVM.updateWorkoutTime()
                 workoutVM.changeViewStatus(.recordingFinishView)
             }
         } label: {
@@ -473,6 +474,7 @@ extension RecordingWorkoutView {
                                 if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
                                     vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
                                         workoutVM.timerStop()
+                                        workoutVM.updateWorkoutTime()
                                         workoutVM.changeViewStatus(.recordingFinishView)
                                     }
                                 }
