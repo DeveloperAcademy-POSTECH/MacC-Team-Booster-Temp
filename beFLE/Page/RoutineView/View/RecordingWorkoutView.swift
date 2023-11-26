@@ -51,8 +51,11 @@ struct RecordingWorkoutView: View {
             workoutVM.timerStart()
 //            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
             vm.currentSet = 0
+            vm.nextButtonStatus = .nextSet
         }
         .onDisappear {
+            vm.currentSet = 0
+            vm.nextButtonStatus = .nextSet
             workoutVM.timerStop()
         }
         .onTapGesture {
@@ -362,6 +365,7 @@ extension RecordingWorkoutView {
                                 }
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
+                        .disabled(!vm.isCanTappable)
                         
                         Text("\(vm.exercise.sets.count)세트")
                             .foregroundColor(.label_700)
@@ -377,6 +381,7 @@ extension RecordingWorkoutView {
                                         .foregroundColor(.label_900)
                                 }
                         }
+                        .disabled(!vm.isCanTappable)
                     }
                     .font(.body())
                 }
