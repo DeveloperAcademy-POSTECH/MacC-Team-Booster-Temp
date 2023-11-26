@@ -67,9 +67,6 @@ class WholeRoutineViewModel: ObservableObject {
             }
         }
         
-        print(routinesByMonth)
-        print(routinesByMonth.sorted(by: { Int($0.key)! > Int($1.key)! }))
-        
         return routinesByMonth
     }
     

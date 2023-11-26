@@ -14,31 +14,50 @@ class GeneralAPIManger {
     ///     - for target: target API
     ///     - type: 디코딩 할 구조체 타입
     ///     - compeletion: 디코딩 된 데이터 또는 에러를 반환
-    static func request<T: Codable>(for target: GeneralAPI, type: T.Type? = nil, completion: @escaping ((Result<T, MoyaError>) -> ())) {
+    static func request<T: Codable>(for target: GeneralAPI, type: T.Type, completion: @escaping ((Result<T, MoyaError>) -> ())) {
         let provider = MoyaProvider<GeneralAPI>()
         
         provider.request(target) { result in
             switch result {
             case .success(let resp):
                 if (200..<300).contains(resp.statusCode) {
-                    if let type = type {
-                        if let decodedData = try? JSONDecoder().decode(type, from: resp.data) {
-                            completion(.success(decodedData))
-                        }
-                        else {
-                            completion(.failure(.requestMapping("decode error")))
-                        }
+                    if let decodedData = try? JSONDecoder().decode(type, from: resp.data) {
+                        completion(.success(decodedData))
                     }
                     else {
-                        completion(.failure(.statusCode(resp)))
+                        // TODO: 디코딩 에러 교체
+                        completion(.failure(.stringMapping(resp)))
                     }
                 }
                 else {
-                    #if DEBUG
+#if DEBUG
                     if 403 == resp.statusCode {
                         print("Authentication failed")
                     }
-                    #endif
+#endif
+                    completion(.failure(.statusCode(resp)))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    static func request(for target: GeneralAPI, completion: @escaping ((Result<Int, MoyaError>) -> ())) {
+        let provider = MoyaProvider<GeneralAPI>()
+        
+        provider.request(target) { result in
+            switch result {
+            case .success(let resp):
+                if (200..<300).contains(resp.statusCode) {
+                    completion(.success(resp.statusCode))
+                }
+                else {
+#if DEBUG
+                    if 403 == resp.statusCode {
+                        print("Authentication failed")
+                    }
+#endif
                     completion(.failure(.statusCode(resp)))
                 }
             case .failure(let error):

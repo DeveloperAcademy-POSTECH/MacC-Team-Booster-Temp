@@ -101,17 +101,12 @@ extension WorkoutViewModel {
     }
     
     func deleteWorkout(exerciseId: Int)  {
-        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
+        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
-                break
+                self.fetchRoutine()
             case .failure(let error):
-                if error.response?.statusCode == 200 {
-                    self.fetchRoutine()
-                }
-                else {
-                    print(error.localizedDescription)
-                }
+                print(error.localizedDescription)
             }
         }
     }
@@ -139,7 +134,7 @@ extension WorkoutViewModel {
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm:ss"
         
-        GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatter.string(from: Calendar.current.date(from: time)!)), type: ResponsePatchUsersRoutinesFinish.self) {
+        GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatter.string(from: Calendar.current.date(from: time)!))) {
             switch $0 {
             case .success:
                 break
@@ -156,7 +151,6 @@ extension WorkoutViewModel {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 if self.isRunning {
                     self.elapsedTime += 1
-                    print(self.elapsedTime)
                 }
                 else {
                     timer.invalidate()

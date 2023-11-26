@@ -21,7 +21,6 @@ class PauseStopwatchVM: ObservableObject {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 if self.isRunning {
                     self.elapsedTime += 1
-                    print(self.elapsedTime)
                 }
                 else {
                     timer.invalidate()

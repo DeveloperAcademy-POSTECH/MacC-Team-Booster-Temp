@@ -71,8 +71,7 @@ extension ProfileViewModel {
         guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
         guard let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") else { return }
         
-        // TODO: nil 리스폰스 처리
-        GeneralAPIManger.request(for: .PostUsersMe(accessToken: accessToken, refreshToken: refreshToken), type: ResponsePostLogin.self ) {
+        GeneralAPIManger.request(for: .PostUsersMe(accessToken: accessToken, refreshToken: refreshToken)) {
             switch $0 {
             case .success:
                 self.removeNickname()

@@ -16,11 +16,9 @@ class SubscribeViewModel: ObservableObject {
     @Published var loggedIn = true
     
     func fetchInfluencer(influencerId: Int) {
-        print("asdasd")
         GeneralAPIManger.request(for: .GetInfluencersId(id: influencerId), type: ResponseGetInfluencersId.self) {
             switch $0 {
             case .success(let influencer):
-                print(influencer)
                 self.influencer = influencer
             case .failure(let error):
                 print(error.localizedDescription)

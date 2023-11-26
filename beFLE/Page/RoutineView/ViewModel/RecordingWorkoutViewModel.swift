@@ -48,14 +48,11 @@ class RecordingWorkoutViewModel: ObservableObject {
 /// 운동 패치
 extension RecordingWorkoutViewModel {
     func fetchExercise(routineId: Int, exerciseId: Int) {
-        print(routineId, exerciseId)
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success(let exercise):
-                print(exercise)
                 self.exercise = exercise
             case .failure(let error):
-                print("error")
                 print(error.localizedDescription)
             }
         }
