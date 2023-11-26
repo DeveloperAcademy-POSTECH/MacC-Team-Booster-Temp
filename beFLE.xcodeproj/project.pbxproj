@@ -35,7 +35,6 @@
 		D51DFC422B07824D001B28EC /* MockUpRecordExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DFC412B07824D001B28EC /* MockUpRecordExampleView.swift */; };
 		D51DFC452B07D5B9001B28EC /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DFC442B07D5B9001B28EC /* RoundedShape.swift */; };
 		D5436CA52AFB6B8000D82943 /* ManageProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */; };
-		D5517E842B0C751E00F02995 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5517E832B0C751E00F02995 /* AppState.swift */; };
 		D569C78B2AF9440600FDADED /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569C78A2AF9440600FDADED /* RoutineViewModel.swift */; };
 		D56A0C6D2AF21377004D1747 /* SubscribedInfluencerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */; };
 		D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57183672B01EE8500A11FFC /* MockUpStartView.swift */; };
@@ -146,7 +145,6 @@
 		D51DFC412B07824D001B28EC /* MockUpRecordExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpRecordExampleView.swift; sourceTree = "<group>"; };
 		D51DFC442B07D5B9001B28EC /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		D5436CA42AFB6B8000D82943 /* ManageProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfileView.swift; sourceTree = "<group>"; };
-		D5517E832B0C751E00F02995 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D569C78A2AF9440600FDADED /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
 		D56A0C6C2AF21377004D1747 /* SubscribedInfluencerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedInfluencerCard.swift; sourceTree = "<group>"; };
 		D57183672B01EE8500A11FFC /* MockUpStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpStartView.swift; sourceTree = "<group>"; };
@@ -534,7 +532,6 @@
 				0D4495C12AFA6AA600F25CD4 /* Network */,
 				F8BE83512AE68DDF0094A509 /* Workout */,
 				D5B780532AE4F8FD00A8B76A /* PreviewRoutine.swift */,
-				D5517E832B0C751E00F02995 /* AppState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -794,7 +791,6 @@
 				F8DACB732B0422D500C3E95C /* RecordingWorkoutViewModel.swift in Sources */,
 				F8A4A62E2B0F643200046C00 /* LaunchViewModel.swift in Sources */,
 				D57183682B01EE8500A11FFC /* MockUpStartView.swift in Sources */,
-				D5517E842B0C751E00F02995 /* AppState.swift in Sources */,
 				F886927F2B01E6AE0043EE9A /* DetailedWorkoutSheetViewModel.swift in Sources */,
 				F89B3BEF2AE50D1600CACBD9 /* RelatedContentCard.swift in Sources */,
 				0DA3275A2AE1321600319BAB /* MainView.swift in Sources */,
