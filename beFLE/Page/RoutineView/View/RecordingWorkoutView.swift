@@ -51,8 +51,11 @@ struct RecordingWorkoutView: View {
             workoutVM.timerStart()
 //            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
             vm.currentSet = 0
+            vm.nextButtonStatus = .nextSet
         }
         .onDisappear {
+            vm.currentSet = 0
+            vm.nextButtonStatus = .nextSet
             workoutVM.timerStop()
         }
         .onTapGesture {
@@ -351,7 +354,18 @@ extension RecordingWorkoutView {
                 .overlay {
                     HStack {
                         Button {
-                            vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
+                            vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId) {
+                                if vm.nextButtonStatus == .nextSet {
+                                    if vm.currentSet >= vm.exercise.sets.count - 1 {
+                                        if workoutVM.currentWorkoutIndex >= workoutVM.exercises.count - 1 {
+                                            vm.nextButtonStatus = .finishWorkout
+                                        }
+                                        else {
+                                            vm.nextButtonStatus = .nextWorkout
+                                        }
+                                    }
+                                }
+                            }
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)
@@ -362,6 +376,7 @@ extension RecordingWorkoutView {
                                 }
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
+                        .disabled(!vm.isCanTappable)
                         
                         Text("\(vm.exercise.sets.count)세트")
                             .foregroundColor(.label_700)
@@ -377,6 +392,7 @@ extension RecordingWorkoutView {
                                         .foregroundColor(.label_900)
                                 }
                         }
+                        .disabled(!vm.isCanTappable)
                     }
                     .font(.body())
                 }
@@ -472,7 +488,7 @@ extension RecordingWorkoutView {
                                 }
                             case .finishWorkout:
                                 if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
-                                    vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
+                                    vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
                                         workoutVM.timerStop()
                                         workoutVM.updateWorkoutTime()
                                         workoutVM.changeViewStatus(.recordingFinishView)
