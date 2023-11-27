@@ -56,17 +56,16 @@ struct SingleInfluencerPreviewView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.gray_700)
-                .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
+                .frame(width: UIScreen.getWidth(350))
                 .overlay {
                         AsyncImage(url: URL(string: influencer.singleExploreImageUrl)) { image in
-                           
                             HStack {
                                 Spacer()
                                 image
                                     .resizable()
                                     .scaledToFit()
                             }
-                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(400))
+                            .frame(width: UIScreen.getWidth(350))
                         } placeholder: {
                             LottieView()
                                 .padding(40)
