@@ -8,17 +8,17 @@
 import SwiftUI
 import FSCalendar
 
-//TODO: 처음에 화면에 들어왔을때 점 안찍힘 - YONG
 struct CalendarView: UIViewControllerRepresentable {
+    @Binding var isViewDidLoad: Bool
     @Binding var selectedDate: String
     @Binding var recordedDate: [String]
     @State var view = FSCalendarView()
     
-    let dateFormatter = DateFormatter()
-    
     func makeUIViewController(context: Context) -> some UIViewController {
         view.calendar.delegate = context.coordinator
         view.calendar.dataSource = context.coordinator
+        
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         selectedDate = dateFormatter.string(from: .now)
         
@@ -26,8 +26,9 @@ struct CalendarView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        if !recordedDate.isEmpty {
+        if isViewDidLoad {
             view.viewDidLoad()
+            isViewDidLoad = false
         }
     }
 
@@ -43,11 +44,17 @@ struct CalendarView: UIViewControllerRepresentable {
         }
         
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            self.parent.selectedDate = self.parent.dateFormatter.string(from: date)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            self.parent.selectedDate = dateFormatter.string(from: date)
         }
         
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-            if self.parent.recordedDate.contains(self.parent.dateFormatter.string(from: date)) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            if self.parent.recordedDate.contains(dateFormatter.string(from: date)) {
                 return 1
             }
             
@@ -55,7 +62,10 @@ struct CalendarView: UIViewControllerRepresentable {
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-            if self.parent.recordedDate.contains(self.parent.dateFormatter.string(from: date)) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            if self.parent.recordedDate.contains(dateFormatter.string(from: date)) {
                 return [UIColor(Color.green_main)]
             }
             
@@ -63,11 +73,3 @@ struct CalendarView: UIViewControllerRepresentable {
         }
     }
 }
-//
-//struct cordView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack{
-//            RecordView()
-//        }
-//    }
-//}
