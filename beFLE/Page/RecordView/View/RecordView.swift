@@ -35,10 +35,11 @@ struct RecordView: View {
         .padding(.bottom, 5)
     }
     
+    @ViewBuilder
     var Calender: some View {
-        CalendarView(selectedDate: $vm.selectedDate, recordedDate: $vm.recordedDate)
-            .frame(height: UIScreen.getHeight(335))
-            .padding(.horizontal)
+        CalendarView(isViewDidLoad: $vm.isViewDidLoad, selectedDate: $vm.selectedDate, recordedDate: $vm.recordedDate)
+                .frame(height: UIScreen.getHeight(335))
+                .padding(.horizontal)
     }
     
     var RecordCell: some View {

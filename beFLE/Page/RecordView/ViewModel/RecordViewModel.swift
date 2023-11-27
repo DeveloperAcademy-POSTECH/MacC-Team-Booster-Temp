@@ -12,6 +12,7 @@ class RecordViewModel: ObservableObject {
     @Published var selectedDate = ""
     @Published var volume = 0
     @Published var recordedDate = [String]()
+    @Published var isViewDidLoad = false
     
     init() {
         fetchRecords()
@@ -28,6 +29,7 @@ class RecordViewModel: ObservableObject {
                 self.records.records = records
                 self.fetchRecodedDate()
                 self.caculateVolume()
+                self.isViewDidLoad = true
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -66,6 +68,10 @@ class RecordViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func didLoad() {
+        
     }
     
     func timeFormat(from time: String) -> String {
