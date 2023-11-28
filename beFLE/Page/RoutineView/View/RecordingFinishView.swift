@@ -29,7 +29,6 @@ struct RecordingFinishView: View {
         }
         .onAppear {
             vm.caculateWorkoutVolume(routineId: workoutVM.routineId)
-            vm.caculateburnedKCalories(routineId: workoutVM.routineId)
         }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
