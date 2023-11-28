@@ -98,7 +98,6 @@
 		F8DACB5A2B03FE6500C3E95C /* InfluencerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */; };
 		F8DACB5D2B04010100C3E95C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB5C2B04010100C3E95C /* MainViewModel.swift */; };
 		F8DACB5F2B040C7900C3E95C /* SingleInfluencerRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */; };
-		F8DACB612B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB602B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift */; };
 		F8DACB652B0418B700C3E95C /* WholeRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB642B0418B700C3E95C /* WholeRoutineView.swift */; };
 		F8DACB672B0418DE00C3E95C /* WholeRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB662B0418DD00C3E95C /* WholeRoutineViewModel.swift */; };
 		F8DACB692B041C0400C3E95C /* EditRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACB682B041C0400C3E95C /* EditRoutineView.swift */; };
@@ -209,7 +208,6 @@
 		F8DACB592B03FE6500C3E95C /* InfluencerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerPreviewView.swift; sourceTree = "<group>"; };
 		F8DACB5C2B04010100C3E95C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		F8DACB5E2B040C7900C3E95C /* SingleInfluencerRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerRoutineView.swift; sourceTree = "<group>"; };
-		F8DACB602B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfluencerRoutineViewModel.swift; sourceTree = "<group>"; };
 		F8DACB642B0418B700C3E95C /* WholeRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeRoutineView.swift; sourceTree = "<group>"; };
 		F8DACB662B0418DD00C3E95C /* WholeRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeRoutineViewModel.swift; sourceTree = "<group>"; };
 		F8DACB682B041C0400C3E95C /* EditRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoutineView.swift; sourceTree = "<group>"; };
@@ -377,7 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				D569C78A2AF9440600FDADED /* RoutineViewModel.swift */,
-				F8DACB602B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift */,
 				F8DACB662B0418DD00C3E95C /* WholeRoutineViewModel.swift */,
 				F8DACB6E2B0420B200C3E95C /* RoutineInformationViewModel.swift */,
 				F880668B2B11BE6200AE3345 /* WorkoutViewModel.swift */,
@@ -817,7 +814,6 @@
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,
 				D5C511832B061870008B871E /* MailView.swift in Sources */,
-				F8DACB612B04112600C3E95C /* SingleInfluencerRoutineViewModel.swift in Sources */,
 				D5B780432AE3962200A8B76A /* InfluencerCard.swift in Sources */,
 				D5B7804D2AE3CB9800A8B76A /* SubscribeView.swift in Sources */,
 				D5076C412B0E645000011EE1 /* LottieView.swift in Sources */,
