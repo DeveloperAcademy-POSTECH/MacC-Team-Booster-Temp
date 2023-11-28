@@ -69,10 +69,10 @@ extension ProfileView {
                 Spacer()
                 Text("프로필 관리")
                     .foregroundColor(.label_700)
-                    .font(.system(size: 14, weight: .regular, design: .default))
+                    .font(.body2())
                 Image(systemName: "chevron.right")
                     .foregroundColor(.label_700)
-                    .font(.system(size: 10, weight: .regular, design: .default))
+                    .font(.profileButton())
                     .padding(.trailing, 20)
             }
             .frame(height: UIScreen.getHeight(72))

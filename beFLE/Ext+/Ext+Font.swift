@@ -58,6 +58,13 @@ extension Font {
     static func caption() -> Font {
         return Font.custom(Pretentard.regular, size: 12)
     }
+    static func profileButton() -> Font {
+        return Font.custom(Pretentard.regular, size: 10)
+    }
+    static func bannerFont() -> Font {
+        return Font.custom(Pretentard.light, size: 20).weight(.light)
+    }
+    
     
     ///기기별 폰트 사이즈 대응
     static func setFontSize() -> Double {

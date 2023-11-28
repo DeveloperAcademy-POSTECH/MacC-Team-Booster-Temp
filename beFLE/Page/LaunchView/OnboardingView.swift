@@ -49,7 +49,7 @@ extension OnboardingView {
                 
                 Text("Be my Influencer, beFLE")
                 // TODO: 폰트 처리
-                    .font(.system(size: 20, weight: .light, design: .default))
+                    .font(.bannerFont())
                     .foregroundColor(.label_700)
             }
             .padding(32)
