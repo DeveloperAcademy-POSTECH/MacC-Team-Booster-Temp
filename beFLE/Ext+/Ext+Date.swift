@@ -9,11 +9,11 @@ import SwiftUI
 
 extension Date {
     enum FormatterType {
-        /// 오늘 날짜를 "2023-10-24"로 바꿔주는 함수
+        /// Date() -> "2023-10-24"
         case yearMonthToday
-        /// 오늘 날짜를 "10월 24일"로 바꿔주는 함수
+        /// Date() -> "10월 24일"
         case monthDay
-        /// 오늘 날짜를 "10월 24일 일요일"로 바꿔주는 함수
+        /// Date() -> "10월 24일 일요일"
         case monthDayWeek
     }
     
