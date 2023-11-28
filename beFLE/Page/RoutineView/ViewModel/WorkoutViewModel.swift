@@ -100,11 +100,23 @@ extension WorkoutViewModel {
         }
     }
     
-    func deleteWorkout(exerciseId: Int)  {
+    func deleteWorkout(exerciseId: Int) {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
                 self.fetchRoutine()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteWorkout(exerciseId: Int, completion: @escaping (() -> ())) {
+        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
+            switch $0 {
+            case .success:
+                self.fetchRoutine()
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
