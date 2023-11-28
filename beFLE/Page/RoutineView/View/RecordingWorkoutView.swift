@@ -206,6 +206,11 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var DeleteAlert: some View {
         Button("삭제", role: .destructive) {
+            if workoutVM.exercises.count - 1 == workoutVM.currentWorkoutIndex {
+                if workoutVM.exercises.last == workoutVM.exerciseId {
+                    workoutVM.currentWorkoutIndex -= 1
+                }
+            }
             workoutVM.deleteWorkout(exerciseId: vm.exercise.exerciseId) {
                 vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
             }
