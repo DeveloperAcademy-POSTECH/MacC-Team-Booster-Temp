@@ -16,7 +16,7 @@ struct MockUpCalendarView: UIViewControllerRepresentable {
         let view = MockUpFSCalendarView()
         view.calendar.delegate = context.coordinator
         view.calendar.dataSource = context.coordinator
-        self.selectedDate = Date().formatNow(.yearMonthToday)
+        self.selectedDate = Date().format(.yearMonthToday)
         return view
     }
     
@@ -38,11 +38,11 @@ struct MockUpCalendarView: UIViewControllerRepresentable {
         }
         
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            selectedDate = date.formatNow(.yearMonthToday)
+            selectedDate = date.format(.yearMonthToday)
         }
         
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-            if recordedDate.contains(date.formatNow(.yearMonthToday)) {
+            if recordedDate.contains(date.format(.yearMonthToday)) {
                 return 1
             }
             
@@ -50,7 +50,7 @@ struct MockUpCalendarView: UIViewControllerRepresentable {
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-            if recordedDate.contains(date.formatNow(.yearMonthToday)) {
+            if recordedDate.contains(date.format(.yearMonthToday)) {
                 return [UIColor(Color.green_main)]
             }
             

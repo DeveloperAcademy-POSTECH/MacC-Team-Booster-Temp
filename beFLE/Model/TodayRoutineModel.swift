@@ -13,7 +13,7 @@ struct TodayRoutineModel {
         #if DEBUG
         let date = "2023-11-22"
         #else
-        let date = Date().formatNow(.yearMonthToday)
+        let date = Date().format(.yearMonthToday)
         #endif
         
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {

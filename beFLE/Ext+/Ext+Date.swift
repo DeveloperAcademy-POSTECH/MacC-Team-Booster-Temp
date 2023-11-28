@@ -27,7 +27,7 @@ extension Date {
         case monthDayWeek
     }
     
-    func formatNow(_ type: FormatterType) -> String {
+    func format(_ type: FormatterType) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: "ko-KR")
         dateFormatter.locale = Locale(identifier: "ko-KR")

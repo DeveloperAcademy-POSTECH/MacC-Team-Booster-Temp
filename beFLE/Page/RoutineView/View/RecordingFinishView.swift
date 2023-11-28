@@ -39,7 +39,7 @@ struct RecordingFinishView: View {
 extension RecordingFinishView {
     var FinishCard: some View {
         VStack(spacing: 5) {
-            Text("\(Date().formatNow(.monthDay)) 운동 완료")
+            Text("\(Date().format(.monthDay)) 운동 완료")
                 .font(.title1())
                 .foregroundColor(.label_900)
             Text("오늘도 고생 많으셨어요!")

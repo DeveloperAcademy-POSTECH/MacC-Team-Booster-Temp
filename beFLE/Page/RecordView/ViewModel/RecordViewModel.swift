@@ -23,7 +23,7 @@ class RecordViewModel: ObservableObject {
         GeneralAPIManger.request(for: .GetUsersRecords, type: [Records].self) {
             switch $0 {
             case .success(let records):
-                self.selectedDate = Date().formatNow(.yearMonthToday)
+                self.selectedDate = Date().format(.yearMonthToday)
                 self.records.records = records
                 self.fetchRecodedDate()
                 self.caculateVolume()
