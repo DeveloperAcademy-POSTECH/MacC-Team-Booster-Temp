@@ -77,7 +77,9 @@ extension WorkoutViewModel {
                     exercises.append(exercise.id)
                 }
                 self.exercises = exercises
-                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                if !exercises.isEmpty {
+                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -95,7 +97,9 @@ extension WorkoutViewModel {
                     exercises.append(exercise.id)
                 }
                 self.exercises = exercises
-                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                if !exercises.isEmpty {
+                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                }
                 completion()
             case .failure(let error):
                 print(error.localizedDescription)
