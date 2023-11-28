@@ -36,6 +36,8 @@ extension String {
 extension String {
     /// 스트링 포매터 타입 종류
     enum FormatterType {
+        /// "2023-10-24"를 "23년 10월 24일"로 전환해주는 함수
+        case yearMonthDay
         /// "2023-10-24"를 "10월 24일"로 전환해주는 함수
         case monthDay
         /// "2023-10-24"를 "24"로 전환해주는 함수
@@ -48,6 +50,8 @@ extension String {
         dateFormatter.locale = Locale(identifier: "ko-KR")
         
         switch type {
+        case .yearMonthDay:
+            dateFormatter.dateFormat = "YY년 MM월 dd일"
         case .monthDay:
             dateFormatter.dateFormat = "MM월 dd일"
         case .day:
