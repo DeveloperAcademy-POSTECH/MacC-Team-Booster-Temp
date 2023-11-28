@@ -11,7 +11,11 @@ struct TodayRoutineModel {
     func fetchTodayRoutines(_ completion: @escaping ((ResponseGetUsersRoutines)->())) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
+        #if DEBUG
+        let date = "2023-11-22"
+        #else
         let date = dateFormatter.string(from: Date())
+        #endif
         
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
             switch $0 {
