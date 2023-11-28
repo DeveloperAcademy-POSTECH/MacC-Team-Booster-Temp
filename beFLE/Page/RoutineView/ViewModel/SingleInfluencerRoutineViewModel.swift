@@ -8,10 +8,6 @@
 import SwiftUI
 
 class SingleInfluencerRoutineViewModel: ObservableObject {
-    // TODO: isDone 작업 이후 제거
-    //오늘 운동 했는지
-    @Published var finishWorkout: Bool = false
-    
     /// "2023-10-24"를 "10월 24일 월요일"로 전환해주는 함수
     func formatForDate(from date: String) -> String {
         let dateFormatter = DateFormatter()
