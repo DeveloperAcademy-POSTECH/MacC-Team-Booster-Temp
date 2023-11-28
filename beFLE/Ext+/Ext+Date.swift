@@ -16,6 +16,10 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    
+}
+
+extension Date {
     func formatNow() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM월 dd일 E요일"
