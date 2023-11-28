@@ -29,6 +29,7 @@ struct RecordingFinishView: View {
         }
         .onAppear {
             vm.caculateWorkoutVolume(routineId: workoutVM.routineId)
+            vm.caculateburnedKCalories(routineId: workoutVM.routineId)
         }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
@@ -77,7 +78,7 @@ extension RecordingFinishView {
                     }
                     VStack(spacing: 3) {
                         // TODO: 칼로리 계산
-                        Text("0kcal")
+                        Text("\(vm.totalCalories)Kcal")
                             .font(.title2())
                             .foregroundColor(.label_900)
                         Text("소모칼로리")

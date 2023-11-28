@@ -9,6 +9,7 @@ import SwiftUI
 
 class RecordingFinishViewModel: ObservableObject {
     @Published var volume = 0
+    @Published var totalCalories = 0
     
     func caculateWorkoutTime(elapsedTime: TimeInterval) -> String {
         let minutes = Int(elapsedTime) / 60
@@ -28,6 +29,24 @@ class RecordingFinishViewModel: ObservableObject {
             case .failure(let error):
                 print(error.localizedDescription)
                 
+            }
+        }
+    }
+    
+    func caculateburnedKCalories(routineId: Int) {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
+            switch $0 {
+            case .success(let routine):
+                _ = routine.exercises.map { exercise in
+                    self.fetchWorkout(routineId: routineId, exerciseId: exercise.id) {_ in 
+                        let caloriesPerSet: Double = 16.7
+                        let setsCount = exercise.numberOfSet
+                        let exerciseCalories = Int(Double(setsCount) * caloriesPerSet)
+                        self.totalCalories += exerciseCalories
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
