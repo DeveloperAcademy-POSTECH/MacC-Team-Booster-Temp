@@ -109,14 +109,5 @@ class WholeRoutineViewModel: ObservableObject {
             return false
         }
     }
-    
-    /// 루틴 부위 별 분류 함수
-    func fetchByPart() {
-        // TODO: 부위 별 루틴 분류
-    }
-    
-    /// 루틴 상세 정보 네비게이션 용 함수
-    func viewDetailedRoutine() {
-        // TODO: 선택한 루틴 상세 정보 보기
-    }
+
 }
