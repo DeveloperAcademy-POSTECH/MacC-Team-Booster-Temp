@@ -77,7 +77,30 @@ extension WorkoutViewModel {
                     exercises.append(exercise.id)
                 }
                 self.exercises = exercises
-                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                if !exercises.isEmpty {
+                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchRoutine(completion: @escaping (()->()) ) {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
+            switch $0 {
+            case .success(let routine):
+                self.routine = routine
+                
+                var exercises: [Int] = []
+                for exercise in routine.exercises {
+                    exercises.append(exercise.id)
+                }
+                self.exercises = exercises
+                if !exercises.isEmpty {
+                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                }
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -100,11 +123,24 @@ extension WorkoutViewModel {
         }
     }
     
-    func deleteWorkout(exerciseId: Int)  {
+    func deleteWorkout(exerciseId: Int) {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
                 self.fetchRoutine()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteWorkout(exerciseId: Int, completion: @escaping (() -> ())) {
+        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
+            switch $0 {
+            case .success:
+                self.fetchRoutine() {
+                    completion()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
