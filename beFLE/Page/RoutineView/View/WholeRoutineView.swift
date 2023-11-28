@@ -127,7 +127,7 @@ extension WholeRoutineView {
                         if some.part != "휴식" {
                             NavigationLink {
                                 RoutineInformationView(routineId: some.routineId)
-                                    .navigationBarTitle("\(some.date.format(to: .monthDay)))", displayMode: .inline)
+                                    .navigationBarTitle("\(some.date.format(.monthDay)))", displayMode: .inline)
                             } label: {
                                 TodayWorkoutCell(routine: some)
                                     .padding(.vertical, 8)
@@ -164,7 +164,7 @@ extension WholeRoutineView {
                 .foregroundColor(routine.date.isToday() ? .label_900 : .fill_2)
                 .frame(width: UIScreen.getWidth(40), height: UIScreen.getHeight(40))
                 .overlay {
-                    Text("\(routine.date.format(to: .day))")
+                    Text("\(routine.date.format(.day))")
                         .font(.headline1())
                         .foregroundColor(routine.date.isToday() ? .gray_900 : .label_900)
                 }

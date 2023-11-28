@@ -46,7 +46,7 @@ extension String {
         case day
     }
 
-    func format(to type: FormatterType) -> String {
+    func format(_ type: FormatterType) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: "ko-KR")
         dateFormatter.locale = Locale(identifier: "ko-KR")

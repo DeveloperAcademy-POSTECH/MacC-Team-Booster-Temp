@@ -133,7 +133,7 @@ extension SingleInfluencerRoutineView {
         ZStack {
             VStack(alignment: .center) {
                 HStack {
-                    Text("\(routine.date.format(to: .monthDayWeek))")
+                    Text("\(routine.date.format(.monthDayWeek))")
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()
