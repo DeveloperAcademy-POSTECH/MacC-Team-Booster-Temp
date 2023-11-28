@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension String {
-    /// 서버에서 받아온 문자열 형식 날짜를 날짜로 전환해주는 함수
+    /// "2023-10-24" -> Date("2023-10-24")
     func toDate() -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -22,7 +22,7 @@ extension String {
         }  
     }
     
-    /// 전달 받은 "2023-10-24"가 오늘 날짜인지 검사하는 함수
+    /// "2023-10-24" == Date(.now) ? true : false
     func isToday() -> Bool {
         let difference = Calendar.current.dateComponents([.day], from: self.toDate() ?? Date(), to: Date())
         if difference.day == 0 {
@@ -34,18 +34,17 @@ extension String {
 }
 
 extension String {
-    /// 스트링 포매터 타입 종류
     enum FormatterType {
-        /// "2023-10-24"를 "23년 10월 24일"로 전환해주는 함수
+        /// "2023-10-24" -> "23년 10월 24일"
         case yearMonthDay
-        /// "2023-10-24"를 "10월 24일"로 전환해주는 함수
+        /// "2023-10-24" -> "10월 24일"
         case monthDay
-        /// "2023-10-24"를 "10월 24일 월요일"로 전환해주는 함수
+        /// "2023-10-24" -> "10월 24일 월요일"
         case monthDayWeek
-        /// "2023-10-24"를 "24"로 전환해주는 함수
+        /// "2023-10-24" -> "24"
         case day
     }
-
+    
     func format(_ type: FormatterType) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: "ko-KR")
