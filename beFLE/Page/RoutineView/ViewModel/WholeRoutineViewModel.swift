@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 class WholeRoutineViewModel: ObservableObject {
     /// 선택된 부위
