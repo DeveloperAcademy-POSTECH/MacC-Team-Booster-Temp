@@ -77,10 +77,10 @@ struct MockUpProfileView: View {
                         Spacer()
                         Text("로그인 하러 가기")
                             .foregroundColor(.green_main)
-                            .font(.system(size: 14, weight: .regular, design: .default))
+                            .font(.body2())
                         Image(systemName: "chevron.right")
                             .foregroundColor(.green_main)
-                            .font(.system(size: 10, weight: .regular, design: .default))
+                            .font(.profileButton())
                             .padding(.trailing, 20)
                     }
                 }
