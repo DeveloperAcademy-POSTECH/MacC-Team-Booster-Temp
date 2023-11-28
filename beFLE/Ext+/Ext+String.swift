@@ -40,10 +40,12 @@ extension String {
         case yearMonthDay
         /// "2023-10-24"를 "10월 24일"로 전환해주는 함수
         case monthDay
+        /// "2023-10-24"를 "10월 24일 월요일"로 전환해주는 함수
+        case monthDayWeek
         /// "2023-10-24"를 "24"로 전환해주는 함수
         case day
     }
-    
+
     func format(to type: FormatterType) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: "ko-KR")
@@ -54,6 +56,8 @@ extension String {
             dateFormatter.dateFormat = "YY년 MM월 dd일"
         case .monthDay:
             dateFormatter.dateFormat = "MM월 dd일"
+        case .monthDayWeek:
+            dateFormatter.dateFormat = "MM월 dd일 EEEE"
         case .day:
             dateFormatter.dateFormat = "dd"
         }
