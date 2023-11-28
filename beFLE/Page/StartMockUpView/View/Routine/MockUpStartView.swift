@@ -121,7 +121,7 @@ struct MockUpStartView: View {
         ZStack{
             VStack(alignment: .center){
                 HStack{
-                    Text(Date().formatNow())
+                    Text(Date().formatNow(.monthDayWeek))
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()

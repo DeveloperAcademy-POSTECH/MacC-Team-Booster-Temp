@@ -35,7 +35,7 @@ struct MockUpFinishView: View {
     
     var finishDate: some View {
         VStack(spacing: 10){
-            Text("\(getNowDateTime()) 운동 완료")
+            Text("\(Date().formatNow(.monthDay)) 운동 완료")
                 .font(.title1())
                 .foregroundColor(.label_900)
             Text("오늘도 고생 많으셨어요!")
@@ -115,16 +115,6 @@ struct MockUpFinishView: View {
             }
             .padding(.bottom, 30)
         }
-    }
-    
-    func getNowDateTime() -> String {
-        let nowDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier:  "ko")
-        
-        dateFormatter.dateFormat = "MM월 dd일"
-        let date_String = dateFormatter.string(from: nowDate)
-        return date_String
     }
     
     private func timeFormatted(_ seconds: TimeInterval) -> String {
