@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodayRoutineModel {
-    func fetchTodayRoutines(completion: @escaping ((ResponseGetUsersRoutines)->())) {
+    func fetchTodayRoutines(_ completion: @escaping ((ResponseGetUsersRoutines)->())) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         let date = dateFormatter.string(from: Date())
