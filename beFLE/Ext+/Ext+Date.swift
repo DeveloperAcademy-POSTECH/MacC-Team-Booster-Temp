@@ -15,4 +15,12 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
+    
+    func formatNow() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일 E요일"
+        dateFormatter.locale = Locale(identifier: "ko-KR")
+        
+        return dateFormatter.string(from: self)
+    }
 }
