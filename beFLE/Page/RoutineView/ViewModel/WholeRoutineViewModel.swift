@@ -17,7 +17,17 @@ class WholeRoutineViewModel: ObservableObject {
     
     ///최초 네트워킹으로 받은 전체 목록
     @Published var wholeRoutines: [Routine] = []
+        
     @Published var emptyFlag = 0
+    
+    @Published var wholeRoutine = ResponseGetUsersInfluencersRoutines(routines: [])
+    let wholeRoutineModel = WholeRoutineModel()
+    
+    func fetch(influencerId: Int) {
+        wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) {
+            self.wholeRoutine = $0
+        }
+    }
     
     /// 전체 루틴 조회 함수
     func fetchWholeRoutine(influencerId: Int) {
