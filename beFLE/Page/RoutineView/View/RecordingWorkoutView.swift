@@ -81,6 +81,9 @@ struct RecordingWorkoutView: View {
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
             AlternateWorkoutSheet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
         }
+        .alert("운동을 삭제하시겠습니까?", isPresented: $vm.isDeleteWorkoutAlertShow) {
+            DeleteAlert
+        }
         .alert("완료하지 않은 운동이 있습니다\n해당 운동을 확인하시겠습니까?", isPresented: $vm.isDiscontinuewAlertShow) {
             DiscontinueAlert
         }
@@ -197,6 +200,15 @@ extension RecordingWorkoutView {
             workoutVM.changeViewStatus(.recordingRoutineView)
         } label: {
             Text("확인")
+        }
+    }
+    
+    @ViewBuilder
+    var DeleteAlert: some View {
+        Button("삭제", role: .destructive) {
+            workoutVM.deleteWorkout(exerciseId: vm.exercise.exerciseId) {
+                vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
+            }
         }
     }
 }
