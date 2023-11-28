@@ -20,6 +20,9 @@ struct RoutineView: View {
                 SingleInfluencerRoutineView(routine: $vm.todayRoutines.routine[0])
             }
         }
+        .onAppear {
+            vm.fetch()
+        }
     }
 }
 

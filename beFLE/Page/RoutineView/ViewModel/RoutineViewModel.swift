@@ -8,12 +8,10 @@
 import SwiftUI
 
 class RoutineViewModel: ObservableObject {
-    @Published var todayRoutines: ResponseGetUsersRoutines
+    @Published var todayRoutines = ResponseGetUsersRoutines(routine: [])
     let todayRoutineModel = TodayRoutineModel()
     
-    init() {
-        self.todayRoutines = ResponseGetUsersRoutines(routine: [])
-        
+    func fetch() {
         todayRoutineModel.fetchTodayRoutines {
             self.todayRoutines = $0
         }
