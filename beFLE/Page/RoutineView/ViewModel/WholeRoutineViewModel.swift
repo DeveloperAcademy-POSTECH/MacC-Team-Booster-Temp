@@ -7,73 +7,32 @@
 
 import SwiftUI
 
+enum Part: String, CaseIterable {
+    case 전체, 등, 가슴, 이두, 삼두, 하체, 복근
+}
+
 class WholeRoutineViewModel: ObservableObject {
-    /// 선택된 부위
-    @Published var selectedPart = "전체"
-    
-    /// 월 별 운동 목록 [월: [루틴]]
-    @Published var routinesByMonth: [String: [Routine]] = [:]
-    
-    ///최초 네트워킹으로 받은 전체 목록
-    @Published var wholeRoutines: [Routine] = []
-    
-    @Published var wholeRoutine = ResponseGetUsersInfluencersRoutines(routines: [])
     let wholeRoutineModel = WholeRoutineModel()
+    
+    /// 전체 운동 목록
+    @Published var wholeRoutine = ResponseGetUsersInfluencersRoutines(routines: [])
+    
+    /// 선택된 부위
+    @Published var selectedPart: Part = .전체
+    
+    /// 월 별 운동 목록 
+    @Published var routinesByMonth: [String: [Routine]] = [:]
     
     func fetch(influencerId: Int) {
         wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) {
             self.wholeRoutine = $0
+            self.parse()
+            print(self.wholeRoutine)
+            print(self.routinesByMonth)
         }
     }
     
-    /// 전체 루틴 조회 함수
-    func fetchWholeRoutine(influencerId: Int) {
-        GeneralAPIManger.request(for: .GetUsersInfluencersRoutines(id: influencerId), type: [Routine].self) {
-            switch $0 {
-            case .success(let routine):
-                self.routinesByMonth = self.fetchByMonth(routines: routine)
-                self.wholeRoutines = routine
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func fetchBySelect() {
-        routinesByMonth = fetchByMonth(routines: wholeRoutines)
-    }
-    
-    /// 파트 별 루틴 월 별 분류 함수
-    func fetchByMonth(routines: [Routine]) -> [String: [Routine]] {
-        var routinesByMonth: [String: [Routine]] = [:]
-        
-        if selectedPart == "전체" {
-            for routine in routines {
-                let month = routine.date.components(separatedBy: "-")[1]
-                
-                if routinesByMonth[month] != nil {
-                    routinesByMonth[month]?.append(routine)
-                }
-                else {
-                    routinesByMonth.updateValue([routine], forKey: month)
-                }
-            }
-        }
-        else {
-            for routine in routines {
-                if routine.part.contains(selectedPart) {
-                    let month = routine.date.components(separatedBy: "-")[1]
-                    
-                    if routinesByMonth[month] != nil {
-                        routinesByMonth[month]?.append(routine)
-                    }
-                    else {
-                        routinesByMonth.updateValue([routine], forKey: month)
-                    }
-                }
-            }
-        }
-        
-        return routinesByMonth
+    func parse() {
+        routinesByMonth = wholeRoutineModel.parseByMonth(selectedPart, routines: wholeRoutine.routines)
     }
 }
