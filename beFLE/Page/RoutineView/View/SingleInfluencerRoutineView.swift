@@ -12,7 +12,6 @@ import SwiftUI
 ///   - routine: 인플루언서의 오늘 운동 목록
 struct SingleInfluencerRoutineView: View {
     @Binding var routine: InfluencerRoutine
-    @StateObject var vm = SingleInfluencerRoutineViewModel()
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
@@ -134,7 +133,7 @@ extension SingleInfluencerRoutineView {
         ZStack {
             VStack(alignment: .center) {
                 HStack {
-                    Text("\(vm.formatForDate(from: routine.date))")
+                    Text("\(routine.date.format(.monthDayWeek))")
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()

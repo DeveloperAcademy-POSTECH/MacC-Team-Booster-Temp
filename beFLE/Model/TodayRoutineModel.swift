@@ -10,12 +10,10 @@ import SwiftUI
 struct TodayRoutineModel {
     /// 인플루언서별 오늘 운동 목록을 불러오는 함수
     func fetchTodayRoutines(_ completion: @escaping ((ResponseGetUsersRoutines)->())) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
         #if DEBUG
         let date = "2023-11-22"
         #else
-        let date = dateFormatter.string(from: Date())
+        let date = Date().format(.yearMonthToday)
         #endif
         
         GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
