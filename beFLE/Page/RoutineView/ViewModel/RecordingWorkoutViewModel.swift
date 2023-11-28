@@ -63,7 +63,7 @@ extension RecordingWorkoutViewModel {
 extension RecordingWorkoutViewModel {
     /// 운동 세트 감소 함수
     func decreaseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (() -> ()) ) {
-        if exercise.sets.count > 1 {
+        if exercise.sets.count > 2 {
             isCanTappable = false
             
             GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
