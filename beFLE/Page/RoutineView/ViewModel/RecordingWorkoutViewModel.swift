@@ -238,14 +238,4 @@ extension RecordingWorkoutViewModel {
             String(format: "%01d분", minutes)
         }
     }
-    
-    func getNowDateTime() -> String {
-        let nowDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier:  "ko")
-        
-        dateFormatter.dateFormat = "MM월 dd일"
-        let date_String = dateFormatter.string(from: nowDate)
-        return date_String
-    }
 }

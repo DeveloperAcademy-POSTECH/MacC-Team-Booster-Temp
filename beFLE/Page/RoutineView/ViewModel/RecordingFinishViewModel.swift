@@ -58,14 +58,4 @@ class RecordingFinishViewModel: ObservableObject {
             }
         }
     }
-
-    func nowDateFormatter() -> String {
-        let nowDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier:  "ko")
-        
-        dateFormatter.dateFormat = "MM월 dd일"
-        let date_String = dateFormatter.string(from: nowDate)
-        return date_String
-    }
 }

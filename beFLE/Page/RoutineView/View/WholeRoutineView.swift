@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-enum WorkoutPart: String, CaseIterable {
-    case 전체, 등, 가슴, 이두, 삼두, 하체, 복근
-}
-
 /// 인플루언서 개인의 전체 루틴 뷰
 ///  - Parameters:
 ///   - influencerId: 조회할 인플루언서의 id
@@ -40,7 +36,7 @@ struct WholeRoutineView: View {
                 }
             }
             .onAppear {
-                vm.fetchWholeRoutine(influencerId: influencerId)
+                vm.fetch(influencerId: influencerId)
             }
         }
     }
@@ -64,16 +60,16 @@ extension WholeRoutineView {
     var SortingSlider: some View {
         ScrollView(.horizontal) {
             HStack(spacing: UIScreen.getWidth(6)) {
-                ForEach(WorkoutPart.allCases, id: \.self) { type in
+                ForEach(Part.allCases, id: \.self) { part in
                     Button {
-                        vm.selectedPart = type.rawValue
-                        vm.fetchBySelect()
+                        vm.selectedPart = part
+                        vm.parse()
                     } label: {
-                        if vm.selectedPart == type.rawValue  {
-                            SelectedCapsule(text: type.rawValue)
+                        if vm.selectedPart == part {
+                            SelectedCapsule(text: part.rawValue)
                         }
                         else {
-                            NotSelectedCapsule(text: type.rawValue)
+                            NotSelectedCapsule(text: part.rawValue)
                         }
                     }
                 }
@@ -81,7 +77,6 @@ extension WholeRoutineView {
             }
             .padding()
             .padding(.top, 5)
-            
         }
         .scrollIndicators(.hidden)
     }
@@ -123,20 +118,19 @@ extension WholeRoutineView {
                         Spacer()
                     }
                     
-                    ForEach(routine.value.sorted(by: { $0.date > $1.date}), id: \.self) { some in
+                    ForEach(routine.value.sorted(by: { $0.date > $1.date }), id: \.self) { some in
                         if some.part != "휴식" {
                             NavigationLink {
                                 RoutineInformationView(routineId: some.routineId)
-                                    .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
+                                    .navigationBarTitle("\(some.date.format(.monthDay))", displayMode: .inline)
                             } label: {
                                 TodayWorkoutCell(routine: some)
                                     .padding(.vertical, 8)
                             }
                         } else {
-                            // Display a non-interactive view for routines with part "휴식"
                             TodayWorkoutCell(routine: some)
                                 .padding(.vertical, 8)
-                                .foregroundColor(.gray) // You can adjust the appearance as needed
+                                .foregroundColor(.gray)
                         }
                     }
                 }
@@ -161,12 +155,12 @@ extension WholeRoutineView {
     func TodayWorkoutCell(routine: Routine) -> some View {
         HStack(spacing: UIScreen.getWidth(16)) {
             RoundedRectangle(cornerRadius: 8)
-                .foregroundColor(vm.compareToday(from: routine.date) ? .label_900 : .fill_2)
+                .foregroundColor(routine.date.isToday() ? .label_900 : .fill_2)
                 .frame(width: UIScreen.getWidth(40), height: UIScreen.getHeight(40))
                 .overlay {
-                    Text("\(vm.formatForDay(from: routine.date))")
+                    Text("\(routine.date.format(.day))")
                         .font(.headline1())
-                        .foregroundColor(vm.compareToday(from: routine.date) ? .gray_900 : .label_900)
+                        .foregroundColor(routine.date.isToday() ? .gray_900 : .label_900)
                 }
             Text("\(routine.part)")
                 .font(.headline1())

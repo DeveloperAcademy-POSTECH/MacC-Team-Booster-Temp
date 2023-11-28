@@ -121,7 +121,7 @@ struct MockUpStartView: View {
         ZStack{
             VStack(alignment: .center){
                 HStack{
-                    Text(getNowDateTime())
+                    Text(Date().format(.monthDayWeek))
                         .font(.title2())
                         .foregroundColor(.label_900)
                     Spacer()
@@ -150,16 +150,6 @@ struct MockUpStartView: View {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
-    }
-    
-    func getNowDateTime() -> String {
-        let nowDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier:  "ko")
-        
-        dateFormatter.dateFormat = "MM월 dd일 E요일"
-        let date_String = dateFormatter.string(from: nowDate)
-        return date_String
     }
 }
 
