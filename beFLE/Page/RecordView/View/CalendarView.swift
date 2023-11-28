@@ -18,9 +18,7 @@ struct CalendarView: UIViewControllerRepresentable {
         view.calendar.delegate = context.coordinator
         view.calendar.dataSource = context.coordinator
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        selectedDate = dateFormatter.string(from: .now)
+        selectedDate = Date().formatNow(.yearMonthToday)
         
         return view
     }
@@ -44,17 +42,11 @@ struct CalendarView: UIViewControllerRepresentable {
         }
         
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            
-            self.parent.selectedDate = dateFormatter.string(from: date)
+            self.parent.selectedDate = date.formatNow(.yearMonthToday)
         }
         
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            
-            if self.parent.recordedDate.contains(dateFormatter.string(from: date)) {
+            if self.parent.recordedDate.contains(date.formatNow(.yearMonthToday)) {
                 return 1
             }
             
@@ -62,10 +54,7 @@ struct CalendarView: UIViewControllerRepresentable {
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            
-            if self.parent.recordedDate.contains(dateFormatter.string(from: date)) {
+            if self.parent.recordedDate.contains(date.formatNow(.yearMonthToday)) {
                 return [UIColor(Color.green_main)]
             }
             

@@ -127,7 +127,7 @@ extension WholeRoutineView {
                         if some.part != "휴식" {
                             NavigationLink {
                                 RoutineInformationView(routineId: some.routineId)
-                                    .navigationBarTitle("\(some.date.format(.monthDay)))", displayMode: .inline)
+                                    .navigationBarTitle("\(some.date.format(.monthDay))", displayMode: .inline)
                             } label: {
                                 TodayWorkoutCell(routine: some)
                                     .padding(.vertical, 8)

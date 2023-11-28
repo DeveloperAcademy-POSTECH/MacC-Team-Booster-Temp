@@ -19,6 +19,8 @@ extension Date {
 
 extension Date {
     enum FormatterType {
+        /// 오늘 날짜를 "2023-10-24"로 바꿔주는 함수
+        case yearMonthToday
         /// 오늘 날짜를 "10월 24일"로 바꿔주는 함수
         case monthDay
         /// 오늘 날짜를 "10월 24일 일요일"로 바꿔주는 함수
@@ -31,6 +33,8 @@ extension Date {
         dateFormatter.locale = Locale(identifier: "ko-KR")
         
         switch type {
+        case .yearMonthToday:
+            dateFormatter.dateFormat = "yyyy-MM-dd"
         case .monthDay:
             dateFormatter.dateFormat = "MM월 dd일"
         case .monthDayWeek:
