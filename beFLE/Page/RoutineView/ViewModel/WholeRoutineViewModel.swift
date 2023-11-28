@@ -27,8 +27,6 @@ class WholeRoutineViewModel: ObservableObject {
         wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) {
             self.wholeRoutine = $0
             self.parse()
-            print(self.wholeRoutine)
-            print(self.routinesByMonth)
         }
     }
     
