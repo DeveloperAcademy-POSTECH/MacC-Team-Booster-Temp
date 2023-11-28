@@ -84,6 +84,25 @@ extension WorkoutViewModel {
         }
     }
     
+    func fetchRoutine(completion: @escaping (()->()) ) {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
+            switch $0 {
+            case .success(let routine):
+                self.routine = routine
+                
+                var exercises: [Int] = []
+                for exercise in routine.exercises {
+                    exercises.append(exercise.id)
+                }
+                self.exercises = exercises
+                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+                completion()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func fetchNextWorkout() {
         currentWorkoutIndex += 1
         fetchRoutine()
@@ -115,8 +134,9 @@ extension WorkoutViewModel {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
-                self.fetchRoutine()
-                completion()
+                self.fetchRoutine() {
+                    completion()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
