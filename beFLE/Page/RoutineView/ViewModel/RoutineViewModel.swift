@@ -8,25 +8,12 @@
 import SwiftUI
 
 class RoutineViewModel: ObservableObject {
-    @Published var todayRoutines = ResponseGetUsersRoutines(routine: [])
+    @Published var todayRoutines: ResponseGetUsersRoutines?
+    let todayRoutineModel = TodayRoutineModel()
     
-    func fetchTodayRoutines() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        
-        #if DEBUG
-        let date = "2023-11-22"
-        #else
-        let date = dateFormatter.string(from: Date())
-        #endif
-        
-        GeneralAPIManger.request(for: .GetUsersRoutines(date: date), type: [InfluencerRoutine].self) {
-            switch $0 {
-            case .success(let routines):
-                self.todayRoutines.routine = routines
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+    init() {
+        todayRoutineModel.fetchTodayRoutines {
+            self.todayRoutines = $0
         }
     }
 }
