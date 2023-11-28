@@ -8,16 +8,6 @@
 import SwiftUI
 
 extension Date {
-    func toString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM월 dd일 EEEE"
-        dateFormatter.locale = Locale(identifier: "ko-KR")
-        
-        return dateFormatter.string(from: self)
-    }
-}
-
-extension Date {
     enum FormatterType {
         /// 오늘 날짜를 "2023-10-24"로 바꿔주는 함수
         case yearMonthToday
