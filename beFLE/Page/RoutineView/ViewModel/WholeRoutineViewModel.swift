@@ -17,8 +17,6 @@ class WholeRoutineViewModel: ObservableObject {
     
     ///최초 네트워킹으로 받은 전체 목록
     @Published var wholeRoutines: [Routine] = []
-        
-    @Published var emptyFlag = 0
     
     @Published var wholeRoutine = ResponseGetUsersInfluencersRoutines(routines: [])
     let wholeRoutineModel = WholeRoutineModel()
