@@ -127,7 +127,7 @@ extension WholeRoutineView {
                         if some.part != "휴식" {
                             NavigationLink {
                                 RoutineInformationView(routineId: some.routineId)
-                                    .navigationBarTitle("\(vm.formatForDate(from: some.date))", displayMode: .inline)
+                                    .navigationBarTitle("\(some.date.format(to: .monthDay)))", displayMode: .inline)
                             } label: {
                                 TodayWorkoutCell(routine: some)
                                     .padding(.vertical, 8)
@@ -161,12 +161,12 @@ extension WholeRoutineView {
     func TodayWorkoutCell(routine: Routine) -> some View {
         HStack(spacing: UIScreen.getWidth(16)) {
             RoundedRectangle(cornerRadius: 8)
-                .foregroundColor(vm.compareToday(from: routine.date) ? .label_900 : .fill_2)
+                .foregroundColor(routine.date.isToday() ? .label_900 : .fill_2)
                 .frame(width: UIScreen.getWidth(40), height: UIScreen.getHeight(40))
                 .overlay {
-                    Text("\(vm.formatForDay(from: routine.date))")
+                    Text("\(routine.date.format(to: .day))")
                         .font(.headline1())
-                        .foregroundColor(vm.compareToday(from: routine.date) ? .gray_900 : .label_900)
+                        .foregroundColor(routine.date.isToday() ? .gray_900 : .label_900)
                 }
             Text("\(routine.part)")
                 .font(.headline1())
