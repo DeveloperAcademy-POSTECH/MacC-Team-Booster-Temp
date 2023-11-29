@@ -26,7 +26,6 @@ class RecordViewModel: ObservableObject {
                 self.selectedDate = Date().format(.yearMonthToday)
                 self.records.records = records
                 self.fetchRecodedDate()
-                self.caculateVolume()
                 self.isViewDidLoad = true
             case .failure(let error):
                 print(error.localizedDescription)
@@ -56,20 +55,6 @@ class RecordViewModel: ObservableObject {
         recordedDate = records.records.map {
             $0.finishDate
         }
-    }
-    
-    func caculateVolume() {
-        for record in records.records {
-            self.volume += record.exercises.reduce(0) {
-                $0 + $1.sets.reduce(0) {
-                    $0 + ($1.weight ?? 0) * $1.reps
-                }
-            }
-        }
-    }
-    
-    func didLoad() {
-        
     }
     
     func timeFormat(from time: String) -> String {
