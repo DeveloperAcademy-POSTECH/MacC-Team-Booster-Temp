@@ -9,7 +9,11 @@ import SwiftUI
 
 class RecordViewModel: ObservableObject {
     @Published var records = ResponseGetUsersRecords(records: [])
-    @Published var selectedDate = ""
+    @Published var selectedDate = "" {
+        willSet(record) {
+            print(record)
+        }
+    }
     @Published var volume = 0
     @Published var recordedDate = [String]()
     @Published var isViewDidLoad = false
@@ -28,6 +32,7 @@ class RecordViewModel: ObservableObject {
                 self.fetchRecodedDate()
                 self.caculateVolume()
                 self.isViewDidLoad = true
+                print(records)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -55,16 +60,6 @@ class RecordViewModel: ObservableObject {
     func fetchRecodedDate() {
         recordedDate = records.records.map {
             $0.finishDate
-        }
-    }
-    
-    func caculateVolume() {
-        for record in records.records {
-            self.volume += record.exercises.reduce(0) {
-                $0 + $1.sets.reduce(0) {
-                    $0 + ($1.weight ?? 0) * $1.reps
-                }
-            }
         }
     }
     
