@@ -9,11 +9,7 @@ import SwiftUI
 
 class RecordViewModel: ObservableObject {
     @Published var records = ResponseGetUsersRecords(records: [])
-    @Published var selectedDate = "" {
-        willSet(record) {
-            print(record)
-        }
-    }
+    @Published var selectedDate = ""
     @Published var volume = 0
     @Published var recordedDate = [String]()
     @Published var isViewDidLoad = false
@@ -30,9 +26,7 @@ class RecordViewModel: ObservableObject {
                 self.selectedDate = Date().format(.yearMonthToday)
                 self.records.records = records
                 self.fetchRecodedDate()
-                self.caculateVolume()
                 self.isViewDidLoad = true
-                print(records)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -61,10 +55,6 @@ class RecordViewModel: ObservableObject {
         recordedDate = records.records.map {
             $0.finishDate
         }
-    }
-    
-    func didLoad() {
-        
     }
     
     func timeFormat(from time: String) -> String {
