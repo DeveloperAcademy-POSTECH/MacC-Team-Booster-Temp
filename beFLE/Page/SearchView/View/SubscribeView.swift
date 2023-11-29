@@ -195,6 +195,7 @@ struct SubscribeView: View {
             .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.isSubscriptionAlertShow) {
                 Button("확인") {
                     //TODO: 서버에 vm.routines.routines 변화
+                    dismiss()
                 }
             }
     }
