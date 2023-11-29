@@ -85,16 +85,24 @@ struct SubscribeView: View {
         VStack{
 //            topBackground
             TabView {
-                ForEach(1...3, id: \.self) { idx in
-                    //둘러보기에서 구독 뷰
-                    ZStack{
-                        HStack{
-                            Spacer()
-                            Image("bannerImage")
-                                .resizable()
-                                .scaledToFit()
+                ForEach(Array(vm.influencer.carouselImageUrls), id: \.self) { imageUrl in
+                    ZStack {
+                        AsyncImage(url: URL(string: imageUrl)) { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                            case .failure:                                Color.red
+                            case .empty:
+                                Color.gray
+                            @unknown default:
+                                Color.gray
+                            }
                         }
-                        LinearGradient(colors: [.gray_900,.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
+                        .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(358))
+                        
+                        LinearGradient(colors: [.gray_900, .clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
                     }
                 }
             }
@@ -138,54 +146,6 @@ struct SubscribeView: View {
             .padding(.top, 15)
             .padding(.leading)
             .frame(maxWidth: .infinity)
-            //MARK: 잼이 지우지 말래요.
-            //            if seeMore == false {
-            //                ZStack(alignment: .top){
-            //                    VStack(alignment: .leading){
-            //                        ForEach(0..<award.count, id: \.self) { index in
-            //                            HStack{
-            //                                VStack{
-            //                                    Text("•")
-            //                                        .font(.body)
-            //                                        .foregroundColor(.label_800)
-            //                                    Spacer()
-            //                                }
-            //                                VStack(alignment: .leading){
-            //                                    HStack{
-            //                                        Text(award[index])
-            //                                            .font(.body)
-            //                                            .foregroundColor(.label_800)
-            //                                        Spacer()
-            //                                    }
-            //                                    Spacer()
-            //                                }
-            //                            }
-            //                            .padding(.leading, 10)
-            //                        }
-            //                    }
-            //                    .mask(alignment: .top){
-            //                        Rectangle()
-            //                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(130))
-            //                    }
-            //                    .padding()
-            //                    LinearGradient(colors: [.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
-            //                    Button {
-            //                        seeMore = true
-            //                    } label: {
-            //                        VStack{
-            //                            Spacer()
-            //                                .frame(height: UIScreen.getHeight(170))
-            //                            Text("더보기")
-            //                                .font(.headline1())
-            //                                .foregroundColor(Color.label_900)
-            //                        }
-            //                    }
-            //
-            //                }
-            //                .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
-            //                .padding(.top, 40)
-            //            }
-            //            else {
             VStack(alignment: .leading) {
                 ForEach(0..<vm.seperateAward(input: vm.influencer.awards).count, id: \.self) { index in
                     HStack {
