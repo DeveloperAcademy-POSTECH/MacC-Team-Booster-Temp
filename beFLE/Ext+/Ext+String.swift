@@ -35,6 +35,8 @@ extension String {
 
 extension String {
     enum FormatterType {
+        /// "2023-10-24" -> "2023년 10월 24일"
+        case fullYearMonthDay
         /// "2023-10-24" -> "23년 10월 24일"
         case yearMonthDay
         /// "2023-10-24" -> "10월 24일"
@@ -51,6 +53,8 @@ extension String {
         dateFormatter.locale = Locale(identifier: "ko-KR")
         
         switch type {
+        case .fullYearMonthDay:
+            dateFormatter.dateFormat = "YYYY년 MM월 dd일"
         case .yearMonthDay:
             dateFormatter.dateFormat = "YY년 MM월 dd일"
         case .monthDay:
