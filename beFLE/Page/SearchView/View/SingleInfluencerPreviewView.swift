@@ -58,18 +58,11 @@ struct SingleInfluencerPreviewView: View {
                 .foregroundColor(.gray_700)
                 .frame(width: UIScreen.getWidth(350))
                 .overlay {
-                        AsyncImage(url: URL(string: influencer.singleExploreImageUrl)) { image in
-                            HStack {
-                                Spacer()
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                            }
-                            .frame(width: UIScreen.getWidth(350))
-                        } placeholder: {
-                            LottieView()
-                                .padding(40)
-                        }
+                    HStack {
+                        Spacer()
+                        LoadingImage(url: influencer.singleExploreImageUrl)
+                    }
+                    .frame(width: UIScreen.getWidth(350))
                 }
             
             // TODO: api 작업 후 수정

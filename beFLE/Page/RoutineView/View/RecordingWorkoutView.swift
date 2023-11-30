@@ -252,16 +252,9 @@ extension RecordingWorkoutView {
         TabView(selection: $vm.tabSelection) {
             VStack {
                 ZStack {
-                    AsyncImage(url: URL(string: vm.exercise.exerciseImageUrl)) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    } placeholder: {
-                        LottieView()
-                            .padding(20)
-                    }
-                    .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
-                    .padding(.horizontal)
+                    LoadingImage(url: vm.exercise.exerciseImageUrl)
+                        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
+                        .padding(.horizontal)
                     
                     HStack {
                         Spacer()
@@ -297,16 +290,10 @@ extension RecordingWorkoutView {
                             ScrollView {
                                 VStack {
                                     HStack {
-                                        AsyncImage(url: URL(string: vm.exercise.faceImageUrl)) { image in
-                                            image
-                                                .resizable()
-                                                .scaledToFit()
-                                        } placeholder: {
-                                            LottieView()
-                                        }
-                                        .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
-                                        .padding(.horizontal, 5)
-                                        .padding(.top, 4)
+                                        LoadingImage(url: vm.exercise.faceImageUrl)
+                                            .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                            .padding(.horizontal, 5)
+                                            .padding(.top, 4)
                                         Spacer()
                                     }
                                     .padding(.bottom)

@@ -50,52 +50,46 @@ extension RecordingFinishView {
     }
     
     var FinishImage: some View {
-        AsyncImage(url: URL(string: workoutVM.routineCompleteImageUrl)) { image in
-            image
-                .resizable()
-                .scaledToFit()
-                .frame(width: UIScreen.getWidth(318))
-        } placeholder: {
-            LottieView()
-        }
-        .background {
-            RoundedRectangle(cornerRadius: 8.0)
-                .frame(width: UIScreen.getWidth(318))
-                .foregroundColor(.gray_700)
-        }
-        .overlay {
-            VStack {
-                Spacer()
-                HStack(spacing: 40) {
-                    VStack(spacing: 3) {
-                        Text("\(vm.caculateWorkoutTime(elapsedTime: workoutVM.elapsedTime))")
-                            .font(.title2())
-                            .foregroundColor(.label_900)
-                        Text("운동시간")
-                            .font(.body2())
-                            .foregroundColor(.label_700)
-                    }
-                    VStack(spacing: 3) {
-                        // TODO: 칼로리 계산
-                        Text("\(vm.totalCalories)Kcal")
-                            .font(.title2())
-                            .foregroundColor(.label_900)
-                        Text("소모칼로리")
-                            .font(.body2())
-                            .foregroundColor(.label_700)
-                    }
-                    VStack(spacing: 3) {
-                        Text("\(vm.volume)kg")
-                            .font(.title2())
-                            .foregroundColor(.label_900)
-                        Text("총 볼륨")
-                            .font(.body2())
-                            .foregroundColor(.label_700)
+        LoadingImage(url: workoutVM.routineCompleteImageUrl)
+            .frame(width: UIScreen.getWidth(318))
+            .background {
+                RoundedRectangle(cornerRadius: 8.0)
+                    .frame(width: UIScreen.getWidth(318))
+                    .foregroundColor(.gray_700)
+            }
+            .overlay {
+                VStack {
+                    Spacer()
+                    HStack(spacing: 40) {
+                        VStack(spacing: 3) {
+                            Text("\(vm.caculateWorkoutTime(elapsedTime: workoutVM.elapsedTime))")
+                                .font(.title2())
+                                .foregroundColor(.label_900)
+                            Text("운동시간")
+                                .font(.body2())
+                                .foregroundColor(.label_700)
+                        }
+                        VStack(spacing: 3) {
+                            // TODO: 칼로리 계산
+                            Text("\(vm.totalCalories)Kcal")
+                                .font(.title2())
+                                .foregroundColor(.label_900)
+                            Text("소모칼로리")
+                                .font(.body2())
+                                .foregroundColor(.label_700)
+                        }
+                        VStack(spacing: 3) {
+                            Text("\(vm.volume)kg")
+                                .font(.title2())
+                                .foregroundColor(.label_900)
+                            Text("총 볼륨")
+                                .font(.body2())
+                                .foregroundColor(.label_700)
+                        }
                     }
                 }
+                .padding(.bottom, 30)
             }
-            .padding(.bottom, 30)
-        }
     }
 }
 

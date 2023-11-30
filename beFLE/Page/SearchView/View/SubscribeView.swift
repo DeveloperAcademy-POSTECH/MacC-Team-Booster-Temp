@@ -87,20 +87,8 @@ struct SubscribeView: View {
             TabView {
                 ForEach(Array(vm.influencer.carouselImageUrls), id: \.self) { imageUrl in
                     ZStack {
-                        AsyncImage(url: URL(string: imageUrl)) { phase in
-                            switch phase {
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                            case .failure:                                Color.red
-                            case .empty:
-                                Color.gray
-                            @unknown default:
-                                Color.gray
-                            }
-                        }
-                        .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(358))
+                        LoadingImage(url: imageUrl)
+                            .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(358))
                         
                         LinearGradient(colors: [.gray_900, .clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
                     }

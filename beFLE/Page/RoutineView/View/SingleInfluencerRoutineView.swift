@@ -59,20 +59,8 @@ extension SingleInfluencerRoutineView {
 extension SingleInfluencerRoutineView {
     var InfluencerImage: some View {
         GeometryReader { geo in
-            AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geo.size.width, height: geo.size.height)
-                    .clipped()
-            } placeholder: {
-                VStack() {
-                    LottieView()
-                        .padding(65)
-                    Spacer()
-                        .frame(height: UIScreen.getHeight(390))
-                }
-            }
+            LoadingImage(url: routine.singleRoutineImageUrl)
+                .frame(width: geo.size.width, height: geo.size.height)
         }
     }
     
