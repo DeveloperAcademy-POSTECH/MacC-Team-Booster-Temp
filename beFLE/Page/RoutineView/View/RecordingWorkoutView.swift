@@ -211,7 +211,7 @@ extension RecordingWorkoutView {
                     workoutVM.currentWorkoutIndex -= 1
                 }
             }
-            workoutVM.deleteWorkout(exerciseId: vm.exercise.exerciseId) {
+            workoutVM.deleteExercise(exerciseId: vm.exercise.exerciseId) {
                 vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
             }
         }

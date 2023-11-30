@@ -8,6 +8,9 @@
 import SwiftUI
 
 class WorkoutViewModel: ObservableObject {
+    let routineModel = RoutineModel()
+    let exerciseModel = ExerciseModel()
+    
     @Published var workoutViewStatus: WorkoutViewStatus = .emptyView
     @Published var routineId = 0
     @Published var exerciseId = 0
@@ -67,43 +70,31 @@ extension WorkoutViewModel {
     }
     
     func fetchRoutine() {
-        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
-            switch $0 {
-            case .success(let routine):
-                self.routine = routine
-                
-                var exercises: [Int] = []
-                for exercise in routine.exercises {
-                    exercises.append(exercise.id)
-                }
-                self.exercises = exercises
-                if !exercises.isEmpty {
-                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
+        routineModel.fetchRoutine(routineId: routineId) {
+            self.routine = $0
+            var exercises: [Int] = []
+            for exercise in $0.exercises {
+                exercises.append(exercise.id)
+            }
+            self.exercises = exercises
+            if !exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
             }
         }
     }
     
-    func fetchRoutine(completion: @escaping (()->()) ) {
-        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
-            switch $0 {
-            case .success(let routine):
-                self.routine = routine
-                
-                var exercises: [Int] = []
-                for exercise in routine.exercises {
-                    exercises.append(exercise.id)
-                }
-                self.exercises = exercises
-                if !exercises.isEmpty {
-                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
-                }
-                completion()
-            case .failure(let error):
-                print(error.localizedDescription)
+    func fetchRoutine(completion: @escaping (()->())) {
+        routineModel.fetchRoutine(routineId: routineId) {
+            self.routine = $0
+            var exercises: [Int] = []
+            for exercise in $0.exercises {
+                exercises.append(exercise.id)
             }
+            self.exercises = exercises
+            if !exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+            }
+            completion()
         }
     }
     
@@ -113,17 +104,12 @@ extension WorkoutViewModel {
     }
     
     func fetchExercise() {
-        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
-            switch $0 {
-            case .success(let exercise):
-                self.exercise = exercise
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        exerciseModel.fetchExercise(routineId: routineId, exerciseId: exerciseId) {
+            self.exercise = $0
         }
     }
     
-    func deleteWorkout(exerciseId: Int) {
+    func deleteExercise(exerciseId: Int) {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
@@ -134,27 +120,17 @@ extension WorkoutViewModel {
         }
     }
     
-    func deleteWorkout(exerciseId: Int, completion: @escaping (() -> ())) {
-        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
-            switch $0 {
-            case .success:
-                self.fetchRoutine() {
-                    completion()
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
+    func deleteExercise(exerciseId: Int, completion: @escaping (() -> ())) {
+        exerciseModel.deleteExercise(routineId: routineId, exerciseId: exerciseId) {
+            self.fetchRoutine {
+                completion()
             }
         }
     }
     
     func finishWorkout() {
-        GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
-            switch $0 {
-            case .success(let response):
-                self.routineCompleteImageUrl = response.routineCompleteImageUrl
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        routineModel.finishRoutine(routineId: routineId) {
+            self.routineCompleteImageUrl = $0
         }
     }
 }

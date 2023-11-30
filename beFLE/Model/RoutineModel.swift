@@ -19,4 +19,15 @@ struct RoutineModel {
             }
         }
     }
+    
+    func finishRoutine(routineId: Int, completion: @escaping ((String)->())) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
+            switch $0 {
+            case .success(let routine):
+                completion(routine.routineCompleteImageUrl)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
