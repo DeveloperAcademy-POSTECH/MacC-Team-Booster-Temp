@@ -7,12 +7,16 @@
 
 import SwiftUI
 
-struct RoutineModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct RoutineModel {
+    func fetchRoutine(routineId: Int, completion: @escaping ((ResponseGetUsersRoutinesId)->())) {
+        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
+            switch $0 {
+            case .success(let routine):
+                let routine: ResponseGetUsersRoutinesId = routine
+                completion(routine)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
-}
-
-#Preview {
-    RoutineModel()
 }
