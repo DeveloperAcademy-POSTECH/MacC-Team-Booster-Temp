@@ -12,9 +12,12 @@ struct LoadingImage: View {
     
     var body: some View {
         AsyncImage(url: URL(string: url ?? "")) { image in
-            image
-                .resizable()
-                .scaledToFill()
+            HStack {
+                Spacer()
+                image
+                    .resizable()
+                    .scaledToFit()
+            }
         } placeholder: {
             LottieView()
                 .frame(width: 50, height: 50)

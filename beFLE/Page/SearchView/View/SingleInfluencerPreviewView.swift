@@ -59,7 +59,6 @@ struct SingleInfluencerPreviewView: View {
                 .frame(width: UIScreen.getWidth(350))
                 .overlay {
                     HStack {
-                        Spacer()
                         LoadingImage(url: influencer.singleExploreImageUrl)
                     }
                     .frame(width: UIScreen.getWidth(350))
