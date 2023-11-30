@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct LoadingImage: View {
+    let url: String?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        AsyncImage(url: URL(string: url ?? "")) { image in
+            image
+                .resizable()
+                .scaledToFit()
+        } placeholder: {
+            LottieView()
+                .padding(5)
+        }
     }
 }
 
 #Preview {
-    LoadingImage()
+    LoadingImage(url: "")
 }
