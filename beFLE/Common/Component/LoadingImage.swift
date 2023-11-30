@@ -19,8 +19,12 @@ struct LoadingImage: View {
                     .scaledToFit()
             }
         } placeholder: {
-            LottieView()
-                .frame(width: 50, height: 50)
+            VStack(alignment: .center) {
+                LottieView()
+                    .frame(width: 50, height: 50)
+                    .padding(.horizontal, 100)
+                Spacer()
+            }
         }
     }
 }
