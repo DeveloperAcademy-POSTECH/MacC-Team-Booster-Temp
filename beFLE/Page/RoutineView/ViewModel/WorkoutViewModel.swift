@@ -9,6 +9,7 @@ import SwiftUI
 
 class WorkoutViewModel: ObservableObject {
     let routineModel = RoutineModel()
+    let exerciseModel = ExerciseModel()
     
     @Published var workoutViewStatus: WorkoutViewStatus = .emptyView
     @Published var routineId = 0
