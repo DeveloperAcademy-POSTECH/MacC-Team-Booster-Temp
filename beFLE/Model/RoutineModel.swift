@@ -19,15 +19,4 @@ struct RoutineModel {
             }
         }
     }
-    
-    func deleteWorkout(routineId: Int, exerciseId: Int, completion: @escaping (() -> ())) {
-        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
-            switch $0 {
-            case .success:
-                completion()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
 }
