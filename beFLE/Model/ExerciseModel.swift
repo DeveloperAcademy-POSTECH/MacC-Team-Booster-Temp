@@ -7,12 +7,16 @@
 
 import SwiftUI
 
-struct ExerciseModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct ExerciseModel {
+    func fetchExercise(routineId: Int, exerciseId: Int, completion: @escaping ((ResponseGetRoutinesExercises)->())) {
+        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
+            switch $0 {
+            case .success(let exercise):
+                let exercise: ResponseGetRoutinesExercises = exercise
+                completion(exercise)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
-}
-
-#Preview {
-    ExerciseModel()
 }
