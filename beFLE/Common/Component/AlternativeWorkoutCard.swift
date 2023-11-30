@@ -21,14 +21,7 @@ struct AlternativeWorkoutCard: View {
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                         .foregroundColor(.fill_1)
                         .overlay {
-                            AsyncImage(url: URL(string: alternativeWorkout.exerciseImageUrl ?? "")) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                            } placeholder: {
-                                LottieView()
-                                    .padding(5)
-                            }
+                            LoadingImage(url: alternativeWorkout.exerciseImageUrl)
                         }
                         .padding(.leading, 6)
                         .padding(.trailing, 15)

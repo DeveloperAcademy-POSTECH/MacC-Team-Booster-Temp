@@ -42,15 +42,9 @@ struct SubscribedInfluencerCard: View {
                     }
                     .frame(height: UIScreen.getHeight(156))
                     Spacer()
-                    AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: UIScreen.getWidth(156))
-                    } placeholder: {
-                        LottieView()
-                            .padding(40)
-                    }
+                    
+                    LoadingImage(url: routine.singleRoutineImageUrl)
+                        .frame(width: UIScreen.getWidth(156))
                 }
             }
             .mask {

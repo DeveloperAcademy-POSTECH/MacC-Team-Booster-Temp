@@ -77,15 +77,8 @@ extension DetailedWorkoutSheet {
                 
                 Spacer()
             }
-            AsyncImage(url: URL(string: vm.exercise.exerciseImageUrl)) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: UIScreen.getWidth(320), height: UIScreen.getHeight(220))
-            } placeholder: {
-                LottieView()
-                    .padding(10)
-            }
+            LoadingImage(url: vm.exercise.exerciseImageUrl)
+                .frame(width: UIScreen.getWidth(320), height: UIScreen.getHeight(220))
         }
         .padding(.horizontal)
     }
@@ -93,15 +86,8 @@ extension DetailedWorkoutSheet {
     var WorkoutTip: some View {
         VStack {
             HStack {
-                AsyncImage(url: URL(string: vm.exercise.faceImageUrl)) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } placeholder: {
-                    LottieView()
-                        .padding(5)
-                }
-                .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                LoadingImage(url: vm.exercise.faceImageUrl)
+                    .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
                 
                 Spacer()
             }

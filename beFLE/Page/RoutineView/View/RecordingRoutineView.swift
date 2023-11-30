@@ -86,14 +86,7 @@ extension RecordingRoutineView {
                 .foregroundColor(.fill_1)
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .overlay {
-                    AsyncImage(url: URL(string: workoutVM.routine.exercises[index].exerciseImageUrl ?? "")) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    } placeholder: {
-                        LottieView()
-                            .padding(5)
-                    }
+                    LoadingImage(url: workoutVM.routine.exercises[index].exerciseImageUrl)
                 }
             
             VStack(alignment: .leading, spacing: 8) {

@@ -83,14 +83,7 @@ extension EditRoutineView {
                         .foregroundColor(.fill_1)
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                         .overlay {
-                            AsyncImage(url: URL(string: exercise.exerciseImageUrl ?? "")) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                            } placeholder: {
-                                LottieView()
-                                    .padding(5)
-                            }
+                            LoadingImage(url: exercise.exerciseImageUrl)
                         }
                     
                     VStack(alignment: .leading, spacing: 3) {

@@ -3,20 +3,13 @@
 //  Created by 정회승 on 2023/11/23.
 //
 
-import Foundation
 import Lottie
 import SwiftUI
-import UIKit
 
 struct LottieView: UIViewRepresentable {
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
     var fileName : String = "BefleLottie"
     var loopMode: LottieLoopMode = .loop
     var animationView = LottieAnimationView()
-    
     
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView()
@@ -40,11 +33,15 @@ struct LottieView: UIViewRepresentable {
 
     }
     
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
     class Coordinator: NSObject {
-            var parent: LottieView
-
-            init(_ parent: LottieView) {
-                self.parent = parent
-            }
+        var parent: LottieView
+        
+        init(_ parent: LottieView) {
+            self.parent = parent
         }
+    }
 }
