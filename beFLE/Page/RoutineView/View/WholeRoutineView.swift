@@ -137,6 +137,7 @@ extension WholeRoutineView {
             }
         }
         .padding(.horizontal)
+        .scrollIndicators(.hidden)
     }
 }
 
