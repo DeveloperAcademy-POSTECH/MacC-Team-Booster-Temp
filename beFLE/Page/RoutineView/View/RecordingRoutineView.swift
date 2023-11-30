@@ -91,14 +91,14 @@ extension RecordingRoutineView {
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    if workoutVM.routine.exercises[index].id == workoutVM.exercise.exerciseId {
+                    if workoutVM.routine.exercises[index].id == workoutVM.workout.exerciseId {
                         Image(systemName: "flame.fill")
                             .font(.headline1())
                             .foregroundColor(.green_main)
                     }
                     Text(workoutVM.routine.exercises[index].name)
                         .font(.headline1())
-                        .foregroundColor(workoutVM.routine.exercises[index].id == workoutVM.exercise.exerciseId ? .green_main : .label_900)
+                        .foregroundColor(workoutVM.routine.exercises[index].id == workoutVM.workout.exerciseId ? .green_main : .label_900)
                         .multilineTextAlignment(.leading)
                         .allowsTightening(true)
                     Spacer()

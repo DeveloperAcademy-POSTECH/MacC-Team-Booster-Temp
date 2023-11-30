@@ -9,7 +9,7 @@ import SwiftUI
 
 class WorkoutViewModel: ObservableObject {
     let routineModel = RoutineModel()
-    let exerciseModel = ExerciseModel()
+    let wokroutModel = WorkoutModel()
     
     @Published var workoutViewStatus: WorkoutViewStatus = .emptyView
     @Published var routineId = 0
@@ -18,8 +18,8 @@ class WorkoutViewModel: ObservableObject {
     @Published var routineCompleteImageUrl = ""
     
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
-    @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
-    @Published var exercises: [Int] = []
+    @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
+    @Published var workouts: [Int] = []
     
     @Published var isRunning = false
     @Published var elapsedTime: TimeInterval = 0
@@ -43,7 +43,7 @@ extension WorkoutViewModel {
         case .editRoutineView:
             completion()
         case .recordingWorkoutView:
-            if !exercises.isEmpty {
+            if !workouts.isEmpty {
                 completion()
             }
         case .recordingRoutineView:
@@ -51,7 +51,7 @@ extension WorkoutViewModel {
         case .editRecordingRoutineView:
             completion()
         case .recordingFinishView:
-            finishWorkout()
+            finishRoutine()
             completion()
         }
     }
@@ -66,7 +66,7 @@ extension WorkoutViewModel {
     
     func fetchExerciseId(exerciseId: Int) {
         self.exerciseId = exerciseId
-        fetchExercise()
+        fetchWorkout()
     }
     
     func fetchRoutine() {
@@ -76,7 +76,7 @@ extension WorkoutViewModel {
             for exercise in $0.exercises {
                 exercises.append(exercise.id)
             }
-            self.exercises = exercises
+            self.workouts = exercises
             if !exercises.isEmpty {
                 self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
             }
@@ -90,7 +90,7 @@ extension WorkoutViewModel {
             for exercise in $0.exercises {
                 exercises.append(exercise.id)
             }
-            self.exercises = exercises
+            self.workouts = exercises
             if !exercises.isEmpty {
                 self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
             }
@@ -103,13 +103,13 @@ extension WorkoutViewModel {
         fetchRoutine()
     }
     
-    func fetchExercise() {
-        exerciseModel.fetchExercise(routineId: routineId, exerciseId: exerciseId) {
-            self.exercise = $0
+    func fetchWorkout() {
+        wokroutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
+            self.workout = $0
         }
     }
     
-    func deleteExercise(exerciseId: Int) {
+    func deleteWorkout(exerciseId: Int) {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
@@ -120,15 +120,15 @@ extension WorkoutViewModel {
         }
     }
     
-    func deleteExercise(exerciseId: Int, completion: @escaping (() -> ())) {
-        exerciseModel.deleteExercise(routineId: routineId, exerciseId: exerciseId) {
+    func deleteWorkout(exerciseId: Int, completion: @escaping (() -> ())) {
+        wokroutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.fetchRoutine {
                 completion()
             }
         }
     }
     
-    func finishWorkout() {
+    func finishRoutine() {
         routineModel.finishRoutine(routineId: routineId) {
             self.routineCompleteImageUrl = $0
         }

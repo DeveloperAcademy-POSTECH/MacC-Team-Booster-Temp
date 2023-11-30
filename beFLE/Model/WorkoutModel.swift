@@ -1,5 +1,5 @@
 //
-//  ExerciseModel.swift
+//  WorkoutModel.swift
 //  beFLE
 //
 //  Created by 송재훈 on 11/30/23.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ExerciseModel {
-    func fetchExercise(routineId: Int, exerciseId: Int, completion: @escaping ((ResponseGetRoutinesExercises)->())) {
+struct WorkoutModel {
+    func fetchWorkout(routineId: Int, exerciseId: Int, completion: @escaping ((ResponseGetRoutinesExercises)->())) {
         GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
             switch $0 {
             case .success(let exercise):
@@ -20,7 +20,7 @@ struct ExerciseModel {
         }
     }
     
-    func deleteExercise(routineId: Int, exerciseId: Int, completion: @escaping (() -> ())) {
+    func deleteWorkout(routineId: Int, exerciseId: Int, completion: @escaping (() -> ())) {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:

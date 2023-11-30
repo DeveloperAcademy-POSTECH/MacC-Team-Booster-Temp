@@ -314,7 +314,7 @@ struct MockUpWorkoutOngoingView: View {
 }
 
 struct MockUpWorkoutSetCard: View {
-    @Binding var workoutSet: WorkoutSetModel
+    @Binding var workoutSet: MockUpWorkoutSetModel
     var isFocused: FocusState<Bool>.Binding
     
     var body: some View {
