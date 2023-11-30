@@ -193,7 +193,7 @@ extension EditRoutineView {
     @ViewBuilder
     var DeleteAlert: some View {
         Button("삭제", role: .destructive) {
-            workoutVM.deleteExercise(exerciseId: vm.selectedExerciseId)
+            workoutVM.deleteWorkout(exerciseId: vm.selectedExerciseId)
         }
     }
 }

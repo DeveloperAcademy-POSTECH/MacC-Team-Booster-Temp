@@ -206,12 +206,12 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var DeleteAlert: some View {
         Button("삭제", role: .destructive) {
-            if workoutVM.exercises.count - 1 == workoutVM.currentWorkoutIndex {
-                if workoutVM.exercises.last == workoutVM.exerciseId {
+            if workoutVM.workouts.count - 1 == workoutVM.currentWorkoutIndex {
+                if workoutVM.workouts.last == workoutVM.exerciseId {
                     workoutVM.currentWorkoutIndex -= 1
                 }
             }
-            workoutVM.deleteExercise(exerciseId: vm.exercise.exerciseId) {
+            workoutVM.deleteWorkout(exerciseId: vm.exercise.exerciseId) {
                 vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
             }
         }
@@ -223,7 +223,7 @@ extension RecordingWorkoutView {
     var WorkoutInfomation: some View {
         VStack {
             HStack {
-                Text("\(workoutVM.currentWorkoutIndex + 1) / \(workoutVM.exercises.count)")
+                Text("\(workoutVM.currentWorkoutIndex + 1) / \(workoutVM.workouts.count)")
                     .foregroundColor(.label_700)
                 Text("|")
                     .foregroundColor(.label_400)
@@ -361,7 +361,7 @@ extension RecordingWorkoutView {
                             vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId) {
                                 if vm.nextButtonStatus == .nextSet {
                                     if vm.currentSet >= vm.exercise.sets.count - 1 {
-                                        if workoutVM.currentWorkoutIndex >= workoutVM.exercises.count - 1 {
+                                        if workoutVM.currentWorkoutIndex >= workoutVM.workouts.count - 1 {
                                             vm.nextButtonStatus = .finishWorkout
                                         }
                                         else {
@@ -477,7 +477,7 @@ extension RecordingWorkoutView {
                             case .nextSet:
                                 vm.nextSet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
                                     if vm.currentSet >= vm.exercise.sets.count - 1 {
-                                        if workoutVM.currentWorkoutIndex >= workoutVM.exercises.count - 1 {
+                                        if workoutVM.currentWorkoutIndex >= workoutVM.workouts.count - 1 {
                                             vm.nextButtonStatus = .finishWorkout
                                         }
                                         else {
@@ -487,7 +487,7 @@ extension RecordingWorkoutView {
                                 }
                             case .nextWorkout:
                                 vm.nextWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-                                    vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exercises[workoutVM.currentWorkoutIndex + 1])
+                                    vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.workouts[workoutVM.currentWorkoutIndex + 1])
                                     workoutVM.fetchNextWorkout()
                                 }
                             case .finishWorkout:
