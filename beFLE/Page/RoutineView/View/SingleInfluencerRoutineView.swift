@@ -68,11 +68,15 @@ extension SingleInfluencerRoutineView {
                     .clipped()
             } placeholder: {
                 VStack(alignment: .center) {
+                    Spacer()
                     LottieView()
                         .frame(width: 50, height: 50)
-                        .padding(.vertical, 200)
+                    Spacer()
+                    Spacer()
+                    Spacer()
                     Spacer()
                 }
+                .frame(width: UIScreen.screenWidth)
             }
         }
     }
