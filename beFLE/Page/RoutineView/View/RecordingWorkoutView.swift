@@ -49,7 +49,7 @@ struct RecordingWorkoutView: View {
         .onAppear {
             vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
             workoutVM.timerStart()
-//            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
+            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
             vm.currentSet = 0
             vm.nextButtonStatus = .nextSet
         }
