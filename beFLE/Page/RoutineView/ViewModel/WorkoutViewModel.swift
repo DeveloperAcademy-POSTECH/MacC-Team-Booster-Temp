@@ -109,7 +109,7 @@ extension WorkoutViewModel {
         }
     }
     
-    func deleteWorkout(exerciseId: Int) {
+    func deleteExercise(exerciseId: Int) {
         GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
             switch $0 {
             case .success:
@@ -120,7 +120,7 @@ extension WorkoutViewModel {
         }
     }
     
-    func deleteWorkout(exerciseId: Int, completion: @escaping (() -> ())) {
+    func deleteExercise(exerciseId: Int, completion: @escaping (() -> ())) {
         exerciseModel.deleteExercise(routineId: routineId, exerciseId: exerciseId) {
             self.fetchRoutine {
                 completion()
