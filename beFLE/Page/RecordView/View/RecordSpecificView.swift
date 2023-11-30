@@ -45,7 +45,7 @@ struct RecordSpecificView: View {
                 .font(.title2())
                 .foregroundColor(.label_900)
                 .padding(.bottom, 10)
-            Text("2023년 4월 23일 루틴")
+            Text("\(record.uploadDate.format(.yearMonthDay)) 루틴")
                 .font(.caption())
                 .foregroundColor(.label_700)
                 .padding(.bottom, 10)
