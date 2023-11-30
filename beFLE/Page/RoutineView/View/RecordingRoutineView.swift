@@ -126,12 +126,7 @@ extension RecordingRoutineView {
             .padding(.horizontal)
             Spacer()
             
-            if workoutVM.routine.exercises[index].isDone {
-                CheckButton()
-            }
-            else {
-                EmptyCheckButton()
-            }
+            CheckButton(status: workoutVM.routine.exercises[index].isDone ? .check : .empty)
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(64))
         .padding(.vertical, 4)

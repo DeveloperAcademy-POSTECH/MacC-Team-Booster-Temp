@@ -99,12 +99,7 @@ struct WorkoutSetCard: View {
             Spacer()
                 .frame(width: UIScreen.getWidth(50))
             
-            if set.isDone {
-                CheckButton()
-            }
-            else {
-                EmptyCheckButton()
-            }
+            CheckButton(status: set.isDone ? .check : .empty)
         }
         .onAppear {
             debouncedStream.repInput = set.reps
