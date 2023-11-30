@@ -46,6 +46,7 @@ struct RecordView: View {
     }
     
     var RecordCell: some View {
+        ScrollView {
         ForEach(vm.records.records.filter { $0.finishDate == vm.selectedDate }, id: \.self) { record in
             NavigationLink {
                 RecordSpecificView(record: record)
@@ -81,6 +82,7 @@ struct RecordView: View {
         }
         .padding(.bottom, 5)
     }
+}
 }
 
 

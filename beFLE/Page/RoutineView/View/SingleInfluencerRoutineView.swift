@@ -59,9 +59,25 @@ extension SingleInfluencerRoutineView {
 extension SingleInfluencerRoutineView {
     var InfluencerImage: some View {
         GeometryReader { geo in
-            LoadingImage(url: routine.singleRoutineImageUrl)
-                .frame(width: geo.size.width, height: geo.size.height)
-                .clipped()
+            //MARK: 화면에 가득 채워야 해서 이건 컴포넌트화 하지 않을게요 - CAESAR
+            AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .clipped()
+            } placeholder: {
+                VStack(alignment: .center) {
+                    Spacer()
+                    LottieView()
+                        .frame(width: 50, height: 50)
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                }
+                .frame(width: UIScreen.screenWidth)
+            }
         }
     }
     
