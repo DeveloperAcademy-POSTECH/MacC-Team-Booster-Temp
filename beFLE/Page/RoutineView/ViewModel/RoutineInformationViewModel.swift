@@ -8,18 +8,14 @@
 import SwiftUI
 
 class RoutineInformationViewModel: ObservableObject {
+    let routineModel = RoutineModel()
     /// 루틴 목록
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     
     /// 루틴 정보 조회 함수
-    func fetchRoutine(routineId: Int) {
-        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
-            switch $0 {
-            case .success(let routine):
-                self.routine = routine
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+    func fetch(routineId: Int) {
+        routineModel.fetchRoutine(routineId: routineId) {
+            self.routine = $0
         }
     }
     

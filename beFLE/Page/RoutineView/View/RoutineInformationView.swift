@@ -37,7 +37,7 @@ struct RoutineInformationView: View {
             startButton
         }
         .onAppear {
-            vm.fetchRoutine(routineId: routineId)
+            vm.fetch(routineId: routineId)
         }
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
