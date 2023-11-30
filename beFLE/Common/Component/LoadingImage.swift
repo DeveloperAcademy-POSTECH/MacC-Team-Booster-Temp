@@ -17,7 +17,7 @@ struct LoadingImage: View {
                 .scaledToFit()
         } placeholder: {
             LottieView()
-                .padding(5)
+                .frame(width: 50, height: 50)
         }
     }
 }
