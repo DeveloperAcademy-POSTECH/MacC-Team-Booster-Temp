@@ -69,43 +69,31 @@ extension WorkoutViewModel {
     }
     
     func fetchRoutine() {
-        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
-            switch $0 {
-            case .success(let routine):
-                self.routine = routine
-                
-                var exercises: [Int] = []
-                for exercise in routine.exercises {
-                    exercises.append(exercise.id)
-                }
-                self.exercises = exercises
-                if !exercises.isEmpty {
-                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
+        routineModel.fetchRoutine(routineId: routineId) {
+            self.routine = $0
+            var exercises: [Int] = []
+            for exercise in $0.exercises {
+                exercises.append(exercise.id)
+            }
+            self.exercises = exercises
+            if !exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
             }
         }
     }
     
-    func fetchRoutine(completion: @escaping (()->()) ) {
-        GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
-            switch $0 {
-            case .success(let routine):
-                self.routine = routine
-                
-                var exercises: [Int] = []
-                for exercise in routine.exercises {
-                    exercises.append(exercise.id)
-                }
-                self.exercises = exercises
-                if !exercises.isEmpty {
-                    self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
-                }
-                completion()
-            case .failure(let error):
-                print(error.localizedDescription)
+    func fetchRoutine(completion: @escaping (()->())) {
+        routineModel.fetchRoutine(routineId: routineId) {
+            self.routine = $0
+            var exercises: [Int] = []
+            for exercise in $0.exercises {
+                exercises.append(exercise.id)
             }
+            self.exercises = exercises
+            if !exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+            }
+            completion()
         }
     }
     
