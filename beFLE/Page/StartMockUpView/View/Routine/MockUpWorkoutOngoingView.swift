@@ -354,12 +354,7 @@ struct MockUpWorkoutSetCard: View {
                 .foregroundColor(.label_700)
             Spacer()
             
-            if workoutSet.isFinish {
-                CheckButton()
-            }
-            else {
-                EmptyCheckButton()
-            }
+            CheckButton(status: workoutSet.isFinish ? .check : .empty)
         }
         .font(.body())
         .padding(.horizontal)
