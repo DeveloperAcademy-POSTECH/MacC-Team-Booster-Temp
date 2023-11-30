@@ -22,7 +22,7 @@ struct LoadingImage: View {
             VStack(alignment: .center) {
                 LottieView()
                     .frame(width: 50, height: 50)
-                    .padding(.horizontal, 100)
+                    .padding(.horizontal, 400)
                 Spacer()
             }
         }
