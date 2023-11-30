@@ -8,6 +8,8 @@
 import SwiftUI
 
 class RecordingWorkoutViewModel: ObservableObject {
+    let workoutModel = WorkoutModel()
+    
     @Published var nextButtonStatus: NextButtonStatus = .nextSet
     /// 현재 진행 중인 운동
     @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
