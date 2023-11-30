@@ -30,4 +30,26 @@ struct WorkoutModel {
             }
         }
     }
+    
+    func decreaseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (([ExerciseSet]) -> ())) {
+        GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
+            switch $0 {
+            case .success(let sets):
+                completion(sets)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func increseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (([ExerciseSet]) -> ()) ) {
+        GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
+            switch $0 {
+            case .success(let sets):
+                completion(sets)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
