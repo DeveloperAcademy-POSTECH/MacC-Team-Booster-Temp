@@ -14,7 +14,7 @@ struct LoadingImage: View {
         AsyncImage(url: URL(string: url ?? "")) { image in
             image
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
         } placeholder: {
             LottieView()
                 .frame(width: 50, height: 50)

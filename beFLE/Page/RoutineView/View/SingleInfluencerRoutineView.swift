@@ -61,6 +61,7 @@ extension SingleInfluencerRoutineView {
         GeometryReader { geo in
             LoadingImage(url: routine.singleRoutineImageUrl)
                 .frame(width: geo.size.width, height: geo.size.height)
+                .clipped()
         }
     }
     
