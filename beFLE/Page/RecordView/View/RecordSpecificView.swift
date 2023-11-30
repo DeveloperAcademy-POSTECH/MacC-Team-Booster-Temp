@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RecordSpecificView: View {
     let record: Records
-    
     @StateObject var vm = RecordSpecificViewModel()
     
     @Environment(\.dismiss) var dismiss: DismissAction
