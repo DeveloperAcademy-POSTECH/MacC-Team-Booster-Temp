@@ -104,13 +104,8 @@ extension WorkoutViewModel {
     }
     
     func fetchExercise() {
-        GeneralAPIManger.request(for: .GetRoutinesExercises(routineId: routineId, exerciseId: exerciseId), type: ResponseGetRoutinesExercises.self) {
-            switch $0 {
-            case .success(let exercise):
-                self.exercise = exercise
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        exerciseModel.fetchExercise(routineId: routineId, exerciseId: exerciseId) {
+            self.exercise = $0
         }
     }
     
