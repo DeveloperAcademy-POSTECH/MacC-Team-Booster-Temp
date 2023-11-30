@@ -45,7 +45,7 @@ struct RecordSpecificView: View {
                 .font(.title2())
                 .foregroundColor(.label_900)
                 .padding(.bottom, 10)
-            Text("\(record.uploadDate.format(.yearMonthDay)) 루틴")
+            Text("\(record.uploadDate.format(.fullYearMonthDay)) 루틴")
                 .font(.caption())
                 .foregroundColor(.label_700)
                 .padding(.bottom, 10)
@@ -73,7 +73,7 @@ struct RecordSpecificView: View {
     }
     
     var BackButton: some View {
-        Button {
+        Button {ㅎ
             dismiss()
         } label: {
             Image(systemName: "chevron.left")
