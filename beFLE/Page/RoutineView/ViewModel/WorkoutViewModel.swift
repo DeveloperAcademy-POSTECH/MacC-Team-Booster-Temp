@@ -129,13 +129,8 @@ extension WorkoutViewModel {
     }
     
     func finishWorkout() {
-        GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
-            switch $0 {
-            case .success(let response):
-                self.routineCompleteImageUrl = response.routineCompleteImageUrl
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        routineModel.finishRoutine(routineId: routineId) {
+            self.routineCompleteImageUrl = $0
         }
     }
 }
