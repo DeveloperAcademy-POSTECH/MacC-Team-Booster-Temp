@@ -47,7 +47,7 @@ struct RecordingWorkoutView: View {
             }
         }
         .onAppear {
-            vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
+            vm.fetchWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
             workoutVM.timerStart()
             vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
             vm.currentSet = 0
@@ -212,7 +212,7 @@ extension RecordingWorkoutView {
                 }
             }
             workoutVM.deleteWorkout(exerciseId: vm.exercise.exerciseId) {
-                vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
+                vm.fetchWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
             }
         }
     }
@@ -487,7 +487,7 @@ extension RecordingWorkoutView {
                                 }
                             case .nextWorkout:
                                 vm.nextWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-                                    vm.fetchExercise(routineId: workoutVM.routineId, exerciseId: workoutVM.workouts[workoutVM.currentWorkoutIndex + 1])
+                                    vm.fetchWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.workouts[workoutVM.currentWorkoutIndex + 1])
                                     workoutVM.fetchNextWorkout()
                                 }
                             case .finishWorkout:
