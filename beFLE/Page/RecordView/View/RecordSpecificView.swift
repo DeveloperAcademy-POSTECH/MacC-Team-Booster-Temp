@@ -35,10 +35,6 @@ struct RecordSpecificView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButton
             }
-//            ToolbarItem(placement: .topBarTrailing) {
-//                //login 되야 활성화
-//                EditButton
-//            }
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -58,7 +54,8 @@ struct RecordSpecificView: View {
             Description(image: "clock.fill", text: "\(vm.timeFormat(from: record.time))")
             Description(image: "flame.circle.fill", text: "\(record.burnedKCalories)kcal")
             Description(image: "dumbbell.fill", text: "\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps } )}))kg")
-        }.padding(.bottom, 15)
+        }
+        .padding(.bottom, 15)
     }
     
     func Description(image: String, text: String) -> some View {
@@ -73,17 +70,6 @@ struct RecordSpecificView: View {
                 .font(.body())
         }
         .padding(.bottom, 7)
-    }
-    
-    //추후 추가 예정
-    var EditButton: some View {
-        NavigationLink {
-            RecordEditView()
-        } label: {
-            Image(systemName: "pencil")
-                .foregroundColor(.label_700)
-                .font(.headline2())
-        }
     }
     
     var BackButton: some View {
@@ -143,13 +129,3 @@ struct RoutineCell: View {
         .frame(minWidth: UIScreen.getWidth(135), alignment: .leading)
     }
 }
-
-
-
-//struct RecordSpecificView_Preview: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack{
-//            RecordSpecificView(record: Records(date: "", time: "", part: "", numberOfExercise: 5, burnedKCalories: 5, requiredMinutes: 5, exercises: []))
-//        }
-//    }
-//}
