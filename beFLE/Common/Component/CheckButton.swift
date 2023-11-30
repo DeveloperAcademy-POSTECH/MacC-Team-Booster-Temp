@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CheckButton: View {
-    var status: Status
+    let status: Status
     
     enum Status {
         case empty
