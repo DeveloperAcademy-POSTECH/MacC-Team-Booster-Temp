@@ -63,18 +63,13 @@ extension RecordingWorkoutViewModel {
         if exercise.sets.count > 2 {
             isCanTappable = false
             
-            GeneralAPIManger.request(for: .DeleteRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
-                switch $0 {
-                case .success(let sets):
-                    if self.currentSet >= sets.count {
-                        self.currentSet -= 1
-                    }
-                    self.exercise.sets = sets
-                    self.isCanTappable = true
-                    completion()
-                case .failure(let error):
-                    print(error.localizedDescription)
+            workoutModel.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                if self.currentSet >= $0.count {
+                    self.currentSet -= 1
                 }
+                self.exercise.sets = $0
+                self.isCanTappable = true
+                completion()
             }
         }
     }
@@ -84,15 +79,10 @@ extension RecordingWorkoutViewModel {
         if exercise.sets.count < 9 {
             isCanTappable = false
             
-            GeneralAPIManger.request(for: .PostRoutinesExercisesSets(routineId: routineId, exerciseId: exerciseId), type: [ExerciseSet].self) {
-                switch $0 {
-                case .success(let sets):
-                    self.nextButtonStatus = .nextSet
-                    self.exercise.sets = sets
-                    self.isCanTappable = true
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+            workoutModel.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                self.nextButtonStatus = .nextSet
+                self.exercise.sets = $0
+                self.isCanTappable = true
             }
         }
     }
