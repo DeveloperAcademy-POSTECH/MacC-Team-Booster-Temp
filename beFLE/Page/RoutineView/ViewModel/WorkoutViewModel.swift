@@ -8,6 +8,8 @@
 import SwiftUI
 
 class WorkoutViewModel: ObservableObject {
+    let routineModel = RoutineModel()
+    
     @Published var workoutViewStatus: WorkoutViewStatus = .emptyView
     @Published var routineId = 0
     @Published var exerciseId = 0
