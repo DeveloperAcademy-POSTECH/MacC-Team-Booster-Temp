@@ -69,7 +69,7 @@ struct WorkoutSetCard: View {
                         .multilineTextAlignment(.trailing)
                         .padding(.trailing, 10)
                         .onChange(of: debouncedStream.debouncedWeight) { weight in
-                            recordingWorkoutVM.editWeight(index: index - 1, routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: weight, reps: set.reps) {
+                            recordingWorkoutVM.editWeight(routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: weight, reps: set.reps) {
                                     set.weight = $0.weight
                             }
                         }
@@ -89,7 +89,7 @@ struct WorkoutSetCard: View {
                         .multilineTextAlignment(.trailing)
                         .padding(.trailing, 10)
                         .onChange(of: debouncedStream.debouncedReps) { reps in
-                            recordingWorkoutVM.editReps(index: index - 1, routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: set.weight ?? nil, reps: reps) {
+                            recordingWorkoutVM.editReps(routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: set.weight ?? nil, reps: reps) {
                                 set.reps = $0.reps
                             }
                         }
