@@ -70,7 +70,7 @@ struct WorkoutSetCard: View {
                         .padding(.trailing, 10)
                         .onChange(of: debouncedStream.debouncedWeight) { weight in
                             recordingWorkoutVM.editWeight(routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: weight, reps: set.reps) {
-                                    set.weight = $0.weight
+                                set.weight = $0.weight
                             }
                         }
                 }
