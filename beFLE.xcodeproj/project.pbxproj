@@ -688,6 +688,7 @@
 				0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */,
 				0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				F8A4A58F2B0E60D800046C00 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				F83E131B2B1A439000172A2F /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 0DA327552AE1321600319BAB /* Products */;
 			projectDirPath = "";
@@ -1051,6 +1052,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 15.0.3;
+			};
+		};
+		F83E131B2B1A439000172A2F /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
 			};
 		};
 		F8A4A58F2B0E60D800046C00 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
