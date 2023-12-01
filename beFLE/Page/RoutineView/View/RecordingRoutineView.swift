@@ -64,7 +64,7 @@ extension RecordingRoutineView {
                 
                 Spacer()
             }
-
+            
             ScrollView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     Button {
