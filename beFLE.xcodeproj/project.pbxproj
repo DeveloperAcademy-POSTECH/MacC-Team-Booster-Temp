@@ -73,6 +73,7 @@
 		F83E13112B1816E900172A2F /* LoadingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E13102B1816E900172A2F /* LoadingImage.swift */; };
 		F83E13132B183EA400172A2F /* RoutineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E13122B183EA400172A2F /* RoutineModel.swift */; };
 		F83E13152B184BDA00172A2F /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E13142B184BDA00172A2F /* WorkoutModel.swift */; };
+		F83E13202B1A488200172A2F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F83E131F2B1A488200172A2F /* .swiftlint.yml */; };
 		F880668A2B11BDD300AE3345 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88066892B11BDD300AE3345 /* WorkoutView.swift */; };
 		F880668C2B11BE6200AE3345 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880668B2B11BE6200AE3345 /* WorkoutViewModel.swift */; };
 		F880668E2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880668D2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift */; };
@@ -184,6 +185,7 @@
 		F83E13102B1816E900172A2F /* LoadingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImage.swift; sourceTree = "<group>"; };
 		F83E13122B183EA400172A2F /* RoutineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel.swift; sourceTree = "<group>"; };
 		F83E13142B184BDA00172A2F /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		F83E131F2B1A488200172A2F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F88066892B11BDD300AE3345 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		F880668B2B11BE6200AE3345 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		F880668D2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordingRoutineViewModel.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				0DA327752AE13F5200319BAB /* Page */,
 				F89B3BF22AE5142800CACBD9 /* Model */,
 				0DA3275B2AE1321700319BAB /* Assets.xcassets */,
+				F83E131F2B1A488200172A2F /* .swiftlint.yml */,
 			);
 			path = beFLE;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83E13202B1A488200172A2F /* .swiftlint.yml in Resources */,
 				0D5851552AE2F03700C8875A /* Pretendard-SemiBold.otf in Resources */,
 				0D5851502AE2EFA700C8875A /* Pretendard-ExtraLight.otf in Resources */,
 				F8EBA1D62B0DDB710097FFDC /* Assets.xcassets in Resources */,
