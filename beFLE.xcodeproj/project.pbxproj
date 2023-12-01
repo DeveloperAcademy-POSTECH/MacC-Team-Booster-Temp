@@ -261,6 +261,7 @@
 		0DA3274B2AE1321600319BAB = {
 			isa = PBXGroup;
 			children = (
+				F83E131F2B1A488200172A2F /* .swiftlint.yml */,
 				0DA327562AE1321600319BAB /* beFLE */,
 				0DA327552AE1321600319BAB /* Products */,
 			);
@@ -287,7 +288,6 @@
 				0DA327752AE13F5200319BAB /* Page */,
 				F89B3BF22AE5142800CACBD9 /* Model */,
 				0DA3275B2AE1321700319BAB /* Assets.xcassets */,
-				F83E131F2B1A488200172A2F /* .swiftlint.yml */,
 			);
 			path = beFLE;
 			sourceTree = "<group>";
