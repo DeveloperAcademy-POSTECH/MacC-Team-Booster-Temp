@@ -56,7 +56,6 @@ extension EditRecordingRoutineView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
                 }
-                .padding(.horizontal, 15)
             }
             .scrollIndicators(.hidden)
         }
@@ -113,7 +112,7 @@ extension EditRecordingRoutineView {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
             }
-            .padding()
+            .padding([.leading, .vertical])
             .confirmationDialog(vm.editWorkoutName, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
                 AlternativeActionSheet
             }
