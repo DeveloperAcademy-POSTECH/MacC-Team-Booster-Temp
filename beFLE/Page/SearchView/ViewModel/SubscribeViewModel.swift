@@ -14,6 +14,7 @@ class SubscribeViewModel: ObservableObject {
     @Published var scrollOffset: CGFloat = 0.00
     @Published var isSubscriptionAlertShow = false
     @Published var loggedIn = true
+    @Published var offset: CGFloat = .zero
     
     func fetchInfluencer(influencerId: Int) {
         GeneralAPIManger.request(for: .GetInfluencersId(id: influencerId), type: ResponseGetInfluencersId.self) {
