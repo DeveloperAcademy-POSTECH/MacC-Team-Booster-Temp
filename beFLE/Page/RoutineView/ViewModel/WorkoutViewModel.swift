@@ -43,9 +43,7 @@ extension WorkoutViewModel {
         case .editRoutineView:
             completion()
         case .recordingWorkoutView:
-            if !workouts.isEmpty {
-                completion()
-            }
+            completion()
         case .recordingRoutineView:
             completion()
         case .editRecordingRoutineView:
@@ -98,6 +96,16 @@ extension WorkoutViewModel {
     func fetchWorkout() {
         wokroutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.workout = $0
+        }
+    }
+    
+    func deleteWorkout() {
+        if routine.exercises.last?.id == exerciseId {
+            currentWorkoutIndex -= 1
+        }
+        
+        wokroutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
+            self.fetchRoutine()
         }
     }
     

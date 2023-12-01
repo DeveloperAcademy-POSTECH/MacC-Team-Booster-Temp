@@ -47,7 +47,6 @@ struct RecordingWorkoutView: View {
             }
         }
         .onAppear {
-            vm.fetchWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
             workoutVM.timerStart()
             vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
             vm.currentSet = 0
@@ -188,11 +187,7 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var DiscontinueAlert: some View {
         Button {
-            vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet - 1].setId) {
-                workoutVM.timerStop()
-                workoutVM.updateWorkoutTime()
-                workoutVM.changeViewStatus(.recordingFinishView)
-            }
+            workoutVM.finishRoutine()
         } label: {
             Text("운동완료")
         }
@@ -206,7 +201,7 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var DeleteAlert: some View {
         Button("삭제", role: .destructive) {
-            workoutVM.deleteWorkout(exerciseId: vm.exercise.exerciseId)
+            workoutVM.deleteWorkout()
         }
     }
 }
@@ -216,7 +211,7 @@ extension RecordingWorkoutView {
     var WorkoutInfomation: some View {
         VStack {
             HStack {
-                Text("\(workoutVM.currentWorkoutIndex + 1) / \(workoutVM.workouts.count)")
+                Text("\(workoutVM.currentWorkoutIndex + 1) / \(workoutVM.routine.exercises.count)")
                     .foregroundColor(.label_700)
                 Text("|")
                     .foregroundColor(.label_400)
@@ -229,7 +224,7 @@ extension RecordingWorkoutView {
             Spacer()
             
             HStack {
-                Text(vm.exercise.name)
+                Text(workoutVM.workout.name)
                     .font(.title1())
                     .foregroundColor(.label_900)
                     .multilineTextAlignment(.leading)
@@ -245,7 +240,7 @@ extension RecordingWorkoutView {
         TabView(selection: $vm.tabSelection) {
             VStack {
                 ZStack {
-                    LoadingImage(url: vm.exercise.exerciseImageUrl)
+                    LoadingImage(url: workoutVM.workout.exerciseImageUrl)
                         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
                         .padding(.horizontal)
                     
@@ -283,7 +278,7 @@ extension RecordingWorkoutView {
                             ScrollView {
                                 VStack {
                                     HStack {
-                                        LoadingImage(url: vm.exercise.faceImageUrl)
+                                        LoadingImage(url: workoutVM.workout.faceImageUrl)
                                             .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
                                             .padding(.horizontal, 5)
                                             .padding(.top, 4)
@@ -291,7 +286,7 @@ extension RecordingWorkoutView {
                                     }
                                     .padding(.bottom)
                                     HStack{
-                                        Text(vm.exercise.tip)
+                                        Text(workoutVM.workout.tip)
                                             .font(.body())
                                             .foregroundColor(.label_900)
                                             .padding(.horizontal, 1.9)
@@ -318,7 +313,7 @@ extension RecordingWorkoutView {
     
     @ViewBuilder
     var RelatedContent: some View {
-        if !vm.exercise.videoUrls.isEmpty {
+        if !workoutVM.workout.videoUrls.isEmpty {
             VStack {
                 HStack {
                     Text("관련 영상")
@@ -330,7 +325,7 @@ extension RecordingWorkoutView {
                 
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(vm.exercise.videoUrls, id: \.self) { videoUrl in
+                        ForEach(workoutVM.workout.videoUrls, id: \.self) { videoUrl in
                             RelatedContentCard(videoID: videoUrl)
                         }
                     }
@@ -402,10 +397,9 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var WorkoutSetList: some View {
         VStack {
-            if !vm.exercise.sets.isEmpty {
-                ForEach(vm.exercise.sets.indices, id: \.self) { index in
-                    // TODO: 무게 조정 api 호출
-                    WorkoutSetCard(index: index + 1, routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, set: $vm.exercise.sets[index], isFocused: $isFocused)
+            if !workoutVM.workout.sets.isEmpty {
+                ForEach(workoutVM.workout.sets.indices, id: \.self) { index in
+                    WorkoutSetCard(index: index + 1, routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, set: $workoutVM.workout.sets[index], isFocused: $isFocused)
                         .environmentObject(vm)
                         .overlay {
                             if index == vm.currentSet {
