@@ -449,7 +449,7 @@ extension RecordingWorkoutView {
                         
                         // MARK: 다음 세트, 운동, 운동 완료 버튼
                         Button {
-                            if vm.currentSet >= vm.exercise.sets.count - 1 {
+                            if vm.currentSet >= workoutVM.workout.sets.count - 1 {
                                 withAnimation {
                                     proxy.scrollTo(refreshID, anchor: .bottom)
                                 }
@@ -460,35 +460,35 @@ extension RecordingWorkoutView {
                                 }
                             }
                             
-                            switch vm.nextButtonStatus {
-                            case .nextSet:
-                                vm.nextSet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-                                    if vm.currentSet >= vm.exercise.sets.count - 1 {
-                                        if workoutVM.currentWorkoutIndex >= workoutVM.workouts.count - 1 {
-                                            vm.nextButtonStatus = .finishWorkout
-                                        }
-                                        else {
-                                            vm.nextButtonStatus = .nextWorkout
-                                        }
-                                    }
-                                }
-                            case .nextWorkout:
-                                vm.nextWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-                                    vm.fetchWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.workouts[workoutVM.currentWorkoutIndex + 1])
-                                    workoutVM.fetchNextWorkout()
-                                }
-                            case .finishWorkout:
-                                if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
-                                    vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-                                        workoutVM.timerStop()
-                                        workoutVM.updateWorkoutTime()
-                                        workoutVM.changeViewStatus(.recordingFinishView)
-                                    }
-                                }
-                                else {
-                                    vm.isDiscontinuewAlertShow = true
-                                }
-                            }
+//                            switch vm.nextButtonStatus {
+//                            case .nextSet:
+//                                vm.nextSet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+//                                    if vm.currentSet >= vm.exercise.sets.count - 1 {
+//                                        if workoutVM.currentWorkoutIndex >= workoutVM.workouts.count - 1 {
+//                                            vm.nextButtonStatus = .finishWorkout
+//                                        }
+//                                        else {
+//                                            vm.nextButtonStatus = .nextWorkout
+//                                        }
+//                                    }
+//                                }
+//                            case .nextWorkout:
+//                                vm.nextWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+//                                    vm.fetchWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.workouts[workoutVM.currentWorkoutIndex + 1])
+//                                    workoutVM.fetchNextWorkout()
+//                                }
+//                            case .finishWorkout:
+//                                if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
+//                                    vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
+//                                        workoutVM.timerStop()
+//                                        workoutVM.updateWorkoutTime()
+//                                        workoutVM.changeViewStatus(.recordingFinishView)
+//                                    }
+//                                }
+//                                else {
+//                                    vm.isDiscontinuewAlertShow = true
+//                                }
+//                            }
                         } label: {
                             NextButton
                         }
