@@ -1,0 +1,106 @@
+excluded:
+    - beFLE/beFLEApp.swift
+  
+disabled_rules:
+    # Control Statement
+    - control_statement
+    # Cyclomatic Complexity
+    - cyclomatic_complexity
+    # Empty Enum Arguments
+    - empty_enum_arguments
+    # Empty Parentheses with Trailing Closure
+    - empty_parentheses_with_trailing_closure
+    # File Length
+    - file_length
+    # Function Body Length
+    - function_body_length
+    # Function Parameter Count
+    - function_parameter_count
+    # Identifier Name
+    - identifier_name
+    # Line Length
+    - line_length
+    # Redundant Optional Initialization
+    - redundant_optional_initialization
+    # Trailing Whitespace
+    - trailing_whitespace
+    # Type Body Length
+    - type_body_length
+    # Type Name
+    - type_name
+
+opt_in_rules:
+    # Anonymous Argument in Multiline Closure
+    - anonymous_argument_in_multiline_closure
+    # Array Init
+    - array_init
+    # Closure End Indentation
+    - closure_end_indentation
+    # Closure Spacing
+    - closure_spacing
+    # Collection Element Alignment
+    - collection_alignment
+    # Contains over Filter Count
+    - contains_over_filter_count
+    # Contains over Filter is Empty
+    - contains_over_filter_is_empty
+    # Direct Return
+    - direct_return
+    # Empty Collection Literal
+    - empty_collection_literal
+    # Empty Count
+    - empty_count
+    # Empty String
+    - empty_string
+    # Implicitly Unwrapped Optional
+    - implicitly_unwrapped_optional
+    # Indentation Width
+    - indentation_width
+    # Legacy Multiple
+    - legacy_multiple
+    # Literal Expression End Indentation
+    - literal_expression_end_indentation
+    # Local Doc Comment
+    - local_doc_comment
+    # Multiline Arguments
+    - multiline_arguments
+    # Multiline Arguments Brackets
+    - multiline_arguments_brackets
+    # Multiline Function Chains
+    - multiline_function_chains
+    # Multiline Literal Brackets
+    - multiline_literal_brackets
+    # Multiline Parameters
+    - multiline_parameters
+    # Multiline Parameters Brackets
+    - multiline_parameters_brackets
+    # Operator Usage Whitespace
+    - operator_usage_whitespace
+    # Prefer Zero Over Explicit Init
+    - prefer_zero_over_explicit_init
+    # Redundant Nil Coalescing
+    - redundant_nil_coalescing
+    # Redundant Self in Closure
+    - redundant_self_in_closure
+    # Redundant Type Annotation
+    - redundant_type_annotation
+    # Shorthand Optional Binding
+    - shorthand_optional_binding
+    # Sorted Enum Cases
+    - sorted_enum_cases
+    # Sorted Imports
+    - sorted_imports
+    # Toggle Bool
+    - toggle_bool
+    # Trailing Closure
+    - trailing_closure
+    # Unused Capture List
+    - unused_capture_list
+    # Vertical Parameter Alignment on Call
+    - vertical_parameter_alignment_on_call
+    # Vertical Whitespace between Cases
+    - vertical_whitespace_between_cases
+    # Vertical Whitespace before Closing Braces
+    - vertical_whitespace_closing_braces
+    # Vertical Whitespace after Opening Braces
+    - vertical_whitespace_opening_braces

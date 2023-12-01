@@ -73,6 +73,7 @@
 		F83E13112B1816E900172A2F /* LoadingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E13102B1816E900172A2F /* LoadingImage.swift */; };
 		F83E13132B183EA400172A2F /* RoutineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E13122B183EA400172A2F /* RoutineModel.swift */; };
 		F83E13152B184BDA00172A2F /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E13142B184BDA00172A2F /* WorkoutModel.swift */; };
+		F83E13202B1A488200172A2F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F83E131F2B1A488200172A2F /* .swiftlint.yml */; };
 		F880668A2B11BDD300AE3345 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88066892B11BDD300AE3345 /* WorkoutView.swift */; };
 		F880668C2B11BE6200AE3345 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880668B2B11BE6200AE3345 /* WorkoutViewModel.swift */; };
 		F880668E2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880668D2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift */; };
@@ -184,6 +185,7 @@
 		F83E13102B1816E900172A2F /* LoadingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImage.swift; sourceTree = "<group>"; };
 		F83E13122B183EA400172A2F /* RoutineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel.swift; sourceTree = "<group>"; };
 		F83E13142B184BDA00172A2F /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		F83E131F2B1A488200172A2F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F88066892B11BDD300AE3345 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		F880668B2B11BE6200AE3345 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		F880668D2B12AE4A00AE3345 /* EditRecordingRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordingRoutineViewModel.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		0DA3274B2AE1321600319BAB = {
 			isa = PBXGroup;
 			children = (
+				F83E131F2B1A488200172A2F /* .swiftlint.yml */,
 				0DA327562AE1321600319BAB /* beFLE */,
 				0DA327552AE1321600319BAB /* Products */,
 			);
@@ -638,6 +641,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0DA327622AE1321700319BAB /* Build configuration list for PBXNativeTarget "beFLE" */;
 			buildPhases = (
+				F83E131E2B1A43CF00172A2F /* ShellScript */,
 				0DA327502AE1321600319BAB /* Sources */,
 				0DA327512AE1321600319BAB /* Frameworks */,
 				0DA327522AE1321600319BAB /* Resources */,
@@ -645,6 +649,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F83E131D2B1A43BC00172A2F /* PBXTargetDependency */,
 			);
 			name = beFLE;
 			packageProductDependencies = (
@@ -688,6 +693,7 @@
 				0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */,
 				0D4495B72AF6A60600F25CD4 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				F8A4A58F2B0E60D800046C00 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				F83E131B2B1A439000172A2F /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 0DA327552AE1321600319BAB /* Products */;
 			projectDirPath = "";
@@ -703,6 +709,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83E13202B1A488200172A2F /* .swiftlint.yml in Resources */,
 				0D5851552AE2F03700C8875A /* Pretendard-SemiBold.otf in Resources */,
 				0D5851502AE2EFA700C8875A /* Pretendard-ExtraLight.otf in Resources */,
 				F8EBA1D62B0DDB710097FFDC /* Assets.xcassets in Resources */,
@@ -719,6 +726,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F83E131E2B1A43CF00172A2F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: Swiftlint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0DA327502AE1321600319BAB /* Sources */ = {
@@ -821,6 +848,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F83E131D2B1A43BC00172A2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = F83E131C2B1A43BC00172A2F /* SwiftLintPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0DA327602AE1321700319BAB /* Debug */ = {
@@ -1053,6 +1087,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		F83E131B2B1A439000172A2F /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
+			};
+		};
 		F8A4A58F2B0E60D800046C00 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -1088,6 +1130,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0D4495C42AFA6AE400F25CD4 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		F83E131C2B1A43BC00172A2F /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F83E131B2B1A439000172A2F /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 		F8A4A5902B0E60D800046C00 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
