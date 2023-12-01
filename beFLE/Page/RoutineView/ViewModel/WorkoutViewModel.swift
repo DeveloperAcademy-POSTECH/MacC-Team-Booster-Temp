@@ -102,12 +102,20 @@ extension WorkoutViewModel {
     }
     
     func deleteWorkout(exerciseId: Int) {
+        if exerciseId == self.exerciseId, (currentWorkoutIndex == routine.exercises.count - 2) {
+            currentWorkoutIndex -= 1
+        }
+        
         wokroutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.fetchRoutine()
         }
     }
     
     func deleteWorkout(exerciseId: Int, completion: @escaping (() -> ())) {
+        if exerciseId == self.exerciseId, (currentWorkoutIndex == routine.exercises.count - 2) {
+            currentWorkoutIndex -= 1
+        }
+        
         wokroutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.fetchRoutine {
                 completion()
