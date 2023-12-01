@@ -35,7 +35,7 @@ class RecordingWorkoutViewModel: ObservableObject {
     @Published var tabSelection = 0
     
     /// api 응답 받아야 탭 가능하게 전환 - 추후 콤바인 교체
-    @Published var isCanTappable = true
+    @Published var isTappable = true
     
     @Published var isAlternateWorkoutSheetShow = false
     @Published var isEditWorkoutActionShow = false
@@ -47,28 +47,28 @@ class RecordingWorkoutViewModel: ObservableObject {
     private var timer: Timer?
 }
 
-/// 운동 패치
-extension RecordingWorkoutViewModel {
-    func fetchWorkout(routineId: Int, exerciseId: Int) {
-        workoutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
-            self.exercise = $0
-        }
-    }
-}
+///// 운동 패치
+//extension RecordingWorkoutViewModel {
+//    func fetchWorkout(routineId: Int, exerciseId: Int) {
+//        workoutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
+//            self.exercise = $0
+//        }
+//    }
+//}
 
 /// 운동 세트 증감
 extension RecordingWorkoutViewModel {
     /// 운동 세트 감소 함수
     func decreaseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (() -> ()) ) {
         if exercise.sets.count > 2 {
-            isCanTappable = false
+            isTappable = false
             
             workoutModel.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
                 if self.currentSet >= $0.count {
                     self.currentSet -= 1
                 }
                 self.exercise.sets = $0
-                self.isCanTappable = true
+                self.isTappable = true
                 completion()
             }
         }
@@ -77,12 +77,12 @@ extension RecordingWorkoutViewModel {
     /// 운동 세트 증가 함수
     func increseSetCount(routineId: Int, exerciseId: Int) {
         if exercise.sets.count < 9 {
-            isCanTappable = false
+            isTappable = false
             
             workoutModel.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
                 self.nextButtonStatus = .nextSet
                 self.exercise.sets = $0
-                self.isCanTappable = true
+                self.isTappable = true
             }
         }
     }
@@ -106,10 +106,10 @@ extension RecordingWorkoutViewModel {
 extension RecordingWorkoutViewModel {
     /// 다음 세트 함수
     func nextSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
-        isCanTappable = false
+        isTappable = false
         
         workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
-            self.isCanTappable = true
+            self.isTappable = true
             self.exercise.sets[self.currentSet].isDone = true
             
             self.currentSet += 1
@@ -119,10 +119,10 @@ extension RecordingWorkoutViewModel {
     
     /// 다음 운동 함수
     func nextWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
-        isCanTappable = false
+        isTappable = false
         
         workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
-            self.isCanTappable = true
+            self.isTappable = true
             self.exercise.sets[self.currentSet].isDone = true
             self.currentSet = 0
             self.nextButtonStatus = .nextSet
@@ -133,11 +133,11 @@ extension RecordingWorkoutViewModel {
     
     /// 루틴 완료 함수
     func finishWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
-        isCanTappable = false
+        isTappable = false
         
         workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
             self.exercise.sets[self.currentSet].isDone = true
-            self.isCanTappable = true
+            self.isTappable = true
             
             completion()
         }

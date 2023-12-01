@@ -368,7 +368,7 @@ extension RecordingWorkoutView {
                                 }
                         }
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
-                        .disabled(!vm.isCanTappable)
+                        .disabled(!vm.isTappable)
                         
                         Text("\(vm.exercise.sets.count)세트")
                             .foregroundColor(.label_700)
@@ -384,7 +384,7 @@ extension RecordingWorkoutView {
                                         .foregroundColor(.label_900)
                                 }
                         }
-                        .disabled(!vm.isCanTappable)
+                        .disabled(!vm.isTappable)
                     }
                     .font(.body())
                 }
@@ -492,7 +492,7 @@ extension RecordingWorkoutView {
                         } label: {
                             NextButton
                         }
-                        .disabled(!vm.isCanTappable)
+                        .disabled(!vm.isTappable)
                         //: - 다음 버튼
                     }
                     .padding(.trailing, 8)
