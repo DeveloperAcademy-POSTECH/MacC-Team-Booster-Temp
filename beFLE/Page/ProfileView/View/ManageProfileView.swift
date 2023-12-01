@@ -28,6 +28,21 @@ struct ManageProfileView: View {
                 BackButton
             }
         }
+        .gesture(
+            DragGesture().onChanged { value in
+                if value.startLocation.x < 50 {
+                    vm.offset = value.translation.width
+                }
+            }
+                .onEnded { value in
+                    if value.predictedEndTranslation.width > 100 {
+                        dismiss()
+                    }
+                    vm.offset = .zero
+                }
+        )
+        .offset(x: vm.offset)
+        .animation(.easeInOut)
         .navigationBarBackButtonHidden()
     }
 }

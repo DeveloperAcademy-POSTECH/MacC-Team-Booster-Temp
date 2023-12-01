@@ -8,6 +8,8 @@
 import SwiftUI
 
 class RecordSpecificViewModel: ObservableObject {
+    @Published var offset: CGFloat = .zero
+    
     func timeFormat(from time: String) -> String {
         let split = time.split(separator: ":")
         let hour = Int(split[0])!
