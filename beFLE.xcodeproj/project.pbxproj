@@ -50,7 +50,7 @@
 		D57E93CC2B04A05F00D6D986 /* MockUpSubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */; };
 		D58066582AFD3B4A003BB276 /* PauseStopwatchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */; };
 		D584CD892AFB556C00AFA1FF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584CD882AFB556C00AFA1FF /* ProfileView.swift */; };
-		D5A343A22B1988370058F72E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A343A12B1988370058F72E /* SceneDelegate.swift */; };
+		D5A343A22B1988370058F72E /* Ext+IdleTimerDisabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A343A12B1988370058F72E /* Ext+IdleTimerDisabled.swift */; };
 		D5A9645F2B0E17FE00536A64 /* MockUpRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A9645E2B0E17FE00536A64 /* MockUpRecordView.swift */; };
 		D5A964652B0E191700536A64 /* MockUpCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A964642B0E191700536A64 /* MockUpCalendarView.swift */; };
 		D5A964672B0E197C00536A64 /* MockUpFSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A964662B0E197C00536A64 /* MockUpFSCalendarView.swift */; };
@@ -160,7 +160,7 @@
 		D57E93CB2B04A05F00D6D986 /* MockUpSubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpSubscribeView.swift; sourceTree = "<group>"; };
 		D58066572AFD3B4A003BB276 /* PauseStopwatchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseStopwatchVM.swift; sourceTree = "<group>"; };
 		D584CD882AFB556C00AFA1FF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		D5A343A12B1988370058F72E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D5A343A12B1988370058F72E /* Ext+IdleTimerDisabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+IdleTimerDisabled.swift"; sourceTree = "<group>"; };
 		D5A9645E2B0E17FE00536A64 /* MockUpRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpRecordView.swift; sourceTree = "<group>"; };
 		D5A964642B0E191700536A64 /* MockUpCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpCalendarView.swift; sourceTree = "<group>"; };
 		D5A964662B0E197C00536A64 /* MockUpFSCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpFSCalendarView.swift; sourceTree = "<group>"; };
@@ -306,6 +306,7 @@
 				0DA327692AE13BE000319BAB /* Ext+Font.swift */,
 				0DA327762AE1470C00319BAB /* Ext+UIScreen.swift */,
 				0DC02D672AE6B99B00258920 /* Ext+UITabBarController.swift */,
+				D5A343A12B1988370058F72E /* Ext+IdleTimerDisabled.swift */,
 			);
 			path = "Ext+";
 			sourceTree = "<group>";
@@ -553,7 +554,6 @@
 				D5C511822B061870008B871E /* MailView.swift */,
 				D5076C402B0E645000011EE1 /* LottieView.swift */,
 				F83E13102B1816E900172A2F /* LoadingImage.swift */,
-				D5A343A12B1988370058F72E /* SceneDelegate.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -800,7 +800,7 @@
 				D5A9645F2B0E17FE00536A64 /* MockUpRecordView.swift in Sources */,
 				F8A6A8B32B0CF433006FF899 /* RecordSpecificViewModel.swift in Sources */,
 				D57183802B030AB200A11FFC /* MockUpPauseSheet.swift in Sources */,
-				D5A343A22B1988370058F72E /* SceneDelegate.swift in Sources */,
+				D5A343A22B1988370058F72E /* Ext+IdleTimerDisabled.swift in Sources */,
 				D5B780362AE26B2100A8B76A /* SearchView.swift in Sources */,
 				F8F3A1462AFA35210068F885 /* RecordSpecificView.swift in Sources */,
 				D5C511832B061870008B871E /* MailView.swift in Sources */,
