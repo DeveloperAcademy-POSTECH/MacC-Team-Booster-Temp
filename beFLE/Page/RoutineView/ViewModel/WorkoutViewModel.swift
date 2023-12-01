@@ -9,7 +9,7 @@ import SwiftUI
 
 class WorkoutViewModel: ObservableObject {
     let routineModel = RoutineModel()
-    let wokroutModel = WorkoutModel()
+    let workoutModel = WorkoutModel()
     
     @Published var workoutViewStatus: WorkoutViewStatus = .emptyView
     @Published var routineId = 0
@@ -44,9 +44,7 @@ extension WorkoutViewModel {
         case .editRoutineView:
             completion()
         case .recordingWorkoutView:
-            if !workouts.isEmpty {
-                completion()
-            }
+            completion()
         case .recordingRoutineView:
             completion()
         case .editRecordingRoutineView:
@@ -73,13 +71,9 @@ extension WorkoutViewModel {
     func fetchRoutine() {
         routineModel.fetchRoutine(routineId: routineId) {
             self.routine = $0
-            var exercises: [Int] = []
-            for exercise in $0.exercises {
-                exercises.append(exercise.id)
-            }
-            self.workouts = exercises
-            if !exercises.isEmpty {
-                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+            
+            if !$0.exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: $0.exercises[self.currentWorkoutIndex].id)
             }
         }
     }
@@ -87,58 +81,100 @@ extension WorkoutViewModel {
     func fetchRoutine(completion: @escaping (()->())) {
         routineModel.fetchRoutine(routineId: routineId) {
             self.routine = $0
-            var exercises: [Int] = []
-            for exercise in $0.exercises {
-                exercises.append(exercise.id)
-            }
-            self.workouts = exercises
-            if !exercises.isEmpty {
-                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+            
+            if !$0.exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: $0.exercises[self.currentWorkoutIndex].id)
             }
             completion()
         }
     }
     
-    func fetchNextWorkout() {
+    func fetchNextWorkout(completion: @escaping (() -> ())) {
         currentWorkoutIndex += 1
-        fetchRoutine()
+        fetchRoutine() {
+            completion()
+        }
     }
     
     func fetchWorkout() {
-        wokroutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
+        workoutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.workout = $0
         }
     }
     
+    func deleteWorkout() {
+        if routine.exercises.last?.id == exerciseId {
+            currentWorkoutIndex -= 1
+        }
+        
+        workoutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
+            self.fetchRoutine()
+        }
+    }
+    
     func deleteWorkout(exerciseId: Int) {
-        GeneralAPIManger.request(for: .DeleteRoutinesExercises(routineId: routineId, exerciseId: exerciseId)) {
-            switch $0 {
-            case .success:
-                self.fetchRoutine()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        if exerciseId == self.exerciseId, (currentWorkoutIndex == routine.exercises.count - 2) {
+            currentWorkoutIndex -= 1
+        }
+        
+        workoutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
+            self.fetchRoutine()
         }
     }
     
     func deleteWorkout(exerciseId: Int, completion: @escaping (() -> ())) {
-        wokroutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
+        if exerciseId == self.exerciseId, (currentWorkoutIndex == routine.exercises.count - 2) {
+            currentWorkoutIndex -= 1
+        }
+        
+        workoutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.fetchRoutine {
                 completion()
             }
         }
     }
     
+    func decreaseSetCount(completion: @escaping (() -> ())) {
+        if workout.sets.count > 2 {
+            workoutModel.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                self.workout.sets = $0
+                completion()
+            }
+        }
+        else {
+            completion()
+        }
+    }
+    
+    func increseSetCount(completion: @escaping (() -> ())) {
+        if workout.sets.count < 9 {
+            workoutModel.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                self.workout.sets = $0
+                completion()
+            }
+        }
+        else {
+            completion()
+        }
+    }
+    
+    func finishSet(setId: Int, completion: @escaping (() -> ())) {
+        workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
+            completion()
+        }
+    }
+    
     func finishRoutine() {
         routineModel.finishRoutine(routineId: routineId) {
             self.routineCompleteImageUrl = $0
+            self.changeViewStatus(.recordingFinishView)
         }
     }
 }
 
 /// 타이머 관련
 extension WorkoutViewModel {
-    func updateWorkoutTime() {
+    func updateWorkoutTime(completion: @escaping (() -> ())) {
         let hours = Int(elapsedTime) / 3600
         let minutes = Int(elapsedTime) / 60
         let seconds = Int(elapsedTime) % 60
@@ -150,14 +186,14 @@ extension WorkoutViewModel {
         GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatter.string(from: Calendar.current.date(from: time)!))) {
             switch $0 {
             case .success:
-                break
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    func timerStart() {
+    func startTimer() {
         if !isRunning {
             isRunning = true
             
@@ -173,17 +209,15 @@ extension WorkoutViewModel {
         }
     }
     
-    func timerStop() {
+    func stopTimer() {
         isRunning = false
     }
     
-    func bgTimer() -> TimeInterval {
+    func caculateBackgroundTime() {
         let curTime = Date.now
         let diffTime = startTime.distance(to: curTime)
         let result = Double(diffTime.formatted())!
-        elapsedTime = result + elapsedTime
-        
-        return elapsedTime
+        elapsedTime = result
     }
     
     func timeFormatted() -> String {
