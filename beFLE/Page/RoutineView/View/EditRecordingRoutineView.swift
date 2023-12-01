@@ -61,6 +61,7 @@ extension EditRecordingRoutineView {
                 FloatingButton(size: .medium) {}
                     .padding()
             }
+            .scrollIndicators(.hidden)
             
         }
         .padding(.horizontal)
