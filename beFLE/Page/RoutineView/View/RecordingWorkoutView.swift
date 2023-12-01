@@ -353,7 +353,7 @@ extension RecordingWorkoutView {
                         Button {
                             vm.isTappable = false
                             workoutVM.decreaseSetCount {
-                                if vm.currentSet >= workoutVM.workout.sets.count - 1 {
+                                if vm.currentSet > workoutVM.workout.sets.count - 1 {
                                     vm.currentSet -= 1
                                 }
                                 vm.isTappable = true
