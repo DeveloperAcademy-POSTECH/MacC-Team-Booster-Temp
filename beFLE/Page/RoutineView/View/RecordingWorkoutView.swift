@@ -74,7 +74,7 @@ struct RecordingWorkoutView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .confirmationDialog(vm.exercise.name, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
+        .confirmationDialog(workoutVM.workout.name, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
         .sheet(isPresented: $vm.isAlternateWorkoutSheetShow) {
