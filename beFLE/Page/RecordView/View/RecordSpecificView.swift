@@ -50,7 +50,7 @@ struct RecordSpecificView: View {
                 }
         )
         .offset(x: vm.offset)
-        .animation(.easeInOut)
+        .animation(.easeInOut, value: vm.offset)
     }
     
     var RoutineDescriptionCard: some View {

@@ -42,7 +42,7 @@ struct EditRoutineView: View {
                 }
         )
         .offset(x: vm.offset)
-        .animation(.easeInOut)
+        .animation(.easeInOut, value: vm.offset)
         
     }
 }
@@ -76,7 +76,6 @@ extension EditRoutineView {
             ScrollView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
-                        .padding(.vertical, 4)
                 }
                 .padding(.horizontal)
                 FloatingButton(size: .medium) {}

@@ -82,7 +82,7 @@ extension RecordingRoutineView {
     }
     
     func WorkoutCell(index: Int) -> some View {
-        HStack(spacing: 8){
+        HStack(spacing: 8) {
             RoundedRectangle(cornerRadius: 4)
                 .foregroundColor(.fill_1)
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
@@ -117,7 +117,6 @@ extension RecordingRoutineView {
                         .foregroundColor(.label_700)
                 }
             }
-            .padding(.horizontal)
             Spacer()
             
             CheckButton(status: workoutVM.routine.exercises[index].isDone ? .check : .empty)

@@ -47,7 +47,7 @@ extension EditRecordingRoutineView {
                 Text(workoutVM.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
-                    .padding([.horizontal, .top])
+                    .padding([.top, .leading])
                 
                 Spacer()
             }
@@ -55,20 +55,15 @@ extension EditRecordingRoutineView {
             ScrollView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
-                        .padding(.vertical, 4)
                 }
-                .padding(.horizontal)
-                FloatingButton(size: .medium) {}
-                    .padding()
             }
-            
+            .scrollIndicators(.hidden)
         }
-        .padding(.horizontal)
     }
     
     @ViewBuilder
     func WorkoutListCell(_ index: Int, _ exercise: Exercise) -> some View {
-        HStack {
+        HStack(spacing: 8) {
             Button {
                 vm.isDetailedWorkoutSheetShow = true
                 vm.selectedExerciseId = exercise.id
@@ -81,13 +76,13 @@ extension EditRecordingRoutineView {
                             LoadingImage(url: exercise.exerciseImageUrl)
                         }
                     
-                    VStack(alignment: .leading, spacing: 3) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text(exercise.name)
                             .foregroundColor(.label_900)
                             .font(.headline1())
                             .multilineTextAlignment(.leading)
                             .allowsTightening(true)
-                        HStack(spacing: 3){
+                        HStack(spacing: 6){
                             Text("\(exercise.numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
@@ -100,8 +95,6 @@ extension EditRecordingRoutineView {
                                 .font(.body2())
                         }
                     }
-                    .padding()
-                    
                     Spacer()
                 }
             }
@@ -119,7 +112,7 @@ extension EditRecordingRoutineView {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.label_700)
             }
-            .padding()
+            .padding([.leading, .vertical])
             .confirmationDialog(vm.editWorkoutName, isPresented: $vm.isEditWorkoutActionShow, titleVisibility: .visible) {
                 AlternativeActionSheet
             }
@@ -133,6 +126,8 @@ extension EditRecordingRoutineView {
                 DeleteAlert
             }
         }
+        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(64))
+        .padding(.vertical, 4)
     }
 }
 
@@ -167,6 +162,6 @@ extension EditRecordingRoutineView {
     }
 }
 
-//#Preview {
-//    EditRecordingRoutineView(routineId: 1)
-//}
+#Preview {
+    EditRecordingRoutineView()
+}
