@@ -76,7 +76,6 @@ extension EditRoutineView {
             ScrollView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
-                        .padding(.vertical, 4)
                 }
                 .padding(.horizontal)
                 FloatingButton(size: .medium) {}

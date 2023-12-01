@@ -23,7 +23,6 @@ struct EditRecordingRoutineView: View {
                 BackButton
             }
         }
-        .transition(.slide)
     }
 }
 
@@ -48,7 +47,7 @@ extension EditRecordingRoutineView {
                 Text(workoutVM.routine.part)
                     .foregroundColor(.label_900)
                     .font(.headline1())
-                    .padding([.horizontal, .top])
+                    .padding([.top, .leading])
                 
                 Spacer()
             }
@@ -57,12 +56,10 @@ extension EditRecordingRoutineView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 10)
             }
             .scrollIndicators(.hidden)
-            
         }
-        .padding(.horizontal)
     }
     
     @ViewBuilder
@@ -131,6 +128,7 @@ extension EditRecordingRoutineView {
                 DeleteAlert
             }
         }
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -165,6 +163,6 @@ extension EditRecordingRoutineView {
     }
 }
 
-//#Preview {
-//    EditRecordingRoutineView(routineId: 1)
-//}
+#Preview {
+    EditRecordingRoutineView()
+}
