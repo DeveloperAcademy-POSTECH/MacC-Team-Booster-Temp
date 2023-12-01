@@ -17,7 +17,8 @@ struct CalendarView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         view.calendar.delegate = context.coordinator
         view.calendar.dataSource = context.coordinator
-        
+        view.calendar.select(Date())
+
         selectedDate = Date().format(.yearMonthToday)
         
         return view
