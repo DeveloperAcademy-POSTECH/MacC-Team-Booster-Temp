@@ -187,7 +187,13 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var DiscontinueAlert: some View {
         Button {
-            workoutVM.finishRoutine()
+            workoutVM.finishSet(setId: workoutVM.workout.sets[vm.currentSet].setId) {
+                workoutVM.timerStop()
+                workoutVM.updateWorkoutTime() {
+                    vm.isTappable = true
+                    workoutVM.finishRoutine()
+                }
+            }
         } label: {
             Text("운동완료")
         }
@@ -479,7 +485,20 @@ extension RecordingWorkoutView {
                                 }
                                 else {
                                     vm.isTappable = false
-                                    workoutVM.finishRoutine()
+                                    
+                                    if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
+                                        workoutVM.finishSet(setId: workoutVM.workout.sets[vm.currentSet].setId) {
+                                            workoutVM.timerStop()
+                                            workoutVM.updateWorkoutTime() {
+                                                vm.isTappable = true
+                                                workoutVM.finishRoutine()
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        vm.isDiscontinuewAlertShow = true
+                                        vm.isTappable = true
+                                    }
                                 }
                             }
                         } label: {

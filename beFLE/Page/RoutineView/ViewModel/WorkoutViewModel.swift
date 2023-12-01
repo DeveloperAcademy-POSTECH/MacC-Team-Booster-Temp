@@ -173,7 +173,7 @@ extension WorkoutViewModel {
 
 /// 타이머 관련
 extension WorkoutViewModel {
-    func updateWorkoutTime() {
+    func updateWorkoutTime(completion: @escaping (() -> ())) {
         let hours = Int(elapsedTime) / 3600
         let minutes = Int(elapsedTime) / 60
         let seconds = Int(elapsedTime) % 60
@@ -185,7 +185,7 @@ extension WorkoutViewModel {
         GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatter.string(from: Calendar.current.date(from: time)!))) {
             switch $0 {
             case .success:
-                break
+                completion()
             case .failure(let error):
                 print(error.localizedDescription)
             }
