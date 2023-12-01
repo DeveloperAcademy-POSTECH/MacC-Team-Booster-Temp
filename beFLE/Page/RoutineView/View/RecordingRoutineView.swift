@@ -64,7 +64,7 @@ extension RecordingRoutineView {
                 
                 Spacer()
             }
-            //MARK: MORO 운동 목록에서 운동 바꾸면 바로 운동으로 넘어가게 해뒀는데 이래도 컨플릭 안 발생할지 확인 부탁 드려요.
+g
             ScrollView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     Button {
