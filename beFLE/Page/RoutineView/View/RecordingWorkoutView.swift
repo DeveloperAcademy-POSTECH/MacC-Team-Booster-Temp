@@ -463,7 +463,7 @@ extension RecordingWorkoutView {
                                     proxy.scrollTo(topID, anchor: .bottom)
                                 }
                             }
-
+                            
                             if vm.currentSet < workoutVM.workout.sets.count - 1 {
                                 vm.isTappable = false
                                 workoutVM.finishSet(setId: workoutVM.workout.sets[vm.currentSet].setId) {
