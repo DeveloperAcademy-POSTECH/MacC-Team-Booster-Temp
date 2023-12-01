@@ -441,6 +441,7 @@ extension RecordingWorkoutView {
                 FloatingButton(size: .large, color: .gray_700) {
                     HStack {
                         Button {
+                            workoutVM.stopTimer()
                             workoutVM.changeViewStatus(.recordingRoutineView)
                         } label: {
                             Image(systemName: "list.bullet")
