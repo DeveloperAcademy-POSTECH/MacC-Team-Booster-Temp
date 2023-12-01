@@ -81,8 +81,6 @@ extension Color: CaseIterable {
             return "fill_2"
         case .fill_3:
             return "fill_3"
-        case .gray_900:
-            return "gray_900"
         case .green_main:
             return "green_main"
         case .green_10:
