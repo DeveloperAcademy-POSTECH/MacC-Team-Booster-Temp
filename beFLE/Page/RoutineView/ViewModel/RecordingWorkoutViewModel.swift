@@ -11,8 +11,7 @@ class RecordingWorkoutViewModel: ObservableObject {
     let workoutModel = WorkoutModel()
     
     @Published var nextButtonStatus: NextButtonStatus = .nextSet
-    /// 현재 진행 중인 운동
-    @Published var exercise = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")
+    
     /// 현재 진행 중인 운동 시간
     @Published var workoutTime = ""
     
@@ -40,11 +39,6 @@ class RecordingWorkoutViewModel: ObservableObject {
     @Published var isAlternateWorkoutSheetShow = false
     @Published var isEditWorkoutActionShow = false
     @Published var isDeleteWorkoutAlertShow = false
-    
-    @Published var elapsedTime: TimeInterval = 0
-    @Published var isRunning: Bool = false
-    @Published private var startTime = Date.now
-    private var timer: Timer?
 }
 
 /// 운동 세트 증감

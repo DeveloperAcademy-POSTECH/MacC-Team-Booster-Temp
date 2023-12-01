@@ -220,7 +220,7 @@ extension RecordingWorkoutView {
                     .foregroundColor(.label_700)
                 Text("|")
                     .foregroundColor(.label_400)
-                Text(vm.exercise.part)
+                Text(workoutVM.workout.part)
                     .foregroundColor(.label_700)
                 Spacer()
             }
