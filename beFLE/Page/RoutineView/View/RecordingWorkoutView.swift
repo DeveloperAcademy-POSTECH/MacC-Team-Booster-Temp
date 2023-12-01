@@ -365,7 +365,7 @@ extension RecordingWorkoutView {
                         .frame(width: UIScreen.getWidth(20), height: UIScreen.getHeight(20))
                         .disabled(!vm.isTappable)
                         
-                        Text("\(vm.exercise.sets.count)세트")
+                        Text("\(workoutVM.workout.sets.count)세트")
                             .foregroundColor(.label_700)
                         
                         Button {
