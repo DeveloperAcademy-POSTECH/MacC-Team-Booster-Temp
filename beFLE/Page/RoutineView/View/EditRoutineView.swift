@@ -81,6 +81,7 @@ extension EditRoutineView {
                 FloatingButton(size: .medium) {}
                     .padding()
             }
+            .scrollIndicators(.hidden)
             
         }
         .padding(.horizontal)
