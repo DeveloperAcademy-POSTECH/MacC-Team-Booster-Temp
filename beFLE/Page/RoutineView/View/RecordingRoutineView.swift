@@ -29,7 +29,7 @@ struct RecordingRoutineView: View {
         .navigationBarBackButtonHidden()
         .gesture(
             DragGesture().onChanged { value in
-                if value.startLocation.x < 50 {
+                if value.startLocation.x < 10 {
                     workoutVM.offset = value.translation.width
                 }
             }
