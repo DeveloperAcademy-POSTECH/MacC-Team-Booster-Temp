@@ -71,7 +71,7 @@ struct RecordView: View {
                                     .font(.body2())
                                     .foregroundColor(.label_500)
                                 Spacer()
-                                Text("\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps } )}))kg")
+                                Text("\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps }() ) }() ))kg")
                                     .font(.body2())
                                     .foregroundColor(.label_900)
                             }
@@ -81,15 +81,6 @@ struct RecordView: View {
             }
         }
         .padding(.bottom, 5)
+        }
     }
 }
-}
-
-
-//struct RecordView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack {
-//            RecordView()
-//        }
-//    }
-//}

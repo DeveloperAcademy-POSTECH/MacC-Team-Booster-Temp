@@ -16,6 +16,7 @@ struct RoutineView: View {
             switch vm.todayRoutines.routine.count {
             case 0:
                 InfluencerPreviewView()
+                
             default:
                 SingleInfluencerRoutineView(routine: $vm.todayRoutines.routine[0])
             }

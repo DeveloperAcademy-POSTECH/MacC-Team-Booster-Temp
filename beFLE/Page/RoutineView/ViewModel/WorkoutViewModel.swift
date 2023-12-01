@@ -36,19 +36,24 @@ extension WorkoutViewModel {
         }
     }
     
-    func didChangeViewStatus(_ workoutViewStatus: WorkoutViewStatus, completion: @escaping (() -> ())) {
+    func didChangeViewStatus(_ workoutViewStatus: WorkoutViewStatus, completion: @escaping (() -> Void)) {
         switch workoutViewStatus {
         case .emptyView:
             fetchRoutineId(routineId: routineId)
             completion()
+            
         case .editRoutineView:
             completion()
+            
         case .recordingWorkoutView:
             completion()
+            
         case .recordingRoutineView:
             completion()
+            
         case .editRecordingRoutineView:
             completion()
+            
         case .recordingFinishView:
             finishRoutine()
             completion()
@@ -69,27 +74,27 @@ extension WorkoutViewModel {
     }
     
     func fetchRoutine() {
-        routineModel.fetchRoutine(routineId: routineId) {
-            self.routine = $0
+        routineModel.fetchRoutine(routineId: routineId) { routine in
+            self.routine = routine
             
-            if !$0.exercises.isEmpty {
-                self.fetchExerciseId(exerciseId: $0.exercises[self.currentWorkoutIndex].id)
+            if !routine.exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: routine.exercises[self.currentWorkoutIndex].id)
             }
         }
     }
     
-    func fetchRoutine(completion: @escaping (()->())) {
-        routineModel.fetchRoutine(routineId: routineId) {
-            self.routine = $0
+    func fetchRoutine(completion: @escaping (() -> Void)) {
+        routineModel.fetchRoutine(routineId: routineId) { routine in
+            self.routine = routine
             
-            if !$0.exercises.isEmpty {
-                self.fetchExerciseId(exerciseId: $0.exercises[self.currentWorkoutIndex].id)
+            if !routine.exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: routine.exercises[self.currentWorkoutIndex].id)
             }
             completion()
         }
     }
     
-    func fetchNextWorkout(completion: @escaping (() -> ())) {
+    func fetchNextWorkout(completion: @escaping (() -> Void)) {
         currentWorkoutIndex += 1
         fetchRoutine() {
             completion()
@@ -97,8 +102,8 @@ extension WorkoutViewModel {
     }
     
     func fetchWorkout() {
-        workoutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
-            self.workout = $0
+        workoutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) { workout in
+            self.workout = workout
         }
     }
     
@@ -122,7 +127,7 @@ extension WorkoutViewModel {
         }
     }
     
-    func deleteWorkout(exerciseId: Int, completion: @escaping (() -> ())) {
+    func deleteWorkout(exerciseId: Int, completion: @escaping (() -> Void)) {
         if exerciseId == self.exerciseId, (currentWorkoutIndex == routine.exercises.count - 2) {
             currentWorkoutIndex -= 1
         }
@@ -134,10 +139,10 @@ extension WorkoutViewModel {
         }
     }
     
-    func decreaseSetCount(completion: @escaping (() -> ())) {
+    func decreaseSetCount(completion: @escaping (() -> Void)) {
         if workout.sets.count > 1 {
-            workoutModel.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                self.workout.sets = $0
+            workoutModel.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) { sets in
+                self.workout.sets = sets
                 completion()
             }
         }
@@ -146,10 +151,10 @@ extension WorkoutViewModel {
         }
     }
     
-    func increseSetCount(completion: @escaping (() -> ())) {
+    func increseSetCount(completion: @escaping (() -> Void)) {
         if workout.sets.count < 9 {
-            workoutModel.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                self.workout.sets = $0
+            workoutModel.increseSetCount(routineId: routineId, exerciseId: exerciseId) { sets in
+                self.workout.sets = sets
                 completion()
             }
         }
@@ -158,15 +163,15 @@ extension WorkoutViewModel {
         }
     }
     
-    func finishSet(setId: Int, completion: @escaping (() -> ())) {
+    func finishSet(setId: Int, completion: @escaping (() -> Void)) {
         workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
             completion()
         }
     }
     
     func finishRoutine() {
-        routineModel.finishRoutine(routineId: routineId) {
-            self.routineCompleteImageUrl = $0
+        routineModel.finishRoutine(routineId: routineId) { imageUrl in
+            self.routineCompleteImageUrl = imageUrl
             self.changeViewStatus(.recordingFinishView)
         }
     }
@@ -174,7 +179,7 @@ extension WorkoutViewModel {
 
 /// 타이머 관련
 extension WorkoutViewModel {
-    func updateWorkoutTime(completion: @escaping (() -> ())) {
+    func updateWorkoutTime(completion: @escaping (() -> Void)) {
         let hours = Int(elapsedTime) / 3600
         let minutes = Int(elapsedTime) / 60
         let seconds = Int(elapsedTime) % 60
@@ -183,10 +188,11 @@ extension WorkoutViewModel {
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm:ss"
         
-        GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatter.string(from: Calendar.current.date(from: time)!))) {
-            switch $0 {
+        GeneralAPIManger.request(for: .PatchUsersRoutines(routineId: routineId, time: timeFormatter.string(from: Calendar.current.date(from: time)!))) { result in
+            switch result {
             case .success:
                 completion()
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }

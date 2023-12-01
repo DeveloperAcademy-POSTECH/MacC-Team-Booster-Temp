@@ -18,8 +18,7 @@ struct ExerciseSet: Codable, Hashable {
 struct AlternativeExercise: Codable, Hashable {
     var alternativeExerciseId: Int
     var name: String
-    // TODO: 임시 옵셔널
-    var exerciseImageUrl: String?
+    var exerciseImageUrl: String
 }
 
 /// PostRoutinesExercisesSets
@@ -104,8 +103,7 @@ struct ResponsePatchUsers: Codable {
 struct Exercise: Codable, Hashable {
     var id: Int
     var name: String
-    // TODO: 임시 옵셔널 처리
-    var exerciseImageUrl: String?
+    var exerciseImageUrl: String
     var numberOfSet: Int
     var recommendReps: String
     var isDone: Bool
@@ -243,8 +241,7 @@ struct BigThree: Codable, Hashable {
 
 struct InfluencerExercise: Codable, Hashable {
     var name: String
-    // TODO: 임시 옵셔널
-    var exerciseImageUrl: String?
+    var exerciseImageUrl: String
     var numberOfSet: Int
     var recommendReps: String
     var tip: String

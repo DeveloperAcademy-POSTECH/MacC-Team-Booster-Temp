@@ -147,9 +147,7 @@ extension EditRecordingRoutineView {
             Text("삭제")
         }
         
-        Button(role: .cancel) {
-            
-        } label: {
+        Button(role: .cancel) { } label: {
             Text("취소")
         }
     }

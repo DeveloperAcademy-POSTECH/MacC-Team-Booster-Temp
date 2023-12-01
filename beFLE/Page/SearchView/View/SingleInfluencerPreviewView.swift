@@ -53,7 +53,6 @@ struct SingleInfluencerPreviewView: View {
     }
     
     var SearchCard: some View {
-        //MARK: 컴포넌트 화로 인해 생기는 로딩 로띠 치우침
         ZStack {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.gray_700)
@@ -73,9 +72,6 @@ struct SingleInfluencerPreviewView: View {
                     .frame(width: UIScreen.getWidth(350))
                 }
                 .clipped()
-            
-            // TODO: api 작업 후 수정
-            
             
             HStack {
                 VStack(alignment: .leading) {

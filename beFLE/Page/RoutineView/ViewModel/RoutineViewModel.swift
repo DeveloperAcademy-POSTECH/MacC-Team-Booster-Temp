@@ -12,8 +12,8 @@ class RoutineViewModel: ObservableObject {
     let todayRoutineModel = TodayRoutineModel()
     
     func fetch() {
-        todayRoutineModel.fetchTodayRoutines {
-            self.todayRoutines = $0
+        todayRoutineModel.fetchTodayRoutines { todayRoutines in
+            self.todayRoutines = todayRoutines
         }
     }
 }

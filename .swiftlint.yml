@@ -88,8 +88,6 @@ opt_in_rules:
     - redundant_type_annotation
     # Shorthand Optional Binding
     - shorthand_optional_binding
-    # Sorted Enum Cases
-    - sorted_enum_cases
     # Sorted Imports
     - sorted_imports
     # Toggle Bool

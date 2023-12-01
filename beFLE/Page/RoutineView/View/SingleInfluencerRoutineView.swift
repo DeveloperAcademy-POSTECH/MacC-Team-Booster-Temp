@@ -59,7 +59,6 @@ extension SingleInfluencerRoutineView {
 extension SingleInfluencerRoutineView {
     var InfluencerImage: some View {
         GeometryReader { geo in
-            //MARK: 화면에 가득 채워야 해서 이건 컴포넌트화 하지 않을게요 - CAESAR
             AsyncImage(url: URL(string: routine.singleRoutineImageUrl)) { image in
                 image
                     .resizable()
@@ -156,7 +155,6 @@ extension SingleInfluencerRoutineView {
                 
                 Spacer()
                 
-                // TODO: 휴식일 때 패딩 값
                 if routine.part == "휴식" {
                     VStack {
                         Spacer()
@@ -174,8 +172,8 @@ extension SingleInfluencerRoutineView {
                 else {
                     RoutineDescriptionCard
                         .padding(.bottom, 15)
-                        .padding(.leading,10)
-                    //운동 시작 버튼
+                        .padding(.leading, 10)
+
                     if routine.isDone {
                         FloatingButton(size: .semiMedium, color: .gray_600) {
                             HStack {

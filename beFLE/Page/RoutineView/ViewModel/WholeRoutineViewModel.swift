@@ -27,8 +27,8 @@ class WholeRoutineViewModel: ObservableObject {
     @Published var offset: CGFloat = .zero
     
     func fetch(influencerId: Int) {
-        wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) {
-            self.wholeRoutine = $0
+        wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) { wholeRoutine in
+            self.wholeRoutine = wholeRoutine
             self.parse()
         }
     }

@@ -36,26 +36,26 @@ struct SubscribeView: View {
             Color.gray_900.ignoresSafeArea()
             ScrollView {
                 VStack {
-                    //구독 페이지 설명
+                    // 구독 페이지 설명
                     IntroPage
-                    //구독 버튼
+                    // 구독 버튼
                     subscribeButton
-                    //인플루언서 설명
+                    // 인플루언서 설명
                     introInfluencer
                     bodyInformation
                     strengthInformation
-                    //루틴 미리보기
+                    // 루틴 미리보기
                     RoutinePreview()
                         .padding(.horizontal)
                 }
-                .background(GeometryReader {
-                    return Color.clear.preference(key: ViewOffsetKey.self, value: -$0.frame(in: .named("scroll")).origin.y)
+                .background(GeometryReader { geo in
+                    return Color.clear.preference(key: ViewOffsetKey.self, value: -geo.frame(in: .named("scroll")).origin.y)
                 })
                 .onPreferenceChange(ViewOffsetKey.self) { offset in
                     withAnimation {
                         if offset > UIScreen.getHeight(422) {
                             vm.showTab = true
-                        } else  {
+                        } else {
                             vm.showTab = false
                         }
                     }
@@ -197,7 +197,6 @@ struct SubscribeView: View {
             }
             .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.isSubscriptionAlertShow) {
                 Button("확인") {
-                    //TODO: 서버에 vm.routines.routines 변화
                     dismiss()
                 }
             }
@@ -326,9 +325,3 @@ struct WorkoutExplain: View {
         .frame(maxWidth: .infinity)
     }
 }
-
-//struct SubscribeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SubscribeView()
-//    }
-//}

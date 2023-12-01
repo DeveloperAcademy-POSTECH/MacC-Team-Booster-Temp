@@ -486,7 +486,7 @@ extension RecordingWorkoutView {
                                 else {
                                     vm.isTappable = false
                                     
-                                    if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
+                                    if !workoutVM.routine.exercises.contains(where: { $0.isDone }) {
                                         workoutVM.finishSet(setId: workoutVM.workout.sets[vm.currentSet].setId) {
                                             workoutVM.stopTimer()
                                             workoutVM.updateWorkoutTime() {
