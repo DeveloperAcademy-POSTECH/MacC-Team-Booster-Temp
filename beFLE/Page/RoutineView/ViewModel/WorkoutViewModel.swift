@@ -192,7 +192,7 @@ extension WorkoutViewModel {
         }
     }
     
-    func timerStart() {
+    func startTimer() {
         if !isRunning {
             isRunning = true
             
@@ -208,11 +208,11 @@ extension WorkoutViewModel {
         }
     }
     
-    func timerStop() {
+    func stopTimer() {
         isRunning = false
     }
     
-    func bgTimer() {
+    func caculateBackgroundTime() {
         let curTime = Date.now
         let diffTime = startTime.distance(to: curTime)
         let result = Double(diffTime.formatted())!

@@ -47,13 +47,13 @@ struct RecordingWorkoutView: View {
             }
         }
         .onAppear {
-            workoutVM.bgTimer()
-            workoutVM.timerStart()
+            workoutVM.caculateBackgroundTime()
+            workoutVM.startTimer()
             vm.currentSet = 0
         }
         .onDisappear {
             vm.currentSet = 0
-            workoutVM.timerStop()
+            workoutVM.stopTimer()
         }
         .onTapGesture {
             isFocused = false
@@ -109,7 +109,7 @@ extension RecordingWorkoutView {
             
             Button {
                 vm.isPauseSheetShow = true
-                workoutVM.timerStop()
+                workoutVM.stopTimer()
             } label: {
                 Circle()
                     .foregroundColor(.gray_700)
@@ -146,11 +146,11 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var WorkoutStopAlert: some View {
         Button("운동중단") {
-            workoutVM.timerStop()
+            workoutVM.stopTimer()
             dismiss()
         }
         Button("취소") {
-            workoutVM.timerStart()
+            workoutVM.startTimer()
         }
     }
     
@@ -187,7 +187,7 @@ extension RecordingWorkoutView {
     var DiscontinueAlert: some View {
         Button {
             workoutVM.finishSet(setId: workoutVM.workout.sets[vm.currentSet].setId) {
-                workoutVM.timerStop()
+                workoutVM.stopTimer()
                 workoutVM.updateWorkoutTime() {
                     vm.isTappable = true
                     workoutVM.finishRoutine()
@@ -487,7 +487,7 @@ extension RecordingWorkoutView {
                                     
                                     if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
                                         workoutVM.finishSet(setId: workoutVM.workout.sets[vm.currentSet].setId) {
-                                            workoutVM.timerStop()
+                                            workoutVM.stopTimer()
                                             workoutVM.updateWorkoutTime() {
                                                 vm.isTappable = true
                                                 workoutVM.finishRoutine()

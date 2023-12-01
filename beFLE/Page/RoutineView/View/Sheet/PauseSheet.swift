@@ -43,7 +43,7 @@ struct PauseSheet: View {
         }
         .onDisappear {
             vm.reset()
-            workoutVM.timerStart()
+            workoutVM.startTimer()
         }
         .presentationDetents([.height(UIScreen.getHeight(378))])
     }
