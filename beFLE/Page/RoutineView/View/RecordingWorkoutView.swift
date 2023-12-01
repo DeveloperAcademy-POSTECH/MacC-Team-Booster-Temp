@@ -47,8 +47,8 @@ struct RecordingWorkoutView: View {
             }
         }
         .onAppear {
+            workoutVM.bgTimer()
             workoutVM.timerStart()
-            workoutVM.elapsedTime = workoutVM.elapsedTime + workoutVM.bgTimer()
             vm.currentSet = 0
         }
         .onDisappear {
@@ -146,10 +146,11 @@ extension RecordingWorkoutView {
     @ViewBuilder
     var WorkoutStopAlert: some View {
         Button("운동중단") {
+            workoutVM.timerStop()
             dismiss()
         }
         Button("취소") {
-            
+            workoutVM.timerStart()
         }
     }
     

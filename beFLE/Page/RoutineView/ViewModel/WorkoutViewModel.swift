@@ -212,13 +212,11 @@ extension WorkoutViewModel {
         isRunning = false
     }
     
-    func bgTimer() -> TimeInterval {
+    func bgTimer() {
         let curTime = Date.now
         let diffTime = startTime.distance(to: curTime)
         let result = Double(diffTime.formatted())!
-        elapsedTime = result + elapsedTime
-        
-        return elapsedTime
+        elapsedTime = result
     }
     
     func timeFormatted() -> String {
