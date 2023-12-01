@@ -74,4 +74,15 @@ struct WorkoutModel {
             }
         }
     }
+    
+    func fisishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
+        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
+            switch $0 {
+            case .success:
+                completion()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
