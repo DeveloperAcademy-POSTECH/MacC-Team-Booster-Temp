@@ -42,7 +42,7 @@ struct EditRoutineView: View {
                 }
         )
         .offset(x: vm.offset)
-        .animation(.easeInOut)
+        .animation(.easeInOut, value: vm.offset)
         
     }
 }
