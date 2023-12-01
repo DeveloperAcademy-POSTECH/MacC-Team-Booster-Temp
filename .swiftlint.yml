@@ -2,193 +2,105 @@ excluded:
     - beFLE/beFLEApp.swift
   
 disabled_rules:
-#    # Blanket Disable Command
-#    - blanket_disable_command
-#    # Block Based KVO
-#    - block_based_kvo
-#    # Class Delegate Protocol
-#    - class_delegate_protocol
-#    # Closing Brace Spacing
-#    - closing_brace
-#    # Closure Parameter Position
-#    - closure_parameter_position
-#    # Colon Spacing
-#    - colon
-#    # Comma Spacing
-#    - comma
-#    # Comment Spacing
-#    - comment_spacing
-#    # Compiler Protocol Init
-#    - compiler_protocol_init
-#    # Computed Accessors Order
-#    - computed_accessors_order
     # Control Statement
     - control_statement
-#    # Custom Rules
-#    - custom_rules
     # Cyclomatic Complexity
     - cyclomatic_complexity
-#    # Deployment Target
-#    - deployment_target
-#    # Discouraged Direct Initialization
-#    - discouraged_direct_init
-#    # Duplicate Conditions
-#    - duplicate_conditions
-#    # Duplicate Enum Cases
-#    - duplicate_enum_cases
-#    # Duplicate Imports
-#    - duplicate_imports
-#    # Duplicated Key in Dictionary Literal
-#    - duplicated_key_in_dictionary_literal
-#    # Dynamic Inline
-#    - dynamic_inline
     # Empty Enum Arguments
     - empty_enum_arguments
-#    # Empty Parameters
-#    - empty_parameters
     # Empty Parentheses with Trailing Closure
     - empty_parentheses_with_trailing_closure
     # File Length
     - file_length
-#    # Prefer For-Where
-#    - for_where
-#    # Force Cast
-#    - force_cast
-#    # Force Try
-#    - force_try
     # Function Body Length
     - function_body_length
     # Function Parameter Count
     - function_parameter_count
-#    # Generic Type Name
-#    - generic_type_name
     # Identifier Name
     - identifier_name
-#    # Implicit Getter
-#    - implicit_getter
-#    # Inclusive Language
-#    - inclusive_language
-#    # Invalid SwiftLint Command
-#    - invalid_swiftlint_command
-#    # Is Disjoint
-#    - is_disjoint
-#    # Large Tuple
-#    - large_tuple
-#    # Leading Whitespace
-#    - leading_whitespace
-#    # Legacy CGGeometry Functions
-#    - legacy_cggeometry_functions
-#    # Legacy Constant
-#    - legacy_constant
-#    # Legacy Constructor
-#    - legacy_constructor
-#    # Legacy Hashing
-#    - legacy_hashing
-#    # Legacy NSGeometry Functions
-#    - legacy_nsgeometry_functions
-#    # Legacy Random
-#    - legacy_random
     # Line Length
     - line_length
-#    # Mark
-#    - mark
-#    # Multiple Closures with Trailing Closure
-#    - multiple_closures_with_trailing_closure
-#    # Nesting
-#    - nesting
-#    # No Fallthrough only
-#    - no_fallthrough_only
-#    # No Space in Method Call
-#    - no_space_in_method_call
-#    # Notification Center Detachment
-#    - notification_center_detachment
-#    # NSNumber Init as Function Reference
-#    - ns_number_init_as_function_reference
-#    # NSObject Prefer isEqual
-#    - nsobject_prefer_isequal
-#    # Opening Brace Spacing
-#    - opening_brace
-#    # Operator Function Whitespace
-#    - operator_whitespace
-#    # Orphaned Doc Comment
-#    - orphaned_doc_comment
-#    # Private over Fileprivate
-#    - private_over_fileprivate
-#    # Private Unit Test
-#    - private_unit_test
-#    # Protocol Property Accessors Order
-#    - protocol_property_accessors_order
-#    # Reduce Boolean
-#    - reduce_boolean
-#    # Redundant Discardable Let
-#    - redundant_discardable_let
-#    # Redundant @objc Attribute
-#    - redundant_objc_attribute
     # Redundant Optional Initialization
     - redundant_optional_initialization
-#    # Redundant Access Control for Setter
-#    - redundant_set_access_control
-#    # Redundant String Enum Value
-#    - redundant_string_enum_value
-#    # Redundant Void Return
-#    - redundant_void_return
-#    # Returning Whitespace
-#    - return_arrow_whitespace
-#    # Self in Property Initialization
-#    - self_in_property_initialization
-#    # Shorthand Operator
-#    - shorthand_operator
-#    # Statement Position
-#    - statement_position
-#    # Superfluous Disable Command
-#    - superfluous_disable_command
-#    # Switch and Case Statement Alignment
-#    - switch_case_alignment
-#    # Syntactic Sugar
-#    - syntactic_sugar
-#    # Todo
-#    - todo
-#    # Trailing Comma
-#    - trailing_comma
-#    # Trailing Newline
-#    - trailing_newline
-#    # Trailing Semicolon
-#    - trailing_semicolon
     # Trailing Whitespace
     - trailing_whitespace
     # Type Body Length
     - type_body_length
     # Type Name
     - type_name
-#    # Unavailable Condition
-#    - unavailable_condition
-#    # Unneeded Break in Switch
-#    - unneeded_break_in_switch
-#    # Unneeded Overridden Functions
-#    - unneeded_override
-#    # Unneeded Synthesized Initializer
-#    - unneeded_synthesized_initializer
-#    # Unused Closure Parameter
-#    - unused_closure_parameter
-#    # Unused Control Flow Label
-#    - unused_control_flow_label
-#    # Unused Enumerated
-#    - unused_enumerated
-#    # Unused Optional Binding
-#    - unused_optional_binding
-#    # Unused Setter Value
-#    - unused_setter_value
-#    # Valid IBInspectable
-#    - valid_ibinspectable
-#    # Vertical Parameter Alignment
-#    - vertical_parameter_alignment
-#    # Vertical Whitespace
-#    - vertical_whitespace
-#    # Void Function in Ternary
-#    - void_function_in_ternary
-#    # Void Return
-#    - void_return
-#    # XCTFail Message
-#    - xctfail_message
-opt_in_rules:
 
+opt_in_rules:
+    # Anonymous Argument in Multiline Closure
+    - anonymous_argument_in_multiline_closure
+    # Array Init
+    - array_init
+    # Closure End Indentation
+    - closure_end_indentation
+    # Closure Spacing
+    - closure_spacing
+    # Collection Element Alignment
+    - collection_alignment
+    # Contains over Filter Count
+    - contains_over_filter_count
+    # Contains over Filter is Empty
+    - contains_over_filter_is_empty
+    # Direct Return
+    - direct_return
+    # Empty Collection Literal
+    - empty_collection_literal
+    # Empty Count
+    - empty_count
+    # Empty String
+    - empty_string
+    # Implicitly Unwrapped Optional
+    - implicitly_unwrapped_optional
+    # Indentation Width
+    - indentation_width
+    # Legacy Multiple
+    - legacy_multiple
+    # Literal Expression End Indentation
+    - literal_expression_end_indentation
+    # Local Doc Comment
+    - local_doc_comment
+    # Multiline Arguments
+    - multiline_arguments
+    # Multiline Arguments Brackets
+    - multiline_arguments_brackets
+    # Multiline Function Chains
+    - multiline_function_chains
+    # Multiline Literal Brackets
+    - multiline_literal_brackets
+    # Multiline Parameters
+    - multiline_parameters
+    # Multiline Parameters Brackets
+    - multiline_parameters_brackets
+    # Operator Usage Whitespace
+    - operator_usage_whitespace
+    # Prefer Zero Over Explicit Init
+    - prefer_zero_over_explicit_init
+    # Redundant Nil Coalescing
+    - redundant_nil_coalescing
+    # Redundant Self in Closure
+    - redundant_self_in_closure
+    # Redundant Type Annotation
+    - redundant_type_annotation
+    # Shorthand Optional Binding
+    - shorthand_optional_binding
+    # Sorted Enum Cases
+    - sorted_enum_cases
+    # Sorted Imports
+    - sorted_imports
+    # Toggle Bool
+    - toggle_bool
+    # Trailing Closure
+    - trailing_closure
+    # Unused Capture List
+    - unused_capture_list
+    # Vertical Parameter Alignment on Call
+    - vertical_parameter_alignment_on_call
+    # Vertical Whitespace between Cases
+    - vertical_whitespace_between_cases
+    # Vertical Whitespace before Closing Braces
+    - vertical_whitespace_closing_braces
+    # Vertical Whitespace after Opening Braces
+    - vertical_whitespace_opening_braces
