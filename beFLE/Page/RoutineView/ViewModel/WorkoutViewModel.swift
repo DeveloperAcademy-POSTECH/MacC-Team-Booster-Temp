@@ -135,7 +135,7 @@ extension WorkoutViewModel {
     }
     
     func decreaseSetCount(completion: @escaping (() -> ())) {
-        if workout.sets.count > 2 {
+        if workout.sets.count > 1 {
             workoutModel.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
                 self.workout.sets = $0
                 completion()
