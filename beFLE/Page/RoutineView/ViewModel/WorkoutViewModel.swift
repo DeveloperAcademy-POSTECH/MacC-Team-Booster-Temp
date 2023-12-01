@@ -88,9 +88,11 @@ extension WorkoutViewModel {
         }
     }
     
-    func fetchNextWorkout() {
+    func fetchNextWorkout(completion: @escaping (() -> ())) {
         currentWorkoutIndex += 1
-        fetchRoutine()
+        fetchRoutine() {
+            completion()
+        }
     }
     
     func fetchWorkout() {
@@ -155,9 +157,16 @@ extension WorkoutViewModel {
         }
     }
     
+    func finishSet(setId: Int, completion: @escaping (() -> ())) {
+        workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
+            completion()
+        }
+    }
+    
     func finishRoutine() {
         routineModel.finishRoutine(routineId: routineId) {
             self.routineCompleteImageUrl = $0
+            self.changeViewStatus(.recordingFinishView)
         }
     }
 }

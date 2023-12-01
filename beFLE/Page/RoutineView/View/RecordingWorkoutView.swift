@@ -457,36 +457,31 @@ extension RecordingWorkoutView {
                                     proxy.scrollTo(topID, anchor: .bottom)
                                 }
                             }
-                            
-//                            switch vm.nextButtonStatus {
-//                            case .nextSet:
-//                                vm.nextSet(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-//                                    if vm.currentSet >= vm.exercise.sets.count - 1 {
-//                                        if workoutVM.currentWorkoutIndex >= workoutVM.workouts.count - 1 {
-//                                            vm.nextButtonStatus = .finishWorkout
-//                                        }
-//                                        else {
-//                                            vm.nextButtonStatus = .nextWorkout
-//                                        }
-//                                    }
-//                                }
-//                            case .nextWorkout:
-//                                vm.nextWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-//                                    vm.fetchWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.workouts[workoutVM.currentWorkoutIndex + 1])
-//                                    workoutVM.fetchNextWorkout()
-//                                }
-//                            case .finishWorkout:
-//                                if !workoutVM.routine.exercises.filter({ $0.isDone }).isEmpty {
-//                                    vm.finishWorkout(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId, setId: vm.exercise.sets[vm.currentSet].setId) {
-//                                        workoutVM.timerStop()
-//                                        workoutVM.updateWorkoutTime()
-//                                        workoutVM.changeViewStatus(.recordingFinishView)
-//                                    }
-//                                }
-//                                else {
-//                                    vm.isDiscontinuewAlertShow = true
-//                                }
-//                            }
+
+                            if vm.currentSet < workoutVM.workout.sets.count - 1 {
+                                vm.isTappable = false
+                                workoutVM.finishSet(setId: workoutVM.workout.sets[vm.currentSet].setId) {
+                                    workoutVM.workout.sets[vm.currentSet].isDone = true
+                                    vm.currentSet += 1
+                                    vm.isTappable = true
+                                }
+                            }
+                            else {
+                                if workoutVM.currentWorkoutIndex < workoutVM.routine.exercises.count - 1 {
+                                    vm.isTappable = false
+                                    workoutVM.finishSet(setId: workoutVM.workout.sets[vm.currentSet].setId) {
+                                        workoutVM.workout.sets[vm.currentSet].isDone = true
+                                        workoutVM.fetchNextWorkout {
+                                            vm.currentSet = 0
+                                            vm.isTappable = true
+                                        }
+                                    }
+                                }
+                                else {
+                                    vm.isTappable = false
+                                    workoutVM.finishRoutine()
+                                }
+                            }
                         } label: {
                             NextButton
                         }
@@ -531,7 +526,3 @@ extension RecordingWorkoutView {
         }
     }
 }
-
-//#Preview {
-//    RecordingWorkoutView(routineId: 0, exerciseId: 0)
-//}

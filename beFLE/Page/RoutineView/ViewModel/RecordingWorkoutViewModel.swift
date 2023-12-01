@@ -47,15 +47,6 @@ class RecordingWorkoutViewModel: ObservableObject {
     private var timer: Timer?
 }
 
-///// 운동 패치
-//extension RecordingWorkoutViewModel {
-//    func fetchWorkout(routineId: Int, exerciseId: Int) {
-//        workoutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
-//            self.exercise = $0
-//        }
-//    }
-//}
-
 /// 운동 세트 증감
 extension RecordingWorkoutViewModel {
     /// 세트 무게 편집 함수
@@ -69,48 +60,6 @@ extension RecordingWorkoutViewModel {
     func editReps(routineId: Int, exerciseId: Int, setId: Int, weight: Int? = nil, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
         workoutModel.editReps(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight ?? nil, reps: reps) {
             completion($0)
-        }
-    }
-}
-
-/// 세트 컨트롤
-extension RecordingWorkoutViewModel {
-    /// 다음 세트 함수
-    func nextSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
-        isTappable = false
-        
-        workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
-            self.isTappable = true
-            self.exercise.sets[self.currentSet].isDone = true
-            
-            self.currentSet += 1
-            completion()
-        }
-    }
-    
-    /// 다음 운동 함수
-    func nextWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
-        isTappable = false
-        
-        workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
-            self.isTappable = true
-            self.exercise.sets[self.currentSet].isDone = true
-            self.currentSet = 0
-            self.nextButtonStatus = .nextSet
-            
-            completion()
-        }
-    }
-    
-    /// 루틴 완료 함수
-    func finishWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
-        isTappable = false
-        
-        workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
-            self.exercise.sets[self.currentSet].isDone = true
-            self.isTappable = true
-            
-            completion()
         }
     }
 }
