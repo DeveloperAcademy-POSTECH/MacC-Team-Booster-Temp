@@ -27,21 +27,6 @@ struct RecordingRoutineView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .gesture(
-            DragGesture().onChanged { value in
-                if value.startLocation.x < 10 {
-                    workoutVM.offset = value.translation.width
-                }
-            }
-                .onEnded { value in
-                    if value.predictedEndTranslation.width > 100 {
-                        workoutVM.changeViewStatus(.recordingWorkoutView)
-                    }
-                    workoutVM.offset = .zero
-                }
-        )
-        .offset(x: workoutVM.offset)
-        .animation(.easeInOut, value: workoutVM.offset)
     }
 }
 
