@@ -99,8 +99,7 @@ extension EditRecordingRoutineView {
                                 .font(.body2())
                         }
                     }
-                    .padding()
-                    
+                    .padding(.horizontal)
                     Spacer()
                 }
             }
