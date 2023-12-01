@@ -22,12 +22,12 @@ disabled_rules:
 #    - compiler_protocol_init
 #    # Computed Accessors Order
 #    - computed_accessors_order
-#    # Control Statement
-#    - control_statement
+    # Control Statement
+    - control_statement
 #    # Custom Rules
 #    - custom_rules
-#    # Cyclomatic Complexity
-#    - cyclomatic_complexity
+    # Cyclomatic Complexity
+    - cyclomatic_complexity
 #    # Deployment Target
 #    - deployment_target
 #    # Discouraged Direct Initialization
@@ -42,28 +42,28 @@ disabled_rules:
 #    - duplicated_key_in_dictionary_literal
 #    # Dynamic Inline
 #    - dynamic_inline
-#    # Empty Enum Arguments
-#    - empty_enum_arguments
+    # Empty Enum Arguments
+    - empty_enum_arguments
 #    # Empty Parameters
 #    - empty_parameters
-#    # Empty Parentheses with Trailing Closure
-#    - empty_parentheses_with_trailing_closure
-#    # File Length
-#    - file_length
+    # Empty Parentheses with Trailing Closure
+    - empty_parentheses_with_trailing_closure
+    # File Length
+    - file_length
 #    # Prefer For-Where
 #    - for_where
 #    # Force Cast
 #    - force_cast
 #    # Force Try
 #    - force_try
-#    # Function Body Length
-#    - function_body_length
-#    # Function Parameter Count
-#    - function_parameter_count
+    # Function Body Length
+    - function_body_length
+    # Function Parameter Count
+    - function_parameter_count
 #    # Generic Type Name
 #    - generic_type_name
-#    # Identifier Name
-#    - identifier_name
+    # Identifier Name
+    - identifier_name
 #    # Implicit Getter
 #    - implicit_getter
 #    # Inclusive Language
@@ -88,8 +88,8 @@ disabled_rules:
 #    - legacy_nsgeometry_functions
 #    # Legacy Random
 #    - legacy_random
-#    # Line Length
-#    - line_length
+    # Line Length
+    - line_length
 #    # Mark
 #    - mark
 #    # Multiple Closures with Trailing Closure
@@ -124,8 +124,8 @@ disabled_rules:
 #    - redundant_discardable_let
 #    # Redundant @objc Attribute
 #    - redundant_objc_attribute
-#    # Redundant Optional Initialization
-#    - redundant_optional_initialization
+    # Redundant Optional Initialization
+    - redundant_optional_initialization
 #    # Redundant Access Control for Setter
 #    - redundant_set_access_control
 #    # Redundant String Enum Value
@@ -154,12 +154,12 @@ disabled_rules:
 #    - trailing_newline
 #    # Trailing Semicolon
 #    - trailing_semicolon
-#    # Trailing Whitespace
-#    - trailing_whitespace
-#    # Type Body Length
-#    - type_body_length
-#    # Type Name
-#    - type_name
+    # Trailing Whitespace
+    - trailing_whitespace
+    # Type Body Length
+    - type_body_length
+    # Type Name
+    - type_name
 #    # Unavailable Condition
 #    - unavailable_condition
 #    # Unneeded Break in Switch
