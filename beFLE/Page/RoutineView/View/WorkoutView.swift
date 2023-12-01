@@ -18,7 +18,7 @@ enum WorkoutViewStatus {
 
 struct WorkoutView: View {
     let routineId: Int
-    
+    @Environment(\.dismiss) var dismiss: DismissAction
     @StateObject var vm = WorkoutViewModel()
     
     var body: some View {
@@ -38,6 +38,7 @@ struct WorkoutView: View {
                 RecordingFinishView()
             }
         }
+        //MARK: 제스처 기능 추가
         .environmentObject(vm)
     }
 }
@@ -53,6 +54,21 @@ extension WorkoutView {
                 vm.fetchRoutineId(routineId: routineId)
                 vm.changeViewStatus(.editRoutineView)
             }
+            .gesture(
+                DragGesture().onChanged { value in
+                    if value.startLocation.x < 50 {
+                        vm.offset = value.translation.width
+                    }
+                }
+                    .onEnded { value in
+                        if value.predictedEndTranslation.width > 100 {
+                            dismiss()
+                        }
+                        vm.offset = .zero
+                    }
+            )
+            .offset(x: vm.offset)
+            .animation(.easeInOut)
     }
 }
 
