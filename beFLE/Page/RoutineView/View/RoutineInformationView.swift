@@ -60,7 +60,7 @@ struct RoutineInformationView: View {
                 }
         )
         .offset(x: vm.offset)
-        .animation(.easeInOut, value: vm.offset)
+        .animation(.linear, value: vm.offset)
         
     }
     
