@@ -56,7 +56,7 @@ extension EditRecordingRoutineView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
                 }
-                .padding(.horizontal, 10)
+                .padding(.horizontal, 15)
             }
             .scrollIndicators(.hidden)
         }
@@ -64,7 +64,7 @@ extension EditRecordingRoutineView {
     
     @ViewBuilder
     func WorkoutListCell(_ index: Int, _ exercise: Exercise) -> some View {
-        HStack {
+        HStack(spacing: 8) {
             Button {
                 vm.isDetailedWorkoutSheetShow = true
                 vm.selectedExerciseId = exercise.id
@@ -96,7 +96,6 @@ extension EditRecordingRoutineView {
                                 .font(.body2())
                         }
                     }
-                    .padding(.horizontal)
                     Spacer()
                 }
             }
@@ -128,7 +127,8 @@ extension EditRecordingRoutineView {
                 DeleteAlert
             }
         }
-        .frame(maxWidth: .infinity)
+        .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(64))
+        .padding(.vertical, 4)
     }
 }
 
