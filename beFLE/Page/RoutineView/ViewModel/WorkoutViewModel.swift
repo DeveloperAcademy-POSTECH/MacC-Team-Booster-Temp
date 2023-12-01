@@ -72,13 +72,9 @@ extension WorkoutViewModel {
     func fetchRoutine() {
         routineModel.fetchRoutine(routineId: routineId) {
             self.routine = $0
-            var exercises: [Int] = []
-            for exercise in $0.exercises {
-                exercises.append(exercise.id)
-            }
-            self.workouts = exercises
-            if !exercises.isEmpty {
-                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+            
+            if !$0.exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: $0.exercises[self.currentWorkoutIndex].id)
             }
         }
     }
@@ -86,13 +82,9 @@ extension WorkoutViewModel {
     func fetchRoutine(completion: @escaping (()->())) {
         routineModel.fetchRoutine(routineId: routineId) {
             self.routine = $0
-            var exercises: [Int] = []
-            for exercise in $0.exercises {
-                exercises.append(exercise.id)
-            }
-            self.workouts = exercises
-            if !exercises.isEmpty {
-                self.fetchExerciseId(exerciseId: exercises[self.currentWorkoutIndex])
+            
+            if !$0.exercises.isEmpty {
+                self.fetchExerciseId(exerciseId: $0.exercises[self.currentWorkoutIndex].id)
             }
             completion()
         }
