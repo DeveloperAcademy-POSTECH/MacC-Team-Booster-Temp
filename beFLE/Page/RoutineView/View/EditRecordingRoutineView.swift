@@ -23,6 +23,7 @@ struct EditRecordingRoutineView: View {
                 BackButton
             }
         }
+        .transition(.slide)
     }
 }
 
@@ -55,7 +56,6 @@ extension EditRecordingRoutineView {
             ScrollView {
                 ForEach(Array(workoutVM.routine.exercises.enumerated()), id: \.element) { pair in
                     WorkoutListCell(pair.offset, pair.element)
-                        .padding(.vertical, 4)
                 }
                 .padding(.horizontal)
                 FloatingButton(size: .medium) {}
@@ -81,13 +81,13 @@ extension EditRecordingRoutineView {
                             LoadingImage(url: exercise.exerciseImageUrl)
                         }
                     
-                    VStack(alignment: .leading, spacing: 3) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text(exercise.name)
                             .foregroundColor(.label_900)
                             .font(.headline1())
                             .multilineTextAlignment(.leading)
                             .allowsTightening(true)
-                        HStack(spacing: 3){
+                        HStack(spacing: 6){
                             Text("\(exercise.numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())

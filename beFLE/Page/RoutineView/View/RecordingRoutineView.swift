@@ -27,6 +27,7 @@ struct RecordingRoutineView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .animation(.easeInOut)
     }
 }
 
