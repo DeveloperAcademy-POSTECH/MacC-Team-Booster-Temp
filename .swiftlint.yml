@@ -22,6 +22,8 @@ disabled_rules:
     - line_length
     # Redundant Optional Initialization
     - redundant_optional_initialization
+    # Statement Position
+    - statement_position
     # Trailing Whitespace
     - trailing_whitespace
     # Type Body Length
@@ -94,8 +96,6 @@ opt_in_rules:
     - toggle_bool
     # Trailing Closure
     - trailing_closure
-    # Unused Capture List
-    - unused_capture_list
     # Vertical Parameter Alignment on Call
     - vertical_parameter_alignment_on_call
     # Vertical Whitespace between Cases
