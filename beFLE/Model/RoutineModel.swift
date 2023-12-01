@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoutineModel {
-    func fetchRoutine(routineId: Int, completion: @escaping ((ResponseGetUsersRoutinesId)->())) {
+    func fetchRoutine(routineId: Int, completion: @escaping ((ResponseGetUsersRoutinesId) -> ())) {
         GeneralAPIManger.request(for: .GetUsersRoutinesId(id: routineId), type: ResponseGetUsersRoutinesId.self) {
             switch $0 {
             case .success(let routine):
@@ -20,7 +20,7 @@ struct RoutineModel {
         }
     }
     
-    func finishRoutine(routineId: Int, completion: @escaping ((String)->())) {
+    func finishRoutine(routineId: Int, completion: @escaping ((String) -> ())) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesFinish(routineId: routineId), type: ResponsePatchUsersRoutinesFinish.self) {
             switch $0 {
             case .success(let routine):
