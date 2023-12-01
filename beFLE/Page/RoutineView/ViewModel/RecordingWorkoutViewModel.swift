@@ -108,17 +108,12 @@ extension RecordingWorkoutViewModel {
     func nextSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
         isCanTappable = false
         
-        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
-            switch $0 {
-            case .success:
-                self.isCanTappable = true
-                self.exercise.sets[self.currentSet].isDone = true
-                
-                self.currentSet += 1
-                completion()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
+            self.isCanTappable = true
+            self.exercise.sets[self.currentSet].isDone = true
+            
+            self.currentSet += 1
+            completion()
         }
     }
     
@@ -126,35 +121,25 @@ extension RecordingWorkoutViewModel {
     func nextWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
         isCanTappable = false
         
-        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
-            switch $0 {
-            case .success:
-                self.isCanTappable = true
-                self.exercise.sets[self.currentSet].isDone = true
-                self.currentSet = 0
-                self.nextButtonStatus = .nextSet
-                completion()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
+            self.isCanTappable = true
+            self.exercise.sets[self.currentSet].isDone = true
+            self.currentSet = 0
+            self.nextButtonStatus = .nextSet
+            
+            completion()
         }
     }
     
     /// 루틴 완료 함수
     func finishWorkout(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> ())) {
         isCanTappable = false
-        print(currentSet)
-        print(setId)
-        GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) {
-            switch $0 {
-            case .success:
-                self.exercise.sets[self.currentSet].isDone = true
-                self.isCanTappable = true
-                
-                completion()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        
+        workoutModel.fisishSet(routineId: routineId, exerciseId: exerciseId, setId: setId) {
+            self.exercise.sets[self.currentSet].isDone = true
+            self.isCanTappable = true
+            
+            completion()
         }
     }
 }
