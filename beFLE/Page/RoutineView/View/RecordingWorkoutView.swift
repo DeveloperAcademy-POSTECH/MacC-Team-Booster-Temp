@@ -346,17 +346,12 @@ extension RecordingWorkoutView {
                 .overlay {
                     HStack {
                         Button {
-                            vm.decreaseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId) {
-                                if vm.nextButtonStatus == .nextSet {
-                                    if vm.currentSet >= vm.exercise.sets.count - 1 {
-                                        if workoutVM.currentWorkoutIndex >= workoutVM.workouts.count - 1 {
-                                            vm.nextButtonStatus = .finishWorkout
-                                        }
-                                        else {
-                                            vm.nextButtonStatus = .nextWorkout
-                                        }
-                                    }
+                            vm.isTappable = false
+                            workoutVM.decreaseSetCount {
+                                if vm.currentSet >= workoutVM.workout.sets.count - 1 {
+                                    vm.currentSet -= 1
                                 }
+                                vm.isTappable = true
                             }
                         } label: {
                             Rectangle()
@@ -374,7 +369,10 @@ extension RecordingWorkoutView {
                             .foregroundColor(.label_700)
                         
                         Button {
-                            vm.increseSetCount(routineId: workoutVM.routineId, exerciseId: workoutVM.exerciseId)
+                            vm.isTappable = false
+                            workoutVM.increseSetCount {
+                                vm.isTappable = true
+                            }
                         } label: {
                             Rectangle()
                                 .foregroundColor(.clear)

@@ -58,35 +58,6 @@ class RecordingWorkoutViewModel: ObservableObject {
 
 /// 운동 세트 증감
 extension RecordingWorkoutViewModel {
-    /// 운동 세트 감소 함수
-    func decreaseSetCount(routineId: Int, exerciseId: Int, completion: @escaping (() -> ()) ) {
-        if exercise.sets.count > 2 {
-            isTappable = false
-            
-            workoutModel.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                if self.currentSet >= $0.count {
-                    self.currentSet -= 1
-                }
-                self.exercise.sets = $0
-                self.isTappable = true
-                completion()
-            }
-        }
-    }
-    
-    /// 운동 세트 증가 함수
-    func increseSetCount(routineId: Int, exerciseId: Int) {
-        if exercise.sets.count < 9 {
-            isTappable = false
-            
-            workoutModel.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
-                self.nextButtonStatus = .nextSet
-                self.exercise.sets = $0
-                self.isTappable = true
-            }
-        }
-    }
-    
     /// 세트 무게 편집 함수
     func editWeight(routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
         workoutModel.editWeight(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps) {

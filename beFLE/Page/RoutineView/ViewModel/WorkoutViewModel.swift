@@ -9,7 +9,7 @@ import SwiftUI
 
 class WorkoutViewModel: ObservableObject {
     let routineModel = RoutineModel()
-    let wokroutModel = WorkoutModel()
+    let workoutModel = WorkoutModel()
     
     @Published var workoutViewStatus: WorkoutViewStatus = .emptyView
     @Published var routineId = 0
@@ -94,7 +94,7 @@ extension WorkoutViewModel {
     }
     
     func fetchWorkout() {
-        wokroutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
+        workoutModel.fetchWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.workout = $0
         }
     }
@@ -104,7 +104,7 @@ extension WorkoutViewModel {
             currentWorkoutIndex -= 1
         }
         
-        wokroutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
+        workoutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.fetchRoutine()
         }
     }
@@ -114,7 +114,7 @@ extension WorkoutViewModel {
             currentWorkoutIndex -= 1
         }
         
-        wokroutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
+        workoutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.fetchRoutine()
         }
     }
@@ -124,10 +124,34 @@ extension WorkoutViewModel {
             currentWorkoutIndex -= 1
         }
         
-        wokroutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
+        workoutModel.deleteWorkout(routineId: routineId, exerciseId: exerciseId) {
             self.fetchRoutine {
                 completion()
             }
+        }
+    }
+    
+    func decreaseSetCount(completion: @escaping (() -> ())) {
+        if workout.sets.count > 2 {
+            workoutModel.decreaseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                self.workout.sets = $0
+                completion()
+            }
+        }
+        else {
+            completion()
+        }
+    }
+    
+    func increseSetCount(completion: @escaping (() -> ())) {
+        if workout.sets.count < 9 {
+            workoutModel.increseSetCount(routineId: routineId, exerciseId: exerciseId) {
+                self.workout.sets = $0
+                completion()
+            }
+        }
+        else {
+            completion()
         }
     }
     
