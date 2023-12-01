@@ -5,8 +5,8 @@
 //  Created by 송재훈 on 11/6/23.
 //
 
-import SwiftUI
 import AuthenticationServices
+import SwiftUI
 
 /// 앱 시작 시 처음 보이는 화면
 struct OnboardingView: View {
@@ -48,7 +48,6 @@ extension OnboardingView {
                     .padding(.bottom, 10)
                 
                 Text("Be my Influencer, beFLE")
-                // TODO: 폰트 처리
                     .font(.bannerFont())
                     .foregroundColor(.label_700)
             }
@@ -64,8 +63,7 @@ extension OnboardingView {
     /// 로그인 버튼
     var LoginButton: some View {
         FloatingButton(size: .medium) {
-            SignInWithAppleButton(.signIn)
-            { request in
+            SignInWithAppleButton(.signIn) { request in
                 request.requestedScopes = [.email]
             } onCompletion: { results in
                 switch results {
@@ -76,13 +74,12 @@ extension OnboardingView {
                         let identityToken = String(data: userCredential.identityToken!, encoding: .utf8)
                         let authorizationCode = String(data: userCredential.authorizationCode!, encoding: .utf8)
                         
-                        // TODO: 닉네임 부여 함수
-                        //                        profileViewModel.nickname = profileViewModel.MakeName(taste: profileViewModel.tasteName, workout: profileViewModel.workoutName)
-                        
                         LaunchViewModel.shared.loginByAppleLogin(identifier: identifier, identityToken: identityToken!, authorizationCode: authorizationCode!)
+                        
                     default:
                         break
                     }
+                    
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

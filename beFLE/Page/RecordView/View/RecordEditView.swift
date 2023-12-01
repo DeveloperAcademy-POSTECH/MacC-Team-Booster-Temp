@@ -33,7 +33,6 @@ struct RecordEditView: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    
     @ViewBuilder
     var workoutDetail: some View {
         VStack {

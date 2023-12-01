@@ -5,9 +5,9 @@
 //  Created by 정회승 on 11/16/23.
 //
 
+import MessageUI
 import SwiftUI
 import UIKit
-import MessageUI
 
 public typealias MailViewCallback = ((Result<MFMailComposeResult, Error>) -> Void)?
 

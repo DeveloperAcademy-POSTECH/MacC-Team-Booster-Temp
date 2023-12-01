@@ -99,7 +99,6 @@ struct RoutineInformationView: View {
     
     var WorkoutRoutine: some View {
         ZStack {
-            //운동 부위 갯수별 load
             VStack(spacing: 12) {
                 HStack {
                     Text(vm.routine.part)
@@ -108,7 +107,7 @@ struct RoutineInformationView: View {
                     Spacer()
                 }
                 .frame(width: UIScreen.getWidth(350))
-                .padding(.top ,UIScreen.getHeight(20))
+                .padding(.top, UIScreen.getHeight(20))
                 
                 ForEach(vm.routine.exercises, id: \.self) { exercise in
                     WorkoutCell(exercise: exercise)

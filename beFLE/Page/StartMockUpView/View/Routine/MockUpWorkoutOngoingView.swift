@@ -69,9 +69,7 @@ struct MockUpWorkoutOngoingView: View {
             Button("운동중단") {
                 dismiss()
             }
-            Button("취소") {
-                
-            }
+            Button("취소") { }
         }
         .alert("운동을 완료하시겠습니까?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
             Button("취소") {

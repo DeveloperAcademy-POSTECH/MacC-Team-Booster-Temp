@@ -21,8 +21,7 @@ struct RecordSpecificView: View {
                 VStack(alignment: .leading) {
                     RoutineDescriptionCard
                     Divider()
-                    ForEach(record.exercises, id: \.self){
-                        exercises in
+                    ForEach(record.exercises, id: \.self) { exercises in
                         RoutineCell(exercises: exercises)
                     }
                 }
@@ -67,7 +66,7 @@ struct RecordSpecificView: View {
             Description(image: "square.stack.fill", text: "\(record.numberOfExercise)개")
             Description(image: "clock.fill", text: "\(vm.timeFormat(from: record.time))")
             Description(image: "flame.circle.fill", text: "\(record.burnedKCalories)kcal")
-            Description(image: "dumbbell.fill", text: "\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps } )}))kg")
+            Description(image: "dumbbell.fill", text: "\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps })}))kg")
         }
         .padding(.bottom, 15)
     }

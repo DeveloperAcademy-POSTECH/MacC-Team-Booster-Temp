@@ -44,16 +44,16 @@ class RecordingWorkoutViewModel: ObservableObject {
 /// 운동 세트 증감
 extension RecordingWorkoutViewModel {
     /// 세트 무게 편집 함수
-    func editWeight(routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
-        workoutModel.editWeight(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps) {
-            completion($0)
+    func editWeight(routineId: Int, exerciseId: Int, setId: Int, weight: Int, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> Void)) {
+        workoutModel.editWeight(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps) { result in
+            completion(result)
         }
     }
     
     /// 세트 횟수 편집 함수
-    func editReps(routineId: Int, exerciseId: Int, setId: Int, weight: Int? = nil, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> ())) {
-        workoutModel.editReps(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight ?? nil, reps: reps) {
-            completion($0)
+    func editReps(routineId: Int, exerciseId: Int, setId: Int, weight: Int? = nil, reps: Int, completion: @escaping ((ResponsePatchUsersRoutinesExercisesSets) -> Void)) {
+        workoutModel.editReps(routineId: routineId, exerciseId: exerciseId, setId: setId, weight: weight, reps: reps) { result in
+            completion(result)
         }
     }
 }

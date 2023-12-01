@@ -81,7 +81,7 @@ struct RecordView: View {
             }
         }
         .padding(.bottom, 5)
-    }
+        }
 }
 }
 

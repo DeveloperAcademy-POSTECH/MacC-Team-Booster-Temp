@@ -15,6 +15,7 @@ struct SearchView: View {
             switch vm.influencer.previews.count {
             case 1:
                 SingleInfluencerPreviewView(influencer: $vm.influencer.previews[0])
+                
             default:
                 EmptyView()
             }

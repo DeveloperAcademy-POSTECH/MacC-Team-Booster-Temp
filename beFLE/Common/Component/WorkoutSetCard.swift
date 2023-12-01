@@ -5,9 +5,8 @@
 //  Created by 송재훈 on 2023/10/22.
 //
 
-import SwiftUI
 import Combine
-
+import SwiftUI
 
 final class setChangeStream: ObservableObject {
     var cancellables = Set<AnyCancellable>()
@@ -24,7 +23,7 @@ final class setChangeStream: ObservableObject {
         $weightInput
             .debounce(for: RunLoop.SchedulerTimeType.Stride(1), scheduler: RunLoop.main)
             .sink { [weak self] input in
-                if let input = input {
+                if let input {
                     self?.debouncedWeight = input
                 }
             }
@@ -33,7 +32,7 @@ final class setChangeStream: ObservableObject {
         $repInput
             .debounce(for: RunLoop.SchedulerTimeType.Stride(1), scheduler: RunLoop.main)
             .sink { [weak self] input in
-                if let input = input {
+                if let input {
                     self?.debouncedReps = input
                 }
             }
@@ -57,7 +56,7 @@ struct WorkoutSetCard: View {
             Text("\(index)")
                 .foregroundColor(.label_900)
             Spacer()
-            // TODO: 모로 textfield 클릭시 nil 처리
+
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
                 .foregroundColor(.gray_700)
@@ -69,8 +68,8 @@ struct WorkoutSetCard: View {
                         .multilineTextAlignment(.trailing)
                         .padding(.trailing, 10)
                         .onChange(of: debouncedStream.debouncedWeight) { weight in
-                            recordingWorkoutVM.editWeight(routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: weight, reps: set.reps) {
-                                set.weight = $0.weight
+                            recordingWorkoutVM.editWeight(routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: weight, reps: set.reps) { set in
+                                self.set.weight = set.weight
                             }
                         }
                 }
@@ -89,8 +88,8 @@ struct WorkoutSetCard: View {
                         .multilineTextAlignment(.trailing)
                         .padding(.trailing, 10)
                         .onChange(of: debouncedStream.debouncedReps) { reps in
-                            recordingWorkoutVM.editReps(routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: set.weight ?? nil, reps: reps) {
-                                set.reps = $0.reps
+                            recordingWorkoutVM.editReps(routineId: routineId, exerciseId: exerciseId, setId: set.setId, weight: set.weight, reps: reps) { set in
+                                self.set.reps = set.reps
                             }
                         }
                 }

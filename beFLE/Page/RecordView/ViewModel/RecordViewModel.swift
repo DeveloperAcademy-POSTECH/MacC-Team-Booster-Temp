@@ -18,15 +18,15 @@ class RecordViewModel: ObservableObject {
         fetchRecords()
     }
     
-    // TODO: 다중 데이터로 확인해보기
     func fetchRecords() {
-        GeneralAPIManger.request(for: .GetUsersRecords, type: [Records].self) {
-            switch $0 {
+        GeneralAPIManger.request(for: .GetUsersRecords, type: [Records].self) { result in
+            switch result {
             case .success(let records):
                 self.selectedDate = Date().format(.yearMonthToday)
                 self.records.records = records
                 self.fetchRecodedDate()
                 self.isViewDidLoad = true
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -52,8 +52,8 @@ class RecordViewModel: ObservableObject {
     }
     
     func fetchRecodedDate() {
-        recordedDate = records.records.map {
-            $0.finishDate
+        recordedDate = records.records.map { record in
+            record.finishDate
         }
     }
     

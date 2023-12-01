@@ -15,10 +15,13 @@ struct LaunchView: View {
         switch vm.appState {
         case .launch:
             Launch
+            
         case .onboarding:
             Onboarding
+            
         case .preview:
             Preview
+            
         case .login:
             Login
         }

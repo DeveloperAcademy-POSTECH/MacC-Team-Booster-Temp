@@ -17,8 +17,8 @@ class RoutineInformationViewModel: ObservableObject {
     
     /// 루틴 정보 조회 함수
     func fetch(routineId: Int) {
-        routineModel.fetchRoutine(routineId: routineId) {
-            self.routine = $0
+        routineModel.fetchRoutine(routineId: routineId) { routine in
+            self.routine = routine
         }
     }
 }

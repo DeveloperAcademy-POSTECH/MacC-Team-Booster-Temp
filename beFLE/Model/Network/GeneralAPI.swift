@@ -5,8 +5,8 @@
 //  Created by 최진용 on 11/7/23.
 //
 
-import SwiftUI
 import Moya
+import SwiftUI
 
 enum GeneralAPI {
     // MARK: user-exercise-controller
@@ -48,7 +48,6 @@ enum GeneralAPI {
     //:
     
     // MARK: user-controller
-    // TODO: api 용도 갱신 필요
     case PostUsersMe(accessToken: String, refreshToken: String)
     
     /// 닉네임 변경
@@ -271,6 +270,7 @@ extension GeneralAPI: TargetType {
         switch self {
         case .PostLogin, .GetReissue:
             return ["Content-Type": "application/json"]
+            
         default:
             return ["Content-Type": "application/json", "\(authorization.0)": "\(authorization.1)"]
         }

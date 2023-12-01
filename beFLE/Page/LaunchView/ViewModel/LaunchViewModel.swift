@@ -33,7 +33,7 @@ extension LaunchViewModel {
         }
     }
     /// 자동 로그인 검사 함수
-    func loginByUserDefaults(){
+    func loginByUserDefaults() {
         if let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") {
             reissueToken(refreshToken: refreshToken)
             return
@@ -45,11 +45,12 @@ extension LaunchViewModel {
     
     /// 애플 로그인 성공 시 액세스 토큰 요청 함수
     func loginByAppleLogin(identifier: String, identityToken: String, authorizationCode: String) {
-        GeneralAPIManger.request(for: .PostLogin(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode), type: Token.self) {
-            switch $0 {
+        GeneralAPIManger.request(for: .PostLogin(identifier: identifier, identityToken: identityToken, authorizationCode: authorizationCode), type: Token.self) { result in
+            switch result {
             case .success(let token):
                 self.saveToken(accessToken: token.accessToken, refreshToken: token.refreshToken)
                 self.appState = .login
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -58,11 +59,12 @@ extension LaunchViewModel {
     
     /// 토큰 재발급 요청 함수
     func reissueToken(refreshToken: String) {
-        GeneralAPIManger.request(for: .GetReissue(refreshToken: refreshToken), type: Token.self) {
-            switch $0 {
+        GeneralAPIManger.request(for: .GetReissue(refreshToken: refreshToken), type: Token.self) { result in
+            switch result {
             case .success(let token):
                 self.saveToken(accessToken: token.accessToken, refreshToken: token.refreshToken)
                 self.appState = .login
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -74,9 +76,9 @@ extension LaunchViewModel {
         UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
         UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
         
-#if DEBUG
+        #if DEBUG
         print("accessToken: \(String(describing: UserDefaults.standard.string(forKey: "accessToken")))")
         print("refreshToken: \(String(describing: UserDefaults.standard.string(forKey: "refreshToken")))")
-#endif
+        #endif
     }
 }

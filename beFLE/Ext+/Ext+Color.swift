@@ -5,22 +5,21 @@
 //  Created by 최진용 on 2023/10/19.
 //
 
-
 import SwiftUI
 
 extension Color {
-  init(hex: String) {
-    let scanner = Scanner(string: hex)
-    _ = scanner.scanString("#")
-    
-    var rgb: UInt64 = 0
-    scanner.scanHexInt64(&rgb)
-    
-    let r = Double((rgb >> 16) & 0xFF) / 255.0
-    let g = Double((rgb >>  8) & 0xFF) / 255.0
-    let b = Double((rgb >>  0) & 0xFF) / 255.0
-    self.init(red: r, green: g, blue: b)
-  }
+    init(hex: String) {
+        let scanner = Scanner(string: hex)
+        _ = scanner.scanString("#")
+        
+        var rgb: UInt64 = 0
+        scanner.scanHexInt64(&rgb)
+        
+        let r = Double((rgb >> 16) & 0xFF) / 255.0
+        let g = Double((rgb >> 8) & 0xFF) / 255.0
+        let b = Double((rgb >> 0) & 0xFF) / 255.0
+        self.init(red: r, green: g, blue: b)
+    }
     
     static let gray_900 = Color(hex: "0C0C0C")
     static let gray_800 = Color(hex: "1C1C1C")
@@ -48,7 +47,6 @@ extension Color {
     static let calendar_outdated_gray = UIColor(Color(hex: "F5F5F5").opacity(0.8))
     static let calendar_white = UIColor(Color(hex: "F5F5F5"))
 }
-
 
 extension Color: CaseIterable {
     public static var allCases: [Color] = [.gray_900, .gray_800, .gray_800, .gray_700, .gray_600, .label_900, .label_800, .label_700, .label_600, .label_500, .label_400, .fill_1, .fill_2, .fill_3, .green_main, .green_10, .red_main, .blue_main, .purple_main, .pink_main, .yellow_main, .dim, Color(uiColor: Color.tabbar_main)]
@@ -104,4 +102,3 @@ extension Color: CaseIterable {
         }
     }
 }
-

@@ -26,23 +26,26 @@ struct WorkoutView: View {
             switch vm.workoutViewStatus {
             case .emptyView:
                 Empty
+                
             case .editRoutineView:
                 EditRoutineView()
+                
             case .recordingWorkoutView:
                 RecordingWorkout
+                
             case .recordingRoutineView:
                 RecordingRoutineView()
+                
             case .editRecordingRoutineView:
                 EditRecordingRoutineView()
+                
             case .recordingFinishView:
                 RecordingFinishView()
             }
         }
-        //MARK: 제스처 기능 추가
         .environmentObject(vm)
     }
 }
-
 
 /// 초기 뷰
 extension WorkoutView {

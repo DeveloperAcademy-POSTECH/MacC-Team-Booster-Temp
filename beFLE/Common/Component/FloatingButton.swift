@@ -29,6 +29,7 @@ struct FloatingButton<Content: View>: View {
                 .overlay {
                     content
                 }
+            
         case .small:
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(180), height: UIScreen.getHeight(60))
@@ -36,6 +37,7 @@ struct FloatingButton<Content: View>: View {
                 .overlay {
                     content
                 }
+            
         case .semiMedium:
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(318), height: UIScreen.getHeight(60))
@@ -43,6 +45,7 @@ struct FloatingButton<Content: View>: View {
                 .overlay {
                     content
                 }
+            
         case .medium:
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(60))
@@ -50,6 +53,7 @@ struct FloatingButton<Content: View>: View {
                 .overlay {
                     content
                 }
+            
         case .large:
             RoundedRectangle(cornerRadius: 100)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(76))
