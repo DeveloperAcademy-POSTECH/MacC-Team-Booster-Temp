@@ -48,13 +48,11 @@ struct RecordingWorkoutView: View {
         }
         .onAppear {
             workoutVM.timerStart()
-            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
+            workoutVM.elapsedTime = workoutVM.elapsedTime + workoutVM.bgTimer()
             vm.currentSet = 0
-            vm.nextButtonStatus = .nextSet
         }
         .onDisappear {
             vm.currentSet = 0
-            vm.nextButtonStatus = .nextSet
             workoutVM.timerStop()
         }
         .onTapGesture {
