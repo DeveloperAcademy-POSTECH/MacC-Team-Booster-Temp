@@ -17,7 +17,8 @@ struct CalendarView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         view.calendar.delegate = context.coordinator
         view.calendar.dataSource = context.coordinator
-        
+        view.calendar.select(Date())
+
         selectedDate = Date().format(.yearMonthToday)
         
         return view
@@ -39,6 +40,10 @@ struct CalendarView: UIViewControllerRepresentable {
         
         init(parent: CalendarView) {
             self.parent = parent
+        }
+        
+        func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+            self.parent.selectedDate = ""
         }
         
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
