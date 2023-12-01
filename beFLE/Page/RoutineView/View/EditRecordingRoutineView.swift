@@ -58,8 +58,6 @@ extension EditRecordingRoutineView {
                     WorkoutListCell(pair.offset, pair.element)
                 }
                 .padding(.horizontal)
-                FloatingButton(size: .medium) {}
-                    .padding()
             }
             .scrollIndicators(.hidden)
             
