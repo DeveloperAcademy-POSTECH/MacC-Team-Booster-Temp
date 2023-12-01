@@ -515,8 +515,7 @@ extension RecordingWorkoutView {
     
     @ViewBuilder
     var NextButton: some View {
-        switch vm.nextButtonStatus {
-        case .nextSet:
+        if vm.currentSet < workoutVM.workout.sets.count - 1 {
             FloatingButton(size: .semiSmall, color: .green_main) {
                 HStack {
                     Text("다음 세트")
@@ -526,21 +525,25 @@ extension RecordingWorkoutView {
                 }
                 .foregroundColor(.gray_900)
             }
-        case .nextWorkout:
-            FloatingButton(size: .semiSmall, color: .green_main) {
-                HStack {
-                    Text("다음 운동")
-                        .font(.button1())
-                    Image(systemName: "chevron.right")
-                        .font(.button2())
+        }
+        else {
+            if workoutVM.currentWorkoutIndex < workoutVM.routine.exercises.count - 1 {
+                FloatingButton(size: .semiSmall, color: .green_main) {
+                    HStack {
+                        Text("다음 운동")
+                            .font(.button1())
+                        Image(systemName: "chevron.right")
+                            .font(.button2())
+                    }
+                    .foregroundColor(.gray_900)
                 }
-                .foregroundColor(.gray_900)
             }
-        case .finishWorkout:
-            FloatingButton(size: .semiSmall, color: .red_main) {
-                Text("운동 완료")
-                    .font(.button1())
-                    .foregroundColor(.label_900)
+            else {
+                FloatingButton(size: .semiSmall, color: .red_main) {
+                    Text("운동 완료")
+                        .font(.button1())
+                        .foregroundColor(.label_900)
+                }
             }
         }
     }
