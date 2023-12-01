@@ -41,6 +41,10 @@ struct CalendarView: UIViewControllerRepresentable {
             self.parent = parent
         }
         
+        func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+            self.parent.selectedDate = ""
+        }
+        
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
             self.parent.selectedDate = date.format(.yearMonthToday)
         }
