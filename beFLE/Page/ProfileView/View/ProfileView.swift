@@ -58,7 +58,7 @@ extension ProfileView {
             ManageProfileView()
                 .environmentObject(vm)
         } label: {
-            HStack(spacing:2) {
+            HStack(spacing: 2) {
                 Text(vm.nickname)
                     .foregroundColor(.label_900)
                     .font(.body())
