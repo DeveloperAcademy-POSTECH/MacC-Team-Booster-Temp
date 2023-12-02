@@ -36,4 +36,12 @@ class WholeRoutineViewModel: ObservableObject {
     func parse() {
         routinesByMonth = wholeRoutineModel.parseByMonth(selectedPart, routines: wholeRoutine.routines)
     }
+    
+    func sortByMonth() -> [(key: Int, value: [Routine])] {
+        return routinesByMonth.sorted { $0.key > $1.key }
+    }
+    
+    func sortByDate(routine: [Routine]) -> [Routine] {
+        return routine.sorted { $0.date > $1.date }
+    }
 }
