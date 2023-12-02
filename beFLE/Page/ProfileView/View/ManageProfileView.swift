@@ -92,7 +92,7 @@ extension ManageProfileView {
         Button {
             vm.showWithdrawAlert()
         } label: {
-            HStack{
+            HStack {
                 Text("회원탈퇴")
                     .font(.body())
                     .foregroundColor(.label_700)
@@ -103,7 +103,6 @@ extension ManageProfileView {
         }
         .alert("탈퇴하시겠습니까", isPresented: $vm.isWithdrawAlertShow) {
             Button {
-                
             } label: {
                 Text("취소")
                     .bold()
@@ -133,8 +132,7 @@ extension ManageProfileView {
             .padding()
         }
         .alert("로그아웃하시겠습니까?", isPresented: $vm.isLogoutAlertShow) {
-            Button {
-                
+            Button { 
             } label: {
                 Text("취소")
             }

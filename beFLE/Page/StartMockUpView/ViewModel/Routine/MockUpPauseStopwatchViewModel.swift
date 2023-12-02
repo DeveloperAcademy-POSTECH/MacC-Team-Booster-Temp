@@ -9,7 +9,7 @@ import SwiftUI
 
 class MockUpPauseStopwatchViewModel: ObservableObject {
     @Published var elapsedTime: TimeInterval = 0
-    @Published var isRunning: Bool = false
+    @Published var isRunning = false
     private var timer: Timer?
     @Published private var startTime = Date.now
     
@@ -40,7 +40,7 @@ class MockUpPauseStopwatchViewModel: ObservableObject {
     }
     
     func reset() {
-            elapsedTime = 0
+        elapsedTime = 0
             isRunning = false
             timer?.invalidate()
             timer = nil

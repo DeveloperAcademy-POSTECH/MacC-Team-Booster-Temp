@@ -19,7 +19,6 @@ struct MockUpMainView: View {
     var body: some View {
         NavigationStack {
             TabView(selection: $vm.tabSelection) {
-                
                 MockUpStartView()
                     .tabItem {
                         Image(systemName: "dumbbell")
@@ -53,9 +52,3 @@ struct MockUpMainView: View {
         .id(vm.navigationUUID)
     }
 }
-
-//#Preview {
-//    NavigationStack{
-//        MockUpMainView(appStatePop: .constant(false))
-//    }
-//}

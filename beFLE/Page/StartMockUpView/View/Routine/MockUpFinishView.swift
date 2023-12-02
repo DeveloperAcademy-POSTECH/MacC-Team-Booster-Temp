@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct MockUpFinishView: View {
-    
-    //    @ObservedObject var viewModel: MockUpStopwatchViewModel
     @Binding var elapsedTime: TimeInterval
     @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
-            VStack (spacing: 0) {
+            VStack(spacing: 0) {
                 Spacer()
                 Spacer()
                 finishDate
@@ -34,7 +32,7 @@ struct MockUpFinishView: View {
     }
     
     var finishDate: some View {
-        VStack(spacing: 10){
+        VStack(spacing: 10) {
             Text("\(Date().format(.monthDay)) 운동 완료")
                 .font(.title1())
                 .foregroundColor(.label_900)
@@ -50,16 +48,16 @@ struct MockUpFinishView: View {
             .resizable()
             .scaledToFit()
             .frame(width: UIScreen.getWidth(318))
-            .background{
+            .background {
                 RoundedRectangle(cornerRadius: 8.0)
                     .frame(width: UIScreen.getWidth(318))
                     .foregroundColor(.gray_700)
             }
-            .overlay{
-                VStack{
+            .overlay {
+                VStack {
                     Spacer()
-                    HStack(spacing: 40){
-                        VStack(spacing: 3){
+                    HStack(spacing: 40) {
+                        VStack(spacing: 3) {
                             Text("\(String(timeFormatted(elapsedTime)))")
                                 .font(.title2())
                                 .foregroundColor(.label_900)
@@ -67,7 +65,7 @@ struct MockUpFinishView: View {
                                 .font(.body2())
                                 .foregroundColor(.label_700)
                         }
-                        VStack(spacing: 3){
+                        VStack(spacing: 3) {
                             Text("580kcal")
                                 .font(.title2())
                                 .foregroundColor(.label_900)
@@ -75,7 +73,7 @@ struct MockUpFinishView: View {
                                 .font(.body2())
                                 .foregroundColor(.label_700)
                         }
-                        VStack(spacing: 3){
+                        VStack(spacing: 3) {
                             Text("9840kg")
                                 .font(.title2())
                                 .foregroundColor(.label_900)
@@ -90,7 +88,7 @@ struct MockUpFinishView: View {
     }
     
     var showRecord: some View {
-        Button{
+        Button {
             MockUpMainViewModel.shared.changeToRecordTab()
             MockUpMainViewModel.shared.resetNavigationStack()
         } label: {
@@ -104,8 +102,7 @@ struct MockUpFinishView: View {
     }
 
     var showLogin: some View {
-        Button{
-            //TODO: root 네비게이션으로 연결 대체
+        Button {
             LaunchViewModel.shared.previewLogin()
         } label: {
             FloatingButton(size: .medium, color: .gray_600) {
@@ -121,13 +118,9 @@ struct MockUpFinishView: View {
         let hours = Int(seconds) / 3600
         let minutes = Int(seconds) / 60
         return if hours >= 1 {
-            String(format: "%01d시간%02d분",hours, minutes)
+            String(format: "%01d시간%02d분", hours, minutes)
         } else {
             String(format: "%01d분", minutes)
         }
     }
 }
-
-//#Preview {
-//    MockUpFinishView(elapsedTime: .constant(1.0), tabSelection: .constant(1))
-//}
