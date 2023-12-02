@@ -25,7 +25,6 @@ class GeneralAPIManger {
                         completion(.success(decodedData))
                     }
                     else {
-                        // TODO: 디코딩 에러 교체
                         completion(.failure(.stringMapping(resp)))
                     }
                 }

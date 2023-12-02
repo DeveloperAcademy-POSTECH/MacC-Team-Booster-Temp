@@ -81,7 +81,7 @@ struct WorkoutModel {
         }
     }
     
-    func fisishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (Void -> Void)) {
+    func fisishSet(routineId: Int, exerciseId: Int, setId: Int, completion: @escaping (() -> Void)) {
         GeneralAPIManger.request(for: .PatchUsersRoutinesExercisesSetsFinish(routineId: routineId, exerciseId: exerciseId, setId: setId), type: ResponsePatchUsersRoutinesExercisesSetsFinish.self) { result in
             switch result {
             case .success:

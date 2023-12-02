@@ -82,7 +82,7 @@ extension EditRecordingRoutineView {
                             .font(.headline1())
                             .multilineTextAlignment(.leading)
                             .allowsTightening(true)
-                        HStack(spacing: 6){
+                        HStack(spacing: 6) {
                             Text("\(exercise.numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())

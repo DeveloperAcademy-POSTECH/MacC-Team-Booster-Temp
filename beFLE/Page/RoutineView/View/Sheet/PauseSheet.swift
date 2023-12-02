@@ -54,9 +54,3 @@ struct PauseSheet: View {
         return String(format: "%02d:%02d", minutes, seconds)
     }
 }
-
-//struct PauseSheet_Preview: PreviewProvider {
-//    static var previews: some View {
-//        PauseSheet(viewModel: StopwatchVM())
-//    }
-//}
