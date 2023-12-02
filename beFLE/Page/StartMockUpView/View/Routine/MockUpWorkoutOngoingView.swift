@@ -8,23 +8,20 @@
 import SwiftUI
 
 struct MockUpWorkoutOngoingView: View {
-    
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = MockUpStopwatchViewModel()
     @FocusState private var isFocused: Bool
     @StateObject var workoutOngoingVM = MockUpWorkoutOngoingViewModel()
     @State var isPauseShow = false
-    //    @State var isFinishShow = false
     @State var isAlternativeShow = false
     @State var isAlternativeWorkoutShow = false
     @State private var currentIndex = 0
-    @State var isDeleteAlertShow: Bool = false
-    @State var exitAlertShow: Bool = false
-    @State var existUnfinished: Bool = false
+    @State var isDeleteAlertShow = false
+    @State var exitAlertShow = false
+    @State var existUnfinished = false
     @Namespace var topID
     @State var showFinishView = false
     let workoutName = "클로즈 그립 랫 풀 다운"
-    
     
     var body: some View {
         ZStack {
@@ -32,8 +29,8 @@ struct MockUpWorkoutOngoingView: View {
             
             ScrollViewReader { proxy in
                 ScrollView {
-                    ZStack{
-                        VStack{
+                    ZStack {
+                        VStack {
                             workoutInfomation
                             ImageTip(currentIndex: $currentIndex, workoutOngoingVM: MockUpWorkoutOngoingViewModel())
                             Spacer()
@@ -52,7 +49,7 @@ struct MockUpWorkoutOngoingView: View {
                 }
             }
         }
-        .navigationBarTitle("",displayMode: .inline)
+        .navigationBarTitle("", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackButton
@@ -72,16 +69,14 @@ struct MockUpWorkoutOngoingView: View {
             Button("취소") { }
         }
         .alert("운동을 완료하시겠습니까?", isPresented: $workoutOngoingVM.isWorkoutFinishAlertShow) {
-            Button("취소") {
-                // MARK: 취소
-            }
+            Button("취소") { }
             Button("완료하기") {
                 // MARK: 완료하기
                 //                MockUpFinishView(elapsedTime: $viewModel.elapsedTime, tabSelection: $tabSelection)
                 showFinishView = true
             }
         }
-        .fullScreenCover(isPresented: $showFinishView){
+        .fullScreenCover(isPresented: $showFinishView) {
             MockUpFinishView(elapsedTime: $viewModel.elapsedTime)
         }
         .sheet(isPresented: $isPauseShow) {
@@ -135,7 +130,7 @@ struct MockUpWorkoutOngoingView: View {
                         }
                         else {
                             FloatingButton(size: .small, color: .green_main) {
-                                HStack{
+                                HStack {
                                     Text("다음 세트")
                                         .font(.button1())
                                         .foregroundColor(.gray_900)
@@ -152,7 +147,6 @@ struct MockUpWorkoutOngoingView: View {
         }
     }
     
-    
     var BackButton: some View {
         Button {
             exitAlertShow = true
@@ -165,7 +159,7 @@ struct MockUpWorkoutOngoingView: View {
     
     @ViewBuilder
     var NavigationTitle: some View {
-        HStack (spacing: 0) {
+        HStack(spacing: 0) {
             Image(systemName: "flame.fill")
                 .foregroundColor(.green_main)
                 .font(.footnote)
@@ -193,7 +187,7 @@ struct MockUpWorkoutOngoingView: View {
         let hours = Int(seconds) / 3600
         let minutes = Int(seconds) / 60
         let seconds = Int(seconds) % 60
-        return String(format: "%01d:%02d:%02d",hours, minutes, seconds)
+        return String(format: "%01d:%02d:%02d", hours, minutes, seconds)
     }
     
     @ViewBuilder
@@ -210,13 +204,11 @@ struct MockUpWorkoutOngoingView: View {
             Text("삭제")
         }
         
-        
         Button(role: .cancel) {
         } label: {
             Text("취소")
         }
     }
-    
     
     var workoutInfomation: some View {
         VStack {
@@ -366,16 +358,16 @@ struct ImageTip: View {
     @ObservedObject var workoutOngoingVM: MockUpWorkoutOngoingViewModel
     
     var body: some View {
-        TabView(selection: $currentIndex){
+        TabView(selection: $currentIndex) {
             VStack {
-                ZStack{
+                ZStack {
                     WorkoutImage
-                    Button{
-                        withAnimation{
+                    Button {
+                        withAnimation {
                             currentIndex = 1
                         }
                     } label: {
-                        VStack{
+                        VStack {
                             WorkoutTipButton
                         }
                     }
@@ -384,13 +376,12 @@ struct ImageTip: View {
                     .frame(height: UIScreen.getHeight(50))
             }
             .tag(0)
-            VStack{
+            VStack {
                 WorkoutTip
                 Spacer()
                     .frame(height: UIScreen.getHeight(50))
             }
             .tag(1)
-            
         }
         .frame(height: UIScreen.getHeight(270))
         .tabViewStyle(.page)
@@ -455,9 +446,3 @@ struct ImageTip: View {
         }
     }
 }
-//
-//#Preview {
-//    NavigationStack{
-//        MockUpWorkoutOngoingView(viewModel: MockUpStopwatchViewModel(), tabSelection: .constant(3))
-//    }
-//}
