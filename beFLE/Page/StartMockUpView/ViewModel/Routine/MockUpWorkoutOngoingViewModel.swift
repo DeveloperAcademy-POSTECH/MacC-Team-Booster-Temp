@@ -28,7 +28,7 @@ struct MockUpWorkoutSetModel: Identifiable {
     var isFinish: Bool
 }
 
-class MockUpWorkoutOngoingViewModel: ObservableObject{
+class MockUpWorkoutOngoingViewModel: ObservableObject {
     let workoutModel: MockUpWorkoutModel
     @Published var isRoutineSequenceShow = false
     @Published var isAlternativeWorkoutShow = false
@@ -99,4 +99,3 @@ class MockUpWorkoutOngoingViewModel: ObservableObject{
         isWorkoutTipShow = false
     }
 }
-
