@@ -21,7 +21,7 @@ class WholeRoutineViewModel: ObservableObject {
     @Published var selectedPart: Part = .전체
     
     /// 월 별 운동 목록 
-    @Published var routinesByMonth: [String: [Routine]] = [:]
+    @Published var routinesByMonth: [Int: [Routine]] = [:]
     
     /// 스와이프 오프셋
     @Published var offset: CGFloat = .zero

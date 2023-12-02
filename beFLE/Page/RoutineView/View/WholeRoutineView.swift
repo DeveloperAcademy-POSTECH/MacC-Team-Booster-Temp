@@ -124,7 +124,7 @@ extension WholeRoutineView {
     
     var Workouts: some View {
         ScrollView {
-            ForEach(Array(vm.routinesByMonth.sorted(by: { Int($0.key)! > Int($1.key)! }())), id: \.key) { routine in
+            ForEach(Array(vm.routinesByMonth.sorted(by: { $0.key > $1.key })), id: \.key) { routine in
                 VStack {
                     HStack {
                         Text("\(routine.key)월")
@@ -134,7 +134,7 @@ extension WholeRoutineView {
                         Spacer()
                     }
                     
-                    ForEach(routine.value.sorted(by: { $0.date > $1.date }()), id: \.self) { some in
+                    ForEach(routine.value.sorted(by: { $0.date > $1.date }), id: \.self) { some in
                         if some.part != "휴식" {
                             NavigationLink {
                                 RoutineInformationView(routineId: some.routineId)

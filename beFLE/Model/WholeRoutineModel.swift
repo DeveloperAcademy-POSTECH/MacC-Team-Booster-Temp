@@ -23,12 +23,12 @@ struct WholeRoutineModel {
     }
     
     /// 운동 목록을 부위, 월 별로 분류하는 함수 [ 월: [ 루틴 ]]
-    func parseByMonth(_ part: Part, routines: [Routine]) -> [String: [Routine]] {
-        var routinesByMonth: [String: [Routine]] = [:]
+    func parseByMonth(_ part: Part, routines: [Routine]) -> [Int: [Routine]] {
+        var routinesByMonth: [Int: [Routine]] = [:]
         
         for routine in routines {
             if part == .전체 || routine.part.contains(part.rawValue) {
-                let month = routine.date.components(separatedBy: "-")[1]
+                let month = Int(routine.date.components(separatedBy: "-")[1])!
                 
                 if routinesByMonth[month] != nil {
                     routinesByMonth[month]?.append(routine)
