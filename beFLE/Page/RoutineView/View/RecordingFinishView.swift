@@ -13,7 +13,7 @@ struct RecordingFinishView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
             VStack(spacing: 10) {
                 Spacer()
@@ -120,8 +120,3 @@ extension RecordingFinishView {
         }
     }
 }
-
-//#Preview {
-//    RecordingFinishView()
-//}
-
