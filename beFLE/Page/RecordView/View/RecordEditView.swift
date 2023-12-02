@@ -41,9 +41,7 @@ struct RecordEditView: View {
                     .font(.headline1())
                     .foregroundColor(.label_900)
                 Spacer()
-                Button{
-                    
-                }label: {
+                Button { } label: {
                     Image(systemName: "trash.fill")
                         .font(.body())
                         .foregroundColor(.label_700)
@@ -105,10 +103,10 @@ struct RecordEditView: View {
         }
         .alert(isPresented: $isSaveAlertShow){
             let firstButton = Alert.Button.default(Text("취소").bold()) {
-//                print("primary button pressed")
+                //                print("primary button pressed")
             }
             let secondButton = Alert.Button.default(Text("확인")) {
-//                print("secondary button pressed")
+                //                print("secondary button pressed")
                 dismiss()
             }
             return Alert(title: Text("저장하시겠습니까?"),
@@ -126,24 +124,19 @@ struct RecordEditView: View {
                 .foregroundColor(.label_700)
                 .font(.headline1())
         }
-        .alert(isPresented: $isUnsaveAlertShow){
-            let firstButton = Alert.Button.default(Text("취소").bold()) {
-//                print("primary button pressed")
-            }
+        .alert(isPresented: $isUnsaveAlertShow) {
+            let firstButton = Alert.Button.default(Text("취소").bold()) { }
             let secondButton = Alert.Button.default(Text("확인")) {
-//                print("secondary button pressed")
                 dismiss()
             }
-            return Alert(title: Text("저장하지 않고 나가시겠습니까?"),
-                         //                         message: Text(""),
-                         primaryButton: firstButton, secondaryButton: secondButton)
+            return Alert(title: Text("저장하지 않고 나가시겠습니까?"), primaryButton: firstButton, secondaryButton: secondButton)
         }
     }
 }
 
 struct RecordEditView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             RecordEditView()
         }
     }
