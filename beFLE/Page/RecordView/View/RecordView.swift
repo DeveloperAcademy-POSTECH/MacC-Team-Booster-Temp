@@ -71,7 +71,7 @@ struct RecordView: View {
                                     .font(.body2())
                                     .foregroundColor(.label_500)
                                 Spacer()
-                                Text("\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps }() ) }() ))kg")
+                                Text("\(vm.volume)kg")
                                     .font(.body2())
                                     .foregroundColor(.label_900)
                             }
