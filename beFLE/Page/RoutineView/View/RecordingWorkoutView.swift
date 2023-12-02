@@ -97,7 +97,7 @@ extension RecordingWorkoutView {
     
     @ViewBuilder
     var NavigationTitle: some View {
-        HStack (spacing: 0) {
+        HStack(spacing: 0) {
             Image(systemName: "flame.fill")
                 .foregroundColor(.green_main)
                 .font(.headline2())
@@ -176,9 +176,7 @@ extension RecordingWorkoutView {
         } label: {
             Text("삭제")
         }
-        Button(role: .cancel) {
-            
-        } label: {
+        Button(role: .cancel) { } label: {
             Text("취소")
         }
     }
@@ -290,7 +288,7 @@ extension RecordingWorkoutView {
                                         Spacer()
                                     }
                                     .padding(.bottom)
-                                    HStack{
+                                    HStack {
                                         Text(workoutVM.workout.tip)
                                             .font(.body())
                                             .foregroundColor(.label_900)
