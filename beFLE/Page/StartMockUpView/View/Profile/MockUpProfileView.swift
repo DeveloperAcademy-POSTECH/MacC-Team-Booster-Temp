@@ -10,15 +10,7 @@ import SwiftUI
 struct MockUpProfileView: View {
     // 로그인 상태값 모델로 가젹오기
     @Environment(\.dismiss) var dismiss
-    @State private var mailData = ComposeMailData(subject: "비플 문의하기",
-                                                  recipients: ["pmchung423@gmail.com"],
-                                                  message: "비플 문의하기",
-                                                  attachments: [
-                                                    //                                                    AttachmentData(data: "Some text".data(using: .utf8)!,
-                                                    //                                                                               mimeType: "text/plain",
-                                                    //                                                                               fileName: "text.txt")
-                                                  ]
-    )
+    @State private var mailData = ComposeMailData(subject: "비플 문의하기", recipients: ["pmchung423@gmail.com"], message: "비플 문의하기", attachments: [])
     @State private var showMailView = false
     var versionState = "1.0.0"
     
@@ -35,9 +27,7 @@ struct MockUpProfileView: View {
                 inquiry
                     .disabled(!MailView.canSendMail)
                     .sheet(isPresented: $showMailView) {
-                        MailView(data: $mailData) {
-                            result in
-                        }
+                        MailView(data: $mailData)
                     }
                 Divider()
                     .foregroundColor(.gray_700)
@@ -66,7 +56,7 @@ struct MockUpProfileView: View {
                 .foregroundColor(.gray_700)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
                 .overlay {
-                    HStack(spacing:2) {
+                    HStack(spacing: 2) {
                         Text("둘러보기")
                             .foregroundColor(.label_900)
                             .font(.body())
