@@ -101,7 +101,7 @@ struct RecordEditView: View {
                 .foregroundColor(.green_main)
                 .font(.headline1())
         }
-        .alert(isPresented: $isSaveAlertShow){
+        .alert(isPresented: $isSaveAlertShow) {
             let firstButton = Alert.Button.default(Text("취소").bold()) {
                 //                print("primary button pressed")
             }
@@ -109,9 +109,7 @@ struct RecordEditView: View {
                 //                print("secondary button pressed")
                 dismiss()
             }
-            return Alert(title: Text("저장하시겠습니까?"),
-                         //                         message: Text(""),
-                         primaryButton: firstButton, secondaryButton: secondButton)
+            return Alert(title: Text("저장하시겠습니까?"), primaryButton: firstButton, secondaryButton: secondButton)
         }
     }
     
