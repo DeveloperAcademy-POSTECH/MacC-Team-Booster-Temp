@@ -65,8 +65,7 @@ extension Font {
         return Font.custom(Pretentard.light, size: 20).weight(.light)
     }
     
-    
-    ///기기별 폰트 사이즈 대응
+    /// 기기별 폰트 사이즈 대응
     static func setFontSize() -> Double {
         let height = UIScreen.screenHeight
         var size = 1.0
@@ -92,6 +91,7 @@ extension Font {
             size = 1.05
         case 932.0: // iPhone14 Pro Max
             size = 1.08
+            
         default:
             size = 1
         }

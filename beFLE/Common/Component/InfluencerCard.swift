@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct InfluencerCard: View {
-    
     var routineTitle = "최진혁의 Special Tip"
     var history = "피지크 PRO🏆"
     var cardBannerNum: Int
     
     var body: some View {
-        
-        ZStack{
+        ZStack {
             Rectangle()
                 .foregroundColor(.gray_700)
-            HStack{
-                VStack(alignment: .leading){
+            HStack {
+                VStack(alignment: .leading) {
                     Text(routineTitle)
                         .font(.headline1())
                         .foregroundColor(.label_900)
@@ -36,15 +34,14 @@ struct InfluencerCard: View {
                 .frame(height: UIScreen.getHeight(156))
                 Spacer()
                 Image("CardBanner\(cardBannerNum)")
-                .frame(width: UIScreen.getWidth(156))
+                    .frame(width: UIScreen.getWidth(156))
             }
-            
         }
         .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(156))
-            .mask(
-         RoundedRectangle(cornerRadius: 8)
+        .mask(
+            RoundedRectangle(cornerRadius: 8)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(156))
-         )
+        )
     }
 }
 

@@ -83,7 +83,7 @@ struct MockUpRecordView: View {
     }
     
     var beforeLoginText: some View {
-        VStack{
+        VStack {
             NavigationLink {
                 MockUpRecordExampleView()
             } label: {
@@ -118,7 +118,7 @@ struct MockUpRecordView: View {
                     }
             }
             
-            HStack{
+            HStack {
                 Image(systemName: "info.circle")
                 Text("운동기록 예시입니다")
                 Spacer()

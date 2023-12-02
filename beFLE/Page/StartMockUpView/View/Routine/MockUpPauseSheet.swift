@@ -18,11 +18,11 @@ struct MockUpPauseSheet: View {
             
             pauseButton
         }
-        .onAppear{
+        .onAppear {
             pauseViewModel.Start()
-            pauseViewModel.elapsedTime = pauseViewModel.elapsedTime + pauseViewModel.bgTimer()
+            pauseViewModel.elapsedTime += pauseViewModel.bgTimer()
         }
-        .onDisappear{
+        .onDisappear {
             pauseViewModel.reset()
             viewModel.Start()
         }

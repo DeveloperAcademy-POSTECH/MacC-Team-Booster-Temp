@@ -39,7 +39,7 @@ struct PauseSheet: View {
         }
         .onAppear {
             vm.timerStart()
-            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
+            vm.elapsedTime += vm.bgTimer()
         }
         .onDisappear {
             vm.reset()
@@ -54,9 +54,3 @@ struct PauseSheet: View {
         return String(format: "%02d:%02d", minutes, seconds)
     }
 }
-
-//struct PauseSheet_Preview: PreviewProvider {
-//    static var previews: some View {
-//        PauseSheet(viewModel: StopwatchVM())
-//    }
-//}

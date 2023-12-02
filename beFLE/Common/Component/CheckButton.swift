@@ -21,6 +21,7 @@ struct CheckButton: View {
             Ellipse()
                 .frame(width: UIScreen.getWidth(36), height: UIScreen.getHeight(36))
                 .foregroundColor(.clear)
+            
         case .check:
             Ellipse()
                 .frame(width: UIScreen.getWidth(36), height: UIScreen.getHeight(36))

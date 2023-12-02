@@ -21,19 +21,27 @@ class WholeRoutineViewModel: ObservableObject {
     @Published var selectedPart: Part = .전체
     
     /// 월 별 운동 목록 
-    @Published var routinesByMonth: [String: [Routine]] = [:]
+    @Published var routinesByMonth: [Int: [Routine]] = [:]
     
     /// 스와이프 오프셋
     @Published var offset: CGFloat = .zero
     
     func fetch(influencerId: Int) {
-        wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) {
-            self.wholeRoutine = $0
+        wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) { wholeRoutine in
+            self.wholeRoutine = wholeRoutine
             self.parse()
         }
     }
     
     func parse() {
         routinesByMonth = wholeRoutineModel.parseByMonth(selectedPart, routines: wholeRoutine.routines)
+    }
+    
+    func sortByMonth() -> [(key: Int, value: [Routine])] {
+        return routinesByMonth.sorted { $0.key > $1.key }
+    }
+    
+    func sortByDate(routine: [Routine]) -> [Routine] {
+        return routine.sorted { $0.date > $1.date }
     }
 }

@@ -56,7 +56,7 @@ struct InfluencerPreviewView: View {
 }
 
 #Preview {
-    TabView{
+    TabView {
         InfluencerPreviewView()
             .tabItem {
                 Image(systemName: "dumbbell")

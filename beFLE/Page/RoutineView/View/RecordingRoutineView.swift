@@ -125,7 +125,3 @@ extension RecordingRoutineView {
         .padding(.vertical, 4)
     }
 }
-
-//#Preview {
-//    RecordingRoutineView(routineId: 1)
-//}

@@ -10,17 +10,17 @@ import SwiftUI
 struct MultiInfluencerPreviewView: View {
     var body: some View {
         ZStack {
-//            Color.gray_900.ignoresSafeArea()
-//            VStack {
-//                ScrollView {
-//                    TopImage
-//                    RecommendCardScroll
-//                }
-//                .padding(.bottom, 35)
-//                Spacer()
-//                    .frame(height: UITabBarController().height)
-//            }
-//            .ignoresSafeArea()
+            //            Color.gray_900.ignoresSafeArea()
+            //            VStack {
+            //                ScrollView {
+            //                    TopImage
+            //                    RecommendCardScroll
+            //                }
+            //                .padding(.bottom, 35)
+            //                Spacer()
+            //                    .frame(height: UITabBarController().height)
+            //            }
+            //            .ignoresSafeArea()
         }
     }
 }

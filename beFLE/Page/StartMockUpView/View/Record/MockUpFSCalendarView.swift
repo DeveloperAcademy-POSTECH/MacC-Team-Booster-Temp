@@ -4,30 +4,28 @@
 //
 //  Created by 최진용 on 11/5/23.
 //
+import FSCalendar
 import SwiftUI
 import UIKit
-import FSCalendar
 
 class MockUpFSCalendarView: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
-    
     var calendar = FSCalendar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        calendar.delegate = self
-//        calendar.dataSource = self
+        //        calendar.delegate = self
+        //        calendar.dataSource = self
         configUI()
     }
-    
-    
+     
     func configUI() {
-//        let calendar = FSCalendar()
+        //        let calendar = FSCalendar()
         calendar.appearance.headerDateFormat = "M월 YYYY"
         calendar.appearance.headerMinimumDissolvedAlpha = 0.2
         calendar.scrollDirection = .horizontal
         calendar.allowsMultipleSelection = false
         calendar.clipsToBounds = true
-//        calendar.today = UIColor(Color.green_main)
+        //        calendar.today = UIColor(Color.green_main)
         calendar.locale = Locale(identifier: "ko_KR")
         calendar.firstWeekday = 2
         calendar.calendarWeekdayView.weekdayLabels[0].text = "일"
@@ -39,12 +37,12 @@ class MockUpFSCalendarView: UIViewController, FSCalendarDelegate, FSCalendarData
         calendar.calendarWeekdayView.weekdayLabels[6].text = "토"
         calendar.placeholderType = .none
         
-        //MARK: - fontsetting
+        // fontsetting
         calendar.appearance.titleFont = Font.calendarDate()
         calendar.appearance.headerTitleFont = Font.calendarTitle()
         calendar.appearance.weekdayFont = Font.calendarWeek()
         
-        //MARK: - color setting
+        // color setting
         calendar.appearance.titleDefaultColor = Color.calendar_white
         calendar.appearance.weekdayTextColor = Color.calendar_week
         calendar.appearance.headerTitleColor = Color.calendar_white

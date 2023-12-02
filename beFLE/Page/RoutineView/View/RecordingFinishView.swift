@@ -13,7 +13,7 @@ struct RecordingFinishView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
             VStack(spacing: 10) {
                 Spacer()
@@ -70,7 +70,6 @@ extension RecordingFinishView {
                                 .foregroundColor(.label_700)
                         }
                         VStack(spacing: 3) {
-                            // TODO: 칼로리 계산
                             Text("\(vm.totalCalories)Kcal")
                                 .font(.title2())
                                 .foregroundColor(.label_900)
@@ -121,8 +120,3 @@ extension RecordingFinishView {
         }
     }
 }
-
-//#Preview {
-//    RecordingFinishView()
-//}
-

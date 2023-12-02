@@ -17,10 +17,11 @@ class SubscribeViewModel: ObservableObject {
     @Published var offset: CGFloat = .zero
     
     func fetchInfluencer(influencerId: Int) {
-        GeneralAPIManger.request(for: .GetInfluencersId(id: influencerId), type: ResponseGetInfluencersId.self) {
-            switch $0 {
+        GeneralAPIManger.request(for: .GetInfluencersId(id: influencerId), type: ResponseGetInfluencersId.self) { result in
+            switch result {
             case .success(let influencer):
                 self.influencer = influencer
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -28,11 +29,12 @@ class SubscribeViewModel: ObservableObject {
     }
     
     func subscribeInfluecer(influencerId: Int) {
-        GeneralAPIManger.request(for: .PostInfluencersSubscribe(id: influencerId), type: PostInfluencersSubscribe.self) {
-            switch $0 {
+        GeneralAPIManger.request(for: .PostInfluencersSubscribe(id: influencerId), type: PostInfluencersSubscribe.self) { result in
+            switch result {
             case .success(let subscription):
                 self.influencer.isSubscription = subscription.isSubscription
                 self.isSubscriptionAlertShow = true
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -40,11 +42,12 @@ class SubscribeViewModel: ObservableObject {
     }
     
     func unSubscribeInfluecer(influencerId: Int) {
-        GeneralAPIManger.request(for: .PostInfluencersUnsubscribe(id: influencerId), type: PostInfluencersSubscribe.self) {
-            switch $0 {
+        GeneralAPIManger.request(for: .PostInfluencersUnsubscribe(id: influencerId), type: PostInfluencersSubscribe.self) { result in
+            switch result {
             case .success(let subscription):
                 self.influencer.isSubscription = subscription.isSubscription
                 self.isSubscriptionAlertShow = true
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -52,8 +55,6 @@ class SubscribeViewModel: ObservableObject {
     }
     
     func seperateAward(input: String) -> [String] {
-        // 정규 표현식을 사용하여 숫자와 텍스트를 추출
-        let awards = input.components(separatedBy: ",")
-        return awards
+        return input.components(separatedBy: ",")
     }
 }

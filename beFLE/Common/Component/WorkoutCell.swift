@@ -11,7 +11,7 @@ struct WorkoutCell: View {
     let exercise: Exercise
     
     var body: some View {
-        HStack(spacing: 1){
+        HStack(spacing: 1) {
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 .foregroundColor(.fill_1)
@@ -25,7 +25,7 @@ struct WorkoutCell: View {
                     .font(.headline1())
                     .multilineTextAlignment(.leading)
                     .allowsTightening(true)
-                HStack(spacing: 3){
+                HStack(spacing: 3) {
                     Text("\(exercise.numberOfSet)세트")
                         .foregroundColor(.label_700)
                         .font(.body2())

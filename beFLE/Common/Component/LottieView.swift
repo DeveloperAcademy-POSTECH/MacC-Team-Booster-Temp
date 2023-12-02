@@ -1,4 +1,3 @@
-
 //
 //  Created by 정회승 on 2023/11/23.
 //
@@ -7,7 +6,7 @@ import Lottie
 import SwiftUI
 
 struct LottieView: UIViewRepresentable {
-    var fileName : String = "BefleLottie"
+    var fileName: String = "BefleLottie"
     var loopMode: LottieLoopMode = .loop
     var animationView = LottieAnimationView()
     
@@ -30,7 +29,6 @@ struct LottieView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {
-
     }
     
     func makeCoordinator() -> Coordinator {

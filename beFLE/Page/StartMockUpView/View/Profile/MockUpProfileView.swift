@@ -8,22 +8,14 @@
 import SwiftUI
 
 struct MockUpProfileView: View {
-    //로그인 상태값 모델로 가젹오기
+    // 로그인 상태값 모델로 가젹오기
     @Environment(\.dismiss) var dismiss
-    @State private var mailData = ComposeMailData(subject: "비플 문의하기",
-                                                  recipients: ["pmchung423@gmail.com"],
-                                                  message: "비플 문의하기",
-                                                  attachments: [
-                                                    //                                                    AttachmentData(data: "Some text".data(using: .utf8)!,
-                                                    //                                                                               mimeType: "text/plain",
-                                                    //                                                                               fileName: "text.txt")
-                                                  ]
-    )
+    @State private var mailData = ComposeMailData(subject: "비플 문의하기", recipients: ["pmchung423@gmail.com"], message: "비플 문의하기", attachments: [])
     @State private var showMailView = false
     var versionState = "1.0.0"
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
             VStack {
                 NavigationTitle
@@ -35,8 +27,7 @@ struct MockUpProfileView: View {
                 inquiry
                     .disabled(!MailView.canSendMail)
                     .sheet(isPresented: $showMailView) {
-                        MailView(data: $mailData) { result in
-                        }
+                        MailView(data: $mailData) { _ in }
                     }
                 Divider()
                     .foregroundColor(.gray_700)
@@ -58,15 +49,14 @@ struct MockUpProfileView: View {
     }
     
     func ProfileManage() -> some View {
-        
-        Button{
+        Button {
             LaunchViewModel.shared.previewLogin()
         } label: {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.gray_700)
                 .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(72))
-                .overlay{
-                    HStack (spacing:2){
+                .overlay {
+                    HStack(spacing: 2) {
                         Text("둘러보기")
                             .foregroundColor(.label_900)
                             .font(.body())
@@ -86,12 +76,11 @@ struct MockUpProfileView: View {
                 }
                 .padding(.top, 10)
                 .padding(.bottom, 10)
-            
         }
     }
     
-    var versionInformaion : some View {
-        VStack (alignment: .leading, spacing: 5){
+    var versionInformaion: some View {
+        VStack(alignment: .leading, spacing: 5) {
             HStack {
                 Text("버전정보")
                     .font(.headline1())
@@ -107,12 +96,11 @@ struct MockUpProfileView: View {
         .padding()
     }
     
-    var inquiry : some View {
-        
-        Button (action: {
+    var inquiry: some View {
+        Button {
             showMailView.toggle()
-        }) {
-            VStack (alignment: .leading, spacing: 4){
+        } label: {
+            VStack(alignment: .leading, spacing: 4) {
                 HStack {
                     Text("문의하기")
                         .font(.headline1())
@@ -125,9 +113,3 @@ struct MockUpProfileView: View {
         }
     }
 }
-
-//#Preview {
-//    NavigationStack{
-//        MockUpProfileView()
-//    }
-//}

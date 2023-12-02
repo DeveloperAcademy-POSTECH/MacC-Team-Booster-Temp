@@ -9,9 +9,8 @@ import SwiftUI
 
 extension UISceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard (scene as? UIWindowScene) != nil else { return }
         
-        //슬립모드 방지
         UIApplication.shared.isIdleTimerDisabled = true
     }
 }

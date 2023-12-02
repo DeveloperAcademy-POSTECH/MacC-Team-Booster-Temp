@@ -43,7 +43,6 @@ struct EditRoutineView: View {
         )
         .offset(x: vm.offset)
         .animation(.linear, value: vm.offset)
-        
     }
 }
 
@@ -82,7 +81,6 @@ extension EditRoutineView {
                     .padding()
             }
             .scrollIndicators(.hidden)
-            
         }
         .padding(.horizontal)
     }
@@ -108,7 +106,7 @@ extension EditRoutineView {
                             .font(.headline1())
                             .multilineTextAlignment(.leading)
                             .allowsTightening(true)
-                        HStack(spacing: 3){
+                        HStack(spacing: 3) {
                             Text("\(exercise.numberOfSet)세트")
                                 .foregroundColor(.label_700)
                                 .font(.body2())
@@ -199,9 +197,7 @@ extension EditRoutineView {
             Text("삭제")
         }
         
-        Button(role: .cancel) {
-            
-        } label: {
+        Button(role: .cancel) { } label: {
             Text("취소")
         }
     }
@@ -213,7 +209,3 @@ extension EditRoutineView {
         }
     }
 }
-
-//#Preview {
-//    EditRoutineView(routineId: 1)
-//}
