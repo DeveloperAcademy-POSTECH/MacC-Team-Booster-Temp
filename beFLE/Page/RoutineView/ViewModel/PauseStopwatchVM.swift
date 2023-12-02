@@ -9,10 +9,9 @@ import SwiftUI
 
 class PauseStopwatchVM: ObservableObject {
     @Published var elapsedTime: TimeInterval = 0
-    @Published var isRunning: Bool = false
+    @Published var isRunning = false
     @Published private var startTime = Date.now
     private var timer: Timer?
-    
     
     func timerStart() {
         if !isRunning {
