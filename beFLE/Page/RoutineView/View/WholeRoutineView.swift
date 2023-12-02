@@ -200,7 +200,7 @@ extension WholeRoutineView {
 }
 
 #Preview {
-    NavigationStack{
+    NavigationStack {
         WholeRoutineView(influencerId: 1)
     }
 }

@@ -55,8 +55,6 @@ class SubscribeViewModel: ObservableObject {
     }
     
     func seperateAward(input: String) -> [String] {
-        // 정규 표현식을 사용하여 숫자와 텍스트를 추출
-        let awards = input.components(separatedBy: ",")
-        return awards
+        return input.components(separatedBy: ",")
     }
 }
