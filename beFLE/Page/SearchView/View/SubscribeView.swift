@@ -19,7 +19,7 @@ struct SubscribeView: View {
 여러분과 함께 운동하기 위해
 제 운동일지를 공유하게 되었습니다
 """
-    //배열로 빼서 불렛별로 줄 맞출지 추후 수정 예정
+    
     var award: Array = [
         "Wngp 서울 클래식피지크 체급 1위",
         "Wngp 서울 보디빌딩 체급 1위",
@@ -97,8 +97,7 @@ struct SubscribeView: View {
     
     @ViewBuilder
     var IntroPage: some View {
-        VStack{
-//            topBackground
+        VStack {
             TabView {
                 ForEach(Array(vm.influencer.carouselImageUrls), id: \.self) { imageUrl in
                     ZStack {
@@ -127,8 +126,8 @@ struct SubscribeView: View {
     
     @ViewBuilder
     var introInfluencer: some View {
-        VStack{
-            VStack(alignment: .leading){
+        VStack {
+            VStack(alignment: .leading) {
                 HStack {
                     Text("인사말")
                         .foregroundColor(.label_900)
@@ -158,7 +157,7 @@ struct SubscribeView: View {
                                 .foregroundColor(.label_800)
                             Spacer()
                         }
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             HStack {
                                 Text(vm.seperateAward(input: vm.influencer.awards)[index])
                                     .font(.body())
@@ -178,28 +177,27 @@ struct SubscribeView: View {
         }
     }
     
-    
     @ViewBuilder
     var subscribeButton: some View {
-            Button {
-                vm.influencer.isSubscription ? vm.unSubscribeInfluecer(influencerId: influencerId) : vm.subscribeInfluecer(influencerId: influencerId)
-            } label: {
-                FloatingButton(size: .medium, color: vm.influencer.isSubscription ? .gray_600 : .green_main) {
-                    vm.influencer.isSubscription ?
-                    Text("구독취소")
-                        .foregroundColor(.red_main)
-                        .font(.button1())
-                    :
-                    Text("구독")
-                        .foregroundColor(.gray_900)
-                        .font(.button1())
-                }
+        Button {
+            vm.influencer.isSubscription ? vm.unSubscribeInfluecer(influencerId: influencerId) : vm.subscribeInfluecer(influencerId: influencerId)
+        } label: {
+            FloatingButton(size: .medium, color: vm.influencer.isSubscription ? .gray_600 : .green_main) {
+                vm.influencer.isSubscription ?
+                Text("구독취소")
+                    .foregroundColor(.red_main)
+                    .font(.button1())
+                :
+                Text("구독")
+                    .foregroundColor(.gray_900)
+                    .font(.button1())
             }
-            .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.isSubscriptionAlertShow) {
-                Button("확인") {
-                    dismiss()
-                }
+        }
+        .alert(vm.influencer.isSubscription ? "구독이 완료되었습니다." : "구독이 취소되었습니다.", isPresented: $vm.isSubscriptionAlertShow) {
+            Button("확인") {
+                dismiss()
             }
+        }
     }
     
     fileprivate func createTab() -> some View {
@@ -232,8 +230,8 @@ struct SubscribeView: View {
     }
     
     var bodyInformation: some View {
-        HStack{
-            VStack(alignment: .leading, spacing: 5){
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
                 Text("신체정보")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -253,8 +251,8 @@ struct SubscribeView: View {
     }
     
     var strengthInformation: some View {
-        HStack{
-            VStack(alignment: .leading, spacing: 5){
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
                 Text("3대 중량")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -275,7 +273,6 @@ struct SubscribeView: View {
         .padding(.horizontal)
         .padding(.bottom, 10)
     }
-    
 }
 
 struct ViewOffsetKey: PreferenceKey {
@@ -293,30 +290,29 @@ struct WorkoutExplain: View {
     let part: String
     
     var body: some View {
-        HStack{
+        HStack {
             Image(ImageName)
                 .resizable()
                 .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
-                .background{
+                .background {
                     RoundedRectangle(cornerRadius: 4)
                         .foregroundColor(.fill_1)
                         .frame(width: UIScreen.getWidth(64), height: UIScreen.getHeight(64))
                 }
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 Text(WorkoutName)
                     .font(.headline1())
                     .foregroundColor(.label_900)
-                HStack{
+                HStack {
                     Text(SetCount)
                         .font(.body2())
                         .foregroundColor(.label_700)
                     Rectangle()
-                        .frame(width:1, height: 10)
+                        .frame(width: 1, height: 10)
                         .foregroundColor(.label_400)
                     Text(part)
                         .font(.body2())
                         .foregroundColor(.label_700)
-                    
                 }
             }
             
