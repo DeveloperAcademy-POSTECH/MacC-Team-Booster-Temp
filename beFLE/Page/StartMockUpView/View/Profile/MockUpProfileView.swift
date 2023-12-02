@@ -27,7 +27,7 @@ struct MockUpProfileView: View {
                 inquiry
                     .disabled(!MailView.canSendMail)
                     .sheet(isPresented: $showMailView) {
-                        MailView(data: $mailData)
+                        MailView(data: $mailData) { _ in }
                     }
                 Divider()
                     .foregroundColor(.gray_700)

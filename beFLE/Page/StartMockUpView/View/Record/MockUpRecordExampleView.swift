@@ -24,7 +24,7 @@ struct MockUpRecordExampleView: View {
                     RoutineCell(workoutName: "업 라이트 로우", totalWeight: 800, setInfo: [[1, 20, 10], [2, 20, 10], [3, 20, 10], [4, 20, 10]])
                     RoutineCell(workoutName: "인클라인 벤치 프레스", totalWeight: 3200, setInfo: [[1, 60, 10], [2, 80, 10], [3, 100, 10], [4, 80, 10]])
                     RoutineCell(workoutName: "펙 덱 플라이", totalWeight: 1750, setInfo: [[1, 40, 10], [2, 45, 10], [3, 50, 10], [4, 40, 10]])
-                    RoutineCell(ggworkoutName: "케이블 트라이셉스 익스텐션 ", totalWeight: 1250, setInfo: [[1, 30, 10], [2, 35, 10], [3, 30, 10], [4, 30, 10]])
+                    RoutineCell(workoutName: "케이블 트라이셉스 익스텐션 ", totalWeight: 1250, setInfo: [[1, 30, 10], [2, 35, 10], [3, 30, 10], [4, 30, 10]])
                 }
             }
             .scrollIndicators(.hidden)
