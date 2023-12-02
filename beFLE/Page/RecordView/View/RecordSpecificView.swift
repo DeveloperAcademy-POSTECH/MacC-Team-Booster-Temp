@@ -66,9 +66,53 @@ struct RecordSpecificView: View {
             Description(image: "square.stack.fill", text: "\(record.numberOfExercise)개")
             Description(image: "clock.fill", text: "\(vm.timeFormat(from: record.time))")
             Description(image: "flame.circle.fill", text: "\(record.burnedKCalories)kcal")
-            Description(image: "dumbbell.fill", text: "\(record.exercises.reduce(0, { $0 + $1.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps }()) }()))kg")
+            Description(image: "dumbbell.fill", text: "\(vm.caculatelTotalVolume(workouts: record.exercises))kg")
         }
         .padding(.bottom, 15)
+    }
+    
+    func RoutineCell(exercises: RecordedExercise) -> some View {
+        VStack {
+            HStack {
+                Text(exercises.name)
+                    .font(.headline1())
+                    .foregroundColor(.label_900)
+                Spacer()
+                Text("\(vm.caculateVolume(sets: exercises.sets))kg")
+                    .font(.headline1())
+                    .foregroundColor(.label_900)
+            }
+            .font(.headline1())
+            .foregroundColor(.label_900)
+            .padding(.vertical)
+            HStack {
+                Spacer()
+                VStack(alignment: .trailing, spacing: 3) {
+                    ForEach(0..<exercises.sets.count, id: \.self) { index in
+                        MakeSet(id: index + 1, kg: exercises.sets[index].weight, rep: exercises.sets[index].reps)
+                    }
+                }
+            }
+        }
+        .padding(.trailing, 5)
+        .padding(.bottom)
+    }
+    
+    func MakeSet(id: Int, kg: Int? = nil, rep: Int) -> some View {
+        HStack(spacing: 1) {
+            Text("\(id)세트")
+                .frame(minWidth: UIScreen.getWidth(50), alignment: .trailing)
+            Text("\(kg == nil ? "자율" : "\(kg!)kg")")
+                .frame(minWidth: UIScreen.getWidth(40), alignment: .trailing)
+            Image(systemName: "multiply")
+                .frame(minWidth: UIScreen.getWidth(15), alignment: .trailing)
+                .foregroundColor(.label_400)
+            Text("\(rep)회")
+                .frame(minWidth: UIScreen.getWidth(30), alignment: .trailing)
+        }
+        .font(.body2())
+        .foregroundColor(.label_700)
+        .frame(minWidth: UIScreen.getWidth(135), alignment: .leading)
     }
     
     func Description(image: String, text: String) -> some View {
@@ -93,52 +137,5 @@ struct RecordSpecificView: View {
                 .foregroundColor(.label_700)
                 .font(.headline2())
         }
-    }
-}
-
-struct RoutineCell: View {
-    var exercises: RecordedExercise
-    var body: some View {
-        VStack {
-            HStack {
-                Text(exercises.name)
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-                Spacer()
-                Text("\(exercises.sets.reduce(0, { $0 + ($1.weight ?? 0) * $1.reps }()))kg")
-                    .font(.headline1())
-                    .foregroundColor(.label_900)
-            }
-            .font(.headline1())
-            .foregroundColor(.label_900)
-            .padding(.vertical)
-            HStack {
-                Spacer()
-                VStack(alignment: .trailing, spacing: 3) {
-                    ForEach(0..<exercises.sets.count, id: \.self) { index in
-                        makeSet(id: index + 1, kg: exercises.sets[index].weight, rep: exercises.sets[index].reps)
-                    }
-                }
-            }
-        }
-        .padding(.trailing, 5)
-        .padding(.bottom)
-    }
-    
-    func makeSet(id: Int, kg: Int? = nil, rep: Int) -> some View {
-        HStack(spacing: 1) {
-            Text("\(id)세트")
-                .frame(minWidth: UIScreen.getWidth(50), alignment: .trailing)
-            Text("\(kg == nil ? "자율" : "\(kg!)kg")")
-                .frame(minWidth: UIScreen.getWidth(40), alignment: .trailing)
-            Image(systemName: "multiply")
-                .frame(minWidth: UIScreen.getWidth(15), alignment: .trailing)
-                .foregroundColor(.label_400)
-            Text("\(rep)회")
-                .frame(minWidth: UIScreen.getWidth(30), alignment: .trailing)
-        }
-        .font(.body2())
-        .foregroundColor(.label_700)
-        .frame(minWidth: UIScreen.getWidth(135), alignment: .leading)
     }
 }
