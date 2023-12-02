@@ -30,14 +30,10 @@ struct SingleInfluencerPreviewView: View {
                 }
                 .disabled(!MailView.canSendMail)
                 .sheet(isPresented: $vm.showMailView) {
-                    MailView(data: $vm.mailData) { result in
-
-                    }
+                    MailView(data: $vm.mailData) { _ in }
                 }
                 Spacer()
-                //                        .frame(height: UITabBarController().height)
             }
-//            .padding(.bottom, 35)
         }
     }
     
@@ -104,8 +100,8 @@ struct SingleInfluencerPreviewView: View {
         RoundedRectangle(cornerRadius: 8.0)
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getWidth(68))
             .foregroundColor(.fill_3)
-            .overlay{
-                HStack{
+            .overlay {
+                HStack {
                     Text("나도 운동일지를 공유하고 싶다면?")
                         .foregroundColor(.label_700)
                         .font(.body2())
@@ -118,29 +114,6 @@ struct SingleInfluencerPreviewView: View {
             }
             .padding(.top, 5)
     }
-    
-    //    @ViewBuilder
-    //    var RecommendCardScroll: some View {
-    //            VStack(spacing: 20){
-    //                HStack {
-    //                    Text("전문가들의 일상 루틴")
-    //                        .foregroundColor(.label_900)
-    //                        .font(.title2())
-    //                        .padding(.leading, 20)
-    //                    Spacer()
-    //                }
-    //                VStack(spacing: 20){
-    //                    ForEach(1..<4, id: \.self) {idx in
-    //                        //전문가들의 일상 루틴에서 구독 뷰
-    //                        NavigationLink {
-    //                            SubscribeView(tabSelection: $tabSelection, subscribed: $subscribed)
-    //                        } label: {
-    //                            InfluencerCard(cardBannerNum: idx)
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //    }
 }
 
 #Preview {

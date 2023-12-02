@@ -61,7 +61,6 @@ struct RoutineInformationView: View {
         )
         .offset(x: vm.offset)
         .animation(.linear, value: vm.offset)
-        
     }
     
     var SpecificInformation: some View {
@@ -116,7 +115,7 @@ struct RoutineInformationView: View {
         }
     }
     
-    var startButton: some View{
+    var startButton: some View {
         VStack {
             Spacer()
             NavigationLink {
@@ -132,8 +131,8 @@ struct RoutineInformationView: View {
         }
     }
     
-    var gradient: some View{
-        VStack{
+    var gradient: some View {
+        VStack {
             Spacer()
             LinearGradient(colors: [.clear, .gray_900.opacity(0.7), .gray_900, .gray_900, .gray_900], startPoint: .top, endPoint: .bottom)
                 .frame(height: UIScreen.getHeight(150), alignment: .bottom)
@@ -141,5 +140,4 @@ struct RoutineInformationView: View {
         }
         .ignoresSafeArea()
     }
-    
 }
