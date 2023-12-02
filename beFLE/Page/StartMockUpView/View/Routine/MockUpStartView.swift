@@ -5,13 +5,6 @@
 //  Created by 정회승 on 11/13/23.
 //
 //
-//import SwiftUI
-//
-//struct MockUpStartView: View {
-//    @State var todayText = "반가워요 득근해봅시다💪"
-//    @Binding var tabSelection: Int
-//    var Influencer = "정회승"
-//
 
 import SwiftUI
 
@@ -19,10 +12,10 @@ struct MockUpStartView: View {
     var todayText = "반가워요 득근해봅시다💪"
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
             InfluencerImage
-            VStack{
+            VStack {
                 NavigationTitle
                 TodayText
                 Spacer()
@@ -80,7 +73,6 @@ struct MockUpStartView: View {
         }
     }
     
-    
     func Description(image: String, text: String) -> some View {
         HStack {
             Image(systemName: image)
@@ -97,8 +89,8 @@ struct MockUpStartView: View {
     var TodayText: some View {
         VStack {
             Spacer()
-            HStack(alignment: .top){
-                VStack(alignment: .leading){
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
                     Text(todayText)
                         .font(.body2())
                         .foregroundColor(.label_800)
@@ -106,11 +98,11 @@ struct MockUpStartView: View {
                 .padding(20)
             }
             .frame(width: UIScreen.getWidth(350))
-            .background{
+            .background {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.gray_700)
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+                    .stroke(lineWidth: 1.0)
                     .foregroundColor(.label_500)
             }
         }
@@ -118,9 +110,9 @@ struct MockUpStartView: View {
     }
     
     var TodayCard: some View {
-        ZStack{
-            VStack(alignment: .center){
-                HStack{
+        ZStack {
+            VStack(alignment: .center) {
+                HStack {
                     Text(Date().format(.monthDayWeek))
                         .font(.title2())
                         .foregroundColor(.label_900)
@@ -130,8 +122,7 @@ struct MockUpStartView: View {
                 .padding(.vertical, 24)
                 RoutineDescriptionCard
                     .padding(.bottom, 15)
-                    .padding(.leading,10)
-                //운동 시작 버튼
+                    .padding(.leading, 10)
                 NavigationLink {
                     MockUpWorkoutOngoingView()
                 } label: {
@@ -146,26 +137,9 @@ struct MockUpStartView: View {
         }
         .padding(.horizontal, 10)
         .frame(width: UIScreen.getWidth(350))
-        .background{
+        .background {
             RoundedRectangle(cornerRadius: 8)
                 .foregroundColor(.gray_700)
         }
     }
 }
-
-//#Preview {
-//    NavigationStack{
-//        TabView{
-//            MockUpStartView(showTest: .constant(true)
-//                .tabItem {
-//                    Image(systemName: "dumbbell")
-//                    Text("루틴")
-//                }
-//            MockUpStartView()
-//                .tabItem {
-//                    Image(systemName: "dumbbell")
-//                    Text("루틴")
-//                }
-//        }
-//    }
-//}
