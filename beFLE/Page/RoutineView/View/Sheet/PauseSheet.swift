@@ -39,7 +39,7 @@ struct PauseSheet: View {
         }
         .onAppear {
             vm.timerStart()
-            vm.elapsedTime = vm.elapsedTime + vm.bgTimer()
+            vm.elapsedTime += vm.bgTimer()
         }
         .onDisappear {
             vm.reset()

@@ -87,11 +87,11 @@ struct MockUpWorkoutOngoingView: View {
         .sheet(isPresented: $isPauseShow) {
             MockUpPauseSheet(viewModel: viewModel)
         }
-        .onAppear{
+        .onAppear {
             viewModel.Start()
-            viewModel.elapsedTime = viewModel.elapsedTime + viewModel.bgTimer()
+            viewModel.elapsedTime += viewModel.bgTimer()
         }
-        .onDisappear{
+        .onDisappear {
             viewModel.Stop()
         }
         .onTapGesture {
