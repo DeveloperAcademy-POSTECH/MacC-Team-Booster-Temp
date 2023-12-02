@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MockUpSubscribeView: View {
-    
     @State var showTab = false
     @State var scrollOffset: CGFloat = 0.00
     @State var subscribingSheet = false
@@ -19,7 +18,6 @@ struct MockUpSubscribeView: View {
 여러분과 함께 운동하기 위해
 제 운동일지를 공유하게 되었습니다
 """
-    //배열로 빼서 불렛별로 줄 맞출지 추후 수정 예정
     var award: Array = [
         "Wngp 서울 클래식피지크 체급 1위",
         "Wngp 서울 보디빌딩 체급 1위",
@@ -28,14 +26,14 @@ struct MockUpSubscribeView: View {
         "Npc 내츄럴 보디빌딩 오픈 4위",
         "Npc 내츄럴 클래식피지크 노비스 1위",
         "미스터 스누 22 연건 1위",
-        "미스터 스누 23 관악 2위",
+        "미스터 스누 23 관악 2위"
     ]
     
     var body: some View {
         ZStack {
             Color.gray_900.ignoresSafeArea()
             ScrollView {
-                VStack{
+                VStack {
                     IntroPage
                     topInfluencerDescription
                     subscribeButton
@@ -45,14 +43,14 @@ struct MockUpSubscribeView: View {
                     RoutinePreview()
                         .padding(.horizontal)
                 }
-                .background(GeometryReader {
-                    return Color.clear.preference(key: ViewOffsetKey.self, value: -$0.frame(in: .named("scroll")).origin.y)
+                .background(GeometryReader { geo in
+                    return Color.clear.preference(key: ViewOffsetKey.self, value: -geo.frame(in: .named("scroll")).origin.y)
                 })
                 .onPreferenceChange(ViewOffsetKey.self) { offset in
                     withAnimation {
                         if offset > UIScreen.getHeight(422) {
                             showTab = true
-                        } else  {
+                        } else {
                             showTab = false
                         }
                     }
@@ -76,11 +74,10 @@ struct MockUpSubscribeView: View {
     
     @ViewBuilder
     var IntroPage: some View {
-        ZStack{
+        ZStack {
             TabView {
-                ForEach(1...3, id: \.self) { idx in
-                    //둘러보기에서 구독 뷰
-                    ZStack{
+                ForEach(1...3, id: \.self) { _ in
+                    ZStack {
                         Image("bannerImage")
                             .resizable()
                             .scaledToFill()
@@ -90,7 +87,6 @@ struct MockUpSubscribeView: View {
             }
             .tabViewStyle(.page)
             .frame(width: UIScreen.getWidth(390), height: UIScreen.getHeight(358))
-            
         }
     }
     
@@ -106,8 +102,8 @@ struct MockUpSubscribeView: View {
     
     @ViewBuilder
     var introInfluencer: some View {
-        VStack{
-            VStack(alignment: .leading){
+        VStack {
+            VStack(alignment: .leading) {
                 HStack {
                     Text("인사말")
                         .foregroundColor(.label_900)
@@ -128,55 +124,8 @@ struct MockUpSubscribeView: View {
             .padding(.top, 15)
             .padding(.leading)
             .frame(maxWidth: .infinity)
-            //MARK: 잼이 지우지 말래요.
-            //            if seeMore == false {
-            //                ZStack(alignment: .top){
-            //                    VStack(alignment: .leading){
-            //                        ForEach(0..<award.count, id: \.self) { index in
-            //                            HStack{
-            //                                VStack{
-            //                                    Text("•")
-            //                                        .font(.body)
-            //                                        .foregroundColor(.label_800)
-            //                                    Spacer()
-            //                                }
-            //                                VStack(alignment: .leading){
-            //                                    HStack{
-            //                                        Text(award[index])
-            //                                            .font(.body)
-            //                                            .foregroundColor(.label_800)
-            //                                        Spacer()
-            //                                    }
-            //                                    Spacer()
-            //                                }
-            //                            }
-            //                            .padding(.leading, 10)
-            //                        }
-            //                    }
-            //                    .mask(alignment: .top){
-            //                        Rectangle()
-            //                            .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(130))
-            //                    }
-            //                    .padding()
-            //                    LinearGradient(colors: [.clear, .clear, .gray_900.opacity(0.7), .gray_900], startPoint: .top, endPoint: .bottom)
-            //                    Button {
-            //                        seeMore = true
-            //                    } label: {
-            //                        VStack{
-            //                            Spacer()
-            //                                .frame(height: UIScreen.getHeight(170))
-            //                            Text("더보기")
-            //                                .font(.headline1())
-            //                                .foregroundColor(Color.label_900)
-            //                        }
-            //                    }
-            //
-            //                }
-            //                .frame(width: UIScreen.getWidth(384), height: UIScreen.getHeight(150))
-            //                .padding(.top, 40)
-            //            }
-            //            else {
-            VStack(alignment: .leading){
+            
+            VStack(alignment: .leading) {
                 ForEach(0..<award.count, id: \.self) { index in
                     HStack {
                         VStack {
@@ -185,7 +134,7 @@ struct MockUpSubscribeView: View {
                                 .foregroundColor(.label_800)
                             Spacer()
                         }
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             HStack {
                                 Text(award[index])
                                     .font(.body())
@@ -201,11 +150,9 @@ struct MockUpSubscribeView: View {
             .padding(.horizontal)
             .padding(.top, 12)
             .padding(.bottom, 5)
-            //            }
         }
     }
-    
-    
+
     @ViewBuilder
     var subscribeButton: some View {
         Button {
@@ -226,11 +173,11 @@ struct MockUpSubscribeView: View {
     }
     
     var topInfluencerDescription: some View {
-        ZStack(alignment: .bottomTrailing){
-            VStack{
+        ZStack(alignment: .bottomTrailing) {
+            VStack {
                 Spacer()
-                HStack{
-                    VStack(alignment: .leading, spacing: 6){
+                HStack {
+                    VStack(alignment: .leading, spacing: 6) {
                         Text("정회승의 Smart Routine")
                             .foregroundColor(.label_900)
                             .font(.title1())
@@ -249,8 +196,8 @@ struct MockUpSubscribeView: View {
     }
     
     var bodyInformation: some View {
-        HStack{
-            VStack(alignment: .leading, spacing: 5){
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
                 Text("신체정보")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -270,8 +217,8 @@ struct MockUpSubscribeView: View {
     }
     
     var strengthInformation: some View {
-        HStack{
-            VStack(alignment: .leading, spacing: 5){
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
                 Text("3대 중량")
                     .foregroundColor(.label_900)
                     .font(.headline1())
@@ -292,19 +239,17 @@ struct MockUpSubscribeView: View {
         .padding(.horizontal)
         .padding(.bottom, 10)
     }
-    
 }
 
 struct RoutinePreview: View {
-    //날짜 변환
     var date: String = "2023년 10월 15일"
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.gray_900.ignoresSafeArea()
             VStack {
-                HStack{
-                    VStack(alignment: .leading){
+                HStack {
+                    VStack(alignment: .leading) {
                         Divider()
                             .foregroundColor(.fill_1)
                             .padding(.top)
@@ -312,40 +257,37 @@ struct RoutinePreview: View {
                             .font(.title2())
                             .foregroundColor(.label_900)
                             .padding(.top, 30)
-                        HStack{
+                        HStack {
                             Text(date)
                                 .font(.body2())
                                 .foregroundColor(.label_700)
                             Rectangle()
-                                .frame(width:1, height: 10)
+                                .frame(width: 1, height: 10)
                                 .foregroundColor(.label_400)
                             Text("등, 이두")
                                 .font(.body2())
                                 .foregroundColor(.label_700)
-                            
                         }
                     }
                     .padding(.top, 20)
                     Spacer()
                 }
-                HStack{
+                HStack {
                     Text("등")
                         .font(.headline1())
                         .foregroundColor(.label_900)
                         .padding(.vertical, 20)
                     Spacer()
                 }
-                //운동 루틴
+                
                 WorkoutExplain(ImageName: "hyperExtention", WorkoutName: "하이퍼 익스텐션", SetCount: "3세트", part: "등")
-                //첫 운동 팁 설명
-                //ZStack{
-                HStack(alignment: .top){
+                HStack(alignment: .top) {
                     Image("descriptionFace1")
                         .resizable()
                         .scaledToFit()
                         .frame(width: UIScreen.getWidth(48))
                         .padding(10)
-                    VStack(alignment: .leading){
+                    VStack(alignment: .leading) {
                         Text("운동 팁 예시")
                             .font(.body2())
                             .foregroundColor(.label_500)
@@ -359,17 +301,16 @@ struct RoutinePreview: View {
                     .padding(.vertical, 10)
                 }
                 .padding(10)
-                .background{
+                .background {
                     RoundedRectangle(cornerRadius: 8)
                         .foregroundColor(.gray_700)
                 }
                 .padding(.vertical, 10)
                 
-                //                }
                 WorkoutExplain(ImageName: "dumbellPullOver", WorkoutName: "덤벨 풀 오버", SetCount: "4세트", part: "등")
                 WorkoutExplain(ImageName: "barbellRow", WorkoutName: "바벨 로우", SetCount: "4세트", part: "등")
                     .padding(.bottom, 3)
-                HStack{
+                HStack {
                     Text("이두")
                         .font(.headline1())
                         .foregroundColor(.label_900)
@@ -377,15 +318,12 @@ struct RoutinePreview: View {
                     Spacer()
                 }
                 WorkoutExplain(ImageName: "CloseGripLatPullDown", WorkoutName: "케이블 해머 컬", SetCount: "3세트", part: "이두")
-                
             }
             .padding(.bottom, 30)
-            VStack{
+            VStack {
                 Spacer()
                 LinearGradient(colors: [.clear, .clear, .clear, .clear, .gray_900.opacity(0.5), .gray_900], startPoint: .top, endPoint: .bottom)
             }
         }
-        
     }
-    
 }
