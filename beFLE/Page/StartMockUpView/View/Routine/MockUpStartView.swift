@@ -64,10 +64,10 @@ struct MockUpStartView: View {
     var RoutineDescriptionCard: some View {
         HStack {
             VStack(alignment: .leading, spacing: UIScreen.getWidth(14)) {
-                Description(image: "figure.arms.open", text: "등 이두")
-                Description(image: "square.stack.fill", text: "6개")
-                Description(image: "clock.fill", text: "50분")
-                Description(image: "flame.circle.fill", text: "580kcal")
+                Description(image: "figure.arms.open", text: "어깨")
+                Description(image: "square.stack.fill", text: "1개")
+                Description(image: "clock.fill", text: "5분")
+                Description(image: "flame.circle.fill", text: "45kcal")
             }.padding(.bottom)
             Spacer()
         }

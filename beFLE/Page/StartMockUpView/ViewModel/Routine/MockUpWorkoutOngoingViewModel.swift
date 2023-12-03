@@ -38,7 +38,7 @@ class MockUpWorkoutOngoingViewModel: ObservableObject {
     @Published var currentSet = 1
     
     init() {
-        workoutModel = MockUpWorkoutModel(workoutDate: "12월 4일(월)", influencerName: "정회승", workoutName: "이지바 바이셉스 컬", workoutSet: 3, workoutKgs: [nil, nil, nil], workoutReps: [10, 10, 8], alternativeWorkout: ["클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운"], relatedContentURL: [ "https://www.youtube.com/embed/xYQQSaeRVlQ?si=7ZuPXSFKN_uv965D&amp;start=996"], workoutTip: "이지바로 수축에 집중해서 수축 지점에서 잠시 정지해서 펌핑을 극대화해주세요.\n오버 그립으로 수행 할 수 있다면 수행해 보세요.")
+        workoutModel = MockUpWorkoutModel(workoutDate: "12월 4일(월)", influencerName: "정회승", workoutName: "사이드 레터럴 레이즈", workoutSet: 3, workoutKgs: [nil, nil, nil], workoutReps: [20, 20, 25], alternativeWorkout: ["클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운"], relatedContentURL: ["https://www.youtube.com/embed/qhANR42LYho?si=U4uJvEUP4xvtZ5-i&amp;start=3054"], workoutTip: "상위구간에서 0.5초간 정지했다가 내려가는 느낌으로 운동해주세요.\n손의 새끼손가락 방향이 엄지 방향보다 더 위에 있게 해주세요.\n중량보다는 자극에 집중해 주세요.")
         
         for i in 0..<workoutModel.workoutSet {
             workoutSet.append(MockUpWorkoutSetModel(index: i + 1, kg: workoutModel.workoutKgs[i], repetition: workoutModel.workoutReps[i], isFinish: false))

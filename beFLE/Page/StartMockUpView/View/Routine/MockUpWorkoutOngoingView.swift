@@ -21,7 +21,7 @@ struct MockUpWorkoutOngoingView: View {
     @State var existUnfinished = false
     @Namespace var topID
     @State var showFinishView = false
-    let workoutName = "클로즈 그립 랫 풀 다운"
+    let workoutName = "사이드 레터럴 레이즈"
     
     var body: some View {
         ZStack {
@@ -36,6 +36,7 @@ struct MockUpWorkoutOngoingView: View {
                             Spacer()
                             WorkoutSetButton
                             WorkoutSetList
+                            RelatedContent
                             FloatingButton(size: .medium) {}
                                 .padding(.bottom, 40)
                                 .id(topID)
@@ -181,6 +182,28 @@ struct MockUpWorkoutOngoingView: View {
                     viewModel.Stop()
                 }
         }
+    }
+    
+    @ViewBuilder
+    var RelatedContent: some View {
+        VStack {
+            HStack {
+                Text("관련 영상")
+                    .font(.title2())
+                    .foregroundColor(.label_900)
+                Spacer()
+            }
+            .padding(.bottom, 13)
+            
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(workoutOngoingVM.workoutModel.relatedContentURL, id: \.self) { videoUrl in
+                        RelatedContentCard(videoID: videoUrl)
+                    }
+                }
+            }
+        }
+        .padding()
     }
     
     private func timeFormatted(_ seconds: TimeInterval) -> String {
@@ -388,7 +411,7 @@ struct ImageTip: View {
     }
     
     var WorkoutImage: some View {
-        Image("tempWorkoutImage")
+        Image("sidelateral")
             .resizable()
             .scaledToFit()
             .frame(height: UIScreen.getHeight(220))
@@ -399,7 +422,7 @@ struct ImageTip: View {
             .frame(width: UIScreen.getWidth(350), height: UIScreen.getHeight(220))
             .foregroundColor(.gray_800)
             .overlay {
-                VStack {
+                ScrollView {
                     HStack {
                         Image("descriptionFace1")
                             .resizable()

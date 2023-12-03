@@ -66,7 +66,7 @@ struct MockUpFinishView: View {
                                 .foregroundColor(.label_700)
                         }
                         VStack(spacing: 3) {
-                            Text("580kcal")
+                            Text("45kcal")
                                 .font(.title2())
                                 .foregroundColor(.label_900)
                             Text("소모칼로리")
@@ -74,7 +74,7 @@ struct MockUpFinishView: View {
                                 .foregroundColor(.label_700)
                         }
                         VStack(spacing: 3) {
-                            Text("9840kg")
+                            Text("360kg")
                                 .font(.title2())
                                 .foregroundColor(.label_900)
                             Text("총 볼륨")
