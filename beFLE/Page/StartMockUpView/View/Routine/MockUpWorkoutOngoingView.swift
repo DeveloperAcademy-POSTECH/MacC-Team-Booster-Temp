@@ -21,7 +21,6 @@ struct MockUpWorkoutOngoingView: View {
     @State var existUnfinished = false
     @Namespace var topID
     @State var showFinishView = false
-    let workoutName = "클로즈 그립 랫 풀 다운"
     
     var body: some View {
         ZStack {
@@ -59,7 +58,7 @@ struct MockUpWorkoutOngoingView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .confirmationDialog(workoutName, isPresented: $isAlternativeShow, titleVisibility: .visible) {
+        .confirmationDialog(workoutOngoingVM.workoutName, isPresented: $isAlternativeShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
         .alert("운동을 중단하시겠습니까?", isPresented: $exitAlertShow) {

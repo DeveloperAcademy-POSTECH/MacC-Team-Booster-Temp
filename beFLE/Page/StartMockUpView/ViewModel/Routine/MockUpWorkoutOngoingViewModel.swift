@@ -38,7 +38,7 @@ class MockUpWorkoutOngoingViewModel: ObservableObject {
     @Published var currentSet = 1
     
     init() {
-        workoutModel = MockUpWorkoutModel(workoutDate: "10월 5일(일)", influencerName: "정회승", workoutName: "클로즈 그립 랫 풀 다운", workoutSet: 4, workoutKgs: [nil, nil, nil, nil], workoutReps: [10, 10, 15, 15], alternativeWorkout: ["클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운"], relatedContentURL: [ "http://www.youtube.com"], workoutTip: "고정축이 흔들리면 정확한 타겟이 불가능하기 때문에 꼭! 랫 풀 다운 할 때는 발꿈치를 들어서 무릎 패드와 다리 사이에 공간이 없도록 단단한 지지대를 만들어 주는 것이 굉장히 중요합니다.")
+        workoutModel = MockUpWorkoutModel(workoutDate: "12월 4일(월)", influencerName: "정회승", workoutName: "이지바 바이셉스 컬", workoutSet: 3, workoutKgs: [nil, nil, nil, nil], workoutReps: [10, 10, 15, 15], alternativeWorkout: ["클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운", "클로즈 그립 랫 풀 다운"], relatedContentURL: [ "https://www.youtube.com/embed/xYQQSaeRVlQ?si=7ZuPXSFKN_uv965D&amp;start=996"], workoutTip: "이지바로 수축에 집중해서 수축 지점에서 잠시 정지해서 펌핑을 극대화해주세요./n오버 그립으로 수행 할 수 있다면 수행해 보세요.")
         
         for i in 0..<workoutModel.workoutSet {
             workoutSet.append(MockUpWorkoutSetModel(index: i + 1, kg: workoutModel.workoutKgs[i], repetition: workoutModel.workoutReps[i], isFinish: false))
