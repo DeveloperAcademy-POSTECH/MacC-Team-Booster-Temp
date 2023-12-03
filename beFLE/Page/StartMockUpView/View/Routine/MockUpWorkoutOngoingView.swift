@@ -236,11 +236,11 @@ struct MockUpWorkoutOngoingView: View {
     var workoutInfomation: some View {
         VStack {
             HStack {
-                Text("1 / 10")
+                Text("1 / 1")
                     .foregroundColor(.label_700)
                 Text("|")
                     .foregroundColor(.label_400)
-                Text("등")
+                Text("어깨")
                     .foregroundColor(.label_700)
                 Spacer()
             }
@@ -423,25 +423,27 @@ struct ImageTip: View {
             .foregroundColor(.gray_800)
             .overlay {
                 ScrollView {
-                    HStack {
-                        Image("descriptionFace1")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
-                            .padding(.horizontal, 5)
-                            .padding(.top, 4)
+                    VStack {
+                        HStack {
+                            Image("descriptionFace1")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: UIScreen.getWidth(48), height: UIScreen.getHeight(48))
+                                .padding(.horizontal, 5)
+                                .padding(.top, 4)
+                            Spacer()
+                            Spacer()
+                        }
+                        Spacer()
+                        
+                        Text(workoutOngoingVM.workoutModel.workoutTip)
+                            .font(.body())
+                            .foregroundColor(.label_900)
+                            .padding(.horizontal, 1.9)
+                            .lineSpacing(6.0)
                         Spacer()
                         Spacer()
                     }
-                    Spacer()
-                    
-                    Text(workoutOngoingVM.workoutModel.workoutTip)
-                        .font(.body())
-                        .foregroundColor(.label_900)
-                        .padding(.horizontal, 1.9)
-                        .lineSpacing(6.0)
-                    Spacer()
-                    Spacer()
                 }
                 .padding()
             }
