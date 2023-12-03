@@ -58,7 +58,7 @@ struct MockUpWorkoutOngoingView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .confirmationDialog(workoutOngoingVM.workoutName, isPresented: $isAlternativeShow, titleVisibility: .visible) {
+        .confirmationDialog(workoutOngoingVM.workoutModel.workoutName, isPresented: $isAlternativeShow, titleVisibility: .visible) {
             AlternativeActionSheet
         }
         .alert("운동을 중단하시겠습니까?", isPresented: $exitAlertShow) {
