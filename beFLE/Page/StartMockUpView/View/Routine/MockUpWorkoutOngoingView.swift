@@ -115,7 +115,7 @@ struct MockUpWorkoutOngoingView: View {
                     Spacer()
                     
                     Button {
-                        if workoutOngoingVM.currentSet >= 1 {
+                        if workoutOngoingVM.currentSet >= 2 {
                             withAnimation {
                                 proxy.scrollTo(topID)
                             }
