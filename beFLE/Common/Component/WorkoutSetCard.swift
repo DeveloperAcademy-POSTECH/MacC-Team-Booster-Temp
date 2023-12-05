@@ -56,7 +56,7 @@ struct WorkoutSetCard: View {
             Text("\(index)")
                 .foregroundColor(.label_900)
             Spacer()
-
+            
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: UIScreen.getWidth(72), height: UIScreen.getHeight(36))
                 .foregroundColor(.gray_700)
