@@ -14,7 +14,6 @@ class ProfileViewModel: ObservableObject {
     @Published var isMailSheetShow = false
     @Published var isWithdrawAlertShow = false
     @Published var isLogoutAlertShow = false
-    @Published var offset: CGFloat = .zero
 }
 
 /// 토글 관련
