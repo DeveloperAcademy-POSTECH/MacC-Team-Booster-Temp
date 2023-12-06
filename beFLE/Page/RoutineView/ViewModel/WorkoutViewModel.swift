@@ -16,7 +16,6 @@ class WorkoutViewModel: ObservableObject {
     @Published var exerciseId = 0
     @Published var currentWorkoutIndex = 0
     @Published var routineCompleteImageUrl = ""
-    @Published var offset: CGFloat = .zero
     
     @Published var routine = ResponseGetUsersRoutinesId(part: "", numberOfExercise: 0, requiredMinutes: 0, burnedKCalories: 0, exercises: [])
     @Published var workout = ResponseGetRoutinesExercises(name: "", part: "", exerciseId: 0, exerciseImageUrl: "", tip: "", videoUrls: [], sets: [], alternativeExercises: [], faceImageUrl: "")

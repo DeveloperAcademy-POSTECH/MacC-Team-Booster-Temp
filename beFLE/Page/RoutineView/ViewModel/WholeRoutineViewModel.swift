@@ -23,9 +23,6 @@ class WholeRoutineViewModel: ObservableObject {
     /// 월 별 운동 목록 
     @Published var routinesByMonth: [Int: [Routine]] = [:]
     
-    /// 스와이프 오프셋
-    @Published var offset: CGFloat = .zero
-    
     func fetch(influencerId: Int) {
         wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) { wholeRoutine in
             self.wholeRoutine = wholeRoutine

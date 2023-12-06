@@ -8,8 +8,6 @@
 import SwiftUI
 
 class RecordSpecificViewModel: ObservableObject {
-    @Published var offset: CGFloat = .zero
-    
     func caculatelTotalVolume(workouts: [RecordedExercise]) -> String {
         let totalVolume = workouts.reduce(0) { partialResult, workout in
             partialResult + workout.sets.reduce(0) { partialResult, set in

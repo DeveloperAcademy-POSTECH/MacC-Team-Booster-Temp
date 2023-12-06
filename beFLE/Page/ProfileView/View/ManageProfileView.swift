@@ -28,21 +28,6 @@ struct ManageProfileView: View {
                 BackButton
             }
         }
-        .gesture(
-            DragGesture().onChanged { value in
-                if value.startLocation.x < 50 {
-                    vm.offset = value.translation.width
-                }
-            }
-                .onEnded { value in
-                    if value.predictedEndTranslation.width > 100 {
-                        dismiss()
-                    }
-                    vm.offset = .zero
-                }
-        )
-        .offset(x: vm.offset)
-        .animation(.linear, value: vm.offset)
         .navigationBarBackButtonHidden()
     }
 }
@@ -123,7 +108,7 @@ extension ManageProfileView {
         Button {
             vm.showLogoutAlert()
         } label: {
-            HStack { 
+            HStack {
                 Text("로그아웃")
                     .font(.body())
                     .foregroundColor(.label_700)
@@ -132,7 +117,7 @@ extension ManageProfileView {
             .padding()
         }
         .alert("로그아웃하시겠습니까?", isPresented: $vm.isLogoutAlertShow) {
-            Button { 
+            Button {
             } label: {
                 Text("취소")
             }

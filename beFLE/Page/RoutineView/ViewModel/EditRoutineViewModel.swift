@@ -25,7 +25,4 @@ class EditRoutineViewModel: ObservableObject {
     
     /// 선택한 운동의 대체 또는 삭제 여부
     @Published var isEditWorkoutActionShow = false
-    
-    /// 스와이프 오프셋 값
-    @Published var offset: CGFloat = .zero
 }

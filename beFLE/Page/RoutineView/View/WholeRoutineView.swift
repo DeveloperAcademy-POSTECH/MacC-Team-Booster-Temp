@@ -40,21 +40,6 @@ struct WholeRoutineView: View {
                 vm.fetch(influencerId: influencerId)
             }
         }
-        .gesture(
-            DragGesture().onChanged { value in
-                if value.startLocation.x < 50 {
-                    vm.offset = value.translation.width
-                }
-            }
-                .onEnded { value in
-                    if value.predictedEndTranslation.width > 100 {
-                        dismiss()
-                    }
-                    vm.offset = .zero
-                }
-        )
-        .offset(x: vm.offset)
-        .animation(.linear, value: vm.offset)
     }
 }
 
@@ -133,7 +118,7 @@ extension WholeRoutineView {
                             .padding(.leading, 5)
                         Spacer()
                     }
-
+                    
                     ForEach(vm.sortByDate(routine: routine.value), id: \.self) { some in
                         if some.part != "휴식" {
                             NavigationLink {
