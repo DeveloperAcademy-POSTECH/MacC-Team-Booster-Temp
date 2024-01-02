@@ -21,7 +21,7 @@ class WholeRoutineViewModel: ObservableObject {
     @Published var selectedPart: Part = .전체
     
     /// 월 별 운동 목록 
-    @Published var routinesByMonth: [Int: [Routine]] = [:]
+    @Published var routinesByMonth: [Int: [Int: [Routine]]] = [:]
     
     func fetch(influencerId: Int) {
         wholeRoutineModel.fetchWholeRoutine(influencerId: influencerId) { wholeRoutine in
@@ -34,11 +34,15 @@ class WholeRoutineViewModel: ObservableObject {
         routinesByMonth = wholeRoutineModel.parseByMonth(selectedPart, routines: wholeRoutine.routines)
     }
     
-    func sortByMonth() -> [(key: Int, value: [Routine])] {
+    func sortByMonth(routinesByMonth: [Int: [Routine]]) -> [(key: Int, value: [Routine])] {
         return routinesByMonth.sorted { $0.key > $1.key }
     }
     
     func sortByDate(routine: [Routine]) -> [Routine] {
         return routine.sorted { $0.date > $1.date }
+    }
+    
+    func sortByYear() -> [(key: Int, value: [Int: [Routine]])] {
+        return routinesByMonth.sorted { $0.key > $1.key }
     }
 }
