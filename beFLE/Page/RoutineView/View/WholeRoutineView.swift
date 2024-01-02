@@ -109,29 +109,31 @@ extension WholeRoutineView {
     
     var Workouts: some View {
         ScrollView {
-            ForEach(Array(vm.sortByMonth()), id: \.key) { routine in
-                VStack {
-                    HStack {
-                        Text("\(routine.key)월")
-                            .foregroundColor(.label_900)
-                            .font(.headline1())
-                            .padding(.leading, 5)
-                        Spacer()
-                    }
-                    
-                    ForEach(vm.sortByDate(routine: routine.value), id: \.self) { some in
-                        if some.part != "휴식" {
-                            NavigationLink {
-                                RoutineInformationView(routineId: some.routineId)
-                                    .navigationBarTitle("\(some.date.format(.monthDay))", displayMode: .inline)
-                            } label: {
+            ForEach(Array(vm.sortByYear()), id: \.key) { routineByMonth in
+                ForEach(Array(vm.sortByMonth(routinesByMonth: routineByMonth.value)), id: \.key) { routine in
+                    VStack {
+                        HStack {
+                            Text("\(routine.key)월")
+                                .foregroundColor(.label_900)
+                                .font(.headline1())
+                                .padding(.leading, 5)
+                            Spacer()
+                        }
+                        
+                        ForEach(vm.sortByDate(routine: routine.value), id: \.self) { some in
+                            if some.part != "휴식" {
+                                NavigationLink {
+                                    RoutineInformationView(routineId: some.routineId)
+                                        .navigationBarTitle("\(some.date.format(.monthDay))", displayMode: .inline)
+                                } label: {
+                                    TodayWorkoutCell(routine: some)
+                                        .padding(.vertical, 8)
+                                }
+                            } else {
                                 TodayWorkoutCell(routine: some)
                                     .padding(.vertical, 8)
+                                    .foregroundColor(.gray)
                             }
-                        } else {
-                            TodayWorkoutCell(routine: some)
-                                .padding(.vertical, 8)
-                                .foregroundColor(.gray)
                         }
                     }
                 }
